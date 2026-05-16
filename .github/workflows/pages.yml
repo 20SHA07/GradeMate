@@ -32,7 +32,17 @@ jobs:
         run: npm install
 
       - name: Build static site
-        run: npm run build
+        shell: bash
+        run: |
+          set +e
+          npm run build 2>&1 | tee build.log
+          code=${PIPESTATUS[0]}
+          if [ "$code" -ne 0 ]; then
+            grep -Ei "error|failed|failure|type error|module not found" build.log | head -n 20 | while read -r line; do
+              echo "::error::$line"
+            done
+            exit "$code"
+          fi
         env:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}

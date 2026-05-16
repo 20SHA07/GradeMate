@@ -49,6 +49,7 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<SemesterRecord, "id" | "created_at">>;
+        Relationships: [];
       };
       courses: {
         Row: CourseRecord;
@@ -62,6 +63,15 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<CourseRecord, "id" | "created_at">>;
+        Relationships: [
+          {
+            foreignKeyName: "courses_semester_id_fkey";
+            columns: ["semester_id"];
+            isOneToOne: false;
+            referencedRelation: "semesters";
+            referencedColumns: ["id"];
+          }
+        ];
       };
       assessments: {
         Row: AssessmentRecord;
@@ -75,6 +85,15 @@ export type Database = {
           created_at?: string;
         };
         Update: Partial<Omit<AssessmentRecord, "id" | "created_at">>;
+        Relationships: [
+          {
+            foreignKeyName: "assessments_course_id_fkey";
+            columns: ["course_id"];
+            isOneToOne: false;
+            referencedRelation: "courses";
+            referencedColumns: ["id"];
+          }
+        ];
       };
     };
     Views: Record<string, never>;
