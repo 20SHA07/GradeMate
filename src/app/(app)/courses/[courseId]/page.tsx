@@ -3,7 +3,7 @@ import { CourseDetailClient } from "@/components/courses/course-detail-client";
 export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return [];
+  return [{ courseId: "preview" }];
 }
 
 export default function CourseDetailPage() {
