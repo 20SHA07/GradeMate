@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, PlusCircle } from "lucide-react";
+import { ArrowRight, BookOpen, PlusCircle } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
@@ -9,6 +9,12 @@ import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import {
+  formatPercent,
+  getAssessmentName,
+  getAssessmentWeight,
+  getCourseGradeSummary
+} from "@/lib/grades";
 import { readGuestData } from "@/lib/guest-session";
 import type {
   AssessmentRecord,
@@ -129,10 +135,7 @@ export function CoursesClient() {
         <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {courses.map((course) => {
             const courseAssessments = assessmentsForCourse(course.id);
-            const totalWeight = courseAssessments.reduce(
-              (sum, assessment) => sum + Number(assessment.weight || 0),
-              0
-            );
+            const gradeSummary = getCourseGradeSummary(courseAssessments);
 
             return (
               <Card className="p-5" key={course.id}>
@@ -153,7 +156,16 @@ export function CoursesClient() {
 
                 <div className="mt-5 flex items-center justify-between rounded-lg bg-ink-50 px-3 py-2 text-sm">
                   <span className="text-ink-500">Assessment weight</span>
-                  <span className="font-medium text-ink-900">{totalWeight}%</span>
+                  <span className="font-medium text-ink-900">
+                    {gradeSummary.totalWeight}%
+                  </span>
+                </div>
+
+                <div className="mt-3 flex items-center justify-between rounded-lg bg-teal-50 px-3 py-2 text-sm">
+                  <span className="text-teal-800">Current grade</span>
+                  <span className="font-semibold text-teal-800">
+                    {formatPercent(gradeSummary.currentGrade)}
+                  </span>
                 </div>
 
                 <div className="mt-4 space-y-2">
@@ -166,15 +178,27 @@ export function CoursesClient() {
                         key={assessment.id}
                       >
                         <span className="font-medium text-ink-800">
-                          {assessment.title}
+                          {getAssessmentName(assessment)}
                         </span>
                         <span className="text-ink-500">
-                          {Number(assessment.weight)}%
+                          {getAssessmentWeight(assessment)}%
                         </span>
                       </div>
                     ))
                   )}
                 </div>
+
+                <Link
+                  className={buttonStyles({
+                    className: "mt-5 w-full",
+                    variant: "secondary"
+                  })}
+                  href={`/courses/${course.id}`}
+                  prefetch={false}
+                >
+                  Open course
+                  <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                </Link>
               </Card>
             );
           })}

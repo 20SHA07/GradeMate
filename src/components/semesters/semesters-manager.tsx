@@ -1,13 +1,15 @@
 "use client";
 
-import { BookOpen, CalendarDays, PlusCircle } from "lucide-react";
+import Link from "next/link";
+import { ArrowRight, BookOpen, CalendarDays, PlusCircle } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { getAssessmentName, getAssessmentWeight } from "@/lib/grades";
 import {
   createGuestId,
   readGuestData,
@@ -42,9 +44,11 @@ type CourseForm = {
 };
 
 type AssessmentForm = {
-  title: string;
-  weight: string;
+  name: string;
+  weightPercentage: string;
   score: string;
+  maxScore: string;
+  category: string;
 };
 
 const defaultSemesterForm: SemesterForm = {
@@ -60,9 +64,11 @@ const defaultCourseForm: CourseForm = {
 };
 
 const defaultAssessmentForm: AssessmentForm = {
-  title: "",
-  weight: "",
-  score: ""
+  name: "",
+  weightPercentage: "",
+  score: "",
+  maxScore: "",
+  category: "Planned"
 };
 
 export function SemestersManager() {
@@ -310,9 +316,13 @@ export function SemestersManager() {
         id: createGuestId("assessment"),
         user_id: user.id,
         course_id: courseId,
-        title: form.title,
-        weight: Number(form.weight) || 0,
+        name: form.name,
+        weight_percentage: Number(form.weightPercentage) || 0,
         score: form.score === "" ? null : Number(form.score),
+        max_score: form.maxScore === "" ? null : Number(form.maxScore),
+        category: form.category,
+        title: form.name,
+        weight: Number(form.weightPercentage) || 0,
         created_at: new Date().toISOString()
       };
       const nextAssessments = [...assessments, createdAssessment];
@@ -336,9 +346,13 @@ export function SemestersManager() {
       .insert({
         user_id: user.id,
         course_id: courseId,
-        title: form.title,
-        weight: Number(form.weight) || 0,
-        score: form.score === "" ? null : Number(form.score)
+        name: form.name,
+        weight_percentage: Number(form.weightPercentage) || 0,
+        score: form.score === "" ? null : Number(form.score),
+        max_score: form.maxScore === "" ? null : Number(form.maxScore),
+        category: form.category,
+        title: form.name,
+        weight: Number(form.weightPercentage) || 0
       })
       .select()
       .single();
@@ -362,13 +376,17 @@ export function SemestersManager() {
 
     if (isGuest) {
       const createdAssessments: AssessmentRecord[] = assessmentTitles.map(
-        (title) => ({
+        (name) => ({
           id: createGuestId("assessment"),
           user_id: user.id,
           course_id: courseId,
-          title,
-          weight: 0,
+          name,
+          weight_percentage: 0,
           score: null,
+          max_score: null,
+          category: "Planned",
+          title: name,
+          weight: 0,
           created_at: new Date().toISOString()
         })
       );
@@ -384,12 +402,16 @@ export function SemestersManager() {
       return;
     }
 
-    const rows = assessmentTitles.map((title) => ({
+    const rows = assessmentTitles.map((name) => ({
       user_id: user.id,
       course_id: courseId,
-      title,
-      weight: 0,
-      score: null
+      name,
+      weight_percentage: 0,
+      score: null,
+      max_score: null,
+      category: "Planned",
+      title: name,
+      weight: 0
     }));
 
     const { data, error: createError } = await supabase
@@ -625,7 +647,7 @@ export function SemestersManager() {
                   const courseAssessments = getAssessmentsForCourse(course.id);
                   const form = getAssessmentForm(course.id);
                   const totalWeight = courseAssessments.reduce(
-                    (sum, assessment) => sum + Number(assessment.weight || 0),
+                    (sum, assessment) => sum + getAssessmentWeight(assessment),
                     0
                   );
 
@@ -650,6 +672,17 @@ export function SemestersManager() {
                           <Badge tone={totalWeight === 100 ? "green" : "gold"}>
                             {totalWeight}% weight
                           </Badge>
+                          <Link
+                            className={buttonStyles({
+                              size: "sm",
+                              variant: "secondary"
+                            })}
+                            href={`/courses/${course.id}`}
+                            prefetch={false}
+                          >
+                            Open course
+                            <ArrowRight aria-hidden="true" className="h-4 w-4" />
+                          </Link>
                         </div>
                       </div>
 
@@ -661,15 +694,18 @@ export function SemestersManager() {
                           >
                             <div className="flex items-center justify-between gap-3">
                               <span className="font-medium text-ink-800">
-                                {assessment.title}
+                                {getAssessmentName(assessment)}
                               </span>
                               <span className="text-ink-500">
-                                {Number(assessment.weight)}%
+                                {getAssessmentWeight(assessment)}%
                               </span>
                             </div>
                             {assessment.score !== null ? (
                               <p className="mt-1 text-xs text-ink-500">
-                                Score: {Number(assessment.score)}%
+                                Score: {Number(assessment.score)}
+                                {assessment.max_score
+                                  ? ` / ${Number(assessment.max_score)}`
+                                  : "%"}
                               </p>
                             ) : null}
                           </div>
@@ -677,7 +713,7 @@ export function SemestersManager() {
                       </div>
 
                       <form
-                        className="mt-4 grid gap-3 rounded-lg bg-ink-50 p-3 md:grid-cols-[minmax(0,1fr)_7rem_7rem_auto]"
+                        className="mt-4 grid gap-3 rounded-lg bg-ink-50 p-3 md:grid-cols-[minmax(0,1fr)_7rem_7rem_7rem_auto]"
                         onSubmit={(event) => createAssessment(event, course.id)}
                       >
                         <label className="block">
@@ -690,13 +726,13 @@ export function SemestersManager() {
                             onChange={(event) =>
                               updateAssessmentForm(
                                 course.id,
-                                "title",
+                                "name",
                                 event.target.value
                               )
                             }
                             placeholder="Midterm, Lab, Participation..."
                             required
-                            value={form.title}
+                            value={form.name}
                           />
                           <datalist id={`assessment-options-${course.id}`}>
                             {assessmentTitles.map((title) => (
@@ -716,14 +752,14 @@ export function SemestersManager() {
                             onChange={(event) =>
                               updateAssessmentForm(
                                 course.id,
-                                "weight",
+                                "weightPercentage",
                                 event.target.value
                               )
                             }
                             placeholder="25"
                             required
                             type="number"
-                            value={form.weight}
+                            value={form.weightPercentage}
                           />
                         </label>
                         <label className="block">
@@ -743,6 +779,25 @@ export function SemestersManager() {
                             placeholder="Optional"
                             type="number"
                             value={form.score}
+                          />
+                        </label>
+                        <label className="block">
+                          <span className="text-xs font-medium text-ink-500">
+                            Max
+                          </span>
+                          <input
+                            className="mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                            min="0"
+                            onChange={(event) =>
+                              updateAssessmentForm(
+                                course.id,
+                                "maxScore",
+                                event.target.value
+                              )
+                            }
+                            placeholder="100"
+                            type="number"
+                            value={form.maxScore}
                           />
                         </label>
                         <div className="flex items-end gap-2">

@@ -49,7 +49,11 @@ jobs:
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY }}
 
       - name: Prepare Pages artifact
-        run: touch ./out/.nojekyll
+        run: |
+          touch ./out/.nojekyll
+          if [ ! -f ./out/404.html ]; then
+            cp ./out/index.html ./out/404.html
+          fi
 
       - name: Configure Pages
         uses: actions/configure-pages@v5

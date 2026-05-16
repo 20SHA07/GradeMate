@@ -23,11 +23,35 @@ create table if not exists assessments (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
   course_id uuid not null references courses(id) on delete cascade,
-  title text not null,
-  weight numeric not null default 0,
+  name text not null,
+  weight_percentage numeric not null default 0,
   score numeric,
+  max_score numeric,
+  category text not null default 'Planned',
+  title text,
+  weight numeric,
   created_at timestamp with time zone default now()
 );
+
+alter table assessments add column if not exists name text;
+alter table assessments add column if not exists weight_percentage numeric not null default 0;
+alter table assessments add column if not exists max_score numeric;
+alter table assessments add column if not exists category text not null default 'Planned';
+alter table assessments add column if not exists title text;
+alter table assessments add column if not exists weight numeric;
+
+update assessments
+set name = coalesce(name, title, 'Assessment')
+where name is null;
+
+update assessments
+set weight_percentage = coalesce(nullif(weight_percentage, 0), weight, 0)
+where weight is not null;
+
+alter table assessments alter column name set not null;
+alter table assessments alter column weight_percentage set default 0;
+alter table assessments alter column category set default 'Planned';
+alter table assessments alter column title drop not null;
 
 create index if not exists semesters_user_id_idx on semesters(user_id);
 create index if not exists courses_user_id_idx on courses(user_id);

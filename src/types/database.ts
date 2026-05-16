@@ -29,10 +29,14 @@ export type AssessmentRecord = {
   id: string;
   user_id: string;
   course_id: string;
-  title: string;
-  weight: number;
+  name: string | null;
+  weight_percentage: number | null;
   score: number | null;
+  max_score: number | null;
+  category: string | null;
   created_at: string;
+  title?: string | null;
+  weight?: number | null;
 };
 
 export type Database = {
@@ -79,9 +83,13 @@ export type Database = {
           id?: string;
           user_id: string;
           course_id: string;
-          title: string;
-          weight?: number;
+          name: string;
+          weight_percentage?: number;
           score?: number | null;
+          max_score?: number | null;
+          category?: string | null;
+          title?: string | null;
+          weight?: number | null;
           created_at?: string;
         };
         Update: Partial<Omit<AssessmentRecord, "id" | "created_at">>;

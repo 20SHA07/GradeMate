@@ -34,18 +34,6 @@ begin
 end;
 $$;
 
-drop trigger if exists set_semesters_user_id on semesters;
-create trigger set_semesters_user_id
-before insert on semesters
-for each row
-execute function public.set_current_user_id();
-
-drop trigger if exists set_courses_user_id on courses;
-create trigger set_courses_user_id
-before insert on courses
-for each row
-execute function public.set_current_user_id();
-
 drop trigger if exists set_assessments_user_id on assessments;
 create trigger set_assessments_user_id
 before insert on assessments
