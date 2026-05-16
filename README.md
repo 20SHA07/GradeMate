@@ -21,7 +21,7 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - `/dashboard` app overview
 - `/semesters` semester tracking
 - `/courses` course tracking
-- `/gpa-calculator` manual GPA calculator
+- `/gpa-calculator` semester-aware GPA calculator
 
 ## Getting Started
 
@@ -35,8 +35,9 @@ Copy `.env.example` to `.env.local` when wiring Supabase and OpenAI.
 ## Supabase Setup
 
 Run [supabase/schema.sql](supabase/schema.sql) in your Supabase SQL editor. It
-creates `semesters`, `courses`, and `assessments`, enables row-level security,
-and adds policies so users can only access their own records.
+creates `semesters`, `courses`, `assessments`, `syllabus_uploads`, the private
+`syllabi` storage bucket, row-level security, and policies so users can only
+access their own records and files.
 
 If assessment inserts fail with a row-level security error, run
 [supabase/fix-assessment-rls.sql](supabase/fix-assessment-rls.sql) in the SQL
@@ -49,6 +50,19 @@ Required environment variables:
 NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
+
+For syllabus AI extraction on the live GitHub Pages app, also deploy the
+Supabase Edge Function and set its OpenAI secret:
+
+```bash
+supabase functions deploy extract-syllabus
+supabase secrets set OPENAI_API_KEY=your_openai_api_key
+supabase secrets set OPENAI_MODEL=gpt-5-mini
+```
+
+If you already ran the older schema, run
+[supabase/syllabus-ai.sql](supabase/syllabus-ai.sql) in the SQL editor to add
+the upload table, storage bucket, and storage policies.
 
 For GitHub Pages, add those same names as repository secrets before the Pages
 workflow runs.

@@ -39,6 +39,19 @@ export type AssessmentRecord = {
   weight?: number | null;
 };
 
+export type SyllabusUploadRecord = {
+  id: string;
+  user_id: string;
+  course_id: string;
+  file_path: string;
+  original_filename: string;
+  status: string;
+  extraction: Json | null;
+  error: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -96,6 +109,33 @@ export type Database = {
         Relationships: [
           {
             foreignKeyName: "assessments_course_id_fkey";
+            columns: ["course_id"];
+            isOneToOne: false;
+            referencedRelation: "courses";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      syllabus_uploads: {
+        Row: SyllabusUploadRecord;
+        Insert: {
+          id?: string;
+          user_id: string;
+          course_id: string;
+          file_path: string;
+          original_filename: string;
+          status?: string;
+          extraction?: Json | null;
+          error?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<
+          Omit<SyllabusUploadRecord, "id" | "created_at" | "updated_at">
+        >;
+        Relationships: [
+          {
+            foreignKeyName: "syllabus_uploads_course_id_fkey";
             columns: ["course_id"];
             isOneToOne: false;
             referencedRelation: "courses";

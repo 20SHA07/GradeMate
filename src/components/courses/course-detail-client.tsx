@@ -6,11 +6,14 @@ import {
   ArrowLeft,
   BookOpen,
   Edit3,
+  FileText,
   Layers3,
   Percent,
   PlusCircle,
   Save,
-  Trash2
+  Trash2,
+  UploadCloud,
+  Wand2
 } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
@@ -40,6 +43,7 @@ import type {
   CourseRecord,
   SemesterRecord
 } from "@/types/database";
+import type { SyllabusExtraction } from "@/lib/ai/syllabus-schema";
 
 type AssessmentForm = {
   name: string;
@@ -106,6 +110,229 @@ function buildAssessmentPayload(form: AssessmentForm) {
     title: name,
     weight
   };
+}
+
+function sanitizeFileName(fileName: string) {
+  return fileName.replace(/[^a-zA-Z0-9._-]/g, "-").replace(/-+/g, "-");
+}
+
+function SyllabusUploadCard({
+  course,
+  isGuest,
+  onExtracted
+}: {
+  course: CourseRecord;
+  isGuest: boolean;
+  onExtracted: (result: {
+    course?: CourseRecord;
+    assessments?: AssessmentRecord[];
+    extraction?: SyllabusExtraction;
+  }) => void;
+}) {
+  const { supabase, user } = useAuth();
+  const [file, setFile] = useState<File | null>(null);
+  const [isExtracting, setIsExtracting] = useState(false);
+  const [message, setMessage] = useState("");
+  const [error, setError] = useState("");
+  const [extraction, setExtraction] = useState<SyllabusExtraction | null>(null);
+
+  async function uploadAndExtract() {
+    setError("");
+    setMessage("");
+
+    if (isGuest) {
+      setError("Log in to upload and extract a syllabus PDF.");
+      return;
+    }
+
+    if (!supabase || !file) {
+      setError("Choose a PDF syllabus first.");
+      return;
+    }
+
+    const isPdf =
+      file.type === "application/pdf" ||
+      file.name.toLowerCase().endsWith(".pdf");
+
+    if (!isPdf) {
+      setError("Only PDF syllabus files are supported.");
+      return;
+    }
+
+    setIsExtracting(true);
+
+    try {
+      const filePath = `${user.id}/${course.id}/${Date.now()}-${sanitizeFileName(
+        file.name
+      )}`;
+
+      const { error: uploadError } = await supabase.storage
+        .from("syllabi")
+        .upload(filePath, file, {
+          contentType: "application/pdf",
+          upsert: false
+        });
+
+      if (uploadError) {
+        throw new Error(uploadError.message);
+      }
+
+      const { data: uploadRecord, error: recordError } = await supabase
+        .from("syllabus_uploads")
+        .insert({
+          user_id: user.id,
+          course_id: course.id,
+          file_path: filePath,
+          original_filename: file.name,
+          status: "uploaded"
+        })
+        .select()
+        .single();
+
+      if (recordError || !uploadRecord) {
+        throw new Error(recordError?.message ?? "Could not save upload.");
+      }
+
+      setMessage("PDF uploaded. Extracting course details...");
+
+      const { data, error: functionError } = await supabase.functions.invoke(
+        "extract-syllabus",
+        {
+          body: {
+            uploadId: uploadRecord.id,
+            courseId: course.id,
+            filePath
+          }
+        }
+      );
+
+      if (functionError || data?.error) {
+        throw new Error(functionError?.message ?? data.error);
+      }
+
+      const result = data as {
+        course?: CourseRecord;
+        assessments?: AssessmentRecord[];
+        extraction?: SyllabusExtraction;
+      };
+      const createdCount = result.assessments?.length ?? 0;
+
+      setExtraction(result.extraction ?? null);
+      setMessage(
+        `Extraction complete. Added ${createdCount} assessment${
+          createdCount === 1 ? "" : "s"
+        }.`
+      );
+      setFile(null);
+      onExtracted(result);
+    } catch (extractError) {
+      setError(
+        extractError instanceof Error
+          ? extractError.message
+          : "Could not extract this syllabus."
+      );
+    } finally {
+      setIsExtracting(false);
+    }
+  }
+
+  return (
+    <Card className="p-5">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div className="max-w-2xl">
+          <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+            <FileText aria-hidden="true" className="h-4 w-4" />
+            Syllabus PDF
+          </div>
+          <h2 className="mt-2 text-xl font-semibold text-ink-900">
+            Upload and extract assessments
+          </h2>
+          <p className="mt-2 text-sm leading-6 text-ink-500">
+            Upload a PDF syllabus for this course. GradeMate stores it privately
+            in Supabase, then asks the extraction function to create weighted
+            assessment rows.
+          </p>
+        </div>
+        <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+          <Wand2 aria-hidden="true" className="h-5 w-5" />
+        </span>
+      </div>
+
+      {isGuest ? (
+        <p className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          Guest mode can track grades manually. Log in to upload PDFs and run AI
+          extraction.
+        </p>
+      ) : (
+        <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+          <label className="block">
+            <span className="text-sm font-medium text-ink-700">
+              PDF syllabus
+            </span>
+            <input
+              accept="application/pdf"
+              className="mt-1 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+              disabled={isExtracting}
+              onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+              type="file"
+            />
+          </label>
+          <Button
+            className="w-full md:w-auto"
+            disabled={!file || isExtracting}
+            onClick={() => void uploadAndExtract()}
+          >
+            <UploadCloud aria-hidden="true" className="h-4 w-4" />
+            {isExtracting ? "Extracting..." : "Upload and extract"}
+          </Button>
+        </div>
+      )}
+
+      {message ? (
+        <p className="mt-4 rounded-lg border border-lime-200 bg-lime-50 px-4 py-3 text-sm text-lime-800">
+          {message}
+        </p>
+      ) : null}
+
+      {error ? (
+        <p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+          {error}
+        </p>
+      ) : null}
+
+      {extraction ? (
+        <div className="mt-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <Badge tone="teal">
+              {extraction.course.code || course.code || "Course"}
+            </Badge>
+            <Badge tone="ink">
+              {extraction.course.credit_hours ?? Number(course.credit_hours)}{" "}
+              credits
+            </Badge>
+          </div>
+          <p className="mt-3 font-semibold text-ink-900">
+            {extraction.course.name}
+          </p>
+          <div className="mt-3 grid gap-2 md:grid-cols-2">
+            {extraction.assessments.slice(0, 6).map((assessment) => (
+              <div
+                className="flex items-center justify-between gap-3 rounded-lg bg-white px-3 py-2 text-sm"
+                key={`${assessment.name}-${assessment.weight_percentage}`}
+              >
+                <span className="font-medium text-ink-800">
+                  {assessment.name}
+                </span>
+                <span className="text-ink-500">
+                  {assessment.weight_percentage}%
+                </span>
+              </div>
+            ))}
+          </div>
+        </div>
+      ) : null}
+    </Card>
+  );
 }
 
 export function CourseDetailClient({
@@ -387,6 +614,21 @@ export function CourseDetailClient({
     }
   }
 
+  function handleSyllabusExtracted(result: {
+    course?: CourseRecord;
+    assessments?: AssessmentRecord[];
+  }) {
+    if (result.course) {
+      setCourse(result.course);
+    }
+
+    const createdAssessments = result.assessments ?? [];
+
+    if (createdAssessments.length > 0) {
+      setAssessments((current) => [...current, ...createdAssessments]);
+    }
+  }
+
   if (isLoading) {
     return <Card className="p-5 text-sm text-ink-500">Loading course...</Card>;
   }
@@ -499,6 +741,12 @@ export function CourseDetailClient({
           </div>
         </div>
       </Card>
+
+      <SyllabusUploadCard
+        course={course}
+        isGuest={isGuest}
+        onExtracted={handleSyllabusExtracted}
+      />
 
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
         <Card className="overflow-hidden">
