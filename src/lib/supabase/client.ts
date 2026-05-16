@@ -1,4 +1,5 @@
 import { createBrowserClient } from "@supabase/ssr";
+import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 export type SupabaseBrowserClient = ReturnType<typeof createBrowserClient>;
 
@@ -9,8 +10,7 @@ export function createSupabaseBrowserClient(): SupabaseBrowserClient {
     return browserClient;
   }
 
-  const supabaseUrl = process.env.NEXT_PUBLIC_SUPABASE_URL;
-  const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+  const { supabaseUrl, supabaseAnonKey } = getSupabasePublicConfig();
 
   if (!supabaseUrl || !supabaseAnonKey) {
     throw new Error("Missing Supabase browser environment variables.");
