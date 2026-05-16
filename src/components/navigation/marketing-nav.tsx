@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { GraduationCap, LogIn } from "lucide-react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { buttonStyles } from "@/components/ui/button";
 
 export function MarketingNav() {
@@ -13,6 +14,7 @@ export function MarketingNav() {
           GradeMate
         </Link>
         <nav className="flex items-center gap-2">
+          <ThemeToggle />
           <Link
             className={buttonStyles({ variant: "ghost", size: "sm" })}
             href="/login"

@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { buttonStyles } from "@/components/ui/button";
 import { useAuth } from "@/components/auth/protected-session-provider";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -83,6 +84,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               GradeMate
             </Link>
             <div className="hidden items-center gap-2 lg:flex">
+              <ThemeToggle />
               <Link
                 className={buttonStyles({ variant: "primary", size: "sm" })}
                 href="/semesters"
@@ -90,6 +92,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 <PlusCircle aria-hidden="true" className="h-4 w-4" />
                 Add course
               </Link>
+            </div>
+            <div className="lg:hidden">
+              <ThemeToggle />
             </div>
             <button
               className={buttonStyles({ variant: "ghost", size: "sm" })}

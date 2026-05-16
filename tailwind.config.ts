@@ -1,21 +1,22 @@
 import type { Config } from "tailwindcss";
 
 const config = {
+  darkMode: "class",
   content: ["./src/**/*.{js,ts,jsx,tsx,mdx}"],
   theme: {
     extend: {
       colors: {
         ink: {
-          50: "#f7f8fb",
-          100: "#eceff4",
-          200: "#d7dde7",
-          300: "#b6c1d1",
-          400: "#8e9caf",
-          500: "#6b778b",
-          600: "#4f5a6d",
-          700: "#3d4656",
-          800: "#2b3340",
-          900: "#171d28"
+          50: "var(--ink-50)",
+          100: "var(--ink-100)",
+          200: "var(--ink-200)",
+          300: "var(--ink-300)",
+          400: "var(--ink-400)",
+          500: "var(--ink-500)",
+          600: "var(--ink-600)",
+          700: "var(--ink-700)",
+          800: "var(--ink-800)",
+          900: "var(--ink-900)"
         },
         campus: {
           teal: "#0f766e",
