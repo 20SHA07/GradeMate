@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { ArrowRight, BookOpen, CalendarDays, PlusCircle } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
@@ -672,17 +671,16 @@ export function SemestersManager() {
                           <Badge tone={totalWeight === 100 ? "green" : "gold"}>
                             {totalWeight}% weight
                           </Badge>
-                          <Link
+                          <a
                             className={buttonStyles({
                               size: "sm",
                               variant: "secondary"
                             })}
-                            href={`/courses/${course.id}`}
-                            prefetch={false}
+                            href={`../courses/${course.id}/`}
                           >
                             Open course
                             <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                          </Link>
+                          </a>
                         </div>
                       </div>
 

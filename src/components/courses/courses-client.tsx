@@ -188,17 +188,16 @@ export function CoursesClient() {
                   )}
                 </div>
 
-                <Link
+                <a
                   className={buttonStyles({
                     className: "mt-5 w-full",
                     variant: "secondary"
                   })}
-                  href={`/courses/${course.id}`}
-                  prefetch={false}
+                  href={`${course.id}/`}
                 >
                   Open course
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </Link>
+                </a>
               </Card>
             );
           })}
