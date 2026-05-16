@@ -177,13 +177,15 @@ export function SemestersManager() {
 
     setIsSaving(false);
 
-    if (createError || !data) {
+    const createdSemester = data as SemesterRecord | null;
+
+    if (createError || !createdSemester) {
       setError(createError?.message ?? "Could not create semester.");
       return;
     }
 
-    setSemesters((current) => [data, ...current]);
-    setSelectedSemesterId(data.id);
+    setSemesters((current) => [createdSemester, ...current]);
+    setSelectedSemesterId(createdSemester.id);
     setSemesterForm(defaultSemesterForm);
   }
 
@@ -211,12 +213,14 @@ export function SemestersManager() {
 
     setIsSaving(false);
 
-    if (createError || !data) {
+    const createdCourse = data as CourseRecord | null;
+
+    if (createError || !createdCourse) {
       setError(createError?.message ?? "Could not create course.");
       return;
     }
 
-    setCourses((current) => [data, ...current]);
+    setCourses((current) => [createdCourse, ...current]);
     setCourseForm(defaultCourseForm);
   }
 
@@ -240,12 +244,14 @@ export function SemestersManager() {
       .select()
       .single();
 
-    if (createError || !data) {
+    const createdAssessment = data as AssessmentRecord | null;
+
+    if (createError || !createdAssessment) {
       setError(createError?.message ?? "Could not create assessment.");
       return;
     }
 
-    setAssessments((current) => [...current, data]);
+    setAssessments((current) => [...current, createdAssessment]);
     setAssessmentForms((current) => ({
       ...current,
       [courseId]: defaultAssessmentForm
@@ -268,12 +274,14 @@ export function SemestersManager() {
       .insert(rows)
       .select();
 
-    if (createError || !data) {
+    const createdAssessments = data as AssessmentRecord[] | null;
+
+    if (createError || !createdAssessments) {
       setError(createError?.message ?? "Could not add default assessments.");
       return;
     }
 
-    setAssessments((current) => [...current, ...data]);
+    setAssessments((current) => [...current, ...createdAssessments]);
   }
 
   return (
