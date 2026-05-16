@@ -60,7 +60,7 @@ const defaultCourseForm: CourseForm = {
 };
 
 const defaultAssessmentForm: AssessmentForm = {
-  title: "Midterm",
+  title: "",
   weight: "",
   score: ""
 };
@@ -684,8 +684,9 @@ export function SemestersManager() {
                           <span className="text-xs font-medium text-ink-500">
                             Assessment
                           </span>
-                          <select
+                          <input
                             className="mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                            list={`assessment-options-${course.id}`}
                             onChange={(event) =>
                               updateAssessmentForm(
                                 course.id,
@@ -693,14 +694,17 @@ export function SemestersManager() {
                                 event.target.value
                               )
                             }
+                            placeholder="Midterm, Lab, Participation..."
+                            required
                             value={form.title}
-                          >
+                          />
+                          <datalist id={`assessment-options-${course.id}`}>
                             {assessmentTitles.map((title) => (
                               <option key={title} value={title}>
                                 {title}
                               </option>
                             ))}
-                          </select>
+                          </datalist>
                         </label>
                         <label className="block">
                           <span className="text-xs font-medium text-ink-500">

@@ -38,6 +38,11 @@ Run [supabase/schema.sql](supabase/schema.sql) in your Supabase SQL editor. It
 creates `semesters`, `courses`, and `assessments`, enables row-level security,
 and adds policies so users can only access their own records.
 
+If assessment inserts fail with a row-level security error, run
+[supabase/fix-assessment-rls.sql](supabase/fix-assessment-rls.sql) in the SQL
+editor. It refreshes the assessment policies and adds insert triggers that set
+`user_id` from the logged-in Supabase user.
+
 Required environment variables:
 
 ```bash
