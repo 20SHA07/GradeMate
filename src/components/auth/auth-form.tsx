@@ -33,11 +33,11 @@ export function AuthForm({ mode }: AuthFormProps) {
   const isSignup = mode === "signup";
 
   useEffect(() => {
-    const client = supabase;
-
-    if (!client) {
+    if (!supabase) {
       return;
     }
+
+    const client = supabase;
 
     async function redirectIfSignedIn() {
       const { data } = await client.auth.getSession();

@@ -39,9 +39,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
   }, []);
 
   useEffect(() => {
-    const client = supabase;
-
-    if (!client) {
+    if (!supabase) {
       setAuthState({
         status: "error",
         message:
@@ -50,6 +48,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
       return;
     }
 
+    const client = supabase;
     let isMounted = true;
 
     async function loadSession() {
