@@ -1,6 +1,6 @@
 "use client";
 
-import type { Session, SupabaseClient, User } from "@supabase/supabase-js";
+import type { Session, User } from "@supabase/supabase-js";
 import { useRouter } from "next/navigation";
 import {
   createContext,
@@ -10,13 +10,15 @@ import {
   useState,
   type ReactNode
 } from "react";
-import type { Database } from "@/types/database";
-import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  createSupabaseBrowserClient,
+  type SupabaseBrowserClient
+} from "@/lib/supabase/client";
 
 type AuthContextValue = {
   session: Session;
   user: User;
-  supabase: SupabaseClient<Database>;
+  supabase: SupabaseBrowserClient;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
