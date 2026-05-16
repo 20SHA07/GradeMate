@@ -45,8 +45,8 @@ export function DashboardClient() {
         return;
       }
 
-      setSemesters(semesterResponse.data ?? []);
-      setCourses(courseResponse.data ?? []);
+      setSemesters((semesterResponse.data ?? []) as SemesterRecord[]);
+      setCourses((courseResponse.data ?? []) as CourseRecord[]);
       setIsLoading(false);
     }
 

@@ -58,9 +58,9 @@ export function CoursesClient() {
         return;
       }
 
-      setSemesters(semesterResponse.data ?? []);
-      setCourses(courseResponse.data ?? []);
-      setAssessments(assessmentResponse.data ?? []);
+      setSemesters((semesterResponse.data ?? []) as SemesterRecord[]);
+      setCourses((courseResponse.data ?? []) as CourseRecord[]);
+      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
       setIsLoading(false);
     }
 

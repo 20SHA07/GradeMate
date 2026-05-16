@@ -115,10 +115,10 @@ export function SemestersManager() {
         return;
       }
 
-      const loadedSemesters = semesterResponse.data ?? [];
+      const loadedSemesters = (semesterResponse.data ?? []) as SemesterRecord[];
       setSemesters(loadedSemesters);
-      setCourses(courseResponse.data ?? []);
-      setAssessments(assessmentResponse.data ?? []);
+      setCourses((courseResponse.data ?? []) as CourseRecord[]);
+      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
       setSelectedSemesterId((current) => current || loadedSemesters[0]?.id || "");
       setIsLoading(false);
     }
