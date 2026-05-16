@@ -4,6 +4,7 @@ export type GradeSummary = {
   totalWeight: number;
   completedWeight: number;
   remainingWeight: number;
+  unscoredWeight: number;
   completedContribution: number;
   currentGrade: number | null;
   finalProjectedGrade: number | null;
@@ -23,11 +24,21 @@ export function getAssessmentMaxScore(assessment: AssessmentRecord) {
     return Number(assessment.max_score);
   }
 
-  return assessment.score === null || assessment.score === undefined ? null : 100;
+  return null;
 }
 
 export function getAssessmentStatus(assessment: AssessmentRecord) {
-  return assessment.category ?? (isCompletedAssessment(assessment) ? "Completed" : "Planned");
+  if (assessment.category === "Dropped") {
+    return "Dropped";
+  }
+
+  if (isCompletedAssessment(assessment)) {
+    return "Completed";
+  }
+
+  return assessment.category === "Completed"
+    ? "Planned"
+    : assessment.category ?? "Planned";
 }
 
 export function isCompletedAssessment(assessment: AssessmentRecord) {
@@ -109,15 +120,13 @@ export function getCourseGradeSummary(
     completedWeight > 0 ? (completedContribution / completedWeight) * 100 : null;
   const allAssessmentsScored =
     activeAssessments.length > 0 && activeAssessments.every(isCompletedAssessment);
-  const finalProjectedGrade =
-    allAssessmentsScored && totalWeight > 0
-      ? (completedContribution / totalWeight) * 100
-      : null;
+  const finalProjectedGrade = completedContribution;
 
   return {
     totalWeight,
     completedWeight,
-    remainingWeight: Math.max(100 - completedWeight, 0),
+    remainingWeight: Math.max(100 - totalWeight, 0),
+    unscoredWeight: Math.max(totalWeight - completedWeight, 0),
     completedContribution,
     currentGrade,
     finalProjectedGrade,

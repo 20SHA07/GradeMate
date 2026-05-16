@@ -144,9 +144,13 @@ export function CoursesClient() {
                     <p className="text-sm font-medium text-teal-700">
                       {course.code || "Course"}
                     </p>
-                    <h2 className="mt-1 text-lg font-semibold text-ink-900">
+                    <Link
+                      className="mt-1 block text-lg font-semibold text-ink-900 transition-colors hover:text-teal-700"
+                      href={`/courses/${course.id}/`}
+                      prefetch={false}
+                    >
                       {course.name}
-                    </h2>
+                    </Link>
                     <p className="mt-2 text-sm text-ink-500">
                       {semesterNames.get(course.semester_id) || "Semester"}
                     </p>
@@ -188,16 +192,17 @@ export function CoursesClient() {
                   )}
                 </div>
 
-                <a
+                <Link
                   className={buttonStyles({
                     className: "mt-5 w-full",
                     variant: "secondary"
                   })}
-                  href={`${course.id}/`}
+                  href={`/courses/${course.id}/`}
+                  prefetch={false}
                 >
                   Open course
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                </a>
+                </Link>
               </Card>
             );
           })}

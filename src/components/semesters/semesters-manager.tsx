@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { ArrowRight, BookOpen, CalendarDays, PlusCircle } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
@@ -66,7 +67,7 @@ const defaultAssessmentForm: AssessmentForm = {
   name: "",
   weightPercentage: "",
   score: "",
-  maxScore: "",
+  maxScore: "100",
   category: "Planned"
 };
 
@@ -660,9 +661,13 @@ export function SemestersManager() {
                           <p className="text-sm font-medium text-teal-700">
                             {course.code || "Course"}
                           </p>
-                          <h3 className="mt-1 text-lg font-semibold text-ink-900">
+                          <Link
+                            className="mt-1 block text-lg font-semibold text-ink-900 transition-colors hover:text-teal-700"
+                            href={`/courses/${course.id}/`}
+                            prefetch={false}
+                          >
                             {course.name}
-                          </h3>
+                          </Link>
                         </div>
                         <div className="flex flex-wrap gap-2">
                           <Badge tone="ink">
@@ -671,16 +676,17 @@ export function SemestersManager() {
                           <Badge tone={totalWeight === 100 ? "green" : "gold"}>
                             {totalWeight}% weight
                           </Badge>
-                          <a
+                          <Link
                             className={buttonStyles({
                               size: "sm",
                               variant: "secondary"
                             })}
-                            href={`../courses/${course.id}/`}
+                            href={`/courses/${course.id}/`}
+                            prefetch={false}
                           >
                             Open course
                             <ArrowRight aria-hidden="true" className="h-4 w-4" />
-                          </a>
+                          </Link>
                         </div>
                       </div>
 

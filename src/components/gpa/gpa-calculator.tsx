@@ -51,7 +51,7 @@ function formatGpa(value: number) {
 function getCoursePercentage(assessments: AssessmentRecord[]) {
   const summary = getCourseGradeSummary(assessments);
 
-  return summary.finalProjectedGrade ?? summary.currentGrade;
+  return summary.currentGrade ?? summary.finalProjectedGrade;
 }
 
 export function GpaCalculator() {

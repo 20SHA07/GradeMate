@@ -11,6 +11,7 @@ import {
   Percent,
   PlusCircle,
   Save,
+  Target,
   Trash2,
   UploadCloud,
   Wand2
@@ -100,15 +101,40 @@ function buildAssessmentPayload(form: AssessmentForm) {
   const weight = Number(form.weightPercentage) || 0;
   const score = parseOptionalNumber(form.score);
   const maxScore = parseOptionalNumber(form.maxScore);
+  const isScored = score !== null && maxScore !== null && maxScore > 0;
+  const category =
+    form.category === "Dropped" ? "Dropped" : isScored ? "Completed" : "Planned";
 
   return {
     name,
     weight_percentage: weight,
     score,
     max_score: maxScore,
-    category: form.category,
+    category,
     title: name,
     weight
+  };
+}
+
+function formatWeightDelta(value: number) {
+  return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function getWeightReadiness(totalWeight: number) {
+  if (totalWeight === 100) {
+    return { label: "Ready", tone: "green" as const };
+  }
+
+  if (totalWeight < 100) {
+    return {
+      label: `Missing ${formatWeightDelta(100 - totalWeight)}%`,
+      tone: "gold" as const
+    };
+  }
+
+  return {
+    label: `Over by ${formatWeightDelta(totalWeight - 100)}%`,
+    tone: "rose" as const
   };
 }
 
@@ -354,6 +380,8 @@ export function CourseDetailClient({
   const [editingAssessmentId, setEditingAssessmentId] = useState<string | null>(
     null
   );
+  const [targetGrade, setTargetGrade] = useState("90");
+  const [selectedNeedAssessmentId, setSelectedNeedAssessmentId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -445,6 +473,7 @@ export function CourseDetailClient({
     () => getCourseGradeSummary(assessments),
     [assessments]
   );
+  const weightReadiness = getWeightReadiness(gradeSummary.totalWeight);
   const currentLetterGrade = getLetterGrade(gradeSummary.currentGrade);
   const sortedAssessments = useMemo(
     () =>
@@ -455,6 +484,45 @@ export function CourseDetailClient({
       ),
     [assessments]
   );
+  const remainingAssessments = useMemo(
+    () =>
+      sortedAssessments.filter(
+        (assessment) =>
+          getAssessmentStatus(assessment) !== "Dropped" &&
+          !isCompletedAssessment(assessment) &&
+          getAssessmentWeight(assessment) > 0
+      ),
+    [sortedAssessments]
+  );
+  const selectedNeedAssessment =
+    remainingAssessments.find(
+      (assessment) => assessment.id === selectedNeedAssessmentId
+    ) ??
+    remainingAssessments[0] ??
+    null;
+  const needCalculator = useMemo(() => {
+    if (!selectedNeedAssessment) {
+      return null;
+    }
+
+    const target = Number(targetGrade);
+    const weight = getAssessmentWeight(selectedNeedAssessment);
+    const maxScore = getAssessmentMaxScore(selectedNeedAssessment) ?? 100;
+
+    if (!Number.isFinite(target) || weight <= 0 || maxScore <= 0) {
+      return null;
+    }
+
+    const neededContribution = target - gradeSummary.completedContribution;
+    const neededPercent = (neededContribution / weight) * 100;
+    const neededScore = (neededPercent / 100) * maxScore;
+
+    return {
+      maxScore,
+      neededPercent,
+      neededScore
+    };
+  }, [gradeSummary.completedContribution, selectedNeedAssessment, targetGrade]);
 
   function updateAssessmentForm(field: keyof AssessmentForm, value: string) {
     setAssessmentForm((current) => ({
@@ -694,7 +762,10 @@ export function CourseDetailClient({
           <p className="mt-1 text-sm text-ink-500">Based on current grade</p>
         </Card>
         <Card className="p-5">
-          <p className="text-sm font-medium text-ink-500">Total weight</p>
+          <div className="flex items-start justify-between gap-3">
+            <p className="text-sm font-medium text-ink-500">Total weight</p>
+            <Badge tone={weightReadiness.tone}>{weightReadiness.label}</Badge>
+          </div>
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {gradeSummary.totalWeight}%
           </p>
@@ -705,7 +776,7 @@ export function CourseDetailClient({
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {gradeSummary.remainingWeight}%
           </p>
-          <p className="mt-1 text-sm text-ink-500">Not completed yet</p>
+          <p className="mt-1 text-sm text-ink-500">Still unassigned</p>
         </Card>
       </section>
 
@@ -722,8 +793,8 @@ export function CourseDetailClient({
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
               Current grade uses only assessments with both a score and max
-              score. Final projection appears once every active assessment has
-              a score.
+              score. Final projection counts incomplete assessments as 0 until
+              you enter scores.
             </p>
           </div>
           <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
@@ -734,9 +805,7 @@ export function CourseDetailClient({
               {formatPercent(gradeSummary.finalProjectedGrade)}
             </p>
             <p className="mt-1 text-sm text-ink-500">
-              {gradeSummary.allAssessmentsScored
-                ? "All active assessments scored"
-                : "Add remaining scores to calculate"}
+              Incomplete assessments count as 0 for now
             </p>
           </div>
         </div>
@@ -747,6 +816,95 @@ export function CourseDetailClient({
         isGuest={isGuest}
         onExtracted={handleSyllabusExtracted}
       />
+
+      <Card className="p-5">
+        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+              <Target aria-hidden="true" className="h-4 w-4" />
+              What do I need?
+            </div>
+            <h2 className="mt-2 text-xl font-semibold text-ink-900">
+              Calculate the score needed on one remaining assessment
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
+              Pick a target course grade and one unscored assessment. This
+              assumes every other incomplete assessment contributes 0 for now.
+            </p>
+          </div>
+          <Badge tone={remainingAssessments.length > 0 ? "teal" : "ink"}>
+            {remainingAssessments.length} remaining
+          </Badge>
+        </div>
+
+        <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)_18rem] lg:items-end">
+          <label className="block">
+            <span className="text-sm font-medium text-ink-700">
+              Target grade
+            </span>
+            <input
+              className={inputStyles}
+              min="0"
+              onChange={(event) => setTargetGrade(event.target.value)}
+              step="0.1"
+              type="number"
+              value={targetGrade}
+            />
+          </label>
+          <label className="block">
+            <span className="text-sm font-medium text-ink-700">
+              Remaining assessment
+            </span>
+            <select
+              className={inputStyles}
+              disabled={remainingAssessments.length === 0}
+              onChange={(event) =>
+                setSelectedNeedAssessmentId(event.target.value)
+              }
+              value={selectedNeedAssessment?.id ?? ""}
+            >
+              {remainingAssessments.length === 0 ? (
+                <option value="">No remaining weighted assessments</option>
+              ) : null}
+              {remainingAssessments.map((assessment) => (
+                <option key={assessment.id} value={assessment.id}>
+                  {getAssessmentName(assessment)} -{" "}
+                  {getAssessmentWeight(assessment)}%
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+            <p className="text-sm font-medium text-ink-500">Needed score</p>
+            {selectedNeedAssessment && needCalculator ? (
+              <>
+                <p className="mt-2 text-3xl font-semibold text-ink-900">
+                  {needCalculator.neededPercent <= 0
+                    ? "0.0%"
+                    : `${needCalculator.neededPercent.toFixed(1)}%`}
+                </p>
+                <p className="mt-1 text-sm text-ink-500">
+                  {needCalculator.neededPercent <= 0
+                    ? "You have enough completed points already."
+                    : needCalculator.neededPercent > 100
+                      ? "Not possible on this item alone."
+                      : `${needCalculator.neededScore.toFixed(1)} / ${
+                          needCalculator.maxScore
+                        }`}
+                </p>
+              </>
+            ) : (
+              <>
+                <p className="mt-2 text-3xl font-semibold text-ink-900">N/A</p>
+                <p className="mt-1 text-sm text-ink-500">
+                  Add a weighted, unscored assessment.
+                </p>
+              </>
+            )}
+          </div>
+        </div>
+      </Card>
 
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
         <Card className="overflow-hidden">
@@ -769,13 +927,14 @@ export function CourseDetailClient({
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[760px] text-left text-sm">
+              <table className="w-full min-w-[860px] text-left text-sm">
                 <thead className="border-b border-ink-200 bg-ink-50 text-xs uppercase text-ink-500">
                   <tr>
                     <th className="px-5 py-3 font-semibold">Assessment</th>
                     <th className="px-5 py-3 font-semibold">Status</th>
                     <th className="px-5 py-3 font-semibold">Weight</th>
                     <th className="px-5 py-3 font-semibold">Score</th>
+                    <th className="px-5 py-3 font-semibold">Max score</th>
                     <th className="px-5 py-3 font-semibold">Contribution</th>
                     <th className="px-5 py-3 text-right font-semibold">
                       Actions
@@ -802,9 +961,13 @@ export function CourseDetailClient({
                           {getAssessmentWeight(assessment)}%
                         </td>
                         <td className="px-5 py-4 text-ink-700">
-                          {isCompletedAssessment(assessment)
-                            ? `${Number(assessment.score)} / ${Number(maxScore)}`
-                            : "Not scored"}
+                          {assessment.score === null ||
+                          assessment.score === undefined
+                            ? "Not scored"
+                            : Number(assessment.score)}
+                        </td>
+                        <td className="px-5 py-4 text-ink-700">
+                          {maxScore === null ? "Not set" : Number(maxScore)}
                         </td>
                         <td className="px-5 py-4 font-medium text-ink-900">
                           {formatPercent(contribution)}
