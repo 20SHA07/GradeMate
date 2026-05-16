@@ -9,6 +9,7 @@ import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { readGuestData } from "@/lib/guest-session";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -16,7 +17,7 @@ import type {
 } from "@/types/database";
 
 export function CoursesClient() {
-  const { supabase, user } = useAuth();
+  const { isGuest, supabase, user } = useAuth();
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([]);
@@ -27,6 +28,21 @@ export function CoursesClient() {
     async function loadCourses() {
       setIsLoading(true);
       setError("");
+
+      if (isGuest) {
+        const guestData = readGuestData();
+        setSemesters(guestData.semesters);
+        setCourses(guestData.courses);
+        setAssessments(guestData.assessments);
+        setIsLoading(false);
+        return;
+      }
+
+      if (!supabase) {
+        setError("Log in to load saved courses.");
+        setIsLoading(false);
+        return;
+      }
 
       const [semesterResponse, courseResponse, assessmentResponse] =
         await Promise.all([
@@ -65,7 +81,7 @@ export function CoursesClient() {
     }
 
     void loadCourses();
-  }, [supabase, user.id]);
+  }, [isGuest, supabase, user.id]);
 
   const semesterNames = useMemo(() => {
     return new Map(semesters.map((semester) => [semester.id, semester.name]));

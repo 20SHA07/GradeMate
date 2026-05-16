@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import {
   BookOpen,
   Calculator,
@@ -24,12 +24,10 @@ const navItems = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const router = useRouter();
-  const { supabase, user } = useAuth();
+  const { isGuest, signOut, user } = useAuth();
 
   async function handleLogout() {
-    await supabase.auth.signOut();
-    router.replace("/login");
+    await signOut();
   }
 
   return (
@@ -99,7 +97,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               type="button"
             >
               <LogOut aria-hidden="true" className="h-4 w-4" />
-              Sign out
+              {isGuest ? "Exit guest" : "Sign out"}
             </button>
           </div>
           <nav className="flex gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 lg:hidden">
@@ -125,6 +123,12 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             })}
           </nav>
         </header>
+        {isGuest ? (
+          <div className="border-b border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900 sm:px-6 lg:px-8">
+            Guest mode is temporary. Create an account or log in to save your
+            semesters and courses.
+          </div>
+        ) : null}
         <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-8 sm:px-6 lg:px-8">
           {children}
         </main>

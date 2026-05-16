@@ -8,6 +8,11 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import {
+  createGuestId,
+  readGuestData,
+  writeGuestData
+} from "@/lib/guest-session";
 import { cn } from "@/lib/utils";
 import type {
   AssessmentRecord,
@@ -61,7 +66,7 @@ const defaultAssessmentForm: AssessmentForm = {
 };
 
 export function SemestersManager() {
-  const { supabase, user } = useAuth();
+  const { isGuest, supabase, user } = useAuth();
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([]);
@@ -80,6 +85,24 @@ export function SemestersManager() {
     async function loadSemesters() {
       setIsLoading(true);
       setError("");
+
+      if (isGuest) {
+        const guestData = readGuestData();
+        setSemesters(guestData.semesters);
+        setCourses(guestData.courses);
+        setAssessments(guestData.assessments);
+        setSelectedSemesterId(
+          (current) => current || guestData.semesters[0]?.id || ""
+        );
+        setIsLoading(false);
+        return;
+      }
+
+      if (!supabase) {
+        setError("Log in to load saved semesters.");
+        setIsLoading(false);
+        return;
+      }
 
       const [semesterResponse, courseResponse, assessmentResponse] =
         await Promise.all([
@@ -124,7 +147,7 @@ export function SemestersManager() {
     }
 
     void loadSemesters();
-  }, [supabase, user.id]);
+  }, [isGuest, supabase, user.id]);
 
   const selectedSemester = useMemo(
     () => semesters.find((semester) => semester.id === selectedSemesterId),
@@ -164,6 +187,31 @@ export function SemestersManager() {
     setError("");
     setIsSaving(true);
 
+    if (isGuest) {
+      const createdSemester: SemesterRecord = {
+        id: createGuestId("semester"),
+        user_id: user.id,
+        name: semesterForm.name,
+        academic_year: semesterForm.academicYear || null,
+        term: semesterForm.term,
+        created_at: new Date().toISOString()
+      };
+      const nextSemesters = [createdSemester, ...semesters];
+
+      setSemesters(nextSemesters);
+      setSelectedSemesterId(createdSemester.id);
+      setSemesterForm(defaultSemesterForm);
+      writeGuestData({ semesters: nextSemesters, courses, assessments });
+      setIsSaving(false);
+      return;
+    }
+
+    if (!supabase) {
+      setError("Log in to save semesters.");
+      setIsSaving(false);
+      return;
+    }
+
     const { data, error: createError } = await supabase
       .from("semesters")
       .insert({
@@ -199,6 +247,31 @@ export function SemestersManager() {
     setError("");
     setIsSaving(true);
 
+    if (isGuest) {
+      const createdCourse: CourseRecord = {
+        id: createGuestId("course"),
+        user_id: user.id,
+        semester_id: selectedSemester.id,
+        name: courseForm.name,
+        code: courseForm.code || null,
+        credit_hours: Number(courseForm.creditHours) || 3,
+        created_at: new Date().toISOString()
+      };
+      const nextCourses = [createdCourse, ...courses];
+
+      setCourses(nextCourses);
+      setCourseForm(defaultCourseForm);
+      writeGuestData({ semesters, courses: nextCourses, assessments });
+      setIsSaving(false);
+      return;
+    }
+
+    if (!supabase) {
+      setError("Log in to save courses.");
+      setIsSaving(false);
+      return;
+    }
+
     const { data, error: createError } = await supabase
       .from("courses")
       .insert({
@@ -232,6 +305,32 @@ export function SemestersManager() {
     const form = getAssessmentForm(courseId);
     setError("");
 
+    if (isGuest) {
+      const createdAssessment: AssessmentRecord = {
+        id: createGuestId("assessment"),
+        user_id: user.id,
+        course_id: courseId,
+        title: form.title,
+        weight: Number(form.weight) || 0,
+        score: form.score === "" ? null : Number(form.score),
+        created_at: new Date().toISOString()
+      };
+      const nextAssessments = [...assessments, createdAssessment];
+
+      setAssessments(nextAssessments);
+      setAssessmentForms((current) => ({
+        ...current,
+        [courseId]: defaultAssessmentForm
+      }));
+      writeGuestData({ semesters, courses, assessments: nextAssessments });
+      return;
+    }
+
+    if (!supabase) {
+      setError("Log in to save assessments.");
+      return;
+    }
+
     const { data, error: createError } = await supabase
       .from("assessments")
       .insert({
@@ -260,6 +359,30 @@ export function SemestersManager() {
 
   async function addDefaultAssessments(courseId: string) {
     setError("");
+
+    if (isGuest) {
+      const createdAssessments: AssessmentRecord[] = assessmentTitles.map(
+        (title) => ({
+          id: createGuestId("assessment"),
+          user_id: user.id,
+          course_id: courseId,
+          title,
+          weight: 0,
+          score: null,
+          created_at: new Date().toISOString()
+        })
+      );
+      const nextAssessments = [...assessments, ...createdAssessments];
+
+      setAssessments(nextAssessments);
+      writeGuestData({ semesters, courses, assessments: nextAssessments });
+      return;
+    }
+
+    if (!supabase) {
+      setError("Log in to save assessments.");
+      return;
+    }
 
     const rows = assessmentTitles.map((title) => ({
       user_id: user.id,

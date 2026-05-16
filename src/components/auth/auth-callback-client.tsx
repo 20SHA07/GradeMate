@@ -3,6 +3,7 @@
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { Card } from "@/components/ui/card";
+import { endGuestSession } from "@/lib/guest-session";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 export function AuthCallbackClient() {
@@ -38,6 +39,9 @@ export function AuthCallbackClient() {
       }
 
       const { data } = await client.auth.getSession();
+      if (data.session) {
+        endGuestSession();
+      }
       router.replace(data.session ? "/dashboard" : "/login");
     }
 

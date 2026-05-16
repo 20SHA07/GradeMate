@@ -8,10 +8,11 @@ import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { readGuestData } from "@/lib/guest-session";
 import type { CourseRecord, SemesterRecord } from "@/types/database";
 
 export function DashboardClient() {
-  const { supabase, user } = useAuth();
+  const { isGuest, supabase, user } = useAuth();
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
@@ -21,6 +22,20 @@ export function DashboardClient() {
     async function loadDashboard() {
       setIsLoading(true);
       setError("");
+
+      if (isGuest) {
+        const guestData = readGuestData();
+        setSemesters(guestData.semesters);
+        setCourses(guestData.courses);
+        setIsLoading(false);
+        return;
+      }
+
+      if (!supabase) {
+        setError("Log in to load saved dashboard data.");
+        setIsLoading(false);
+        return;
+      }
 
       const [semesterResponse, courseResponse] = await Promise.all([
         supabase
@@ -51,7 +66,7 @@ export function DashboardClient() {
     }
 
     void loadDashboard();
-  }, [supabase, user.id]);
+  }, [isGuest, supabase, user.id]);
 
   const totalCredits = useMemo(
     () =>

@@ -6,6 +6,10 @@ import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  endGuestSession,
+  startGuestSession
+} from "@/lib/guest-session";
 import { getAuthRedirectUrl } from "@/lib/routes";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
@@ -84,11 +88,17 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     if (authResponse.data.session) {
+      endGuestSession();
       router.replace("/dashboard");
       return;
     }
 
     setMessage("Check your email to confirm your account, then log in.");
+  }
+
+  function continueAsGuest() {
+    startGuestSession();
+    router.replace("/dashboard");
   }
 
   return (
@@ -170,7 +180,22 @@ export function AuthForm({ mode }: AuthFormProps) {
         >
           {isSubmitting ? "Working..." : isSignup ? "Create account" : "Log in"}
         </button>
+
+        <button
+          className={buttonStyles({
+            className: "w-full",
+            variant: "secondary"
+          })}
+          onClick={continueAsGuest}
+          type="button"
+        >
+          Continue as guest
+        </button>
       </form>
+
+      <p className="mt-3 text-center text-xs leading-5 text-ink-500">
+        Guest work is temporary and is cleared when you exit the guest session.
+      </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">
         {isSignup ? "Already have an account?" : "New to GradeMate?"}{" "}

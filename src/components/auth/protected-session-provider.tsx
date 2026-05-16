@@ -14,11 +14,20 @@ import {
   createSupabaseBrowserClient,
   type SupabaseBrowserClient
 } from "@/lib/supabase/client";
+import {
+  endGuestSession,
+  guestUser,
+  hasGuestSession
+} from "@/lib/guest-session";
+
+type AppUser = Pick<User, "id" | "email">;
 
 type AuthContextValue = {
-  session: Session;
-  user: User;
-  supabase: SupabaseBrowserClient;
+  isGuest: boolean;
+  session: Session | null;
+  user: AppUser;
+  supabase: SupabaseBrowserClient | null;
+  signOut: () => Promise<void>;
 };
 
 const AuthContext = createContext<AuthContextValue | null>(null);
@@ -27,6 +36,7 @@ type AuthState =
   | { status: "loading" }
   | { status: "unauthenticated" }
   | { status: "error"; message: string }
+  | { status: "guest" }
   | { status: "authenticated"; session: Session };
 
 export function ProtectedSessionProvider({ children }: { children: ReactNode }) {
@@ -41,6 +51,11 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
   }, []);
 
   useEffect(() => {
+    if (hasGuestSession()) {
+      setAuthState({ status: "guest" });
+      return;
+    }
+
     if (!supabase) {
       setAuthState({
         status: "error",
@@ -66,6 +81,11 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
       }
 
       if (!data.session) {
+        if (hasGuestSession()) {
+          setAuthState({ status: "guest" });
+          return;
+        }
+
         setAuthState({ status: "unauthenticated" });
         router.replace("/login");
         return;
@@ -80,6 +100,11 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
       data: { subscription }
     } = client.auth.onAuthStateChange((_event, session) => {
       if (!session) {
+        if (hasGuestSession()) {
+          setAuthState({ status: "guest" });
+          return;
+        }
+
         setAuthState({ status: "unauthenticated" });
         router.replace("/login");
         return;
@@ -94,6 +119,17 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
     };
   }, [router, supabase]);
 
+  async function signOut() {
+    if (authState.status === "guest") {
+      endGuestSession();
+      router.replace("/login");
+      return;
+    }
+
+    await supabase?.auth.signOut();
+    router.replace("/login");
+  }
+
   if (authState.status === "error") {
     return (
       <div className="flex min-h-screen items-center justify-center bg-ink-50 px-4">
@@ -102,6 +138,22 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
           <p className="mt-2 text-sm leading-6 text-ink-500">{authState.message}</p>
         </div>
       </div>
+    );
+  }
+
+  if (authState.status === "guest") {
+    return (
+      <AuthContext.Provider
+        value={{
+          isGuest: true,
+          session: null,
+          user: guestUser,
+          supabase: null,
+          signOut
+        }}
+      >
+        {children}
+      </AuthContext.Provider>
     );
   }
 
@@ -118,9 +170,11 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
   return (
     <AuthContext.Provider
       value={{
+        isGuest: false,
         session: authState.session,
         user: authState.session.user,
-        supabase
+        supabase,
+        signOut
       }}
     >
       {children}
