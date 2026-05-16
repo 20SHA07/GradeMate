@@ -48,6 +48,15 @@ NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 For GitHub Pages, add those same names as repository secrets before the Pages
 workflow runs.
 
+In Supabase Auth URL Configuration, use:
+
+```text
+Site URL: https://20sha07.github.io/GradeMate
+Redirect URLs:
+http://localhost:3000/**
+https://20sha07.github.io/GradeMate/**
+```
+
 ## GitHub Pages
 
 This app is configured for static export through GitHub Actions. Push to `main`

@@ -6,6 +6,7 @@ import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { getAuthRedirectUrl } from "@/lib/routes";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
 type AuthMode = "login" | "signup";
@@ -67,6 +68,7 @@ export function AuthForm({ mode }: AuthFormProps) {
           email,
           password,
           options: {
+            emailRedirectTo: getAuthRedirectUrl(),
             data: {
               full_name: name
             }
