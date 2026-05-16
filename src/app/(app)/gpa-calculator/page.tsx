@@ -5,8 +5,8 @@ export default function GpaCalculatorPage() {
   return (
     <div className="space-y-8">
       <PageHeader
-        description="Calculate projected term GPA from credits and letter grades while course import is still manual."
-        eyebrow="Manual tool"
+        description="Choose semesters, use assessment-derived course grades, override letters, and test what-if outcomes."
+        eyebrow="Planning"
         title="GPA Calculator"
       />
       <GpaCalculator />
