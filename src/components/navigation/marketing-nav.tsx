@@ -15,10 +15,10 @@ export function MarketingNav() {
         <nav className="flex items-center gap-2">
           <Link
             className={buttonStyles({ variant: "ghost", size: "sm" })}
-            href="/sign-in"
+            href="/login"
           >
             <LogIn aria-hidden="true" className="h-4 w-4" />
-            Sign in
+            Log in
           </Link>
           <Link
             className={buttonStyles({ variant: "primary", size: "sm" })}

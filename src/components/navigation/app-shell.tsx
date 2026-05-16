@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
   BookOpen,
   Calculator,
@@ -12,6 +12,7 @@ import {
   PlusCircle
 } from "lucide-react";
 import { buttonStyles } from "@/components/ui/button";
+import { useAuth } from "@/components/auth/protected-session-provider";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -23,6 +24,13 @@ const navItems = [
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
+  const router = useRouter();
+  const { supabase, user } = useAuth();
+
+  async function handleLogout() {
+    await supabase.auth.signOut();
+    router.replace("/login");
+  }
 
   return (
     <div className="min-h-screen bg-ink-50 lg:flex">
@@ -61,7 +69,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="rounded-lg bg-ink-50 p-4">
             <p className="text-sm font-medium text-ink-900">Student workspace</p>
             <p className="mt-1 text-xs leading-5 text-ink-500">
-              Personal course data, semester plans, and GPA tracking.
+              {user.email}
             </p>
           </div>
         </div>
@@ -79,19 +87,20 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             <div className="hidden items-center gap-2 lg:flex">
               <Link
                 className={buttonStyles({ variant: "primary", size: "sm" })}
-                href="/courses"
+                href="/semesters"
               >
                 <PlusCircle aria-hidden="true" className="h-4 w-4" />
                 Add course
               </Link>
             </div>
-            <Link
+            <button
               className={buttonStyles({ variant: "ghost", size: "sm" })}
-              href="/sign-in"
+              onClick={handleLogout}
+              type="button"
             >
               <LogOut aria-hidden="true" className="h-4 w-4" />
               Sign out
-            </Link>
+            </button>
           </div>
           <nav className="flex gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 lg:hidden">
             {navItems.map((item) => {
