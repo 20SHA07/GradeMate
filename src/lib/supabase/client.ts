@@ -1,7 +1,6 @@
 import { createBrowserClient } from "@supabase/ssr";
-import type { Database } from "@/types/database";
 
-export type SupabaseBrowserClient = ReturnType<typeof createBrowserClient<Database>>;
+export type SupabaseBrowserClient = ReturnType<typeof createBrowserClient>;
 
 let browserClient: SupabaseBrowserClient | null = null;
 
@@ -17,6 +16,6 @@ export function createSupabaseBrowserClient(): SupabaseBrowserClient {
     throw new Error("Missing Supabase browser environment variables.");
   }
 
-  browserClient = createBrowserClient<Database>(supabaseUrl, supabaseAnonKey);
+  browserClient = createBrowserClient(supabaseUrl, supabaseAnonKey);
   return browserClient;
 }
