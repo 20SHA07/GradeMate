@@ -31,7 +31,7 @@ npm install
 npm run dev
 ```
 
-Copy `.env.example` to `.env.local` when wiring Supabase and OpenAI.
+Copy `.env.example` to `.env.local` when wiring Supabase and local AI.
 
 ## Supabase Setup
 
@@ -49,19 +49,22 @@ Required environment variables:
 
 ```bash
 NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
-For GitHub Pages, add those same public variable names as repository secrets
-before the Pages workflow runs.
+`NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY` is preferred for newer Supabase
+projects. `NEXT_PUBLIC_SUPABASE_ANON_KEY` is still supported as a fallback.
 
-For syllabus AI extraction on the live GitHub Pages app, also deploy the
-Supabase Edge Function and set its OpenAI secret:
+For GitHub Pages, add those same public variable names as repository secrets
+before the Pages workflow runs. The browser app must never use
+`SUPABASE_SERVICE_ROLE_KEY`.
+
+For local syllabus AI extraction during development, run Ollama locally and set:
 
 ```bash
-supabase functions deploy extract-syllabus
-supabase secrets set OPENAI_API_KEY=your_openai_api_key
-supabase secrets set OPENAI_MODEL=gpt-5-mini
+OLLAMA_BASE_URL=http://localhost:11434
+OLLAMA_MODEL=llama3.2:3b
 ```
 
 If you already ran the older schema, run

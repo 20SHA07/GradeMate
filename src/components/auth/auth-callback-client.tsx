@@ -6,6 +6,7 @@ import { useEffect, useMemo, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getSupabasePublicConfig } from "@/lib/supabase/config";
 
 export function AuthCallbackClient() {
   const router = useRouter();
@@ -17,10 +18,11 @@ export function AuthCallbackClient() {
       return null;
     }
   }, []);
+  const supabaseConfig = useMemo(() => getSupabasePublicConfig(), []);
 
   useEffect(() => {
     if (!supabase) {
-      setError("Supabase environment variables are missing.");
+      setError(supabaseConfig.missingSupabaseMessage);
       return;
     }
 
@@ -62,7 +64,7 @@ export function AuthCallbackClient() {
     }
 
     void finishConfirmation();
-  }, [router, supabase]);
+  }, [router, supabase, supabaseConfig.missingSupabaseMessage]);
 
   return (
     <Card className="w-full max-w-md p-6 text-center">

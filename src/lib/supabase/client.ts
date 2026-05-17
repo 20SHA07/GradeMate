@@ -10,12 +10,13 @@ export function createSupabaseBrowserClient(): SupabaseBrowserClient {
     return browserClient;
   }
 
-  const { supabaseUrl, supabaseAnonKey } = getSupabasePublicConfig();
+  const { isConfigured, missingSupabaseMessage, supabaseUrl, supabasePublicKey } =
+    getSupabasePublicConfig();
 
-  if (!supabaseUrl || !supabaseAnonKey) {
-    throw new Error("Missing Supabase browser environment variables.");
+  if (!isConfigured) {
+    throw new Error(missingSupabaseMessage);
   }
 
-  browserClient = createBrowserClient(supabaseUrl, supabaseAnonKey);
+  browserClient = createBrowserClient(supabaseUrl, supabasePublicKey);
   return browserClient;
 }
