@@ -97,7 +97,7 @@ function confidenceTone(confidence: number) {
 }
 
 function formatConfidence(confidence: number) {
-  return `${confidenceLabel(confidence)} · ${Math.round(confidence * 100)}%`;
+  return `${confidenceLabel(confidence)} - ${Math.round(confidence * 100)}%`;
 }
 
 function weightTone(totalWeight: number) {
@@ -191,7 +191,7 @@ function DetailStat({
   value: string | number;
 }) {
   return (
-    <div className="rounded-lg border border-ink-200 bg-ink-50 px-3 py-2 text-sm">
+    <div className="rounded-xl bg-ink-100 px-3 py-2 text-sm">
       <p className="text-ink-500">{label}</p>
       <p className="mt-1 font-semibold text-ink-900">{value}</p>
     </div>
@@ -581,10 +581,15 @@ export function CourseLibraryClient() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <PageHeader
-        description="Find syllabus-created course templates, inspect the grading breakdown, then import one into your semester."
-        eyebrow="Syllabus library"
+        actions={
+          <Link className={buttonStyles({ variant: "secondary" })} href="/courses">
+            <FileText aria-hidden="true" className="h-4 w-4" />
+            Contribute syllabus
+          </Link>
+        }
+        description="Search syllabus-created templates, preview the grading breakdown, then import a clean copy into your semester."
         title="Course Library"
       />
 
@@ -600,10 +605,10 @@ export function CourseLibraryClient() {
         </p>
       ) : null}
 
-      <Card className="p-5">
-        <div className="mb-4 flex items-center gap-2 text-sm font-medium text-teal-700">
+      <Card className="p-4">
+        <div className="mb-3 flex items-center gap-2 text-sm font-medium text-teal-700">
           <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
-          Search and filters
+          Find a course
         </div>
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_9rem_9rem_14rem]">
           <label className="block">
@@ -672,7 +677,7 @@ export function CourseLibraryClient() {
             </select>
           </label>
         </div>
-        <label className="mt-4 flex items-center gap-3 rounded-lg border border-ink-200 bg-ink-50 px-3 py-2 text-sm text-ink-700">
+        <label className="mt-3 flex items-center gap-3 rounded-xl bg-ink-100 px-3 py-2 text-sm text-ink-700">
           <input
             checked={completeOnly}
             className="h-4 w-4 rounded border-ink-300 text-teal-700 focus:ring-teal-600"
@@ -683,7 +688,7 @@ export function CourseLibraryClient() {
         </label>
       </Card>
 
-      <div className="flex flex-col gap-3 rounded-lg border border-ink-200 bg-white px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-2xl bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-ink-700">
           Showing {showingStart}-{showingEnd} of {filteredTemplates.length}{" "}
           templates
@@ -732,12 +737,12 @@ export function CourseLibraryClient() {
           title="No matching templates"
         />
       ) : (
-        <section className="grid gap-4 xl:grid-cols-2">
+        <section className="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
           {visibleTemplates.map((template) => {
             const totalWeight = totalAssessmentWeight(template.assessments);
 
             return (
-              <Card className="p-5" key={template.id}>
+              <Card className="p-4" key={template.id}>
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
@@ -762,12 +767,12 @@ export function CourseLibraryClient() {
                       {template.source_syllabus_file_name ?? "Unknown syllabus"}
                     </p>
                   </div>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
                     <FileText aria-hidden="true" className="h-5 w-5" />
                   </span>
                 </div>
 
-                <div className="mt-5 grid gap-3 sm:grid-cols-4">
+                <div className="mt-4 grid gap-2 sm:grid-cols-3">
                   <DetailStat
                     label="Credits"
                     value={Number(template.credit_hours)}
@@ -780,19 +785,12 @@ export function CourseLibraryClient() {
                     label="Total weight"
                     value={`${formatWeight(totalWeight)}%`}
                   />
-                  <DetailStat
-                    label="Materials"
-                    value={template.materials.length}
-                  />
                 </div>
 
-                <div className="mt-4 grid gap-3 sm:grid-cols-2">
-                  <DetailStat
-                    label="Instructor"
-                    value={template.instructor ?? "Not detected"}
-                  />
-                  <DetailStat label="Term" value={template.term ?? "Not detected"} />
-                </div>
+                <p className="mt-3 text-xs text-ink-500">
+                  {template.instructor ?? "Instructor not detected"}
+                  {template.term ? ` - ${template.term}` : ""}
+                </p>
 
                 {template.assessments.length === 0 ? (
                   <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
@@ -815,14 +813,14 @@ export function CourseLibraryClient() {
                   </div>
                 )}
 
-                <div className="mt-5 flex flex-col gap-2 sm:flex-row">
+                <div className="mt-4 flex flex-col gap-2 sm:flex-row">
                   <Button
                     className="w-full sm:w-auto"
                     onClick={() => setDetailTemplate(template)}
                     variant="secondary"
                   >
                     <Eye aria-hidden="true" className="h-4 w-4" />
-                    View Details
+                    View details
                   </Button>
                   <Button
                     className="w-full sm:w-auto"
@@ -830,7 +828,7 @@ export function CourseLibraryClient() {
                     onClick={() => openImportModal(template)}
                   >
                     <Download aria-hidden="true" className="h-4 w-4" />
-                    Import to Semester
+                    Import
                   </Button>
                   {semesters.length === 0 ? (
                     <Link
@@ -850,8 +848,24 @@ export function CourseLibraryClient() {
         </section>
       )}
 
+      <Card className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold text-ink-900">
+            Can&apos;t find your course?
+          </h2>
+          <p className="mt-1 text-sm text-ink-500">
+            Upload a syllabus from one of your courses and GradeMate can help
+            turn it into assessments.
+          </p>
+        </div>
+        <Link className={buttonStyles()} href="/courses">
+          <FileText aria-hidden="true" className="h-4 w-4" />
+          Contribute syllabus
+        </Link>
+      </Card>
+
       {detailTemplate ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/50 px-4 py-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6">
           <Card className="max-h-[90vh] w-full max-w-5xl overflow-hidden">
             <div className="flex items-start justify-between gap-4 border-b border-ink-200 p-5">
               <div>
@@ -1027,7 +1041,7 @@ export function CourseLibraryClient() {
       ) : null}
 
       {importTemplate ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/50 px-4 py-6">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6">
           <Card className="max-h-[90vh] w-full max-w-3xl overflow-y-auto p-5">
             <div className="flex items-start justify-between gap-4">
               <div>

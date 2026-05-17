@@ -22,9 +22,9 @@
 
 .dark {
   color-scheme: dark;
-  --ink-50: #111827;
-  --ink-100: #1f2937;
-  --ink-200: #334155;
+  --ink-50: #07111f;
+  --ink-100: #0f1b2d;
+  --ink-200: #1f2d44;
   --ink-300: #475569;
   --ink-400: #64748b;
   --ink-500: #94a3b8;
@@ -32,8 +32,8 @@
   --ink-700: #e2e8f0;
   --ink-800: #f1f5f9;
   --ink-900: #f8fafc;
-  --surface: #111827;
-  --surface-muted: #0f172a;
+  --surface: #0f1b2d;
+  --surface-muted: #07111f;
   --selection-bg: #0f766e;
   --selection-text: #ecfeff;
 }
@@ -57,6 +57,17 @@ body {
     sans-serif;
 }
 
+body::before {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  content: "";
+  background:
+    radial-gradient(circle at top left, rgb(20 184 166 / 0.1), transparent 28rem),
+    linear-gradient(180deg, rgb(15 23 42 / 0.08), transparent 22rem);
+}
+
 a {
   color: inherit;
   text-decoration: none;
@@ -78,12 +89,16 @@ textarea {
   background-color: var(--surface);
 }
 
+.dark .bg-white\/80 {
+  background-color: rgb(15 27 45 / 0.8);
+}
+
 .dark .bg-white\/90 {
-  background-color: rgb(17 24 39 / 0.9);
+  background-color: rgb(15 27 45 / 0.9);
 }
 
 .dark .bg-white\/95 {
-  background-color: rgb(17 24 39 / 0.95);
+  background-color: rgb(15 27 45 / 0.95);
 }
 
 .dark input,

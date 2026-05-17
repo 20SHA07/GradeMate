@@ -436,10 +436,17 @@ export function SemestersManager() {
   }
 
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <PageHeader
-        description="Create semesters, open one, then add courses and weighted assessments inside it."
-        eyebrow="Planning"
+        actions={
+          <Link
+            className={buttonStyles({ variant: "secondary" })}
+            href="/course-library"
+          >
+            Import from library
+          </Link>
+        }
+        description="Create terms, add courses, and keep each grading plan easy to scan."
         title="Semesters"
       />
 
@@ -449,12 +456,15 @@ export function SemestersManager() {
         </p>
       ) : null}
 
-      <section className="grid gap-6 xl:grid-cols-[22rem_minmax(0,1fr)]">
+      <section className="grid gap-5 xl:grid-cols-[20rem_minmax(0,1fr)]">
         <div className="space-y-4">
-          <Card className="p-5">
+          <Card className="p-5" id="create-semester">
             <h2 className="text-lg font-semibold text-ink-900">
               Create semester
             </h2>
+            <p className="mt-1 text-sm text-ink-500">
+              Start with the term name. You can add courses right after.
+            </p>
             <form className="mt-5 space-y-4" onSubmit={createSemester}>
               <label className="block">
                 <span className="text-sm font-medium text-ink-700">
@@ -534,10 +544,10 @@ export function SemestersManager() {
                   return (
                     <button
                       className={cn(
-                        "w-full rounded-lg border px-3 py-3 text-left transition",
+                        "w-full rounded-2xl border px-3 py-3 text-left transition",
                         isSelected
                           ? "border-teal-200 bg-teal-50"
-                          : "border-transparent hover:bg-ink-50"
+                          : "border-transparent bg-ink-100 hover:bg-ink-100"
                       )}
                       key={semester.id}
                       onClick={() => setSelectedSemesterId(semester.id)}
@@ -571,11 +581,20 @@ export function SemestersManager() {
                   {selectedSemester.academic_year || "Academic year not set"}
                 </p>
               </div>
-              <Badge tone="teal">{selectedCourses.length} courses</Badge>
+              <div className="flex flex-wrap gap-2">
+                <Badge tone="teal">{selectedCourses.length} courses</Badge>
+                <Badge tone="ink">
+                  {selectedCourses.reduce(
+                    (sum, course) => sum + Number(course.credit_hours || 0),
+                    0
+                  )}{" "}
+                  credits
+                </Badge>
+              </div>
             </div>
 
             <form
-              className="mt-6 grid gap-3 rounded-lg border border-ink-200 bg-ink-50 p-3 md:grid-cols-[minmax(0,1fr)_9rem_8rem_auto]"
+              className="mt-5 grid gap-3 rounded-2xl bg-ink-100 p-3 md:grid-cols-[minmax(0,1fr)_9rem_8rem_auto]"
               onSubmit={createCourse}
             >
               <label className="block">
@@ -636,17 +655,22 @@ export function SemestersManager() {
 
             <div className="mt-6 space-y-4">
               {selectedCourses.length === 0 ? (
-                <div className="rounded-lg border border-dashed border-ink-200 bg-ink-50 p-8 text-center">
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-white text-ink-700">
+                <div className="rounded-2xl border border-dashed border-ink-200 bg-ink-100 p-8 text-center">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/80 text-teal-700">
                     <BookOpen aria-hidden="true" className="h-5 w-5" />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold text-ink-900">
                     No courses in this semester
                   </h3>
                   <p className="mx-auto mt-2 max-w-md text-sm leading-6 text-ink-500">
-                    Add a course to this semester, then define its weighted
-                    assessment categories.
+                    Add your first course, or import a syllabus-created
+                    template from the library.
                   </p>
+                  <div className="mt-5 flex justify-center">
+                    <Link className={buttonStyles()} href="/course-library">
+                      Import from library
+                    </Link>
+                  </div>
                 </div>
               ) : (
                 selectedCourses.map((course) => {
@@ -660,7 +684,7 @@ export function SemestersManager() {
 
                   return (
                     <div
-                      className="rounded-lg border border-ink-200 bg-white p-4"
+                      className="rounded-2xl bg-ink-100 p-4"
                       key={course.id}
                     >
                       <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
@@ -684,7 +708,7 @@ export function SemestersManager() {
                             {totalWeight}% weight
                           </Badge>
                           <Badge tone="teal">
-                            {formatPercent(gradeSummary.currentGrade)} ·{" "}
+                            {formatPercent(gradeSummary.currentGrade)} -{" "}
                             {getLetterGrade(gradeSummary.currentGrade)}
                           </Badge>
                           <Link
@@ -704,7 +728,7 @@ export function SemestersManager() {
                       <div className="mt-4 grid gap-3 md:grid-cols-2">
                         {courseAssessments.map((assessment) => (
                           <div
-                            className="rounded-lg bg-ink-50 px-3 py-2 text-sm"
+                            className="rounded-xl bg-white/80 px-3 py-2 text-sm"
                             key={assessment.id}
                           >
                             <div className="flex items-center justify-between gap-3">
@@ -728,7 +752,7 @@ export function SemestersManager() {
                       </div>
 
                       <form
-                        className="mt-4 grid gap-3 rounded-lg bg-ink-50 p-3 md:grid-cols-[minmax(0,1fr)_7rem_7rem_7rem_auto]"
+                        className="mt-4 grid gap-3 rounded-2xl bg-white/80 p-3 md:grid-cols-[minmax(0,1fr)_7rem_7rem_7rem_auto]"
                         onSubmit={(event) => createAssessment(event, course.id)}
                       >
                         <label className="block">

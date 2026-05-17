@@ -5,13 +5,13 @@ export type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 export type ButtonSize = "sm" | "md" | "lg" | "icon";
 
 const baseStyles =
-  "inline-flex items-center justify-center gap-2 rounded-lg border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-600 focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50";
+  "inline-flex items-center justify-center gap-2 rounded-xl border font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal-500 focus-visible:ring-offset-2 focus-visible:ring-offset-ink-50 disabled:pointer-events-none disabled:opacity-50";
 
 const variantStyles: Record<ButtonVariant, string> = {
   primary:
-    "border-teal-700 bg-teal-700 text-white hover:border-teal-800 hover:bg-teal-800",
+    "border-teal-600 bg-teal-600 text-white shadow-sm shadow-teal-950/20 hover:border-teal-500 hover:bg-teal-500",
   secondary:
-    "border-ink-200 bg-white text-ink-900 hover:border-ink-300 hover:bg-ink-50",
+    "border-ink-200 bg-white/80 text-ink-900 hover:border-ink-300 hover:bg-ink-100",
   ghost: "border-transparent bg-transparent text-ink-700 hover:bg-ink-100",
   danger:
     "border-rose-200 bg-rose-50 text-rose-700 hover:border-rose-300 hover:bg-rose-100"

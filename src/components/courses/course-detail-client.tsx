@@ -632,14 +632,14 @@ function AutoGradePredictorCard({
         <div>
           <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
             <Sparkles aria-hidden="true" className="h-4 w-4" />
-            Auto Grade Predictor
+            What do I need?
           </div>
           <h2 className="mt-2 text-xl font-semibold text-ink-900">
-            Predict what you need on remaining work
+            Choose a target and GradeMate will calculate the path.
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-500">
-            Try temporary what-if scores without changing your saved assessment
-            data.
+            These predictions are temporary. They do not change your saved
+            scores.
           </p>
         </div>
         <Badge tone={status.tone}>{status.label}</Badge>
@@ -1210,12 +1210,22 @@ export function CourseDetailClient({
     <div className="space-y-8">
       <PageHeader
         actions={
-          <Link className={buttonStyles({ variant: "secondary" })} href="/semesters">
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            Back to semester
-          </Link>
+          <>
+            <Link className={buttonStyles({ variant: "secondary" })} href="/semesters">
+              <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+              Back to semester
+            </Link>
+            <a className={buttonStyles()} href="#assessment-form">
+              <PlusCircle aria-hidden="true" className="h-4 w-4" />
+              Add assessment
+            </a>
+          </>
         }
-        description={semester?.name ?? "Course details and weighted assessments"}
+        description={
+          semester
+            ? `${semester.name} - ${Number(course.credit_hours)} credit hours`
+            : `${Number(course.credit_hours)} credit hours`
+        }
         eyebrow={course.code || "Course"}
         title={course.name}
       />
@@ -1232,15 +1242,15 @@ export function CourseDetailClient({
         </p>
       ) : null}
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <Card className="p-5">
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        <Card className="p-4">
           <p className="text-sm font-medium text-ink-500">Credit hours</p>
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {Number(course.credit_hours)}
           </p>
           <p className="mt-1 text-sm text-ink-500">Course workload</p>
         </Card>
-        <Card className="p-5">
+        <Card className="p-4">
           <p className="text-sm font-medium text-ink-500">Current grade</p>
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {formatPercent(gradeSummary.currentGrade)}
@@ -1249,14 +1259,14 @@ export function CourseDetailClient({
             {gradeSummary.completedWeight}% completed weight
           </p>
         </Card>
-        <Card className="p-5">
+        <Card className="p-4">
           <p className="text-sm font-medium text-ink-500">Letter grade</p>
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {currentLetterGrade}
           </p>
           <p className="mt-1 text-sm text-ink-500">Based on current grade</p>
         </Card>
-        <Card className="p-5">
+        <Card className="p-4">
           <div className="flex items-start justify-between gap-3">
             <p className="text-sm font-medium text-ink-500">Total weight</p>
             <Badge tone={weightReadiness.tone}>{weightReadiness.label}</Badge>
@@ -1266,7 +1276,7 @@ export function CourseDetailClient({
           </p>
           <p className="mt-1 text-sm text-ink-500">Target total is 100%</p>
         </Card>
-        <Card className="p-5">
+        <Card className="p-4">
           <p className="text-sm font-medium text-ink-500">Remaining weight</p>
           <p className="mt-2 text-3xl font-semibold text-ink-900">
             {gradeSummary.remainingWeight}%
@@ -1284,12 +1294,11 @@ export function CourseDetailClient({
               {semester ? <Badge tone="gold">{semester.name}</Badge> : null}
             </div>
             <h2 className="mt-4 text-xl font-semibold text-ink-900">
-              Final projection
+              Grade Summary
             </h2>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-              Current grade uses only assessments with both a score and max
-              score. Final projection counts incomplete assessments as 0 until
-              you enter scores.
+              Your grade is based on completed work. The projection below counts
+              incomplete assessments as 0 until you enter scores.
             </p>
           </div>
           <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
@@ -1306,25 +1315,14 @@ export function CourseDetailClient({
         </div>
       </Card>
 
-      <SyllabusUploadCard
-        course={course}
-        isGuest={isGuest}
-        onExtracted={handleSyllabusExtracted}
-      />
-
-      <AutoGradePredictorCard
-        assessments={assessments}
-        gradeSummary={gradeSummary}
-      />
-
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
         <Card className="overflow-hidden">
           <div className="border-b border-ink-200 p-5">
             <h2 className="text-lg font-semibold text-ink-900">
-              Assessment table
+              Assessments
             </h2>
             <p className="mt-1 text-sm text-ink-500">
-              Example: 88 / 100 on a 25% midterm contributes 22%.
+              Track each item that affects your final grade.
             </p>
           </div>
 
@@ -1338,15 +1336,14 @@ export function CourseDetailClient({
             </div>
           ) : (
             <div className="overflow-x-auto">
-              <table className="w-full min-w-[860px] text-left text-sm">
+              <table className="w-full min-w-[760px] text-left text-sm">
                 <thead className="border-b border-ink-200 bg-ink-50 text-xs uppercase text-ink-500">
                   <tr>
                     <th className="px-5 py-3 font-semibold">Assessment</th>
-                    <th className="px-5 py-3 font-semibold">Status</th>
                     <th className="px-5 py-3 font-semibold">Weight</th>
                     <th className="px-5 py-3 font-semibold">Score</th>
-                    <th className="px-5 py-3 font-semibold">Max score</th>
                     <th className="px-5 py-3 font-semibold">Contribution</th>
+                    <th className="px-5 py-3 font-semibold">Status</th>
                     <th className="px-5 py-3 text-right font-semibold">
                       Actions
                     </th>
@@ -1365,9 +1362,6 @@ export function CourseDetailClient({
                             {getAssessmentName(assessment)}
                           </div>
                         </td>
-                        <td className="px-5 py-4">
-                          <Badge tone={getStatusTone(status)}>{status}</Badge>
-                        </td>
                         <td className="px-5 py-4 text-ink-700">
                           {getAssessmentWeight(assessment)}%
                         </td>
@@ -1375,13 +1369,15 @@ export function CourseDetailClient({
                           {assessment.score === null ||
                           assessment.score === undefined
                             ? "Not scored"
-                            : Number(assessment.score)}
-                        </td>
-                        <td className="px-5 py-4 text-ink-700">
-                          {maxScore === null ? "Not set" : Number(maxScore)}
+                            : `${Number(assessment.score)} / ${
+                                maxScore === null ? "?" : Number(maxScore)
+                              }`}
                         </td>
                         <td className="px-5 py-4 font-medium text-ink-900">
                           {formatPercent(contribution)}
+                        </td>
+                        <td className="px-5 py-4">
+                          <Badge tone={getStatusTone(status)}>{status}</Badge>
                         </td>
                         <td className="px-5 py-4">
                           <div className="flex justify-end gap-2">
@@ -1412,7 +1408,7 @@ export function CourseDetailClient({
           )}
         </Card>
 
-        <Card className="p-5">
+        <Card className="p-5" id="assessment-form">
           <div className="flex items-start justify-between gap-3">
             <div>
               <h2 className="text-lg font-semibold text-ink-900">
@@ -1564,6 +1560,34 @@ export function CourseDetailClient({
           </form>
         </Card>
       </section>
+
+      <AutoGradePredictorCard
+        assessments={assessments}
+        gradeSummary={gradeSummary}
+      />
+
+      <SyllabusUploadCard
+        course={course}
+        isGuest={isGuest}
+        onExtracted={handleSyllabusExtracted}
+      />
+
+      <Card className="p-5">
+        <div className="flex items-start gap-3">
+          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-ink-100 text-ink-700">
+            <FileText aria-hidden="true" className="h-5 w-5" />
+          </span>
+          <div>
+            <h2 className="text-lg font-semibold text-ink-900">
+              Course materials
+            </h2>
+            <p className="mt-1 text-sm leading-6 text-ink-500">
+              Materials from imported templates stay as references for now.
+              Upload a syllabus above to auto-fill assessments.
+            </p>
+          </div>
+        </div>
+      </Card>
     </div>
   );
 }
