@@ -385,6 +385,15 @@ export function CourseDetailClient({
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
+  const [importMessage, setImportMessage] = useState("");
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+
+    if (params.get("imported") === "1") {
+      setImportMessage("Course imported successfully. You can edit the course and assessments here.");
+    }
+  }, []);
 
   useEffect(() => {
     async function loadCourse() {
@@ -730,6 +739,12 @@ export function CourseDetailClient({
         eyebrow={course.code || "Course"}
         title={course.name}
       />
+
+      {importMessage ? (
+        <p className="rounded-lg border border-lime-200 bg-lime-50 px-4 py-3 text-sm text-lime-800">
+          {importMessage}
+        </p>
+      ) : null}
 
       {error ? (
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
