@@ -47,7 +47,11 @@ export function getSupabasePublicConfig() {
   const supabasePublishableKey =
     process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY ?? "";
   const supabaseAnonKey = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? "";
-  const supabasePublicKey = supabasePublishableKey || supabaseAnonKey;
+  const supabaseKey =
+    supabasePublishableKey.trim().length > 0
+      ? supabasePublishableKey
+      : supabaseAnonKey;
+  const supabasePublicKey = supabaseKey;
   const publicKeySource = supabasePublishableKey
     ? "publishable"
     : supabaseAnonKey
@@ -88,6 +92,18 @@ export function getSupabasePublicConfig() {
     supabasePublishableKey,
     supabaseUrl
   };
+}
+
+export function logSupabaseConfigDebug() {
+  if (process.env.NODE_ENV !== "development") {
+    return;
+  }
+
+  console.log("Supabase env check", {
+    hasUrl: Boolean(process.env.NEXT_PUBLIC_SUPABASE_URL),
+    hasPublishableKey: Boolean(process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY),
+    hasAnonKey: Boolean(process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY)
+  });
 }
 
 export function getSupabaseErrorMessage(

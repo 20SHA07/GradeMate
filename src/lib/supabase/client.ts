@@ -1,5 +1,8 @@
 import { createBrowserClient } from "@supabase/ssr";
-import { getSupabasePublicConfig } from "@/lib/supabase/config";
+import {
+  getSupabasePublicConfig,
+  logSupabaseConfigDebug
+} from "@/lib/supabase/config";
 
 export type SupabaseBrowserClient = ReturnType<typeof createBrowserClient>;
 
@@ -9,6 +12,8 @@ export function createSupabaseBrowserClient(): SupabaseBrowserClient {
   if (browserClient) {
     return browserClient;
   }
+
+  logSupabaseConfigDebug();
 
   const { isConfigured, missingSupabaseMessage, supabaseUrl, supabasePublicKey } =
     getSupabasePublicConfig();

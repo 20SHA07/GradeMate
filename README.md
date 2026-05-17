@@ -77,6 +77,27 @@ Create the reusable template tables in Supabase by running
 [supabase/course-templates.sql](supabase/course-templates.sql) or the full
 [supabase/schema.sql](supabase/schema.sql) in the SQL editor.
 
+### Course Library public read access
+
+Course Library templates are shared reference data, so guests and signed-in
+users need read-only access to browse and import them. If `/course-library`
+shows zero templates even though the service-role importer can see rows, apply
+the public Course Library RLS policies:
+
+1. Open your Supabase project dashboard.
+2. Go to **SQL Editor**.
+3. Create a new query.
+4. Paste the full contents of
+   [supabase/public-course-library-rls.sql](supabase/public-course-library-rls.sql).
+5. Click **Run**.
+6. Refresh `/course-library`.
+
+That SQL creates `select` policies with `using (true)` for
+`course_templates`, `course_template_assessments`, and
+`course_template_materials`. It does not create insert, update, or delete
+policies, so normal frontend users can browse templates but cannot modify the
+shared library directly.
+
 To scan a local course-materials folder and upload reusable templates, set a
 service-role key in your terminal, then pass the folder path as an argument.
 Use the syllabus-only importer for normal GradeMate course templates:

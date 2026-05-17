@@ -409,24 +409,12 @@ using (true);
 create policy "Anyone can view course template assessments"
 on course_template_assessments for select
 to anon, authenticated
-using (
-  exists (
-    select 1
-    from course_templates
-    where course_templates.id = course_template_assessments.course_template_id
-  )
-);
+using (true);
 
 create policy "Anyone can view course template materials"
 on course_template_materials for select
 to anon, authenticated
-using (
-  exists (
-    select 1
-    from course_templates
-    where course_templates.id = course_template_materials.course_template_id
-  )
-);
+using (true);
 
 drop policy if exists "Users can view their own syllabus files" on storage.objects;
 drop policy if exists "Users can upload their own syllabus files" on storage.objects;

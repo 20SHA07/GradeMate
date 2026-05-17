@@ -40,6 +40,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   const supabaseConfig = useMemo(() => getSupabasePublicConfig(), []);
 
   const isSignup = mode === "signup";
+  const showGoogleAuth = false;
 
   useEffect(() => {
     if (!supabase) {
@@ -210,24 +211,26 @@ export function AuthForm({ mode }: AuthFormProps) {
       </div>
 
       <div className="space-y-3">
-        <button
-          className={buttonStyles({
-            className: "w-full",
-            variant: "secondary"
-          })}
-          disabled={isSubmitting || isGoogleSubmitting}
-          onClick={() => void handleGoogleSignIn()}
-          type="button"
-        >
-          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-sm font-semibold text-ink-900">
-            G
-          </span>
-          {isGoogleSubmitting
-            ? "Opening Google..."
-            : isSignup
-              ? "Sign up with Google"
-              : "Continue with Google"}
-        </button>
+        {showGoogleAuth ? (
+          <button
+            className={buttonStyles({
+              className: "w-full",
+              variant: "secondary"
+            })}
+            disabled={isSubmitting || isGoogleSubmitting}
+            onClick={() => void handleGoogleSignIn()}
+            type="button"
+          >
+            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-sm font-semibold text-ink-900">
+              G
+            </span>
+            {isGoogleSubmitting
+              ? "Opening Google..."
+              : isSignup
+                ? "Sign up with Google"
+                : "Continue with Google"}
+          </button>
+        ) : null}
 
         <button
           className={buttonStyles({

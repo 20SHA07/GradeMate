@@ -242,16 +242,6 @@ export function CourseLibraryClient() {
     async function loadLibrary() {
       setError("");
 
-      if (process.env.NODE_ENV === "development") {
-        console.info("Course Library Supabase config", {
-          hasAnonKey: supabaseConfig.hasAnonKey,
-          hasPublishableKey: supabaseConfig.hasPublishableKey,
-          hasUrl: supabaseConfig.hasUrl,
-          keyPreview: supabaseConfig.keyPreview || "missing",
-          publicKeySource: supabaseConfig.publicKeySource
-        });
-      }
-
       if (!supabase) {
         setError(supabaseConfig.missingSupabaseMessage);
         setIsLoading(false);
