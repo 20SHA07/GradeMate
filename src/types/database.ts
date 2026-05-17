@@ -52,6 +52,38 @@ export type SyllabusUploadRecord = {
   updated_at: string;
 };
 
+export type CourseTemplateRecord = {
+  id: string;
+  course_code: string;
+  course_name: string;
+  department: string | null;
+  credit_hours: number;
+  description: string | null;
+  source_file_name: string | null;
+  source_folder_path: string | null;
+  extraction_confidence: number;
+  created_at: string;
+};
+
+export type CourseTemplateAssessmentRecord = {
+  id: string;
+  course_template_id: string;
+  name: string;
+  weight_percentage: number;
+  max_score: number;
+  confidence: number;
+  created_at: string;
+};
+
+export type CourseTemplateMaterialRecord = {
+  id: string;
+  course_template_id: string;
+  file_name: string;
+  file_path: string;
+  file_type: string | null;
+  created_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -143,6 +175,70 @@ export type Database = {
           }
         ];
       };
+      course_templates: {
+        Row: CourseTemplateRecord;
+        Insert: {
+          id?: string;
+          course_code: string;
+          course_name: string;
+          department?: string | null;
+          credit_hours?: number;
+          description?: string | null;
+          source_file_name?: string | null;
+          source_folder_path?: string | null;
+          extraction_confidence?: number;
+          created_at?: string;
+        };
+        Update: Partial<Omit<CourseTemplateRecord, "id" | "created_at">>;
+        Relationships: [];
+      };
+      course_template_assessments: {
+        Row: CourseTemplateAssessmentRecord;
+        Insert: {
+          id?: string;
+          course_template_id: string;
+          name: string;
+          weight_percentage?: number;
+          max_score?: number;
+          confidence?: number;
+          created_at?: string;
+        };
+        Update: Partial<
+          Omit<CourseTemplateAssessmentRecord, "id" | "created_at">
+        >;
+        Relationships: [
+          {
+            foreignKeyName: "course_template_assessments_course_template_id_fkey";
+            columns: ["course_template_id"];
+            isOneToOne: false;
+            referencedRelation: "course_templates";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      course_template_materials: {
+        Row: CourseTemplateMaterialRecord;
+        Insert: {
+          id?: string;
+          course_template_id: string;
+          file_name: string;
+          file_path: string;
+          file_type?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<
+          Omit<CourseTemplateMaterialRecord, "id" | "created_at">
+        >;
+        Relationships: [
+          {
+            foreignKeyName: "course_template_materials_course_template_id_fkey";
+            columns: ["course_template_id"];
+            isOneToOne: false;
+            referencedRelation: "course_templates";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
     };
     Views: Record<string, never>;
     Functions: Record<string, never>;
@@ -153,4 +249,9 @@ export type Database = {
 
 export type CourseWithAssessments = CourseRecord & {
   assessments: AssessmentRecord[];
+};
+
+export type CourseTemplateWithDetails = CourseTemplateRecord & {
+  assessments: CourseTemplateAssessmentRecord[];
+  materials: CourseTemplateMaterialRecord[];
 };

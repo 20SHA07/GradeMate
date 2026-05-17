@@ -21,6 +21,7 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - `/dashboard` app overview
 - `/semesters` semester tracking
 - `/courses` course tracking
+- `/course-library` reusable course template library
 - `/gpa-calculator` semester-aware GPA calculator
 
 ## Getting Started
@@ -51,6 +52,9 @@ NEXT_PUBLIC_SUPABASE_URL=
 NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY=
 ```
 
+For GitHub Pages, add those same public variable names as repository secrets
+before the Pages workflow runs.
+
 For syllabus AI extraction on the live GitHub Pages app, also deploy the
 Supabase Edge Function and set its OpenAI secret:
 
@@ -64,8 +68,29 @@ If you already ran the older schema, run
 [supabase/syllabus-ai.sql](supabase/syllabus-ai.sql) in the SQL editor to add
 the upload table, storage bucket, and storage policies.
 
-For GitHub Pages, add those same names as repository secrets before the Pages
-workflow runs.
+## Course Template Import
+
+Create the reusable template tables in Supabase by running
+[supabase/course-templates.sql](supabase/course-templates.sql) or the full
+[supabase/schema.sql](supabase/schema.sql) in the SQL editor.
+
+To scan a local course-materials folder and upload reusable templates, set a
+service-role key in your terminal, then pass the folder path as an argument:
+
+```bash
+SUPABASE_URL="https://ipadimpttadajubxubyd.supabase.co" \
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key" \
+npm run import:templates -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+```
+
+Use `--dry-run` first to preview detected courses without changing Supabase:
+
+```bash
+npm run import:templates -- --dry-run "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+```
+
+The importer does not hardcode the folder path. You can also set
+`COURSE_TEMPLATE_SOURCE_DIR` instead of passing an argument.
 
 In Supabase Auth URL Configuration, use:
 

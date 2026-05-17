@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
+  BookMarked,
   BookOpen,
   Calculator,
   GraduationCap,
@@ -20,6 +21,7 @@ const navItems = [
   { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/semesters", label: "Semesters", icon: Library },
   { href: "/courses", label: "Courses", icon: BookOpen },
+  { href: "/course-library", label: "Course Library", icon: BookMarked },
   { href: "/gpa-calculator", label: "GPA Calculator", icon: Calculator }
 ];
 
