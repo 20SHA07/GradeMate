@@ -23,12 +23,15 @@ import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
-import {
-  createGuestId,
-  readGuestData,
-  writeGuestData
-} from "@/lib/guest-session";
 import { getCourseDetailHref } from "@/lib/routes";
+import {
+  createAssessment as storeCreateAssessment,
+  createCourse as storeCreateCourse,
+  getAssessments,
+  getWorkspaceSnapshot,
+  recordImportedTemplate,
+  updateCourse as storeUpdateCourse
+} from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -286,36 +289,22 @@ export function CourseLibraryClient() {
       let semesterRows: SemesterRecord[] = [];
       let courseRows: CourseRecord[] = [];
 
-      if (isGuest) {
-        const guestData = readGuestData();
-        semesterRows = guestData.semesters;
-        courseRows = guestData.courses;
-      } else {
-        const [semestersResponse, coursesResponse] = await Promise.all([
-          supabase
-            .from("semesters")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("courses")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false })
-        ]);
-
-        if (semestersResponse.error || coursesResponse.error) {
-          setError(
-            semestersResponse.error?.message ??
-              coursesResponse.error?.message ??
-              "Could not load your semesters."
-          );
-          setIsLoading(false);
-          return;
-        }
-
-        semesterRows = (semestersResponse.data ?? []) as SemesterRecord[];
-        courseRows = (coursesResponse.data ?? []) as CourseRecord[];
+      try {
+        const workspace = await getWorkspaceSnapshot({
+          isGuest,
+          supabase,
+          userId: user.id
+        });
+        semesterRows = workspace.semesters;
+        courseRows = workspace.courses;
+      } catch (loadError) {
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : "Could not load your semesters."
+        );
+        setIsLoading(false);
+        return;
       }
 
       setTemplates(
@@ -510,100 +499,84 @@ export function CourseLibraryClient() {
       let targetCourse: CourseRecord | null = null;
 
       if (isGuest) {
-        const guestData = readGuestData();
+        const workspaceContext = { isGuest, supabase, userId: user.id };
         const now = new Date().toISOString();
-        const buildLocalAssessments = (
+        const getAssessmentsToCopy = async (
           courseId: string,
           mode: "all" | "missing"
         ) => {
+          if (mode === "all") {
+            return importTemplate.assessments;
+          }
+
+          const existingAssessments = await getAssessments(workspaceContext);
           const existingNames = new Set(
-            mode === "missing"
-              ? guestData.assessments
-                  .filter((assessment) => assessment.course_id === courseId)
-                  .map((assessment) => normalized(assessment.name ?? assessment.title ?? ""))
-              : []
+            existingAssessments
+              .filter((assessment) => assessment.course_id === courseId)
+              .map((assessment) =>
+                normalized(assessment.name ?? assessment.title ?? "")
+              )
           );
 
-          return importTemplate.assessments
-            .filter((assessment) => !existingNames.has(normalized(assessment.name)))
-            .map((assessment) => {
-              const payload = templateAssessmentPayload(
-                assessment,
-                courseId,
-                user.id
-              );
+          return importTemplate.assessments.filter(
+            (assessment) => !existingNames.has(normalized(assessment.name))
+          );
+        };
+        const copyTemplateAssessmentsToGuest = async (
+          courseId: string,
+          mode: "all" | "missing"
+        ) => {
+          const assessmentsToCopy = await getAssessmentsToCopy(courseId, mode);
 
-              return {
-                ...payload,
-                id: createGuestId("assessment"),
-                created_at: now
-              };
-            });
+          await Promise.all(
+            assessmentsToCopy.map((assessment) => {
+              const { user_id: ignoredUserId, ...payload } =
+                templateAssessmentPayload(assessment, courseId, user.id);
+              void ignoredUserId;
+
+              return storeCreateAssessment(workspaceContext, payload);
+            })
+          );
         };
 
         if (duplicateCourse && duplicateAction === "update") {
-          targetCourse = {
-            ...duplicateCourse,
-            name: importTemplate.course_name,
-            code: importTemplate.course_code,
-            credit_hours: Number(importTemplate.credit_hours) || 3
-          };
-          const nextCourses = guestData.courses.map((course) =>
-            course.id === targetCourse?.id ? targetCourse : course
+          targetCourse = await storeUpdateCourse(
+            workspaceContext,
+            duplicateCourse.id,
+            {
+              name: importTemplate.course_name,
+              code: importTemplate.course_code,
+              credit_hours: Number(importTemplate.credit_hours) || 3
+            }
           );
-          const nextAssessments = [
-            ...guestData.assessments,
-            ...buildLocalAssessments(targetCourse.id, "missing")
-          ];
 
-          writeGuestData({
-            ...guestData,
-            courses: nextCourses,
-            assessments: nextAssessments,
-            importedTemplates: [
-              ...guestData.importedTemplates,
-              {
-                templateId: importTemplate.id,
-                courseId: targetCourse.id,
-                semesterId: selectedSemesterId,
-                importedAt: now
-              }
-            ]
-          });
-          setCourses(nextCourses);
+          if (!targetCourse) {
+            throw new Error("Could not update course.");
+          }
+
+          await copyTemplateAssessmentsToGuest(targetCourse.id, "missing");
+          setCourses((current) =>
+            current.map((course) =>
+              course.id === targetCourse?.id ? targetCourse : course
+            )
+          );
         } else {
-          targetCourse = {
-            id: createGuestId("course"),
-            user_id: user.id,
+          targetCourse = await storeCreateCourse(workspaceContext, {
             semester_id: selectedSemesterId,
             name: importTemplate.course_name,
             code: importTemplate.course_code,
-            credit_hours: Number(importTemplate.credit_hours) || 3,
-            created_at: now
-          };
-          const nextCourses = [targetCourse, ...guestData.courses];
-          const nextAssessments = [
-            ...guestData.assessments,
-            ...buildLocalAssessments(targetCourse.id, "all")
-          ];
-
-          writeGuestData({
-            ...guestData,
-            courses: nextCourses,
-            assessments: nextAssessments,
-            importedTemplates: [
-              ...guestData.importedTemplates,
-              {
-                templateId: importTemplate.id,
-                courseId: targetCourse.id,
-                semesterId: selectedSemesterId,
-                importedAt: now
-              }
-            ]
+            credit_hours: Number(importTemplate.credit_hours) || 3
           });
-          setCourses(nextCourses);
+          await copyTemplateAssessmentsToGuest(targetCourse.id, "all");
+          setCourses((current) => [targetCourse as CourseRecord, ...current]);
         }
 
+        recordImportedTemplate({
+          templateId: importTemplate.id,
+          courseId: targetCourse.id,
+          semesterId: selectedSemesterId,
+          importedAt: now
+        });
         setSuccessMessage("Course imported into your guest workspace.");
         setImportTemplate(null);
         router.push(getCourseDetailHref(targetCourse.id, { imported: true }));

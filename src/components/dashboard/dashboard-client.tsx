@@ -24,8 +24,8 @@ import {
   getCourseGradeSummary
 } from "@/lib/grades";
 import { getGradeInfo } from "@/lib/grading";
-import { readGuestData } from "@/lib/guest-session";
 import { getCourseDetailHref } from "@/lib/routes";
+import { getWorkspaceSnapshot } from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -49,59 +49,25 @@ export function DashboardClient() {
       setIsLoading(true);
       setError("");
 
-      if (isGuest) {
-        const guestData = readGuestData();
-        setSemesters(guestData.semesters);
-        setCourses(guestData.courses);
-        setAssessments(guestData.assessments);
-        setIsLoading(false);
-        return;
-      }
+      try {
+        const snapshot = await getWorkspaceSnapshot({
+          isGuest,
+          supabase,
+          userId: user.id
+        });
 
-      if (!supabase) {
-        setError("Log in to load your dashboard.");
-        setIsLoading(false);
-        return;
-      }
-
-      const [semesterResponse, courseResponse, assessmentResponse] =
-        await Promise.all([
-          supabase
-            .from("semesters")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("courses")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("assessments")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: true })
-        ]);
-
-      if (
-        semesterResponse.error ||
-        courseResponse.error ||
-        assessmentResponse.error
-      ) {
+        setSemesters(snapshot.semesters);
+        setCourses(snapshot.courses);
+        setAssessments(snapshot.assessments);
+      } catch (loadError) {
         setError(
-          semesterResponse.error?.message ??
-            courseResponse.error?.message ??
-            assessmentResponse.error?.message ??
-            "Could not load your dashboard."
+          loadError instanceof Error
+            ? loadError.message
+            : "Could not load your dashboard."
         );
+      } finally {
         setIsLoading(false);
-        return;
       }
-
-      setSemesters((semesterResponse.data ?? []) as SemesterRecord[]);
-      setCourses((courseResponse.data ?? []) as CourseRecord[]);
-      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
-      setIsLoading(false);
     }
 
     void loadDashboard();

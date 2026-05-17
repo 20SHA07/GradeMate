@@ -35,7 +35,7 @@ export type GuestWorkspaceData = {
   updatedAt: string | null;
 };
 
-type WorkspaceContext = {
+export type WorkspaceContext = {
   isGuest: boolean;
   supabase: SupabaseBrowserClient | null;
   userId: string;
@@ -266,6 +266,49 @@ export async function getAssessments(context: WorkspaceContext) {
   }
 
   return (data ?? []) as AssessmentRecord[];
+}
+
+export async function getWorkspaceSnapshot(context: WorkspaceContext) {
+  const [semesters, courses, assessments] = await Promise.all([
+    getSemesters(context),
+    getCourses(context),
+    getAssessments(context)
+  ]);
+
+  return { semesters, courses, assessments };
+}
+
+export function updateGuestGpaCalculator(
+  gpaCalculator: Partial<GpaCalculatorData>
+) {
+  const data = readGuestWorkspaceData();
+
+  writeGuestWorkspaceData({
+    ...data,
+    gpaCalculator: {
+      ...data.gpaCalculator,
+      ...gpaCalculator
+    }
+  });
+}
+
+export function recordImportedTemplate(record: ImportedTemplateRecord) {
+  const data = readGuestWorkspaceData();
+  const alreadyRecorded = data.importedTemplates.some(
+    (item) =>
+      item.templateId === record.templateId &&
+      item.courseId === record.courseId &&
+      item.semesterId === record.semesterId
+  );
+
+  if (alreadyRecorded) {
+    return;
+  }
+
+  writeGuestWorkspaceData({
+    ...data,
+    importedTemplates: [...data.importedTemplates, record]
+  });
 }
 
 export async function createSemester(

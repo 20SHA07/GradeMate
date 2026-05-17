@@ -23,7 +23,11 @@ import {
   type GpaCourseInput
 } from "@/lib/gpa";
 import { gradeScale } from "@/lib/grading";
-import { readGuestData, writeGuestData } from "@/lib/guest-session";
+import {
+  getWorkspaceSnapshot,
+  readGuestWorkspaceData,
+  updateGuestGpaCalculator
+} from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -72,76 +76,37 @@ export function GpaCalculator() {
       setIsLoading(true);
       setError("");
 
-      if (isGuest) {
-        const guestData = readGuestData();
-        setSemesters(guestData.semesters);
-        setCourses(guestData.courses);
-        setAssessments(guestData.assessments);
+      try {
+        const snapshot = await getWorkspaceSnapshot({
+          isGuest,
+          supabase,
+          userId: user.id
+        });
+
+        setSemesters(snapshot.semesters);
+        setCourses(snapshot.courses);
+        setAssessments(snapshot.assessments);
         setSelectedSemesterIds((current) =>
           current.length > 0
             ? current
-            : guestData.semesters.map((semester) => semester.id)
+            : snapshot.semesters.map((semester) => semester.id)
         );
-        setManualGrades(guestData.gpaCalculator.manualGrades ?? {});
-        setWhatIfForm({
-          ...defaultWhatIfForm,
-          ...guestData.gpaCalculator.whatIfCourse
-        });
-        setIsLoading(false);
-        return;
-      }
 
-      if (!supabase) {
-        setError("Log in to load GPA data.");
-        setIsLoading(false);
-        return;
-      }
-
-      const [semesterResponse, courseResponse, assessmentResponse] =
-        await Promise.all([
-          supabase
-            .from("semesters")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("courses")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("assessments")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: true })
-        ]);
-
-      if (
-        semesterResponse.error ||
-        courseResponse.error ||
-        assessmentResponse.error
-      ) {
+        if (isGuest) {
+          const guestData = readGuestWorkspaceData();
+          setManualGrades(guestData.gpaCalculator.manualGrades ?? {});
+          setWhatIfForm({
+            ...defaultWhatIfForm,
+            ...guestData.gpaCalculator.whatIfCourse
+          });
+        }
+      } catch (loadError) {
         setError(
-          semesterResponse.error?.message ??
-            courseResponse.error?.message ??
-            assessmentResponse.error?.message ??
-            "Could not load GPA data."
+          loadError instanceof Error ? loadError.message : "Could not load GPA data."
         );
+      } finally {
         setIsLoading(false);
-        return;
       }
-
-      const loadedSemesters = (semesterResponse.data ?? []) as SemesterRecord[];
-
-      setSemesters(loadedSemesters);
-      setCourses((courseResponse.data ?? []) as CourseRecord[]);
-      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
-      setSelectedSemesterIds((current) =>
-        current.length > 0
-          ? current
-          : loadedSemesters.map((semester) => semester.id)
-      );
-      setIsLoading(false);
     }
 
     void loadGpaData();
@@ -152,16 +117,10 @@ export function GpaCalculator() {
       return;
     }
 
-    const guestData = readGuestData();
-
-    writeGuestData({
-      ...guestData,
-      gpaCalculator: {
-        ...guestData.gpaCalculator,
-        selectedSemesterIds,
-        manualGrades,
-        whatIfCourse: whatIfForm
-      }
+    updateGuestGpaCalculator({
+      selectedSemesterIds,
+      manualGrades,
+      whatIfCourse: whatIfForm
     });
   }, [isGuest, isLoading, manualGrades, selectedSemesterIds, whatIfForm]);
 

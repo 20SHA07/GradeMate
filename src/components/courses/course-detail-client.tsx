@@ -40,10 +40,11 @@ import {
   type LetterGrade
 } from "@/lib/grading";
 import {
-  createGuestId,
-  readGuestData,
-  writeGuestData
-} from "@/lib/guest-session";
+  createAssessment as storeCreateAssessment,
+  deleteAssessment as storeDeleteAssessment,
+  getWorkspaceSnapshot,
+  updateAssessment as storeUpdateAssessment
+} from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -944,12 +945,16 @@ export function CourseDetailClient({
         return;
       }
 
-      if (isGuest) {
-        const guestData = readGuestData();
+      try {
+        const snapshot = await getWorkspaceSnapshot({
+          isGuest,
+          supabase,
+          userId: user.id
+        });
         const selectedCourse =
-          guestData.courses.find((item) => item.id === courseId) ?? null;
+          snapshot.courses.find((item) => item.id === courseId) ?? null;
         const selectedSemester = selectedCourse
-          ? guestData.semesters.find(
+          ? snapshot.semesters.find(
               (item) => item.id === selectedCourse.semester_id
             ) ?? null
           : null;
@@ -957,60 +962,19 @@ export function CourseDetailClient({
         setCourse(selectedCourse);
         setSemester(selectedSemester);
         setAssessments(
-          guestData.assessments.filter((item) => item.course_id === courseId)
+          snapshot.assessments.filter((item) => item.course_id === courseId)
         );
         setError(selectedCourse ? "" : "Course not found.");
-        setIsLoading(false);
-        return;
-      }
-
-      if (!supabase) {
-        setError("Log in to load this course.");
-        setIsLoading(false);
-        return;
-      }
-
-      const [courseResponse, assessmentResponse] = await Promise.all([
-        supabase
-          .from("courses")
-          .select("*")
-          .eq("id", courseId)
-          .eq("user_id", user.id)
-          .single(),
-        supabase
-          .from("assessments")
-          .select("*")
-          .eq("course_id", courseId)
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: true })
-      ]);
-
-      const selectedCourse = courseResponse.data as CourseRecord | null;
-
-      if (courseResponse.error || !selectedCourse) {
+      } catch (loadError) {
         setCourse(null);
         setSemester(null);
         setAssessments([]);
-        setError(courseResponse.error?.message ?? "Course not found.");
+        setError(
+          loadError instanceof Error ? loadError.message : "Course not found."
+        );
+      } finally {
         setIsLoading(false);
-        return;
       }
-
-      if (assessmentResponse.error) {
-        setError(assessmentResponse.error.message);
-      }
-
-      const semesterResponse = await supabase
-        .from("semesters")
-        .select("*")
-        .eq("id", selectedCourse.semester_id)
-        .eq("user_id", user.id)
-        .single();
-
-      setCourse(selectedCourse);
-      setSemester((semesterResponse.data as SemesterRecord | null) ?? null);
-      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
-      setIsLoading(false);
     }
 
     void loadCourse();
@@ -1055,78 +1019,40 @@ export function CourseDetailClient({
     setIsSaving(true);
     const payload = buildAssessmentPayload(assessmentForm);
 
-    if (isGuest) {
-      const guestData = readGuestData();
-      const nextAssessments = editingAssessmentId
-        ? guestData.assessments.map((assessment) =>
-            assessment.id === editingAssessmentId
-              ? {
-                  ...assessment,
-                  ...payload
-                }
-              : assessment
+    try {
+      const savedAssessment = editingAssessmentId
+        ? await storeUpdateAssessment(
+            { isGuest, supabase, userId: user.id },
+            editingAssessmentId,
+            payload
           )
-        : [
-            ...guestData.assessments,
+        : await storeCreateAssessment(
+            { isGuest, supabase, userId: user.id },
             {
-              id: createGuestId("assessment"),
-              user_id: user.id,
               course_id: course.id,
-              ...payload,
-              created_at: new Date().toISOString()
+              ...payload
             }
-          ];
+          );
 
-      writeGuestData({ ...guestData, assessments: nextAssessments });
-      setAssessments(
-        nextAssessments.filter((assessment) => assessment.course_id === course.id)
+      if (!savedAssessment) {
+        throw new Error("Could not save assessment.");
+      }
+
+      setAssessments((current) =>
+        editingAssessmentId
+          ? current.map((assessment) =>
+              assessment.id === savedAssessment.id ? savedAssessment : assessment
+            )
+          : [...current, savedAssessment]
       );
       resetAssessmentForm();
+    } catch (saveError) {
+      setError(
+        saveError instanceof Error ? saveError.message : "Could not save assessment."
+      );
+    } finally {
       setIsSaving(false);
-      return;
     }
-
-    if (!supabase) {
-      setError("Log in to save assessments.");
-      setIsSaving(false);
-      return;
-    }
-
-    const response = editingAssessmentId
-      ? await supabase
-          .from("assessments")
-          .update(payload)
-          .eq("id", editingAssessmentId)
-          .eq("user_id", user.id)
-          .select()
-          .single()
-      : await supabase
-          .from("assessments")
-          .insert({
-            ...payload,
-            user_id: user.id,
-            course_id: course.id
-          })
-          .select()
-          .single();
-
-    setIsSaving(false);
-
-    const savedAssessment = response.data as AssessmentRecord | null;
-
-    if (response.error || !savedAssessment) {
-      setError(response.error?.message ?? "Could not save assessment.");
-      return;
-    }
-
-    setAssessments((current) =>
-      editingAssessmentId
-        ? current.map((assessment) =>
-            assessment.id === savedAssessment.id ? savedAssessment : assessment
-          )
-        : [...current, savedAssessment]
-    );
-    resetAssessmentForm();
   }
 
   function startEditing(assessment: AssessmentRecord) {
@@ -1147,46 +1073,24 @@ export function CourseDetailClient({
 
     setError("");
 
-    if (isGuest) {
-      const guestData = readGuestData();
-      const nextAssessments = guestData.assessments.filter(
-        (assessment) => assessment.id !== assessmentId
+    try {
+      await storeDeleteAssessment(
+        { isGuest, supabase, userId: user.id },
+        assessmentId
       );
-
-      writeGuestData({ ...guestData, assessments: nextAssessments });
-      setAssessments(
-        nextAssessments.filter((assessment) => assessment.course_id === course.id)
+      setAssessments((current) =>
+        current.filter((assessment) => assessment.id !== assessmentId)
       );
 
       if (editingAssessmentId === assessmentId) {
         resetAssessmentForm();
       }
-
-      return;
-    }
-
-    if (!supabase) {
-      setError("Log in to delete assessments.");
-      return;
-    }
-
-    const { error: deleteError } = await supabase
-      .from("assessments")
-      .delete()
-      .eq("id", assessmentId)
-      .eq("user_id", user.id);
-
-    if (deleteError) {
-      setError(deleteError.message);
-      return;
-    }
-
-    setAssessments((current) =>
-      current.filter((assessment) => assessment.id !== assessmentId)
-    );
-
-    if (editingAssessmentId === assessmentId) {
-      resetAssessmentForm();
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not delete assessment."
+      );
     }
   }
 

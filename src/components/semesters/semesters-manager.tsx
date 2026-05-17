@@ -17,10 +17,11 @@ import {
   getLetterGrade
 } from "@/lib/grades";
 import {
-  createGuestId,
-  readGuestData,
-  writeGuestData
-} from "@/lib/guest-session";
+  createAssessment as storeCreateAssessment,
+  createCourse as storeCreateCourse,
+  createSemester as storeCreateSemester,
+  getWorkspaceSnapshot
+} from "@/lib/workspace-store";
 import { getCourseDetailHref } from "@/lib/routes";
 import { cn } from "@/lib/utils";
 import type {
@@ -99,64 +100,28 @@ export function SemestersManager() {
       setIsLoading(true);
       setError("");
 
-      if (isGuest) {
-        const guestData = readGuestData();
-        setSemesters(guestData.semesters);
-        setCourses(guestData.courses);
-        setAssessments(guestData.assessments);
+      try {
+        const snapshot = await getWorkspaceSnapshot({
+          isGuest,
+          supabase,
+          userId: user.id
+        });
+
+        setSemesters(snapshot.semesters);
+        setCourses(snapshot.courses);
+        setAssessments(snapshot.assessments);
         setSelectedSemesterId(
-          (current) => current || guestData.semesters[0]?.id || ""
+          (current) => current || snapshot.semesters[0]?.id || ""
         );
-        setIsLoading(false);
-        return;
-      }
-
-      if (!supabase) {
-        setError("Log in to load saved semesters.");
-        setIsLoading(false);
-        return;
-      }
-
-      const [semesterResponse, courseResponse, assessmentResponse] =
-        await Promise.all([
-          supabase
-            .from("semesters")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("courses")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: false }),
-          supabase
-            .from("assessments")
-            .select("*")
-            .eq("user_id", user.id)
-            .order("created_at", { ascending: true })
-        ]);
-
-      if (
-        semesterResponse.error ||
-        courseResponse.error ||
-        assessmentResponse.error
-      ) {
+      } catch (loadError) {
         setError(
-          semesterResponse.error?.message ??
-            courseResponse.error?.message ??
-            assessmentResponse.error?.message ??
-            "Could not load semesters."
+          loadError instanceof Error
+            ? loadError.message
+            : "Could not load semesters."
         );
+      } finally {
         setIsLoading(false);
-        return;
       }
-
-      const loadedSemesters = (semesterResponse.data ?? []) as SemesterRecord[];
-      setSemesters(loadedSemesters);
-      setCourses((courseResponse.data ?? []) as CourseRecord[]);
-      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
-      setSelectedSemesterId((current) => current || loadedSemesters[0]?.id || "");
-      setIsLoading(false);
     }
 
     void loadSemesters();
@@ -200,54 +165,28 @@ export function SemestersManager() {
     setError("");
     setIsSaving(true);
 
-    if (isGuest) {
-      const createdSemester: SemesterRecord = {
-        id: createGuestId("semester"),
-        user_id: user.id,
-        name: semesterForm.name,
-        academic_year: semesterForm.academicYear || null,
-        term: semesterForm.term,
-        created_at: new Date().toISOString()
-      };
-      const nextSemesters = [createdSemester, ...semesters];
+    try {
+      const createdSemester = await storeCreateSemester(
+        { isGuest, supabase, userId: user.id },
+        {
+          name: semesterForm.name,
+          academic_year: semesterForm.academicYear || null,
+          term: semesterForm.term
+        }
+      );
 
-      setSemesters(nextSemesters);
+      setSemesters((current) => [createdSemester, ...current]);
       setSelectedSemesterId(createdSemester.id);
       setSemesterForm(defaultSemesterForm);
-      writeGuestData({ semesters: nextSemesters, courses, assessments });
+    } catch (createError) {
+      setError(
+        createError instanceof Error
+          ? createError.message
+          : "Could not create semester."
+      );
+    } finally {
       setIsSaving(false);
-      return;
     }
-
-    if (!supabase) {
-      setError("Log in to save semesters.");
-      setIsSaving(false);
-      return;
-    }
-
-    const { data, error: createError } = await supabase
-      .from("semesters")
-      .insert({
-        user_id: user.id,
-        name: semesterForm.name,
-        academic_year: semesterForm.academicYear || null,
-        term: semesterForm.term
-      })
-      .select()
-      .single();
-
-    setIsSaving(false);
-
-    const createdSemester = data as SemesterRecord | null;
-
-    if (createError || !createdSemester) {
-      setError(createError?.message ?? "Could not create semester.");
-      return;
-    }
-
-    setSemesters((current) => [createdSemester, ...current]);
-    setSelectedSemesterId(createdSemester.id);
-    setSemesterForm(defaultSemesterForm);
   }
 
   async function createCourse(event: FormEvent<HTMLFormElement>) {
@@ -260,54 +199,26 @@ export function SemestersManager() {
     setError("");
     setIsSaving(true);
 
-    if (isGuest) {
-      const createdCourse: CourseRecord = {
-        id: createGuestId("course"),
-        user_id: user.id,
-        semester_id: selectedSemester.id,
-        name: courseForm.name,
-        code: courseForm.code || null,
-        credit_hours: Number(courseForm.creditHours) || 3,
-        created_at: new Date().toISOString()
-      };
-      const nextCourses = [createdCourse, ...courses];
+    try {
+      const createdCourse = await storeCreateCourse(
+        { isGuest, supabase, userId: user.id },
+        {
+          semester_id: selectedSemester.id,
+          name: courseForm.name,
+          code: courseForm.code || null,
+          credit_hours: Number(courseForm.creditHours) || 3
+        }
+      );
 
-      setCourses(nextCourses);
+      setCourses((current) => [createdCourse, ...current]);
       setCourseForm(defaultCourseForm);
-      writeGuestData({ semesters, courses: nextCourses, assessments });
+    } catch (createError) {
+      setError(
+        createError instanceof Error ? createError.message : "Could not create course."
+      );
+    } finally {
       setIsSaving(false);
-      return;
     }
-
-    if (!supabase) {
-      setError("Log in to save courses.");
-      setIsSaving(false);
-      return;
-    }
-
-    const { data, error: createError } = await supabase
-      .from("courses")
-      .insert({
-        user_id: user.id,
-        semester_id: selectedSemester.id,
-        name: courseForm.name,
-        code: courseForm.code || null,
-        credit_hours: Number(courseForm.creditHours) || 3
-      })
-      .select()
-      .single();
-
-    setIsSaving(false);
-
-    const createdCourse = data as CourseRecord | null;
-
-    if (createError || !createdCourse) {
-      setError(createError?.message ?? "Could not create course.");
-      return;
-    }
-
-    setCourses((current) => [createdCourse, ...current]);
-    setCourseForm(defaultCourseForm);
   }
 
   async function createAssessment(
@@ -318,122 +229,65 @@ export function SemestersManager() {
     const form = getAssessmentForm(courseId);
     setError("");
 
-    if (isGuest) {
-      const createdAssessment: AssessmentRecord = {
-        id: createGuestId("assessment"),
-        user_id: user.id,
-        course_id: courseId,
-        name: form.name,
-        weight_percentage: Number(form.weightPercentage) || 0,
-        score: form.score === "" ? null : Number(form.score),
-        max_score: form.maxScore === "" ? null : Number(form.maxScore),
-        category: form.category,
-        title: form.name,
-        weight: Number(form.weightPercentage) || 0,
-        created_at: new Date().toISOString()
-      };
-      const nextAssessments = [...assessments, createdAssessment];
+    try {
+      const createdAssessment = await storeCreateAssessment(
+        { isGuest, supabase, userId: user.id },
+        {
+          course_id: courseId,
+          name: form.name,
+          weight_percentage: Number(form.weightPercentage) || 0,
+          score: form.score === "" ? null : Number(form.score),
+          max_score: form.maxScore === "" ? null : Number(form.maxScore),
+          category: form.category,
+          title: form.name,
+          weight: Number(form.weightPercentage) || 0
+        }
+      );
 
-      setAssessments(nextAssessments);
+      setAssessments((current) => [...current, createdAssessment]);
       setAssessmentForms((current) => ({
         ...current,
         [courseId]: defaultAssessmentForm
       }));
-      writeGuestData({ semesters, courses, assessments: nextAssessments });
-      return;
+    } catch (createError) {
+      setError(
+        createError instanceof Error
+          ? createError.message
+          : "Could not create assessment."
+      );
     }
-
-    if (!supabase) {
-      setError("Log in to save assessments.");
-      return;
-    }
-
-    const { data, error: createError } = await supabase
-      .from("assessments")
-      .insert({
-        user_id: user.id,
-        course_id: courseId,
-        name: form.name,
-        weight_percentage: Number(form.weightPercentage) || 0,
-        score: form.score === "" ? null : Number(form.score),
-        max_score: form.maxScore === "" ? null : Number(form.maxScore),
-        category: form.category,
-        title: form.name,
-        weight: Number(form.weightPercentage) || 0
-      })
-      .select()
-      .single();
-
-    const createdAssessment = data as AssessmentRecord | null;
-
-    if (createError || !createdAssessment) {
-      setError(createError?.message ?? "Could not create assessment.");
-      return;
-    }
-
-    setAssessments((current) => [...current, createdAssessment]);
-    setAssessmentForms((current) => ({
-      ...current,
-      [courseId]: defaultAssessmentForm
-    }));
   }
 
   async function addDefaultAssessments(courseId: string) {
     setError("");
 
-    if (isGuest) {
-      const createdAssessments: AssessmentRecord[] = assessmentTitles.map(
-        (name) => ({
-          id: createGuestId("assessment"),
-          user_id: user.id,
-          course_id: courseId,
-          name,
-          weight_percentage: 0,
-          score: null,
-          max_score: null,
-          category: "Planned",
-          title: name,
-          weight: 0,
-          created_at: new Date().toISOString()
-        })
+    try {
+      const createdAssessments = await Promise.all(
+        assessmentTitles.map((name) =>
+          storeCreateAssessment(
+            { isGuest, supabase, userId: user.id },
+            {
+              course_id: courseId,
+              name,
+              weight_percentage: 0,
+              score: null,
+              max_score: null,
+              category: "Planned",
+              title: name,
+              weight: 0
+            }
+          )
+        )
       );
-      const nextAssessments = [...assessments, ...createdAssessments];
 
-      setAssessments(nextAssessments);
-      writeGuestData({ semesters, courses, assessments: nextAssessments });
-      return;
+      setAssessments((current) => [...current, ...createdAssessments]);
+    } catch (createError) {
+      setError(
+        createError instanceof Error
+          ? createError.message
+          : "Could not add default assessments."
+      );
     }
-
-    if (!supabase) {
-      setError("Log in to save assessments.");
-      return;
-    }
-
-    const rows = assessmentTitles.map((name) => ({
-      user_id: user.id,
-      course_id: courseId,
-      name,
-      weight_percentage: 0,
-      score: null,
-      max_score: null,
-      category: "Planned",
-      title: name,
-      weight: 0
-    }));
-
-    const { data, error: createError } = await supabase
-      .from("assessments")
-      .insert(rows)
-      .select();
-
-    const createdAssessments = data as AssessmentRecord[] | null;
-
-    if (createError || !createdAssessments) {
-      setError(createError?.message ?? "Could not add default assessments.");
-      return;
-    }
-
-    setAssessments((current) => [...current, ...createdAssessments]);
   }
 
   return (
