@@ -1,4 +1,8 @@
 import type { AssessmentRecord } from "@/types/database";
+import {
+  getLetterGrade as getOfficialLetterGrade,
+  type LetterGrade
+} from "@/lib/grading";
 
 export type GradeSummary = {
   totalWeight: number;
@@ -65,28 +69,12 @@ export function getWeightedContribution(assessment: AssessmentRecord) {
   return (score / maxScore) * weight;
 }
 
-export function getLetterGrade(percentage: number | null) {
+export function getLetterGrade(percentage: number | null): LetterGrade | "N/A" {
   if (percentage === null) {
     return "N/A";
   }
 
-  if (percentage >= 90) {
-    return "A";
-  }
-
-  if (percentage >= 80) {
-    return "B";
-  }
-
-  if (percentage >= 70) {
-    return "C";
-  }
-
-  if (percentage >= 60) {
-    return "D";
-  }
-
-  return "F";
+  return getOfficialLetterGrade(percentage);
 }
 
 export function formatPercent(value: number | null, digits = 1) {

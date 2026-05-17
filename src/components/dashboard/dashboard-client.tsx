@@ -1,20 +1,36 @@
 "use client";
 
 import Link from "next/link";
-import { BookOpen, CalendarDays, GraduationCap, PlusCircle } from "lucide-react";
+import {
+  BookOpen,
+  CalendarDays,
+  GraduationCap,
+  Percent,
+  PlusCircle
+} from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import {
+  formatPercent,
+  getCourseGradeSummary,
+  getLetterGrade
+} from "@/lib/grades";
 import { readGuestData } from "@/lib/guest-session";
-import type { CourseRecord, SemesterRecord } from "@/types/database";
+import type {
+  AssessmentRecord,
+  CourseRecord,
+  SemesterRecord
+} from "@/types/database";
 
 export function DashboardClient() {
   const { isGuest, supabase, user } = useAuth();
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
+  const [assessments, setAssessments] = useState<AssessmentRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -27,6 +43,7 @@ export function DashboardClient() {
         const guestData = readGuestData();
         setSemesters(guestData.semesters);
         setCourses(guestData.courses);
+        setAssessments(guestData.assessments);
         setIsLoading(false);
         return;
       }
@@ -37,7 +54,7 @@ export function DashboardClient() {
         return;
       }
 
-      const [semesterResponse, courseResponse] = await Promise.all([
+      const [semesterResponse, courseResponse, assessmentResponse] = await Promise.all([
         supabase
           .from("semesters")
           .select("*")
@@ -47,13 +64,19 @@ export function DashboardClient() {
           .from("courses")
           .select("*")
           .eq("user_id", user.id)
-          .order("created_at", { ascending: false })
+          .order("created_at", { ascending: false }),
+        supabase
+          .from("assessments")
+          .select("*")
+          .eq("user_id", user.id)
+          .order("created_at", { ascending: true })
       ]);
 
-      if (semesterResponse.error || courseResponse.error) {
+      if (semesterResponse.error || courseResponse.error || assessmentResponse.error) {
         setError(
           semesterResponse.error?.message ??
             courseResponse.error?.message ??
+            assessmentResponse.error?.message ??
             "Could not load dashboard."
         );
         setIsLoading(false);
@@ -62,6 +85,7 @@ export function DashboardClient() {
 
       setSemesters((semesterResponse.data ?? []) as SemesterRecord[]);
       setCourses((courseResponse.data ?? []) as CourseRecord[]);
+      setAssessments((assessmentResponse.data ?? []) as AssessmentRecord[]);
       setIsLoading(false);
     }
 
@@ -76,6 +100,23 @@ export function DashboardClient() {
       ),
     [courses]
   );
+  const averageCourseGrade = useMemo(() => {
+    const courseGrades = courses
+      .map((course) =>
+        getCourseGradeSummary(
+          assessments.filter((assessment) => assessment.course_id === course.id)
+        ).currentGrade
+      )
+      .filter((grade): grade is number => grade !== null);
+
+    if (courseGrades.length === 0) {
+      return null;
+    }
+
+    return (
+      courseGrades.reduce((sum, grade) => sum + grade, 0) / courseGrades.length
+    );
+  }, [assessments, courses]);
 
   return (
     <div className="space-y-8">
@@ -97,7 +138,7 @@ export function DashboardClient() {
         </p>
       ) : null}
 
-      <section className="grid gap-4 sm:grid-cols-3">
+      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <Card className="p-5">
           <CalendarDays aria-hidden="true" className="h-6 w-6 text-teal-700" />
           <p className="mt-4 text-sm font-medium text-ink-500">Semesters</p>
@@ -117,6 +158,20 @@ export function DashboardClient() {
           <p className="mt-4 text-sm font-medium text-ink-500">Credit hours</p>
           <p className="mt-1 text-3xl font-semibold text-ink-900">
             {totalCredits}
+          </p>
+        </Card>
+        <Card className="p-5">
+          <Percent aria-hidden="true" className="h-6 w-6 text-teal-700" />
+          <p className="mt-4 text-sm font-medium text-ink-500">
+            Avg course grade
+          </p>
+          <p className="mt-1 text-3xl font-semibold text-ink-900">
+            {averageCourseGrade === null
+              ? "N/A"
+              : getLetterGrade(averageCourseGrade)}
+          </p>
+          <p className="mt-1 text-sm text-ink-500">
+            {formatPercent(averageCourseGrade)}
           </p>
         </Card>
       </section>

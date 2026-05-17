@@ -11,7 +11,7 @@ import {
   Percent,
   PlusCircle,
   Save,
-  Target,
+  Sparkles,
   Trash2,
   UploadCloud,
   Wand2
@@ -34,6 +34,11 @@ import {
   getWeightedContribution,
   isCompletedAssessment
 } from "@/lib/grades";
+import {
+  getGradeInfo,
+  gradeScale,
+  type LetterGrade
+} from "@/lib/grading";
 import {
   createGuestId,
   readGuestData,
@@ -72,6 +77,16 @@ const defaultAssessmentForm: AssessmentForm = {
   maxScore: "100",
   category: "Planned"
 };
+
+const quickTargets = [
+  { label: "A", value: 93 },
+  { label: "A-", value: 90 },
+  { label: "B+", value: 87 },
+  { label: "B", value: 83 },
+  { label: "C+", value: 77 },
+  { label: "C", value: 73 },
+  { label: "Pass", value: 60 }
+];
 
 const inputStyles =
   "mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
@@ -361,6 +376,425 @@ function SyllabusUploadCard({
   );
 }
 
+function AutoGradePredictorCard({
+  assessments,
+  gradeSummary
+}: {
+  assessments: AssessmentRecord[];
+  gradeSummary: ReturnType<typeof getCourseGradeSummary>;
+}) {
+  const [targetGrade, setTargetGrade] = useState("90");
+  const [targetLetter, setTargetLetter] = useState<LetterGrade>("A-");
+  const [mode, setMode] = useState<"spread" | "single">("spread");
+  const [selectedAssessmentId, setSelectedAssessmentId] = useState("");
+  const [assumedScores, setAssumedScores] = useState<Record<string, string>>({});
+
+  const activeAssessments = useMemo(
+    () =>
+      assessments.filter(
+        (assessment) => getAssessmentStatus(assessment) !== "Dropped"
+      ),
+    [assessments]
+  );
+  const remainingAssessments = useMemo(
+    () =>
+      activeAssessments.filter((assessment) => !isCompletedAssessment(assessment)),
+    [activeAssessments]
+  );
+  const remainingWeight = remainingAssessments.reduce(
+    (sum, assessment) => sum + getAssessmentWeight(assessment),
+    0
+  );
+  const selectedAssessment =
+    remainingAssessments.find(
+      (assessment) => assessment.id === selectedAssessmentId
+    ) ??
+    remainingAssessments[0] ??
+    null;
+  const target = targetGrade.trim() === "" ? Number.NaN : Number(targetGrade);
+  const targetInfo = getGradeInfo(Number.isFinite(target) ? target : 0);
+  const projectedFinalGrade = gradeSummary.completedContribution;
+  const bestPossibleGrade = gradeSummary.completedContribution + remainingWeight;
+  const neededRemainingAverage =
+    remainingWeight > 0
+      ? ((target - gradeSummary.completedContribution) / remainingWeight) * 100
+      : null;
+  const otherRemainingAssumedPoints = remainingAssessments.reduce(
+    (sum, assessment) => {
+      if (!selectedAssessment || assessment.id === selectedAssessment.id) {
+        return sum;
+      }
+
+      const assumedScore = Number(assumedScores[assessment.id]);
+
+      if (!Number.isFinite(assumedScore)) {
+        return sum;
+      }
+
+      return sum + (assumedScore / 100) * getAssessmentWeight(assessment);
+    },
+    0
+  );
+  const neededSelectedScore =
+    selectedAssessment && getAssessmentWeight(selectedAssessment) > 0
+      ? ((target -
+          gradeSummary.completedContribution -
+          otherRemainingAssumedPoints) /
+          getAssessmentWeight(selectedAssessment)) *
+        100
+      : null;
+
+  const status = (() => {
+    if (!Number.isFinite(target)) {
+      return { label: "At risk", tone: "gold" as const };
+    }
+
+    if (gradeSummary.completedContribution >= target) {
+      return { label: "Already secured", tone: "green" as const };
+    }
+
+    if (mode === "single" && neededSelectedScore !== null && neededSelectedScore < 0) {
+      return { label: "Already secured", tone: "green" as const };
+    }
+
+    if (
+      remainingWeight <= 0 ||
+      bestPossibleGrade < target ||
+      (mode === "single" && neededSelectedScore !== null && neededSelectedScore > 100)
+    ) {
+      return { label: "Impossible", tone: "rose" as const };
+    }
+
+    if (
+      (neededRemainingAverage !== null && neededRemainingAverage >= 90) ||
+      (mode === "single" && neededSelectedScore !== null && neededSelectedScore >= 90)
+    ) {
+      return { label: "At risk", tone: "gold" as const };
+    }
+
+    return { label: "Possible", tone: "teal" as const };
+  })();
+
+  function updateTargetFromLetter(letter: LetterGrade) {
+    const grade = gradeScale.find((item) => item.letter === letter);
+
+    setTargetLetter(letter);
+    setTargetGrade(String(grade?.min ?? 0));
+  }
+
+  function updateTargetFromButton(value: number) {
+    setTargetGrade(String(value));
+    setTargetLetter(getGradeInfo(value).letter);
+  }
+
+  function updateTargetFromInput(value: string) {
+    setTargetGrade(value);
+    setTargetLetter(getGradeInfo(Number(value)).letter);
+  }
+
+  function updateAssumedScore(assessmentId: string, value: string) {
+    setAssumedScores((current) => ({
+      ...current,
+      [assessmentId]: value
+    }));
+  }
+
+  function resultMessage() {
+    if (!Number.isFinite(target)) {
+      return "Enter a valid target percentage to calculate what you need.";
+    }
+
+    if (gradeSummary.completedContribution >= target) {
+      return "You have already earned enough weighted points to reach this target, assuming incomplete work is not required.";
+    }
+
+    if (remainingWeight <= 0) {
+      return "There are no remaining weighted assessments, so your projected final grade is fixed by completed scores.";
+    }
+
+    if (neededRemainingAverage !== null && neededRemainingAverage > 100) {
+      return `To reach ${formatPercent(target)}, you would need ${formatPercent(
+        neededRemainingAverage
+      )} average on remaining work, so this target is not possible with the current weights.`;
+    }
+
+    if (mode === "single" && neededSelectedScore !== null) {
+      if (neededSelectedScore > 100) {
+        return `To reach ${formatPercent(target)}, you would need ${formatPercent(
+          neededSelectedScore
+        )} on ${selectedAssessment ? getAssessmentName(selectedAssessment) : "this assessment"}, so this target is not possible on that item alone.`;
+      }
+
+      if (neededSelectedScore < 0) {
+        return "You have already earned enough weighted points for this target after the assumed remaining scores.";
+      }
+
+      return `You need ${formatPercent(neededSelectedScore)} on ${
+        selectedAssessment ? getAssessmentName(selectedAssessment) : "the selected assessment"
+      } to finish with ${formatPercent(target)}.`;
+    }
+
+    return `You need an average of ${formatPercent(
+      neededRemainingAverage
+    )} across your remaining assessments to finish with ${formatPercent(target)}.`;
+  }
+
+  return (
+    <Card className="p-5">
+      <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+        <div>
+          <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+            <Sparkles aria-hidden="true" className="h-4 w-4" />
+            Auto Grade Predictor
+          </div>
+          <h2 className="mt-2 text-xl font-semibold text-ink-900">
+            Predict what you need on remaining work
+          </h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-500">
+            Try temporary what-if scores without changing your saved assessment
+            data.
+          </p>
+        </div>
+        <Badge tone={status.tone}>{status.label}</Badge>
+      </div>
+
+      {gradeSummary.totalWeight !== 100 ? (
+        <p className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          Your assessment weights total {formatWeightDelta(gradeSummary.totalWeight)}%,
+          so predictions may be inaccurate.
+        </p>
+      ) : null}
+
+      <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_12rem_minmax(0,1fr)]">
+        <label className="block">
+          <span className="text-sm font-medium text-ink-700">
+            Target grade
+          </span>
+          <input
+            className={inputStyles}
+            min="0"
+            onChange={(event) => updateTargetFromInput(event.target.value)}
+            step="0.1"
+            type="number"
+            value={targetGrade}
+          />
+        </label>
+        <label className="block">
+          <span className="text-sm font-medium text-ink-700">
+            Target letter
+          </span>
+          <select
+            className={inputStyles}
+            onChange={(event) =>
+              updateTargetFromLetter(event.target.value as LetterGrade)
+            }
+            value={targetLetter}
+          >
+            {gradeScale.map((grade) => (
+              <option key={grade.letter} value={grade.letter}>
+                {grade.letter} ({grade.min}%)
+              </option>
+            ))}
+          </select>
+        </label>
+        <div>
+          <span className="text-sm font-medium text-ink-700">
+            Quick targets
+          </span>
+          <div className="mt-1 flex flex-wrap gap-2">
+            {quickTargets.map((targetOption) => (
+              <Button
+                key={`${targetOption.label}-${targetOption.value}`}
+                onClick={() => updateTargetFromButton(targetOption.value)}
+                size="sm"
+                variant={
+                  Number(targetGrade) === targetOption.value
+                    ? "primary"
+                    : "secondary"
+                }
+              >
+                {targetOption.label} {targetOption.value}%
+              </Button>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <div className="mt-5 grid gap-3 md:grid-cols-4">
+        <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <p className="text-sm font-medium text-ink-500">Current grade so far</p>
+          <p className="mt-2 text-2xl font-semibold text-ink-900">
+            {gradeSummary.currentGrade === null
+              ? "No scores yet"
+              : formatPercent(gradeSummary.currentGrade)}
+          </p>
+          <p className="mt-1 text-xs text-ink-500">
+            {gradeSummary.completedWeight}% completed weight
+          </p>
+        </div>
+        <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <p className="text-sm font-medium text-ink-500">Projected final</p>
+          <p className="mt-2 text-2xl font-semibold text-ink-900">
+            {formatPercent(projectedFinalGrade)}
+          </p>
+          <p className="mt-1 text-xs text-ink-500">Remaining work counts as 0</p>
+        </div>
+        <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <p className="text-sm font-medium text-ink-500">Best possible</p>
+          <p className="mt-2 text-2xl font-semibold text-ink-900">
+            {formatPercent(bestPossibleGrade)}
+          </p>
+          <p className="mt-1 text-xs text-ink-500">100% on remaining work</p>
+        </div>
+        <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <p className="text-sm font-medium text-ink-500">Target letter</p>
+          <p className="mt-2 text-2xl font-semibold text-ink-900">
+            {targetInfo.letter}
+          </p>
+          <p className="mt-1 text-xs text-ink-500">
+            Rounded target {targetInfo.roundedPercentage}%
+          </p>
+        </div>
+      </div>
+
+      {remainingAssessments.length === 0 ? (
+        <p className="mt-5 rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-600">
+          No remaining assessments. Your projected final grade is{" "}
+          {formatPercent(projectedFinalGrade)}.
+        </p>
+      ) : (
+        <>
+          <div className="mt-5 rounded-lg border border-ink-200 bg-ink-50 p-4">
+            <p className="text-sm font-semibold text-ink-900">
+              Remaining assessments
+            </p>
+            <div className="mt-3 grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+              {remainingAssessments.map((assessment) => (
+                <div
+                  className="rounded-lg bg-white px-3 py-2 text-sm"
+                  key={assessment.id}
+                >
+                  <div className="flex items-center justify-between gap-3">
+                    <span className="font-medium text-ink-800">
+                      {getAssessmentName(assessment)}
+                    </span>
+                    <span className="text-ink-500">
+                      {getAssessmentWeight(assessment)}%
+                    </span>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <div className="mt-5 grid gap-3 sm:grid-cols-2">
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-ink-200 bg-white p-4">
+              <input
+                checked={mode === "spread"}
+                className="mt-1 h-4 w-4 accent-teal-700"
+                onChange={() => setMode("spread")}
+                type="radio"
+              />
+              <span>
+                <span className="block font-semibold text-ink-900">
+                  Spread evenly across remaining assessments
+                </span>
+                <span className="mt-1 block text-sm text-ink-500">
+                  Calculate the average score needed across all remaining work.
+                </span>
+              </span>
+            </label>
+            <label className="flex cursor-pointer items-start gap-3 rounded-lg border border-ink-200 bg-white p-4">
+              <input
+                checked={mode === "single"}
+                className="mt-1 h-4 w-4 accent-teal-700"
+                onChange={() => setMode("single")}
+                type="radio"
+              />
+              <span>
+                <span className="block font-semibold text-ink-900">
+                  Calculate for one assessment
+                </span>
+                <span className="mt-1 block text-sm text-ink-500">
+                  Assume scores on other remaining work, then solve one item.
+                </span>
+              </span>
+            </label>
+          </div>
+
+          {mode === "single" ? (
+            <div className="mt-5 rounded-lg border border-ink-200 bg-ink-50 p-4">
+              <label className="block">
+                <span className="text-sm font-medium text-ink-700">
+                  Selected assessment
+                </span>
+                <select
+                  className={inputStyles}
+                  onChange={(event) =>
+                    setSelectedAssessmentId(event.target.value)
+                  }
+                  value={selectedAssessment?.id ?? ""}
+                >
+                  {remainingAssessments.map((assessment) => (
+                    <option key={assessment.id} value={assessment.id}>
+                      {getAssessmentName(assessment)} -{" "}
+                      {getAssessmentWeight(assessment)}%
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                {remainingAssessments
+                  .filter((assessment) => assessment.id !== selectedAssessment?.id)
+                  .map((assessment) => (
+                    <label className="block" key={assessment.id}>
+                      <span className="text-sm font-medium text-ink-700">
+                        Assumed score for {getAssessmentName(assessment)}
+                      </span>
+                      <input
+                        className={inputStyles}
+                        max="100"
+                        min="0"
+                        onChange={(event) =>
+                          updateAssumedScore(assessment.id, event.target.value)
+                        }
+                        placeholder="0"
+                        step="0.1"
+                        type="number"
+                        value={assumedScores[assessment.id] ?? ""}
+                      />
+                    </label>
+                  ))}
+              </div>
+            </div>
+          ) : null}
+        </>
+      )}
+
+      <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
+        <p className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm leading-6 text-ink-700">
+          {resultMessage()}
+        </p>
+        <div className="rounded-lg border border-ink-200 bg-teal-50 p-4">
+          <p className="text-sm font-medium text-teal-800">
+            {mode === "single" ? "Needed selected score" : "Needed average"}
+          </p>
+          <p className="mt-2 text-3xl font-semibold text-teal-800">
+            {mode === "single"
+              ? neededSelectedScore === null
+                ? "N/A"
+                : formatPercent(neededSelectedScore)
+              : neededRemainingAverage === null
+                ? "N/A"
+                : formatPercent(neededRemainingAverage)}
+          </p>
+        </div>
+      </div>
+    </Card>
+  );
+}
+
 export function CourseDetailClient({
   courseIdOverride
 }: {
@@ -380,8 +814,6 @@ export function CourseDetailClient({
   const [editingAssessmentId, setEditingAssessmentId] = useState<string | null>(
     null
   );
-  const [targetGrade, setTargetGrade] = useState("90");
-  const [selectedNeedAssessmentId, setSelectedNeedAssessmentId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -493,45 +925,6 @@ export function CourseDetailClient({
       ),
     [assessments]
   );
-  const remainingAssessments = useMemo(
-    () =>
-      sortedAssessments.filter(
-        (assessment) =>
-          getAssessmentStatus(assessment) !== "Dropped" &&
-          !isCompletedAssessment(assessment) &&
-          getAssessmentWeight(assessment) > 0
-      ),
-    [sortedAssessments]
-  );
-  const selectedNeedAssessment =
-    remainingAssessments.find(
-      (assessment) => assessment.id === selectedNeedAssessmentId
-    ) ??
-    remainingAssessments[0] ??
-    null;
-  const needCalculator = useMemo(() => {
-    if (!selectedNeedAssessment) {
-      return null;
-    }
-
-    const target = Number(targetGrade);
-    const weight = getAssessmentWeight(selectedNeedAssessment);
-    const maxScore = getAssessmentMaxScore(selectedNeedAssessment) ?? 100;
-
-    if (!Number.isFinite(target) || weight <= 0 || maxScore <= 0) {
-      return null;
-    }
-
-    const neededContribution = target - gradeSummary.completedContribution;
-    const neededPercent = (neededContribution / weight) * 100;
-    const neededScore = (neededPercent / 100) * maxScore;
-
-    return {
-      maxScore,
-      neededPercent,
-      neededScore
-    };
-  }, [gradeSummary.completedContribution, selectedNeedAssessment, targetGrade]);
 
   function updateAssessmentForm(field: keyof AssessmentForm, value: string) {
     setAssessmentForm((current) => ({
@@ -832,94 +1225,10 @@ export function CourseDetailClient({
         onExtracted={handleSyllabusExtracted}
       />
 
-      <Card className="p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
-              <Target aria-hidden="true" className="h-4 w-4" />
-              What do I need?
-            </div>
-            <h2 className="mt-2 text-xl font-semibold text-ink-900">
-              Calculate the score needed on one remaining assessment
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-              Pick a target course grade and one unscored assessment. This
-              assumes every other incomplete assessment contributes 0 for now.
-            </p>
-          </div>
-          <Badge tone={remainingAssessments.length > 0 ? "teal" : "ink"}>
-            {remainingAssessments.length} remaining
-          </Badge>
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)_18rem] lg:items-end">
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              Target grade
-            </span>
-            <input
-              className={inputStyles}
-              min="0"
-              onChange={(event) => setTargetGrade(event.target.value)}
-              step="0.1"
-              type="number"
-              value={targetGrade}
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              Remaining assessment
-            </span>
-            <select
-              className={inputStyles}
-              disabled={remainingAssessments.length === 0}
-              onChange={(event) =>
-                setSelectedNeedAssessmentId(event.target.value)
-              }
-              value={selectedNeedAssessment?.id ?? ""}
-            >
-              {remainingAssessments.length === 0 ? (
-                <option value="">No remaining weighted assessments</option>
-              ) : null}
-              {remainingAssessments.map((assessment) => (
-                <option key={assessment.id} value={assessment.id}>
-                  {getAssessmentName(assessment)} -{" "}
-                  {getAssessmentWeight(assessment)}%
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-            <p className="text-sm font-medium text-ink-500">Needed score</p>
-            {selectedNeedAssessment && needCalculator ? (
-              <>
-                <p className="mt-2 text-3xl font-semibold text-ink-900">
-                  {needCalculator.neededPercent <= 0
-                    ? "0.0%"
-                    : `${needCalculator.neededPercent.toFixed(1)}%`}
-                </p>
-                <p className="mt-1 text-sm text-ink-500">
-                  {needCalculator.neededPercent <= 0
-                    ? "You have enough completed points already."
-                    : needCalculator.neededPercent > 100
-                      ? "Not possible on this item alone."
-                      : `${needCalculator.neededScore.toFixed(1)} / ${
-                          needCalculator.maxScore
-                        }`}
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="mt-2 text-3xl font-semibold text-ink-900">N/A</p>
-                <p className="mt-1 text-sm text-ink-500">
-                  Add a weighted, unscored assessment.
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-      </Card>
+      <AutoGradePredictorCard
+        assessments={assessments}
+        gradeSummary={gradeSummary}
+      />
 
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
         <Card className="overflow-hidden">

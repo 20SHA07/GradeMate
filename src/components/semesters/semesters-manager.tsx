@@ -9,7 +9,13 @@ import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
-import { getAssessmentName, getAssessmentWeight } from "@/lib/grades";
+import {
+  formatPercent,
+  getAssessmentName,
+  getAssessmentWeight,
+  getCourseGradeSummary,
+  getLetterGrade
+} from "@/lib/grades";
 import {
   createGuestId,
   readGuestData,
@@ -650,6 +656,7 @@ export function SemestersManager() {
                     (sum, assessment) => sum + getAssessmentWeight(assessment),
                     0
                   );
+                  const gradeSummary = getCourseGradeSummary(courseAssessments);
 
                   return (
                     <div
@@ -675,6 +682,10 @@ export function SemestersManager() {
                           </Badge>
                           <Badge tone={totalWeight === 100 ? "green" : "gold"}>
                             {totalWeight}% weight
+                          </Badge>
+                          <Badge tone="teal">
+                            {formatPercent(gradeSummary.currentGrade)} ·{" "}
+                            {getLetterGrade(gradeSummary.currentGrade)}
                           </Badge>
                           <Link
                             className={buttonStyles({

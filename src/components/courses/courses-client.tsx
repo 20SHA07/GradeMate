@@ -13,7 +13,8 @@ import {
   formatPercent,
   getAssessmentName,
   getAssessmentWeight,
-  getCourseGradeSummary
+  getCourseGradeSummary,
+  getLetterGrade
 } from "@/lib/grades";
 import { readGuestData } from "@/lib/guest-session";
 import type {
@@ -167,8 +168,11 @@ export function CoursesClient() {
 
                 <div className="mt-3 flex items-center justify-between rounded-lg bg-teal-50 px-3 py-2 text-sm">
                   <span className="text-teal-800">Current grade</span>
-                  <span className="font-semibold text-teal-800">
+                  <span className="flex items-center gap-2 font-semibold text-teal-800">
                     {formatPercent(gradeSummary.currentGrade)}
+                    <Badge tone="teal">
+                      {getLetterGrade(gradeSummary.currentGrade)}
+                    </Badge>
                   </span>
                 </div>
 

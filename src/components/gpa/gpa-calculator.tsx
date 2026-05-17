@@ -22,6 +22,7 @@ import {
   percentageToLetterGrade,
   type GpaCourseInput
 } from "@/lib/gpa";
+import { gradeScale } from "@/lib/grading";
 import { readGuestData } from "@/lib/guest-session";
 import type {
   AssessmentRecord,
@@ -358,16 +359,16 @@ export function GpaCalculator() {
                   Grading scale
                 </p>
                 <div className="mt-3 grid grid-cols-2 gap-2 text-xs">
-                  {gradeOptions.map((grade) => (
+                  {gradeScale.map((grade) => (
                     <div
                       className="flex items-center justify-between rounded-lg bg-ink-50 px-2 py-1.5"
-                      key={grade.label}
+                      key={grade.letter}
                     >
                       <span className="font-medium text-ink-900">
-                        {grade.label}
+                        {grade.letter}
                       </span>
                       <span className="text-ink-500">
-                        {grade.points.toFixed(1)}
+                        {grade.min}-{grade.max}% · {grade.points.toFixed(1)}
                       </span>
                     </div>
                   ))}

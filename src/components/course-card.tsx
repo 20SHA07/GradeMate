@@ -2,6 +2,7 @@ import { FileText, Target } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Progress } from "@/components/ui/progress";
+import { getGradeInfo } from "@/lib/grading";
 import type { Course, CourseStatus } from "@/types";
 
 const statusTone: Record<CourseStatus, "teal" | "gold" | "green"> = {
@@ -23,6 +24,8 @@ const syllabusLabel: Record<Course["syllabusStatus"], string> = {
 };
 
 export function CourseCard({ course }: { course: Course }) {
+  const gradeInfo = getGradeInfo(course.currentGrade || 0);
+
   return (
     <Card>
       <CardHeader className="pb-4">
@@ -47,7 +50,9 @@ export function CourseCard({ course }: { course: Course }) {
           <div>
             <div className="mb-2 flex items-center justify-between text-sm">
               <span className="font-medium text-ink-700">Current grade</span>
-              <span className="text-ink-500">{course.currentGrade || 0}%</span>
+              <span className="text-ink-500">
+                {gradeInfo.roundedPercentage}% · {gradeInfo.letter}
+              </span>
             </div>
             <Progress value={course.currentGrade} tone="teal" />
           </div>
