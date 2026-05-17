@@ -52,12 +52,23 @@ create table if not exists course_templates (
   course_name text not null,
   department text,
   credit_hours numeric not null default 3,
+  instructor text,
+  term text,
   description text,
   source_file_name text,
   source_folder_path text,
+  source_syllabus_file_name text,
+  source_syllabus_path text,
   extraction_confidence numeric not null default 0,
-  created_at timestamp with time zone default now()
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
 );
+
+alter table course_templates add column if not exists instructor text;
+alter table course_templates add column if not exists term text;
+alter table course_templates add column if not exists source_syllabus_file_name text;
+alter table course_templates add column if not exists source_syllabus_path text;
+alter table course_templates add column if not exists updated_at timestamp with time zone default now();
 
 alter table course_templates drop constraint if exists course_templates_course_code_key;
 
@@ -71,8 +82,13 @@ create table if not exists course_template_assessments (
   weight_percentage numeric not null default 0,
   max_score numeric not null default 100,
   confidence numeric not null default 0,
-  created_at timestamp with time zone default now()
+  source_text_snippet text,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
 );
+
+alter table course_template_assessments add column if not exists source_text_snippet text;
+alter table course_template_assessments add column if not exists updated_at timestamp with time zone default now();
 
 create table if not exists course_template_materials (
   id uuid primary key default gen_random_uuid(),
@@ -80,8 +96,11 @@ create table if not exists course_template_materials (
   file_name text not null,
   file_path text not null,
   file_type text,
+  material_type text,
   created_at timestamp with time zone default now()
 );
+
+alter table course_template_materials add column if not exists material_type text;
 
 alter table assessments add column if not exists name text;
 alter table assessments add column if not exists weight_percentage numeric not null default 0;
@@ -111,6 +130,7 @@ create index if not exists assessments_course_id_idx on assessments(course_id);
 create index if not exists syllabus_uploads_user_id_idx on syllabus_uploads(user_id);
 create index if not exists syllabus_uploads_course_id_idx on syllabus_uploads(course_id);
 create index if not exists course_templates_department_idx on course_templates(department);
+create index if not exists course_templates_source_syllabus_path_idx on course_templates(source_syllabus_path);
 create index if not exists course_template_assessments_template_id_idx on course_template_assessments(course_template_id);
 create index if not exists course_template_materials_template_id_idx on course_template_materials(course_template_id);
 

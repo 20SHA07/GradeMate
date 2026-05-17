@@ -5,6 +5,8 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "import:syllabi": "node scripts/import-syllabi.mjs",
+    "import:syllabi:dry": "node scripts/import-syllabi.mjs --dry-run",
     "import:templates": "node scripts/import-course-templates.mjs",
     "import:templates:dry": "node scripts/import-course-templates.mjs --dry-run",
     "start": "next start",

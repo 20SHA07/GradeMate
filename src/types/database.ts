@@ -58,11 +58,16 @@ export type CourseTemplateRecord = {
   course_name: string;
   department: string | null;
   credit_hours: number;
+  instructor: string | null;
+  term: string | null;
   description: string | null;
   source_file_name: string | null;
   source_folder_path: string | null;
+  source_syllabus_file_name: string | null;
+  source_syllabus_path: string | null;
   extraction_confidence: number;
   created_at: string;
+  updated_at: string;
 };
 
 export type CourseTemplateAssessmentRecord = {
@@ -72,7 +77,9 @@ export type CourseTemplateAssessmentRecord = {
   weight_percentage: number;
   max_score: number;
   confidence: number;
+  source_text_snippet: string | null;
   created_at: string;
+  updated_at: string;
 };
 
 export type CourseTemplateMaterialRecord = {
@@ -81,6 +88,7 @@ export type CourseTemplateMaterialRecord = {
   file_name: string;
   file_path: string;
   file_type: string | null;
+  material_type: string | null;
   created_at: string;
 };
 
@@ -183,11 +191,16 @@ export type Database = {
           course_name: string;
           department?: string | null;
           credit_hours?: number;
+          instructor?: string | null;
+          term?: string | null;
           description?: string | null;
           source_file_name?: string | null;
           source_folder_path?: string | null;
+          source_syllabus_file_name?: string | null;
+          source_syllabus_path?: string | null;
           extraction_confidence?: number;
           created_at?: string;
+          updated_at?: string;
         };
         Update: Partial<Omit<CourseTemplateRecord, "id" | "created_at">>;
         Relationships: [];
@@ -201,7 +214,9 @@ export type Database = {
           weight_percentage?: number;
           max_score?: number;
           confidence?: number;
+          source_text_snippet?: string | null;
           created_at?: string;
+          updated_at?: string;
         };
         Update: Partial<
           Omit<CourseTemplateAssessmentRecord, "id" | "created_at">
@@ -224,6 +239,7 @@ export type Database = {
           file_name: string;
           file_path: string;
           file_type?: string | null;
+          material_type?: string | null;
           created_at?: string;
         };
         Update: Partial<

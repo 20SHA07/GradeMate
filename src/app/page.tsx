@@ -1,7 +1,6 @@
 import Link from "next/link";
 import {
   ArrowRight,
-  BookOpenCheck,
   Calculator,
   ClipboardCheck,
   FileUp,

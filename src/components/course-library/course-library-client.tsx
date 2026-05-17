@@ -1,7 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { BookMarked, CheckCircle2, Download, Search } from "lucide-react";
+import { useRouter } from "next/navigation";
+import {
+  BookMarked,
+  Download,
+  FileText,
+  FolderOpen,
+  Search,
+  X
+} from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
@@ -17,7 +25,7 @@ import type {
   SemesterRecord
 } from "@/types/database";
 
-type TemplateWithCounts = CourseTemplateRecord & {
+type TemplateWithDetails = CourseTemplateRecord & {
   assessments: CourseTemplateAssessmentRecord[];
   materials: CourseTemplateMaterialRecord[];
 };
@@ -41,27 +49,32 @@ function formatConfidence(confidence: number) {
   return `${Math.round(confidence * 100)}% confidence`;
 }
 
+function totalAssessmentWeight(assessments: CourseTemplateAssessmentRecord[]) {
+  return assessments.reduce(
+    (sum, assessment) => sum + Number(assessment.weight_percentage),
+    0
+  );
+}
+
 export function CourseLibraryClient() {
+  const router = useRouter();
   const { isGuest, signOut, supabase, user } = useAuth();
-  const [templates, setTemplates] = useState<TemplateWithCounts[]>([]);
+  const [templates, setTemplates] = useState<TemplateWithDetails[]>([]);
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
-  const [selectedSemesters, setSelectedSemesters] = useState<
-    Record<string, string>
-  >({});
   const [query, setQuery] = useState("");
   const [department, setDepartment] = useState("All");
   const [isLoading, setIsLoading] = useState(true);
   const [importingTemplateId, setImportingTemplateId] = useState("");
+  const [selectedTemplate, setSelectedTemplate] =
+    useState<TemplateWithDetails | null>(null);
+  const [selectedSemesterId, setSelectedSemesterId] = useState("");
+  const [expandedMaterialsTemplateId, setExpandedMaterialsTemplateId] =
+    useState("");
   const [error, setError] = useState("");
-  const [success, setSuccess] = useState<{
-    message: string;
-    courseId: string;
-  } | null>(null);
 
   useEffect(() => {
     async function loadLibrary() {
       setError("");
-      setSuccess(null);
 
       if (isGuest) {
         setIsLoading(false);
@@ -69,7 +82,7 @@ export function CourseLibraryClient() {
       }
 
       if (!supabase) {
-        setError("Log in to browse course templates.");
+        setError("Log in to browse syllabus-created course templates.");
         setIsLoading(false);
         return;
       }
@@ -85,6 +98,7 @@ export function CourseLibraryClient() {
         supabase
           .from("course_templates")
           .select("*")
+          .not("source_syllabus_path", "is", null)
           .order("course_code", { ascending: true }),
         supabase
           .from("course_template_assessments")
@@ -138,11 +152,7 @@ export function CourseLibraryClient() {
         }))
       );
       setSemesters(semesterRows);
-      setSelectedSemesters(
-        Object.fromEntries(
-          templateRows.map((template) => [template.id, semesterRows[0]?.id ?? ""])
-        )
-      );
+      setSelectedSemesterId((current) => current || semesterRows[0]?.id || "");
       setIsLoading(false);
     }
 
@@ -174,7 +184,10 @@ export function CourseLibraryClient() {
           template.course_code,
           template.course_name,
           template.department ?? "",
-          template.description ?? ""
+          template.instructor ?? "",
+          template.term ?? "",
+          template.description ?? "",
+          template.source_syllabus_file_name ?? ""
         ]
           .join(" ")
           .toLowerCase()
@@ -184,12 +197,18 @@ export function CourseLibraryClient() {
     });
   }, [department, query, templates]);
 
-  async function importTemplate(template: TemplateWithCounts) {
-    const semesterId = selectedSemesters[template.id];
+  function openImportModal(template: TemplateWithDetails) {
+    setSelectedTemplate(template);
+    setSelectedSemesterId(semesters[0]?.id ?? "");
     setError("");
-    setSuccess(null);
+  }
 
-    if (!semesterId) {
+  async function importSelectedTemplate() {
+    if (!selectedTemplate) {
+      return;
+    }
+
+    if (!selectedSemesterId) {
       setError("Choose a semester before importing this template.");
       return;
     }
@@ -199,16 +218,17 @@ export function CourseLibraryClient() {
       return;
     }
 
-    setImportingTemplateId(template.id);
+    setError("");
+    setImportingTemplateId(selectedTemplate.id);
 
     const { data: courseData, error: courseError } = await supabase
       .from("courses")
       .insert({
         user_id: user.id,
-        semester_id: semesterId,
-        name: template.course_name,
-        code: template.course_code,
-        credit_hours: Number(template.credit_hours) || 3
+        semester_id: selectedSemesterId,
+        name: selectedTemplate.course_name,
+        code: selectedTemplate.course_code,
+        credit_hours: Number(selectedTemplate.credit_hours) || 3
       })
       .select()
       .single();
@@ -221,11 +241,11 @@ export function CourseLibraryClient() {
       return;
     }
 
-    if (template.assessments.length > 0) {
+    if (selectedTemplate.assessments.length > 0) {
       const { error: assessmentError } = await supabase
         .from("assessments")
         .insert(
-          template.assessments.map((assessment) => ({
+          selectedTemplate.assessments.map((assessment) => ({
             user_id: user.id,
             course_id: createdCourse.id,
             name: assessment.name,
@@ -247,19 +267,17 @@ export function CourseLibraryClient() {
       }
     }
 
-    setSuccess({
-      message: `${template.course_code} imported into your semester.`,
-      courseId: createdCourse.id
-    });
     setImportingTemplateId("");
+    setSelectedTemplate(null);
+    router.push(`/courses/${createdCourse.id}/`);
   }
 
   if (isGuest) {
     return (
       <div className="space-y-8">
         <PageHeader
-          description="Browse reusable templates created from course materials and import them into your own semesters."
-          eyebrow="Templates"
+          description="Browse reusable course templates created from syllabuses and import them into your own semesters."
+          eyebrow="Syllabus library"
           title="Course Library"
         />
         <EmptyState
@@ -268,7 +286,7 @@ export function CourseLibraryClient() {
               Log in to use templates
             </Button>
           }
-          description="Course templates are shared read-only records for logged-in users. Guest mode can still create courses manually from the Semesters page."
+          description="Syllabus-created course templates are shared read-only records for logged-in users."
           icon={<BookMarked aria-hidden="true" className="h-5 w-5" />}
           title="Log in to browse the library"
         />
@@ -279,8 +297,8 @@ export function CourseLibraryClient() {
   return (
     <div className="space-y-8">
       <PageHeader
-        description="Search reusable course templates, then import one into your own semester."
-        eyebrow="Templates"
+        description="Search syllabus-created course templates, then import one into your own semester."
+        eyebrow="Syllabus library"
         title="Course Library"
       />
 
@@ -288,22 +306,6 @@ export function CourseLibraryClient() {
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
-      ) : null}
-
-      {success ? (
-        <div className="flex flex-col gap-3 rounded-lg border border-lime-200 bg-lime-50 px-4 py-3 text-sm text-lime-800 sm:flex-row sm:items-center sm:justify-between">
-          <span className="inline-flex items-center gap-2">
-            <CheckCircle2 aria-hidden="true" className="h-4 w-4" />
-            {success.message}
-          </span>
-          <Link
-            className={buttonStyles({ variant: "secondary", size: "sm" })}
-            href={`/courses/${success.courseId}/`}
-            prefetch={false}
-          >
-            Open course
-          </Link>
-        </div>
       ) : null}
 
       <Card className="p-5">
@@ -318,7 +320,7 @@ export function CourseLibraryClient() {
               <input
                 className={`${inputStyles} pl-9`}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Search by code, name, or department"
+                placeholder="Search by code, name, instructor, or term"
                 value={query}
               />
             </div>
@@ -344,13 +346,13 @@ export function CourseLibraryClient() {
 
       {isLoading ? (
         <Card className="p-5 text-sm text-ink-500">
-          Loading course templates...
+          Loading syllabus templates...
         </Card>
       ) : templates.length === 0 ? (
         <EmptyState
-          description="Run the template import script after creating the Supabase course template tables."
+          description="Run the syllabus-only import script after updating the Supabase course template tables."
           icon={<BookMarked aria-hidden="true" className="h-5 w-5" />}
-          title="No templates found"
+          title="No syllabus-created templates found"
         />
       ) : filteredTemplates.length === 0 ? (
         <EmptyState
@@ -360,128 +362,233 @@ export function CourseLibraryClient() {
         />
       ) : (
         <section className="grid gap-4 lg:grid-cols-2">
-          {filteredTemplates.map((template) => (
-            <Card className="p-5" key={template.id}>
-              <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
-                <div>
-                  <div className="flex flex-wrap items-center gap-2">
-                    <Badge tone="teal">{template.course_code}</Badge>
-                    {template.department ? (
-                      <Badge tone="ink">{template.department}</Badge>
-                    ) : null}
-                    <Badge tone={confidenceTone(template.extraction_confidence)}>
-                      {formatConfidence(template.extraction_confidence)}
-                    </Badge>
+          {filteredTemplates.map((template) => {
+            const totalWeight = totalAssessmentWeight(template.assessments);
+            const isMaterialsOpen = expandedMaterialsTemplateId === template.id;
+
+            return (
+              <Card className="p-5" key={template.id}>
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <Badge tone="teal">{template.course_code}</Badge>
+                      {template.department ? (
+                        <Badge tone="ink">{template.department}</Badge>
+                      ) : null}
+                      <Badge
+                        tone={confidenceTone(template.extraction_confidence)}
+                      >
+                        {formatConfidence(template.extraction_confidence)}
+                      </Badge>
+                    </div>
+                    <h2 className="mt-3 text-lg font-semibold text-ink-900">
+                      {template.course_name}
+                    </h2>
+                    <p className="mt-2 text-sm leading-6 text-ink-500">
+                      {template.description ??
+                        "Template created from a detected syllabus."}
+                    </p>
                   </div>
-                  <h2 className="mt-3 text-lg font-semibold text-ink-900">
-                    {template.course_name}
-                  </h2>
-                  <p className="mt-2 text-sm leading-6 text-ink-500">
-                    {template.description ??
-                      "Template created from local course materials."}
-                  </p>
-                </div>
-                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
-                  <BookMarked aria-hidden="true" className="h-5 w-5" />
-                </span>
-              </div>
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-3">
-                <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
-                  <p className="text-ink-500">Credits</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {Number(template.credit_hours)}
-                  </p>
-                </div>
-                <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
-                  <p className="text-ink-500">Assessments</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {template.assessments.length}
-                  </p>
-                </div>
-                <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
-                  <p className="text-ink-500">Materials</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {template.materials.length}
-                  </p>
-                </div>
-              </div>
-
-              {template.assessments.length > 0 ? (
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {template.assessments.slice(0, 5).map((assessment) => (
-                    <Badge key={assessment.id} tone="gold">
-                      {assessment.name} {Number(assessment.weight_percentage)}%
-                    </Badge>
-                  ))}
-                  {template.assessments.length > 5 ? (
-                    <Badge tone="ink">
-                      +{template.assessments.length - 5} more
-                    </Badge>
-                  ) : null}
-                </div>
-              ) : (
-                <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
-                  Grading breakdown unclear. You can still import the course and
-                  add assessments manually.
-                </p>
-              )}
-
-              <div className="mt-5 grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-end">
-                <label className="block">
-                  <span className="text-sm font-medium text-ink-700">
-                    Import to semester
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
+                    <FileText aria-hidden="true" className="h-5 w-5" />
                   </span>
-                  <select
-                    className={`${inputStyles} mt-1`}
-                    disabled={semesters.length === 0}
-                    onChange={(event) =>
-                      setSelectedSemesters((current) => ({
-                        ...current,
-                        [template.id]: event.target.value
-                      }))
-                    }
-                    value={selectedSemesters[template.id] ?? ""}
-                  >
-                    {semesters.length === 0 ? (
-                      <option value="">Create a semester first</option>
-                    ) : null}
-                    {semesters.map((semester) => (
-                      <option key={semester.id} value={semester.id}>
-                        {semester.name}
-                      </option>
+                </div>
+
+                <div className="mt-5 grid gap-3 sm:grid-cols-4">
+                  <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Credits</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {Number(template.credit_hours)}
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Assessments</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {template.assessments.length}
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Total weight</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {totalWeight}%
+                    </p>
+                  </div>
+                  <div className="rounded-lg bg-ink-50 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Materials</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {template.materials.length}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-lg border border-ink-100 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Instructor</p>
+                    <p className="mt-1 font-medium text-ink-900">
+                      {template.instructor ?? "Not detected"}
+                    </p>
+                  </div>
+                  <div className="rounded-lg border border-ink-100 px-3 py-2 text-sm">
+                    <p className="text-ink-500">Term</p>
+                    <p className="mt-1 font-medium text-ink-900">
+                      {template.term ?? "Not detected"}
+                    </p>
+                  </div>
+                </div>
+
+                {template.assessments.length > 0 ? (
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {template.assessments.slice(0, 5).map((assessment) => (
+                      <Badge key={assessment.id} tone="gold">
+                        {assessment.name}{" "}
+                        {Number(assessment.weight_percentage)}%
+                      </Badge>
                     ))}
-                  </select>
-                </label>
-                {semesters.length === 0 ? (
-                  <Link
-                    className={buttonStyles({ variant: "secondary" })}
-                    href="/semesters"
-                  >
-                    Create semester
-                  </Link>
+                    {template.assessments.length > 5 ? (
+                      <Badge tone="ink">
+                        +{template.assessments.length - 5} more
+                      </Badge>
+                    ) : null}
+                  </div>
                 ) : (
+                  <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                    Grading breakdown unclear. You can still import the course
+                    and add assessments manually.
+                  </p>
+                )}
+
+                <div className="mt-5 flex flex-col gap-2 sm:flex-row">
                   <Button
-                    disabled={importingTemplateId === template.id}
-                    onClick={() => void importTemplate(template)}
+                    className="w-full sm:w-auto"
+                    disabled={semesters.length === 0}
+                    onClick={() => openImportModal(template)}
                   >
                     <Download aria-hidden="true" className="h-4 w-4" />
-                    {importingTemplateId === template.id
-                      ? "Importing..."
-                      : "Import"}
+                    Import to Semester
                   </Button>
-                )}
-              </div>
+                  {template.materials.length > 0 ? (
+                    <Button
+                      className="w-full sm:w-auto"
+                      onClick={() =>
+                        setExpandedMaterialsTemplateId((current) =>
+                          current === template.id ? "" : template.id
+                        )
+                      }
+                      variant="secondary"
+                    >
+                      <FolderOpen aria-hidden="true" className="h-4 w-4" />
+                      View Materials
+                    </Button>
+                  ) : null}
+                  {semesters.length === 0 ? (
+                    <Link
+                      className={buttonStyles({
+                        className: "w-full sm:w-auto",
+                        variant: "secondary"
+                      })}
+                      href="/semesters"
+                    >
+                      Create semester
+                    </Link>
+                  ) : null}
+                </div>
 
-              {template.source_file_name ? (
-                <p className="mt-4 truncate text-xs text-ink-400">
-                  Source: {template.source_file_name}
-                </p>
-              ) : null}
-            </Card>
-          ))}
+                {isMaterialsOpen ? (
+                  <div className="mt-4 max-h-56 overflow-y-auto rounded-lg border border-ink-200 bg-ink-50 p-3">
+                    <div className="space-y-2">
+                      {template.materials.slice(0, 60).map((material) => (
+                        <div
+                          className="flex items-center justify-between gap-3 rounded-lg bg-white px-3 py-2 text-sm"
+                          key={material.id}
+                        >
+                          <span className="truncate font-medium text-ink-800">
+                            {material.file_name}
+                          </span>
+                          <Badge tone="ink">
+                            {material.material_type ?? "other"}
+                          </Badge>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                ) : null}
+
+                {template.source_syllabus_file_name ? (
+                  <p className="mt-4 truncate text-xs text-ink-400">
+                    Source syllabus: {template.source_syllabus_file_name}
+                  </p>
+                ) : null}
+              </Card>
+            );
+          })}
         </section>
       )}
+
+      {selectedTemplate ? (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-ink-900/30 px-4">
+          <Card className="w-full max-w-lg p-5">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <p className="text-sm font-medium text-teal-700">
+                  Import to Semester
+                </p>
+                <h2 className="mt-1 text-xl font-semibold text-ink-900">
+                  {selectedTemplate.course_code} {selectedTemplate.course_name}
+                </h2>
+                <p className="mt-2 text-sm leading-6 text-ink-500">
+                  This creates a personal course and copies the detected
+                  assessment template rows. Materials stay as references.
+                </p>
+              </div>
+              <Button
+                aria-label="Close import dialog"
+                onClick={() => setSelectedTemplate(null)}
+                size="icon"
+                variant="ghost"
+              >
+                <X aria-hidden="true" className="h-4 w-4" />
+              </Button>
+            </div>
+
+            <label className="mt-5 block">
+              <span className="text-sm font-medium text-ink-700">
+                Semester
+              </span>
+              <select
+                className={`${inputStyles} mt-1`}
+                onChange={(event) => setSelectedSemesterId(event.target.value)}
+                value={selectedSemesterId}
+              >
+                {semesters.map((semester) => (
+                  <option key={semester.id} value={semester.id}>
+                    {semester.name}
+                  </option>
+                ))}
+              </select>
+            </label>
+
+            <div className="mt-5 flex flex-col gap-2 sm:flex-row sm:justify-end">
+              <Button
+                className="w-full sm:w-auto"
+                onClick={() => setSelectedTemplate(null)}
+                variant="secondary"
+              >
+                Cancel
+              </Button>
+              <Button
+                className="w-full sm:w-auto"
+                disabled={importingTemplateId === selectedTemplate.id}
+                onClick={() => void importSelectedTemplate()}
+              >
+                <Download aria-hidden="true" className="h-4 w-4" />
+                {importingTemplateId === selectedTemplate.id
+                  ? "Importing..."
+                  : "Import course"}
+              </Button>
+            </div>
+          </Card>
+        </div>
+      ) : null}
     </div>
   );
 }

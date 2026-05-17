@@ -75,26 +75,31 @@ Create the reusable template tables in Supabase by running
 [supabase/schema.sql](supabase/schema.sql) in the SQL editor.
 
 To scan a local course-materials folder and upload reusable templates, set a
-service-role key in your terminal, then pass the folder path as an argument:
+service-role key in your terminal, then pass the folder path as an argument.
+Use the syllabus-only importer for normal GradeMate course templates:
 
 ```bash
 SUPABASE_URL="https://ipadimpttadajubxubyd.supabase.co" \
 SUPABASE_SERVICE_ROLE_KEY="your-service-role-key" \
-npm run import:templates -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run import:syllabi -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
 ```
 
 Use `--dry-run` first to preview detected courses without changing Supabase:
 
 ```bash
-npm run import:templates:dry -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run import:syllabi:dry -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
 ```
 
 The importer does not hardcode the folder path. You can also set
-`COURSE_TEMPLATE_SOURCE_DIR` instead of passing an argument.
+`COURSE_SYLLABI_SOURCE_DIR` instead of passing an argument.
 
 Duplicate detection uses `course_code` + `course_name`. Existing templates only
 get missing fields and missing child rows filled in. Use `--force` to overwrite
 matching template fields and replace its detected assessment/material rows.
+
+The older `import:templates` command scans broader course-material folders and
+is kept for experiments. The Course Library UI only shows templates created from
+detected syllabuses.
 
 In Supabase Auth URL Configuration, use:
 
