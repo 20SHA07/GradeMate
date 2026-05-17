@@ -1,17 +1,16 @@
-const repoName = process.env.GITHUB_REPOSITORY?.split("/")[1];
-const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
-const isUserOrOrgPages = repoName?.toLowerCase().endsWith(".github.io");
-const basePath = isGitHubActions && repoName && !isUserOrOrgPages ? `/${repoName}` : "";
+const githubPagesBasePath = "/GradeMate";
+const isProductionBuild = process.env.NODE_ENV === "production";
+const basePath = isProductionBuild ? githubPagesBasePath : "";
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: "export",
+  basePath,
+  assetPrefix: basePath ? `${basePath}/` : undefined,
+  trailingSlash: true,
   images: {
     unoptimized: true
-  },
-  trailingSlash: true,
-  basePath,
-  assetPrefix: basePath || undefined
+  }
 };
 
 export default nextConfig;
