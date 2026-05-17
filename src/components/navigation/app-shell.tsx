@@ -38,7 +38,7 @@ function getPageActions(pathname: string) {
   if (pathname === "/dashboard") {
     return [
       { href: "/semesters#create-semester", label: "New semester", icon: PlusCircle },
-      { href: "/course-library", label: "Import course", icon: BookMarked }
+      { href: "/course-library", label: "Import course", icon: BookMarked, variant: "secondary" as const }
     ] satisfies PageAction[];
   }
 
@@ -57,7 +57,7 @@ function getPageActions(pathname: string) {
 
   if (pathname === "/semesters") {
     return [
-      { href: "/semesters#create-semester", label: "Create semester", icon: PlusCircle },
+      { href: "/semesters#create-semester", label: "New semester", icon: PlusCircle },
       { href: "/course-library", label: "Import course", icon: BookMarked, variant: "secondary" as const }
     ] satisfies PageAction[];
   }
@@ -83,7 +83,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen bg-ink-50 text-ink-900 lg:flex">
-      <aside className="hidden w-64 shrink-0 border-r border-ink-200 bg-white/90 lg:flex lg:flex-col">
+      <aside className="hidden w-60 shrink-0 border-r border-ink-200 bg-white/90 lg:flex lg:flex-col">
         <div className="px-4 py-5">
           <Link className="flex items-center gap-3 font-semibold text-ink-900" href="/">
             <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-sm shadow-teal-950/30">
@@ -91,9 +91,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </span>
             <span>
               <span className="block leading-5">GradeMate</span>
-              <span className="block text-xs font-normal text-ink-500">
-                Student workspace
-              </span>
+              <span className="block text-xs font-normal text-ink-500">Grades made clear</span>
             </span>
           </Link>
         </div>
@@ -129,21 +127,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               <p className="text-sm font-semibold text-ink-900">
                 Guest workspace
               </p>
-              <p className="mt-1 text-xs leading-5 text-ink-500">
-                Data saved on this device
-              </p>
+              <p className="mt-1 text-xs leading-5 text-ink-500">Saved on this device</p>
               <Button
                 className="mt-3 w-full"
                 onClick={openSaveProgress}
                 size="sm"
               >
-                Save my progress
+                Save progress
               </Button>
             </div>
           ) : (
             <div className="rounded-2xl bg-ink-100 p-3">
               <p className="text-xs font-medium uppercase tracking-normal text-ink-400">
-                Signed in as
+                Student workspace
               </p>
               <p className="mt-1 truncate text-sm font-medium text-ink-900">
                 {user.email}
@@ -289,8 +285,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </header>
 
         {isGuest ? (
-          <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-sm text-amber-900 sm:px-6 lg:px-7">
-            You&apos;re using Guest Mode. Sign up to save your courses across devices.
+          <div className="border-b border-ink-200 bg-ink-100/80 px-4 py-2 text-sm text-ink-600 sm:px-6 lg:px-7">
+            You&apos;re using Guest Mode. Sign up to save across devices.
           </div>
         ) : null}
 
@@ -305,7 +301,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 {isGuest ? "Guest workspace" : "Signed in as"}
               </p>
               <p className="truncate text-sm font-medium text-ink-900">
-                {isGuest ? "Data saved on this device" : user.email}
+                {isGuest ? "Saved on this device" : user.email}
               </p>
             </div>
             {isGuest ? (

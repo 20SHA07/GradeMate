@@ -8,7 +8,8 @@ import {
   CalendarDays,
   GraduationCap,
   Layers3,
-  PlusCircle
+  PlusCircle,
+  UploadCloud
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
@@ -173,8 +174,8 @@ export function DashboardClient() {
             </Link>
           </>
         }
-        description="A quick view of your terms, credits, grades, and courses that need a little attention."
-        title="Welcome back"
+        description="See what needs attention, then jump straight into the next useful step."
+        title="What should I do next?"
       />
 
       {error ? (
@@ -186,13 +187,13 @@ export function DashboardClient() {
       {hasNoData ? (
         <Card className="grid gap-6 overflow-hidden p-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
           <div>
-            <Badge tone="teal">Try GradeMate without an account</Badge>
+            <Badge tone="teal">Using Guest Mode</Badge>
             <h2 className="mt-4 text-2xl font-semibold text-ink-900">
-              Start by creating your first semester.
+              Start tracking your grades
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-ink-500">
-              Create a semester, add courses, and test GPA predictions. Sign up
-              anytime to save across devices.
+              Create a semester, add your courses, and GradeMate will help you
+              know what you need.
             </p>
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
               <Link className={buttonStyles()} href="/semesters#create-semester">
@@ -207,10 +208,15 @@ export function DashboardClient() {
               </Link>
               {isGuest ? (
                 <Button onClick={openSaveProgress} variant="secondary">
-                  Save my progress
+                  Save progress
                 </Button>
               ) : null}
             </div>
+            {isGuest ? (
+              <p className="mt-4 text-xs text-ink-500">
+                Using Guest Mode — save your progress anytime.
+              </p>
+            ) : null}
           </div>
           <div className="rounded-2xl bg-ink-100 p-4">
             <p className="text-sm font-medium text-ink-500">Your progress</p>
@@ -281,6 +287,37 @@ export function DashboardClient() {
         })}
       </section>
 
+      {!hasNoData ? (
+        <Card className="p-4">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between">
+            <div>
+              <h2 className="text-lg font-semibold text-ink-900">Quick actions</h2>
+              <p className="mt-1 text-sm text-ink-500">
+                Add what you know now. You can fill in scores later.
+              </p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:flex">
+              <Link className={buttonStyles({ variant: "secondary" })} href="/semesters#create-semester">
+                <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                Create semester
+              </Link>
+              <Link className={buttonStyles({ variant: "secondary" })} href="/semesters">
+                <BookOpen aria-hidden="true" className="h-4 w-4" />
+                Add course
+              </Link>
+              <Link className={buttonStyles({ variant: "secondary" })} href="/course-library">
+                <BookMarked aria-hidden="true" className="h-4 w-4" />
+                Import course
+              </Link>
+              <Link className={buttonStyles()} href="/courses">
+                <UploadCloud aria-hidden="true" className="h-4 w-4" />
+                Upload syllabus
+              </Link>
+            </div>
+          </div>
+        </Card>
+      ) : null}
+
       {isLoading ? (
         <Card className="p-5 text-sm text-ink-500">Loading dashboard...</Card>
       ) : (
@@ -292,7 +329,7 @@ export function DashboardClient() {
                   Recent semesters
                 </h2>
                 <p className="mt-1 text-sm text-ink-500">
-                  Open a term to add courses, scores, or assessment weights.
+                  Open a term to add courses, scores, or grade weights.
                 </p>
               </div>
               <Link
