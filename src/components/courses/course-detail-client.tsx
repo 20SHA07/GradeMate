@@ -1181,7 +1181,11 @@ export function CourseDetailClient({
   const routeCourseId = Array.isArray(params.courseId)
     ? params.courseId[0]
     : params.courseId;
-  const courseId = courseIdOverride ?? routeCourseId ?? "";
+  const [previewCourseId, setPreviewCourseId] = useState<string | null>(null);
+  const courseId =
+    courseIdOverride ??
+    (routeCourseId === "preview" ? (previewCourseId ?? "") : routeCourseId) ??
+    "";
   const { isGuest, supabase, user } = useAuth();
   const [course, setCourse] = useState<CourseRecord | null>(null);
   const [semester, setSemester] = useState<SemesterRecord | null>(null);
@@ -1198,9 +1202,25 @@ export function CourseDetailClient({
   const [error, setError] = useState("");
 
   useEffect(() => {
+    if (courseIdOverride || routeCourseId !== "preview") {
+      return;
+    }
+
+    const queryCourseId = new URLSearchParams(window.location.search).get(
+      "courseId"
+    );
+
+    setPreviewCourseId(queryCourseId ?? "");
+  }, [courseIdOverride, routeCourseId]);
+
+  useEffect(() => {
     async function loadCourse() {
       setIsLoading(true);
       setError("");
+
+      if (routeCourseId === "preview" && previewCourseId === null) {
+        return;
+      }
 
       if (!courseId) {
         setError("Course not found.");
@@ -1278,7 +1298,7 @@ export function CourseDetailClient({
     }
 
     void loadCourse();
-  }, [courseId, isGuest, supabase, user.id]);
+  }, [courseId, isGuest, previewCourseId, routeCourseId, supabase, user.id]);
 
   const gradeSummary = useMemo(
     () => getCourseGradeSummary(assessments),
