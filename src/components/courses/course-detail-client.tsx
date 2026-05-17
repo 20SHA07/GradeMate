@@ -47,6 +47,7 @@ import {
 import type {
   AssessmentRecord,
   CourseRecord,
+  SyllabusUploadRecord,
   SemesterRecord
 } from "@/types/database";
 import type { SyllabusExtraction } from "@/lib/ai/syllabus-schema";
@@ -90,6 +91,7 @@ const quickTargets = [
 
 const inputStyles =
   "mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+const syllabusBucketName = "course-syllabi";
 
 function parseOptionalNumber(value: string) {
   return value.trim() === "" ? null : Number(value);
@@ -157,6 +159,14 @@ function sanitizeFileName(fileName: string) {
   return fileName.replace(/[^a-zA-Z0-9._-]/g, "-").replace(/-+/g, "-");
 }
 
+function getUploadErrorMessage(message: string) {
+  if (/bucket not found|not found/i.test(message) && /bucket/i.test(message)) {
+    return "Storage bucket course-syllabi is missing. Run the Supabase storage migration.";
+  }
+
+  return message;
+}
+
 function SyllabusUploadCard({
   course,
   isGuest,
@@ -173,6 +183,9 @@ function SyllabusUploadCard({
   const { supabase, user } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
+  const [uploadStatus, setUploadStatus] = useState<
+    "idle" | "uploading" | "uploaded" | "extracting" | "extracted" | "failed"
+  >("idle");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [extraction, setExtraction] = useState<SyllabusExtraction | null>(null);
@@ -180,9 +193,11 @@ function SyllabusUploadCard({
   async function uploadAndExtract() {
     setError("");
     setMessage("");
+    setUploadStatus("idle");
 
     if (isGuest) {
       setError("Log in to upload and extract a syllabus PDF.");
+      setUploadStatus("failed");
       return;
     }
 
@@ -197,50 +212,89 @@ function SyllabusUploadCard({
 
     if (!isPdf) {
       setError("Only PDF syllabus files are supported.");
+      setUploadStatus("failed");
       return;
     }
 
     setIsExtracting(true);
+    setUploadStatus("uploading");
+    let uploadRecordId = "";
 
     try {
-      const filePath = `${user.id}/${course.id}/${Date.now()}-${sanitizeFileName(
-        file.name
-      )}`;
-
-      const { error: uploadError } = await supabase.storage
-        .from("syllabi")
-        .upload(filePath, file, {
-          contentType: "application/pdf",
-          upsert: false
-        });
-
-      if (uploadError) {
-        throw new Error(uploadError.message);
-      }
+      const fileName = sanitizeFileName(file.name);
+      const filePath = `${user.id}/${course.id}/${fileName}`;
+      const publicUrl = supabase.storage
+        .from(syllabusBucketName)
+        .getPublicUrl(filePath).data.publicUrl;
 
       const { data: uploadRecord, error: recordError } = await supabase
         .from("syllabus_uploads")
         .insert({
           user_id: user.id,
           course_id: course.id,
+          file_name: fileName,
           file_path: filePath,
-          original_filename: file.name,
-          status: "uploaded"
+          file_url: publicUrl,
+          extraction_status: "uploading",
+          extraction_error: null
         })
         .select()
         .single();
 
-      if (recordError || !uploadRecord) {
-        throw new Error(recordError?.message ?? "Could not save upload.");
+      const savedUpload = uploadRecord as SyllabusUploadRecord | null;
+
+      if (recordError || !savedUpload) {
+        throw new Error(recordError?.message ?? "Could not save upload record.");
       }
 
-      setMessage("PDF uploaded. Extracting course details...");
+      uploadRecordId = savedUpload.id;
+
+      const { error: uploadError } = await supabase.storage
+        .from(syllabusBucketName)
+        .upload(filePath, file, {
+          contentType: "application/pdf",
+          upsert: true
+        });
+
+      if (uploadError) {
+        throw new Error(uploadError.message);
+      }
+
+      const { error: uploadedStatusError } = await supabase
+        .from("syllabus_uploads")
+        .update({
+          extraction_status: "uploaded",
+          extraction_error: null,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", uploadRecordId)
+        .eq("user_id", user.id);
+
+      if (uploadedStatusError) {
+        throw new Error(uploadedStatusError.message);
+      }
+
+      setUploadStatus("uploaded");
+      setMessage("Uploaded");
+
+      await supabase
+        .from("syllabus_uploads")
+        .update({
+          extraction_status: "extracting",
+          extraction_error: null,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", uploadRecordId)
+        .eq("user_id", user.id);
+
+      setUploadStatus("extracting");
+      setMessage("Extracting...");
 
       const { data, error: functionError } = await supabase.functions.invoke(
         "extract-syllabus",
         {
           body: {
-            uploadId: uploadRecord.id,
+            uploadId: uploadRecordId,
             courseId: course.id,
             filePath
           }
@@ -259,19 +313,34 @@ function SyllabusUploadCard({
       const createdCount = result.assessments?.length ?? 0;
 
       setExtraction(result.extraction ?? null);
+      setUploadStatus("extracted");
       setMessage(
-        `Extraction complete. Added ${createdCount} assessment${
+        `Extracted. Added ${createdCount} assessment${
           createdCount === 1 ? "" : "s"
         }.`
       );
       setFile(null);
       onExtracted(result);
     } catch (extractError) {
-      setError(
+      const message =
         extractError instanceof Error
-          ? extractError.message
-          : "Could not extract this syllabus."
-      );
+          ? getUploadErrorMessage(extractError.message)
+          : "Could not extract this syllabus.";
+
+      if (uploadRecordId && supabase) {
+        await supabase
+          .from("syllabus_uploads")
+          .update({
+            extraction_status: "failed",
+            extraction_error: message,
+            updated_at: new Date().toISOString()
+          })
+          .eq("id", uploadRecordId)
+          .eq("user_id", user.id);
+      }
+
+      setUploadStatus("failed");
+      setError(message);
     } finally {
       setIsExtracting(false);
     }
@@ -324,10 +393,28 @@ function SyllabusUploadCard({
             onClick={() => void uploadAndExtract()}
           >
             <UploadCloud aria-hidden="true" className="h-4 w-4" />
-            {isExtracting ? "Extracting..." : "Upload and extract"}
+            {uploadStatus === "uploading"
+              ? "Uploading..."
+              : uploadStatus === "extracting"
+                ? "Extracting..."
+                : "Upload and extract"}
           </Button>
         </div>
       )}
+
+      {uploadStatus !== "idle" ? (
+        <p className="mt-4 rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-700">
+          {uploadStatus === "uploading"
+            ? "Uploading..."
+            : uploadStatus === "uploaded"
+              ? "Uploaded"
+              : uploadStatus === "extracting"
+                ? "Extracting..."
+                : uploadStatus === "extracted"
+                  ? "Extracted"
+                  : `Failed${error ? `: ${error}` : ""}`}
+        </p>
+      ) : null}
 
       {message ? (
         <p className="mt-4 rounded-lg border border-lime-200 bg-lime-50 px-4 py-3 text-sm text-lime-800">

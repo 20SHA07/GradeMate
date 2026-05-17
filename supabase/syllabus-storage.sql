@@ -1,6 +1,3 @@
--- Run this SQL in Supabase to enable GradeMate syllabus PDF uploads.
--- It creates the private storage bucket, upload metadata table, and RLS policies.
-
 insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
 values ('course-syllabi', 'course-syllabi', false, 10485760, array['application/pdf'])
 on conflict (id) do update

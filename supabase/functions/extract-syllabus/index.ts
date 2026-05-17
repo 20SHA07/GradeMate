@@ -7,6 +7,7 @@ const corsHeaders = {
     "authorization, x-client-info, apikey, content-type",
   "Access-Control-Allow-Methods": "POST, OPTIONS"
 };
+const syllabusBucketName = "course-syllabi";
 
 const AssessmentSchema = z.object({
   name: z.string().min(1),
@@ -224,15 +225,15 @@ Deno.serve(async (request) => {
     await supabase
       .from("syllabus_uploads")
       .update({
-        status: "extracting",
-        error: null,
+        extraction_status: "extracting",
+        extraction_error: null,
         updated_at: new Date().toISOString()
       })
       .eq("id", uploadId)
       .eq("user_id", user.id);
 
     const { data: fileBlob, error: downloadError } = await supabase.storage
-      .from("syllabi")
+      .from(syllabusBucketName)
       .download(filePath);
 
     if (downloadError || !fileBlob) {
@@ -255,7 +256,7 @@ Deno.serve(async (request) => {
             content: [
               {
                 type: "input_file",
-                filename: upload.original_filename,
+                filename: upload.file_name,
                 file_data: `data:application/pdf;base64,${base64Pdf}`
               },
               {
@@ -336,9 +337,9 @@ Deno.serve(async (request) => {
     const { data: updatedUpload } = await supabase
       .from("syllabus_uploads")
       .update({
-        status: "extracted",
-        extraction,
-        error: null,
+        extraction_status: "extracted",
+        extracted_text: outputText,
+        extraction_error: null,
         updated_at: new Date().toISOString()
       })
       .eq("id", uploadId)
@@ -369,8 +370,8 @@ Deno.serve(async (request) => {
         await supabase
           .from("syllabus_uploads")
           .update({
-            status: "error",
-            error: message,
+            extraction_status: "failed",
+            extraction_error: message,
             updated_at: new Date().toISOString()
           })
           .eq("id", uploadId);

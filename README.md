@@ -37,7 +37,7 @@ Copy `.env.example` to `.env.local` when wiring Supabase and OpenAI.
 
 Run [supabase/schema.sql](supabase/schema.sql) in your Supabase SQL editor. It
 creates `semesters`, `courses`, `assessments`, `syllabus_uploads`, the private
-`syllabi` storage bucket, row-level security, and policies so users can only
+`course-syllabi` storage bucket, row-level security, and policies so users can only
 access their own records and files.
 
 If assessment inserts fail with a row-level security error, run
@@ -65,8 +65,8 @@ supabase secrets set OPENAI_MODEL=gpt-5-mini
 ```
 
 If you already ran the older schema, run
-[supabase/syllabus-ai.sql](supabase/syllabus-ai.sql) in the SQL editor to add
-the upload table, storage bucket, and storage policies.
+[supabase/syllabus-storage.sql](supabase/syllabus-storage.sql) in the SQL editor
+to add the `course-syllabi` bucket, upload table, and storage policies.
 
 ## Course Template Import
 
