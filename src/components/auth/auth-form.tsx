@@ -6,6 +6,7 @@ import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { signInWithGoogle } from "@/lib/auth/oauth";
 import { startGuestSession } from "@/lib/guest-session";
 import { getAuthRedirectUrl } from "@/lib/routes";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
@@ -24,6 +25,7 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
   const supabase = useMemo(() => {
     try {
       return createSupabaseBrowserClient();
@@ -90,6 +92,24 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     setMessage("Check your email to confirm your account, then log in.");
+  }
+
+  async function handleGoogleSignIn() {
+    setError("");
+    setMessage("");
+
+    if (!supabase) {
+      setError("Supabase environment variables are missing.");
+      return;
+    }
+
+    setIsGoogleSubmitting(true);
+    const { error: googleError } = await signInWithGoogle(supabase);
+
+    if (googleError) {
+      setIsGoogleSubmitting(false);
+      setError(googleError.message);
+    }
   }
 
   function continueAsGuest() {
@@ -171,10 +191,37 @@ export function AuthForm({ mode }: AuthFormProps) {
 
         <button
           className={buttonStyles({ className: "w-full" })}
-          disabled={isSubmitting}
+          disabled={isSubmitting || isGoogleSubmitting}
           type="submit"
         >
           {isSubmitting ? "Working..." : isSignup ? "Create account" : "Log in"}
+        </button>
+      </form>
+
+      <div className="my-5 flex items-center gap-3 text-xs font-medium uppercase tracking-normal text-ink-400">
+        <span className="h-px flex-1 bg-ink-200" />
+        or
+        <span className="h-px flex-1 bg-ink-200" />
+      </div>
+
+      <div className="space-y-3">
+        <button
+          className={buttonStyles({
+            className: "w-full",
+            variant: "secondary"
+          })}
+          disabled={isSubmitting || isGoogleSubmitting}
+          onClick={() => void handleGoogleSignIn()}
+          type="button"
+        >
+          <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-sm font-semibold text-ink-900">
+            G
+          </span>
+          {isGoogleSubmitting
+            ? "Opening Google..."
+            : isSignup
+              ? "Sign up with Google"
+              : "Continue with Google"}
         </button>
 
         <button
@@ -182,12 +229,13 @@ export function AuthForm({ mode }: AuthFormProps) {
             className: "w-full",
             variant: "secondary"
           })}
+          disabled={isSubmitting || isGoogleSubmitting}
           onClick={continueAsGuest}
           type="button"
         >
           Continue as guest
         </button>
-      </form>
+      </div>
 
       <p className="mt-3 text-center text-xs leading-5 text-ink-500">
         Guest work is saved on this device. Sign up anytime to sync across devices.

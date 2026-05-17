@@ -110,6 +110,11 @@ http://localhost:3000/**
 https://20sha07.github.io/GradeMate/**
 ```
 
+To enable Google login, open **Authentication > Providers > Google** in Supabase,
+turn it on, add your Google OAuth client ID/secret, and make sure the same
+redirect URLs above are allowed. GradeMate uses the normal Supabase redirect
+flow and returns users to `/auth/callback`, then `/dashboard`.
+
 ## GitHub Pages
 
 This app is configured for static export through GitHub Actions. Push to `main`
