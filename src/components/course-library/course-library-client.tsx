@@ -149,6 +149,14 @@ function normalized(value: string | null | undefined) {
   return value?.trim().toLowerCase() ?? "";
 }
 
+function templateSourceName(template: CourseTemplateRecord) {
+  return (
+    template.source_syllabus_file_name ??
+    template.source_file_name ??
+    "Unknown syllabus"
+  );
+}
+
 function findDuplicateCourse(
   courses: CourseRecord[],
   semesterId: string,
@@ -258,7 +266,9 @@ export function CourseLibraryClient() {
         supabase
           .from("course_templates")
           .select("*")
-          .not("source_syllabus_path", "is", null)
+          .or(
+            "source_syllabus_path.not.is.null,source_syllabus_file_name.not.is.null,source_file_name.not.is.null"
+          )
           .order("course_code", { ascending: true }),
         supabase
           .from("course_template_assessments")
@@ -812,9 +822,9 @@ export function CourseLibraryClient() {
         </Card>
       ) : templates.length === 0 ? (
         <EmptyState
-          description="Run the syllabus-only import script after updating the Supabase course template tables."
+          description="Run the syllabus importer, then refresh this page."
           icon={<BookMarked aria-hidden="true" className="h-5 w-5" />}
-          title="No syllabus-created templates found"
+          title="No course templates found"
         />
       ) : filteredTemplates.length === 0 ? (
         <EmptyState
@@ -849,8 +859,7 @@ export function CourseLibraryClient() {
                       {template.course_name}
                     </h2>
                     <p className="mt-2 truncate text-xs text-ink-400">
-                      Source:{" "}
-                      {template.source_syllabus_file_name ?? "Unknown syllabus"}
+                      Source: {templateSourceName(template)}
                     </p>
                   </div>
                   <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
@@ -1078,8 +1087,7 @@ export function CourseLibraryClient() {
                   <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
                     <h3 className="font-semibold text-ink-900">Source</h3>
                     <p className="mt-2 break-words text-sm text-ink-500">
-                      {detailTemplate.source_syllabus_file_name ??
-                        "Unknown syllabus"}
+                      {templateSourceName(detailTemplate)}
                     </p>
                   </div>
 
