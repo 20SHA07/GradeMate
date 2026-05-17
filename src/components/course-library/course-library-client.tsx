@@ -23,6 +23,12 @@ import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import {
+  createGuestId,
+  readGuestData,
+  writeGuestData
+} from "@/lib/guest-session";
+import { getCourseDetailHref } from "@/lib/routes";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -200,7 +206,7 @@ function DetailStat({
 
 export function CourseLibraryClient() {
   const router = useRouter();
-  const { isGuest, signOut, supabase, user } = useAuth();
+  const { isGuest, supabase, user } = useAuth();
   const [templates, setTemplates] = useState<TemplateWithDetails[]>([]);
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
@@ -228,13 +234,8 @@ export function CourseLibraryClient() {
     async function loadLibrary() {
       setError("");
 
-      if (isGuest) {
-        setIsLoading(false);
-        return;
-      }
-
       if (!supabase) {
-        setError("Log in to browse syllabus-created course templates.");
+        setError("Course Library is unavailable because Supabase is not configured.");
         setIsLoading(false);
         return;
       }
@@ -244,9 +245,7 @@ export function CourseLibraryClient() {
       const [
         templatesResponse,
         assessmentsResponse,
-        materialsResponse,
-        semestersResponse,
-        coursesResponse
+        materialsResponse
       ] = await Promise.all([
         supabase
           .from("course_templates")
@@ -260,32 +259,18 @@ export function CourseLibraryClient() {
         supabase
           .from("course_template_materials")
           .select("*")
-          .order("file_name", { ascending: true }),
-        supabase
-          .from("semesters")
-          .select("*")
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: false }),
-        supabase
-          .from("courses")
-          .select("*")
-          .eq("user_id", user.id)
-          .order("created_at", { ascending: false })
+          .order("file_name", { ascending: true })
       ]);
 
       if (
         templatesResponse.error ||
         assessmentsResponse.error ||
-        materialsResponse.error ||
-        semestersResponse.error ||
-        coursesResponse.error
+        materialsResponse.error
       ) {
         setError(
           templatesResponse.error?.message ??
             assessmentsResponse.error?.message ??
             materialsResponse.error?.message ??
-            semestersResponse.error?.message ??
-            coursesResponse.error?.message ??
             "Could not load course library."
         );
         setIsLoading(false);
@@ -298,8 +283,40 @@ export function CourseLibraryClient() {
         (assessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
       const materialRows =
         (materialsResponse.data ?? []) as CourseTemplateMaterialRecord[];
-      const semesterRows = (semestersResponse.data ?? []) as SemesterRecord[];
-      const courseRows = (coursesResponse.data ?? []) as CourseRecord[];
+      let semesterRows: SemesterRecord[] = [];
+      let courseRows: CourseRecord[] = [];
+
+      if (isGuest) {
+        const guestData = readGuestData();
+        semesterRows = guestData.semesters;
+        courseRows = guestData.courses;
+      } else {
+        const [semestersResponse, coursesResponse] = await Promise.all([
+          supabase
+            .from("semesters")
+            .select("*")
+            .eq("user_id", user.id)
+            .order("created_at", { ascending: false }),
+          supabase
+            .from("courses")
+            .select("*")
+            .eq("user_id", user.id)
+            .order("created_at", { ascending: false })
+        ]);
+
+        if (semestersResponse.error || coursesResponse.error) {
+          setError(
+            semestersResponse.error?.message ??
+              coursesResponse.error?.message ??
+              "Could not load your semesters."
+          );
+          setIsLoading(false);
+          return;
+        }
+
+        semesterRows = (semestersResponse.data ?? []) as SemesterRecord[];
+        courseRows = (coursesResponse.data ?? []) as CourseRecord[];
+      }
 
       setTemplates(
         templateRows.map((template) => ({
@@ -477,11 +494,6 @@ export function CourseLibraryClient() {
       return;
     }
 
-    if (!supabase || isGuest) {
-      setImportError("Log in to import templates into your semesters.");
-      return;
-    }
-
     if (duplicateCourse && duplicateAction === "cancel") {
       setImportError(
         "This course already exists in this semester. Choose how you want to continue."
@@ -496,6 +508,112 @@ export function CourseLibraryClient() {
 
     try {
       let targetCourse: CourseRecord | null = null;
+
+      if (isGuest) {
+        const guestData = readGuestData();
+        const now = new Date().toISOString();
+        const buildLocalAssessments = (
+          courseId: string,
+          mode: "all" | "missing"
+        ) => {
+          const existingNames = new Set(
+            mode === "missing"
+              ? guestData.assessments
+                  .filter((assessment) => assessment.course_id === courseId)
+                  .map((assessment) => normalized(assessment.name ?? assessment.title ?? ""))
+              : []
+          );
+
+          return importTemplate.assessments
+            .filter((assessment) => !existingNames.has(normalized(assessment.name)))
+            .map((assessment) => {
+              const payload = templateAssessmentPayload(
+                assessment,
+                courseId,
+                user.id
+              );
+
+              return {
+                ...payload,
+                id: createGuestId("assessment"),
+                created_at: now
+              };
+            });
+        };
+
+        if (duplicateCourse && duplicateAction === "update") {
+          targetCourse = {
+            ...duplicateCourse,
+            name: importTemplate.course_name,
+            code: importTemplate.course_code,
+            credit_hours: Number(importTemplate.credit_hours) || 3
+          };
+          const nextCourses = guestData.courses.map((course) =>
+            course.id === targetCourse?.id ? targetCourse : course
+          );
+          const nextAssessments = [
+            ...guestData.assessments,
+            ...buildLocalAssessments(targetCourse.id, "missing")
+          ];
+
+          writeGuestData({
+            ...guestData,
+            courses: nextCourses,
+            assessments: nextAssessments,
+            importedTemplates: [
+              ...guestData.importedTemplates,
+              {
+                templateId: importTemplate.id,
+                courseId: targetCourse.id,
+                semesterId: selectedSemesterId,
+                importedAt: now
+              }
+            ]
+          });
+          setCourses(nextCourses);
+        } else {
+          targetCourse = {
+            id: createGuestId("course"),
+            user_id: user.id,
+            semester_id: selectedSemesterId,
+            name: importTemplate.course_name,
+            code: importTemplate.course_code,
+            credit_hours: Number(importTemplate.credit_hours) || 3,
+            created_at: now
+          };
+          const nextCourses = [targetCourse, ...guestData.courses];
+          const nextAssessments = [
+            ...guestData.assessments,
+            ...buildLocalAssessments(targetCourse.id, "all")
+          ];
+
+          writeGuestData({
+            ...guestData,
+            courses: nextCourses,
+            assessments: nextAssessments,
+            importedTemplates: [
+              ...guestData.importedTemplates,
+              {
+                templateId: importTemplate.id,
+                courseId: targetCourse.id,
+                semesterId: selectedSemesterId,
+                importedAt: now
+              }
+            ]
+          });
+          setCourses(nextCourses);
+        }
+
+        setSuccessMessage("Course imported into your guest workspace.");
+        setImportTemplate(null);
+        router.push(getCourseDetailHref(targetCourse.id, { imported: true }));
+        return;
+      }
+
+      if (!supabase) {
+        setImportError("Supabase is not available.");
+        return;
+      }
 
       if (duplicateCourse && duplicateAction === "update") {
         const { data, error: updateError } = await supabase
@@ -546,7 +664,7 @@ export function CourseLibraryClient() {
       });
       setSuccessMessage("Course imported. Opening the course page...");
       setImportTemplate(null);
-      router.push(`/courses/${targetCourse.id}/?imported=1`);
+      router.push(getCourseDetailHref(targetCourse.id, { imported: true }));
     } catch (importFailure) {
       setImportError(
         importFailure instanceof Error
@@ -556,28 +674,6 @@ export function CourseLibraryClient() {
     } finally {
       setImportingTemplateId("");
     }
-  }
-
-  if (isGuest) {
-    return (
-      <div className="space-y-8">
-        <PageHeader
-          description="Browse reusable course templates created from syllabuses and import them into your own semesters."
-          eyebrow="Syllabus library"
-          title="Course Library"
-        />
-        <EmptyState
-          action={
-            <Button onClick={() => void signOut()}>
-              Log in to use templates
-            </Button>
-          }
-          description="Syllabus-created course templates are shared read-only records for logged-in users."
-          icon={<BookMarked aria-hidden="true" className="h-5 w-5" />}
-          title="Log in to browse the library"
-        />
-      </div>
-    );
   }
 
   return (

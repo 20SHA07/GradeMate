@@ -13,7 +13,7 @@ import {
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
-import { buttonStyles } from "@/components/ui/button";
+import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
@@ -25,6 +25,7 @@ import {
 } from "@/lib/grades";
 import { getGradeInfo } from "@/lib/grading";
 import { readGuestData } from "@/lib/guest-session";
+import { getCourseDetailHref } from "@/lib/routes";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -36,7 +37,7 @@ function formatGpa(value: number | null) {
 }
 
 export function DashboardClient() {
-  const { isGuest, supabase, user } = useAuth();
+  const { isGuest, openSaveProgress, supabase, user } = useAuth();
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([]);
@@ -219,13 +220,13 @@ export function DashboardClient() {
       {hasNoData ? (
         <Card className="grid gap-6 overflow-hidden p-6 lg:grid-cols-[minmax(0,1fr)_19rem]">
           <div>
-            <Badge tone="teal">Get started</Badge>
+            <Badge tone="teal">Try GradeMate without an account</Badge>
             <h2 className="mt-4 text-2xl font-semibold text-ink-900">
               Start by creating your first semester.
             </h2>
             <p className="mt-3 max-w-2xl text-sm leading-6 text-ink-500">
-              Add a semester, then create courses or import a syllabus template
-              so GradeMate can track your grades in one calm place.
+              Create a semester, add courses, and test GPA predictions. Sign up
+              anytime to save across devices.
             </p>
             <div className="mt-5 flex flex-col gap-2 sm:flex-row">
               <Link className={buttonStyles()} href="/semesters#create-semester">
@@ -238,6 +239,11 @@ export function DashboardClient() {
               >
                 Browse course library
               </Link>
+              {isGuest ? (
+                <Button onClick={openSaveProgress} variant="secondary">
+                  Save my progress
+                </Button>
+              ) : null}
             </div>
           </div>
           <div className="rounded-2xl bg-ink-100 p-4">
@@ -406,7 +412,7 @@ export function DashboardClient() {
                 {attentionItems.map(({ course, reasons, summary }) => (
                   <Link
                     className="block rounded-2xl bg-ink-100 p-4 transition-colors hover:bg-ink-100"
-                    href={`/courses/${course.id}/`}
+                    href={getCourseDetailHref(course.id)}
                     key={course.id}
                     prefetch={false}
                   >

@@ -17,6 +17,7 @@ import {
   getLetterGrade
 } from "@/lib/grades";
 import { readGuestData } from "@/lib/guest-session";
+import { getCourseDetailHref } from "@/lib/routes";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -154,7 +155,7 @@ export function CoursesClient() {
                     </p>
                     <Link
                       className="mt-1 block text-lg font-semibold text-ink-900 transition-colors hover:text-teal-700"
-                      href={`/courses/${course.id}/`}
+                      href={getCourseDetailHref(course.id)}
                       prefetch={false}
                     >
                       {course.name}
@@ -208,7 +209,7 @@ export function CoursesClient() {
                     className: "mt-5 w-full",
                     variant: "secondary"
                   })}
-                  href={`/courses/${course.id}/`}
+                  href={getCourseDetailHref(course.id)}
                   prefetch={false}
                 >
                   Open course

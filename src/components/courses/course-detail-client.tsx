@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useSearchParams } from "next/navigation";
 import {
   ArrowLeft,
   BookOpen,
@@ -180,7 +180,7 @@ function SyllabusUploadCard({
     extraction?: SyllabusExtraction;
   }) => void;
 }) {
-  const { supabase, user } = useAuth();
+  const { openSaveProgress, supabase, user } = useAuth();
   const [file, setFile] = useState<File | null>(null);
   const [isExtracting, setIsExtracting] = useState(false);
   const [uploadStatus, setUploadStatus] = useState<
@@ -196,7 +196,7 @@ function SyllabusUploadCard({
     setUploadStatus("idle");
 
     if (isGuest) {
-      setError("Log in to upload and extract a syllabus PDF.");
+      setError("Syllabus upload requires an account so we can store the file securely.");
       setUploadStatus("failed");
       return;
     }
@@ -369,10 +369,23 @@ function SyllabusUploadCard({
       </div>
 
       {isGuest ? (
-        <p className="mt-5 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          Guest mode can track grades manually. Log in to upload PDFs and run AI
-          extraction.
-        </p>
+        <div className="mt-5 rounded-2xl border border-amber-200 bg-amber-50 p-4">
+          <p className="text-sm font-semibold text-amber-900">
+            Syllabus upload requires an account.
+          </p>
+          <p className="mt-1 text-sm leading-6 text-amber-800">
+            We need an account to store the PDF securely. You can keep adding
+            assessments manually in Guest Mode.
+          </p>
+          <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+            <Button onClick={openSaveProgress}>
+              Sign up to upload
+            </Button>
+            <a className={buttonStyles({ variant: "secondary" })} href="#assessment-form">
+              Continue manually
+            </a>
+          </div>
+        </div>
       ) : (
         <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
           <label className="block">
@@ -888,10 +901,16 @@ export function CourseDetailClient({
   courseIdOverride?: string;
 } = {}) {
   const params = useParams();
+  const searchParams = useSearchParams();
   const routeCourseId = Array.isArray(params.courseId)
     ? params.courseId[0]
     : params.courseId;
-  const courseId = courseIdOverride ?? routeCourseId ?? "";
+  const queryCourseId = searchParams.get("courseId");
+  const courseId =
+    courseIdOverride ??
+    queryCourseId ??
+    (routeCourseId === "preview" ? "" : routeCourseId) ??
+    "";
   const { isGuest, supabase, user } = useAuth();
   const [course, setCourse] = useState<CourseRecord | null>(null);
   const [semester, setSemester] = useState<SemesterRecord | null>(null);

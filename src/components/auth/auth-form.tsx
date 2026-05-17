@@ -6,10 +6,7 @@ import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  endGuestSession,
-  startGuestSession
-} from "@/lib/guest-session";
+import { startGuestSession } from "@/lib/guest-session";
 import { getAuthRedirectUrl } from "@/lib/routes";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 
@@ -88,7 +85,6 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     if (authResponse.data.session) {
-      endGuestSession();
       router.replace("/dashboard");
       return;
     }
@@ -194,7 +190,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       </form>
 
       <p className="mt-3 text-center text-xs leading-5 text-ink-500">
-        Guest work is temporary and is cleared when you exit the guest session.
+        Guest work is saved on this device. Sign up anytime to sync across devices.
       </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">

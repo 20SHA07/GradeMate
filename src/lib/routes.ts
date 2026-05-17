@@ -1,19 +1,24 @@
-const productionBasePath = "/GradeMate";
+const repositoryBasePath = "/GradeMate";
 
-export function getAppBasePath() {
+export function getAuthRedirectUrl() {
   if (typeof window === "undefined") {
-    return "";
+    return "/auth/callback";
   }
 
-  return window.location.pathname.startsWith(productionBasePath)
-    ? productionBasePath
-    : "";
+  const isGitHubPagesProject =
+    window.location.hostname.endsWith("github.io") &&
+    window.location.pathname.startsWith(repositoryBasePath);
+  const basePath = isGitHubPagesProject ? repositoryBasePath : "";
+
+  return `${window.location.origin}${basePath}/auth/callback`;
 }
 
-export function getAuthRedirectUrl(path = "/auth/callback") {
-  if (typeof window === "undefined") {
-    return path;
+export function getCourseDetailHref(courseId: string, options?: { imported?: boolean }) {
+  const params = new URLSearchParams({ courseId });
+
+  if (options?.imported) {
+    params.set("imported", "1");
   }
 
-  return `${window.location.origin}${getAppBasePath()}${path}`;
+  return `/courses/preview/?${params.toString()}`;
 }

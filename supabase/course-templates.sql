@@ -66,15 +66,18 @@ alter table course_template_materials enable row level security;
 drop policy if exists "Logged-in users can view course templates" on course_templates;
 drop policy if exists "Logged-in users can view course template assessments" on course_template_assessments;
 drop policy if exists "Logged-in users can view course template materials" on course_template_materials;
+drop policy if exists "Anyone can view course templates" on course_templates;
+drop policy if exists "Anyone can view course template assessments" on course_template_assessments;
+drop policy if exists "Anyone can view course template materials" on course_template_materials;
 
-create policy "Logged-in users can view course templates"
+create policy "Anyone can view course templates"
 on course_templates for select
-to authenticated
+to anon, authenticated
 using (true);
 
-create policy "Logged-in users can view course template assessments"
+create policy "Anyone can view course template assessments"
 on course_template_assessments for select
-to authenticated
+to anon, authenticated
 using (
   exists (
     select 1
@@ -83,9 +86,9 @@ using (
   )
 );
 
-create policy "Logged-in users can view course template materials"
+create policy "Anyone can view course template materials"
 on course_template_materials for select
-to authenticated
+to anon, authenticated
 using (
   exists (
     select 1

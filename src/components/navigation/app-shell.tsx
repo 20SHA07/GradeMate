@@ -14,7 +14,7 @@ import {
   PlusCircle,
   UploadCloud
 } from "lucide-react";
-import { buttonStyles } from "@/components/ui/button";
+import { Button, buttonStyles } from "@/components/ui/button";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
@@ -74,7 +74,7 @@ function getPageActions(pathname: string) {
 
 export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
-  const { isGuest, signOut, user } = useAuth();
+  const { isGuest, openSaveProgress, signOut, user } = useAuth();
   const pageActions = getPageActions(pathname);
 
   async function handleLogout() {
@@ -124,28 +124,59 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </nav>
 
         <div className="space-y-3 border-t border-ink-200 p-3">
-          <div className="rounded-2xl bg-ink-100 p-3">
-            <p className="text-xs font-medium uppercase tracking-normal text-ink-400">
-              Signed in as
-            </p>
-            <p className="mt-1 truncate text-sm font-medium text-ink-900">
-              {user.email}
-            </p>
-          </div>
+          {isGuest ? (
+            <div className="rounded-2xl bg-ink-100 p-3">
+              <p className="text-sm font-semibold text-ink-900">
+                Guest workspace
+              </p>
+              <p className="mt-1 text-xs leading-5 text-ink-500">
+                Data saved on this device
+              </p>
+              <Button
+                className="mt-3 w-full"
+                onClick={openSaveProgress}
+                size="sm"
+              >
+                Save my progress
+              </Button>
+            </div>
+          ) : (
+            <div className="rounded-2xl bg-ink-100 p-3">
+              <p className="text-xs font-medium uppercase tracking-normal text-ink-400">
+                Signed in as
+              </p>
+              <p className="mt-1 truncate text-sm font-medium text-ink-900">
+                {user.email}
+              </p>
+            </div>
+          )}
           <div className="flex items-center gap-2">
             <ThemeToggle />
-            <button
-              className={buttonStyles({
-                className: "flex-1",
-                size: "sm",
-                variant: "ghost"
-              })}
-              onClick={handleLogout}
-              type="button"
-            >
-              <LogOut aria-hidden="true" className="h-4 w-4" />
-              {isGuest ? "Exit guest" : "Sign out"}
-            </button>
+            {isGuest ? (
+              <Link
+                className={buttonStyles({
+                  className: "flex-1",
+                  size: "sm",
+                  variant: "ghost"
+                })}
+                href="/login"
+              >
+                Log in
+              </Link>
+            ) : (
+              <button
+                className={buttonStyles({
+                  className: "flex-1",
+                  size: "sm",
+                  variant: "ghost"
+                })}
+                onClick={handleLogout}
+                type="button"
+              >
+                <LogOut aria-hidden="true" className="h-4 w-4" />
+                Sign out
+              </button>
+            )}
           </div>
         </div>
       </aside>
@@ -170,6 +201,19 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="flex items-center gap-2">
+              {isGuest ? (
+                <div className="hidden items-center gap-2 sm:flex">
+                  <Link
+                    className={buttonStyles({ size: "sm", variant: "ghost" })}
+                    href="/login"
+                  >
+                    Log in
+                  </Link>
+                  <Button onClick={openSaveProgress} size="sm">
+                    Save progress
+                  </Button>
+                </div>
+              ) : null}
               <div className="hidden flex-wrap items-center justify-end gap-2 sm:flex">
                 {pageActions.map((action) => {
                   const Icon = action.icon;
@@ -246,7 +290,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         {isGuest ? (
           <div className="border-b border-amber-200 bg-amber-50 px-4 py-2 text-sm text-amber-900 sm:px-6 lg:px-7">
-            Guest mode is temporary. Create an account or log in to save your work.
+            You&apos;re using Guest Mode. Sign up to save your courses across devices.
           </div>
         ) : null}
 
@@ -258,20 +302,26 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <div className="flex items-center justify-between gap-3">
             <div className="min-w-0">
               <p className="text-xs uppercase tracking-normal text-ink-400">
-                Signed in as
+                {isGuest ? "Guest workspace" : "Signed in as"}
               </p>
               <p className="truncate text-sm font-medium text-ink-900">
-                {user.email}
+                {isGuest ? "Data saved on this device" : user.email}
               </p>
             </div>
-            <button
-              className={buttonStyles({ size: "sm", variant: "ghost" })}
-              onClick={handleLogout}
-              type="button"
-            >
-              <LogOut aria-hidden="true" className="h-4 w-4" />
-              {isGuest ? "Exit guest" : "Sign out"}
-            </button>
+            {isGuest ? (
+              <Button onClick={openSaveProgress} size="sm">
+                Save progress
+              </Button>
+            ) : (
+              <button
+                className={buttonStyles({ size: "sm", variant: "ghost" })}
+                onClick={handleLogout}
+                type="button"
+              >
+                <LogOut aria-hidden="true" className="h-4 w-4" />
+                Sign out
+              </button>
+            )}
           </div>
         </div>
       </div>

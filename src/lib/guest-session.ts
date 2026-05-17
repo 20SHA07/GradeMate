@@ -1,85 +1,55 @@
-import type {
-  AssessmentRecord,
-  CourseRecord,
-  SemesterRecord
-} from "@/types/database";
+import {
+  clearGuestWorkspaceData,
+  createLocalId,
+  emptyGuestWorkspaceData,
+  guestUser,
+  hasGuestWorkspaceData,
+  readGuestWorkspaceData,
+  startGuestWorkspace,
+  writeGuestWorkspaceData,
+  type GuestWorkspaceData
+} from "@/lib/data/workspace-store";
 
-const guestSessionKey = "grademate_guest_session";
-const guestDataKey = "grademate_guest_data";
+export { guestUser };
 
-export const guestUser = {
-  id: "guest-user",
-  email: "Guest session"
-};
+export type GuestData = GuestWorkspaceData;
 
-export type GuestData = {
-  semesters: SemesterRecord[];
-  courses: CourseRecord[];
-  assessments: AssessmentRecord[];
-};
-
-export const emptyGuestData: GuestData = {
-  semesters: [],
-  courses: [],
-  assessments: []
-};
-
-function canUseSessionStorage() {
-  return typeof window !== "undefined" && "sessionStorage" in window;
-}
+export const emptyGuestData = emptyGuestWorkspaceData;
 
 export function hasGuestSession() {
-  return canUseSessionStorage() && sessionStorage.getItem(guestSessionKey) === "true";
+  return true;
 }
 
 export function startGuestSession() {
-  if (!canUseSessionStorage()) {
-    return;
-  }
-
-  sessionStorage.setItem(guestSessionKey, "true");
+  startGuestWorkspace();
 }
 
 export function endGuestSession() {
-  if (!canUseSessionStorage()) {
-    return;
-  }
+  clearGuestWorkspaceData();
+}
 
-  sessionStorage.removeItem(guestSessionKey);
-  sessionStorage.removeItem(guestDataKey);
+export function hasGuestData() {
+  return hasGuestWorkspaceData();
 }
 
 export function readGuestData(): GuestData {
-  if (!canUseSessionStorage()) {
-    return emptyGuestData;
-  }
-
-  const rawData = sessionStorage.getItem(guestDataKey);
-
-  if (!rawData) {
-    return emptyGuestData;
-  }
-
-  try {
-    const parsedData = JSON.parse(rawData) as Partial<GuestData>;
-    return {
-      semesters: parsedData.semesters ?? [],
-      courses: parsedData.courses ?? [],
-      assessments: parsedData.assessments ?? []
-    };
-  } catch {
-    return emptyGuestData;
-  }
+  return readGuestWorkspaceData();
 }
 
-export function writeGuestData(data: GuestData) {
-  if (!canUseSessionStorage()) {
-    return;
-  }
-
-  sessionStorage.setItem(guestDataKey, JSON.stringify(data));
+export function writeGuestData(data: Partial<GuestData>) {
+  writeGuestWorkspaceData({
+    ...readGuestWorkspaceData(),
+    ...data,
+    semesters: data.semesters ?? readGuestWorkspaceData().semesters,
+    courses: data.courses ?? readGuestWorkspaceData().courses,
+    assessments: data.assessments ?? readGuestWorkspaceData().assessments,
+    importedTemplates:
+      data.importedTemplates ?? readGuestWorkspaceData().importedTemplates,
+    gpaCalculator: data.gpaCalculator ?? readGuestWorkspaceData().gpaCalculator
+  });
 }
 
-export function createGuestId(prefix: string) {
-  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+export function createGuestId(prefix?: string) {
+  void prefix;
+  return createLocalId();
 }

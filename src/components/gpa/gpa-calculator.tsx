@@ -23,7 +23,7 @@ import {
   type GpaCourseInput
 } from "@/lib/gpa";
 import { gradeScale } from "@/lib/grading";
-import { readGuestData } from "@/lib/guest-session";
+import { readGuestData, writeGuestData } from "@/lib/guest-session";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -82,6 +82,11 @@ export function GpaCalculator() {
             ? current
             : guestData.semesters.map((semester) => semester.id)
         );
+        setManualGrades(guestData.gpaCalculator.manualGrades ?? {});
+        setWhatIfForm({
+          ...defaultWhatIfForm,
+          ...guestData.gpaCalculator.whatIfCourse
+        });
         setIsLoading(false);
         return;
       }
@@ -141,6 +146,24 @@ export function GpaCalculator() {
 
     void loadGpaData();
   }, [isGuest, supabase, user.id]);
+
+  useEffect(() => {
+    if (!isGuest || isLoading) {
+      return;
+    }
+
+    const guestData = readGuestData();
+
+    writeGuestData({
+      ...guestData,
+      gpaCalculator: {
+        ...guestData.gpaCalculator,
+        selectedSemesterIds,
+        manualGrades,
+        whatIfCourse: whatIfForm
+      }
+    });
+  }, [isGuest, isLoading, manualGrades, selectedSemesterIds, whatIfForm]);
 
   const assessmentsByCourseId = useMemo(() => {
     const groupedAssessments = new Map<string, AssessmentRecord[]>();
