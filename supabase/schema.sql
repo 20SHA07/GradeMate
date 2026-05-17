@@ -48,7 +48,7 @@ create table if not exists syllabus_uploads (
 
 create table if not exists course_templates (
   id uuid primary key default gen_random_uuid(),
-  course_code text not null unique,
+  course_code text not null,
   course_name text not null,
   department text,
   credit_hours numeric not null default 3,
@@ -58,6 +58,11 @@ create table if not exists course_templates (
   extraction_confidence numeric not null default 0,
   created_at timestamp with time zone default now()
 );
+
+alter table course_templates drop constraint if exists course_templates_course_code_key;
+
+create unique index if not exists course_templates_code_name_unique
+on course_templates(course_code, course_name);
 
 create table if not exists course_template_assessments (
   id uuid primary key default gen_random_uuid(),

@@ -86,11 +86,15 @@ npm run import:templates -- "C:\Users\shaha\Downloads\drive-download-20260516T20
 Use `--dry-run` first to preview detected courses without changing Supabase:
 
 ```bash
-npm run import:templates -- --dry-run "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run import:templates:dry -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
 ```
 
 The importer does not hardcode the folder path. You can also set
 `COURSE_TEMPLATE_SOURCE_DIR` instead of passing an argument.
+
+Duplicate detection uses `course_code` + `course_name`. Existing templates only
+get missing fields and missing child rows filled in. Use `--force` to overwrite
+matching template fields and replace its detected assessment/material rows.
 
 In Supabase Auth URL Configuration, use:
 

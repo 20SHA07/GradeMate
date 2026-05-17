@@ -41,6 +41,7 @@ const assessmentKeywords = [
 
 const args = process.argv.slice(2);
 const isDryRun = args.includes("--dry-run");
+const isForce = args.includes("--force");
 const sourceDirArg = args.find((arg) => !arg.startsWith("--"));
 const sourceDir = sourceDirArg || process.env.COURSE_TEMPLATE_SOURCE_DIR;
 
@@ -634,6 +635,10 @@ function getSupabaseConfig() {
 }
 
 async function batchInsert(supabase, table, rows) {
+  if (rows.length === 0) {
+    return 0;
+  }
+
   const batchSize = 250;
 
   for (let index = 0; index < rows.length; index += batchSize) {
@@ -644,6 +649,154 @@ async function batchInsert(supabase, table, rows) {
       throw new Error(`${table}: ${error.message}`);
     }
   }
+
+  return rows.length;
+}
+
+function isMissingFieldValue(field, value) {
+  if (value === null || value === undefined) {
+    return true;
+  }
+
+  if (typeof value === "string") {
+    return value.trim() === "";
+  }
+
+  if (field === "extraction_confidence") {
+    return Number(value) <= 0;
+  }
+
+  if (field === "credit_hours") {
+    return !Number.isFinite(Number(value)) || Number(value) <= 0;
+  }
+
+  return false;
+}
+
+function buildMissingFieldUpdate(existingTemplate, incomingTemplate) {
+  const fields = [
+    "department",
+    "credit_hours",
+    "description",
+    "source_file_name",
+    "source_folder_path",
+    "extraction_confidence"
+  ];
+  const updates = {};
+
+  for (const field of fields) {
+    if (
+      isMissingFieldValue(field, existingTemplate[field]) &&
+      !isMissingFieldValue(field, incomingTemplate[field])
+    ) {
+      updates[field] = incomingTemplate[field];
+    }
+  }
+
+  return updates;
+}
+
+async function insertMissingAssessments(supabase, templateId, assessments) {
+  const { data, error } = await supabase
+    .from("course_template_assessments")
+    .select("name")
+    .eq("course_template_id", templateId);
+
+  if (error) {
+    throw new Error(`course_template_assessments: ${error.message}`);
+  }
+
+  if ((data ?? []).length > 0) {
+    return 0;
+  }
+
+  const existingNames = new Set(
+    (data ?? []).map((assessment) => assessment.name.toLowerCase())
+  );
+  const missingAssessments = assessments.filter(
+    (assessment) => !existingNames.has(assessment.name.toLowerCase())
+  );
+
+  return batchInsert(
+    supabase,
+    "course_template_assessments",
+    missingAssessments.map((assessment) => ({
+      ...assessment,
+      course_template_id: templateId
+    }))
+  );
+}
+
+async function insertMissingMaterials(supabase, templateId, materials) {
+  const { data, error } = await supabase
+    .from("course_template_materials")
+    .select("file_path")
+    .eq("course_template_id", templateId);
+
+  if (error) {
+    throw new Error(`course_template_materials: ${error.message}`);
+  }
+
+  if ((data ?? []).length > 0) {
+    return 0;
+  }
+
+  const existingPaths = new Set(
+    (data ?? []).map((material) => material.file_path.toLowerCase())
+  );
+  const missingMaterials = materials.filter(
+    (material) => !existingPaths.has(material.file_path.toLowerCase())
+  );
+
+  return batchInsert(
+    supabase,
+    "course_template_materials",
+    missingMaterials.map((material) => ({
+      ...material,
+      course_template_id: templateId
+    }))
+  );
+}
+
+async function replaceTemplateChildren(supabase, templateId, payload) {
+  const { error: assessmentDeleteError } = await supabase
+    .from("course_template_assessments")
+    .delete()
+    .eq("course_template_id", templateId);
+
+  if (assessmentDeleteError) {
+    throw new Error(
+      `course_template_assessments: ${assessmentDeleteError.message}`
+    );
+  }
+
+  const { error: materialDeleteError } = await supabase
+    .from("course_template_materials")
+    .delete()
+    .eq("course_template_id", templateId);
+
+  if (materialDeleteError) {
+    throw new Error(`course_template_materials: ${materialDeleteError.message}`);
+  }
+
+  const assessmentsInserted = await batchInsert(
+    supabase,
+    "course_template_assessments",
+    payload.assessments.map((assessment) => ({
+      ...assessment,
+      course_template_id: templateId
+    }))
+  );
+  const materialsInserted = await batchInsert(
+    supabase,
+    "course_template_materials",
+    payload.materials.map((material) => ({
+      ...material,
+      course_template_id: templateId
+    }))
+  );
+
+  return { assessmentsInserted, materialsInserted };
 }
 
 async function saveTemplates(payloads) {
@@ -652,69 +805,117 @@ async function saveTemplates(payloads) {
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false }
   });
-  let createdOrUpdated = 0;
-  let duplicateUpdates = 0;
+  let created = 0;
+  let existingMatched = 0;
+  let missingFieldUpdates = 0;
+  let forceReplaced = 0;
+  let assessmentsAdded = 0;
+  let materialsAdded = 0;
 
   for (const payload of payloads) {
     const { data: existing, error: existingError } = await supabase
       .from("course_templates")
-      .select("id")
+      .select("*")
       .eq("course_code", payload.template.course_code)
+      .eq("course_name", payload.template.course_name)
       .maybeSingle();
 
     if (existingError) {
       throw new Error(existingError.message);
     }
 
+    if (existing) {
+      existingMatched += 1;
+
+      if (isForce) {
+        const { error: updateError } = await supabase
+          .from("course_templates")
+          .update(payload.template)
+          .eq("id", existing.id);
+
+        if (updateError) {
+          throw new Error(`course_templates: ${updateError.message}`);
+        }
+
+        const replaceResult = await replaceTemplateChildren(
+          supabase,
+          existing.id,
+          payload
+        );
+        forceReplaced += 1;
+        assessmentsAdded += replaceResult.assessmentsInserted;
+        materialsAdded += replaceResult.materialsInserted;
+        continue;
+      }
+
+      const missingFieldUpdate = buildMissingFieldUpdate(
+        existing,
+        payload.template
+      );
+
+      if (Object.keys(missingFieldUpdate).length > 0) {
+        const { error: updateError } = await supabase
+          .from("course_templates")
+          .update(missingFieldUpdate)
+          .eq("id", existing.id);
+
+        if (updateError) {
+          throw new Error(`course_templates: ${updateError.message}`);
+        }
+
+        missingFieldUpdates += 1;
+      }
+
+      assessmentsAdded += await insertMissingAssessments(
+        supabase,
+        existing.id,
+        payload.assessments
+      );
+      materialsAdded += await insertMissingMaterials(
+        supabase,
+        existing.id,
+        payload.materials
+      );
+      continue;
+    }
+
     const { data: template, error: templateError } = await supabase
       .from("course_templates")
-      .upsert(payload.template, { onConflict: "course_code" })
+      .insert(payload.template)
       .select("id")
       .single();
 
     if (templateError || !template) {
-      throw new Error(templateError?.message ?? "Template upsert failed.");
+      throw new Error(templateError?.message ?? "Template insert failed.");
     }
 
-    if (existing) {
-      duplicateUpdates += 1;
-    }
-
-    await supabase
-      .from("course_template_assessments")
-      .delete()
-      .eq("course_template_id", template.id);
-    await supabase
-      .from("course_template_materials")
-      .delete()
-      .eq("course_template_id", template.id);
-
-    if (payload.assessments.length > 0) {
-      await batchInsert(
-        supabase,
-        "course_template_assessments",
-        payload.assessments.map((assessment) => ({
-          ...assessment,
-          course_template_id: template.id
-        }))
-      );
-    }
-
-    if (payload.materials.length > 0) {
-      await batchInsert(
-        supabase,
-        "course_template_materials",
-        payload.materials.map((material) => ({
-          ...material,
-          course_template_id: template.id
-        }))
-      );
-    }
-
-    createdOrUpdated += 1;
+    created += 1;
+    assessmentsAdded += await batchInsert(
+      supabase,
+      "course_template_assessments",
+      payload.assessments.map((assessment) => ({
+        ...assessment,
+        course_template_id: template.id
+      }))
+    );
+    materialsAdded += await batchInsert(
+      supabase,
+      "course_template_materials",
+      payload.materials.map((material) => ({
+        ...material,
+        course_template_id: template.id
+      }))
+    );
   }
 
-  return { createdOrUpdated, duplicateUpdates };
+  return {
+    created,
+    existingMatched,
+    missingFieldUpdates,
+    forceReplaced,
+    assessmentsAdded,
+    materialsAdded
+  };
 }
 
 function printWarnings(warnings) {
@@ -765,12 +966,19 @@ async function main() {
 
   if (isDryRun) {
     console.log("\nDry run complete. No Supabase rows were changed.");
+    console.log("Run without --dry-run to upload templates. Add --force to overwrite matching templates.");
     return;
   }
 
   const result = await saveTemplates(payloads);
   console.log(
-    `\nImported ${result.createdOrUpdated} template(s). Updated ${result.duplicateUpdates} duplicate existing template(s).`
+    `\nCreated ${result.created} template(s). Matched ${result.existingMatched} existing template(s).`
+  );
+  console.log(
+    `Updated missing fields on ${result.missingFieldUpdates} existing template(s). Force-replaced ${result.forceReplaced} template(s).`
+  );
+  console.log(
+    `Added ${result.assessmentsAdded} assessment row(s) and ${result.materialsAdded} material row(s).`
   );
 }
 

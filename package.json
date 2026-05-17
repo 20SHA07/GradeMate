@@ -6,6 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "import:templates": "node scripts/import-course-templates.mjs",
+    "import:templates:dry": "node scripts/import-course-templates.mjs --dry-run",
     "start": "next start",
     "lint": "eslint . --max-warnings=0",
     "typecheck": "tsc --noEmit"
