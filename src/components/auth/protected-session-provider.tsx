@@ -23,6 +23,7 @@ import {
   createSupabaseBrowserClient,
   type SupabaseBrowserClient
 } from "@/lib/supabase/client";
+import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 
 type AppUser = Pick<User, "id" | "email">;
 
@@ -148,9 +149,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
       router.refresh();
     } catch (error) {
       setMigrationError(
-        error instanceof Error
-          ? error.message
-          : "Could not save your guest workspace."
+        getSupabaseErrorMessage(error, "Could not save your guest workspace.")
       );
     } finally {
       setIsMigrating(false);

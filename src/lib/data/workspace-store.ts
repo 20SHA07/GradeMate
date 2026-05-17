@@ -1,4 +1,5 @@
 import type { SupabaseBrowserClient } from "@/lib/supabase/client";
+import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -218,7 +219,7 @@ export async function getSemesters(context: WorkspaceContext) {
     .order("created_at", { ascending: false });
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return (data ?? []) as SemesterRecord[];
@@ -240,7 +241,7 @@ export async function getCourses(context: WorkspaceContext) {
     .order("created_at", { ascending: false });
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return (data ?? []) as CourseRecord[];
@@ -262,7 +263,7 @@ export async function getAssessments(context: WorkspaceContext) {
     .order("created_at", { ascending: true });
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return (data ?? []) as AssessmentRecord[];
@@ -351,7 +352,7 @@ export async function createSemester(
     .single();
 
   if (error || !data) {
-    throw new Error(error?.message ?? "Could not create semester.");
+    throw new Error(getSupabaseErrorMessage(error, "Could not create semester."));
   }
 
   return data as SemesterRecord;
@@ -385,7 +386,7 @@ export async function updateSemester(
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return data as SemesterRecord;
@@ -422,7 +423,7 @@ export async function deleteSemester(context: WorkspaceContext, semesterId: stri
     .eq("user_id", context.userId);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 }
 
@@ -464,7 +465,7 @@ export async function createCourse(
     .single();
 
   if (error || !data) {
-    throw new Error(error?.message ?? "Could not create course.");
+    throw new Error(getSupabaseErrorMessage(error, "Could not create course."));
   }
 
   return data as CourseRecord;
@@ -498,7 +499,7 @@ export async function updateCourse(
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return data as CourseRecord;
@@ -529,7 +530,7 @@ export async function deleteCourse(context: WorkspaceContext, courseId: string) 
     .eq("user_id", context.userId);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 }
 
@@ -596,7 +597,9 @@ export async function createAssessment(
     .single();
 
   if (error || !data) {
-    throw new Error(error?.message ?? "Could not create assessment.");
+    throw new Error(
+      getSupabaseErrorMessage(error, "Could not create assessment.")
+    );
   }
 
   return data as AssessmentRecord;
@@ -630,7 +633,7 @@ export async function updateAssessment(
     .single();
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 
   return data as AssessmentRecord;
@@ -663,7 +666,7 @@ export async function deleteAssessment(
     .eq("user_id", context.userId);
 
   if (error) {
-    throw new Error(error.message);
+    throw new Error(getSupabaseErrorMessage(error));
   }
 }
 
@@ -725,7 +728,7 @@ export async function migrateGuestWorkspaceToSupabase({
       .upsert(semesterRows, { onConflict: "id" });
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(getSupabaseErrorMessage(error));
     }
   }
 
@@ -735,7 +738,7 @@ export async function migrateGuestWorkspaceToSupabase({
       .upsert(courseRows, { onConflict: "id" });
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(getSupabaseErrorMessage(error));
     }
   }
 
@@ -745,7 +748,7 @@ export async function migrateGuestWorkspaceToSupabase({
       .upsert(assessmentRows, { onConflict: "id" });
 
     if (error) {
-      throw new Error(error.message);
+      throw new Error(getSupabaseErrorMessage(error));
     }
   }
 

@@ -40,6 +40,7 @@ import {
   readGuestData,
   writeGuestData
 } from "@/lib/guest-session";
+import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import {
   extractSyllabusFromText,
   parseGradeBreakdownMessage,
@@ -730,7 +731,7 @@ function SmartSyllabusExtractor({
         .eq("user_id", user.id);
 
       if (deleteError) {
-        setError(deleteError.message);
+        setError(getSupabaseErrorMessage(deleteError));
         setIsSavingExtraction(false);
         return;
       }
@@ -762,7 +763,7 @@ function SmartSyllabusExtractor({
       .select();
 
     if (insertError) {
-      setError(insertError.message);
+      setError(getSupabaseErrorMessage(insertError));
       setIsSavingExtraction(false);
       return;
     }
@@ -1254,13 +1255,13 @@ export function CourseDetailClient({
         setCourse(null);
         setSemester(null);
         setAssessments([]);
-        setError(courseResponse.error?.message ?? "Course not found.");
+        setError(getSupabaseErrorMessage(courseResponse.error, "Course not found."));
         setIsLoading(false);
         return;
       }
 
       if (assessmentResponse.error) {
-        setError(assessmentResponse.error.message);
+        setError(getSupabaseErrorMessage(assessmentResponse.error));
       }
 
       const semesterResponse = await supabase
@@ -1435,7 +1436,7 @@ export function CourseDetailClient({
     const savedAssessment = response.data as AssessmentRecord | null;
 
     if (response.error || !savedAssessment) {
-      setError(response.error?.message ?? "Could not save assessment.");
+      setError(getSupabaseErrorMessage(response.error, "Could not save assessment."));
       return;
     }
 
@@ -1500,7 +1501,7 @@ export function CourseDetailClient({
       .eq("user_id", user.id);
 
     if (deleteError) {
-      setError(deleteError.message);
+      setError(getSupabaseErrorMessage(deleteError));
       return;
     }
 

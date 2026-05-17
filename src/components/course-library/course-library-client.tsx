@@ -25,6 +25,10 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
 import { getCourseDetailHref } from "@/lib/routes";
 import {
+  getSupabaseErrorMessage,
+  getSupabasePublicConfig
+} from "@/lib/supabase/config";
+import {
   createAssessment as storeCreateAssessment,
   createCourse as storeCreateCourse,
   getAssessments,
@@ -210,6 +214,7 @@ function DetailStat({
 export function CourseLibraryClient() {
   const router = useRouter();
   const { isGuest, supabase, user } = useAuth();
+  const supabaseConfig = useMemo(() => getSupabasePublicConfig(), []);
   const [templates, setTemplates] = useState<TemplateWithDetails[]>([]);
   const [semesters, setSemesters] = useState<SemesterRecord[]>([]);
   const [courses, setCourses] = useState<CourseRecord[]>([]);
@@ -237,8 +242,18 @@ export function CourseLibraryClient() {
     async function loadLibrary() {
       setError("");
 
+      if (process.env.NODE_ENV === "development") {
+        console.info("Course Library Supabase config", {
+          hasAnonKey: supabaseConfig.hasAnonKey,
+          hasPublishableKey: supabaseConfig.hasPublishableKey,
+          hasUrl: supabaseConfig.hasUrl,
+          keyPreview: supabaseConfig.keyPreview || "missing",
+          publicKeySource: supabaseConfig.publicKeySource
+        });
+      }
+
       if (!supabase) {
-        setError("Course Library is unavailable because Supabase is not configured.");
+        setError(supabaseConfig.missingSupabaseMessage);
         setIsLoading(false);
         return;
       }
@@ -271,10 +286,12 @@ export function CourseLibraryClient() {
         materialsResponse.error
       ) {
         setError(
-          templatesResponse.error?.message ??
-            assessmentsResponse.error?.message ??
-            materialsResponse.error?.message ??
+          getSupabaseErrorMessage(
+            templatesResponse.error ??
+              assessmentsResponse.error ??
+              materialsResponse.error,
             "Could not load course library."
+          )
         );
         setIsLoading(false);
         return;
@@ -325,7 +342,17 @@ export function CourseLibraryClient() {
     }
 
     void loadLibrary();
-  }, [isGuest, supabase, user.id]);
+  }, [
+    isGuest,
+    supabase,
+    supabaseConfig.hasAnonKey,
+    supabaseConfig.hasPublishableKey,
+    supabaseConfig.hasUrl,
+    supabaseConfig.keyPreview,
+    supabaseConfig.missingSupabaseMessage,
+    supabaseConfig.publicKeySource,
+    user.id
+  ]);
 
   useEffect(() => {
     setCurrentPage(1);
@@ -442,7 +469,7 @@ export function CourseLibraryClient() {
         .eq("user_id", user.id);
 
       if (assessmentLoadError) {
-        throw new Error(assessmentLoadError.message);
+        throw new Error(getSupabaseErrorMessage(assessmentLoadError));
       }
 
       const existingNames = new Set(
@@ -469,7 +496,7 @@ export function CourseLibraryClient() {
       );
 
     if (assessmentError) {
-      throw new Error(assessmentError.message);
+      throw new Error(getSupabaseErrorMessage(assessmentError));
     }
   }
 
@@ -602,7 +629,7 @@ export function CourseLibraryClient() {
           .single();
 
         if (updateError || !data) {
-          throw new Error(updateError?.message ?? "Could not update course.");
+          throw new Error(getSupabaseErrorMessage(updateError, "Could not update course."));
         }
 
         targetCourse = data as CourseRecord;
@@ -621,7 +648,9 @@ export function CourseLibraryClient() {
           .single();
 
         if (courseError || !data) {
-          throw new Error(courseError?.message ?? "Could not import this course.");
+          throw new Error(
+            getSupabaseErrorMessage(courseError, "Could not import this course.")
+          );
         }
 
         targetCourse = data as CourseRecord;
@@ -640,9 +669,7 @@ export function CourseLibraryClient() {
       router.push(getCourseDetailHref(targetCourse.id, { imported: true }));
     } catch (importFailure) {
       setImportError(
-        importFailure instanceof Error
-          ? importFailure.message
-          : "Could not import this template."
+        getSupabaseErrorMessage(importFailure, "Could not import this template.")
       );
     } finally {
       setImportingTemplateId("");

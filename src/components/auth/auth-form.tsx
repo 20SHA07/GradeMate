@@ -10,6 +10,10 @@ import { signInWithGoogle } from "@/lib/auth/oauth";
 import { startGuestSession } from "@/lib/guest-session";
 import { getAuthRedirectUrl } from "@/lib/routes";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  getSupabaseErrorMessage,
+  getSupabasePublicConfig
+} from "@/lib/supabase/config";
 
 type AuthMode = "login" | "signup";
 
@@ -33,6 +37,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       return null;
     }
   }, []);
+  const supabaseConfig = useMemo(() => getSupabasePublicConfig(), []);
 
   const isSignup = mode === "signup";
 
@@ -60,7 +65,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     setMessage("");
 
     if (!supabase) {
-      setError("Supabase environment variables are missing.");
+      setError(supabaseConfig.missingSupabaseMessage);
       return;
     }
 
@@ -82,7 +87,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     setIsSubmitting(false);
 
     if (authResponse.error) {
-      setError(authResponse.error.message);
+      setError(getSupabaseErrorMessage(authResponse.error));
       return;
     }
 
@@ -99,7 +104,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     setMessage("");
 
     if (!supabase) {
-      setError("Supabase environment variables are missing.");
+      setError(supabaseConfig.missingSupabaseMessage);
       return;
     }
 
@@ -108,7 +113,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
     if (googleError) {
       setIsGoogleSubmitting(false);
-      setError(googleError.message);
+      setError(getSupabaseErrorMessage(googleError));
     }
   }
 

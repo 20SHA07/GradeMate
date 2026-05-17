@@ -6,7 +6,10 @@ import { useEffect, useMemo, useState } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
-import { getSupabasePublicConfig } from "@/lib/supabase/config";
+import {
+  getSupabaseErrorMessage,
+  getSupabasePublicConfig
+} from "@/lib/supabase/config";
 
 export function AuthCallbackClient() {
   const router = useRouter();
@@ -48,12 +51,17 @@ export function AuthCallbackClient() {
           await client.auth.exchangeCodeForSession(code);
 
         if (exchangeError) {
-          setError(exchangeError.message);
+          setError(getSupabaseErrorMessage(exchangeError));
           return;
         }
       }
 
-      const { data } = await client.auth.getSession();
+      const { data, error: sessionError } = await client.auth.getSession();
+
+      if (sessionError) {
+        setError(getSupabaseErrorMessage(sessionError));
+        return;
+      }
 
       if (!data.session) {
         setError("Could not finish login. Please try again.");
