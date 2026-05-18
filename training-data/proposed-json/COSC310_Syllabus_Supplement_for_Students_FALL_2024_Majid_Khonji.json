@@ -62,9 +62,9 @@
   ],
   "totalWeight": 95,
   "warnings": [
+    "Total weight is below 100 (95%)",
     "Course info missing",
-    "Credit hours missing",
-    "Total weight is below 100 (95%)"
+    "Credit hours missing"
   ],
   "confidence": 0.92,
   "needsHumanReview": true

@@ -48,7 +48,6 @@
   ],
   "totalWeight": 105,
   "warnings": [
-    "Total weight is above 100 (859%)",
     "Total weight is above 100 (105%)"
   ],
   "confidence": 0.95,

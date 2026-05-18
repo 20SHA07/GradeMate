@@ -30,11 +30,11 @@ import { Card } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
 import {
-  extractSyllabusFromText,
-  parseGradeBreakdownMessage,
+  extractGradeBreakdown,
   type ExtractedAssessment,
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
+import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
 import {
   getGradeInfo,
   getGradePoint,
@@ -218,6 +218,30 @@ function getExtractionSourceLabel(source: ExtractionSource) {
   }
 
   return "Detected automatically";
+}
+
+function getExtractionQualityLabel(
+  extraction: ExtractedSyllabus,
+  source: ExtractionSource
+) {
+  if (source === "online-ai") {
+    return "Improved with online AI";
+  }
+
+  return shouldUseRuleExtraction(extraction)
+    ? "Detected automatically"
+    : "Needs review";
+}
+
+function getExtractionQualityTone(
+  extraction: ExtractedSyllabus,
+  source: ExtractionSource
+) {
+  if (source === "online-ai") {
+    return "teal" as const;
+  }
+
+  return shouldUseRuleExtraction(extraction) ? ("green" as const) : ("gold" as const);
 }
 
 function makeReviewRows(extraction: ExtractedSyllabus): ReviewAssessment[] {
@@ -425,141 +449,6 @@ async function requestOnlineAiExtraction(text: string) {
   }
 
   return validateExtractionPayload(data);
-}
-
-type PdfTextItem = {
-  str?: unknown;
-  transform?: unknown;
-  width?: unknown;
-};
-
-const assessmentNamePattern =
-  /\b(quiz|quizzes|exam|midterm|final|assignment|homework|lab|project|participation|attendance|presentation|report|essay|portfolio|discussion|tutorial|practical|test|case study)s?\b/i;
-const weightOnlyPattern = /^(\d{1,3}(?:\.\d+)?)\s*(%|percent|percentage)?$/i;
-
-function getPdfItemPosition(item: PdfTextItem) {
-  if (!Array.isArray(item.transform) || item.transform.length < 6) {
-    return { x: 0, y: 0 };
-  }
-
-  const x = Number(item.transform[4]);
-  const y = Number(item.transform[5]);
-
-  return {
-    x: Number.isFinite(x) ? x : 0,
-    y: Number.isFinite(y) ? y : 0
-  };
-}
-
-function joinPdfLineItems(items: { text: string; x: number; width: number }[]) {
-  return items
-    .sort((first, second) => first.x - second.x)
-    .reduce((line, item, index, sortedItems) => {
-      const text = item.text.trim();
-
-      if (!text) {
-        return line;
-      }
-
-      if (line.length === 0) {
-        return text;
-      }
-
-      const previous = sortedItems[index - 1];
-      const previousRight = previous ? previous.x + previous.width : item.x;
-      const gap = item.x - previousRight;
-      const separator =
-        gap > 16 || /[%):]$/.test(line) || /^[,.;:%)]/.test(text) ? " " : " ";
-
-      return `${line}${separator}${text}`;
-    }, "");
-}
-
-function normalizeExtractedPdfText(text: string) {
-  const cleanedLines = text
-    .replace(/\u00a0/g, " ")
-    .replace(/[ \t]+/g, " ")
-    .replace(/\s+%/g, "%")
-    .split(/\r?\n/)
-    .map((line) => line.trim())
-    .filter(Boolean);
-  const mergedLines: string[] = [];
-
-  cleanedLines.forEach((line) => {
-    const bareWeightMatch = line.match(/^(.*)\s+(\d{1,3}(?:\.\d+)?)$/);
-    const normalizedLine =
-      bareWeightMatch &&
-      assessmentNamePattern.test(bareWeightMatch[1]) &&
-      Number(bareWeightMatch[2]) >= 0 &&
-      Number(bareWeightMatch[2]) <= 100 &&
-      !/%|percent|percentage|\d+\s*\/\s*\d+/i.test(line)
-        ? `${bareWeightMatch[1]} ${bareWeightMatch[2]}%`
-        : line;
-    const previous = mergedLines[mergedLines.length - 1];
-
-    if (
-      previous &&
-      assessmentNamePattern.test(previous) &&
-      !/(\d{1,3}(?:\.\d+)?)\s*(%|percent|percentage)\b/i.test(previous) &&
-      weightOnlyPattern.test(normalizedLine)
-    ) {
-      mergedLines[mergedLines.length - 1] = `${previous} ${normalizedLine}`;
-      return;
-    }
-
-    mergedLines.push(normalizedLine);
-  });
-
-  return mergedLines.join("\n");
-}
-
-async function extractTextFromPdfFile(file: File) {
-  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
-  const basePath = process.env.NODE_ENV === "production" ? "/GradeMate" : "";
-  pdfjs.GlobalWorkerOptions.workerSrc = `${basePath}/pdf.worker.min.mjs`;
-  const data = new Uint8Array(await file.arrayBuffer());
-  const documentTask = pdfjs.getDocument({ data });
-  const pdf = await documentTask.promise;
-  const pages: string[] = [];
-
-  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-    const page = await pdf.getPage(pageNumber);
-    const textContent = await page.getTextContent();
-    const rows = new Map<
-      number,
-      { text: string; x: number; width: number }[]
-    >();
-
-    textContent.items.forEach((item) => {
-      const textItem = item as PdfTextItem;
-      const text = typeof textItem.str === "string" ? textItem.str : "";
-
-      if (!text.trim()) {
-        return;
-      }
-
-      const { x, y } = getPdfItemPosition(textItem);
-      const rowKey = Math.round(y / 3) * 3;
-      const rowItems = rows.get(rowKey) ?? [];
-
-      rowItems.push({
-        text,
-        width: Number(textItem.width) || 0,
-        x
-      });
-      rows.set(rowKey, rowItems);
-    });
-
-    const pageText = Array.from(rows.entries())
-      .sort((first, second) => second[0] - first[0])
-      .map(([, rowItems]) => joinPdfLineItems(rowItems))
-      .filter(Boolean)
-      .join("\n");
-
-    pages.push(pageText);
-  }
-
-  return normalizeExtractedPdfText(pages.join("\n\n"));
 }
 
 function getCourseGradeStats(course: SimpleCourse) {
@@ -1150,10 +1039,7 @@ export function SimpleGpaCalculator() {
     mode: "quick" | "syllabus",
     ruleSource: ExtractionSource
   ) {
-    const ruleResult =
-      mode === "quick"
-        ? parseGradeBreakdownMessage(text)
-        : extractSyllabusFromText(text);
+    const ruleResult = extractGradeBreakdown(text, { mode });
 
     if (shouldUseRuleExtraction(ruleResult)) {
       showExtractionResult(courseId, ruleResult, ruleSource);
@@ -2484,7 +2370,22 @@ function ExtractionReview({
         <Badge tone={review.source === "online-ai" ? "teal" : "ink"}>
           {getExtractionSourceLabel(review.source)}
         </Badge>
+        <Badge tone={getExtractionQualityTone(review.extraction, review.source)}>
+          {getExtractionQualityLabel(review.extraction, review.source)}
+        </Badge>
       </div>
+
+      {process.env.NODE_ENV === "development" && review.extraction.debug ? (
+        <div className="rounded-xl border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
+          <p className="font-semibold text-ink-800">Dev extraction debug</p>
+          <p className="mt-1">
+            Text length: {review.extraction.debug.textLength} · Candidates:{" "}
+            {review.extraction.debug.candidateCount} · Chosen:{" "}
+            {review.extraction.debug.chosenCandidateLabel} · Score:{" "}
+            {review.extraction.debug.chosenCandidateScore}
+          </p>
+        </div>
+      ) : null}
 
       {!isWeightReady(reviewTotalWeight) && review.rows.length > 0 ? (
         <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">

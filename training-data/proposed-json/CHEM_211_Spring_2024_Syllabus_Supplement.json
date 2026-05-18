@@ -20,9 +20,9 @@
   ],
   "totalWeight": 4,
   "warnings": [
+    "Total weight is below 100 (4%)",
     "Course info missing",
     "Credit hours missing",
-    "Total weight is below 100 (4%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
   "confidence": 0.92,

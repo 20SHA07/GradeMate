@@ -42,11 +42,11 @@ import {
 } from "@/lib/guest-session";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import {
-  extractSyllabusFromText,
-  parseGradeBreakdownMessage,
+  extractGradeBreakdown,
   type ExtractedAssessment,
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
+import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
 import { getAppBasePath } from "@/lib/routes";
 import {
   getCoreAssessmentPayload,
@@ -79,6 +79,12 @@ type ExtractionDraft = {
   extractionSource: ExtractionSource;
   reviewRows: ReviewAssessment[];
   updatedAt: string;
+};
+
+type PdfPreview = {
+  fileName: string;
+  text: string;
+  warning?: string;
 };
 
 const assessmentStatuses = ["Remaining", "Completed", "Dropped"];
@@ -218,29 +224,28 @@ function getExtractionSourceLabel(source: ExtractionSource | null) {
   return "Detected automatically";
 }
 
-async function extractTextFromPdfFile(file: File) {
-  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
-  const basePath = process.env.NODE_ENV === "production" ? "/GradeMate" : "";
-  pdfjs.GlobalWorkerOptions.workerSrc = `${basePath}/pdf.worker.min.mjs`;
-  const data = new Uint8Array(await file.arrayBuffer());
-  const documentTask = pdfjs.getDocument({ data });
-  const pdf = await documentTask.promise;
-  const pages: string[] = [];
-
-  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
-    const page = await pdf.getPage(pageNumber);
-    const textContent = await page.getTextContent();
-    const pageText = textContent.items
-      .map((item) => {
-        const textItem = item as { str?: unknown };
-        return typeof textItem.str === "string" ? textItem.str : "";
-      })
-      .join(" ");
-
-    pages.push(pageText);
+function getExtractionQualityLabel(
+  extraction: ExtractedSyllabus,
+  source: ExtractionSource | null
+) {
+  if (source === "online-ai") {
+    return "Improved with online AI";
   }
 
-  return pages.join("\n");
+  return shouldUseRuleExtraction(extraction)
+    ? "Detected automatically"
+    : "Needs review";
+}
+
+function getExtractionQualityTone(
+  extraction: ExtractedSyllabus,
+  source: ExtractionSource | null
+) {
+  if (source === "online-ai") {
+    return "teal" as const;
+  }
+
+  return shouldUseRuleExtraction(extraction) ? ("green" as const) : ("gold" as const);
 }
 
 function makeReviewRows(extraction: ExtractedSyllabus): ReviewAssessment[] {
@@ -547,6 +552,7 @@ function SmartSyllabusExtractor({
   const { supabase, user } = useAuth();
   const [activeTab, setActiveTab] = useState<"upload" | "paste">("upload");
   const [file, setFile] = useState<File | null>(null);
+  const [pdfPreview, setPdfPreview] = useState<PdfPreview | null>(null);
   const [quickText, setQuickText] = useState("");
   const [pastedText, setPastedText] = useState("");
   const [extraction, setExtraction] = useState<ExtractedSyllabus | null>(null);
@@ -576,6 +582,7 @@ function SmartSyllabusExtractor({
       setReviewRows([]);
     }
 
+    setPdfPreview(null);
     setIsDraftReady(true);
   }, [course.id]);
 
@@ -601,6 +608,7 @@ function SmartSyllabusExtractor({
     setExtraction(null);
     setExtractionSource(null);
     setReviewRows([]);
+    setPdfPreview(null);
     setMessage("");
     setError("");
   }
@@ -634,10 +642,7 @@ function SmartSyllabusExtractor({
     mode: "quick" | "syllabus",
     ruleSource: ExtractionSource
   ) {
-    const ruleResult =
-      mode === "quick"
-        ? parseGradeBreakdownMessage(text)
-        : extractSyllabusFromText(text);
+    const ruleResult = extractGradeBreakdown(text, { mode });
 
     if (shouldUseRuleExtraction(ruleResult)) {
       showExtractionResult(ruleResult, ruleSource);
@@ -716,6 +721,16 @@ function SmartSyllabusExtractor({
 
     try {
       const pdfText = await extractTextFromPdfFile(file);
+      const previewWarning =
+        pdfText.trim().length < 120
+          ? "This PDF may be scanned or image-based. Try pasting the grading section instead."
+          : undefined;
+
+      setPdfPreview({
+        fileName: file.name,
+        text: pdfText.slice(0, 6000),
+        warning: previewWarning
+      });
 
       if (pdfText.trim().length < 20) {
         throw new Error(
@@ -1009,31 +1024,52 @@ function SmartSyllabusExtractor({
       </div>
 
       {activeTab === "upload" ? (
-        <div className="mt-5 grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              PDF syllabus
-            </span>
-            <input
-              accept="application/pdf"
-              className="mt-1 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
-              disabled={isExtracting}
-              onChange={(event) => setFile(event.target.files?.[0] ?? null)}
-              type="file"
-            />
-            <span className="mt-2 block text-xs text-ink-500">
-              PDF text is read locally in your browser. It is not saved until
-              you confirm the extracted assessments.
-            </span>
-          </label>
-          <Button
-            className="w-full md:w-auto"
-            disabled={!file || isExtracting}
-            onClick={() => void extractFromPdf()}
-          >
-            <UploadCloud aria-hidden="true" className="h-4 w-4" />
-            {isExtracting ? "Reading PDF..." : "Extract grading breakdown"}
-          </Button>
+        <div className="mt-5 space-y-3">
+          <div className="grid gap-3 md:grid-cols-[minmax(0,1fr)_auto] md:items-end">
+            <label className="block">
+              <span className="text-sm font-medium text-ink-700">
+                PDF syllabus
+              </span>
+              <input
+                accept="application/pdf"
+                className="mt-1 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                disabled={isExtracting}
+                onChange={(event) => setFile(event.target.files?.[0] ?? null)}
+                type="file"
+              />
+              <span className="mt-2 block text-xs text-ink-500">
+                PDF text is read locally in your browser. It is not saved until
+                you confirm the extracted assessments.
+              </span>
+            </label>
+            <Button
+              className="w-full md:w-auto"
+              disabled={!file || isExtracting}
+              onClick={() => void extractFromPdf()}
+            >
+              <UploadCloud aria-hidden="true" className="h-4 w-4" />
+              {isExtracting ? "Reading PDF..." : "Extract grading breakdown"}
+            </Button>
+          </div>
+
+          {pdfPreview ? (
+            <details className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
+              <summary className="cursor-pointer font-medium text-ink-800">
+                Extracted text preview
+              </summary>
+              {pdfPreview.warning ? (
+                <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-amber-800">
+                  {pdfPreview.warning}
+                </p>
+              ) : null}
+              <p className="mt-3 text-xs font-medium text-ink-500">
+                {pdfPreview.fileName}
+              </p>
+              <pre className="mt-2 max-h-72 overflow-auto whitespace-pre-wrap rounded-lg bg-ink-50 p-3 text-xs leading-5 text-ink-600">
+                {pdfPreview.text || "No text was extracted."}
+              </pre>
+            </details>
+          ) : null}
         </div>
       ) : (
         <div className="mt-5 space-y-3">
@@ -1133,10 +1169,25 @@ function SmartSyllabusExtractor({
             >
               {getExtractionSourceLabel(extractionSource)}
             </Badge>
+            <Badge tone={getExtractionQualityTone(extraction, extractionSource)}>
+              {getExtractionQualityLabel(extraction, extractionSource)}
+            </Badge>
             {extraction.instructor ? (
               <Badge tone="teal">Instructor: {extraction.instructor}</Badge>
             ) : null}
           </div>
+
+          {process.env.NODE_ENV === "development" && extraction.debug ? (
+            <div className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
+              <p className="font-semibold text-ink-800">Dev extraction debug</p>
+              <p className="mt-1">
+                Text length: {extraction.debug.textLength} · Candidates:{" "}
+                {extraction.debug.candidateCount} · Chosen:{" "}
+                {extraction.debug.chosenCandidateLabel} · Score:{" "}
+                {extraction.debug.chosenCandidateScore}
+              </p>
+            </div>
+          ) : null}
 
           {!isWeightCloseToReady(reviewTotalWeight) && reviewRows.length > 0 ? (
             <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
