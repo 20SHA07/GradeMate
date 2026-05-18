@@ -1,0 +1,204 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title MATH 111 CALCULUS I
+Semester: Spring 2025
+Instructor Name Imad Elayna
+Contact Email/ Office Ext. No. Imad.elayna@ku.ac.ae
+Office Room No. San 1215
+Office Hours MW 1 -3 pm & TR 11:30am-1pm
+Assessment Strategy
+Tentative Dates Weight
+Coursework: Quiz # 1 Week 3: Quiz 1: chapter 1
+Quiz # 2 Week 6: Quiz 2: chapter 2
+20%
+Quiz # 3 Week 10: Quiz 3: Ch 3.3-3.8
+Quiz # 4 Week 15: Quiz 4: Ch 4.1-5.1
+HW Connect continuously 7%
+Remedial Tutorial Classes 8%
+Pebble Peer Mentors 5%
+th
+Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%
+Final Examination: FINAL EXAM: (TBC) 35%
+Course Catalog Description: This course will introduce students to the theory and techniques of single
+variable differential and integral calculus. The emphasis is on problem solving in a science and engineering
+context, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and
+polynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and
+volumes of revolution.
+Textbook: Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad A. T. Rafhi,
+McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472.
+Reference Materials: Calculus, James Stewart, Publisher: CENGAGE Learning, 8th Edition (Metric Version),
+2016. ISBN: 9781305266728. Calculus: Concepts & Connections, 1st Edition, by Robert Smith and Roland
+Minton, McGraw Hill, 2007. ISBN: 9780073309293.
+Syllabus Supplement for Students Page 1 of 5
+
+--- Page 2 ---
+Course Learning Outcomes
+1 Solve problems involving limits and continuity.
+2 Define the derivative of a function and apply the techniques of differentiation.
+Combine knowledge of limits, continuity and derivatives in order to classify the important characteristics of
+3
+a function and draw a graph of the function which illustrates all these characteristics.
+4 Apply the techniques of differentiation to solve optimization and related rates problems.
+5 Define indefinite integrals and definite integrals and apply them to solving area and volume problems.
+Instructor Policy on Late Submission of Assignments
+MAKE UP POLICY
+Quizzes • There will be no make -up quizzes. If the student fails to attend a scheduled quiz without an approved
+absence from the Registrar’s Office, then a grade of zero for that quiz will be assigned.
+• If the student fails to attend a quiz and the Registrar’s Office confirms that the student's absence from that
+quiz is approved, then the grade that will be assigned to that quiz is the grade of the Midterm Examination if
+that quiz took place before the Midterm Examination; the grade of the Final Examination if that quiz took place
+after the Midterm Examination.
+Midterm Examination • There will be no make -up Midterm Examination. If the student fails to attend the
+scheduled Midterm Examination without an approved absence from the Registrar’s Office, then a grade of zero
+will be assigned for the Midterm Examination.
+• If the student fails to attend the Midterm Examination and the Registrar’s Office confirms that the absence
+from the Midterm Examination is approved, then the grade for the Final Examination will also be assigned as the
+grade for the Midterm Examination.
+A maximum of 40% of the course grade can be compensated through the above policy.
+Syllabus Supplement for Students Page 2 of 5
+
+--- Page 3 ---
+Grading Scheme
+The passing grade for Calculus 1 is C.
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses
+and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point
+on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of Engineering
+Undergraduate courses.
+Percentage Grade Range
+Letter Grade (rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and
+will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 3 of 5
+
+--- Page 4 ---
+Additional Information
+Assessments
+There are four quizzes scheduled for this course, counting for 20% of the final grade. Homework on
+Connect will count for 6%, Tutorial classes count for 9%, Pebble for 5% Midterm for 25% and Final
+Exam for 35%.
+Calculator Policy
+Only basic non-programmable non-graphical calculators are allowed during quizzes and exams.
+On campus Classroom Policies
+Classes start on time. Students arriving late to class are a distraction to both the instructor and other
+students and will therefore be marked absent.
+Students are expected to bring for each class what they need for an effective lecture: lecture notes
+(posted on Blackboard), pen/pencil, notebook, calculator etc.
+Expectations from students
+To succeed well in this course, students are required to work at least one hour outside the classroom
+for each hour spent in class. That means four hours a week, every week. This is an average
+requirement for an average student with a sufficient background. It therefore could be more if some
+topics from previous courses are not known well enough.
+Selected problems for each section are recommended as homework. Homework will not be collected,
+but are essential part of the learning process, and are therefore recommended.
+Grading
+Writing correct solutions is essential in the life of a scientist, including the correct use of the
+mathematical symbols. Not only one needs to be understood by others, but only by paying attention
+to what is written a student can acquire a good understanding of the concepts. Therefore, in all
+assessments, the correctness of the solution writing will be evaluated and marks will be deducted
+for mistakes (notations, clarity, structure of the solution, etc)
+For quizzes and midterm, students have TWO DAYS after they get back their copy to check if there are
+any grading mistakes, and if so, ask for revision. After two days, the result will be considered final and
+no more revision will be allowed.
+Conflict Resolution Procedure
+For any issue, the following procedure needs to be followed:
+1) students need to talk first to their instructor;
+2) if (1) did not resolve the issue, students can talk to the course coordinator;
+3) if (1) and (2) did not resolve the issue, students can talk to the chair of the math department;
+4) if none of the above resolved the issue, students can talk to the Associate dean of undergraduate
+studies.
+5) No Grade Appeal is approved if the student has not seen the copy of his/her final exam.
+There will be no leniency with phones and any other electronics during exams.
+Syllabus Supplement for Students Page 4 of 5
+
+--- Page 5 ---
+Teaching Plan
+Chapter 1: Limits and Continuity
+1.2 The concept of limit
+Week 1 (Jan 13)
+1.3 Computation of limits
+th
+End of Add/Drop for UG & PG: Friday Jan 17
+1.3 Computation of limits
+Week 2 (Jan 20) 1.4 Continuity and its consequences
+1.5 Limits Involving Infinity; asymptotes
+1.5 Limits Involving Infinity; asymptotes
+Chapter 2: Differentiation
+Week 3 (Jan 27) 2.1 Tangent Lines and Velocity
+2.2 The derivative
+Quiz 1: Ch 1
+2.3 Computation of derivatives: The power rule
+2.4 The product and quotient rules
+Week 4 (Feb 3)
+2.5 The chain rule
+2.6 Derivatives of trigonometric functions
+2.6 Derivatives of trigonometric functions
+Week 5 (Feb 10) 2.7 Derivatives of exponential & logarithmic functions
+2.8 Implicit differentiation & inverse trig functions
+Chapter 3: Applications of Differentiation
+3.1 Linear Approximation
+Week 6 (Feb 17)
+3.2 Indeterminate Forms and L’Hôpital’s Rule
+Quiz 2: Ch 2
+3.3 Maximum and Minimum Values
+3.4 Increasing and Decreasing Functions and the First Derivative Test
+Week 7 (Feb 24)
+3.5 Concavity and Second Derivative Test
+3.6 Overview of Curve Sketching
+Catch up
+th
+Week 8 (Mar 3) Midterm Exam: S 1.2 - 3.2 Friday, March 7 @ 9:30-11:00 pm
+th
+Midterm Grade Due Date: Friday, Mar 7
+3.7 Optimization
+Week 9 (Mar 10)
+3.8 Related Rates
+Chapter 4 – Integration
+4.1 Antiderivatives
+Week 10 (Mar 17)
+Quiz 3: Sections 3.3-3.8
+st
+Last day to Withdraw with a “W”: Friday Mar 21
+Week 11 (Mar 24) Spring Break
+Week 12 (Mar 31) Fitr Break
+4.2 Sums and Sigma Notation
+4.3 Area and Riemann
+Week 13 (Apr 7)
+4.4 Definite Integral
+4.5 Fundamental Theorem of Calculus
+4.6 Integration by Substitution
+Week 14 (Apr 14)
+4.8 Natural Logarithm as an Integral (exercises only)
+Chapter 5 – Applications of Definite Integral
+Week 15 (Apr 21) 5.1 Areas Between Curves
+Quiz 4: 4.2-5.1
+5.2 Volumes by Slicing, Disks and Washers
+Week 16 (Apr 28) 5.3 Volumes by Cylindrical Shells
+Catch up
+May 5 – 15 Final Exams Period
+Syllabus Supplement for Students Page 5 of 5

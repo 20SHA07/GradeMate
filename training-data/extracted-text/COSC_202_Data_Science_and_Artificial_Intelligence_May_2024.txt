@@ -1,0 +1,390 @@
+COSC 202 Data Science and Artificial Intelligence 
+(2 Lecture 3 Laboratory– 3 Credits) 
+ 
+Prerequisite: COSC 114 
+ 
+Course Catalog Description: 
+The course is designed to give engineers a comprehensive understanding of the key concepts, techniques, tools, and applications of data science and Artificial Intelligence (AI). The course focuses on applications in various engineering domains. Course topics include data analysis and visualization, machine learning, deep learning, applications, natural language processing, computer vision, autonomous driving, and ethics considerations. Students will learn how these concepts can be applied to real-world problems and gain hands-on experience with popular AI and data science tools and libraries. 
+
+Textbook: 
+
+Artificial Intelligence with Python, by Alberto Artasanchez and Prateek Joshi. Publisher: Packt Publishing Ltd, 2nd Edition, 2020. ISBN-10: 183921953X. ISBN-13: 978-1839219535.
+
+Reference Materials: 
+Introduction to Machine Learning with Python: A Guide for Data Scientists by Andreas C. Müller and Sarah Guido. Publisher: O'Reilly Media, 1st edition, 2016, ISBN-10: 1449369413, ISBN-13: 978-1449369415.
+First Principles with Python by Joel Grus, Data Science from Scratch. Publisher: O’Reilly Media; 2nd Edition, 2019. ISBN-10: 1492041130. ISBN-13: 978-1492041139.
+
+Course Topics: 
+Introduction to Computer Science, Data Science and AI: History of Data Science and AI, Data Science and AI Applications and Trends (2 lectures)
+Data types and structures: Numerical data, categorical data, text data, data structures such as arrays, tables, and graphs (2 lectures) 
+Introduction to fundamentals of data science: Problem-solving with data, data collection, data pre-processing, exploratory data analysis, data acquisition, data cleaning, examples of features, and data visualization (6 lectures) 
+Introduction to machine learning: supervised learning with applications, unsupervised learning with applications (4 lectures) 
+Introduction to deep learning: introduction to neural networks, application of Conventional Neural Networks (CNN), applications of Recurrent Neural Networks (RNN) (4 lectures)
+Introduction to Natural Language Processing: Application 1: Text processing, Application 2: Sentiment analysis (4 lectures)
+Applications of AI and Data Science: Computer vision, Speech recognition, Autonomous driving (6 lectures)
+Ethics and Privacy in AI and Data Science: Bias in Data and Algorithms, Privacy and Security (2 lectures)
+
+Course Structure and Methodology: 
+Lectures are 2 x 50 minutes; Laboratory sessions are 1 x 150 min per week. The course is delivered through classroom lectures, problem-solving sessions, and laboratory work. Individual assignments and quizzes are held throughout the semester to reinforce knowledge of the material. 
+ 
+ Lab Topics: 
+
+Week 
+ Topics
+ 
+2 
+ Introduction to AI with Python 
+ 
+3
+ NumPy, SciPy, plotting, Pandas 
+ 
+4 
+ Data visualization 
+ 
+5
+ Classification with Python
+ 
+6
+ Clustering with Python
+ 
+7
+ Regression with Python
+ 
+8
+ Prediction with Python
+ 
+9 
+ Sentiment Analysis, text classification
+ 
+10 
+ Tools for object recognition and image classification
+ 
+11
+ Experience with AI kits such as (vision, voice, and maker google AIY kits)
+ 
+12
+ Experience with self-driving platforms for small scale cars such as donkeycar.
+ 
+
+Computing Resources: 
+Standard computer lab with personal computers; Python interpreter and IDE. 
+Donkeycar kits, google AIY kits. 
+
+Assessment: 
+All course learning outcomes are assessed using the following assessment tools. 
+Assessment Instruments 
+ Contribution to course grade (%) 
+ 
+Coursework (quizzes, homework/project) 
+ 25% 
+ 
+Laboratory Work 
+ 15% 
+ 
+Semester Examination 
+ 25% 
+ 
+Final Examination 
+ 35% 
+ 
+ 
+ 
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs): 
+1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 
+M 
+ M 
+ - 
+ L 
+ - 
+ M
+ 
+H – High M – Medium L – Low 
+ 
+Contribution to Engineering Program Learning Outcomes (PLOs): 
+1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 7 
+ 
+M 
+ M
+ - 
+ L 
+ - 
+ M 
+ - 
+ 
+ H – High M – Medium L – Low
+
+Course Learning Outcomes (CLOs) and Engineering Program Learning Outcomes (PLOs): 
+No. 
+ Course Learning Outcomes 
+ PLOs CS
+ PLOs ENG
+ 
+1 
+ Assess Ethical issues in practical applications of intelligent systems 
+ 4
+ 4
+ 
+2 
+ Apply AI principles and techniques to solve engineering and science problems
+ 1,2
+ 1,2
+ 
+3 
+ Demonstrate the ability to collect, prepare and process data for analysis.
+ 1, 6
+ 1, 6
+ 
+4 
+ Analyze data using different data science methods and techniques 
+ 1, 2 
+ 1, 2
+ 
+
+Syllabus Supplement for Students
+
+ 
+Course Code and Title
+ COSC 202 Data Science and Artificial Intelligence
+ 
+Semester
+ TBD
+ 
+Instructor Name
+ TBD
+ 
+Contact Email
+ TBD
+ 
+Office Room No.
+ Main Campus Bldg. C 
+ 
+Office Hours
+ TBD
+ 
+
+Assessment Methodology 
+ 
+
+ Tentative Dates
+ Weight (%) 
+ 
+Coursework (quizzes, homework/project)
+ 
+ (Every 3-4 weeks)
+ 25
+ 
+Midterm Examination (s)
+ 
+ Week 8
+ 25
+ 
+Final Examination
+ 
+ Week 16
+ 35
+ 
+Laboratory Work
+ 
+ Weeks 14
+ 15
+ 
+
+Instructor Policy on late submission of assignments:
+Assignments (i.e., take-home quizzes, if any) must be done individually and to be submitted on the due date. 
+You are encouraged to:
+Set your personal deadline earlier than the actual one
+Keep backups of all your important files
+Ensure someone else does not pick up your printouts
+ 
+
+Honor Code Academic Pledge:
+
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+
+TEACHING PLAN (Lecture):
+Teaching Plan
+Week 1 
+ 
+Introduction to Computer Science, Data Science and AI: History of data science and AI, Data science and AI applications and trends
+ 
+Week 2 
+ Data types and structures: Numerical data, categorical data, text data, data structures such as arrays, tables, and graphs
+ 
+Week 3 
+ Introduction to fundamentals of data science: data collection, data pre-processing.
+ 
+Week 4 
+ Introduction to fundamentals of data science: exploratory data analysis, data acquisition, data cleaning, and examples of features.
+ 
+Week 5 
+ Introduction to fundamentals of data science: data visualization
+ 
+Week 6 
+ Introduction to machine learning: supervised learning with applications
+ 
+Week 7 
+ Introduction to machine learning: unsupervised leaning with applications
+ 
+Week 8 
+ Introduction to deep learning: introduction to neural networks, application of Conventional Neural Networks (CNN)
+ 
+Week 9 
+ Introduction to deep learning: applications of Recurrent Neural Networks (RNN)
+ 
+Week 10 
+ Introduction to Natural Language Processing: Application 1: Text processing, 
+ 
+Week 11 
+ Introduction to Natural Language Processing: Application 2: Sentiment analysis
+ 
+Week 12 
+ Applications of AI and Data Science: Computer vision
+ 
+Week 13 
+ Applications of AI and Data Science: Speech recognition
+ 
+Week 14 
+ Applications of AI and Data Science: Autonomous driving
+ 
+Week 15 
+ Ethics and Privacy in AI and Data Science: Bias in data and algorithms, Privacy and security
+ 
+
+LABORATORY SCHEDULE (if applicable):
+Teaching Plan
+Week 1
+ 
+N/A
+ 
+Week 2
+ Introduction to AI with Python 
+ 
+Week 3
+ NumPy, SciPy, plotting, Pandas 
+ 
+Week 4
+ Data visualization 
+ 
+Week 5
+ Classification with Python
+ 
+Week 6
+ Clustering with Python
+ 
+Week 7
+ Regression with Python
+ 
+Week 8
+ Prediction with Python
+ 
+Week 9
+ Sentiment Analysis, text classification
+ 
+Week 10
+ Tools for object recognition and image classification
+ 
+Week 11
+ Experience with AI kits such as (vision, voice, and maker google AIY kits)
+ 
+Week 12
+ Experience with self-driving platforms for small scale cars such as donkeycar.
+ 
+
+Grading Scheme 
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as set out below: 
+ 
+ Letter Grade Grade Point Description 
+A 
+ 4.00 
+ Excellent 
+ 
+A- 
+ 3.70 
+ Very Good 
+ 
+B+ 
+ 3.30 
+ 
+ 
+B 
+ 3.00 
+ Good 
+ 
+B- 
+ 2.70 
+ 
+ 
+C+ 
+ 2.30 
+ Satisfactory 
+ 
+C 
+ 2.00 
+ 
+ 
+C- 
+ 1.70 
+ Less Than Satisfactory 
+ 
+D 
+ 1.00 
+ Poor 
+ 
+F 
+ 0.00 
+ Fail 
+ 
+WF 
+ 0.00 
+ Withdrew Failing 
+ 
+ 
+The following indicates typical ranges associated with letter grades for KU Undergraduate courses. 
+Letter Grade 
+ Percentage Grade Range 
+ 
+ A 
+ From 92.5% to 100%
+ 
+ A- 
+ From 89.5% to less than 92.5%
+ 
+ B+ 
+ From 86.5% to less than 89.5%
+ 
+ B 
+ From 82.5% to less than 86.5%
+ 
+ B- 
+ From 79.5% to less than 82.5%
+ 
+ C+ 
+ From 76.5% to less than 79.5%
+ 
+ C 
+ From 72.5% to less than 76.5%
+ 
+ C- 
+ From 69.5% to less than 72.5%
+ 
+ D 
+ From 59.5% to less than 69.5%
+ 
+ F 
+ Less than 59.5%
+ 
+
+﻿May 2024

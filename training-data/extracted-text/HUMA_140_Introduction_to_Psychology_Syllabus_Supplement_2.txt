@@ -1,0 +1,211 @@
+--- Page 1 ---
+HUMA 140 Introduction to Psychology
+(3 Lectures, 0 Laboratory – 3 Credits)
+Pre-requisite: ENGL 101 or ENGL 111
+Course Catalog Description:
+This course examines historical and current topics related to the mind and behavior with research methods
+and the scientific method as a foundation. Areas covered in this course include biology, development,
+memory, learning, social psychology, personality, psychological disorders, health psychology, and
+positive psychology.
+Textbook:
+th
+Psychology in Everyday Life by David G. Myers and C. Nathan Dewall, Publisher: Worth Publishers, 5
+Edition, 2019, ISBN: 9781319133726
+Reference Materials:
+th
+Discovering Statistics Using IBM SPSS Statistics by Andy Field, Publisher: SAGE Publications Ltd., 5
+edition, 2018, ISBN: 9781526419514
+Motivation, Altruism, Personality, and Social Psychology by Michael Babula, Publisher: Palgrave
+Macmillan, 2013, ISBN: 9781137031280
+Course Topics:
+1. Introduction to psychology: contemporary psychology, early research, pioneers (3 lectures)
+2. Research methodologies: planning and conducting research, analyzing data, reporting results, and
+research ethics (4 lectures)
+3. The biology of the mind and consciousness: neuroanatomy and neurophysiology, brain areas, the
+endocrine system, and stages of sleep (6 lectures)
+4. Development through the lifespan: genes, chromosomes, inheritance of behavior, epigenetics,
+continuity and stage theory, and stability and change in behavior (3 lectures)
+5. Learning: classical conditioning, operant conditioning, evolutionary influences on behavior, and
+observational learning (5 lectures)
+6. Memory: the information-processing model; encoding, storage, and retrieval of memories,
+forgetting, memory construction errors, and strategies to improve memory (4 lectures)
+7. Motivation and emotion: physiology of hunger and motivational concepts such as drives, incentives,
+arousal theory, and Maslow’s hierarchy of needs (1 lecture)
+8. Stress, health psychology, and positive psychology: stressors, stress reactions, the immune system,
+stress management techniques, coping with stress, and positive psychology interventions to improve
+overall life satisfaction (6 lectures)
+9. Social psychology: social thinking, attitudes versus behavior, conformity, groupthink, aggression,
+and altruism (3 lectures)
+10. Personality: psychodynamic theories, new advances in neuroscience, biological basis for personality
+traits, social-cognitive theories, and self-esteem (4 lectures)
+11. Psychological disorders: psychological disorders such as anxiety, substance use disorders, major
+depressive and bipolar disorder, schizophrenia, eating disorders, and anti-social personality disorders
+(6 lectures)
+Syllabus and Supplement 1
+
+--- Page 2 ---
+HUMA 140 Introduction to Psychology (3-0-3)
+___________________________________________________________________________________________
+Structure and Learning Methodologies:
+Lectures will be 4 x 110 minutes per week. For the final project, students are to create a poster and give a
+10 to 15 minute in-class presentation or podcast.
+Computer Resources:
+Access to MS Excel and/or IBM SPSS is needed for students who optionally elect to undertake statistical
+analysis in psychology for the final project.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Assignments, quizzes) 40%
+Semester Examination(s) 30%
+Final Project 30%
+Contribution to General Education Learning Outcomes (GELOs):
+1A 1B 1C 1D 1E 2A 2B 2C 2D 2E 3A 3B 3C 3D 3E
+H --- M --- --- H M M H H H --- M H M
+H – High M – Medium L – Low
+Course Learning Outcomes & GELOs:
+No. Course Learning Outcomes GELOs
+1 Explain behaviors and mental processes using basic psychological 1A, 2A
+terminology, concepts, and theories in psychology & 3E
+2 Describe examples of relevant and practical applications of psychological 1A, 2A,
+principles to everyday life. 2D,
+3A, 3C,
+3D & 3E
+3 Discuss the value of experimental design in justifying cause-effect 1C, 2D &
+relationships. 3D
+4 Explain the interdependence of genetic and environmental determinants on
+1A & 2D
+behavior.
+5 Write a project report and prepare a poster presentation conforming to 2A, 2B,
+standard formatting. 2C, 2D,
+2E, 3A, 3D
+& 3E
+Description of the Assessments
+Quizzes – (10% each)
+Three quizzes worth 10% each are required for this course. Each quiz is 25 questions and will test recall
+and recognition of the material studied. The first quiz covers material from introduction to psychology to
+development through the lifespan. The second quiz covers material from learning to social psychology.
+The third quiz covers material from personality to psychological disorders. Each quiz will consist of 25
+questions.
+Syllabus and Supplement 2
+
+--- Page 3 ---
+HUMA 140 Introduction to Psychology (3-0-3)
+___________________________________________________________________________________________
+Research Assignment (10%)
+Students are required to undertake the Gosling et al. (2003) Ten Item Personality Inventory (TIPI) which
+is a short measure for the Costa and McCrae (1992) Five Factor Inventory for personality traits. Students
+will discuss their results and use the literature to discuss whether their personality traits align to music,
+language, and other personal preferences in social situations. Using the literature, students will be required
+to estimate whether the TIPI is valid and reliable. The students will be required provide critical analysis
+as to whether there exists a neurobiological basis that explains personality traits. Students are required to
+obtain a minimum of three peer reviewed journal citations. All references must be IEEE compliant.
+Midterm Exam (30%)
+This is a cumulative in-class exam held halfway through the academic semester. The exam will consist
+of three essay questions worth 75% as well as 25 fill-in-the-blank and multiple choice questions worth
+25%.
+Final Project (30%)
+Students will provide an in-class poster presentation on a selected topic. Students will devise a research
+topic based on the topics studied in the course and seek approval of the research topic form the course
+leader. Once selected, the research topic is not subject to change. Students will need to use a section
+highlighting the research methods used for the poster. Students need to conduct a professional
+presentation about the topic using at least five peer reviewed journal citations. All references must be
+IEEE compliant.
+Syllabus and Supplement 3
+
+--- Page 4 ---
+HUMA 140 Introduction to Psychology (3-0-3)
+___________________________________________________________________________________________
+Organizational Details
+Course Code and Title: HUMA 140 – Introduction to Psychology
+Summer 2025
+Semester:
+Monday, Tuesday, Wednesday, Thursday
+Schedule:
+Sec 2 – M T W R 12:00 – 1:40 PM (G03009)
+Classrooms:
+Sec 1 – M T W R 2:00 – 3:40 PM (G03009)
+Instructor: Dr. Michael Babula
+Contact Email: michael.babula@ku.ac.ae
+Man-A-2F-
+Office Room Number: Contact Number: Office Ext: 4458
+A02087-C
+Monday: 4:00pm-5:00pm, Tuesday: 4:00pm-5:00pm
+Office Hours:
+Additional Office Hours by Appointment.
+Assessment Methodology
+Tentative Dates Weight
+*Coursework: Quiz # 1 (Week 2) 10%
+Assignment (Week 4) 10%
+Quiz # 2 (Week 4) 10%
+Quiz # 3 (Week 5) 10%
+Quiz & 40%
+Assignment
+Weight
+Midterm Examination: (Week 3) 30%
+Final Project (Weeks 5/6) 30%
+*Subject to change due to holidays. See messages posted in Moodle.
+Instructor Policy on Late Submission of Assignments:
+Quizzes and Exams – No makeup quizzes and exams unless a justified excuse is received via email
+from the Registrar. Failure to provide this documentation will result in a zero for the quiz or exam.
+There are no make-up quizzes after the last day of class.
+Syllabus and Supplement 4
+
+--- Page 5 ---
+HUMA 140 Introduction to Psychology (3-0-3)
+___________________________________________________________________________________________
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+Week Dates Topics and Reminders
+1 May 26 – Orientation, Foundations of Psychology, Contemporary Psychology,
+My 29 Introduction to Scientific Method, Ch1 (2-25)
+Biology of the Mind, Ch2 (32-45)
+May 26 – Classes begin
+May 28 – End of add/drop for UG students
+2 June 2 – Biology of the Mind, Ch2 (46-56)
+June 5 Motivation & Personality, Ch9 (248-253), Ch12 (336-344)
+Supplemental Reading: Babula (2013), Ch1 (3-13) & Ch2 (14-23)
+Developing through the lifespan, Ch3 (70-90)
+Quiz 1
+June 5 – Arafat Day
+3 June 9 – Learning/How we learn, Ch6 (171-179)
+June 12 Learning/How we learn, Ch6 (180-185)
+Memory, Ch7 (190-197)
+Social Psychology, Ch11 (302-313)
+Social Psychology, Ch11 (315-330)
+Midterm
+June 6-8 – Eid Al Adha
+4 June 16 – Stress & Health, Ch10 (276-291)
+June 19 Psychological Disorders, Ch13 (362-379)
+Quiz 2
+Assignment Due via Blackboard
+June 20 Last Day to Withdraw with “W” & Run Census Report
+5 June 23 – Psychological Disorders, Ch13 (380-396)
+June 26 Final Project Presentations/Feedback
+Quiz 3
+6 June 30 Final Project Presentations/Feedback
+July 1 Last Day of Classes
+July 2 Final Exams Begin
+*This is a tentative schedule and may be adjusted as required.
+Syllabus and Supplement 5
+
+--- Page 6 ---
+HUMA 140 Introduction to Psychology (3-0-3)
+___________________________________________________________________________________________
+Khalifa University Letter Grades & Grade Boundaries: In this course we will use the following
+letter grades and grade boundaries for computing students’ final course grades,
+Letter Grade Percentage Grade Range Description
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than 92.5%
+Very Good
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D From 59.5% to less than 69.5% Poor
+F Less than 59.5% Fail
+Syllabus and Supplement 6

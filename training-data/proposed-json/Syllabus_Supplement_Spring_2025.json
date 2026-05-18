@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "Syllabus Supplement - Spring 2025.pdf",
+  "sourcePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Syllabus Supplement - Spring 2025.pdf",
+  "sourceRelativePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Syllabus Supplement - Spring 2025.pdf",
+  "sourceTextFileName": "Syllabus_Supplement_Spring_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 352",
+  "courseName": "Fundamental of Biomedical Signal Processing",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "mohamed.seghier@ku.ac.ae / 5041",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

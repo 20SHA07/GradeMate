@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "Syllabus Supplement for Students.pdf",
+  "sourcePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+  "sourceRelativePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+  "sourceTextFileName": "Syllabus_Supplement_for_Students.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 322",
+  "courseName": "Functional Biomechanics",
+  "creditHours": null,
+  "semester": "Spring 2023",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

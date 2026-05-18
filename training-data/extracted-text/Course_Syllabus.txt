@@ -1,0 +1,85 @@
+--- Page 1 ---
+BMED 352 Fundamentals of Biomedical Signal Processing
+(3 Lectures, 3 Laboratories – 4 Credits)
+Prerequisite: BMED 351
+Course Catalog Description:
+The primary objective of this course is to study analogue and digital signal processing techniques
+and microcomputer system, and their application to biomedical instrumentation and physiological
+measurements. This course is designed for students who are expected to have prior knowledge in
+circuits and physiological system modelling. The main focus is on the technical aspects of
+biosignal processing and its hardware implementation in medical instruments.
+Textbooks:
+Discrete-Time Signal Processing by Alan V. Oppenheim, Ronald W. Schafer, Publisher: Prentice
+Hall, ISBN: 9781292025728, Pearson New International Edition, 2013.
+Reference Materials:
+• Oppenheim, Alan, and Alan Willsky. Signals and Systems. 2nd ed. Upper Saddle River, NJ:
+Prentice Hall, 1996. ISBN: 9780138147570.
+• S. K. Mitra, Digital Signal Processing: A Computer-Based Approach, McGraw-Hill, 4th
+edition, 2011. ISBN: 978-007-128946.
+• Medical Instrumentation: Application and Design (4th edition), J. Webster, ed., John Wiley &
+Sons, Hoboken, NJ, 2009
+• Bruce, Eugene N. Biomedical signal processing and signal modelling. Published New York:
+Wiley,
+• Fredrick M. Cady, Software and Hardware Engineering: Assembly and C programming for
+the Freescale HCS12 Microcontroller, Oxford University Press, 2007
+Course topics:
+1. Introduction to continuous signals (4 lectures)
+2. Fourier transform of continuous signal (3 lectures)
+3. Practical issues of sampling and discretization of continuous signal (2 lectures)
+4. Introduction to discrete signals (2 lectures)
+5. Discrete Fourier Transform and frequency responses (4 lectures)
+6. Z-transform and transfer function representation of discrete time system (6 lectures)
+7. Stability and transient response of transfer function (2 lectures)
+8. Closed loop control system (3 lecture)
+9. Discrete system convolution (finite and infinite response systems) (2 lectures)
+10. Design of Digital filters (4 lectures)
+11. Noise removal and signal enhancement (5 lectures)
+12. Examples of AI based models in biomedical devices (2 lectures)
+13. Functional organization of a microcontroller (2 lectures)
+14. Functional organization of a medical device (2 lectures)
+15. Practical Issues in implementing digital signal processing systems in medical devices (2
+lectures)
+Laboratory experiments:
+1. Introduction to MATLAB signal processing toolbox and Simulink
+2. Design of a simple discrete system in MATLAB Discrete Fourier Transform (DFT) to analyze
+frequency spectrum of bio signals
+November 2021 1
+
+--- Page 2 ---
+BMED 352 Fundamentals of Biomedical Signal Processing (3-3-4)
+_____________________________________________________________________________________________
+3. Design of a digital filter for bio signals using MATLAB
+4. Practical realization of a discrete system for processing bio signals using MATLAB
+5. Design of a MATLAB/Simulink model for cardiovascular and cardiorespiratory closed loop
+control system.
+6. Design a simple microcontroller based system for implementing a digital filter for bio signal
+measurement and processing
+7. Projects works on designing a discrete signal processing system for a physiological function
+and realizing the same in a microcontroller platform.
+Structure and Learning Methodologies:
+Lectures will be 3x50 or 2x75 minutes and laboratory will be 1x150 minutes per week. Learning
+methodology includes classroom lecture, problem based learning, laboratory experiments and
+project based collaborative learning.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework,) 25%
+Laboratory 25%
+Semester Examination 25%
+Final Examination 25%
+Contribution to Engineering Students Outcomes:
+1 2 3 4 5 6 7
+H L L --- H H M
+H – High M – Medium L – Low
+Course Learning Outcomes & Student Outcomes:
+No Course Learning Outcomes Student
+Outcomes
+1 Demonstrate the ability to analyse continuous-time and discrete-time signals 1, 5, 7
+and systems.
+2 Analyze the digital signal processing techniques and their applications to 1, 2, 6
+bio signals
+3 Develop skills in biomedical signal processing using MATLAB 1, 2, 5
+4 Apply fundamental mathematical analysis, AI and modelling techniques to 1,2,3
+understand signals and systems in both time-domain and frequency-
+domain.
+*This syllabus is augmented by a Syllabus Supplement for Students.
+November 2021 2

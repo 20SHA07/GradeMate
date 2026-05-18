@@ -1,0 +1,19 @@
+{
+  "sourceFileName": "Syllabus.pdf",
+  "sourcePath": "ENGL\\ENGL 102 Academic English II\\Syllabus.pdf",
+  "sourceRelativePath": "ENGL\\ENGL 102 Academic English II\\Syllabus.pdf",
+  "sourceTextFileName": "Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "creditHours": 3,
+  "semester": "Fall 2022",
+  "instructor": "Dr. Nader Ayish",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found"
+  ],
+  "confidence": 0.2,
+  "needsHumanReview": true
+}

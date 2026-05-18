@@ -1,0 +1,22 @@
+{
+  "sourceFileName": "CHEM 211_Spring 2025-Syllabus Supplement.docx",
+  "sourcePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2025-Syllabus Supplement.docx",
+  "sourceRelativePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2025-Syllabus Supplement.docx",
+  "sourceTextFileName": "CHEM_211_Spring_2025_Syllabus_Supplement.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEM 211",
+  "courseName": "01 Fundamentals of Organic Chemistry",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Manzar Abbas",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.16,
+  "needsHumanReview": true
+}

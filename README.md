@@ -160,6 +160,32 @@ The older `import:templates` command scans broader course-material folders and
 is kept for experiments. The Course Library UI only shows templates created from
 detected syllabuses.
 
+## Syllabus Extraction Dataset Builder
+
+Use the dataset scripts to benchmark GradeMate extraction quality before changing
+the parser or AI prompts. These scripts do not train a model and do not write to
+Supabase.
+
+```bash
+npm run dataset:scan -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run dataset:propose -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run dataset:review
+npm run test:dataset
+```
+
+Outputs:
+
+- `training-data/extracted-text/` stores extracted syllabus text.
+- `training-data/proposed-json/` stores GradeMate's current extraction guesses.
+- `training-data/expected-json/` stores human-corrected golden answers.
+- `training-data/review-report.html` gives a browser-friendly review report.
+
+The scanner filters for likely syllabus PDFs and DOCX syllabus documents, skips
+common course materials such as slides, labs, assignments, exams, notes, and
+practice files, and records parsing errors for review. The first golden fixture
+is `COSC101_Syllabus_and Syllabus_Supplement`, which checks that detailed
+assessment rows are preferred over broad or unrelated tables.
+
 In Supabase Auth URL Configuration, use:
 
 ```text

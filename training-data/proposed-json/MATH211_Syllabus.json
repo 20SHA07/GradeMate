@@ -1,0 +1,20 @@
+{
+  "sourceFileName": "MATH211-Syllabus.docx",
+  "sourcePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\MATH211-Syllabus.docx",
+  "sourceRelativePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\MATH211-Syllabus.docx",
+  "sourceTextFileName": "MATH211_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 211",
+  "courseName": "Differential Equations and Linear Algebra",
+  "creditHours": 4,
+  "semester": "Spring 2024",
+  "instructor": "Dr. Khaled Dib",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.2,
+  "needsHumanReview": true
+}

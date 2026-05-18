@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+  "sourcePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\Syllabus\\Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+  "sourceRelativePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\Syllabus\\Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+  "sourceTextFileName": "Math_211_Syllabus_Supplement_Spring_25_updated.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 211",
+  "courseName": "Differential Equations and Linear Algebra",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

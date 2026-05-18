@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourcePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourceRelativePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourceTextFileName": "COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 201",
+  "courseName": "Computer Systems Organization",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

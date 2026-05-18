@@ -1,0 +1,365 @@
+MATH 211 Differential Equations and Linear Algebra 
+(4 Lecture, 0 Laboratory – 4 Credits)
+
+Prerequisite: MATH 112
+Co-requisite: None
+
+Course Catalog Description: 
+This course introduces ordinary differential equations with linear algebra. The course covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector spaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first-order differential equations, higher-order linear equations with constant coefficients, linear and almost linear systems of differential equations, and Laplace transforms.
+
+Textbook:
+Differential Equations and Linear Algebra by C. Edwards, D. Penney and David Calvis, Publisher: Pearson, 4th Global Edition, e-book, 2020, ISBN: 9780137313617.
+
+Reference Materials:
+Differential Equations and Linear Algebra by Gilbert Strang, Publisher: Wellesley-Cambridge, UK edition, 2015, ISBN: 9780980232790.
+
+Course Topics:
+Solving systems of linear algebraic equations (6 lectures)
+Basic matrix properties, determinant, and inverse of a matrix (6 lectures)
+Vector spaces and subspaces, row space, null space, and column space (6 lectures)
+Basis, dimension, rank, and nullity (4 lectures)
+Eigenvalues and eigenvectors (2 lectures)
+Classification of differential equations (1 lecture)
+First-order differential equations (8 lectures)
+Second-order ordinary differential equations (8 lectures)
+Applications of second-order ordinary differential equations (4 lectures)
+Systems of linear differential equations (5 lectures)
+Laplace transforms (5 lectures)
+Solving initial value problems using Laplace transforms (5 lectures)
+
+Structure and Learning Methodologies:
+The weekly lectures amount to a total duration of 200 minutes and can be organized into either two or three sessions per week. In addition to the standard lecture presentations, supplementary materials such as handouts and PowerPoint slides may be provided.
+
+Computer Resources: 
+None.
+
+Assessment: 
+All course learning outcomes are assessed using the following assessment tools. 
+Coursework (quizzes and homework)
+ 40%
+ 
+Midterm Examination
+ 25%
+ 
+Final Examination 
+
+ 35%
+ 
+ 
+Contribution to Student Learning Outcomes: 
+a
+ b
+ c
+ d
+ e
+ f
+ g
+ h
+ i
+ j
+ k
+ 
+M
+ ---
+ L
+ ---
+ M
+ ---
+ ---
+ ---
+ ---
+ ---
+ ---
+ 
+H – High                     M – Medium               L – Low
+ 
+
+Course Learning Outcomes & Student Outcomes:
+
+No.
+ Course Learning Outcomes
+ Student Outcomes
+ 
+1
+ Solve systems of linear equations.
+ a, e
+ 
+2
+ Compute eigenvalues, eigenvectors and eigenspaces.
+ a, c 
+ 
+3
+ Apply the concepts of vector spaces to the solution of ordinary differential equations.
+ a, e
+ 
+4
+ Solve real world problems using ordinary differential equations and systems of differential equations.
+ a, e
+ 
+5
+ Solve initial value problems using Laplace transforms.
+ a, c
+ 
+ 
+
+Organizational Details
+ 
+Course Code and Title
+ MATH 211 Differential Equations and Linear Algebra
+ 
+Semester:
+ Spring 2024
+ 
+Schedule:
+ TTh 2:00-3:40
+ 
+Instructor:
+ Dr. Khaled Dib
+ Classroom: L01007
+ 
+Contact Email:
+ khaled.dib@ku.ac.ae
+ 
+Office Room Number:
+ SAN****, MAIN *****
+ 
+Office Hours:
+ XXXXXXX 
+ 
+
+Assessment Methodology 
+ 
+
+ Tentative Dates
+ Weight
+ 
+Coursework:
+ Quiz 1
+ Week 3
+ 40%
+ 
+
+ Quiz 2
+ Week 5
+ 
+ 
+
+ Quiz 3
+ Week 10
+ 
+ 
+
+ Quiz 4
+ Week 13
+ 
+ 
+Midterm Examination:
+ Week 8: 
+ 25%
+ 
+Final Examination:
+ TBD by the Registrar’s Office
+ 35%
+ 
+
+Instructor Policy on Late Submission of Assignments:
+
+Quizzes – There will be no make-up for missed quizzes. If you fail to attend scheduled quizzes without an approved absence from the Student Services, then you will receive a grade of zero for that quiz. If Student Services validates the absence of missed quizzes: 
+If you miss one quiz, that quiz will be considered your dropped quiz.
+If you miss two quizzes, one will be dropped, and the other will receive the grade you achieve on the Final Exam. 
+Missing more than two quizzes will result in a grade of zero for the third and possibly the fourth missed quizzes.
+Midterm Examination - There will be no make-up Midterm Examination. If you fail to attend the scheduled Midterm Examination without an approved absence from the Student Services, then you will receive a grade of zero for the Midterm Examination. 
+If the Student Services confirm that the absence on the Midterm Examination is approved, then the grade that you achieve for the Final Examination will also be assigned as your grade for the Midterm Examination.
+ 
+
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+
+Teaching Plan (Lectures):
+
+Week
+ Dates
+ Topics and Reminders
+ 
+1
+ January 15 
+ Ch1: First –Order Differential Equations
+Differential Equations and Mathematical Models
+Integrals as General and Particular Solutions
+1.4 Separable Equations and Applications
+ 
+2
+ January 22 
+ 1.5 Linear First-Order Equation
+1.6. Substitution Methods
+ 
+3
+ January 29 
+ Chapter 3: Linear Systems and Matrices
+3.1 Introduction to Linear Systems
+3.2 Matrices and Gaussian Elimination 
+3.3 Reduced Row-Echelon Matrices
+ Quiz 1 ( )
+ 
+4
+ February 5 
+ 3.4 Matrix Operations
+3.5 Inverse of Matrices
+3.6 Determinants 
+ 
+5
+ February 12 
+ Chapter 4 Vector Spaces
+4.2 The Vector Space Rn and Subspaces
+4.3 Linear Combinations and Independence of Vectors
+ Quiz 2 ( )
+ 
+6
+ February 19 
+ 4.4 Bases and Dimension for Vector Spaces
+4.5 Row and Column Spaces
+ 
+7
+ February 26 
+ 4.6 Orthogonal Vector in Rn
+Chapter 5: Higher-Order Linear Differential Equations
+5.1 Introduction: Second-Order Linear Differential Equations
+ 
+8
+ March 4 
+ 5.2 General Solutions of Linear Equations
+5.3 Homogeneous Equations with constant Coefficients
+Midterm Examination
+ 
+9
+ March 11 
+ 5.4 Mechanical Vibrations
+5.5 Nonhomogeneous Equations: The Method of Undetermined Coefficients
+ 
+10
+ March 18 
+ 5.6 Forced Oscillations and Resonance
+Chapter 6 Eigenvalues and Eigenvectors
+6.1 Introduction to Eigenvalues
+Quiz 3
+ 
+11
+ April 1 
+ 6.2 Diagonalization of Matrices
+Chapter 7 Linear Systems of Differential Equations
+7.1 First-Order Systems and Applications
+7.2 Matrices and Linear System 
+ 
+12
+ April 15 
+ 7.3 The Eigenvalue Method for Linear Systems 
+Chapter 10 Laplace Transform Methods
+10.1 Laplace Transform and Inverse Transforms
+ 
+13
+ April 22 
+ 10.2 Transformation of Initial Value Problems
+10.3 Translation and Partial Fractions
+ Quiz 4 ( )
+ 
+14
+ April 29 
+ 10.4 Derivatives, Integrals, and Products of transforms
+10.5 Periodic and Piecewise Continuous Input Functions
+ 
+
+This is a tentative schedule and may be adjusted as required.
+
+Additional Information:
+Assessment
+
+Unreadable and/or poorly written algebraic steps in the solution process will be penalized.
+
+If an answer is given but the working is not shown, then zero credit is awarded.
+
+There are 4 quizzes scheduled in this course. Only the best 3 quiz scores will count towards your final grade, i.e. the lowest quiz score will be dropped. Each quiz will therefore count for 13.33% of your final grade for the course.
+
+Calculator Policy
+
+You may use a basic scientific calculator to help you with arithmetic computations in this course. The calculator must not have a graphing capability. The calculator must not be capable of performing symbolic manipulation. The calculator must not be capable of computing derivatives and integrals. A good example of an appropriate calculator is the Casio fx-82ES.
+
+You will be permitted to use your (basic) calculator in the Quizzes, Midterm Examination and the Final Examination. Please do not try to use a more powerful calculator in the Quizzes and Examinations as it will be confiscated.
+
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final Examination. Mobile phones must be switched off during quizzes and exams and must be put away for the duration of the quiz/exam.
+
+Classroom Policies
+
+Discipline is one of the main components of your academic and professional success. Please make every effort to arrive at the class periods in a timely fashion. Students arriving late to class are a distraction to both the instructor and the other students in the classroom. If students require the class periods to end on time then the class periods must begin on time.
+
+If you are absent from any class period it is your responsibility to make-up the missed material.
+
+All electronic devices must be switched off and put away during the class time.
+
+Homework Policy
+
+Homework is your responsibility. Homework exercises have been selected to enable you to practice the material covered in the class and to self-test your learning of the material. Homework solutions will not be collected-in nor graded. You are expected to have completed the homework exercises, and to have sought assistance with any of the exercises which have caused you difficulty, before the next class period. Assistance is readily available in Instructor Office Hours.
+ 
+
+Grading Scheme
+Khalifa University Letter Grades & Grade Boundaries: In this course, we will use the following letter grades and grade boundaries for computing students’ final course grades:
+
+Letter Grade
+ Percentage Grade Range
+ Description
+ 
+
+ A
+ From 92.5% to 100%
+ Excellent
+ 
+
+ A-
+ From 89.5% to less than 92.5%
+ Very Good
+ 
+
+ B+
+ From 86.5% to less than 89.5%
+ 
+ 
+
+ B
+ From 82.5% to less than 86.5%
+ Good
+ 
+
+ B-
+ From 79.5% to less than 82.5%
+ 
+ 
+
+ C+
+ From 76.5% to less than 79.5%
+ Satisfactory
+ 
+
+ C
+ From 72.5% to less than 76.5%
+ 
+ 
+
+ C-
+ From 69.5% to less than 72.5%
+ Less Than Satisfactory
+ 
+
+ D
+ From 59.5% to less than 69.5%
+ Poor
+ 
+
+ F
+ Less than 59.5%
+ Fail
+ 
+
+UCC: January 2024 PAGE \* MERGEFORMAT 3
+
+MATH 211 Linear Algebra (4–0–4)
+___________________________________________________________________________________

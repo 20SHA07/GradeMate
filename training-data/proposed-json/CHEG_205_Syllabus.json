@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "CHEG 205 - Syllabus .pdf",
+  "sourcePath": "CHEG\\CHEG 205 Principles of Chemical Engineering\\CHEG 205 - Syllabus .pdf",
+  "sourceRelativePath": "CHEG\\CHEG 205 Principles of Chemical Engineering\\CHEG 205 - Syllabus .pdf",
+  "sourceTextFileName": "CHEG_205_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 205",
+  "courseName": "Principles of Chemical Engineering",
+  "creditHours": null,
+  "semester": "Fall 2023",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

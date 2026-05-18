@@ -1,0 +1,98 @@
+--- Page 1 ---
+BMED 221 Syllabus Supplement for Students
+BMED 221 Anatomy and Physiological Modeling for
+Course Code and Title
+Engineers
+Semester: Spring 2024
+Instructor Name Ali A. Khraibi and Okobi Ekpo
+ali.khraibi@ku.ac.ae Tel 2 312 3883
+Contact Email/ Office Ext. No.
+okobi.ekpo@ku.ac.ae Tel 2 312 4912
+A02092 (Ali A. Khraibi)
+Office Room No.
+B0063A (Okobi Ekpo)
+Office Hours Tuesday, Thursday, and Friday from 9:00 AM-12:00 Noon
+Assessment Methodology
+Tentative Dates Weight
+Quiz 2 Quizzes Week 7 and 13 20%
+Coursework
+Problem Sets Homework 4 in total 10%
+Modeling Topic Proposal Week 7 5%
+Working Model Due Week 11 5%
+Student Modeling Project
+Complete Model White Paper
+Week 13-15 20%
+And Presentations
+Final Examination Final Examination Finals Week 40%
+Instructor Policy on late submission of assignments:
+ Attendance: You are responsible for what you missed.
+ Homework: Homework is due 7 days after date assigned. If not completed during this time you
+will get a “0”. No extension unless there is an excused absence from the registrar’s office.
+ Model: Modeling section is a large component of the course grade. You are responsible for
+designing and completing your model. The Model White Paper will be assessed for hypothesis
+and problem statement, subject development, correct grammar, and model description.
+ Quizzes: Two quizzes will be held and will take up 20% of the grade
+ Exams: There are no make-up exams unless there is an excused absence from the registrar’s
+office. You will get a “0” if you miss an exam with an unexcused absence.
+ Plagiarism and Cheating: Zero tolerance of any types of academic dishonesty.
+Honor Code Academic Pledge:
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture)
+Week 1 Cells and Tissues: an engineer’s delight (Chapters 1-4)
+Week 2 Musculoskeletal System 1 (Chapters 6-10)
+Week 3 Musculoskeletal System 2
+Week 4 Nervous System 1 (Chapters 11-16)
+Week 5 Nervous System 2
+Week 6 Endocrine System 1 (Chapters 17-18)
+Week 7 Endocrine System 2
+Week 8 Blood (Chapters 19)
+Week 9 Heart (Chapters 20)
+Week 10 Vascular System (Chapters 21)
+Week 11 Respiratory System 1 (Chapters 23)
+Week 12 Renal System 1 (Chapters 26-27)
+Week 13 Renal System 2
+Week 14 Gastrointestinal System 1 (Chapters 24-25)
+Week 15 Gastrointestinal System 2
+Finals Thursday May 09, 2024 Time: 12:30-14:30
+MODELING SCHEDULE: Wednesdays
+Week 3 Intro
+Week 4 Intro to Simbiology
+Week 5 Setting up model / Hypothesis testing
+Week 6 In-class model exercises
+Week 7 No modelling class (Quiz 1 on February 28, 24) and student topic proposal due
+Week 8 In-class model exercises
+Week 9 In-class model exercises
+Week 10 Open sessions / Student model review
+Week 11 In-class model exercises and student model due
+Week 12 In-class model exercises
+Week 13 No modelling class (Eid Holiday)
+Week 14 Open sessions/Group work on white paper and presentations (Quiz 2 on April 17, 24)
+Week 15 Project presentations
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Grading Scheme
+Khalifa University Letter Grades & Grade Boundaries: In this course we will use the following
+letter grades and grade boundaries for computing students’ final course grades,
+Letter
+Percentage Grade Range Description
+Grade
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than 92.5%
+Very Good
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D From 59.5% to less than 69.5% Poor
+F Less than 59.5% Fail
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 3 of 3

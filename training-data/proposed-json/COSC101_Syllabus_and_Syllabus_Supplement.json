@@ -1,0 +1,76 @@
+{
+  "sourceFileName": "COSC101_Syllabus_and Syllabus_Supplement.docx",
+  "sourcePath": "COSC\\COSC 101 Foundations of Computer Science\\COSC101_Syllabus_and Syllabus_Supplement.docx",
+  "sourceRelativePath": "COSC\\COSC 101 Foundations of Computer Science\\COSC101_Syllabus_and Syllabus_Supplement.docx",
+  "sourceTextFileName": "COSC101_Syllabus_and_Syllabus_Supplement.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 101",
+  "courseName": "Foundations of Computer Science",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Menatalla Abououf",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Lab Final Exam",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.91,
+  "needsHumanReview": false
+}

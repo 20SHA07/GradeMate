@@ -1,0 +1,21 @@
+{
+  "sourceFileName": "BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+  "sourcePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+  "sourceRelativePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+  "sourceTextFileName": "BMED_351_Biomed_Circuits_and_Systems_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 351",
+  "courseName": "Biomedical Circuits and Systems",
+  "creditHours": 4,
+  "semester": null,
+  "instructor": null,
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "confidence": 0.12,
+  "needsHumanReview": true
+}

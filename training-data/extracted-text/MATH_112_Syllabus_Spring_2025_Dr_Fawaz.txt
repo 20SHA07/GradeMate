@@ -1,0 +1,262 @@
+--- Page 1 ---
+(4 Lecture – 4 Credits)
+Prerequisite: MATH 111 (C grade or higher)
+Course Catalog Description:
+This is a second semester calculus course for students who have previously been introduced to
+the basic ideas of differential and integral calculus. The emphasis in this course is on problem
+solving, rather than theory. Topics include integration techniques, parametric equations,
+infinite series, an introduction to vectors and vector-valued functions, as well as an introduction
+to functions of several variables and double integrals.
+Textbook:
+Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad
+A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968.
+Reference Materials:
+ Calculus, James Stewart, Publisher: CENGAGE Learning, 8th Edition (Metric Version),
+2016, ISBN: 9781305266728.
+ Calculus: Concepts & Connections, 1st Edition, by Robert Smith and Roland Mint
+on,
+McGraw-Hill, 2007, ISBN: 9780073309293.
+Course Topics:
+1. Integration techniques (6 lectures)
+2. Improper integrals (3 lectures)
+3. Parametric equations (4 lectures)
+4. Polar coordinates (5 lectures)
+5. Sequences of Real Numbers (3 lectures)
+6. Introduction to Infinite Series (6 lectures)
+7. Infinite series: testing (6 hours)
+8. Power series and Taylor series (6 lectures)
+9. Vectors and operations with vectors (6 lectures)
+10. Planes and surfaces (6 lectures)
+11. Vector-valued functions (5 lectures)
+12. Introduction to functions of several variables and multiple integrals (5 lectures)
+Structure and learning methodologies:
+Lectures are 4 x 50 minutes per week. Lectures are presented using the whiteboard, and
+may be complemented with handouts and/or PowerPoint slides.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and assignments) 30%
+Project 10%
+Semester Examination 25%
+Final Examination 35%
+
+--- Page 2 ---
+Contribution to Applied Mathematics & Statistics PLOs:
+a b c d e f g h
+L M --- --- --- --- --- ---
+H – High M – Medium L – Low
+Contribution to General Education Learning Outcomes (GELOs):
+1A 1B 1C 1D 1E 2A 2B 2C 2D 2E 3A 3B 3C 3D 3E
+--- M --- --- --- --- --- --- --- --- ---L --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & PLOs:
+PLOs GELOs
+No. Course Learning Outcomes
+1 Apply fundamental single variable techniques of integration. a 1B
+2 Solve calculus problems using parametric equations and polar b 1B, 3A
+coordinates.
+3 Apply techniques of substitution and integration to obtain series a 1B
+expressions for functions.
+4 Analyze infinite series properties according to convergence tests and b 1B, 3A
+criteria.
+5 Utilize vector calculus to determine equations of line and plane in space. a 1B
+6 Calculate double integrals in the rectangular system, and derivatives and b 1B
+integrals of vector valued functions.
+Organizational Details
+Course Code and Title: MATH 112 Calculus II
+Semester: Spring 2025
+Schedule:
+Instructor: Dr Fawaz Hjouj
+Contact Email: fawaz.hjouj @ku.ac.ae
+Office Room Number: SAN 1008C
+Office Hours: MW 11:00-12:00, AND, 2:00-4:00 PM
+
+--- Page 3 ---
+Assessment Methodology
+Tentative Dates Weight
+Quiz 1 Week 3
+21%
+Quiz 2 Week 5
+Quiz 3 Week 10
+Coursework
+Weekly homework assignments
+HW 9%
+Project Wk14 10%
+Semester th
+Week 7 (Feb.26 Wednesday evening) time TBC 25%
+Examination: MDT
+Final Examination: TBD by the Registrar’s Office
+35%
+Instructor Policy:
+Quizzes – There will be no make-up quizzes. If the student fails to attend a scheduled quiz without an
+approved absence from the Registrar’s Office, then a grade of zero for that quiz will be assigned.
+• If the student fails to attend a quiz and the Registrar’s Office confirms that the student's absence from
+that quiz is approved, then the grade that will be assigned to that quiz is
+– the grade of the Midterm Examination if that quiz took place before the Midterm Examination.
+– the grade of the Final Examination if that quiz took place after the Midterm Examination.
+Semester Examination – There will be no make-up Semester Examination. If the student fails to attend
+the scheduled Midterm Examination without an approved absence from the Registrar’s Office, then a
+grade of zero will be assigned for the Semester Examination.
+• If the student fails to attend the Semester Examination and the Registrar’s Office confirms that the
+absence from the Semester Examination is approved, then the grade for the Final Examination will
+also be assigned as the grade for the Semester Examination.
+ A maximum of 40% of the course grade can be compensated through the above policy
+ The scheduling of the classroom quizzes is not flexible. The tests will occur on the dates and time
+assigned unless a major change in the academic calendar.
+ In case of classes cancelled unexpectedly on a quiz day (bad weather for example), the quiz will
+be automatically postponed to the next class.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic
+work and will behave according to university rules and UAE societal norms and expectations."
+
+--- Page 4 ---
+Teaching Plan (Lectures):
+WK Start Date Material, Assessments and Announcements
+6.1: Introduction. Review integration technics (self-study)
+6.2: Integration by Parts
+1 Jan 13
+6.3: Trigonometric Techniques of Integration
+th
+End of Add/Drop for UG & PG Thursday Jan 17, 2025.
+6.4: Integration of Rational Functions Using Partial Fractions.
+2 Jan 20
+6.6: Improper Integrals.
+9.1: Plane Curves and Parametric Equations
+3 Jan 27 9.2: Calculus and Parametric Equations
+Quiz 1 Class time Ch 6 Sample Project
+9.4: Polar Coordinates
+4 Feb 3
+9.5: Calculus and Polar Coordinates
+8.1: Sequences of Real Numbers
+5 Feb 10 8.2: Infinite Series
+Quiz 2 Class time Ch 9
+8.3: The Integral Test and Comparison Tests
+6 Feb 17
+8.4: Alternating Series
+8.4 cont.
+th
+7 Feb 24 Midterm Exam: Wednesday, Feb 26, 2025 @7:30. TBC
+(Topics: All sections up to section 8.3).
+8.5: Absolute Convergence and the Ratio Test
+8 Mar 3
+8.6: Power Series
+8.7: Taylors Series
+9 Mar 10
+8.8: Applications of Taylor Series
+10.1: Vectors in the Plane
+10.2: Vectors in Space
+10 Mar 17
+Quiz 3 Class time Ch.8
+st
+Last day to withdraw with a “W” Friday Mar.21, 2025
+11 Mar 24 Spring Break
+st st
+Eid El-Fiter Break: Mar 31 – Apr 1
+12 Mar 31
+10.3: The Dot Product
+10.4: The Cross Product
+13 Apr 7
+10.5: Lines and Planes in Space
+10.5: Lines and Planes in Space
+14 Apr 14 10.6: Surfaces in Space
+Project: Ch.6, Ch.8, Ch.9 &Ch.10 (Due to end of week 15).
+Apr 21 11.1: Vector-Valued Functions
+15
+11.2: The Calculus of Vector-Valued Functions
+12.1: Functions of Several Variables
+Apr 28 13.1: Double Integrals
+16
+Catch up and Review
+nd
+Last Day of Classes (May 2)
+17 May 5 Final Exams Period begins
+
+--- Page 5 ---
+This is a tentative schedule and may be adjusted as required.
+Additional Information:
+Assessments
+Quizzes (3) will count for 21% of the final grade (NO DROPPED QUIZZES). Weekly
+homework online assignments will count for 9%. Projects will count for 10%. Semester
+Examination for 25% and Final Exam for 35%.
+Project:
+The project, assigned in Week 14 of the semester. Students will work in groups to investigate
+a specific problem or situation assigned to them, utilizing computational tools such as
+Python, MATLAB, etc. Each submission must be accompanied by a comprehensive report
+that includes a description of the problem, the code implemented, the rationale behind the
+chosen solution approach, the computational techniques used, and an in-depth discussion of
+the outcomes. Please note that submissions made past the deadline will incur a penalty,
+reducing the grade for this assessment by 10% per day late.
+Calculator Policy
+Only basic calculators with no graphic display will be allowed during quizzes and exams.
+Classroom Policies
+Classes start on time. Students arriving late to class are a distraction to both the instructor
+and other students and will therefore be marked absent. It is the student’s responsibility to
+sign the attendance sheet that will be handed out at the beginning of each class period. A
+student that does not sign the attendance sheet will be marked “absent” in Banner, even if
+present in the classroom.
+Please do not sign for absent friends. Signing for another student is a serious offence and
+will be treated as such.
+Students are expected to bring for each class what they need for an effective lecture:
+handouts (posted on Moodle), pen/pencil, notepaper, calculator etc.
+Expectations from students
+To succeed well in this course, students are required to work at least one hour outside the
+classroom for each hour spend in class. That means four hours a week, every week. This is
+an average requirement for an average student with a sufficient background. It therefore
+could be more if some topics from previous courses are not known well enough.
+Selected problems for each section are recommended as homework. Homework will not be
+collected, but are essential part of the learning process, and are therefore mandatory.
+Grading
+Writing correct solutions is essential in the life of a scientist, including the correct use of the
+mathematical symbols. Not only one needs to be understood by others, but only by paying
+attention to what is written a student can acquire a good understanding of the concepts.
+Therefore, in all assessments, the correctness of the solution writing will be evaluated,
+and marks will be deducted for mistakes (notations, clarity, structure of the solution,
+etc).
+
+--- Page 6 ---
+For quizzes and midterm, students have one week after they get back their copy to check if
+there are any grading mistakes, and if so, ask for revision. After one week, the result will be
+considered final, and no more revision will be allowed.
+Conflict Resolution Procedure
+For any issue, the following procedure needs to be followed:
+1) students need to talk first to their instructor.
+2) if (1) did not resolve the issue, students can talk to the course coordinator.
+3) if (1) and (2) did not resolve the issue, students can talk to the chair of the math
+department.
+4) if none of the above resolved the issue, students can talk to the dean of undergraduate
+studies.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter
+grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter
+grade is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+
+--- Page 7 ---
+The following is an indicative of typical ranges associated with letter grades for the KU
+courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+
+--- Page 8 ---

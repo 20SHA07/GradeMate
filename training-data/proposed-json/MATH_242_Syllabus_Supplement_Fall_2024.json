@@ -1,0 +1,37 @@
+{
+  "sourceFileName": "MATH 242 - Syllabus Supplement Fall 2024.pdf",
+  "sourcePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 - Syllabus Supplement Fall 2024.pdf",
+  "sourceRelativePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 - Syllabus Supplement Fall 2024.pdf",
+  "sourceTextFileName": "MATH_242_Syllabus_Supplement_Fall_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 242",
+  "courseName": "Introduction to Probability and Statistics (3-0-3)",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Berihu Gebrehiwot",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

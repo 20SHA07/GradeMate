@@ -17,7 +17,11 @@
     "lint": "node ./node_modules/eslint/bin/eslint.js . --max-warnings=0",
     "validate:grading": "node scripts/validate-grading.mjs",
     "typecheck": "node ./node_modules/typescript/bin/tsc --noEmit",
-    "test:extraction": "node scripts/test-syllabus-extraction.mjs"
+    "test:extraction": "node scripts/test-syllabus-extraction.mjs",
+    "dataset:scan": "node scripts/dataset-scan.mjs",
+    "dataset:propose": "node scripts/dataset-propose.mjs",
+    "dataset:review": "node scripts/dataset-review.mjs",
+    "test:dataset": "node scripts/test-dataset.mjs"
   },
   "dependencies": {
     "@supabase/ssr": "^0.6.1",

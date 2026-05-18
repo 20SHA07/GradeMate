@@ -1,0 +1,268 @@
+--- Page 1 ---
+PHYS 121 University Physics I
+(3 Lectures, 2 Laboratory, 1 Tutorial – 4 Credits)
+Prerequisite: MATH 111
+Course Catalog Description:
+This course gives a vector-based and calculus-based introduction to fundamental concepts in
+Newtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes
+laboratory activities with experiments that demonstrate key concepts discussed in the lectures.
+Textbook:
+Physics for Scientists and Engineers - Volume 1 by Raymond A. Serway and John W Jewett,
+Publisher: Brooks Cole, 9th International Edition, 2014. ISBN-13: 9781285070438 (ISBN-
+10:1285070437).
+Course Topics:
+1. Basic Concepts: Fundamental and derived units, dimensions. (3 lectures)
+2. Force and Motion: Velocity, acceleration, and relative motion, Newton’s Laws, friction. (5
+lectures)
+3. Gravitation: Weight, mass, other types of forces. (2 lectures)
+4. Systems of Particles: Centre of mass, linear momentum. (4 lectures)
+5. Equilibrium: Requirements, center of gravity, elasticity, elastic moduli. (3 lectures)
+6. Work and Energy: Constant and variable force, kinetic and potential energy, conservation of
+energy. (4 lectures)
+7. Collisions: Elastic and inelastic, impulse, and center of mass. (4 lectures)
+8. Rotational Motion: Angular kinematics. (5 lectures)
+9. Rotational Dynamics: Torque, Newton’s Laws, angular momentum. (6 lectures)
+10. Circular Motion: Newton’s Second Law Applied to uniform circular motion, motion in
+accelerated frames. (3 lectures)
+11. Oscillations: SHM, resonance, energy considerations. (4 lectures)
+12. Mechanical waves. (2 lectures)
+Structure and Learning Methodologies:
+Lectures will be 3 × 50 minutes, or 2 × 75 minutes, per week. Tutorials will be 1 × 50 minutes per
+week. Laboratory will be 1 × 100 minutes per week. Lectures will be presented using both
+PowerPoint slides and the whiteboard; copies of PowerPoint slides will be made available to
+students.
+Laboratory Experiments:
+A minimum of 10 laboratory experiments will be conducted from the following list of topics
+according to the material covered in the lectures:
+1. Units, Measurements and Graphs.
+2. Uniformly Accelerated Motion I.
+3. Uniformly Accelerated Motion II.
+4. Coefficient of Friction.
+5. Inelastic Collisions.
+6. Elastic Collisions.
+7. Force and Torque.
+8. Energy Measurements.
+9. Centrifugal Force.
+10. Hooke’s Law.
+11. Simple Harmonic Motion.
+May 2025 1
+
+--- Page 2 ---
+PHYS 121 University Physics I (3-2-1-4)
+___________________________________________________________________________
+Laboratory and/or Computer Resources:
+All laboratories are equipped with specially designed experiments to target specific course
+learning outcomes. Computers are used when applicable.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and Homework,) 30%
+Laboratory Activities 20%
+Semester Examination(s) 20%
+Final Examination 30%
+Contribution to Physics BSc Student Outcomes (P-SO):
+A1 A2 B1 B2 C1 C2 D1 D2 D3
+H H L --- L --- L --- L
+H – High M – Medium L – Low
+Contribution to Engineering BSc Student Outcomes (E-SO):
+a b c d e f g h i j K
+H L --- --- --- L L --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & Student Outcomes:
+No. Course Learning Outcomes: upon completion of this Performance Venues P- E-
+course, students will be able to SO SO
+1 Apply understanding of the concepts and laws of classical 1. Concepts – quizzes A1 A
+mechanics (including linear and rotational kinematics, 2. Use laws to solve
+kinetics, momentum, energy, oscillations, and waves) and problems – exams
+various concept representations to answer questions and
+solve problems in physics.
+2 Apply understanding of vector quantities, vector products 1. Vectors – exam A2 A
+and calculus (basic derivatives and integrals) to answer 2. Calculus – exams
+questions and solve problems in physics. Use concept 3. FBDs - exams
+representations (e.g. free-body diagrams) to answer
+questions and solve problems.
+3 Solve “complex” laboratory problems, including applying 1. Uncertainty analysis – B1 B
+a theory, making decisions about expt. design and experiments and exam
+performing an experiment, using appropriate 2. Interpret experimental
+statistical/uncertainty analysis, and interpreting results). results – exams
+4 Communicate effectively and appropriately by obtaining 1. Read /evaluate text – C1 G
+and evaluating information (especially written text) and selected quiz items
+writing about technical topics concisely and completely, 2. Write coherent text
+using diverse representations. with diagrams, graphs…
+– selected experiments
+5 Demonstrate an ability to work independently and/or 1. Collab/Professional D1 F
+collaboratively in a professional manner (on-time work work – peer surveys (lab D3
+completion and working with optimism, realism, time work)
+management, responsibility, and respect). 2. Time management –
+class attendance
+May 2025 2
+
+--- Page 3 ---
+PHYS 121 University Physics I (3-2-1-4)
+___________________________________________________________________________
+CoEPS
+Course Code and Title: PHYS 121 University Physics I
+Summer 2025 (Section 02)
+Semester:
+Schedule: MTWR 12:00 pm – 2:30 pm (SAN 2126)
+Instructor: Dr. Dalaver H. Anjum
+Contact Email: Dalaver.anjum@ku.ac.ae
+Office Room Number: SAN 2220
+Tuesday: 3 pm – 4 pm
+Wednesday: 3 pm – 4 pm
+Office Hours:
+Make sure to take an appointment via email:
+Dalaver.anjum@ku.ac.ae
+Assessment Methodology
+Tentative Dates Weight
+th
+Coursework: Quiz 1 May 29 25%
+th
+Quiz 2 June 5
+th
+Quiz 3 June 12
+th
+Quiz 4 June 19
+Homework WebAssign 5%
+Laboratory 1-lab report per each During lab time 20%
+experiment
+th
+Semester Examination Midterm test June 13 20%
+Final Examination Final test TBA (registrar office) 30%
+Instructor Policy on Late Submission of Assignments:
+• Quizzes: There will be four quizzes on the given date and during the start of the classes i.e. from 11:00 am
+to 11:30 am. The grades of all quizzes will be considered for the average, and there will be no makeup
+quiz, no extension, or time change for any quiz. If you missed a quiz, it is your responsibility to contact
+the student success office and provide them with a legitimate excuse (medical note, for example). You need
+to arrange for an email to be sent to the professor (by the student success office). Only then will the missing
+quiz be assigned a grade equal to the average of all other quizzes.
+• HW: The WebAssign platform will be used for HWs. For each HW, you will be given ample time to finish
+it, and there will be no extension or time change for HW. It is important to solve the HW on your own,
+without getting help from outside sources. This is an important way to get you ready for the other online
+tests.
+• Midterm (MT): The MT exam will be on campus and will be scheduled by the registration office. There
+will be no make-up MT. The MT test will cover the first seven chapters (Chap 1 to 7). If you missed this
+exam and you have a valid excuse, the final exam will carry all the point weight of the combined midterm
+and the final exam (e.g., 50%).
+• Final Exam: Final Exam will be on-campus and will be scheduled by the registration office.
+May 2025 3
+
+--- Page 4 ---
+PHYS 121 University Physics I (3-2-1-4)
+___________________________________________________________________________
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic
+work and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+Week Dates Topics and Reminders
+th th
+1 May 26 – May 29 Physics & Measurement Ch1 (1-6),
+Motion in 1D Ch2 (1-8)
+Vectors Ch3 (1-4),
+Motion in 2D Ch4 (1-5)
+st
+HW-CH1+HW-Ch2+HW-CH3 (deadline: 1 June @11:59 pm/ WebAssign)
+Quiz 1 (Thursday@ 12:00-12:30 pm); Quiz1 will cover Chap 1, 2 & 3)
+nd th
+2 June 2 – June 6 Continue: Motion in 2D Ch4 (1-5)
+The Laws of Motion I Ch5 (1-8)
+The Laws of Motion II Ch6 (1-2)
+th
+HW-CH4+HW-Ch5+HW-CH6 (deadline: 8 June @11:59 pm/ WebAssign)
+Quiz 2 (Wednesday@ 12:00-12:30 pm); Quiz2 will cover Chap 4 & 5)
+th th
+3 June 9 – June 13 Energy of a System Ch7 (1-8)
+Conservation of Energy Ch8 (1-5)
+th
+HW-CH7+HW-Ch8 (deadline: 15 June @11:59 pm/ WebAssign)
+MT Exam will cover Chapters 1-7
+th
+Midterm Exam – 13 June @ 9 am – 10:30 am (Chapters 1 - 7)
+th th
+4 June 16 – June 20 Linear Momentum and Collisions Ch9 (1-7)
+Rotation of Rigid Objects Ch10 (1-8)
+nd
+HW-CH9+HW-Ch10 (deadline: 22 June @11:59 pm/ WebAssign)
+Quiz 3 (Thursday@ 12:00-12:30 pm); Quiz3 will cover Chap 8 & 9)
+rd th
+5 June 23 – June 27 Angular Momentum Ch11 (1 - 4),
+Static Equilibrium Ch12 (1 - 3)
+th
+HW-CH11+HW-Ch12 (deadline: 29 June @11:59 pm/ WebAssign)
+Quiz 4 (Thursday@ 12:00-12:30 pm); Quiz4 will cover Chap 10 & 11)
+th th
+6 June 30 – July 04 Oscillatory Motion Ch15 (1-3,5),
+st
+July 1: Last Day of Classes
+nd th Wave Motion Ch16 (1-3)
+July 2 – 04: Final exam
+st
+period HW-CH15+HW-Ch16 (deadline: 1 July @11:59 pm/ WebAssign)
+PHYS 121 Final Exam TBD by registrar’s office
+This is a tentative schedule and may be adjusted as required.
+May 2025 4
+
+--- Page 5 ---
+PHYS 121 University Physics I (3-2-1-4)
+___________________________________________________________________________
+LABORATORY SCHEDULE
+Week Date Experiment
+27-May Introduction to Physics Lab
+1
+29-May Exp 1 Basic Measurement
+3-Jun Exp 2 Free Fall
+2
+5-Jun Exp 3 Projectile Motion
+10-Jun Exp 4 Newton's Law
+3
+12-Jun Exp 5 Hooke's Law
+17-Jun Exp 6 Pendulum Energies
+4
+19-Jun Exp 7 Collision
+5 24-Jun Exp 8 Forces and Torque
+26-Jun Exp 9 SHM Mass and Spring
+6 1-Jul – 03 July No Lab - Exam
+Additional Information:
+• Topics covered in the lectures are taken from the textbook “ Physics for Scientists and
+th
+Engineers, Raymond A. Serway and John W Jewett, Brooks Cole Publisher, 10
+International Edition, 2019”. This will be available on the BB/Webassign page of the
+course.
+• For more information about physics lab, please refer to the Lab-BB page, and any
+questions regarding labs and experiments should be directed to the lab instructor.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses
+letter grades with pluses and minuses. Passing grades range from A to D; F is failing.
+Each letter grade is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+May 2025 5
+
+--- Page 6 ---
+PHYS 121 University Physics I (3-2-1-4)
+___________________________________________________________________________
+Khalifa University Letter Grades & Grade Boundaries: In this course we will use the
+following letter grades and grade boundaries for computing students’ final course grades,
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+May 2025 6

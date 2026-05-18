@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+  "sourcePath": "MATH\\MATH 101 Fundamentals of Mathematical Reasoning\\MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+  "sourceRelativePath": "MATH\\MATH 101 Fundamentals of Mathematical Reasoning\\MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+  "sourceTextFileName": "MATH_101_Syllabus_Fall_2024_Dr_Ahmed.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 101",
+  "courseName": "Fundamentals of Mathematical Reasoning",
+  "creditHours": 3,
+  "semester": "Fall 2024",
+  "instructor": "Ahmed Ameur",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

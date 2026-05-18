@@ -1,0 +1,20 @@
+{
+  "sourceFileName": "COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+  "sourcePath": "COSC\\COSC 330 Introduction to Artificial Intelligence\\COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+  "sourceRelativePath": "COSC\\COSC 330 Introduction to Artificial Intelligence\\COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+  "sourceTextFileName": "COSC_330_Introduction_to_AI_withSupplementSpring2025_1.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 330",
+  "courseName": "Introduction to Artificial Intelligence",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Andreas Henschel",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.2,
+  "needsHumanReview": true
+}

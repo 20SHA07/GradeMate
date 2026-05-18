@@ -1,0 +1,67 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title CHEG 232/ Fluid Mechanics For Chemical Engineering
+Semester: Spring 2024
+Instructor Name Dr. Emad Alhseinat
+Contact Email/ Office Ext. No. Emad.alhseinat@ku.ac.ae
+Office Room No. 255 Arzanah
+Office Hours Monday _10:30-11:30; or ask for appointment through email.
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Week 3
+Quiz 1 Week 4 (8 Feb) 4%
+Week 5
+Quiz 2 Week 6 (22 Feb) 4%
+Week 7
+Midterm Week 8 (05 March)
+Week 9
+Quiz 3 Week 10 (21 March) 4%
+Week 11
+Spring Break Week 12
+Quiz 4 Week 13 (11 April) 4%
+Week 14
+Quiz 5 Week 15 (25 April) 4%
+Projects (if applicable)
+Laboratory (if applicable) 20%
+Semester Examination (s) Week 8 (05 March) 25%
+Attendance 5%
+Final Examination 30%
+Instructor Policy on late submission of assignments:
+ There will be no make-up for quizzes at any circumstance.
+ Make-up exam for midterm/final exams will be allowed under extenuating circumstance, such as
+hospitalization or bereavement. The excuse must be authenticated by Student Success
+Department and brought to the instructor immediately (within a week) to qualify for permission
+to make up any exam missed.
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Plan Introduction:
+Week 1 Basic Concepts, Units used & Conversions, and Fluid Physical properties; (Chapter 1
+textbook)
+Week 2 Fluid Statics: Fundamentals of Fluid Statics: (Chapter 2 textbook)
+Week 3 The Balance Equation: Mass Balance; (Chapter 3 textbook)
+Week 4 The Balance Equation: Energy Balance; (Chapter 4 textbook)
+Week 5 Bernoulli’s Equation; Chapter 5 (textbook)
+Week 6 Examples on Bernoulli’s Equation; (Chapter 5 textbook)
+Week 7 Fluid Friction in Steady flow(Chapter 6 textbook)
+Week 8 Midterm Exam
+Week 9 Examples on Fluid Friction (Designing liquid piping systems) and General Revision
+Week 10 The Momentum Balance; (Chapter 7 textbook)
+Week 11 High-Velocity Gas flow; (Chapter 8, textbook)
+Week 12 Spring Break
+Week 13 Models, Dimensional Analysis, and Dimensional Numbers (Chapter 9 textbook)
+Week 14 Pumps, compressors, and Turbines (Chapter 10 textbook)
+Week 15 Pumps, compressors, and Turbines (Chapter 10 textbook)
+Week 16 Introduction to flow through porous Media (Chapter 11 textbook)
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+LABORATORY SCHEDULE (if applicable):
+Teaching Plan
+Week 1
+Week 2 Introduction to the Lab (Detail lab schedule will be sent to you soon)
+Syllabus Supplement for Students Page 3 of 3

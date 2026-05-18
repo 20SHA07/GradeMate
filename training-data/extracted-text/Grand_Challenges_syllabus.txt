@@ -1,0 +1,243 @@
+--- Page 1 ---
+GENS 101 Grand Challenges
+(2 Lecture, 4 Instructional Studio – 4 Credits)
+Prerequisite: None
+Course Catalog Description:
+This course surveys science and engineering disciplines and highlights interdisciplinary, real-world
+applications, especially addressing Grand Challenge problems facing humanity. The course introduces
+aspects of problem-solving ranging from the formulation of questions and problems to the testing of trial
+solutions within a standard framework. Students discuss ethical, social, economic, environmental, and
+technical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.
+Textbook: None
+Reference Materials:
+ Strategies for Creative Problem Solving by H. Fogler, S. LeBlanc, and B. Rizzo. Publisher:
+rd
+Pearson, 3 edition, 2013, ISBN: 9780133091663.
+ Grand Challenges for Science in the 21st Century edited by J.W. Vasbinder, B. Gulyás, and
+J.Y.H Sim. Publisher: World Scientific, 2018, ISBN: 9789813276680.
+ Grand Challenges for Engineering: Imperatives, Prospects, and Priorities: Summary of a Forum
+by Steve Olson. Publisher: National Academies Press, 2016, ISBN: 9780309438964.
+Course Topics:
+1. Introduction to Grand Challenges (3 lectures)
+a. Definition, history, and survey of Grand Challenges
+b. Ways of responding to Grand Challenges with example problems and solutions
+c. Ethical considerations related to Grand Challenges
+d. Grand Challenges and KU
+2. Teamwork and communication (7 lectures)
+a. Team roles, coordination of work, introduction to project management
+b. Effective meeting strategies and guidelines for conflict resolution
+c. Peer evaluation and effective feedback
+d. Effective reports and presentations
+3. Information collection and evaluation (3 lectures)
+a. Relevance, quality, authoritativeness, and credibility of information
+b. From information to ideas
+c. Types of information: quantitative versus qualitative information
+d. Analysis and interpretation of information
+4. Defining a problem (2 lectures)
+a. Information gathering to define a problem/question
+b. Situational contexts and constraints (physical, social, economic, environmental, and
+ethical (provide methodology to apply))
+c. Sub-problems and use of representations
+5. Developing useful models and solution designs (4 lectures)
+a. Identifying and/or developing applicable models
+UCC: April 2022 1
+
+--- Page 2 ---
+KU101 Grand Challenges (2-4-4)
+______________________________________________________________________________
+b. Proposing hypotheses
+c. Identifying response options, functions/features, specifications
+d. Developing conceptual designs and prototypes
+e. Choice of tools
+6. Testing models and solution designs (11 lectures)
+a. Experiment and/or test design
+b. Data collection and testing of models, hypotheses, and/or prototypes
+c. Analysis of results
+d. Iterative testing and correction, refinement or optimization of solutions
+Tutorial Topics – students complete two required topics and (at least) four elective topics:
+1. Studio tool safety (required) 11. Robotics
+2. Studio tool use (required) 12. Chemistry kit use
+3. CADD drawing I 13. Biology kit use
+4. CADD drawing II 14. Programming
+5. 3D printing 15. Rocketry
+6. Machining I 16. Remote sensing
+7. Machining II 17. Data visualization II
+8. Electronics 18. Data and statistics
+9. Data visualization I 19. Technical report writing
+10. Chemical and biological safety 20. Technical presentations
+Structure and Learning Methodologies:
+Lectures are 2 x 50 minutes per week and Studio sessions are 2 x 100 minutes per week. Students
+prepare for class sessions by viewing assigned videos, websites, and/ or documents. Students maintain
+individual portfolios for reflection on the choice of a major, Grand Challenge issues, and project work.
+Students train individually on specific skills via course Tutorials. Teams of 4 to 6 students work
+collaboratively on Studio Activities and a Grand Challenge project. Studio Activities expose students to
+the entire problem definition, solution development, and testing process. For th eir selected topic, each
+team develop s a problem statement, solution proposal, final oral presentation, and written report
+(includ ing self and peer evaluations components).
+Instructional Studio and Computer Resources:
+Course materials including Portfolio assignments, Tutorial and Instructional Studio Activities, and
+instructions for the course project, are available via university online platforms. Students need access to
+the following software: Google Earth Pro and Tableau for Students. The Instructional Studio includes
+the following equipment: Robotics kit s, Adhesive & Epoxy kits, 3D Printer, Electronics k its, Biomedical
+kits, Cool Tool machining tools, Chemistry kit s, Biology kit s, Data A cquisition kits, and hand tools.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Homework, portfolio assignments) 20%
+Tutorials 15%
+Studio Activities 15%
+Grand Challenge Milestones 25%
+Grand Challenge Solution (report and presentation) 25%
+UCC: April 2022 2
+
+--- Page 3 ---
+KU101 Grand Challenges (2-4-4)
+______________________________________________________________________________
+Contribution to General Education Learning Outcomes (GELOs):
+1A 1B 1C 1D 1E 2A 2B 2C 2D 2E 3A 3B 3C 3D 3E
+L M L --- L L M L L L --- L --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & Student Outcomes:
+No. Course Learning Outcomes GELOs
+1 Explain what constitutes a Grand Challenge and the role of science and
+1A, 1B, 1E
+engineering in responding to Grand Challenge questions and problems.
+2 Apply problem-solving strategies and project design processes to develop
+1B, 1C, 2E
+responses to Grand Challenges.
+3 Gather and analyze information to define problems and propose solutions within
+2B, 2C
+realistic constraints.
+4 Communicate using written, oral, and visual formats including digital media. 2A, 2B
+5 Work in teams of students who have diverse interests. 3B
+6 Identify possible ethical issues involved in responding to a Grand Challenge. 2D
+Organizational Details
+Course Code and Title: KU 101 Grand Challenges
+Semester: Fall 2022
+Instructor:
+Contact Email:
+Office Room Number:
+Office Hours:
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Activity preparation (assigned videos, websites,
+Weekly 10%
+reading assignments)
+Portfolio assignments (reflections blog) Weekly 10%
+Tutorials 6 tutorials selected from available topics (2 Finish by week 14
+15%
+required and 4 elective topics) (self-paced)
+Studio Activities Class group activities Every two weeks 15%
+Grand Challenge Problem statement Week 4 4%
+Milestones Initial solution pitch Week 6 5%
+Proposal update – oral presentation Week 10 5%
+Progress report Week 10 7%
+Team meeting notes (cumulative) Week 15 4%
+Grand Challenge Final oral presentation Week 15 10%
+Solution Final report Week 15 15%
+UCC: April 2022 3
+
+--- Page 4 ---
+KU101 Grand Challenges (2-4-4)
+______________________________________________________________________________
+Course Policy on late Submission of Assignments:
+ All assignments are due on the date and time stated. It is the students’ responsibility to familiarize
+themselves with assessment details and deadlines.
+ Late project assignments and tutorials will receive a credit reduction of 5% of the grade per day until it
+is submitted. A completely missed project assignment or tutorial will receive a zero (0).
+ No late submissions of pre-class graded activities and reflections will be accepted. There are no make-
+ups for these activities. However, the lowest pre-class activity grade and reflection grade will be dropped
+from the final grade calculation.
+ Students absent from in-class/live online graded activities worth 5% or lower (i.e. studio activities) will
+receive a zero (0) for the activity. There are no make-ups for these activities. However, to acknowledge
+that some students may have an emergency and miss a class, the lowest studio activity will be dropped
+from the final grade calculation.
+Additional Information:
+ Students are expected to attend the entire class on time and participate in activities to be considered
+present.
+ Students must bring their laptops and headphones to each class. Students unable to complete activities due
+to not having working hardware will receive a zero (0) for the activity. There are no make-ups for these
+activities.
+ At the instructor's discretion, students receiving a grade of less than 70% for an individual assessment
+worth 5% or higher might have the opportunity to revise or retake the assessment one time within a
+specific timeline. Note: If a student resubmits an assignment, the maximum grade the resubmitted
+assignment can be awarded is 70%.
+ Students who are found to cheat or plagiarize (copy in any form) text, images, or other materials may
+receive a zero or a grade reduction with a formal report sent to administration. Depending on the
+classification of the violation, the case may be forwarded to the Academic Integrity Council for review.
+Therefore, students are advised to consult the Handbook for all policies related to plagiarism and other
+forms of cheating, especially ACA 3500.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN: (Grand Challenge = GC, Grand Challenge Project = GCP)
+Studio Activities, Tutorials, and
+Wk. Dates Lecture Topics
+GCP work sessions
+29 Aug to Introduction to GCs; Ways of responding Activity 1
+1
+2 Sept to GCs; Examples of GCs GCP – Review of example GCs
+Working in teams and team formation; Tutorial 1
+2 5-9 Sept
+GCs and KU; Ethics and GCs GCP – Ethical choices and GCs
+Team strategies: meetings, peer evaluation Activity 2
+3 12-16 Sept
+& feedback; From info. to ideas GCP – Solution brainstorming
+Defining problems; Information; Contexts Tutorial 2
+4 19-23 Sept
+/constraints; sub-problems; representations GCP – Problem statement
+UCC: April 2022 4
+
+--- Page 5 ---
+KU101 Grand Challenges (2-4-4)
+______________________________________________________________________________
+Analysis of information for relevance and Activity 3
+5 26-30 Sept
+credibility; Proposing solutions GCP – Researching the problem
+Identifying and developing relevant Tutorial Assessments
+6 3-7 Oct
+models; Interpretation of information GCP – Initial solution pitch
+Development of models, hypotheses, and Activity 4
+7 10-14 Oct
+prototypes; Selecting tools GCP – Project work plan
+Experiment and test design; Making ethical Tutorial Assessments
+8 17-21 Oct
+decisions GCP – project work
+Data collection and model testing I; Activity 5
+9 24-28 Oct
+qualitative and quantitative information GCP – project work
+31 Oct to Data collection and model testing II; Tutorial Assessments
+10
+4 Nov Example Case 1 GCP – Progress report and updates
+Activity 6
+11 7-11 Nov Analysis of results I; Example Case 2
+GCP – project work
+Analysis of results II; Iterative testing, Tutorial Assessments
+12 14-18 Nov
+solution refinement and optimization GCP – project work
+Analysis and interpretation of results I; Activity 7
+13 21-25 Nov
+Report requirements GCP – project work
+28 Nov to Analysis and interpretation of results II; Completion of Tutorials, Activities,
+14
+2 Dec Presentation requirements and GCP work
+Presentations and report
+15 5-9 Dec Presentations
+submission
+The above schedule is tentative. It may be adjusted as required.
+Grading Scheme
+Overall course letter grades will be determined according to the following schema:
+Letter Grade Percentage Grade Range Description
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than 92.5%
+Very Good
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D From 59.5% to less than 69.5% Poor
+F Less than 59.5% Fail
+UCC: April 2022 5

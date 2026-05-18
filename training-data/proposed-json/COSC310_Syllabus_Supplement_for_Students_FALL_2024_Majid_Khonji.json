@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+  "sourcePath": "COSC\\COSC 310 Data Structures\\Syllabus\\COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+  "sourceRelativePath": "COSC\\COSC 310 Data Structures\\Syllabus\\COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+  "sourceTextFileName": "COSC310_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}

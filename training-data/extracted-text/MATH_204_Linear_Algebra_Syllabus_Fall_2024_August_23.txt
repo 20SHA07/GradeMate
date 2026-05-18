@@ -1,0 +1,223 @@
+--- Page 1 ---
+MATH 204 Linear Algebra (3–0–3)
+MATH 204 Linear Algebra
+(3 Lecture – 3 Credits)
+Prerequisite: MATH 112
+Course Catalog Description:
+This course is an introduction to Linear Algebra, covering matrices, determinants, systems of
+linear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students
+explore solving systems of linear equations, understanding vector spaces, and analyzing linear
+transformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining
+insight into their significance within linear algebraic structures.
+Textbook:
+Elementary Linear Algebra by Howard Anton, Publisher: Wiley, 12th Edition, 2019 ISBN:
+9781119268048.
+Reference Materials:
+th
+● Linear Algebra: A Modern Introduction by David Poole, Publisher: Brooks Cole, 4
+Edition, 2014. ISBN: 9781285463247.
+● Differential Equations and Linear Algebra by C. Edwards and D. Penney, Publisher:
+Pearson, 4th Edition, 2017. ISBN: 9780134497181.
+Course Topics:
+1. Matrices, inverses, and Gaussian elimination(6 lectures)
+2. Determinants (6 lectures)
+3. Vector spaces, linear combinations, and linear dependence (6 lectures)
+4. Basis, dimension, subspaces, rank, and nullity (6 lectures)
+5. Column space, row space, and null spaces(6 lectures)
+6. Linear transformations and matrix representation (5 lectures)
+7. Eigenvalues, eigenvectors, and diagonalization (5 lectures)
+8. Inner products and orthogonality (3 lectures)
+9. Gram-Schmidt process (2 lectures)
+Structure and Learning Methodologies:
+Lectures are either 3 x 50 minutes per week or 2 x 75 minutes per week. Lectures are presented
+using the whiteboard and may be complemented with handouts and/or PowerPoint slides.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes) 40%
+Semester Examination 25%
+Final Examination 35%
+UCC: May 2024
+
+--- Page 2 ---
+MATH 204 Linear Algebra (3–0–3)
+Contribution to Applied Mathematics, Statistics& Data Science Program Learning Outcomes
+(PLOs)
+a B c d e f g h
+L M --- --- -- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & PLOs:
+No. Course Learning Outcomes PLOs
+1 Perform basic matrix operations. a, b
+2 Solve systems of linear equations. b
+3 Calculate the eigenvalues and eigenvectors of matrices.
+b
+4 Apply the concepts of basic vector spaces to n-dimensional spaces.
+a, b
+5 Identify the matrix for linear transformations with respect to a given basis b
+UCC: May 2024
+
+--- Page 3 ---
+MATH 204 Linear Algebra (3–0–3)
+Organizational Details
+Course Code and Title: MATH 204 Linear Algebra
+Fall 2024
+Semester:
+Schedule:
+Instructor: Elias Zikkos
+Contact Email: elias.zikkos@ku.ac.ae
+Office Room Number: San Campus, Building 1, Room 218
+Monday and Wednesday 9am to 11am, Monday 2pm to 4pm, at the HIVE
+Office Hours:
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 3 (13.33%) 40%
+We drop the lowest quiz Quiz 2 Week 6 (13.33%)
+grade. Quiz 3 Week 10 (13.33%)
+Quiz 4 Week 13 (13.33%)
+Semester Examination: Midterm Exam Week 8 25%
+Final Examination: TBD by the Registrar’s Office 35%
+Instructor Policy on Late Submission of Assignments:
+● QUIZZES – There will be no make-up quizzes.
+▪ If the student fails to attend a scheduled quiz without an approved absence from the
+Student Success Department, then a grade of zero for that quiz will be assigned.
+▪ If the student fails to attend a quiz and the Student Success Department confirms that the
+student's absence from that quiz is approved, then the grade that will be assigned to that quiz
+is the grade of the Midterm Examination, if that quiz took place befo re the Midterm
+Examination; the grade of the Final Examination if that quiz took place after the Midterm
+Examination.
+● MIDTERM - There will be no make-up Midterm Examination.
+▪ If the student fails to attend the scheduled Midterm Examination without an approved
+absence from the Registrar’s Office, then a grade of zero will be assigned for the Midterm
+Examination.
+▪ If the student fails to attend the Midterm Examination and the Student Success Department
+confirms that the absence from the Midterm Examinatio n is approved, then the grade for the
+Final Examination will also be assigned as the grade for the Midterm Examination.
+● A maximum of 40% of the course grade can be compensated through the above policy
+UCC: May 2024
+
+--- Page 4 ---
+MATH 204 Linear Algebra (3–0–3)
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Tentative)
+Week Dates Topics and Reminders
+1.1 to 1.7 Matrices, Gaussian elimination, Inverses
+1 Aug 26-Aug 30
+End of drop and add UG (Friday Aug 30)
+2 Sep 2-Sep 6 1.1 to 1.7 Matrices, Gaussian elimination, Inverses
+2.1, 2.2, 2.3 Determinants
+3 Sep 9-Sep 13
+Quiz 1
+4 Sep 16-Sep 20 2.1, 2.2, 2.3 Determinants
+5 Sep 23-Sep 27 3.1, 3.2, 3.3 Euclidean Vector spaces and Orthogonality
+4.1, 4.2, 4.3 General Vector spaces, Subspaces, Spanning sets
+6 Sep 30-Oct 4
+Quiz 2
+4.4, 4.5, 4.6, 4.7
+7 Oct 7-Oct 11
+Linear independence, Basis, Dimension, Change of Basis
+4.4, 4.5, 4.6, 4.7
+Linear independence, Basis, Dimension, Change of Basis
+8 Oct 14-Oct 18
+MIDTERM EXAM
+th
+Mid-Grade Due Date: Friday, October 18
+4.8, Row space, Column space, Null space
+9 Oct 21-Oct 25
+4.9 Rank, Nullity
+8.1, 8.4 General linear transformations and their Matrices
+st
+10 Oct 28-Nov 1 Friday November 1: Last Day to Withdraw with a “W”
+Quiz 3
+8.4, General linear transformations and their Matrices
+11 Nov 4-Nov 8 8.5 Similarity
+5.1 Eigenvalues, eigenvectors
+5.1 Eigenvalues, eigenvectors
+12 Nov 11-Nov 15
+5.2 Diagonalization
+6.1 Inner products and Orthogonality
+13 Nov 18-Nov 22 6.3 Gram-Schmidt process
+Quiz 4
+UCC: May 2024
+
+--- Page 5 ---
+MATH 204 Linear Algebra (3–0–3)
+14 Nov 25-Nov 29 (Catch Up / Review)
+(Review)
+15 Dec 2-Dec 6 National Day (December 2)
+Last day of classes (December 6)
+16-17 Dec 9-Dec 19 Final Exams Period
+Additional Information:
+Assessment
+Unreadable and/or poorly written algebraic steps in the solution process will be penalized.
+If an answer is given but the working is not shown, then zero credit is awarded.
+There are 4 quizzes scheduled in this course. Only the best 3 quiz scores will count towards your final
+grade, i.e. the lowest quiz score will be dropped. Each quiz will therefore count for 13.33% of your
+final grade for the course.
+Calculator Policy
+You may only use a basic scientific calculator to help you with arithmetic computations in the MATH-
+204 course. The calculator must not be able to perform any matrix operations nor have a graphing
+capability. A good example of an appropriate calculator is the Casio fx-82ES. Hence, it is not
+permitted to use the calculator to perform any operations involving matrices.
+You will be permitted to only use a basic calculator in the Quizzes, Midterm Examination and the
+Final Examination. Please do not try to use a more powerful calculator in the Quizzes and
+Examinations as it will be confiscated.
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final
+Examination. Mobile phones must be switched off during quizzes and exams and must be put away
+for the duration of the quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please make every effort to arrive at the class periods in a timely fashion. Students arriving late to
+class are a distraction to both the instructor and the other students in the classroom.
+Please ensure that you sign your name on the Attendance Sheet which is handed-out at the beginning
+of each class period. If you do not sign the Attendance Sheet, then you will be marked “Absent” in
+the Banner.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+UCC: May 2024
+
+--- Page 6 ---
+MATH 204 Linear Algebra (3–0–3)
+Homework Policy
+Homework is your responsibility. Homework exercises have been selected to enable you to practice the
+material covered in the class and to self-test your learning of the material. Homework solutions will not
+be collected-in nor graded. You are expected to have completed the homework exercises, and to have
+sought assistance with any of the exercises which have caused you difficulty, before the next class
+period. Assistance is readily available in Instructor Office Hours.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter
+grades with pluses and minuses. Passing grades range from A to D; F is failing. Each
+letter grade is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for
+KU courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+UCC: May 2024
+
+--- Page 7 ---
+MATH 204 Linear Algebra (3–0–3)
+UCC: May 2024

@@ -1,0 +1,20 @@
+{
+  "sourceFileName": "HUMA 277 Intro to Logical Summer 25.docx",
+  "sourcePath": "HUMA\\HUMA 277 Introduction to Logical Reasoning\\HUMA 277 Intro to Logical Summer 25.docx",
+  "sourceRelativePath": "HUMA\\HUMA 277 Introduction to Logical Reasoning\\HUMA 277 Intro to Logical Summer 25.docx",
+  "sourceTextFileName": "HUMA_277_Intro_to_Logical_Summer_25.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "HUMA 277",
+  "courseName": "Introduction to Logical Reasoning",
+  "creditHours": 3,
+  "semester": "Summer 2023",
+  "instructor": "Dr. Mustapha Tajdin",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.2,
+  "needsHumanReview": true
+}

@@ -1,0 +1,34 @@
+{
+  "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourcePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourceRelativePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourceTextFileName": "HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "HUMA 140",
+  "courseName": "Introduction to Psychology",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": "Dr. Michael Babula",
+  "assessments": [
+    {
+      "name": "Three Quizzes Each Are Required For This Course. Each Quiz Is 25 Questions And Will Test Recall",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Three quizzes worth 10% each are required for this course. Each quiz is 25 questions and will test recall"
+    },
+    {
+      "name": "Of Three Essay Questions As Well As 25 Fill In The Blank And Multiple Choice Questions",
+      "weight_percentage": 75,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "of three essay questions worth 75% as well as 25 fill-in-the-blank and multiple choice questions worth"
+    }
+  ],
+  "totalWeight": 85,
+  "warnings": [
+    "Total weight is below 100 (85%)"
+  ],
+  "confidence": 0.86,
+  "needsHumanReview": true
+}

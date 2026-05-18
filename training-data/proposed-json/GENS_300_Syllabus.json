@@ -1,0 +1,19 @@
+{
+  "sourceFileName": "GENS 300 Syllabus.pdf",
+  "sourcePath": "GENS\\GENS 300 Career Preparation\\GENS 300 Syllabus.pdf",
+  "sourceRelativePath": "GENS\\GENS 300 Career Preparation\\GENS 300 Syllabus.pdf",
+  "sourceTextFileName": "GENS_300_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "creditHours": 1,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Samar Mohamed",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found"
+  ],
+  "confidence": 0.2,
+  "needsHumanReview": true
+}

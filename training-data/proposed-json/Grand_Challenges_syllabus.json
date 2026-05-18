@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "Grand Challenges syllabus .pdf",
+  "sourcePath": "GENS\\GENS 101 Grand Challenges\\Grand Challenges syllabus .pdf",
+  "sourceRelativePath": "GENS\\GENS 101 Grand Challenges\\Grand Challenges syllabus .pdf",
+  "sourceTextFileName": "Grand_Challenges_syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 101",
+  "courseName": "Grand Challenges",
+  "creditHours": 5,
+  "semester": "Fall 2022",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": " Students Absent From In Class/live Online Graded Activities Or Lower I.e. Studio Activities Will",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": " Students absent from in-class/live online graded activities worth 5% or lower (i.e. studio activities) will"
+    },
+    {
+      "name": "Or Higher Might Have The Opportunity To Revise Or Retake The Assessment One Time Within A",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "worth 5% or higher might have the opportunity to revise or retake the assessment one time within a"
+    }
+  ],
+  "totalWeight": 10,
+  "warnings": [
+    "Total weight is below 100 (10%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

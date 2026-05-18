@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+  "sourcePath": "MATH\\MATH 112 Calculus II\\MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+  "sourceRelativePath": "MATH\\MATH 112 Calculus II\\MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+  "sourceTextFileName": "MATH_112_Calculus_II_Syllabus_Spring_2025_AM.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 111",
+  "courseName": "(C grade or higher)",
+  "creditHours": 4,
+  "semester": "Spring 2025",
+  "instructor": "Asma Mughrabi",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

@@ -1,0 +1,56 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+BMED 321
+Course Code and Title
+Mechanics for Biomedical Engineers
+Semester:
+Fall 2024
+Dr. Maria de Fatima D omingues, Dr. Michae l H u ghes, and
+Instructor Name
+Dr. S yed Imaduddin
+maria.domingues@ku.ac.ae; michael.hughes@ku.ac.ae;
+Contact Email
+syedmuhammad.imaduddin@ku.ac.ae
+Office Room No. B2043 (Office 31)
+Office Hours M, W 11:30:12:30 or by appointment
+Assessment Methodology
+Tentative Dates Weight
+Group project Start at Week 12; Final Presentations: Week 15 30%
+Midterm Examination Week 7 30%
+Final Examination Week 16 or 17 40%
+Instructor Policy on late submission of assignments:
+No late assignments are accepted without legitimate written excuse.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 1 of 2
+
+--- Page 2 ---
+TEACHING PLAN (Lectures):
+Week 1 Equilibrium of a Particle and Force System Resultants
+Week 2 Equilibrium of a Particle and Force System Resultants
+Week 3 Equilibrium of a Rigid Body
+Week 4 Equilibrium of a Rigid Body
+Week 5 Structural Analysis
+Week 6 Internal Forces
+Week 7 Center of Gravity, Centroid, and Moment of Inertia
+Week 8 Kinematics of a Particle
+Week 9 Kinetics of a Particle: Force, Acceleration, Work, and Energy
+Week 10 Kinetics of a Particle: Impulse and Momentum; Stress and Strain
+Week 11 Stress and Strain; Mechanical Properties of Materials
+Week 12 Group Project
+Week 13 Group Project
+Week 14 Group Project
+Week 15 Project Presentations, Final Exam Review
+Course Learning Outcomes
+• Draw free-body diagrams and solve for forces and moments in both static and dynamic systems
+• Understand and describe the various mechanical properties of materials
+• Describe and analyze the motion of particles and rigid bodies
+• Identify, formulate and solve problems involving kinematic/kinetic variables using equations of
+motion, principles of impulse and momentum, and principles of work and energy
+• Obtain stress-strain distributions in organic and synthetic materials under various loading modes
+• Work in teams and communicate effectively
+Book
+“Statics and Mechanics of Materials in SI Units” 5th Edition, Russell C. Hibbeler
+Supplementary course notes may be provided in addition to the text book where necessary.
+Syllabus Supplement for Students Page 2 of 2

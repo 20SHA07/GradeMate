@@ -1,0 +1,284 @@
+--- Page 1 ---
+MATH 224 Real Analysis I
+(4 Lectures, 0 Laboratory – 4 Credits)
+Prerequisite: MATH 101 and MATH 112
+Course Catalog Description:
+This course gives students a thorough understanding of essential concepts in analysis such as real numbers,
+limits, continuity, and convergence of sequences and series. The course also covers a rigorous definition
+of derivative and construction of the Riemann integral and their properties including the Fundamental
+Theorem of Calculus. Students are required to read and write proofs using a precise knowledge of
+definitions and theorems.
+Textbook:
+th
+• Analysis with an Introduction to Proof by Steven R. Lay, Publisher: Pearson, 5 Edition, 2012,
+ISBN: 9780321892539.
+Reference Materials:
+• A Problem Book in Real Analysis by A. G. Aksoy and M. A. Khamsi, Publisher: Springer Verlag,
+2010, ISBN: 1441912959.
+nd
+• Undergraduate Analysis by Serge Lang, Publisher: Springer Verlag, 2 Edition, 2005, ISBN:
+9788184896282.
+nd
+• Elementary Analysis by Kenneth A. Ross, Publisher: Springer, 2 Edition, 2013, ISBN:
+978 1461462705.
+Course Topics:
+1. Introduction: review of tautologies, contradictions and equivalence, open sentences and quantifiers;
+methods of proof in mathematics: direct method, contrapositive method, contradiction method (3
+lectures)
+2. Sets and functions: indexed families of sets and their properties, image and inverse image of functions
+and their properties (5 lectures)
+3. Real number systems: countability of R and Q, order properties of Q and its order incompleteness,
+construction of R from Q using Dedekind cuts axioms (6 lectures)
+4. Order completeness of R: least upper bound property and equivalent conditions including the nested
+interval property, bounded sets, and their properties, supremum and infimum of sets, Bolzano-
+Weierstrass theorem (7 lectures)
+5. Topological properties of R: interior points, limit points, isolated points, boundary points, frontier
+points, open sets, closed sets, perfect sets, compact sets, and connectedness (6 lectures)
+6. Sequences: definition of convergent sequence, bounded sequences, monotone sequences and their
+convergence, limsup and liminf and convergence criterion, subsequences, Cauchy sequences and their
+convergence criterion (8 lectures)
+7. Limits and continuity: epsilon-delta definition of limit, basic properties of continuous functions,
+uniform continuity, bounded functions, continuous functions on compact sets, Intermediate Value
+Theorem (10 lectures)
+8. Differentiation: derivatives, the Mean Value theorem, L’Hospital’s Rule, Taylor’s theorem (5 lectures)
+9. Riemann integral: definition, properties, the Fundamental Theorem of Calculus (6 lectures)
+
+--- Page 2 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+10. Series: series of numbers, definition of convergent series, geometric series, the comparison test,
+integral test with proof, ratio test, absolute and conditional convergence, alternating series and Leibniz
+test (4 lectures)
+Structure and Learning Methodologies:
+Lectures will be held twice a week for one hour and 40 minutes each. Lectures will be presented using a
+projected whiteboard, with the content from each lecture saved as a PDF file and uploaded to BlackBoard
+for students.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework 40%
+Midterm Examination 25%
+Final Examination 35%
+)
+Contribution to Applied Mathematics & Statistics Students Outcomes (AMS-SOs):
+a b c d e f g h i j k l
+H --- --- --- M --- H --- --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & AMS-SOs:
+No Course Learning Outcomes AMS-SOs
+1 Identify and prove topological properties of sets of real numbers. a, e, g
+2 Determine and prove the main properties of sequences. a, e, g
+3 Analyze the continuity of a function. a, e, g
+4 Determine the convergence/divergence of an infinite series. a, e, g
+5 Prove classical theorems in real analysis. a, e, g
+Organizational Details
+Course Code and Title: MATH 224 Real Analysis I
+Spring 2025
+Semester:
+Schedule: M-W 11 to 12:40 (G01029)
+Instructor: Mohamed Amine Khamsi
+Contact Email: Mohamed.khamsi@ku.ac.ae
+Office Room Number:
+Office Hours:
+M-W 12:50 to 13:50
+2
+
+--- Page 3 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework Week 4 (10%) 40%
+We drop the assignment 1
+lowest homework Quiz 1 Week 6 (10%)
+grade. Homework Week 9 (10%)
+assignment 2
+Quiz 2 Week 11 (10%)
+Homework Week 13 (10%)
+assignment 3
+Semester Week 8 25%
+Examination:
+Final TBD by the Registrar’s office 35%
+Examination:
+Instructor Policy on Late Submission of Assignments:
+• COURSEWORK – There will be no make-up homework. If you fail to submit on time a scheduled
+homework for any reason, then you will receive a grade of zero for that homework. The scheduling
+of the homeworks is not flexible. You will have one-week time to complete each homework.
+• MIDTERM - There will be no make-up Midterm Examination. If you fail to attend a scheduled
+Midterm Examination for any reason, then you will receive a grade of zero for that Midterm
+Examination.
+• If the Registrar’s Office confirms that the absence on the Midterm Examination was valid, then the
+grade that you achieve for the Final Examination will also be assigned as your grade for the Midterm
+Examination.
+Teaching Plan (Lectures):
+Week Topics and Reminders
+1 The axioms of real numbers; ordering properties of the real numbers; complex numbers cannot
+be ordered; addition and multiplication of subsets of real numbers; maxima and minima of
+subsets of real numbers; properties of maxima and minima; the absolute value of a real
+number; properties of the absolute value and the triangle inequality.
+2 Def. of the natural numbers; the principle of mathematical induction; finite subsets of the real
+line, every finite subset of real numbers has a maximum and minimum; the factorial of a
+natural number as the total number of bijections between two finite sets both having the same
+number of elements; permutations; the binomial coefficient and its interpretation; Binomial
+theorem.
+3 Cardinality of the power set of a finite set derived from the binomial theorem; Bernoulli
+inequality; Well-ordering principle; upper and lower bounds of subsets of the real line;
+examples; supremum and infimum of subsets of the real line; examples; uniqueness of the
+infimum and supremum; inf(𝑀) = −sup (−𝑀); closed, half-open, and open intervals of the
+real line; Archimedean principle and its application in computing the infimum of a set; natural,
+integer, rational and irrational numbers; def. of real sequence; explicit and implicit forms of
+3
+
+--- Page 4 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+sequences; geometrical interpretation of the notion of convergence; definition of convergent
+sequence.
+4 Def. of divergent sequence; def. of definite divergence; five examples showing different
+techniques and tricks to prove that a certain sequence in explicit or implicit form
+converges/diverges; uniqueness theorem of the limit of a convergent sequence; every
+convergent sequence is bounded.
+Homework 1 due
+5 Monotonically increasing/decreasing sequences; the Monotonic Convergence Theorem;
+linear combinations of convergent sequences are convergent; a theorem determining under
+which conditions the process of taking the limit is compatible with the ordering of the real
+numbers; the vector space of all real sequences; definition of series; definition of
+convergent/divergent series; the geometric series, a divergence test.
+6 Linear combinations of convergent series are convergent; definition of bounded series; every
+convergent series is bounded; a series converges whenever its sequence of partial sums is
+monotonically increasing/decreasing and it is bounded from above/below; the Comparison
+Test as a consequence of the Monotonic Convergence Theorem; application of the
+Comparison Test; removing a finite number of terms in a convergent series does not affect
+convergence; Cauchy Condensation Test (CCT); its geometrical meaning; application of CCT
+to a series; proof of the CCT; p-series test proved through CCT; divergence of the harmonic
+series; Ratio Test; convergence of the exponential series.
+Quiz 1
+7 Root test; connection between ratio and root tests; alternating series; proof of the Leibniz test
+for alternating series; Monotone Subsequence Theorem; Bolzano-Weierstrass Theorem;
+definition of Cauchy sequence; every Cauchy sequence is bounded; Cauchy convergence
+criterion; metric spaces; property of the metric/distance function; a metric space is complete
+if every Cauchy sequence of elements in that space converges to an element in that space.
+Homework 2 due
+8 Cauchy criterion for series; absolute convergent series; every absolutely convergent series
+converges; connection between ratio/root test and absolute convergence; boundedness of the
+coefficients of a power series implies absolute convergence of the latter on the interval (-1,1);
+statement of the rearrangement theorem for absolutely convergent series; statement of the
+Riemann rearrangement theorem; construction of the limit of a real-valued function and
+examples of ε-δ proofs for the verification of a given limit.
+MIDTERM Examination
+9 Linearity of the operation of taking the limit of a sum of functions; limit of a product of
+functions; limit of a ratio of functions; sequential characterization of limits; examples of
+functions not admitting a limit; example of continuous and discontinuous functions; definition
+of continuity at a point.
+Homework 3 assigned
+10 Image of a map; preimage of a set; neighbourhoods; formulation of continuity at a point in
+terms of inclusion of neighbourhoods; topological space and examples; the topology of the
+real line; continuous maps between topological spaces and continuity as a property preserving
+openness; sum and products of continuous functions are again continuous; if g continuous at
+𝑥 0 and 𝑔(𝑥) ≠ 0 on some domain D then 1/g is also continuous on D; sequential
+characterization of continuity; the Dirichlet function as an example of a function that is
+nowhere continuous on the real line; if a continuous function does not vanish at a point then
+4
+
+--- Page 5 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+there exists a neighbourhood of that point where the function does not vanish; examples of
+continuous functions: the identity map, polynomials, rational functions, exponential function,
+sine and cosine functions; definition of compact interval; reformulation of the Bolzano-
+Weierstrass theorem in terms of compact intervals; Extreme Value Theorem; Intermediate
+Value Theorem.
+Homework 3 due
+Friday, March 21: Last Day to Withdraw with “W”
+11 Discussion of the role played by the Completeness Axiom and compactness in the
+Intermediate Value Theorem; every real polynomial of odd degree has at least one real root;
+pinpointing the root of a cubic equation; definition of interval; continuous functions preserve
+intervals; example of maps preserving intervals but not openness/closedness of the interval;
+strictly monotone functions; a continuous real function on some interval is injective if and
+only if it is strictly monotone there; the subspace topology; the subspace topology of the
+interval [0,1].
+Quiz 2 due
+12 Basis for a topology; examples of bases; homeomorphism; [a,b] is homeomorphic to [0,1]; the
+Inverse Function Theorem; examples; uniformly continuous functions versus continuous but
+not uniformly continuous functions; definition of uniformly continuous function; every
+continuous function on a compact interval is uniformly continuous there; definition of
+sequence of functions; pointwise convergence; examples of pointwise convergent sequences
+of functions; uniformly convergent sequences of functions; examples; uniform convergence
+implies pointwise convergence.
+13 A uniformly convergent sequence of continuous functions converges to a continuous function;
+theorem allowing order exchange between limit and integration; metric and normed spaces;
+translation invariant and homogeneous metrics induce a norm; the metric space B(D) of all
+bounded functions equipped with the uniform metric; B(D) ia a complete metric space, i.e.
+every Cauchy sequence of bounded functions converge to a bounded function; geometrical
+meaning of the uniform metric; B(D) is a vector space; the supremum norm induced by the
+uniform metric; reformulation of uniform convergence in terms of the uniform metric and the
+supremum norm; the supremum norm satisfies the triangle inequality; application of the
+supremum norm to check uniform convergence of a sequence of functions; convergence in
+the supremum norm implies pointwise convergence; if the pointwise limit of a sequence of
+continuous functions is not a continuous function, then the original sequence is not uniformly
+convergent; a theorem about the limit of the sequence of the derivatives of a given pointwise
+convergent sequence; Cauchy criterion for uniform convergence; functional series; pointwise
+and uniform convergence of functional series; Weierstrass M-Test.
+Homework 4 assigned
+14 A couple of theorems answering the questions: when can we interchange integration and
+summation, when can we differentiate under the summation of a functional series?
+Homework 4 due
+15 A couple of theorems answering the questions: when can we interchange integration and
+summation, when can we differentiate under the summation of a functional series?
+Friday, May 2: Last Day of Classes for the Semester
+This is a tentative schedule and may be adjusted as required.
+5
+
+--- Page 6 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic
+work and will behave according to university rules and UAE societal norms and expectations."
+Additional Information:
+Changes will be made to the timetable for the above Teaching Plan if more, or less, time is required for students to
+successfully learn the individual topics.
+Assessment
+There are homework assignments scheduled for this course. The lowest homework assignment score will be dropped.
+There are no make-up homework assignments in this course.
+You will have one-week time to complete each homework assignment. If you fail to submit a scheduled homework
+assignment at the due date for any reason, then you will receive a grade of zero for that homework assignment. The
+scheduling of the homework assignments is not flexible. The homework assignments will occur on the dates and time
+assigned to them above.
+Mobile Phone Policy
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final Examination. Mobile
+phones must be switched off during quizzes and exams and must be put away for the duration of the quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please arrive at the class periods in a timely fashion. Classes will start as scheduled. Students arriving late to class are a
+distraction to both the instructor and the other students in the classroom.
+All mobile phones or other electronic devices must be switched off and put away during the class time.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+Homework Policy
+Homework is your responsibility. You are expected to solve all examples presented in the classroom as well as the exercises
+that will be assigned by the instructor. Homework solutions will not be collected-in nor graded. Homework is your
+responsibility. Assistance is readily available from the Instructor at his Office.
+Khalifa University Letter Grades & Grade Boundaries: In this course we will use the following
+letter grades and grade boundaries for computing students’ final course grades,
+Letter Grade Percentage Grade Range Description
+A Excellent
+From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+Very Good
+B+
+From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+6
+
+--- Page 7 ---
+MATH 224 Real Analysis I (4 – 0 – 4)
+____________________________________________________________________________________
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D Poor
+From 59.5% to less than 69.5%
+F Less than 59.5% Fail
+7

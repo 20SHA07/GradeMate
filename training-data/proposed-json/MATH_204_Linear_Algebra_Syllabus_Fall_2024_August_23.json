@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+  "sourcePath": "MATH\\MATH 204 Linear Algebra\\MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+  "sourceRelativePath": "MATH\\MATH 204 Linear Algebra\\MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+  "sourceTextFileName": "MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 204",
+  "courseName": "Linear Algebra (3–0–3)",
+  "creditHours": 3,
+  "semester": "Fall 2024",
+  "instructor": "Elias Zikkos",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

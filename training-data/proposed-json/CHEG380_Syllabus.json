@@ -1,0 +1,21 @@
+{
+  "sourceFileName": "CHEG380 Syllabus.pdf",
+  "sourcePath": "CHEG\\CHEG 380 Introduction To Polymer Science and Engineering\\CHEG380 Syllabus.pdf",
+  "sourceRelativePath": "CHEG\\CHEG 380 Introduction To Polymer Science and Engineering\\CHEG380 Syllabus.pdf",
+  "sourceTextFileName": "CHEG380_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 380",
+  "courseName": "Introduction to Polymer Science and Technology",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Contact",
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.16,
+  "needsHumanReview": true
+}

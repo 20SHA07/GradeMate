@@ -1,0 +1,175 @@
+--- Page 1 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3) ____________
+____________________________________________________________
+Organizational Details
+Course Code and Title: MATH 242 Introduction to Probability and Statistics
+Fall 2024
+Semester:
+Schedule: As in Banner
+Instructor: Dr. Berihu Gebrehiwot
+Contact Email: berihu.gebrehiwot@ku.ac.ae
+Office Room Number: San Campus Building 1, Room No. 1211
+After 2 pm-please email me in advance for office location
+Office Hours:
+(G building-G01030 C)
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 6 (10%) 40%
+We drop the lowest quiz Quiz 2 Week 11 (10%)
+grade. Assignment Week 8 (10%)
+Project Week 15 (10%)
+Semester Examination: Week 8: Midterm 25%
+Final Examination: TBD by the Registrar’s Office 35%
+Instructor Policy on Late Submission of Assignments:
+Quizzes • There will be no make-up quizzes. If the student fails to attend a scheduled quiz without
+an approved absence from the Student Success Department, then a grade of zero for that quiz will
+be assigned.
+• If the student fails to attend a quiz and the Student Success Department confirms that the student's
+absence from that quiz is approved, then the grade that will be assigned to that quiz is the grade of
+the Semester Examination if that quiz took place before the Semester Examination; the grade of
+the Final Examination if that quiz took place after the Semester Examination.
+Semester Examination • There will be no make-up Semester Examination. If the student fails to
+attend the scheduled Semester Examination without an approved absence from the Student Success
+Department, then a grade of zero will be assigned for the Semester Examination.
+• If the student fails to attend the Semester Examination and the Student Success Department
+confirms that the absence from the Semester Examination is approved, then the grade for the Final
+Examination will also be assigned as the grade for the Semester Examination.
+A maximum of 40% of the course grade can be compensated through the above policy
+The scheduling of the quizzes is not flexible. The quizzes will occur on the dates and time assigned
+to them above.
+Honor Code Academic Pledge:
+UCC: March 2024 3
+
+--- Page 2 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3) ____________
+____________________________________________________________
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic
+work and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+Week Dates Topics and Reminders
+1 Aug 27 – 30 Basic concepts of probability, Probability axioms and Counting
+2 Sep 2 – 6 Conditional probability and statistical independence, total law of
+probability, Bayes rule
+3 Discrete random variables, PMF, Discrete random variables:
+Sep 9 – 13
+Expectation, variance
+4 Common discrete probability laws
+Sep 16 – 20 Assignment assigned to students
+5 Sep 23 – 27 Continuous random variables: pdf, CDF, expectation, variance
+6 Common continuous probability laws
+Sep 30 – Oct 4
+Quiz 1
+7 Random vectors, Joint distributions Marginal distributions (discrete
+Oct 7– 11 rv), Expectation, Variance, Conditional distributions discrete
+random vectors
+8 Exp. of a function of r.v., Independence, Covariance and correlation
+discrete random vectors
+Oct 14 – 18
+Assignment Submission
+th
+Semester examination (Monday October 14)
+9 Joint continuous distributions, Marginal distributions (continuous
+Oct 21 – 25
+rv), Independence, Conditional distribution
+10 Law of total probability and expectation, Exp of a function of a r.v,
+Oct 28 – Nov 1 Covariance, correlation
+st
+Friday November 1: Last Day to Withdraw with “W”
+11 Linear combinations of random variables: mean and variance, Large
+Sample Theory
+Nov 4– 8
+Quiz 2
+Project assigned to students
+12 Nov 11 – 15 Large Sample Theory, Descriptive statistics, Estimators
+13 Sampling distributions, Confidence intervals for mean
+Nov 18 – 22
+14 Nov 25 – 29 Confidence intervals for proportion, Hypothesis testing
+15 Hypothesis testing
+rd
+Dec 2 – 6 Project Submission Tuesday December 3
+th
+Friday December 6: Last Day of Classes
+This is a tentative schedule and may be adjusted as required.
+UCC: March 2024 4
+
+--- Page 3 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3) ____________
+____________________________________________________________
+Additional Information:
+Assessment
+There are 2 quizzes scheduled in this course. Each quiz will therefore count for 10% of your
+final grade for the course. There will be no make-up quizzes. If you fail to attend a scheduled quiz
+for any reason, then you will receive a grade of zero for that quiz.
+Assignment
+In the week 3 of the semester, students will be provided an assignment in groups and they will
+have to submit the week before the Midterm. Each group will be composed of 3 or 4 students and
+will have a different data set. The assignment must be submitted in the week 8 of the semester. If
+the report is submitted late, the project grade will be decreased by 10% for each day of delay.
+Project
+In the week 11 of the semester, students will be assigned a project regarding data analysis using a
+statistical software. Each group will be composed of 3 or 4 students and will have a different data
+set. A final report on the data analysis must be submitted in the week 15 of the semester. If the
+report is submitted late, the project grade will be decreased by 10% for each day of delay.
+Calculator Policy
+You may use a basic scientific calculator to help you with arithmetic calculations. Calculators with
+any sort of graphing, symbolic manipulation or integral and derivative calculation capabilities
+are strictly prohibited. Any such device found with a student during any form of assessment will
+be treated as a violation of the above-stated Honor Code Academic Pledge.
+You will be permitted to only use a basic calculator in the Quizzes, Semester Examination and the
+Final Examination.
+Mobile phones may not be used as calculators in the Quizzes, Semester Examination or Final
+Examination. Mobile phones must be switched off during quizzes and exams and must be put
+away for the duration of the quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please arrive at the class periods in a timely fashion. Classes will start as scheduled. Students
+arriving late to class are a distraction to both the instructor and the other students in the classroom.
+As per the University policies, any student arriving late to class is to be considered absent.
+Please ensure that you sign your name on the Attendance Sheet which is handed-out at the
+beginning of each class period. If you do not sign the Attendance Sheet, then you will be marked
+“Absent” in the Banner.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+Homework Policy
+You are expected to solve all examples presented in the classroom as well as exercises at the end
+of each section of the book. Homework solutions will not be collected-in nor graded. Homework
+is your responsibility. Assistance is readily available from the Instructor at his Office Hours.
+UCC: March 2024 5
+
+--- Page 4 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3) ____________
+____________________________________________________________
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned
+a grade point on a four-point scale. Typical ranges associated with letter grades are set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for the KU courses.
+Letter Grade Percentage Grade Range Description
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than 92.5%
+Very Good
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D From 59.5% to less than 69.5% Poor
+F Less than 59.5% Fail
+UCC: March 2024 6

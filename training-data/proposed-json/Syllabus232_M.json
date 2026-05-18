@@ -1,0 +1,21 @@
+{
+  "sourceFileName": "Syllabus232 M.pdf",
+  "sourcePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus232 M.pdf",
+  "sourceRelativePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus232 M.pdf",
+  "sourceTextFileName": "Syllabus232_M.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": null,
+  "assessments": [],
+  "totalWeight": 0,
+  "warnings": [
+    "No assessments found",
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "confidence": 0.12,
+  "needsHumanReview": true
+}

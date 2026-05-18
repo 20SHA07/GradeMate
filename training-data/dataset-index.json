@@ -1,0 +1,952 @@
+{
+  "generatedAt": "2026-05-18T13:02:12.315Z",
+  "sourceDir": "drive-download-20260516T203409Z-3-002",
+  "totalFilesScanned": 4123,
+  "supportedFilesScanned": 3429,
+  "syllabusFilesFound": 63,
+  "skippedMaterialFiles": 3366,
+  "possibleSyllabusFiles": 5,
+  "parseErrors": [],
+  "records": [
+    {
+      "id": "BMED_221_Syllabus_Supplement_Spring_2024",
+      "sourceFileName": "BMED 221 Syllabus Supplement Spring 2024.pdf",
+      "sourcePath": "BMED\\BMED 221 Human Anatomy and Physiological Modeling for Engineers\\BMED 221 Syllabus Supplement Spring 2024.pdf",
+      "relativePath": "BMED\\BMED 221 Human Anatomy and Physiological Modeling for Engineers\\BMED 221 Syllabus Supplement Spring 2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "BMED_221_Syllabus_Supplement_Spring_2024.txt",
+      "textPath": "training-data\\extracted-text\\BMED_221_Syllabus_Supplement_Spring_2024.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Fall_2024_BMED321_Syllabus_Supplement_for_Students",
+      "sourceFileName": "Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+      "sourcePath": "BMED\\BMED 321 Mechanics for Biomedical Engineers\\Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+      "relativePath": "BMED\\BMED 321 Mechanics for Biomedical Engineers\\Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+      "extension": ".pdf",
+      "textFileName": "Fall_2024_BMED321_Syllabus_Supplement_for_Students.txt",
+      "textPath": "training-data\\extracted-text\\Fall_2024_BMED321_Syllabus_Supplement_for_Students.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_for_Students",
+      "sourceFileName": "Syllabus Supplement for Students.pdf",
+      "sourcePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+      "relativePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Supplement_for_Students.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_for_Students.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "BMED_351_Biomed_Circuits_and_Systems_Syllabus",
+      "sourceFileName": "BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+      "sourcePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+      "relativePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\BMED 351 Biomed Circuits and Systems - Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "BMED_351_Biomed_Circuits_and_Systems_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\BMED_351_Biomed_Circuits_and_Systems_Syllabus.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_BMED_351_Fall2024",
+      "sourceFileName": "Syllabus_Supplement_BMED 351_Fall2024.pdf",
+      "sourcePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\Syllabus_Supplement_BMED 351_Fall2024.pdf",
+      "relativePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\Syllabus_Supplement_BMED 351_Fall2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Supplement_BMED_351_Fall2024.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_BMED_351_Fall2024.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Course_Syllabus",
+      "sourceFileName": "Course Syllabus.pdf",
+      "sourcePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Course Syllabus.pdf",
+      "relativePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Course Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "Course_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Course_Syllabus.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_Spring_2025",
+      "sourceFileName": "Syllabus Supplement - Spring 2025.pdf",
+      "sourcePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Syllabus Supplement - Spring 2025.pdf",
+      "relativePath": "BMED\\BMED 352 Fundamentals of Biomedical Signal Processing\\Syllabus\\Syllabus Supplement - Spring 2025.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Supplement_Spring_2025.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_Spring_2025.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "BUSS150_Syllabus_Introduction_to_Economics_Spring_2024",
+      "sourceFileName": "BUSS150 Syllabus Introduction to Economics Spring 2024.docx",
+      "sourcePath": "BUSS\\BUSS 150 Introduction to Economics\\BUSS150 Syllabus Introduction to Economics Spring 2024.docx",
+      "relativePath": "BUSS\\BUSS 150 Introduction to Economics\\BUSS150 Syllabus Introduction to Economics Spring 2024.docx",
+      "extension": ".docx",
+      "textFileName": "BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.txt",
+      "textPath": "training-data\\extracted-text\\BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1",
+      "sourceFileName": "Syllabus Supplement for Students BUSS 150_Spring2025 (1).docx",
+      "sourcePath": "BUSS\\BUSS 150 Introduction to Economics\\Syllabus Supplement for Students BUSS 150_Spring2025 (1).docx",
+      "relativePath": "BUSS\\BUSS 150 Introduction to Economics\\Syllabus Supplement for Students BUSS 150_Spring2025 (1).docx",
+      "extension": ".docx",
+      "textFileName": "Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 1 syllabus indicators"
+      ]
+    },
+    {
+      "id": "BUSS322_Syllabus_Bowman_Spring_2025",
+      "sourceFileName": "BUSS322 Syllabus Bowman Spring 2025.pdf",
+      "sourcePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\BUSS322 Syllabus Bowman Spring 2025.pdf",
+      "relativePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\BUSS322 Syllabus Bowman Spring 2025.pdf",
+      "extension": ".pdf",
+      "textFileName": "BUSS322_Syllabus_Bowman_Spring_2025.txt",
+      "textPath": "training-data\\extracted-text\\BUSS322_Syllabus_Bowman_Spring_2025.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation",
+      "sourceFileName": "Summer 2025 Syllabus BUSS 322 Fundamentals of Innovation.pdf",
+      "sourcePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\Syllabus\\Summer 2025 Syllabus BUSS 322 Fundamentals of Innovation.pdf",
+      "relativePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\Syllabus\\Summer 2025 Syllabus BUSS 322 Fundamentals of Innovation.pdf",
+      "extension": ".pdf",
+      "textFileName": "Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.txt",
+      "textPath": "training-data\\extracted-text\\Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEG_205_Syllabus",
+      "sourceFileName": "CHEG 205 - Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 205 Principles of Chemical Engineering\\CHEG 205 - Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 205 Principles of Chemical Engineering\\CHEG 205 - Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "CHEG_205_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\CHEG_205_Syllabus.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Thermodynamics_Syllabus",
+      "sourceFileName": "Thermodynamics Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 230 Chemical Engineering Thermodynamics I\\Thermodynamics Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 230 Chemical Engineering Thermodynamics I\\Thermodynamics Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Thermodynamics_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Thermodynamics_Syllabus.txt",
+      "pageCount": 4,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Fluid_Mechanics_Syllabus",
+      "sourceFileName": "Fluid Mechanics Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 232 Fluid Mechanics\\Fluid Mechanics Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 232 Fluid Mechanics\\Fluid Mechanics Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Fluid_Mechanics_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Fluid_Mechanics_Syllabus.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Numerical_Syllabus",
+      "sourceFileName": "Numerical Syllabus.pdf",
+      "sourcePath": "CHEG\\CHEG 312 Numerical Methods for Chemical Engineers\\Numerical Syllabus.pdf",
+      "relativePath": "CHEG\\CHEG 312 Numerical Methods for Chemical Engineers\\Numerical Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "Numerical_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Numerical_Syllabus.txt",
+      "pageCount": 4,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Mass_Syllabus",
+      "sourceFileName": "Mass Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 324 Mass Transfer\\Mass Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 324 Mass Transfer\\Mass Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Mass_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Mass_Syllabus.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Thermo_II_Syllabus",
+      "sourceFileName": "Thermo II Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 332 Chemical Engineering Thermodynamics II\\Thermo II Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 332 Chemical Engineering Thermodynamics II\\Thermo II Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Thermo_II_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Thermo_II_Syllabus.txt",
+      "pageCount": 4,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Material_Science_Syllabus",
+      "sourceFileName": "Material Science Syllabus .pdf",
+      "sourcePath": "CHEG\\CHEG 350 Materials Science & Engineering\\Material Science Syllabus .pdf",
+      "relativePath": "CHEG\\CHEG 350 Materials Science & Engineering\\Material Science Syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Material_Science_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Material_Science_Syllabus.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEG380_Syllabus",
+      "sourceFileName": "CHEG380 Syllabus.pdf",
+      "sourcePath": "CHEG\\CHEG 380 Introduction To Polymer Science and Engineering\\CHEG380 Syllabus.pdf",
+      "relativePath": "CHEG\\CHEG 380 Introduction To Polymer Science and Engineering\\CHEG380 Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "CHEG380_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\CHEG380_Syllabus.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEM115_Syllabus_Spring_2023_S03",
+      "sourceFileName": "CHEM115-Syllabus_Spring 2023_S03.pdf",
+      "sourcePath": "CHEM\\CHEM 115 General Chemistry I\\CHEM115-Syllabus_Spring 2023_S03.pdf",
+      "relativePath": "CHEM\\CHEM 115 General Chemistry I\\CHEM115-Syllabus_Spring 2023_S03.pdf",
+      "extension": ".pdf",
+      "textFileName": "CHEM115_Syllabus_Spring_2023_S03.txt",
+      "textPath": "training-data\\extracted-text\\CHEM115_Syllabus_Spring_2023_S03.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEM116_Syllabus_SP25",
+      "sourceFileName": "CHEM116_Syllabus_SP25.pdf",
+      "sourcePath": "CHEM\\CHEM 116 General Chemistry II\\CHEM116_Syllabus_SP25.pdf",
+      "relativePath": "CHEM\\CHEM 116 General Chemistry II\\CHEM116_Syllabus_SP25.pdf",
+      "extension": ".pdf",
+      "textFileName": "CHEM116_Syllabus_SP25.txt",
+      "textPath": "training-data\\extracted-text\\CHEM116_Syllabus_SP25.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_CHEM_116_spring_2025_2",
+      "sourceFileName": "Syllabus Supplement - CHEM 116 spring 2025(2).docx",
+      "sourcePath": "CHEM\\CHEM 116 General Chemistry II\\Syllabus Supplement - CHEM 116 spring 2025(2).docx",
+      "relativePath": "CHEM\\CHEM 116 General Chemistry II\\Syllabus Supplement - CHEM 116 spring 2025(2).docx",
+      "extension": ".docx",
+      "textFileName": "Syllabus_Supplement_CHEM_116_spring_2025_2.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_CHEM_116_spring_2025_2.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEM_211_Spring_2024_Syllabus_Supplement",
+      "sourceFileName": "CHEM 211_Spring 2024-Syllabus Supplement.docx",
+      "sourcePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2024-Syllabus Supplement.docx",
+      "relativePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2024-Syllabus Supplement.docx",
+      "extension": ".docx",
+      "textFileName": "CHEM_211_Spring_2024_Syllabus_Supplement.txt",
+      "textPath": "training-data\\extracted-text\\CHEM_211_Spring_2024_Syllabus_Supplement.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 1 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEM_211_Spring_2025_Syllabus_Supplement",
+      "sourceFileName": "CHEM 211_Spring 2025-Syllabus Supplement.docx",
+      "sourcePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2025-Syllabus Supplement.docx",
+      "relativePath": "CHEM\\CHEM 211 Fundamentals of Organic Chemistry\\CHEM 211_Spring 2025-Syllabus Supplement.docx",
+      "extension": ".docx",
+      "textFileName": "CHEM_211_Spring_2025_Syllabus_Supplement.txt",
+      "textPath": "training-data\\extracted-text\\CHEM_211_Spring_2025_Syllabus_Supplement.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 1 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC101_Syllabus_and_Syllabus_Supplement",
+      "sourceFileName": "COSC101_Syllabus_and Syllabus_Supplement.docx",
+      "sourcePath": "COSC\\COSC 101 Foundations of Computer Science\\COSC101_Syllabus_and Syllabus_Supplement.docx",
+      "relativePath": "COSC\\COSC 101 Foundations of Computer Science\\COSC101_Syllabus_and Syllabus_Supplement.docx",
+      "extension": ".docx",
+      "textFileName": "COSC101_Syllabus_and_Syllabus_Supplement.txt",
+      "textPath": "training-data\\extracted-text\\COSC101_Syllabus_and_Syllabus_Supplement.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "ENGR114_Syllabus_Introduction_to_Computing_Python_Fall_2024",
+      "sourceFileName": "ENGR114 Syllabus Introduction to Computing - Python Fall 2024.pdf",
+      "sourcePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Fall 2024.pdf",
+      "relativePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Fall 2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "ENGR114_Syllabus_Introduction_to_Computing_Python_Fall_2024.txt",
+      "textPath": "training-data\\extracted-text\\ENGR114_Syllabus_Introduction_to_Computing_Python_Fall_2024.txt",
+      "pageCount": 8,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "ENGR114_Syllabus_Introduction_to_Computing_Python_Spring_2024",
+      "sourceFileName": "ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+      "sourcePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+      "relativePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "ENGR114_Syllabus_Introduction_to_Computing_Python_Spring_2024.txt",
+      "textPath": "training-data\\extracted-text\\ENGR114_Syllabus_Introduction_to_Computing_Python_Spring_2024.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad",
+      "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+      "sourcePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+      "relativePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad.txt",
+      "textPath": "training-data\\extracted-text\\COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_202_Data_Science_and_Artificial_Intelligence_May_2024",
+      "sourceFileName": "COSC 202 Data Science and Artificial Intelligence - May 2024.docx",
+      "sourcePath": "COSC\\COSC 202 Data Science and Artificial Intelligence\\Syllabus\\COSC 202 Data Science and Artificial Intelligence - May 2024.docx",
+      "relativePath": "COSC\\COSC 202 Data Science and Artificial Intelligence\\Syllabus\\COSC 202 Data Science and Artificial Intelligence - May 2024.docx",
+      "extension": ".docx",
+      "textFileName": "COSC_202_Data_Science_and_Artificial_Intelligence_May_2024.txt",
+      "textPath": "training-data\\extracted-text\\COSC_202_Data_Science_and_Artificial_Intelligence_May_2024.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC301_Syllabus_Supplement_for_Students_Fall_2022",
+      "sourceFileName": "COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+      "sourcePath": "COSC\\COSC 301 Automata, Computability, and Complexity\\Syllabus\\COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+      "relativePath": "COSC\\COSC 301 Automata, Computability, and Complexity\\Syllabus\\COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC301_Syllabus_Supplement_for_Students_Fall_2022.txt",
+      "textPath": "training-data\\extracted-text\\COSC301_Syllabus_Supplement_for_Students_Fall_2022.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 1 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC310_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji",
+      "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+      "sourcePath": "COSC\\COSC 310 Data Structures\\Syllabus\\COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+      "relativePath": "COSC\\COSC 310 Data Structures\\Syllabus\\COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC310_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.txt",
+      "textPath": "training-data\\extracted-text\\COSC310_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_330_Introduction_to_AI_withSupplementSpring2025_1",
+      "sourceFileName": "COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+      "sourcePath": "COSC\\COSC 330 Introduction to Artificial Intelligence\\COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+      "relativePath": "COSC\\COSC 330 Introduction to Artificial Intelligence\\COSC 330 Introduction to AI_withSupplementSpring2025 (1).docx",
+      "extension": ".docx",
+      "textFileName": "COSC_330_Introduction_to_AI_withSupplementSpring2025_1.txt",
+      "textPath": "training-data\\extracted-text\\COSC_330_Introduction_to_AI_withSupplementSpring2025_1.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "ENGL101_Academic_English_I_Fall_2021_Syllabus",
+      "sourceFileName": "ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+      "sourcePath": "ENGL\\ENGL 101 Academic English I\\Syllabus\\ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+      "relativePath": "ENGL\\ENGL 101 Academic English I\\Syllabus\\ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "ENGL101_Academic_English_I_Fall_2021_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\ENGL101_Academic_English_I_Fall_2021_Syllabus.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus",
+      "sourceFileName": "Syllabus.pdf",
+      "sourcePath": "ENGL\\ENGL 102 Academic English II\\Syllabus.pdf",
+      "relativePath": "ENGL\\ENGL 102 Academic English II\\Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus.txt",
+      "pageCount": 4,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "CHEM116_Syllabus_SM25",
+      "sourceFileName": "CHEM116_Syllabus_SM25.pdf",
+      "sourcePath": "ESMA\\ESMA 200 Engineering Economic Analysis\\CHEM116_Syllabus_SM25.pdf",
+      "relativePath": "ESMA\\ESMA 200 Engineering Economic Analysis\\CHEM116_Syllabus_SM25.pdf",
+      "extension": ".pdf",
+      "textFileName": "CHEM116_Syllabus_SM25.txt",
+      "textPath": "training-data\\extracted-text\\CHEM116_Syllabus_SM25.txt",
+      "pageCount": 8,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "GENS_100_Syllabus_Supplement_for_Students_Fall_2024",
+      "sourceFileName": "GENS 100 Syllabus Supplement for Students Fall 2024.docx",
+      "sourcePath": "GENS\\GENS 100 Academic Development & Success\\GENS 100 Syllabus Supplement for Students Fall 2024.docx",
+      "relativePath": "GENS\\GENS 100 Academic Development & Success\\GENS 100 Syllabus Supplement for Students Fall 2024.docx",
+      "extension": ".docx",
+      "textFileName": "GENS_100_Syllabus_Supplement_for_Students_Fall_2024.txt",
+      "textPath": "training-data\\extracted-text\\GENS_100_Syllabus_Supplement_for_Students_Fall_2024.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "GENS_100_Syllabus_Spring_2024",
+      "sourceFileName": "GENS 100 Syllabus _Spring 2024.pdf",
+      "sourcePath": "GENS\\GENS 100 Academic Development & Success\\GENS 100 Syllabus _Spring 2024.pdf",
+      "relativePath": "GENS\\GENS 100 Academic Development & Success\\GENS 100 Syllabus _Spring 2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "GENS_100_Syllabus_Spring_2024.txt",
+      "textPath": "training-data\\extracted-text\\GENS_100_Syllabus_Spring_2024.txt",
+      "pageCount": 7,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Grand_Challenges_syllabus",
+      "sourceFileName": "Grand Challenges syllabus .pdf",
+      "sourcePath": "GENS\\GENS 101 Grand Challenges\\Grand Challenges syllabus .pdf",
+      "relativePath": "GENS\\GENS 101 Grand Challenges\\Grand Challenges syllabus .pdf",
+      "extension": ".pdf",
+      "textFileName": "Grand_Challenges_syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Grand_Challenges_syllabus.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "GENS_300_Syllabus",
+      "sourceFileName": "GENS 300 Syllabus.pdf",
+      "sourcePath": "GENS\\GENS 300 Career Preparation\\GENS 300 Syllabus.pdf",
+      "relativePath": "GENS\\GENS 300 Career Preparation\\GENS 300 Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "GENS_300_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\GENS_300_Syllabus.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "GENS_300_Syllabus_2",
+      "sourceFileName": "GENS 300 Syllabus.pdf",
+      "sourcePath": "GENS\\GENS 300 Career Preparation\\Syllabus\\GENS 300 Syllabus.pdf",
+      "relativePath": "GENS\\GENS 300 Career Preparation\\Syllabus\\GENS 300 Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "GENS_300_Syllabus_2.txt",
+      "textPath": "training-data\\extracted-text\\GENS_300_Syllabus_2.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2",
+      "sourceFileName": "Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+      "sourcePath": "HUMA\\HUMA 105 Emirates Society in English\\Syllabus\\Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+      "relativePath": "HUMA\\HUMA 105 Emirates Society in English\\Syllabus\\Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2",
+      "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+      "sourcePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+      "relativePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+      "extension": ".pdf",
+      "textFileName": "HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2.txt",
+      "textPath": "training-data\\extracted-text\\HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "3_LTCM221_Intercultural_Communication_SUMMER_2025",
+      "sourceFileName": "3_LTCM221 Intercultural Communication SUMMER 2025.docx",
+      "sourcePath": "HUMA\\HUMA 221 Intercultural Communication\\3_LTCM221 Intercultural Communication SUMMER 2025.docx",
+      "relativePath": "HUMA\\HUMA 221 Intercultural Communication\\3_LTCM221 Intercultural Communication SUMMER 2025.docx",
+      "extension": ".docx",
+      "textFileName": "3_LTCM221_Intercultural_Communication_SUMMER_2025.txt",
+      "textPath": "training-data\\extracted-text\\3_LTCM221_Intercultural_Communication_SUMMER_2025.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025",
+      "sourceFileName": "HUMA 229 Critical Thinking Course Syllabus Fall 2025.docx",
+      "sourcePath": "HUMA\\HUMA 229 Critical Thinking\\HUMA 229 Critical Thinking Course Syllabus Fall 2025.docx",
+      "relativePath": "HUMA\\HUMA 229 Critical Thinking\\HUMA 229 Critical Thinking Course Syllabus Fall 2025.docx",
+      "extension": ".docx",
+      "textFileName": "HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.txt",
+      "textPath": "training-data\\extracted-text\\HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "HUMA_277_Intro_to_Logical_Summer_25",
+      "sourceFileName": "HUMA 277 Intro to Logical Summer 25.docx",
+      "sourcePath": "HUMA\\HUMA 277 Introduction to Logical Reasoning\\HUMA 277 Intro to Logical Summer 25.docx",
+      "relativePath": "HUMA\\HUMA 277 Introduction to Logical Reasoning\\HUMA 277 Intro to Logical Summer 25.docx",
+      "extension": ".docx",
+      "textFileName": "HUMA_277_Intro_to_Logical_Summer_25.txt",
+      "textPath": "training-data\\extracted-text\\HUMA_277_Intro_to_Logical_Summer_25.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_101_Syllabus_Fall_2024_Dr_Ahmed",
+      "sourceFileName": "MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+      "sourcePath": "MATH\\MATH 101 Fundamentals of Mathematical Reasoning\\MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+      "relativePath": "MATH\\MATH 101 Fundamentals of Mathematical Reasoning\\MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_101_Syllabus_Fall_2024_Dr_Ahmed.txt",
+      "textPath": "training-data\\extracted-text\\MATH_101_Syllabus_Fall_2024_Dr_Ahmed.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_111_Syllabus_Spring_2025_Dr_Imad",
+      "sourceFileName": "MATH 111 Syllabus - Spring 2025 - Dr. Imad.pdf",
+      "sourcePath": "MATH\\MATH 111 Calculus I\\MATH 111 Syllabus - Spring 2025 - Dr. Imad.pdf",
+      "relativePath": "MATH\\MATH 111 Calculus I\\MATH 111 Syllabus - Spring 2025 - Dr. Imad.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_111_Syllabus_Spring_2025_Dr_Imad.txt",
+      "textPath": "training-data\\extracted-text\\MATH_111_Syllabus_Spring_2025_Dr_Imad.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_112_Calculus_II_Syllabus_Spring_2025_AM",
+      "sourceFileName": "MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+      "sourcePath": "MATH\\MATH 112 Calculus II\\MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+      "relativePath": "MATH\\MATH 112 Calculus II\\MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_112_Calculus_II_Syllabus_Spring_2025_AM.txt",
+      "textPath": "training-data\\extracted-text\\MATH_112_Calculus_II_Syllabus_Spring_2025_AM.txt",
+      "pageCount": 8,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_112_Syllabus_Spring_2025_Dr_Fawaz",
+      "sourceFileName": "MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
+      "sourcePath": "MATH\\MATH 112 Calculus II\\MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
+      "relativePath": "MATH\\MATH 112 Calculus II\\MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_112_Syllabus_Spring_2025_Dr_Fawaz.txt",
+      "textPath": "training-data\\extracted-text\\MATH_112_Syllabus_Spring_2025_Dr_Fawaz.txt",
+      "pageCount": 8,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23",
+      "sourceFileName": "MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+      "sourcePath": "MATH\\MATH 204 Linear Algebra\\MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+      "relativePath": "MATH\\MATH 204 Linear Algebra\\MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.txt",
+      "textPath": "training-data\\extracted-text\\MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.txt",
+      "pageCount": 7,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH211_Syllabus",
+      "sourceFileName": "MATH211-Syllabus.docx",
+      "sourcePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\MATH211-Syllabus.docx",
+      "relativePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\MATH211-Syllabus.docx",
+      "extension": ".docx",
+      "textFileName": "MATH211_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\MATH211_Syllabus.txt",
+      "pageCount": null,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Math_211_Syllabus_Supplement_Spring_25_updated",
+      "sourceFileName": "Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+      "sourcePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\Syllabus\\Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+      "relativePath": "MATH\\MATH 211 Differential Equations and Linear Algebra\\Syllabus\\Math 211_Syllabus Supplement_Spring 25-updated.pdf",
+      "extension": ".pdf",
+      "textFileName": "Math_211_Syllabus_Supplement_Spring_25_updated.txt",
+      "textPath": "training-data\\extracted-text\\Math_211_Syllabus_Supplement_Spring_25_updated.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH224_Syllabus_Spring_2025_Prof_Khamsi",
+      "sourceFileName": "MATH224 Syllabus - Spring 2025 - Prof. Khamsi.pdf",
+      "sourcePath": "MATH\\MATH 224 Real Analysis I\\MATH224 Syllabus - Spring 2025 - Prof. Khamsi.pdf",
+      "relativePath": "MATH\\MATH 224 Real Analysis I\\MATH224 Syllabus - Spring 2025 - Prof. Khamsi.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH224_Syllabus_Spring_2025_Prof_Khamsi.txt",
+      "textPath": "training-data\\extracted-text\\MATH224_Syllabus_Spring_2025_Prof_Khamsi.txt",
+      "pageCount": 7,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement",
+      "sourceFileName": "Syllabus Supplement.pdf",
+      "sourcePath": "MATH\\MATH 232 Engineering Mathematics\\Engineering Math - MATH232\\Syllabus Supplement.pdf",
+      "relativePath": "MATH\\MATH 232 Engineering Mathematics\\Engineering Math - MATH232\\Syllabus Supplement.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Supplement.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Supplement_2",
+      "sourceFileName": "Syllabus Supplement.pdf",
+      "sourcePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus Supplement.pdf",
+      "relativePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus Supplement.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Supplement_2.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Supplement_2.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus232_M",
+      "sourceFileName": "Syllabus232 M.pdf",
+      "sourcePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus232 M.pdf",
+      "relativePath": "MATH\\MATH 232 Engineering Mathematics\\Syllabus232 M.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus232_M.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus232_M.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH234_Syllabus_Summer_2024",
+      "sourceFileName": "MATH234 Syllabus (Summer 2024).pdf",
+      "sourcePath": "MATH\\MATH 234 Discrete Mathematics\\MATH234 Syllabus (Summer 2024).pdf",
+      "relativePath": "MATH\\MATH 234 Discrete Mathematics\\MATH234 Syllabus (Summer 2024).pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH234_Syllabus_Summer_2024.txt",
+      "textPath": "training-data\\extracted-text\\MATH234_Syllabus_Summer_2024.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_242_Syllabus_Supplement_Fall_2024",
+      "sourceFileName": "MATH 242 - Syllabus Supplement Fall 2024.pdf",
+      "sourcePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 - Syllabus Supplement Fall 2024.pdf",
+      "relativePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 - Syllabus Supplement Fall 2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_242_Syllabus_Supplement_Fall_2024.txt",
+      "textPath": "training-data\\extracted-text\\MATH_242_Syllabus_Supplement_Fall_2024.txt",
+      "pageCount": 4,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_242_Introduction_to_Probability_and_Statistics_Jan2025",
+      "sourceFileName": "MATH 242 Introduction to Probability and Statistics_Jan2025.docx",
+      "sourcePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 Introduction to Probability and Statistics_Jan2025.docx",
+      "relativePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\MATH 242 Introduction to Probability and Statistics_Jan2025.docx",
+      "extension": ".docx",
+      "textFileName": "MATH_242_Introduction_to_Probability_and_Statistics_Jan2025.txt",
+      "textPath": "training-data\\extracted-text\\MATH_242_Introduction_to_Probability_and_Statistics_Jan2025.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Summer_2024_Syllabus",
+      "sourceFileName": "Summer 2024 Syllabus.pdf",
+      "sourcePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\Summer 2024 Syllabus.pdf",
+      "relativePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\Summer 2024 Syllabus.pdf",
+      "extension": ".pdf",
+      "textFileName": "Summer_2024_Syllabus.txt",
+      "textPath": "training-data\\extracted-text\\Summer_2024_Syllabus.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_244_Syllabus_Spring_2025_Dr_Yerkin",
+      "sourceFileName": "MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+      "sourcePath": "MATH\\MATH 244 Probability\\MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+      "relativePath": "MATH\\MATH 244 Probability\\MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_244_Syllabus_Spring_2025_Dr_Yerkin.txt",
+      "textPath": "training-data\\extracted-text\\MATH_244_Syllabus_Spring_2025_Dr_Yerkin.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "MATH_251_Syllabus_Spring_2025_Dr_Pedro",
+      "sourceFileName": "MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+      "sourcePath": "MATH\\MATH 251 Operations Research I\\MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+      "relativePath": "MATH\\MATH 251 Operations Research I\\MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+      "extension": ".pdf",
+      "textFileName": "MATH_251_Syllabus_Spring_2025_Dr_Pedro.txt",
+      "textPath": "training-data\\extracted-text\\MATH_251_Syllabus_Spring_2025_Dr_Pedro.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Syllabus_Summer_2025",
+      "sourceFileName": "Syllabus - Summer 2025.pdf",
+      "sourcePath": "PHYS\\PHYS 121 University Physics I\\Syllabus - Summer 2025.pdf",
+      "relativePath": "PHYS\\PHYS 121 University Physics I\\Syllabus - Summer 2025.pdf",
+      "extension": ".pdf",
+      "textFileName": "Syllabus_Summer_2025.txt",
+      "textPath": "training-data\\extracted-text\\Syllabus_Summer_2025.txt",
+      "pageCount": 6,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 4 syllabus indicators"
+      ]
+    }
+  ]
+}

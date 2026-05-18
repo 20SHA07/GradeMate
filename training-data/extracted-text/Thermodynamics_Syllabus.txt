@@ -1,0 +1,118 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title CHEG230 Chemical Engineering Thermodynamics I
+Semester: Spring 2024
+Instructor Name Ricardo Nogueira
+Contact Email/ Office Ext. No. Ricardo.Nogueira@ku.ac.ae; 02 312 3184; 056 487 7514
+Office Room No. SAN Campus: Building 4, Ground level, Room 4-017
+M 11:00 am -12:00 pm W 11:00 am -12:00 pm
+Office Hours
+Assessment Methodology
+Tentative Dates Weight
+Coursework:
+Pre-Assigned Quizzes 30%
+Projects (if applicable) NA
+Laboratory (if applicable) NA
+th
+Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%
+Final Examination Written examination (Closed Book) Assigned by Registrar 40%
+Instructor Policy on Exams, Assignments, and Quizzes:
+Five pre-assigned quizzes covering all the course material will be given; however, only the best four
+grades will be considered.
+Lectures and examinations are expected to be attended on time and on the scheduled date. Any
+arrangements regarding examinations due to special emergency situations or authorized university
+activities must be made in advance with the instructor. Missing a midterm or final exam needs an
+official excuse.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+CCK January 06, 2021 Syllabus Supplement for Students Page 1 of 2
+
+--- Page 2 ---
+TEACHING PLAN (Lecture):
+Week 1 General introduction to chemical engineering thermodynamics. Define units of pressure,
+Ch. 1 temperature, density, mass, and moles, SI and English system, and conversion of units.
+Week 2 First Law of Thermodynamics: Introducing relevant concepts and terminology, e.g.
+Ch. 2 A internal energy, potential energy, kinetic energy, specific volume, heat capacity, heat,
+work, enthalpy, state and state functions. Quiz 1
+Week 3 Energy balance for a closed system: Applications
+Ch. 2 A
+Week 4 Analysis of open systems: Mass and Energy Balances.
+Ch. 2 B
+Week 5 Open systems: Selected applications, e.g. turbines, nozzle, etc. Quiz 2
+Ch. 2 B
+Week 6 Volumetric properties of pure fluids: PVT behavior of pure substances, ideal gas and
+Ch. 3A-B equations of state (EoS)
+Week 7 Cubic equations of state, theorem of corresponding states, generalized correlations for
+Ch. 3C, D gases, generalized correlations for liquids. Quiz 3
+Week 8 Heat Effec10 3/10s: Sensible heat effects, latent heat of pure substances. Midterm
+Ch. 4A, B Exam.
+o o
+Week 9 Standard heat of reaction (∆ H), temperature dependence of ∆ H, heat effects of
+Ch. 4B, C industrial reactions.
+Week 10 Second law of thermodynamics: Introduction, heat engines, Carnot theorem. Quiz 4
+Ch. 5A
+Week 11 Second law of thermodynamics: Entropy, entropy change of an ideal gas, mathematical
+Ch. 5B, C statement of the second law, Entropy balance for open systems.
+rd
+Week 12 Second law of thermodynamics: Ideal work, lost work, 3 law of thermodynamics.
+Ch. 5C
+Week 13 Thermodynamic Properties of fluids: Property relations for homogenous phases. Quiz 5
+Ch. 6A
+Week 14 Thermodynamic Properties of fluids: Residual properties, two phase systems,
+Ch. 6B,C generalized property correlations for gases
+Week 15 Revision and final preparation
+Any additional information: NA
+CCK January 06, 2021 Syllabus Supplement for Students Page 2 of 2
+
+--- Page 3 ---
+CHEG 230 Chemical Engineering Thermodynamics I
+(3 Lectures – 3 Credits)
+Prerequisite: CHEG 205
+Co-requisite: PHYS 122
+Course Catalog Description:
+Fundamentals of classical thermodynamics for application to chemical engineering processes and
+systems. Application of first and second laws to the analysis of thermodynamic cycles and processes;
+volumetric and thermodynamic properties of liquids and gases; heat effects.
+Textbook:
+Introduction to Chemical Engineering Thermodynamics, J. M. Smith, H. C. Van Ness, and M. M.
+Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6.
+Reference Materials:
+No Reference Materials
+Course Topics
+1. Introduction to thermodynamics (5 lectures)
+2. First law of thermodynamics (6 lectures)
+3. PVT behavior of pure fluids (9 lectures)
+4. Heat effects (6 lectures)
+5. Second law of thermodynamics (6 lectures)
+6. Applications of first and second law to flow processes (4 lectures)
+7. Thermodynamic properties of fluids (9 lectures)
+Course structure and Learning Methodologies:
+The course involves lectures (either 2x75 or 3x50 minutes per week) supported with PowerPoint
+presentations. In several instances, the students will solve in-class exercises during the lecture hours.
+Moreover, students will be given homework assignments.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework, projects) 30%
+Semester Examination 30%
+Final Examination 40%
+Contribution to Engineering Students Outcomes:
+1 2 3 4 5 6 7
+H - - - - - -
+Contribution to Engineering Students Learning Outcomes:
+No Course Learning Outcomes Student
+Outcomes
+1 Describe the scope and basic concepts of thermodynamics 1
+2 Demonstrate the first and second law of thermodynamics to industrially important 1
+processes
+December 2020 1
+
+--- Page 4 ---
+CHEG 230 Chemical Engineering Thermodynamics I (3-0-3)
+________________________________________________________________________________
+3 Practice thermodynamic tables and diagrams and PVT relationships for gases and 1
+liquids
+4 Calculate thermal properties such as the heats of formation, phase change, and heat 1
+capacity
+*This syllabus is augmented by a Syllabus Supplement for Students.
+December 2020 2

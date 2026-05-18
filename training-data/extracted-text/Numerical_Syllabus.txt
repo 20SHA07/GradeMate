@@ -1,0 +1,164 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+CHEG 312 Numerical Methods for Chemical Engineers
+Course Code and Title
+Spring 2025
+Semester:
+Dr. Ahmed Eissa AlHajaj
+Instructor Name
+Ahmed.Alhajaj@ku.ac.ae /02-312 4279
+Contact Email/ Office Ext. No.
+SAN Arzanah, Room # 8-339
+Office Room No.
+Tuesday and Thursday: 12:30-2:00 PM
+Office Hours
+Appointment (by email)
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework Weekly 10%
+Faculty Discretion, attendance,
+- 5%
+participation
+Projects Project Presentation and report Week 15: May 1, 2025 25%
+Semester Examination (s) Midterm 1 Week 7: Feb 25, 2025 15%
+Midterm 2 Week 12: Apr 17, 2025 15%
+Final Examination Final Exam TBA 30%
+Instructor Policy on late submission of assignments:
+• Attendance: Mandatory, 3.5% of the final grade accounts for attendance and class participation.
+• Active engagement in class evaluation constitutes 0.5% of the overall final grade
+• 1% of the final grade is allocated for opportunities such as extra credit and at the instructor's
+discretion.
+• A student may be absent for no more than 7% of contact time (2 classes) from a course with no
+penalty, provided that the student’s absence does not result in him/her missing any items of
+assessment (quizzes, exams, turning in homework, etc.).
+• For unexcused absences beyond 7% of contact time (after 2 classes), a penalty of 0.5% will be
+deducted from your total mark (out of 100%) for each unexcused absence up to 7 classes.
+• The weekly homework submission should be handled electronically via the Blackboard, so you'll
+need to scan your homework as pdf file before uploading it
+• You may discuss problems with classmates, but must always write up solutions on your own
+Syllabus Supplement for Students Page 1 of 4
+
+--- Page 2 ---
+• The due date is always Tuesday morning at 8 am, and no late homework will be accepted under
+any circumstances after the deadline.
+• A complete solution set to all assigned problems will be posted in Blackboard by the Wednesday
+morning.
+• The grade will be based on student’s effort toward solving all problems.
+★★ indicates class milestones
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Plan
+- Course Introduction
+Week 1 Introduction to numerical methods for chemical engineering
+th - Mathematical formulation / Numerical algorithm & Programming
+(Jan 13 -)
+- Identify class of problem
+Week 2 Solution of simultaneous linear algebraic equations
+th - Matrices and linear algebra
+(Jan 20 -)
+- Gauss Elimination method
+- Cramer’s method
+- Jacobi method
+- Underdetermined and overdetermined systems
+Week 3 Solution of nonlinear equations
+th - Initial approximation and convergence
+(Jan 27 -)
+- Bisection method
+- Regula-Falsi method
+Week 4 - Newton Raphson method
+rd - Secant method
+(Feb 3 -)
+- Solving system of nonlinear Equations
+Week 5 Curve fitting and interpolation
+th - Function discovery
+(Feb 10 -)
+- Least squares regression
+Week 6 - Polynomial Interpolation (Standard + Lagrange)
+Syllabus Supplement for Students Page 2 of 4
+
+--- Page 3 ---
+th
+(Feb 17 -) - Polynomial Interpolation (Newton)
+Week 7 Numerical differentiation and integration
+th - Numerical Integration
+(Feb 24 -)
+- Rectangular and mid-points methods
+- Trapezoidal method
+- Simpsons’s method
+MIDTERM-EXAM I ★★★★★★★★★
+Week 8 - Gauss Quadrature method
+rd - Numerical Differentiation
+(Mar 3 -)
+- Finite Difference Formulas and Partial Differentiation
+Week 9 Python Bootcamp
+th
+(Mar 10 -)
+Week 10 Python Bootcamp
+th
+(Mar 17 -)
+Week 11
+- Spring Break ★★★★★★★★★
+th
+(Mar 24 -)
+Week 12 Ordinary differential equations: initial-value problems
+st
+(Mar 31 -) - Euler’s Explicit method
+Euler’s Implicit method
+Week 13 - Modified Euler’s method
+th - Rung-Kutta method
+(Apr 7 -)
+Week 14 Ordinary differential equations: boundary-value problems (BVPs)
+th - Shooting method – Linear Interpolation
+(Apr 14 -)
+MIDTERM-EXAM II ★★★★★★★★★
+Week 15 Ordinary differential equations: boundary-value problems (BVPs)
+st - Shooting method – Bisection method
+(Apr 21 -)
+- Shooting method – Secant method
+Finite difference method (Discretization)
+Week 16 Partial differential equations
+Project presentation and report
+th
+(Apr 27 -)
+Week 17 FINAL EXAM WEEK
+th
+(May 5 -)
+Grading Scheme
+Syllabus Supplement for Students Page 3 of 4
+
+--- Page 4 ---
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 4 of 4

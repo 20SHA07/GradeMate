@@ -1,0 +1,42 @@
+{
+  "sourceFileName": "Numerical Syllabus.pdf",
+  "sourcePath": "CHEG\\CHEG 312 Numerical Methods for Chemical Engineers\\Numerical Syllabus.pdf",
+  "sourceRelativePath": "CHEG\\CHEG 312 Numerical Methods for Chemical Engineers\\Numerical Syllabus.pdf",
+  "sourceTextFileName": "Numerical_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Ahmed.Alhajaj@ku.ac.ae /02-312 4279",
+  "assessments": [
+    {
+      "name": "Active Engagement In Class Evaluation Constitutes % Of The Overall Final Grade",
+      "weight_percentage": 50,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "- Active engagement in class evaluation constitutes 0.5% of the overall final grade"
+    },
+    {
+      "name": "For Unexcused Absences Beyond 7% Of Contact Time After 2 Classes A Penalty Of % Will Be",
+      "weight_percentage": 50,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "- For unexcused absences beyond 7% of contact time (after 2 classes), a penalty of 0.5% will be"
+    },
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.71,
+  "needsHumanReview": true
+}

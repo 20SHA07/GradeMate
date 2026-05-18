@@ -1,0 +1,50 @@
+{
+  "sourceFileName": "COSC101_Syllabus_and Syllabus_Supplement.docx",
+  "courseCode": "COSC 101",
+  "courseName": "Foundations of Computer Science",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Menatalla Abououf",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Lab Final Exam",
+      "weight_percentage": 5,
+      "max_score": 100
+    }
+  ]
+}

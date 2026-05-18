@@ -1,0 +1,28 @@
+{
+  "sourceFileName": "ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+  "sourcePath": "ENGL\\ENGL 101 Academic English I\\Syllabus\\ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+  "sourceRelativePath": "ENGL\\ENGL 101 Academic English I\\Syllabus\\ENGL101 Academic English I - Fall 2021 Syllabus.pdf",
+  "sourceTextFileName": "ENGL101_Academic_English_I_Fall_2021_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ENGL 101",
+  "courseName": "Academic English I",
+  "creditHours": 3,
+  "semester": "Fall 2021",
+  "instructor": "David F Dalton",
+  "assessments": [
+    {
+      "name": "F .00 < 59% Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 < 59% Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction"
+  ],
+  "confidence": 0.69,
+  "needsHumanReview": true
+}

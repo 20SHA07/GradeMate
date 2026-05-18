@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "Syllabus Supplement.pdf",
+  "sourcePath": "MATH\\MATH 232 Engineering Mathematics\\Engineering Math - MATH232\\Syllabus Supplement.pdf",
+  "sourceRelativePath": "MATH\\MATH 232 Engineering Mathematics\\Engineering Math - MATH232\\Syllabus Supplement.pdf",
+  "sourceTextFileName": "Syllabus_Supplement.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "creditHours": null,
+  "semester": "Fall 2021",
+  "instructor": "Sumaiti",
+  "assessments": [
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    }
+  ],
+  "totalWeight": 0,
+  "warnings": [
+    "Total weight is below 100 (0%)",
+    "Low confidence extraction",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.65,
+  "needsHumanReview": true
+}
