@@ -2,12 +2,14 @@
 
 import Link from "next/link";
 import {
+  BookOpen,
   ClipboardPaste,
   Download,
   FileText,
   FileUp,
   GraduationCap,
   PlusCircle,
+  Search,
   Sparkles,
   Trash2,
   UploadCloud,
@@ -26,6 +28,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import { getSupabasePublicConfig } from "@/lib/supabase/config";
 import {
   extractSyllabusFromText,
   parseGradeBreakdownMessage,
@@ -39,6 +42,10 @@ import {
   gradeScale,
   type LetterGrade
 } from "@/lib/grading";
+import type {
+  CourseTemplateAssessmentRecord,
+  CourseTemplateRecord
+} from "@/types/database";
 
 type GradeSource = "calculated" | "manual";
 type ExtractionSource = "quick" | "paste" | "pdf" | "online-ai";
@@ -55,6 +62,7 @@ type SimpleAssessment = {
 
 type SimpleCourse = {
   id: string;
+  code: string;
   name: string;
   creditHours: string;
   letterGrade: LetterGrade;
@@ -84,6 +92,16 @@ type PredictorState = {
   targetGrade: string;
 };
 
+type SimpleTemplate = CourseTemplateRecord & {
+  assessments: CourseTemplateAssessmentRecord[];
+};
+
+type PdfPreview = {
+  fileName: string;
+  text: string;
+  warning?: string;
+};
+
 const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
 const inputStyles =
@@ -93,6 +111,7 @@ const textareaStyles =
 
 const defaultCourse: Omit<SimpleCourse, "id"> = {
   assessments: [],
+  code: "",
   creditHours: "3",
   gradeSource: "manual",
   letterGrade: "A",
@@ -258,11 +277,20 @@ function isOnlineAiEnabled() {
 
 async function getFunctionErrorMessage(error: unknown) {
   const fallback =
-    "AI assist is unavailable. You can still use automatic detection.";
+    "Online AI assist is unavailable. You can still review the automatic detection.";
   const context =
     error && typeof error === "object" && "context" in error
       ? (error as { context?: unknown }).context
       : null;
+  const rawMessage =
+    error instanceof Error
+      ? error.message
+      : typeof error === "object" &&
+          error !== null &&
+          "message" in error &&
+          typeof error.message === "string"
+        ? error.message
+        : "";
 
   if (context instanceof Response) {
     const payload = (await context
@@ -271,11 +299,72 @@ async function getFunctionErrorMessage(error: unknown) {
       .catch(() => null)) as { error?: unknown } | null;
 
     if (typeof payload?.error === "string") {
-      return payload.error;
+      const edgeMessage = payload.error;
+
+      if (/gemini|api key|secret/i.test(edgeMessage)) {
+        return "Online AI assist is missing its Gemini API key. You can still review the automatic detection.";
+      }
+
+      if (/quota|rate limit|too many requests/i.test(edgeMessage)) {
+        return "Online AI assist hit its usage limit. You can still review the automatic detection.";
+      }
+
+      return edgeMessage;
+    }
+
+    if (context.status === 404) {
+      return "Online AI assist is not deployed yet. You can still review the automatic detection.";
+    }
+
+    if (context.status === 401 || context.status === 403) {
+      return "Online AI assist is blocked by configuration. You can still review the automatic detection.";
+    }
+
+    if (context.status === 429) {
+      return "Online AI assist hit its usage limit. You can still review the automatic detection.";
+    }
+
+    if (context.status >= 500) {
+      return "Online AI assist is temporarily unavailable. You can still review the automatic detection.";
     }
   }
 
-  return error instanceof Error && error.message ? error.message : fallback;
+  if (/failed to send|fetch|network|cors|load failed/i.test(rawMessage)) {
+    return fallback;
+  }
+
+  if (/function.*not.*found|not deployed|404/i.test(rawMessage)) {
+    return "Online AI assist is not deployed yet. You can still review the automatic detection.";
+  }
+
+  if (/quota|rate limit|too many requests/i.test(rawMessage)) {
+    return "Online AI assist hit its usage limit. You can still review the automatic detection.";
+  }
+
+  if (/gemini|api key|secret/i.test(rawMessage)) {
+    return "Online AI assist is missing its Gemini API key. You can still review the automatic detection.";
+  }
+
+  return fallback;
+}
+
+function logOnlineAiDebug(
+  stage: "attempt" | "error",
+  details?: { message?: string }
+) {
+  if (process.env.NODE_ENV !== "development") {
+    return;
+  }
+
+  const config = getSupabasePublicConfig();
+
+  console.log("Simple Mode online AI debug", {
+    edgeFunction: "ai-extract-syllabus",
+    errorMessage: details?.message ?? null,
+    hasPublicKey: config.hasPublicKey,
+    hasUrl: config.hasUrl,
+    stage
+  });
 }
 
 function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
@@ -303,7 +392,7 @@ function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
 async function requestOnlineAiExtraction(text: string) {
   if (!isOnlineAiEnabled()) {
     throw new Error(
-      "AI assist is unavailable. You can still use automatic detection."
+      "Online AI assist is unavailable. You can still review the automatic detection."
     );
   }
 
@@ -313,9 +402,11 @@ async function requestOnlineAiExtraction(text: string) {
     supabase = createSupabaseBrowserClient();
   } catch {
     throw new Error(
-      "AI assist is unavailable. You can still use automatic detection."
+      "Online AI assist is unavailable. You can still review the automatic detection."
     );
   }
+
+  logOnlineAiDebug("attempt");
 
   const { data, error } = await supabase.functions.invoke<
     ExtractedSyllabus | { error?: string }
@@ -324,14 +415,102 @@ async function requestOnlineAiExtraction(text: string) {
   });
 
   if (error) {
-    throw new Error(await getFunctionErrorMessage(error));
+    const message = await getFunctionErrorMessage(error);
+    logOnlineAiDebug("error", { message });
+    throw new Error(message);
   }
 
   if (data && "error" in data && data.error) {
-    throw new Error(data.error);
+    throw new Error(await getFunctionErrorMessage(new Error(data.error)));
   }
 
   return validateExtractionPayload(data);
+}
+
+type PdfTextItem = {
+  str?: unknown;
+  transform?: unknown;
+  width?: unknown;
+};
+
+const assessmentNamePattern =
+  /\b(quiz|quizzes|exam|midterm|final|assignment|homework|lab|project|participation|attendance|presentation|report|essay|portfolio|discussion|tutorial|practical|test|case study)s?\b/i;
+const weightOnlyPattern = /^(\d{1,3}(?:\.\d+)?)\s*(%|percent|percentage)?$/i;
+
+function getPdfItemPosition(item: PdfTextItem) {
+  if (!Array.isArray(item.transform) || item.transform.length < 6) {
+    return { x: 0, y: 0 };
+  }
+
+  const x = Number(item.transform[4]);
+  const y = Number(item.transform[5]);
+
+  return {
+    x: Number.isFinite(x) ? x : 0,
+    y: Number.isFinite(y) ? y : 0
+  };
+}
+
+function joinPdfLineItems(items: { text: string; x: number; width: number }[]) {
+  return items
+    .sort((first, second) => first.x - second.x)
+    .reduce((line, item, index, sortedItems) => {
+      const text = item.text.trim();
+
+      if (!text) {
+        return line;
+      }
+
+      if (line.length === 0) {
+        return text;
+      }
+
+      const previous = sortedItems[index - 1];
+      const previousRight = previous ? previous.x + previous.width : item.x;
+      const gap = item.x - previousRight;
+      const separator =
+        gap > 16 || /[%):]$/.test(line) || /^[,.;:%)]/.test(text) ? " " : " ";
+
+      return `${line}${separator}${text}`;
+    }, "");
+}
+
+function normalizeExtractedPdfText(text: string) {
+  const cleanedLines = text
+    .replace(/\u00a0/g, " ")
+    .replace(/[ \t]+/g, " ")
+    .replace(/\s+%/g, "%")
+    .split(/\r?\n/)
+    .map((line) => line.trim())
+    .filter(Boolean);
+  const mergedLines: string[] = [];
+
+  cleanedLines.forEach((line) => {
+    const bareWeightMatch = line.match(/^(.*)\s+(\d{1,3}(?:\.\d+)?)$/);
+    const normalizedLine =
+      bareWeightMatch &&
+      assessmentNamePattern.test(bareWeightMatch[1]) &&
+      Number(bareWeightMatch[2]) >= 0 &&
+      Number(bareWeightMatch[2]) <= 100 &&
+      !/%|percent|percentage|\d+\s*\/\s*\d+/i.test(line)
+        ? `${bareWeightMatch[1]} ${bareWeightMatch[2]}%`
+        : line;
+    const previous = mergedLines[mergedLines.length - 1];
+
+    if (
+      previous &&
+      assessmentNamePattern.test(previous) &&
+      !/(\d{1,3}(?:\.\d+)?)\s*(%|percent|percentage)\b/i.test(previous) &&
+      weightOnlyPattern.test(normalizedLine)
+    ) {
+      mergedLines[mergedLines.length - 1] = `${previous} ${normalizedLine}`;
+      return;
+    }
+
+    mergedLines.push(normalizedLine);
+  });
+
+  return mergedLines.join("\n");
 }
 
 async function extractTextFromPdfFile(file: File) {
@@ -346,17 +525,41 @@ async function extractTextFromPdfFile(file: File) {
   for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
     const page = await pdf.getPage(pageNumber);
     const textContent = await page.getTextContent();
-    const pageText = textContent.items
-      .map((item) => {
-        const textItem = item as { str?: unknown };
-        return typeof textItem.str === "string" ? textItem.str : "";
-      })
-      .join(" ");
+    const rows = new Map<
+      number,
+      { text: string; x: number; width: number }[]
+    >();
+
+    textContent.items.forEach((item) => {
+      const textItem = item as PdfTextItem;
+      const text = typeof textItem.str === "string" ? textItem.str : "";
+
+      if (!text.trim()) {
+        return;
+      }
+
+      const { x, y } = getPdfItemPosition(textItem);
+      const rowKey = Math.round(y / 3) * 3;
+      const rowItems = rows.get(rowKey) ?? [];
+
+      rowItems.push({
+        text,
+        width: Number(textItem.width) || 0,
+        x
+      });
+      rows.set(rowKey, rowItems);
+    });
+
+    const pageText = Array.from(rows.entries())
+      .sort((first, second) => second[0] - first[0])
+      .map(([, rowItems]) => joinPdfLineItems(rowItems))
+      .filter(Boolean)
+      .join("\n");
 
     pages.push(pageText);
   }
 
-  return pages.join("\n");
+  return normalizeExtractedPdfText(pages.join("\n\n"));
 }
 
 function getCourseGradeStats(course: SimpleCourse) {
@@ -465,8 +668,9 @@ function sanitizeImportedData(value: unknown): SimpleGpaData {
                       ? assessment.weightPercentage
                       : String(assessment.weightPercentage ?? "0")
                 })
-              )
+            )
             : [],
+          code: typeof course.code === "string" ? course.code : "",
           creditHours:
             typeof course.creditHours === "string"
               ? course.creditHours
@@ -526,6 +730,9 @@ export function SimpleGpaCalculator() {
   const [pdfFileByCourse, setPdfFileByCourse] = useState<
     Record<string, File | null>
   >({});
+  const [pdfPreviewByCourse, setPdfPreviewByCourse] = useState<
+    Record<string, PdfPreview>
+  >({});
   const [review, setReview] = useState<ReviewState | null>(null);
   const [isExtractingCourseId, setIsExtractingCourseId] = useState<string | null>(
     null
@@ -533,6 +740,10 @@ export function SimpleGpaCalculator() {
   const [predictors, setPredictors] = useState<
     Record<string, PredictorState>
   >({});
+  const [courseSearch, setCourseSearch] = useState("");
+  const [libraryTemplates, setLibraryTemplates] = useState<SimpleTemplate[]>([]);
+  const [isLoadingLibrary, setIsLoadingLibrary] = useState(true);
+  const [libraryError, setLibraryError] = useState("");
 
   useEffect(() => {
     setData(readStoredData());
@@ -546,6 +757,92 @@ export function SimpleGpaCalculator() {
 
     window.localStorage.setItem(simpleStorageKey, JSON.stringify(data));
   }, [data, isLoaded]);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    async function loadTemplates() {
+      const config = getSupabasePublicConfig();
+
+      if (process.env.NODE_ENV === "development") {
+        console.log("Simple Mode course library debug", {
+          hasPublicKey: config.hasPublicKey,
+          hasUrl: config.hasUrl
+        });
+      }
+
+      if (!config.isConfigured) {
+        if (isMounted) {
+          setLibraryError(
+            "Course Library unavailable. You can still add a course manually."
+          );
+          setIsLoadingLibrary(false);
+        }
+        return;
+      }
+
+      try {
+        const supabase = createSupabaseBrowserClient();
+        const [templatesResponse, assessmentsResponse] = await Promise.all([
+          supabase
+            .from("course_templates")
+            .select("*")
+            .or(
+              "source_syllabus_path.not.is.null,source_syllabus_file_name.not.is.null,source_file_name.not.is.null"
+            )
+            .order("course_code", { ascending: true }),
+          supabase
+            .from("course_template_assessments")
+            .select("*")
+            .order("created_at", { ascending: true })
+        ]);
+
+        if (templatesResponse.error || assessmentsResponse.error) {
+          throw new Error(
+            templatesResponse.error?.message ??
+              assessmentsResponse.error?.message ??
+              "Could not load course templates."
+          );
+        }
+
+        const assessmentRows =
+          (assessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
+        const templates = ((templatesResponse.data ?? []) as CourseTemplateRecord[])
+          .map((template) => ({
+            ...template,
+            assessments: assessmentRows.filter(
+              (assessment) => assessment.course_template_id === template.id
+            )
+          }));
+
+        if (isMounted) {
+          setLibraryTemplates(templates);
+          setLibraryError("");
+          setIsLoadingLibrary(false);
+        }
+      } catch (loadError) {
+        if (process.env.NODE_ENV === "development") {
+          console.log("Simple Mode course library error", {
+            message:
+              loadError instanceof Error ? loadError.message : "Unknown error"
+          });
+        }
+
+        if (isMounted) {
+          setLibraryError(
+            "Course Library unavailable. You can still add a course manually."
+          );
+          setIsLoadingLibrary(false);
+        }
+      }
+    }
+
+    void loadTemplates();
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
 
   const summary = useMemo(() => {
     const semesterHours = data.courses.reduce(
@@ -577,6 +874,36 @@ export function SimpleGpaCalculator() {
       semesterQualityPoints
     };
   }, [data]);
+
+  const courseSearchResults = useMemo(() => {
+    const normalizedQuery = courseSearch.trim().toLowerCase();
+
+    if (!normalizedQuery) {
+      return {
+        localCourses: [] as SimpleCourse[],
+        templates: [] as SimpleTemplate[]
+      };
+    }
+
+    return {
+      localCourses: data.courses
+        .filter((course) =>
+          [course.code, course.name]
+            .join(" ")
+            .toLowerCase()
+            .includes(normalizedQuery)
+        )
+        .slice(0, 5),
+      templates: libraryTemplates
+        .filter((template) =>
+          [template.course_code, template.course_name]
+            .join(" ")
+            .toLowerCase()
+            .includes(normalizedQuery)
+        )
+        .slice(0, 8)
+    };
+  }, [courseSearch, data.courses, libraryTemplates]);
 
   function resetNotices() {
     setMessage("");
@@ -666,11 +993,17 @@ export function SimpleGpaCalculator() {
     );
   }
 
-  function addCourse() {
+  function addCourse(course?: Partial<SimpleCourse>) {
+    const newCourse = createCourse(course);
+
     setData((current) => ({
       ...current,
-      courses: [...current.courses, createCourse()]
+      courses: [...current.courses, newCourse]
     }));
+    setMessage(
+      course?.name ? `Added ${course.name} to the calculator.` : ""
+    );
+    setError("");
   }
 
   function removeCourse(courseId: string) {
@@ -682,6 +1015,44 @@ export function SimpleGpaCalculator() {
       };
     });
     setReview((current) => (current?.courseId === courseId ? null : current));
+    setPdfPreviewByCourse((current) => {
+      const next = { ...current };
+      delete next[courseId];
+      return next;
+    });
+  }
+
+  function addTemplateToCalculator(template: SimpleTemplate) {
+    addCourse({
+      assessments: template.assessments.map((assessment) =>
+        createAssessment({
+          confidence: Number(assessment.confidence) || 0.8,
+          maxScore: String(Number(assessment.max_score) || 100),
+          name: assessment.name,
+          score: "",
+          sourceTextSnippet: assessment.source_text_snippet ?? undefined,
+          weightPercentage: String(Number(assessment.weight_percentage) || 0)
+        })
+      ),
+      code: template.course_code,
+      creditHours: String(Number(template.credit_hours) || 3),
+      gradeSource: template.assessments.length > 0 ? "calculated" : "manual",
+      name: template.course_name
+    });
+  }
+
+  function duplicateLocalCourse(course: SimpleCourse) {
+    addCourse({
+      ...course,
+      assessments: course.assessments.map((assessment) =>
+        createAssessment({
+          ...assessment,
+          id: createSimpleId("assessment")
+        })
+      ),
+      id: createSimpleId("course"),
+      name: course.name ? `${course.name} copy` : "Course copy"
+    });
   }
 
   function addAssessment(courseId: string) {
@@ -768,7 +1139,7 @@ export function SimpleGpaCalculator() {
     setMessage(
       extraction.assessments.length > 0
         ? `${getExtractionSourceLabel(source)}. Review the grading items before saving.`
-        : "I couldn't find a grading breakdown. Try pasting the grading section, like: midterm 25, final 40, assignments 35."
+        : "No grading breakdown found. Paste the grading/evaluation section or edit manually."
     );
     setError("");
   }
@@ -866,16 +1237,34 @@ export function SimpleGpaCalculator() {
 
     try {
       const pdfText = await extractTextFromPdfFile(file);
+      const previewWarning =
+        pdfText.trim().length < 120
+          ? "This PDF may be scanned or image-based. Try pasting the grading section instead."
+          : undefined;
+
+      setPdfPreviewByCourse((current) => ({
+        ...current,
+        [courseId]: {
+          fileName: file.name,
+          text: pdfText.slice(0, 6000),
+          warning: previewWarning
+        }
+      }));
 
       if (pdfText.trim().length < 20) {
-        throw new Error("Could not read enough text from this PDF.");
+        throw new Error(
+          "This PDF may be scanned or image-based. Try pasting the grading section instead."
+        );
       }
 
       await runExtractionPipeline(courseId, pdfText, "syllabus", "pdf");
     } catch (pdfError) {
       console.warn("PDF text extraction failed", pdfError);
       setError(
-        "PDF text extraction failed. Paste the grading section instead."
+        pdfError instanceof Error &&
+          /scanned|image-based|pasting/i.test(pdfError.message)
+          ? pdfError.message
+          : "PDF text extraction failed. Paste the grading section instead."
       );
     } finally {
       setIsExtractingCourseId(null);
@@ -1189,6 +1578,140 @@ export function SimpleGpaCalculator() {
             </Card>
 
             <Card className="p-5">
+              <div className="flex items-center gap-2">
+                <Search aria-hidden="true" className="h-5 w-5 text-teal-700" />
+                <h2 className="text-lg font-semibold text-ink-900">
+                  Find a course
+                </h2>
+              </div>
+              <p className="mt-1 text-sm text-ink-500">
+                Search your calculator or add a Course Library template locally.
+              </p>
+              <label className="mt-4 block">
+                <span className="text-sm font-medium text-ink-700">
+                  Search course code or name
+                </span>
+                <input
+                  className={`${inputStyles} mt-1`}
+                  onChange={(event) => setCourseSearch(event.target.value)}
+                  placeholder="Search course code or name"
+                  value={courseSearch}
+                />
+              </label>
+
+              {libraryError ? (
+                <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                  {libraryError}
+                </p>
+              ) : null}
+
+              {courseSearch.trim() ? (
+                <div className="mt-4 space-y-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-normal text-ink-400">
+                      Added courses
+                    </p>
+                    {courseSearchResults.localCourses.length === 0 ? (
+                      <p className="mt-2 text-sm text-ink-500">
+                        No matching local courses.
+                      </p>
+                    ) : (
+                      <div className="mt-2 space-y-2">
+                        {courseSearchResults.localCourses.map((course) => (
+                          <div
+                            className="rounded-xl border border-ink-200 bg-white p-3"
+                            key={course.id}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="min-w-0">
+                                <p className="text-xs font-medium text-teal-700">
+                                  {course.code || "No code"}
+                                </p>
+                                <p className="mt-1 truncate font-medium text-ink-900">
+                                  {course.name || "Untitled course"}
+                                </p>
+                                <p className="mt-1 text-xs text-ink-500">
+                                  {parsePositiveNumber(course.creditHours)} credits
+                                  {" · "}
+                                  {course.assessments.length} assessments
+                                </p>
+                              </div>
+                              <Button
+                                onClick={() => duplicateLocalCourse(course)}
+                                size="sm"
+                                variant="secondary"
+                              >
+                                Add
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-normal text-ink-400">
+                      Course Library
+                    </p>
+                    {isLoadingLibrary ? (
+                      <p className="mt-2 text-sm text-ink-500">
+                        Loading course templates...
+                      </p>
+                    ) : courseSearchResults.templates.length === 0 ? (
+                      <p className="mt-2 text-sm text-ink-500">
+                        No matching templates. You can still add a course manually.
+                      </p>
+                    ) : (
+                      <div className="mt-2 space-y-2">
+                        {courseSearchResults.templates.map((template) => (
+                          <div
+                            className="rounded-xl border border-ink-200 bg-white p-3"
+                            key={template.id}
+                          >
+                            <div className="flex items-start justify-between gap-3">
+                              <div className="min-w-0">
+                                <div className="flex flex-wrap items-center gap-2">
+                                  <Badge tone="teal">
+                                    {template.course_code}
+                                  </Badge>
+                                  <Badge tone="ink">
+                                    {Number(template.credit_hours) || 3} credits
+                                  </Badge>
+                                </div>
+                                <p className="mt-2 font-medium text-ink-900">
+                                  {template.course_name}
+                                </p>
+                                <p className="mt-1 text-xs text-ink-500">
+                                  {template.assessments.length} detected assessments
+                                </p>
+                              </div>
+                              <Button
+                                onClick={() => addTemplateToCalculator(template)}
+                                size="sm"
+                              >
+                                <BookOpen
+                                  aria-hidden="true"
+                                  className="h-4 w-4"
+                                />
+                                Add
+                              </Button>
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ) : (
+                <p className="mt-3 text-sm text-ink-500">
+                  Start typing to find a course already in your calculator or a
+                  reusable Course Library template.
+                </p>
+              )}
+            </Card>
+
+            <Card className="p-5">
               <h2 className="text-lg font-semibold text-ink-900">
                 Import JSON
               </h2>
@@ -1222,7 +1745,7 @@ export function SimpleGpaCalculator() {
                   Add each course, credits, grades, and optional coursework.
                 </p>
               </div>
-              <Button onClick={addCourse}>
+              <Button onClick={() => addCourse()}>
                 <PlusCircle aria-hidden="true" className="h-4 w-4" />
                 Add course
               </Button>
@@ -1241,7 +1764,20 @@ export function SimpleGpaCalculator() {
 
                 return (
                   <div className="space-y-4 p-5" key={course.id}>
-                    <div className="grid gap-3 xl:grid-cols-[minmax(0,1.4fr)_7rem_9rem_9rem_7rem_8rem_auto] xl:items-end">
+                    <div className="grid gap-3 xl:grid-cols-[8rem_minmax(0,1.4fr)_7rem_9rem_9rem_7rem_8rem_auto] xl:items-end">
+                      <label className="block">
+                        <span className="text-sm font-medium text-ink-700">
+                          Course code
+                        </span>
+                        <input
+                          className={inputStyles}
+                          onChange={(event) =>
+                            updateCourse(course.id, "code", event.target.value)
+                          }
+                          placeholder="CS 101"
+                          value={course.code}
+                        />
+                      </label>
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course name
@@ -1390,6 +1926,7 @@ export function SimpleGpaCalculator() {
                       extractFromPdf={extractFromPdf}
                       isExtracting={isExtractingCourseId === course.id}
                       pdfFile={pdfFileByCourse[course.id] ?? null}
+                      pdfPreview={pdfPreviewByCourse[course.id] ?? null}
                       predictor={predictors[course.id]}
                       quickText={quickTextByCourse[course.id] ?? ""}
                       removeAssessment={removeAssessment}
@@ -1438,6 +1975,7 @@ function CourseworkDetails({
   extractFromPdf,
   isExtracting,
   pdfFile,
+  pdfPreview,
   predictor,
   quickText,
   removeAssessment,
@@ -1461,6 +1999,7 @@ function CourseworkDetails({
   extractFromPdf: (courseId: string) => Promise<void>;
   isExtracting: boolean;
   pdfFile: File | null;
+  pdfPreview: PdfPreview | null;
   predictor: PredictorState | undefined;
   quickText: string;
   removeAssessment: (courseId: string, assessmentId: string) => void;
@@ -1768,6 +2307,24 @@ function CourseworkDetails({
               >
                 {isExtracting ? "Reading PDF..." : "Extract from PDF"}
               </Button>
+              {pdfPreview ? (
+                <details className="mt-3 rounded-xl border border-ink-200 bg-ink-50 p-3">
+                  <summary className="cursor-pointer text-sm font-medium text-teal-700">
+                    Extracted text preview
+                  </summary>
+                  {pdfPreview.warning ? (
+                    <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                      {pdfPreview.warning}
+                    </p>
+                  ) : null}
+                  <p className="mt-3 text-xs font-medium text-ink-500">
+                    {pdfPreview.fileName}
+                  </p>
+                  <pre className="mt-2 max-h-56 overflow-auto whitespace-pre-wrap rounded-lg bg-white p-3 text-xs leading-5 text-ink-700">
+                    {pdfPreview.text || "No text was extracted."}
+                  </pre>
+                </details>
+              ) : null}
             </div>
           </div>
         </section>
