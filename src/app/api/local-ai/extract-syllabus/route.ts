@@ -33,8 +33,17 @@ const aiSyllabusSchema = z.object({
   courseName: nullableString,
   creditHours: nullableNumber,
   instructor: nullableString,
+  instructorEmail: nullableString.default(null),
+  semester: nullableString.default(null),
+  schedule: nullableString.default(null),
+  classroom: nullableString.default(null),
+  officeHours: nullableString.default(null),
+  prerequisites: nullableString.default(null),
+  textbooks: z.array(z.string().trim()).default([]),
+  courseDescription: nullableString.default(null),
   assessments: z.array(aiAssessmentSchema).default([]),
   warnings: z.array(z.string().trim()).default([]),
+  fieldConfidence: z.record(z.number().min(0).max(1)).default({}),
   confidence: boundedNumber(0, 1)
 });
 
@@ -55,6 +64,14 @@ Schema:
   "courseName": string | null,
   "creditHours": number | null,
   "instructor": string | null,
+  "instructorEmail": string | null,
+  "semester": string | null,
+  "schedule": string | null,
+  "classroom": string | null,
+  "officeHours": string | null,
+  "prerequisites": string | null,
+  "textbooks": string[],
+  "courseDescription": string | null,
   "assessments": [
     {
       "name": string,
@@ -65,6 +82,7 @@ Schema:
     }
   ],
   "warnings": string[],
+  "fieldConfidence": object,
   "confidence": number
 }
 
@@ -76,6 +94,8 @@ Rules:
 - Use max_score 100 unless explicitly stated otherwise.
 - Keep assessment names short and student-friendly.
 - Prefer detailed assessment rows over broad grouped rows when both appear.
+- Preserve numbered assessments separately. Do not bundle Quiz 1, Quiz 2, Assignment 1, Lab 1, Project 1, Test 1, or Exam 1 into a grouped parent row.
+- Only group assessments when the syllabus provides only grouped categories.
 - Do not extract letter grade scales, grade points, CLO/PLO tables, weekly schedules, room numbers, course codes, or due dates as assessments.
 - Return JSON only. No markdown. No explanation.
 

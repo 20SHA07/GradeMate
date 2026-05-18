@@ -9,6 +9,16 @@
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Dr. Pedro Rochedo",
+  "instructorEmail": "pedro.rochedo@ku.ac.ae",
+  "schedule": "M&W 08:00-09:40 Classroom: G01029",
+  "classroom": null,
+  "officeHours": "M&W 1:00PM to 3:00PM (or by appointment)",
+  "prerequisites": "MATH 204 or MATH 211",
+  "textbooks": [
+    "Introduction to Operations Research by Hillier, F.S. and Lieberman, G.J, Publisher: McGraw",
+    "Hill, 11 edition, 2022, ISBN: 9781307810240."
+  ],
+  "courseDescription": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
   "assessments": [
     {
       "name": "Quiz 1",
@@ -18,14 +28,14 @@
       "source_text_snippet": "Coursework: Quiz 1 Week 4 15%"
     },
     {
-      "name": "Homework 10",
+      "name": "Homework",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Homework 10%"
     },
     {
-      "name": "Project 20",
+      "name": "Project",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.98,

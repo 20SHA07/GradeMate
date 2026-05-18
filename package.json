@@ -23,6 +23,7 @@
     "dataset:review": "node scripts/dataset-review.mjs",
     "dataset:summary": "node scripts/dataset-summary.mjs",
     "dataset:promote-ready": "node scripts/dataset-promote-ready.mjs",
+    "dataset:export-verified": "node scripts/dataset-export-verified.mjs",
     "test:dataset": "node scripts/test-dataset.mjs"
   },
   "dependencies": {

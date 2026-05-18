@@ -9,6 +9,18 @@
   "creditHours": 3,
   "semester": null,
   "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:",
+    "9781305266728.",
+    "Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:",
+    "9780470458365."
+  ],
+  "courseDescription": "This course covers selected topics from mathematical analysis with engineering applications, including\ncomplex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.",
   "assessments": [
     {
       "name": "Coursework",

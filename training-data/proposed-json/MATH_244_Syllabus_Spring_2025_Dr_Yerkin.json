@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Dr. Yerkin Kitapbayev",
+  "instructorEmail": "Yerkin.kitapbayev@ku.ac.ae",
+  "schedule": "Tue/Thur 12:00-13:15, Room R02006",
+  "classroom": null,
+  "officeHours": "By appointment",
+  "prerequisites": "MATH 101, MATH 112",
+  "textbooks": [
+    "Statistical Inference by G. Casella, R.L. Berger, Publisher: Cengage Learning, 2 Edition, (e-book) 2021, ISBN:",
+    "9780357753125"
+  ],
+  "courseDescription": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
   "assessments": [
     {
       "name": "Coursework",

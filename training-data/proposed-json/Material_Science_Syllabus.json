@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Spring 2024",
   "instructor": "Contact",
+  "instructorEmail": "akram.alfantazi@ku.ac.ae",
+  "schedule": "Office Hours Tuesday and Thursday 11:00- 12:45",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "CHEM 116, PHYS 122",
+  "textbooks": [
+    "Materials Science and Engineering: An Introduction by William D. Callister, Publisher: Wiley,",
+    "9 Intl Edition, 2014, ISBN-13: 9781118319222"
+  ],
+  "courseDescription": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
   "assessments": [
     {
       "name": "Homework 1",

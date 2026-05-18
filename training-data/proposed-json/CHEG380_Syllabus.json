@@ -9,6 +9,16 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "Contact",
+  "instructorEmail": "Saeed.alkhazraji@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [
+    "Fundamental principles of polymeric materials by Stephen L",
+    "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
+  ],
+  "courseDescription": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
   "assessments": [],
   "totalWeight": 0,
   "warnings": [

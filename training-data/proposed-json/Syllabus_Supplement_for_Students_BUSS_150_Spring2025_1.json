@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Dr. Saed T. Amer",
+  "instructorEmail": "saed.amer@ku.ac.ae",
+  "schedule": "Mon – Thursday 10:00 AM -12:00 PM - Or by appointment",
+  "classroom": null,
+  "officeHours": "Mon – Thursday 10:00 AM -12:00 PM - Or by appointment",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
   "assessments": [],
   "totalWeight": 0,
   "warnings": [

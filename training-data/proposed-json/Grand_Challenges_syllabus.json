@@ -9,6 +9,13 @@
   "creditHours": 5,
   "semester": "Fall 2022",
   "instructor": "Contact",
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
   "assessments": [
     {
       "name": "Assignments",

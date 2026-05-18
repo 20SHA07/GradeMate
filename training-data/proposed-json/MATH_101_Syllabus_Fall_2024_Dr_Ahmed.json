@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Fall 2024",
   "instructor": "Ahmed Ameur",
+  "instructorEmail": "Ahmed.ameur@ku.ac.ae",
+  "schedule": "MW 14:00-15:15",
+  "classroom": null,
+  "officeHours": "MW 10:00-11:50",
+  "prerequisites": "None",
+  "textbooks": [
+    "Mathematical Reasoning Writing and Proof by Ted Sundstrom, Open Textbook Initiative, American",
+    "Institute of Mathematics, Version 2.1, 2021"
+  ],
+  "courseDescription": "This course provides a foundation in logical and mathematical reasoning. It develops first year university\nstudents’ structured logical thinking and mathematical rigor. The course introduces methods of proof,\nbasic concepts and properties of real numbers, relations and functions. The course also presents an\nintroduction to combinatorics, set theory and number theory.",
   "assessments": [
     {
       "name": "Quiz 2",
@@ -18,7 +28,7 @@
       "source_text_snippet": "Quiz 2 Week 6 20%"
     },
     {
-      "name": "Project 10",
+      "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,

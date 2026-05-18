@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "gisha.luckachan@ku.ac.ae",
+  "schedule": "Tuesday: 11:00 am-1:00 pm",
+  "classroom": null,
+  "officeHours": "Thursday: 11:00 am-1:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 3",

@@ -25,6 +25,7 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - `/courses` course tracking
 - `/course-library` reusable course template library
 - `/gpa-calculator` semester-aware GPA calculator
+- `/extractor-lab` development page for manually testing syllabus extraction
 
 ## Getting Started
 
@@ -105,6 +106,13 @@ only and must be reviewed before saving.
 If you already ran the older schema, run
 [supabase/syllabus-storage.sql](supabase/syllabus-storage.sql) in the SQL editor
 to add the `course-syllabi` bucket, upload table, and storage policies.
+
+To store extracted course metadata, run
+[supabase/course-metadata.sql](supabase/course-metadata.sql) or rerun the full
+schema. To collect private verified extraction feedback, run
+[supabase/verified-extractions.sql](supabase/verified-extractions.sql). Verified
+examples are private to the submitting user through RLS; the service role can
+export them later for admin review.
 
 ## Course Template Import
 
@@ -212,6 +220,30 @@ Function include two or three of those examples in the prompt, preferring a
 similar department when one is detected and otherwise using a diverse mix of
 engineering/science, math, and humanities/business examples. Keep this list
 small so prompts stay fast and cheap.
+
+### Extractor Lab
+
+Open `/extractor-lab` in development when you want to test a random syllabus
+quickly. The lab uploads PDFs, extracts all pages locally, runs the same
+dataset-backed extractor used by Simple and Workspace, and shows course info,
+assessment rows, warnings, candidate scores, and final JSON. Use **Copy JSON**
+or **Download expected JSON** to create new golden examples.
+
+### Verified Extraction Feedback
+
+After a user confirms extracted rows in Simple or Workspace, GradeMate asks
+whether the extraction looked correct. Guest feedback is stored locally under
+`guestVerifiedExtractions`; signed-in Workspace feedback is inserted into the
+private `verified_extractions` table. This does not train any model
+automatically. Admins can export verified examples for manual review:
+
+```bash
+SUPABASE_SERVICE_ROLE_KEY="your-service-role-key" npm run dataset:export-verified
+```
+
+Review exported files in `training-data/verified-json/`, then manually promote
+good examples into `training-data/expected-json/` before using them as benchmark
+fixtures or curated few-shot examples.
 
 In Supabase Auth URL Configuration, use:
 

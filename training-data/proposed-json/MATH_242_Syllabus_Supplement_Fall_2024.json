@@ -5,10 +5,17 @@
   "sourceTextFileName": "MATH_242_Syllabus_Supplement_Fall_2024.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 242",
-  "courseName": "Introduction to Probability and Statistics (3-0-3)",
+  "courseName": "Introduction to Probability and Statistics",
   "creditHours": null,
   "semester": "Fall 2024",
   "instructor": "Dr. Berihu Gebrehiwot",
+  "instructorEmail": "berihu.gebrehiwot@ku.ac.ae",
+  "schedule": "As in Banner",
+  "classroom": null,
+  "officeHours": "(G building-G01030 C)",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",

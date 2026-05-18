@@ -11,10 +11,34 @@ export type ExtractedSyllabus = {
   courseName: string | null;
   creditHours: number | null;
   instructor: string | null;
+  instructorEmail?: string | null;
+  semester?: string | null;
+  schedule?: string | null;
+  classroom?: string | null;
+  officeHours?: string | null;
+  prerequisites?: string | null;
+  textbooks?: string[];
+  courseDescription?: string | null;
   assessments: ExtractedAssessment[];
   warnings: string[];
   confidence: number;
+  fieldConfidence?: ExtractedFieldConfidence;
   debug?: ExtractionDebug;
+};
+
+export type ExtractedFieldConfidence = {
+  courseCode?: number;
+  courseName?: number;
+  creditHours?: number;
+  instructor?: number;
+  instructorEmail?: number;
+  semester?: number;
+  schedule?: number;
+  classroom?: number;
+  officeHours?: number;
+  prerequisites?: number;
+  textbooks?: number;
+  courseDescription?: number;
 };
 
 export type ExtractionMode = "quick" | "syllabus";
@@ -24,6 +48,12 @@ export type ExtractionDebug = {
   candidateCount: number;
   chosenCandidateLabel: string;
   chosenCandidateScore: number;
+  candidates?: Array<{
+    label: string;
+    score: number;
+    assessmentCount: number;
+    totalWeight: number;
+  }>;
 };
 
 type AssessmentCandidate = {
@@ -409,6 +439,22 @@ function extractCourseCode(text: string) {
 }
 
 function extractCourseName(lines: string[], courseCode: string | null) {
+  const codeAndTitleLine = lines.find((line) =>
+    /^course\s+code\s+and\s+title\s*[:\-]/i.test(line)
+  );
+
+  if (codeAndTitleLine) {
+    const value = codeAndTitleLine.split(/[:\-]/).slice(1).join("-").trim();
+    const withoutCode = value
+      .replace(/\(?[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\)?/i, "")
+      .replace(/^[-:\s]+/, "")
+      .trim();
+
+    if (withoutCode) {
+      return withoutCode;
+    }
+  }
+
   const titleLine = lines.find((line) =>
     /^(course\s*(name|title)|title)\s*[:\-]/i.test(line)
   );
@@ -418,6 +464,21 @@ function extractCourseName(lines: string[], courseCode: string | null) {
       titleLine.split(/[:\-]/).slice(1).join("-").trim() ||
       null
     );
+  }
+
+  const courseLine = lines.find((line) =>
+    /^course\s*[:\-]\s*[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\b/i.test(line)
+  );
+
+  if (courseLine) {
+    const withoutCode = courseLine
+      .replace(/^course\s*[:\-]\s*/i, "")
+      .replace(/\b[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\b\s*[:\-\u2013\u2014]?/i, "")
+      .trim();
+
+    if (withoutCode) {
+      return withoutCode;
+    }
   }
 
   if (courseCode) {
@@ -458,8 +519,21 @@ function extractCreditHours(text: string) {
 }
 
 function extractInstructor(lines: string[]) {
+  const labelled = extractLabelValue(lines, [
+    "instructor",
+    "instructor name",
+    "course instructor",
+    "professor",
+    "lecturer",
+    "faculty"
+  ]);
+
+  if (labelled) {
+    return labelled;
+  }
+
   const line = lines.find((item) =>
-    /^(instructor|professor|lecturer|faculty)\s*[:\-]/i.test(item)
+    /^(instructor|instructor name|course instructor|professor|lecturer|faculty)\s*[:\-]/i.test(item)
   );
 
   if (!line) {
@@ -467,6 +541,182 @@ function extractInstructor(lines: string[]) {
   }
 
   return line.split(/[:\-]/).slice(1).join("-").trim() || null;
+}
+
+function extractInstructorEmail(text: string) {
+  return text.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0] ?? null;
+}
+
+function extractSemester(text: string, lines: string[]) {
+  const labelled = lines.find((line) => /^(semester|term)\s*[:\-]/i.test(line));
+
+  if (labelled) {
+    const value = labelled.split(/[:\-]/).slice(1).join("-").trim();
+    const termMatch = value.match(/\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i);
+    return (termMatch?.[0] ?? value) || null;
+  }
+
+  return text.match(/\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i)?.[0] ?? null;
+}
+
+function extractLabelValue(lines: string[], labels: string[]) {
+  const labelPattern = labels
+    .map((label) => label.replace(/\s+/g, "\\s+"))
+    .join("|");
+  const regex = new RegExp(`^(${labelPattern})\\s*[:\\-]\\s*(.+)$`, "i");
+  const line = lines.find((item) => regex.test(item));
+
+  if (line) {
+    return line.replace(regex, "$2").trim() || null;
+  }
+
+  const emptyLabelRegex = new RegExp(`^(${labelPattern})\\s*[:\\-]?\\s*$`, "i");
+  const labelIndex = lines.findIndex((item) => emptyLabelRegex.test(item));
+
+  if (labelIndex === -1) {
+    return null;
+  }
+
+  for (let index = labelIndex + 1; index < lines.length; index += 1) {
+    const nextLine = lines[index];
+
+    if (!nextLine) {
+      continue;
+    }
+
+    if (isMetadataSectionBoundary(nextLine) || isAssessmentSectionHeading(nextLine)) {
+      return null;
+    }
+
+    return nextLine.trim() || null;
+  }
+
+  return null;
+}
+
+function extractSchedule(lines: string[]) {
+  return (
+    extractLabelValue(lines, [
+      "schedule",
+      "class time",
+      "meeting time",
+      "lecture time",
+      "class schedule"
+    ]) ??
+    lines.find((line) =>
+      /\b(Mondays?|Tuesdays?|Wednesdays?|Thursdays?|Fridays?|Saturdays?|Sundays?)\b.*\b\d{1,2}:\d{2}\b/i.test(
+        line
+      )
+    ) ??
+    null
+  );
+}
+
+function extractClassroom(lines: string[]) {
+  return extractLabelValue(lines, ["classroom", "room", "location", "venue"]);
+}
+
+function extractOfficeHours(lines: string[]) {
+  return extractLabelValue(lines, ["office hours", "consultation hours"]);
+}
+
+function extractPrerequisites(lines: string[]) {
+  return extractLabelValue(lines, ["prerequisite", "prerequisites", "pre-requisite", "pre-requisites"]);
+}
+
+function isMetadataSectionBoundary(line: string) {
+  return /^(assessment|course evaluation|evaluation|grading|course learning outcomes?|learning outcomes?|schedule|teaching plan|course topics|attendance|academic integrity|policies|office hours|instructor|prerequisites?|textbooks?|references?|course catalog description|course description)\b/i.test(
+    line
+  );
+}
+
+function extractSectionText(lines: string[], headingPattern: RegExp, maxLines = 8) {
+  const startIndex = lines.findIndex((line) => headingPattern.test(line));
+
+  if (startIndex === -1) {
+    return null;
+  }
+
+  const headingLine = lines[startIndex];
+  const inlineValue = headingLine.replace(headingPattern, "").replace(/^[:\-\s]+/, "").trim();
+  const values: string[] = inlineValue ? [inlineValue] : [];
+
+  for (let index = startIndex + 1; index < lines.length && values.length < maxLines; index += 1) {
+    const line = lines[index];
+
+    if (!line) {
+      if (values.length > 0) break;
+      continue;
+    }
+
+    if (values.length > 0 && isMetadataSectionBoundary(line)) {
+      break;
+    }
+
+    if (isAssessmentSectionHeading(line) || isSectionBoundary(line)) {
+      break;
+    }
+
+    values.push(line.replace(/^[-*]\s*/, "").trim());
+  }
+
+  return values.join("\n").trim() || null;
+}
+
+function extractTextbooks(lines: string[]) {
+  const section = extractSectionText(
+    lines,
+    /^(textbooks?|required text|recommended text|references?)\s*/i,
+    10
+  );
+
+  if (!section) {
+    return [];
+  }
+
+  return section
+    .split(/\n|;|(?:\s+-\s+)/)
+    .map((item) => item.replace(/^[-*]\s*/, "").trim())
+    .filter((item) => item.length > 8 && !/^(textbooks?|required text|recommended text|references?)$/i.test(item))
+    .slice(0, 8);
+}
+
+function extractCourseDescription(lines: string[]) {
+  return extractSectionText(
+    lines,
+    /^(course catalog description|catalog description|course description|description)\s*/i,
+    8
+  );
+}
+
+function buildFieldConfidence(input: {
+  courseCode: string | null;
+  courseName: string | null;
+  creditHours: number | null;
+  instructor: string | null;
+  instructorEmail: string | null;
+  semester: string | null;
+  schedule: string | null;
+  classroom: string | null;
+  officeHours: string | null;
+  prerequisites: string | null;
+  textbooks: string[];
+  courseDescription: string | null;
+}): ExtractedFieldConfidence {
+  return {
+    courseCode: input.courseCode ? 0.9 : 0,
+    courseName: input.courseName ? 0.78 : 0,
+    creditHours: input.creditHours !== null ? 0.86 : 0,
+    instructor: input.instructor ? 0.78 : 0,
+    instructorEmail: input.instructorEmail ? 0.95 : 0,
+    semester: input.semester ? 0.82 : 0,
+    schedule: input.schedule ? 0.72 : 0,
+    classroom: input.classroom ? 0.72 : 0,
+    officeHours: input.officeHours ? 0.75 : 0,
+    prerequisites: input.prerequisites ? 0.76 : 0,
+    textbooks: input.textbooks.length > 0 ? 0.72 : 0,
+    courseDescription: input.courseDescription ? 0.7 : 0
+  };
 }
 
 function normalizeAssessmentForOutput(
@@ -566,6 +816,10 @@ function shouldIgnoreAssessmentLine(line: string, courseCode: string | null) {
   }
 
   if (/\b\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\b/.test(line) && !hasKeyword) {
+    return true;
+  }
+
+  if (/\b(moved to the grade of|will be moved to|make-?up|late penalty|deducted|bonus)\b/i.test(line)) {
     return true;
   }
 
@@ -704,17 +958,22 @@ function deriveAssessmentName(line: string) {
 
 function canonicalAssessmentName(rawName: string, fullLine: string) {
   const value = `${rawName} ${fullLine}`.toLowerCase();
-  const quizNumber = value.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
-  const homeworkNumber = value.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
-  const assignmentNumber = value.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
-  const projectNumber = value.match(/\bprojects?\s*#?\s*(\d{1,2})\b/);
-  const testNumber = value.match(/\btests?\s*#?\s*(\d{1,2})\b/);
+  const numberedValue = `${rawName} ${removeWeightTokensForNumbering(fullLine)}`.toLowerCase();
+  const quizNumber = numberedValue.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
+  const homeworkNumber = numberedValue.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
+  const assignmentNumber = numberedValue.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
+  const projectNumber = numberedValue.match(/\bprojects?\s*#?\s*(\d{1,2})\b/);
+  const testNumber = numberedValue.match(/\btests?\s*#?\s*(\d{1,2})\b/);
+  const labNumber = numberedValue.match(/\blabs?\s*#?\s*(\d{1,2})\b/);
+  const examNumber = numberedValue.match(/\bexams?\s*#?\s*(\d{1,2})\b/);
 
   if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
   if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
   if (assignmentNumber) return `Assignment ${Number(assignmentNumber[1])}`;
   if (projectNumber) return `Project ${Number(projectNumber[1])}`;
   if (testNumber) return `Test ${Number(testNumber[1])}`;
+  if (labNumber) return `Lab ${Number(labNumber[1])}`;
+  if (examNumber) return `Exam ${Number(examNumber[1])}`;
 
   if (/\bfinal\s+lab\b|\blab\s*final\b|\bfinal\s+lab\s*test\b/.test(value)) return "Final Lab";
   if (/\bmid\s*term\b|\bmidterm\b/.test(value)) return "Mid Term Exam";
@@ -727,6 +986,7 @@ function canonicalAssessmentName(rawName: string, fullLine: string) {
   if (/\bcourse\s*work\b|\bcoursework\b/.test(value)) return "Coursework";
   if (/\blab\s*work\b/.test(value)) return "Lab Work";
   if (/\blaborator(y|ies)\b|\blabs?\b/.test(value)) return "Laboratory";
+  if (/\bquiz(?:zes)?\b/.test(value)) return "Quizzes";
   if (/\bassignments?\b/.test(value)) return "Assignments";
   if (/\bhomework\b/.test(value)) return "Homework";
   if (/\bprojects?\b/.test(value)) return "Project";
@@ -756,6 +1016,27 @@ function canonicalAssessmentName(rawName: string, fullLine: string) {
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
+}
+
+function hasNumberedAssessmentName(value: string) {
+  return /\b(quiz|assignment|homework|hw|lab|project|test|exam)\s*#?\s*\d{1,2}\b/i.test(
+    removeWeightTokensForNumbering(value)
+  );
+}
+
+function removeWeightTokensForNumbering(value: string) {
+  return value
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage|marks?|points?)\b/gi, " ")
+    .replace(/\b(?:weight|marks?|contribution|percentage|score|points?)\s*[:=\-]?\s*\d{1,3}(?:\.\d+)?\b/gi, " ")
+    .replace(/\b(?:[1-9]\d|100)(?:\.\d+)?\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+
+function isGroupedAssessmentName(value: string) {
+  return /^(coursework|course work|quizzes|assignments|exams|tests|labs|laborator(?:y|ies)|lab work|projects)$/i.test(
+    value.trim()
+  );
 }
 
 function dedupeAssessments(assessments: ExtractedAssessment[]) {
@@ -789,11 +1070,13 @@ function scoreAssessments(assessments: ExtractedAssessment[]) {
         ? 650
         : Math.max(0, 120 - Math.abs(100 - total) * 2);
   const detailScore = assessments.length * 8;
-  const groupedPenalty = assessments.some((assessment) =>
-    /quizzes|exams|labs/i.test(assessment.name)
-  )
-    ? 8
-    : 0;
+  const numberedRows = assessments.filter((assessment) =>
+    hasNumberedAssessmentName(`${assessment.name} ${assessment.source_text_snippet}`)
+  ).length;
+  const groupedRows = assessments.filter((assessment) =>
+    isGroupedAssessmentName(assessment.name)
+  ).length;
+  const groupedPenalty = groupedRows * (numberedRows > 0 ? 18 : 5);
   const farFromHundredPenalty =
     total > 150 || total < 40 ? Math.min(600, Math.abs(100 - total)) : 0;
   const gradeScalePenalty = assessments.some((assessment) =>
@@ -804,7 +1087,14 @@ function scoreAssessments(assessments: ExtractedAssessment[]) {
     ? 600
     : 0;
 
-  return closeToHundred + detailScore - groupedPenalty - farFromHundredPenalty - gradeScalePenalty;
+  return (
+    closeToHundred +
+    detailScore +
+    numberedRows * 28 -
+    groupedPenalty -
+    farFromHundredPenalty -
+    gradeScalePenalty
+  );
 }
 
 function scoreAssessmentSection(section: {
@@ -818,6 +1108,10 @@ function scoreAssessmentSection(section: {
     0
   );
   const knownRows = rows.filter((row) => hasAssessmentKeyword(row.name)).length;
+  const numberedRows = rows.filter((row) =>
+    hasNumberedAssessmentName(`${row.name} ${row.source_text_snippet}`)
+  ).length;
+  const groupedRows = rows.filter((row) => isGroupedAssessmentName(row.name)).length;
   const hasWeightWords = rows.filter((row) =>
     /weight|marks?|contribution|percentage|%/i.test(row.source_text_snippet ?? "")
   ).length;
@@ -842,8 +1136,10 @@ function scoreAssessmentSection(section: {
     closeToHundred +
     section.headingScore * 20 +
     Math.min(rows.length, 10) * 7 +
+    numberedRows * 14 +
     knownRows * 5 +
     hasWeightWords * 2 -
+    groupedRows * (numberedRows > 0 ? 12 : 2) -
     gradeScalePenalty -
     schedulePenalty
   );
@@ -1103,11 +1399,20 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
       courseName: null,
       creditHours: null,
       instructor: null,
+      instructorEmail: null,
+      semester: null,
+      schedule: null,
+      classroom: null,
+      officeHours: null,
+      prerequisites: null,
+      textbooks: [],
+      courseDescription: null,
       assessments: [],
       warnings: [
         "I couldn't find a grading breakdown. Try something like: midterm 25, final 40, assignments 35."
       ],
-      confidence: 0
+      confidence: 0,
+      fieldConfidence: {}
     };
   }
 
@@ -1175,9 +1480,13 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
       return;
     }
 
-    const count = /\beach\b/i.test(snippet)
-      ? getCountBeforeTerm(previousText)
-      : 1;
+    const explicitCount = getCountBeforeTerm(previousText);
+    const hasEach = /\beach\b|\bapiece\b|\bper\b/i.test(snippet);
+    const hasTotalSplit =
+      explicitCount > 1 &&
+      /\b(total|altogether|combined)\b/i.test(snippet) &&
+      !hasEach;
+    const count = hasEach || hasTotalSplit ? explicitCount : 1;
     const clearPhrase =
       /%|percent|worth|counts?\s+for|accounts?\s+for|weighted\s+at|is|are|=|:|-/i.test(
         snippet
@@ -1185,15 +1494,28 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
     const confidence = clearPhrase ? 0.95 : 0.8;
 
     if (count > 1) {
+      const rowWeight = hasTotalSplit
+        ? Math.round((weight / count) * 100) / 100
+        : weight;
+
       for (let item = 1; item <= count; item += 1) {
         addQuickAssessment(assessments, {
           name: `${termMatch.definition.singularDisplay} ${item}`,
-          weight_percentage: weight,
+          weight_percentage: rowWeight,
           max_score: 100,
-          confidence: 0.95,
+          confidence: hasTotalSplit ? 0.82 : 0.95,
           source_text_snippet: snippet
         });
       }
+
+      if (hasTotalSplit) {
+        warnings.push(
+          `Split ${count} ${termMatch.definition.pluralDisplay.toLowerCase()} evenly from total ${formatWeight(
+            weight
+          )}%. Please confirm.`
+        );
+      }
+
       return;
     }
 
@@ -1226,9 +1548,18 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
     courseName: fullSyllabusResult.courseName,
     creditHours: fullSyllabusResult.creditHours,
     instructor: fullSyllabusResult.instructor,
+    instructorEmail: fullSyllabusResult.instructorEmail,
+    semester: fullSyllabusResult.semester,
+    schedule: fullSyllabusResult.schedule,
+    classroom: fullSyllabusResult.classroom,
+    officeHours: fullSyllabusResult.officeHours,
+    prerequisites: fullSyllabusResult.prerequisites,
+    textbooks: fullSyllabusResult.textbooks,
+    courseDescription: fullSyllabusResult.courseDescription,
     assessments: bestAssessments,
     warnings: validationWarnings,
     confidence,
+    fieldConfidence: fullSyllabusResult.fieldConfidence,
     debug: {
       textLength: text.length,
       candidateCount: (fullSyllabusResult.debug?.candidateCount ?? 1) + 1,
@@ -1239,7 +1570,22 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
       chosenCandidateScore:
         assessments.length >= fullSyllabusResult.assessments.length
           ? scoreAssessments(bestAssessments)
-          : (fullSyllabusResult.debug?.chosenCandidateScore ?? scoreAssessments(bestAssessments))
+          : (fullSyllabusResult.debug?.chosenCandidateScore ?? scoreAssessments(bestAssessments)),
+      candidates: [
+        ...(fullSyllabusResult.debug?.candidates ?? []),
+        {
+          assessmentCount: assessments.length,
+          label: "quick text parser",
+          score: Math.round(scoreAssessments(assessments) * 100) / 100,
+          totalWeight:
+            Math.round(
+              assessments.reduce(
+                (sum, assessment) => sum + Number(assessment.weight_percentage ?? 0),
+                0
+              ) * 100
+            ) / 100
+        }
+      ]
     }
   };
 }
@@ -1254,6 +1600,28 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
   const courseName = extractCourseName(lines, courseCode);
   const creditHours = extractCreditHours(normalizedText);
   const instructor = extractInstructor(lines);
+  const instructorEmail = extractInstructorEmail(normalizedText);
+  const semester = extractSemester(normalizedText, lines);
+  const schedule = extractSchedule(lines);
+  const classroom = extractClassroom(lines);
+  const officeHours = extractOfficeHours(lines);
+  const prerequisites = extractPrerequisites(lines);
+  const textbooks = extractTextbooks(lines);
+  const courseDescription = extractCourseDescription(lines);
+  const fieldConfidence = buildFieldConfidence({
+    classroom,
+    courseCode,
+    courseDescription,
+    courseName,
+    creditHours,
+    instructor,
+    instructorEmail,
+    officeHours,
+    prerequisites,
+    schedule,
+    semester,
+    textbooks
+  });
   const { assessments, duplicateCount } = parseAssessments(lines);
   const baseCandidate: AssessmentCandidate = {
     label: "line parser",
@@ -1307,30 +1675,59 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
     warnings.push("Course info missing");
   }
 
-  const infoScore = [courseCode, courseName, creditHours, instructor].filter(
+  const infoScore = [
+    courseCode,
+    courseName,
+    creditHours,
+    instructor,
+    instructorEmail,
+    semester
+  ].filter(
     Boolean
   ).length;
   const confidence = Math.min(
     0.98,
     Math.max(
       0,
-      averageAssessmentConfidence * 0.75 + (infoScore / 4) * 0.2
+      averageAssessmentConfidence * 0.72 + (infoScore / 6) * 0.22
     )
   );
+  const debugCandidates = allCandidates.map((candidate) => ({
+    assessmentCount: candidate.assessments.length,
+    label: candidate.label,
+    score: Math.round(candidate.score * 100) / 100,
+    totalWeight:
+      Math.round(
+        candidate.assessments.reduce(
+          (sum, assessment) => sum + Number(assessment.weight_percentage ?? 0),
+          0
+        ) * 100
+      ) / 100
+  }));
 
   return {
     courseCode,
     courseName,
     creditHours,
     instructor,
+    instructorEmail,
+    semester,
+    schedule,
+    classroom,
+    officeHours,
+    prerequisites,
+    textbooks,
+    courseDescription,
     assessments: chosenAssessments,
     warnings,
     confidence: Math.round(confidence * 100) / 100,
+    fieldConfidence,
     debug: {
       textLength: text.length,
       candidateCount: allCandidates.length,
       chosenCandidateLabel: chosenCandidate?.label ?? "none",
-      chosenCandidateScore: Math.round((chosenCandidate?.score ?? 0) * 100) / 100
+      chosenCandidateScore: Math.round((chosenCandidate?.score ?? 0) * 100) / 100,
+      candidates: debugCandidates
     }
   };
 }

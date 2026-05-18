@@ -9,22 +9,21 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "Dr. Ibrahim Yildiz",
-  "assessments": [
-    {
-      "name": "A Of Zero Will Be Assigned For Each Missed Quiz Whether A Valid Excuse Is Presented Or Not Please Note That No Make Up Quizzes Will Be Given Quiz Grade Will Be Based On The Best",
-      "weight_percentage": 4,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "A mark of zero will be assigned for each missed quiz, whether a valid excuse is presented or not. Please note that no make-up quizzes will be given –quiz grade will be based on the best 4 marks."
-    }
-  ],
-  "totalWeight": 4,
+  "instructorEmail": "ibrahim.yildiz@ku.ac.ae",
+  "schedule": "Monday, Wednesday (09:30 am – 10:45 am) at PMA 3223",
+  "classroom": null,
+  "officeHours": "(Mon, Wed) 11.00 AM - 12.15 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
+  "assessments": [],
+  "totalWeight": 0,
   "warnings": [
-    "Total weight is below 100 (4%)",
     "Course info missing",
     "Credit hours missing",
+    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.92,
+  "confidence": 0.12,
   "needsHumanReview": true
 }

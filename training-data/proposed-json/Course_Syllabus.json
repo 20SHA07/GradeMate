@@ -9,6 +9,16 @@
   "creditHours": 4,
   "semester": null,
   "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "BMED 351",
+  "textbooks": [
+    "Discrete-Time Signal Processing by Alan V. Oppenheim, Ronald W. Schafer, Publisher: Prentice",
+    "Hall, ISBN: 9781292025728, Pearson New International Edition, 2013."
+  ],
+  "courseDescription": "The primary objective of this course is to study analogue and digital signal processing techniques\nand microcomputer system, and their application to biomedical instrumentation and physiological\nmeasurements. This course is designed for students who are expected to have prior knowledge in\ncircuits and physiological system modelling. The main focus is on the technical aspects of\nbiosignal processing and its hardware implementation in medical instruments.",
   "assessments": [
     {
       "name": "Coursework",

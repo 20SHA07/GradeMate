@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "Dr. Michael Babula",
+  "instructorEmail": "michael.babula@ku.ac.ae",
+  "schedule": "Sec 2 – M T W R 12:00 – 1:40 PM (G03009)",
+  "classroom": null,
+  "officeHours": "Additional Office Hours by Appointment.",
+  "prerequisites": "ENGL 101 or ENGL 111",
+  "textbooks": [
+    "Psychology in Everyday Life by David G. Myers and C. Nathan Dewall, Publisher: Worth Publishers, 5",
+    "Edition, 2019, ISBN: 9781319133726"
+  ],
+  "courseDescription": "This course examines historical and current topics related to the mind and behavior with research methods\nand the scientific method as a foundation. Areas covered in this course include biology, development,\nmemory, learning, social psychology, personality, psychological disorders, health psychology, and\npositive psychology.",
   "assessments": [
     {
       "name": "Coursework",
@@ -25,7 +35,7 @@
       "source_text_snippet": "Semester Examination(s) 30%"
     },
     {
-      "name": "Project 30",
+      "name": "Final Project",
       "weight_percentage": 30,
       "max_score": 100,
       "confidence": 0.98,

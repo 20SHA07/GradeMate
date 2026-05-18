@@ -9,6 +9,15 @@
   "creditHours": 4,
   "semester": "Spring 2024",
   "instructor": "Dr. Khaled Dib",
+  "instructorEmail": "khaled.dib@ku.ac.ae",
+  "schedule": "TTh 2:00-3:40",
+  "classroom": "L01007",
+  "officeHours": "XXXXXXX",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Differential Equations and Linear Algebra by C. Edwards, D. Penney and David Calvis, Publisher: Pearson, 4th Global Edition, e-book, 2020, ISBN: 9780137313617."
+  ],
+  "courseDescription": "This course introduces ordinary differential equations with linear algebra. The course covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector spaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first-order differential equations, higher-order linear equations with constant coefficients, linear and almost linear systems of differential equations, and Laplace transforms.",
   "assessments": [
     {
       "name": "Final Exam",

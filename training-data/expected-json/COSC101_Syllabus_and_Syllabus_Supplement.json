@@ -5,6 +5,16 @@
   "creditHours": 3,
   "semester": "Fall 2025",
   "instructor": "Menatalla Abououf",
+  "instructorEmail": "menatalla.abououf@ku.ac.ae",
+  "schedule": "Mondays and Wednesday: 14:00 - 14:50",
+  "classroom": "C04050",
+  "officeHours": "Mondays & Wednesdays: 12:00 - 2:00",
+  "prerequisites": "COSC 114",
+  "textbooks": [
+    "Foundations of Computer Science by Behrouz Forouzan",
+    "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
+  ],
+  "courseDescription": "Extracted from the Course Catalog Description section",
   "assessments": [
     {
       "name": "Quiz 1",

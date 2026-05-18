@@ -9,6 +9,15 @@
   "creditHours": 3,
   "semester": "Spring 2024",
   "instructor": "Dr Yama Temouri",
+  "instructorEmail": "yama.temouri@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "Arrange via email",
+  "prerequisites": "ENGL 112, ENGL 102",
+  "textbooks": [
+    "Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552"
+  ],
+  "courseDescription": "This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed.",
   "assessments": [
     {
       "name": "Exam",

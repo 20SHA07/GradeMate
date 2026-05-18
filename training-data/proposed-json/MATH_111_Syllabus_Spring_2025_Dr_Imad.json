@@ -9,6 +9,16 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "Imad.elayna@ku.ac.ae",
+  "schedule": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad A. T. Rafhi,",
+    "McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472."
+  ],
+  "courseDescription": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
   "assessments": [
     {
       "name": "Hw Connect Continuously",

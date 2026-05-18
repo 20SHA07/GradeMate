@@ -47,6 +47,11 @@ import {
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
+import {
+  saveVerifiedExtraction,
+  type VerifiedExtractionFeedback,
+  type VerifiedExtractionSource
+} from "@/lib/syllabus/verified-extractions";
 import { getAppBasePath } from "@/lib/routes";
 import {
   getCoreAssessmentPayload,
@@ -72,13 +77,38 @@ type ReviewAssessment = ExtractedAssessment & {
   id: string;
 };
 
+type CourseInfoReviewField = {
+  key:
+    | "classroom"
+    | "code"
+    | "description"
+    | "credit_hours"
+    | "instructor"
+    | "instructor_email"
+    | "name"
+    | "office_hours"
+    | "prerequisites"
+    | "schedule"
+    | "term";
+  label: string;
+  value: string;
+  apply: boolean;
+  confidence?: number;
+};
+
 type ExtractionSource = "ai" | "local-ai" | "online-ai" | "pdf" | "rule";
 
 type ExtractionDraft = {
   extraction: ExtractedSyllabus;
   extractionSource: ExtractionSource;
+  courseInfoRows?: CourseInfoReviewField[];
   reviewRows: ReviewAssessment[];
   updatedAt: string;
+};
+
+type PendingFeedback = {
+  extraction: ExtractedSyllabus;
+  source: ExtractionSource;
 };
 
 type PdfPreview = {
@@ -253,6 +283,97 @@ function makeReviewRows(extraction: ExtractedSyllabus): ReviewAssessment[] {
     ...assessment,
     id: createGuestId("review-assessment")
   }));
+}
+
+function makeCourseInfoRows(extraction: ExtractedSyllabus): CourseInfoReviewField[] {
+  const fields: Array<Omit<CourseInfoReviewField, "apply">> = [
+    {
+      key: "code",
+      label: "Course code",
+      value: extraction.courseCode ?? "",
+      confidence: extraction.fieldConfidence?.courseCode
+    },
+    {
+      key: "name",
+      label: "Course name",
+      value: extraction.courseName ?? "",
+      confidence: extraction.fieldConfidence?.courseName
+    },
+    {
+      key: "credit_hours",
+      label: "Credit hours",
+      value: extraction.creditHours === null ? "" : String(extraction.creditHours),
+      confidence: extraction.fieldConfidence?.creditHours
+    },
+    {
+      key: "instructor",
+      label: "Instructor",
+      value: extraction.instructor ?? "",
+      confidence: extraction.fieldConfidence?.instructor
+    },
+    {
+      key: "instructor_email",
+      label: "Instructor email",
+      value: extraction.instructorEmail ?? "",
+      confidence: extraction.fieldConfidence?.instructorEmail
+    },
+    {
+      key: "term",
+      label: "Semester",
+      value: extraction.semester ?? "",
+      confidence: extraction.fieldConfidence?.semester
+    },
+    {
+      key: "schedule",
+      label: "Schedule",
+      value: extraction.schedule ?? "",
+      confidence: extraction.fieldConfidence?.schedule
+    },
+    {
+      key: "classroom",
+      label: "Classroom",
+      value: extraction.classroom ?? "",
+      confidence: extraction.fieldConfidence?.classroom
+    },
+    {
+      key: "office_hours",
+      label: "Office hours",
+      value: extraction.officeHours ?? "",
+      confidence: extraction.fieldConfidence?.officeHours
+    },
+    {
+      key: "prerequisites",
+      label: "Prerequisites",
+      value: extraction.prerequisites ?? "",
+      confidence: extraction.fieldConfidence?.prerequisites
+    },
+    {
+      key: "description",
+      label: "Course description",
+      value: extraction.courseDescription ?? "",
+      confidence: extraction.fieldConfidence?.courseDescription
+    }
+  ];
+
+  return fields
+    .filter((field) => field.value.trim())
+    .map((field) => ({ ...field, apply: true }));
+}
+
+function buildConfirmedExtraction(
+  extraction: ExtractedSyllabus,
+  rows: ReviewAssessment[]
+): ExtractedSyllabus {
+  return {
+    ...extraction,
+    assessments: rows.map((row) => ({
+      confidence: Number(row.confidence) || 0.7,
+      max_score: Number(row.max_score) || 100,
+      name: row.name.trim(),
+      source_text_snippet: row.source_text_snippet,
+      weight_percentage: Number(row.weight_percentage) || 0
+    }))
+  };
 }
 
 function getReviewTotalWeight(rows: ReviewAssessment[]) {
@@ -435,7 +556,22 @@ function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
     );
   }
 
-  return extraction as ExtractedSyllabus;
+  return {
+    ...extraction,
+    classroom: extraction.classroom ?? null,
+    courseDescription: extraction.courseDescription ?? null,
+    courseName: extraction.courseName ?? null,
+    courseCode: extraction.courseCode ?? null,
+    creditHours: extraction.creditHours ?? null,
+    fieldConfidence: extraction.fieldConfidence ?? {},
+    instructor: extraction.instructor ?? null,
+    instructorEmail: extraction.instructorEmail ?? null,
+    officeHours: extraction.officeHours ?? null,
+    prerequisites: extraction.prerequisites ?? null,
+    schedule: extraction.schedule ?? null,
+    semester: extraction.semester ?? null,
+    textbooks: extraction.textbooks ?? []
+  } as ExtractedSyllabus;
 }
 
 async function getFunctionErrorMessage(error: unknown) {
@@ -538,15 +674,25 @@ function buildSaveMessage(savedCount: number, skippedNames: string[]) {
   return `${savedMessage} Skipped duplicates: ${skippedNames.join(", ")}.`;
 }
 
+function getVerifiedSource(source: ExtractionSource | null): VerifiedExtractionSource {
+  if (source === "pdf") return "pdf";
+  if (source === "rule" || source === "ai" || source === "local-ai" || source === "online-ai") {
+    return "pasted_text";
+  }
+  return "quick_add";
+}
+
 function SmartSyllabusExtractor({
   assessments,
   course,
   isGuest,
+  onCourseUpdated,
   onSaved
 }: {
   assessments: AssessmentRecord[];
   course: CourseRecord;
   isGuest: boolean;
+  onCourseUpdated: (course: CourseRecord) => void;
   onSaved: (savedAssessments: AssessmentRecord[], mode: "append" | "replace") => void;
 }) {
   const { supabase, user } = useAuth();
@@ -558,7 +704,13 @@ function SmartSyllabusExtractor({
   const [extraction, setExtraction] = useState<ExtractedSyllabus | null>(null);
   const [extractionSource, setExtractionSource] =
     useState<ExtractionSource | null>(null);
+  const [courseInfoRows, setCourseInfoRows] = useState<CourseInfoReviewField[]>(
+    []
+  );
   const [reviewRows, setReviewRows] = useState<ReviewAssessment[]>([]);
+  const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(
+    null
+  );
   const [isExtracting, setIsExtracting] = useState(false);
   const [isSavingExtraction, setIsSavingExtraction] = useState(false);
   const [isDraftReady, setIsDraftReady] = useState(false);
@@ -574,11 +726,13 @@ function SmartSyllabusExtractor({
     if (draft) {
       setExtraction(draft.extraction);
       setExtractionSource(draft.extractionSource);
+      setCourseInfoRows(draft.courseInfoRows ?? makeCourseInfoRows(draft.extraction));
       setReviewRows(draft.reviewRows);
       setMessage("Restored your unsaved extraction draft.");
     } else {
       setExtraction(null);
       setExtractionSource(null);
+      setCourseInfoRows([]);
       setReviewRows([]);
     }
 
@@ -599,14 +753,16 @@ function SmartSyllabusExtractor({
     writeExtractionDraft(course.id, {
       extraction,
       extractionSource,
+      courseInfoRows,
       reviewRows,
       updatedAt: new Date().toISOString()
     });
-  }, [course.id, extraction, extractionSource, isDraftReady, reviewRows]);
+  }, [course.id, courseInfoRows, extraction, extractionSource, isDraftReady, reviewRows]);
 
   function clearResults() {
     setExtraction(null);
     setExtractionSource(null);
+    setCourseInfoRows([]);
     setReviewRows([]);
     setPdfPreview(null);
     setMessage("");
@@ -616,6 +772,7 @@ function SmartSyllabusExtractor({
   function clearReviewOnly() {
     setExtraction(null);
     setExtractionSource(null);
+    setCourseInfoRows([]);
     setReviewRows([]);
     setError("");
   }
@@ -626,6 +783,7 @@ function SmartSyllabusExtractor({
   ) {
     setExtraction(result);
     setExtractionSource(source);
+    setCourseInfoRows(makeCourseInfoRows(result));
     setReviewRows(makeReviewRows(result));
     setMessage(
       result.assessments.length > 0
@@ -788,11 +946,36 @@ function SmartSyllabusExtractor({
     setReviewRows((current) => current.filter((row) => row.id !== rowId));
   }
 
+  function updateCourseInfoRow(
+    key: CourseInfoReviewField["key"],
+    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
+  ) {
+    setCourseInfoRows((current) =>
+      current.map((row) => (row.key === key ? { ...row, ...updates } : row))
+    );
+  }
+
+  function getSelectedCourseInfoUpdates() {
+    return Object.fromEntries(
+      courseInfoRows
+        .filter((row) => row.apply && row.value.trim())
+        .map((row) => [
+          row.key,
+          row.key === "credit_hours" ? Number(row.value) || 3 : row.value.trim()
+        ])
+    ) as Partial<CourseRecord>;
+  }
+
   async function saveExtractedAssessments(mode: "append" | "replace") {
     setError("");
 
     if (reviewRows.length === 0) {
       setError("There are no extracted assessments to save.");
+      return;
+    }
+
+    if (!extraction) {
+      setError("Run extraction again before saving.");
       return;
     }
 
@@ -806,6 +989,8 @@ function SmartSyllabusExtractor({
     }
 
     setIsSavingExtraction(true);
+    const selectedCourseUpdates = getSelectedCourseInfoUpdates();
+    const confirmedExtraction = buildConfirmedExtraction(extraction, validRows);
 
     if (isGuest) {
       const guestData = readGuestData();
@@ -847,13 +1032,25 @@ function SmartSyllabusExtractor({
               (assessment) => assessment.course_id !== course.id
             )
           : guestData.assessments;
+      const updatedCourse = {
+        ...course,
+        ...selectedCourseUpdates
+      };
 
       writeGuestData({
         ...guestData,
+        courses: guestData.courses.map((item) =>
+          item.id === course.id ? updatedCourse : item
+        ),
         assessments: [...remainingAssessments, ...savedAssessments]
       });
+      onCourseUpdated(updatedCourse);
       onSaved(savedAssessments, mode);
       clearReviewOnly();
+      setPendingFeedback({
+        extraction: confirmedExtraction,
+        source: extractionSource ?? "rule"
+      });
       setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
       setIsSavingExtraction(false);
       return;
@@ -927,11 +1124,91 @@ function SmartSyllabusExtractor({
       return;
     }
 
+    if (Object.keys(selectedCourseUpdates).length > 0) {
+      let updateResponse = await supabase
+        .from("courses")
+        .update(selectedCourseUpdates)
+        .eq("id", course.id)
+        .eq("user_id", user.id)
+        .select()
+        .single();
+
+      if (
+        updateResponse.error &&
+        /column|schema cache|does not exist/i.test(updateResponse.error.message)
+      ) {
+        const coreUpdates: Partial<CourseRecord> = {};
+
+        if (selectedCourseUpdates.name) coreUpdates.name = selectedCourseUpdates.name;
+        if (selectedCourseUpdates.code) coreUpdates.code = selectedCourseUpdates.code;
+        if (selectedCourseUpdates.credit_hours) {
+          coreUpdates.credit_hours = selectedCourseUpdates.credit_hours;
+        }
+
+        updateResponse = await supabase
+          .from("courses")
+          .update(coreUpdates)
+          .eq("id", course.id)
+          .eq("user_id", user.id)
+          .select()
+          .single();
+      }
+
+      if (updateResponse.error) {
+        setError(getSupabaseErrorMessage(updateResponse.error));
+        setIsSavingExtraction(false);
+        return;
+      }
+
+      if (updateResponse.data) {
+        onCourseUpdated(updateResponse.data as CourseRecord);
+      }
+    }
+
     const savedAssessments = (insertResponse.data ?? []) as AssessmentRecord[];
     onSaved(savedAssessments, mode);
     clearReviewOnly();
+    setPendingFeedback({
+      extraction: confirmedExtraction,
+      source: extractionSource ?? "rule"
+    });
     setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
     setIsSavingExtraction(false);
+  }
+
+  async function sendExtractionFeedback(feedback: VerifiedExtractionFeedback) {
+    if (!pendingFeedback) {
+      return;
+    }
+
+    try {
+      await saveVerifiedExtraction({
+        aiProvider:
+          pendingFeedback.source === "online-ai"
+            ? "gemini"
+            : pendingFeedback.source === "local-ai"
+              ? "local_ollama"
+              : "rule_based",
+        confirmedExtraction: pendingFeedback.extraction,
+        originalExtraction: pendingFeedback.extraction,
+        sourceType: getVerifiedSource(pendingFeedback.source),
+        supabase: isGuest ? null : supabase,
+        userFeedback: feedback,
+        userId: isGuest ? null : user.id
+      });
+      setPendingFeedback(null);
+      setMessage(
+        feedback === "correct"
+          ? "Thanks — this helps GradeMate improve future extractions."
+          : "Thanks — we'll use your corrected version to improve future extraction."
+      );
+    } catch (feedbackError) {
+      setError(
+        feedbackError instanceof Error
+          ? getSupabaseErrorMessage(feedbackError)
+          : "Could not save extraction feedback right now."
+      );
+    }
   }
 
   return (
@@ -1127,6 +1404,36 @@ function SmartSyllabusExtractor({
         </p>
       ) : null}
 
+      {pendingFeedback ? (
+        <div className="mt-4 rounded-lg border border-teal-100 bg-teal-50 px-4 py-3">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="font-semibold text-ink-900">
+                Help GradeMate improve
+              </p>
+              <p className="mt-1 text-sm text-ink-600">
+                Was this extraction correct?
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              <Button
+                onClick={() => void sendExtractionFeedback("correct")}
+                size="sm"
+              >
+                Yes, looks correct
+              </Button>
+              <Button
+                onClick={() => void sendExtractionFeedback("incorrect")}
+                size="sm"
+                variant="secondary"
+              >
+                No, needs improvement
+              </Button>
+            </div>
+          </div>
+        </div>
+      ) : null}
+
       {extraction ? (
         <div className="mt-5 space-y-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
           <div className="grid gap-3 md:grid-cols-4">
@@ -1204,6 +1511,73 @@ function SmartSyllabusExtractor({
                   <li key={warning}>{warning}</li>
                 ))}
               </ul>
+            </div>
+          ) : null}
+
+          {courseInfoRows.length > 0 ? (
+            <div className="rounded-lg border border-ink-200 bg-white p-4">
+              <h3 className="font-semibold text-ink-900">
+                Course info suggestions
+              </h3>
+              <p className="mt-1 text-sm text-ink-500">
+                Select fields to apply. Existing course details only change if
+                you keep the checkbox on.
+              </p>
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {courseInfoRows.map((row) => {
+                  const confidenceInfo = getConfidenceInfo(row.confidence ?? 0);
+                  const courseValues = course as Record<string, unknown>;
+                  const oldValue = String(
+                    row.key === "credit_hours"
+                      ? course.credit_hours
+                      : (courseValues[row.key] ?? "")
+                  );
+                  const willReplace =
+                    row.apply &&
+                    oldValue.trim() &&
+                    row.value.trim() &&
+                    oldValue.trim() !== row.value.trim();
+
+                  return (
+                    <label
+                      className="rounded-lg border border-ink-200 bg-ink-50 p-3"
+                      key={row.key}
+                    >
+                      <span className="flex items-center justify-between gap-3 text-sm font-medium text-ink-700">
+                        <span className="inline-flex items-center gap-2">
+                          <input
+                            checked={row.apply}
+                            onChange={(event) =>
+                              updateCourseInfoRow(row.key, {
+                                apply: event.target.checked
+                              })
+                            }
+                            type="checkbox"
+                          />
+                          {row.label}
+                        </span>
+                        <Badge tone={confidenceInfo.tone}>
+                          {confidenceInfo.label}
+                        </Badge>
+                      </span>
+                      <input
+                        className={inputStyles}
+                        onChange={(event) =>
+                          updateCourseInfoRow(row.key, {
+                            value: event.target.value
+                          })
+                        }
+                        value={row.value}
+                      />
+                      {willReplace ? (
+                        <p className="mt-2 text-xs text-amber-700">
+                          This will replace: {oldValue} → {row.value}
+                        </p>
+                      ) : null}
+                    </label>
+                  );
+                })}
+              </div>
             </div>
           ) : null}
 
@@ -1885,6 +2259,58 @@ export function CourseDetailClient({
         </div>
       </Card>
 
+      {[
+        course.instructor,
+        course.instructor_email,
+        course.term,
+        course.schedule,
+        course.classroom,
+        course.office_hours,
+        course.prerequisites,
+        course.description
+      ].some(Boolean) || Array.isArray(course.textbooks) ? (
+        <Card className="p-5">
+          <details>
+            <summary className="cursor-pointer text-lg font-semibold text-ink-900">
+              Course details
+            </summary>
+            <div className="mt-4 grid gap-3 md:grid-cols-2">
+              {[
+                ["Instructor", course.instructor],
+                ["Email", course.instructor_email],
+                ["Semester", course.term],
+                ["Schedule", course.schedule],
+                ["Classroom", course.classroom],
+                ["Office hours", course.office_hours],
+                ["Prerequisites", course.prerequisites]
+              ].map(([label, value]) =>
+                value ? (
+                  <div className="rounded-lg bg-ink-100/70 p-3 text-sm" key={label}>
+                    <p className="text-ink-500">{label}</p>
+                    <p className="mt-1 font-medium text-ink-900">{value}</p>
+                  </div>
+                ) : null
+              )}
+            </div>
+            {Array.isArray(course.textbooks) && course.textbooks.length > 0 ? (
+              <div className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm">
+                <p className="text-ink-500">Textbooks</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  {course.textbooks.map((textbook) => (
+                    <li key={String(textbook)}>{String(textbook)}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {course.description ? (
+              <p className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
+                {course.description}
+              </p>
+            ) : null}
+          </details>
+        </Card>
+      ) : null}
+
       <Card className="p-5">
         <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
           <div>
@@ -2038,6 +2464,7 @@ export function CourseDetailClient({
             assessments={assessments}
             course={course}
             isGuest={isGuest}
+            onCourseUpdated={setCourse}
             onSaved={handleExtractedAssessmentsSaved}
           />
 

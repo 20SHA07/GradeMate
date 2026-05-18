@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Dr. Gisha Elizabeth Luckachan",
+  "instructorEmail": "gisha.luckachan@ku.ac.ae",
+  "schedule": "Tuesday: 11:00 am-1:00 pm",
+  "classroom": null,
+  "officeHours": "Tuesday: 11:00 am-1:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
   "assessments": [],
   "totalWeight": 0,
   "warnings": [

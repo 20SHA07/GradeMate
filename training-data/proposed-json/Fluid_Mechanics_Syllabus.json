@@ -9,6 +9,22 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "Contact",
+  "instructorEmail": "Emad.alhseinat@ku.ac.ae",
+  "schedule": "Office Hours Monday _10:30-11:30; or ask for appointment through email.",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [
+    "Week 2 Fluid Statics: Fundamentals of Fluid Statics: (Chapter 2 textbook)",
+    "Week 3 The Balance Equation: Mass Balance",
+    "(Chapter 3 textbook)",
+    "Week 4 The Balance Equation: Energy Balance",
+    "(Chapter 4 textbook)",
+    "Week 5 Bernoulli’s Equation",
+    "Chapter 5 (textbook)",
+    "Week 6 Examples on Bernoulli’s Equation"
+  ],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1 Week 8 Feb 4%",

@@ -16,8 +16,28 @@ create table if not exists courses (
   name text not null,
   code text,
   credit_hours numeric not null default 3,
+  instructor text,
+  instructor_email text,
+  schedule text,
+  classroom text,
+  office_hours text,
+  prerequisites text,
+  textbooks jsonb,
+  description text,
+  term text,
   created_at timestamp with time zone default now()
 );
+
+alter table courses
+  add column if not exists instructor text,
+  add column if not exists instructor_email text,
+  add column if not exists schedule text,
+  add column if not exists classroom text,
+  add column if not exists office_hours text,
+  add column if not exists prerequisites text,
+  add column if not exists textbooks jsonb,
+  add column if not exists description text,
+  add column if not exists term text;
 
 create table if not exists assessments (
   id uuid primary key default gen_random_uuid(),
@@ -460,3 +480,47 @@ using (
   bucket_id = 'course-syllabi'
   and auth.uid()::text = (storage.foldername(name))[1]
 );
+
+create table if not exists verified_extractions (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid references auth.users(id) on delete set null,
+  source_type text not null check (
+    source_type in ('pdf', 'pasted_text', 'quick_add', 'course_library')
+  ),
+  source_file_name text,
+  source_text_hash text not null,
+  extracted_text text,
+  course_code text,
+  course_name text,
+  credit_hours numeric,
+  instructor text,
+  confirmed_json jsonb not null,
+  original_extraction_json jsonb,
+  user_feedback text not null check (
+    user_feedback in ('correct', 'incorrect', 'corrected')
+  ),
+  extractor_version text not null default 'dataset-v1',
+  ai_provider text check (
+    ai_provider is null
+    or ai_provider in ('rule_based', 'local_ollama', 'gemini', 'none')
+  ),
+  confidence numeric,
+  total_weight numeric,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
+
+alter table verified_extractions enable row level security;
+
+drop policy if exists "Users can view their own verified extractions" on verified_extractions;
+drop policy if exists "Users can create their own verified extractions" on verified_extractions;
+
+create policy "Users can view their own verified extractions"
+on verified_extractions for select
+to authenticated
+using (auth.uid() = user_id);
+
+create policy "Users can create their own verified extractions"
+on verified_extractions for insert
+to authenticated
+with check (auth.uid() = user_id);

@@ -9,6 +9,15 @@
   "creditHours": 3,
   "semester": null,
   "instructor": "TBD",
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "TBD",
+  "prerequisites": "COSC 114",
+  "textbooks": [
+    "Artificial Intelligence with Python, by Alberto Artasanchez and Prateek Joshi. Publisher: Packt Publishing Ltd, 2nd Edition, 2020. ISBN-10: 183921953X. ISBN-13: 978-1839219535."
+  ],
+  "courseDescription": "The course is designed to give engineers a comprehensive understanding of the key concepts, techniques, tools, and applications of data science and Artificial Intelligence (AI). The course focuses on applications in various engineering domains. Course topics include data analysis and visualization, machine learning, deep learning, applications, natural language processing, computer vision, autonomous driving, and ethics considerations. Students will learn how these concepts can be applied to real-world problems and gain hands-on experience with popular AI and data science tools and libraries.",
   "assessments": [],
   "totalWeight": 0,
   "warnings": [

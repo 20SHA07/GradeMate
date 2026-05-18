@@ -9,9 +9,19 @@
   "creditHours": 3,
   "semester": "Spring 2024",
   "instructor": "Contact",
+  "instructorEmail": "Ricardo.Nogueira@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "CHEG 205",
+  "textbooks": [
+    "Introduction to Chemical Engineering Thermodynamics, J. M. Smith, H. C. Van Ness, and M. M.",
+    "Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6."
+  ],
+  "courseDescription": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
   "assessments": [
     {
-      "name": "Quiz 30",
+      "name": "Quizzes",
       "weight_percentage": 30,
       "max_score": 100,
       "confidence": 0.98,

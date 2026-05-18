@@ -9,22 +9,21 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Dr. Manzar Abbas",
-  "assessments": [
-    {
-      "name": "A Of Zero Will Be Assigned For Each Missed Quiz Whether A Valid Excuse Is Presented Or Not Please Note That No Make Up Quizzes Will Be Given Quiz Grade Will Be Based On The Best",
-      "weight_percentage": 4,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "A mark of zero will be assigned for each missed quiz, whether a valid excuse is presented or not. Please note that no make-up quizzes will be given –quiz grade will be based on the best 4 marks."
-    }
-  ],
-  "totalWeight": 4,
+  "instructorEmail": "manzar.abbas@ku.ac.ae",
+  "schedule": "Tuesday, Thursday (12:00 – 1:15 pm) at PMA 3016",
+  "classroom": null,
+  "officeHours": "(Tuesday, Thursday) 02.00 PM - 03.30 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
+  "assessments": [],
+  "totalWeight": 0,
   "warnings": [
-    "Total weight is below 100 (4%)",
     "Course info missing",
     "Credit hours missing",
+    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.92,
+  "confidence": 0.12,
   "needsHumanReview": true
 }

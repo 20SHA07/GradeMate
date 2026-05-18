@@ -9,6 +9,16 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "nadia.nwayhed@ku.ac.ae",
+  "schedule": "Midterm Examination: MIDTERM: Friday, February 28 from 9:00‐10:30am 25%",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [
+    "Differential Equations and Linear Algebra by C. Edwards, D. Penney and David Calvis, Publisher:",
+    "Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181."
+  ],
+  "courseDescription": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
   "assessments": [
     {
       "name": "Online Hw On Pearson",
@@ -18,7 +28,7 @@
       "source_text_snippet": "Online HW On Pearson 10%"
     },
     {
-      "name": "Project 10",
+      "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,

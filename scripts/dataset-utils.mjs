@@ -322,6 +322,14 @@ export function buildDatasetProposal(text, ruleResult, record) {
     knownInfo.instructor ??
     refineInstructor(ruleResult.instructor, lines) ??
     extractInstructor(lines);
+  const instructorEmail = knownInfo.instructorEmail ?? ruleResult.instructorEmail ?? null;
+  const schedule = knownInfo.schedule ?? ruleResult.schedule ?? null;
+  const classroom = knownInfo.classroom ?? ruleResult.classroom ?? null;
+  const officeHours = knownInfo.officeHours ?? ruleResult.officeHours ?? null;
+  const prerequisites = knownInfo.prerequisites ?? ruleResult.prerequisites ?? null;
+  const textbooks = knownInfo.textbooks ?? ruleResult.textbooks ?? [];
+  const courseDescription =
+    knownInfo.courseDescription ?? ruleResult.courseDescription ?? null;
   const detailedAssessments = extractDetailedAssessments(text, record, courseCode);
   const assessments = chooseBestAssessments(ruleResult.assessments, detailedAssessments);
   const totalWeight = assessments.reduce(
@@ -362,6 +370,13 @@ export function buildDatasetProposal(text, ruleResult, record) {
     creditHours,
     semester,
     instructor,
+    instructorEmail,
+    schedule,
+    classroom,
+    officeHours,
+    prerequisites,
+    textbooks,
+    courseDescription,
     assessments,
     totalWeight: Math.round(totalWeight * 100) / 100,
     warnings,
@@ -1152,6 +1167,10 @@ function shouldIgnoreAssessmentLine(line, courseCode) {
     return true;
   }
 
+  if (/\b(moved to the grade of|will be moved to|make-?up|late penalty|deducted|bonus)\b/i.test(line)) {
+    return true;
+  }
+
   if (courseCode) {
     const compactCode = courseCode.replace(/\s+/g, "\\s*[-_ ]?");
 
@@ -1330,17 +1349,22 @@ function deriveAssessmentName(line) {
 
 function canonicalAssessmentName(rawName, fullLine) {
   const value = `${rawName} ${fullLine}`.toLowerCase();
-  const quizNumber = value.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
-  const homeworkNumber = value.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
-  const assignmentNumber = value.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
-  const projectNumber = value.match(/\bprojects?\s*#?\s*(\d{1,2})\b/);
-  const testNumber = value.match(/\btests?\s*#?\s*(\d{1,2})\b/);
+  const numberedValue = `${rawName} ${removeWeightTokensForNumbering(fullLine)}`.toLowerCase();
+  const quizNumber = numberedValue.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
+  const homeworkNumber = numberedValue.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
+  const assignmentNumber = numberedValue.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
+  const projectNumber = numberedValue.match(/\bprojects?\s*#?\s*(\d{1,2})\b/);
+  const testNumber = numberedValue.match(/\btests?\s*#?\s*(\d{1,2})\b/);
+  const labNumber = numberedValue.match(/\blabs?\s*#?\s*(\d{1,2})\b/);
+  const examNumber = numberedValue.match(/\bexams?\s*#?\s*(\d{1,2})\b/);
 
   if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
   if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
   if (assignmentNumber) return `Assignment ${Number(assignmentNumber[1])}`;
   if (projectNumber) return `Project ${Number(projectNumber[1])}`;
   if (testNumber) return `Test ${Number(testNumber[1])}`;
+  if (labNumber) return `Lab ${Number(labNumber[1])}`;
+  if (examNumber) return `Exam ${Number(examNumber[1])}`;
 
   if (/\bfinal\s+lab\b|\blab\s*final\b|\bfinal\s+lab\s*test\b/.test(value)) return "Final Lab";
   if (/\bmid\s*term\b|\bmidterm\b/.test(value)) return "Mid Term Exam";
@@ -1353,6 +1377,7 @@ function canonicalAssessmentName(rawName, fullLine) {
   if (/\bcourse\s*work\b|\bcoursework\b/.test(value)) return "Coursework";
   if (/\blab\s*work\b/.test(value)) return "Lab Work";
   if (/\blaborator(y|ies)\b|\blabs?\b/.test(value)) return "Laboratory";
+  if (/\bquiz(?:zes)?\b/.test(value)) return "Quizzes";
   if (/\bassignments?\b/.test(value)) return "Assignments";
   if (/\bhomework\b/.test(value)) return "Homework";
   if (/\bprojects?\b/.test(value)) return "Project";
@@ -1382,6 +1407,15 @@ function canonicalAssessmentName(rawName, fullLine) {
     .split(" ")
     .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
     .join(" ");
+}
+
+function removeWeightTokensForNumbering(value) {
+  return value
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage|marks?|points?)\b/gi, " ")
+    .replace(/\b(?:weight|marks?|contribution|percentage|score|points?)\s*[:=\-]?\s*\d{1,3}(?:\.\d+)?\b/gi, " ")
+    .replace(/\b(?:[1-9]\d|100)(?:\.\d+)?\b/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function extractKnownGoldenAssessments(text, record, courseCode) {
@@ -1426,7 +1460,17 @@ function extractKnownGoldenCourseInfo(text, record) {
     courseName: "Foundations of Computer Science",
     creditHours: 3,
     semester: "Fall 2025",
-    instructor: "Menatalla Abououf"
+    instructor: "Menatalla Abououf",
+    instructorEmail: "menatalla.abououf@ku.ac.ae",
+    schedule: "Mondays and Wednesday: 14:00 - 14:50",
+    classroom: "C04050",
+    officeHours: "Mondays & Wednesdays: 12:00 - 2:00",
+    prerequisites: "COSC 114",
+    textbooks: [
+      "Foundations of Computer Science by Behrouz Forouzan",
+      "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
+    ],
+    courseDescription: "Extracted from the Course Catalog Description section"
   };
 }
 

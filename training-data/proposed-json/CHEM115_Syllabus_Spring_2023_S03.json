@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2023",
   "instructor": "Dr. Emilia Oueis",
+  "instructorEmail": "Emilia.oueis@ku.ac.ae",
+  "schedule": "Office Hours: Mondays and Wednesdays from 10:00 to 12:00 pm",
+  "classroom": null,
+  "officeHours": "Mondays and Wednesdays from 10:00 to 12:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 2",
@@ -18,14 +25,14 @@
       "source_text_snippet": "Quiz # 2 27 Feb – 03 Mar 20%"
     },
     {
-      "name": "Assignment 15",
+      "name": "Laboratory",
       "weight_percentage": 15,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Laboratory: Lab Reports and Lab Assignments 15%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Exam 6",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.98,

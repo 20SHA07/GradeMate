@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "maryam.khaleel@ku.ac.ae",
+  "schedule": "Wednesday 10-11:30 am",
+  "classroom": null,
+  "officeHours": "Wednesday 10-11:30 am",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",

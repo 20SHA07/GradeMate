@@ -36,6 +36,12 @@ import {
 } from "@/lib/syllabus/extractSyllabus";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
 import {
+  readGuestVerifiedExtractions,
+  saveVerifiedExtraction,
+  type VerifiedExtractionFeedback,
+  type VerifiedExtractionSource
+} from "@/lib/syllabus/verified-extractions";
+import {
   getGradeInfo,
   getGradePoint,
   getLetterGrade,
@@ -68,6 +74,15 @@ type SimpleCourse = {
   letterGrade: LetterGrade;
   gradeSource: GradeSource;
   assessments: SimpleAssessment[];
+  instructor?: string;
+  instructorEmail?: string;
+  semester?: string;
+  schedule?: string;
+  classroom?: string;
+  officeHours?: string;
+  prerequisites?: string;
+  textbooks?: string[];
+  courseDescription?: string;
 };
 
 type SimpleGpaData = {
@@ -83,8 +98,36 @@ type ReviewAssessment = ExtractedAssessment & {
 type ReviewState = {
   courseId: string;
   extraction: ExtractedSyllabus;
+  courseInfo: CourseInfoReviewField[];
   rows: ReviewAssessment[];
   source: ExtractionSource;
+};
+
+type CourseInfoReviewField = {
+  key: keyof Pick<
+    SimpleCourse,
+    | "classroom"
+    | "code"
+    | "courseDescription"
+    | "creditHours"
+    | "instructor"
+    | "instructorEmail"
+    | "name"
+    | "officeHours"
+    | "prerequisites"
+    | "schedule"
+    | "semester"
+  >;
+  label: string;
+  value: string;
+  apply: boolean;
+  confidence?: number;
+};
+
+type PendingFeedback = {
+  extraction: ExtractedSyllabus;
+  source: ExtractionSource;
+  courseName: string;
 };
 
 type PredictorState = {
@@ -251,6 +294,83 @@ function makeReviewRows(extraction: ExtractedSyllabus): ReviewAssessment[] {
   }));
 }
 
+function makeCourseInfoReviewFields(
+  extraction: ExtractedSyllabus
+): CourseInfoReviewField[] {
+  const fields: Array<Omit<CourseInfoReviewField, "apply">> = [
+    {
+      key: "code",
+      label: "Course code",
+      value: extraction.courseCode ?? "",
+      confidence: extraction.fieldConfidence?.courseCode
+    },
+    {
+      key: "name",
+      label: "Course name",
+      value: extraction.courseName ?? "",
+      confidence: extraction.fieldConfidence?.courseName
+    },
+    {
+      key: "creditHours",
+      label: "Credit hours",
+      value: extraction.creditHours === null ? "" : String(extraction.creditHours),
+      confidence: extraction.fieldConfidence?.creditHours
+    },
+    {
+      key: "instructor",
+      label: "Instructor",
+      value: extraction.instructor ?? "",
+      confidence: extraction.fieldConfidence?.instructor
+    },
+    {
+      key: "instructorEmail",
+      label: "Instructor email",
+      value: extraction.instructorEmail ?? "",
+      confidence: extraction.fieldConfidence?.instructorEmail
+    },
+    {
+      key: "semester",
+      label: "Semester",
+      value: extraction.semester ?? "",
+      confidence: extraction.fieldConfidence?.semester
+    },
+    {
+      key: "schedule",
+      label: "Schedule",
+      value: extraction.schedule ?? "",
+      confidence: extraction.fieldConfidence?.schedule
+    },
+    {
+      key: "classroom",
+      label: "Classroom",
+      value: extraction.classroom ?? "",
+      confidence: extraction.fieldConfidence?.classroom
+    },
+    {
+      key: "officeHours",
+      label: "Office hours",
+      value: extraction.officeHours ?? "",
+      confidence: extraction.fieldConfidence?.officeHours
+    },
+    {
+      key: "prerequisites",
+      label: "Prerequisites",
+      value: extraction.prerequisites ?? "",
+      confidence: extraction.fieldConfidence?.prerequisites
+    },
+    {
+      key: "courseDescription",
+      label: "Course description",
+      value: extraction.courseDescription ?? "",
+      confidence: extraction.fieldConfidence?.courseDescription
+    }
+  ];
+
+  return fields
+    .filter((field) => field.value.trim())
+    .map((field) => ({ ...field, apply: true }));
+}
+
 function getReviewTotalWeight(rows: ReviewAssessment[]) {
   return rows.reduce((sum, row) => sum + Number(row.weight_percentage || 0), 0);
 }
@@ -410,7 +530,22 @@ function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
     );
   }
 
-  return extraction as ExtractedSyllabus;
+  return {
+    ...extraction,
+    classroom: extraction.classroom ?? null,
+    courseDescription: extraction.courseDescription ?? null,
+    courseName: extraction.courseName ?? null,
+    courseCode: extraction.courseCode ?? null,
+    creditHours: extraction.creditHours ?? null,
+    fieldConfidence: extraction.fieldConfidence ?? {},
+    instructor: extraction.instructor ?? null,
+    instructorEmail: extraction.instructorEmail ?? null,
+    officeHours: extraction.officeHours ?? null,
+    prerequisites: extraction.prerequisites ?? null,
+    schedule: extraction.schedule ?? null,
+    semester: extraction.semester ?? null,
+    textbooks: extraction.textbooks ?? []
+  } as ExtractedSyllabus;
 }
 
 async function requestOnlineAiExtraction(text: string) {
@@ -516,6 +651,28 @@ function getCourseQualityPoints(course: SimpleCourse) {
   );
 }
 
+function getVerifiedSource(source: ExtractionSource): VerifiedExtractionSource {
+  if (source === "pdf") return "pdf";
+  if (source === "paste" || source === "online-ai") return "pasted_text";
+  return "quick_add";
+}
+
+function buildConfirmedExtraction(
+  extraction: ExtractedSyllabus,
+  rows: ReviewAssessment[]
+): ExtractedSyllabus {
+  return {
+    ...extraction,
+    assessments: rows.map((row) => ({
+      confidence: Number(row.confidence) || 0.7,
+      max_score: Number(row.max_score) || 100,
+      name: row.name.trim(),
+      source_text_snippet: row.source_text_snippet,
+      weight_percentage: Number(row.weight_percentage) || 0
+    }))
+  };
+}
+
 function sanitizeImportedData(value: unknown): SimpleGpaData {
   if (!value || typeof value !== "object") {
     throw new Error("That file does not look like GradeMate Simple data.");
@@ -569,10 +726,30 @@ function sanitizeImportedData(value: unknown): SimpleGpaData {
               ? course.gradeSource
               : undefined,
           id: typeof course.id === "string" ? course.id : createSimpleId("course"),
+          instructor:
+            typeof course.instructor === "string" ? course.instructor : "",
+          instructorEmail:
+            typeof course.instructorEmail === "string"
+              ? course.instructorEmail
+              : "",
           letterGrade: isLetterGrade(course.letterGrade)
             ? course.letterGrade
             : "A",
-          name: typeof course.name === "string" ? course.name : ""
+          name: typeof course.name === "string" ? course.name : "",
+          semester: typeof course.semester === "string" ? course.semester : "",
+          schedule: typeof course.schedule === "string" ? course.schedule : "",
+          classroom: typeof course.classroom === "string" ? course.classroom : "",
+          officeHours:
+            typeof course.officeHours === "string" ? course.officeHours : "",
+          prerequisites:
+            typeof course.prerequisites === "string" ? course.prerequisites : "",
+          textbooks: Array.isArray(course.textbooks)
+            ? course.textbooks.filter((item): item is string => typeof item === "string")
+            : [],
+          courseDescription:
+            typeof course.courseDescription === "string"
+              ? course.courseDescription
+              : ""
         })
       )
     : [];
@@ -623,6 +800,9 @@ export function SimpleGpaCalculator() {
     Record<string, PdfPreview>
   >({});
   const [review, setReview] = useState<ReviewState | null>(null);
+  const [pendingFeedback, setPendingFeedback] = useState<PendingFeedback | null>(
+    null
+  );
   const [isExtractingCourseId, setIsExtractingCourseId] = useState<string | null>(
     null
   );
@@ -958,9 +1138,21 @@ export function SimpleGpaCalculator() {
   }
 
   function exportData() {
-    const blob = new Blob([JSON.stringify(data, null, 2)], {
+    const blob = new Blob(
+      [
+        JSON.stringify(
+          {
+            ...data,
+            verifiedExtractions: readGuestVerifiedExtractions()
+          },
+          null,
+          2
+        )
+      ],
+      {
       type: "application/json"
-    });
+      }
+    );
     const url = URL.createObjectURL(blob);
     const anchor = document.createElement("a");
     anchor.href = url;
@@ -1021,6 +1213,7 @@ export function SimpleGpaCalculator() {
   ) {
     setReview({
       courseId,
+      courseInfo: makeCourseInfoReviewFields(extraction),
       extraction,
       rows: makeReviewRows(extraction),
       source
@@ -1214,6 +1407,22 @@ export function SimpleGpaCalculator() {
     );
   }
 
+  function updateCourseInfoField(
+    key: CourseInfoReviewField["key"],
+    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
+  ) {
+    setReview((current) =>
+      current
+        ? {
+            ...current,
+            courseInfo: current.courseInfo.map((field) =>
+              field.key === key ? { ...field, ...updates } : field
+            )
+          }
+        : current
+    );
+  }
+
   function saveReview(mode: "append" | "replace") {
     if (!review) {
       return;
@@ -1230,6 +1439,10 @@ export function SimpleGpaCalculator() {
 
     let skippedNames: string[] = [];
     let savedCount = 0;
+    const confirmedExtraction = buildConfirmedExtraction(
+      review.extraction,
+      validRows
+    );
 
     setData((current) => ({
       ...current,
@@ -1272,9 +1485,16 @@ export function SimpleGpaCalculator() {
         });
 
         savedCount = newAssessments.length;
+        const selectedInfo = Object.fromEntries(
+          review.courseInfo
+            .filter((field) => field.apply && field.value.trim())
+            .map((field) => [field.key, field.value.trim()])
+        ) as Partial<SimpleCourse>;
 
         return {
           ...course,
+          ...selectedInfo,
+          creditHours: selectedInfo.creditHours ?? course.creditHours,
           assessments:
             mode === "replace"
               ? newAssessments
@@ -1285,6 +1505,11 @@ export function SimpleGpaCalculator() {
     }));
 
     setReview(null);
+    setPendingFeedback({
+      courseName: confirmedExtraction.courseName ?? "this course",
+      extraction: confirmedExtraction,
+      source: review.source
+    });
     setError("");
     setMessage(
       [
@@ -1318,6 +1543,30 @@ export function SimpleGpaCalculator() {
         }
       };
     });
+  }
+
+  async function sendFeedback(feedback: VerifiedExtractionFeedback) {
+    if (!pendingFeedback) {
+      return;
+    }
+
+    try {
+      await saveVerifiedExtraction({
+        aiProvider: pendingFeedback.source === "online-ai" ? "gemini" : "rule_based",
+        confirmedExtraction: pendingFeedback.extraction,
+        originalExtraction: pendingFeedback.extraction,
+        sourceType: getVerifiedSource(pendingFeedback.source),
+        userFeedback: feedback
+      });
+      setMessage(
+        feedback === "correct"
+          ? "Thanks — this helps GradeMate improve future extractions."
+          : "Thanks — we'll use your corrected version to improve future extraction."
+      );
+      setPendingFeedback(null);
+    } catch {
+      setError("Could not save feedback right now. Your assessments are still saved.");
+    }
   }
 
   return (
@@ -1411,6 +1660,33 @@ export function SimpleGpaCalculator() {
             {error || message}
           </div>
         )}
+
+        {pendingFeedback ? (
+          <Card className="p-5">
+            <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <div>
+                <h2 className="text-lg font-semibold text-ink-900">
+                  Help GradeMate improve
+                </h2>
+                <p className="mt-1 text-sm text-ink-500">
+                  Was this extraction correct for {pendingFeedback.courseName}?
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-2">
+                <Button onClick={() => void sendFeedback("correct")} size="sm">
+                  Yes, looks correct
+                </Button>
+                <Button
+                  onClick={() => void sendFeedback("incorrect")}
+                  size="sm"
+                  variant="secondary"
+                >
+                  No, needs improvement
+                </Button>
+              </div>
+            </div>
+          </Card>
+        ) : null}
 
         <section className="grid gap-6 lg:grid-cols-[22rem_minmax(0,1fr)]">
           <div className="space-y-6">
@@ -1834,6 +2110,7 @@ export function SimpleGpaCalculator() {
                       stats={stats}
                       syllabusText={syllabusTextByCourse[course.id] ?? ""}
                       updateAssessment={updateAssessment}
+                      updateCourseInfoField={updateCourseInfoField}
                       updatePredictor={updatePredictor}
                       updateReviewRow={updateReviewRow}
                     />
@@ -1870,6 +2147,7 @@ function CourseworkDetails({
   stats,
   syllabusText,
   updateAssessment,
+  updateCourseInfoField,
   updatePredictor,
   updateReviewRow
 }: {
@@ -1906,6 +2184,10 @@ function CourseworkDetails({
       "maxScore" | "name" | "score" | "weightPercentage"
     >,
     value: string
+  ) => void;
+  updateCourseInfoField: (
+    key: CourseInfoReviewField["key"],
+    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
   ) => void;
   updatePredictor: (
     courseId: string,
@@ -1956,6 +2238,55 @@ function CourseworkDetails({
       </summary>
 
       <div className="mt-5 space-y-5">
+        {[
+          course.instructor,
+          course.instructorEmail,
+          course.semester,
+          course.schedule,
+          course.classroom,
+          course.officeHours,
+          course.prerequisites,
+          course.courseDescription,
+          ...(course.textbooks ?? [])
+        ].some(Boolean) ? (
+          <section className="rounded-2xl border border-ink-200 bg-white p-4">
+            <h3 className="font-semibold text-ink-900">Course details</h3>
+            <div className="mt-3 grid gap-3 md:grid-cols-2">
+              {[
+                ["Instructor", course.instructor],
+                ["Email", course.instructorEmail],
+                ["Semester", course.semester],
+                ["Schedule", course.schedule],
+                ["Classroom", course.classroom],
+                ["Office hours", course.officeHours],
+                ["Prerequisites", course.prerequisites]
+              ].map(([label, value]) =>
+                value ? (
+                  <div className="rounded-xl bg-ink-100/70 p-3 text-sm" key={label}>
+                    <p className="text-ink-500">{label}</p>
+                    <p className="mt-1 font-medium text-ink-900">{value}</p>
+                  </div>
+                ) : null
+              )}
+            </div>
+            {course.textbooks?.length ? (
+              <div className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm">
+                <p className="text-ink-500">Textbooks</p>
+                <ul className="mt-2 list-disc space-y-1 pl-5">
+                  {course.textbooks.map((textbook) => (
+                    <li key={textbook}>{textbook}</li>
+                  ))}
+                </ul>
+              </div>
+            ) : null}
+            {course.courseDescription ? (
+              <p className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
+                {course.courseDescription}
+              </p>
+            ) : null}
+          </section>
+        ) : null}
+
         <section>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
             <div>
@@ -2217,6 +2548,7 @@ function CourseworkDetails({
             review={review}
             saveReview={saveReview}
             setReview={setReview}
+            updateCourseInfoField={updateCourseInfoField}
             updateReviewRow={updateReviewRow}
             addReviewRow={addReviewRow}
           />
@@ -2338,6 +2670,7 @@ function ExtractionReview({
   review,
   saveReview,
   setReview,
+  updateCourseInfoField,
   updateReviewRow
 }: {
   addReviewRow: () => void;
@@ -2346,6 +2679,10 @@ function ExtractionReview({
   review: ReviewState;
   saveReview: (mode: "append" | "replace") => void;
   setReview: Dispatch<SetStateAction<ReviewState | null>>;
+  updateCourseInfoField: (
+    key: CourseInfoReviewField["key"],
+    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
+  ) => void;
   updateReviewRow: (
     rowId: string,
     field: keyof Pick<
@@ -2401,6 +2738,52 @@ function ExtractionReview({
               <li key={warning}>{warning}</li>
             ))}
           </ul>
+        </div>
+      ) : null}
+
+      {review.courseInfo.length > 0 ? (
+        <div className="rounded-xl border border-ink-200 bg-white p-4">
+          <h3 className="font-semibold text-ink-900">Course info suggestions</h3>
+          <p className="mt-1 text-sm text-ink-500">
+            Choose which detected fields to apply to this quick course.
+          </p>
+          <div className="mt-4 grid gap-3 md:grid-cols-2">
+            {review.courseInfo.map((field) => {
+              const confidenceInfo = getConfidenceInfo(field.confidence ?? 0);
+
+              return (
+                <label
+                  className="rounded-xl border border-ink-200 bg-ink-50 p-3"
+                  key={field.key}
+                >
+                  <span className="flex items-center justify-between gap-3 text-sm font-medium text-ink-700">
+                    <span className="inline-flex items-center gap-2">
+                      <input
+                        checked={field.apply}
+                        onChange={(event) =>
+                          updateCourseInfoField(field.key, {
+                            apply: event.target.checked
+                          })
+                        }
+                        type="checkbox"
+                      />
+                      {field.label}
+                    </span>
+                    <Badge tone={confidenceInfo.tone}>{confidenceInfo.label}</Badge>
+                  </span>
+                  <input
+                    className={`${inputStyles} mt-2`}
+                    onChange={(event) =>
+                      updateCourseInfoField(field.key, {
+                        value: event.target.value
+                      })
+                    }
+                    value={field.value}
+                  />
+                </label>
+              );
+            })}
+          </div>
         </div>
       ) : null}
 

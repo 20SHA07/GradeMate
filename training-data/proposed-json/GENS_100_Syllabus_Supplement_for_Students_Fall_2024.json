@@ -9,9 +9,16 @@
   "creditHours": 1,
   "semester": "Fall 2024",
   "instructor": "Contact",
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
   "assessments": [
     {
-      "name": "Week Ku Resources Quiz",
+      "name": "Quizzes",
       "weight_percentage": 5,
       "max_score": 100,
       "confidence": 0.98,

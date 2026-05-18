@@ -9,6 +9,16 @@
   "creditHours": 4,
   "semester": null,
   "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "PHYS 122, BMED 212",
+  "textbooks": [
+    "Fundamentals of Electric Circuits by C. K. Alexander & M. N.O. Sadiku, Publisher: McGraw-Hill, 6",
+    "International edition, 2016, ISBN: 9781259251320"
+  ],
+  "courseDescription": "The primary objective of this course is to study analogue, digital electronic circuits and their application\nto biomedical instrumentation and physiological measurements. The course will focus strongly on\nelectronic hardware and software design issues required to produce medical instruments, which satisfy\nInternational standards for safety, performance and quality control. Students will be equipped with the\nfundamental knowledge required to design Biosignal processing system.",
   "assessments": [
     {
       "name": "Coursework",

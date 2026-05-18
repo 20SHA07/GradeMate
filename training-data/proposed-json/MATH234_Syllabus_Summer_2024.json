@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Summer 2024",
   "instructor": "Meryem Rhadbane",
+  "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
+  "schedule": "MTWR 9:00 - 10:40",
+  "classroom": null,
+  "officeHours": "3:00 p.m. – 4:00 p.m.",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Discrete Mathematics and its Applications, Global Edition by K.H. Rosen, Publisher: McGraw Hill, 7",
+    "Edition, 2012. ISBN: 9780071315012."
+  ],
+  "courseDescription": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
   "assessments": [
     {
       "name": "Quiz 1",

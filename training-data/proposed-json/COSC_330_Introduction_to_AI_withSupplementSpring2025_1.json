@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Andreas Henschel",
+  "instructorEmail": "Andreas.henschel@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "Mo, Tue, We, Thu 3-4pm",
+  "prerequisites": "COSC 202, MATH 204 or Math 211, COSC 230",
+  "textbooks": [
+    "Artificial Intelligence: A Modern Approach by Peter Norvig and Stuart Russell. 4th Edition, 2021,ISBN-10 – 1292401133",
+    "978-1292401133"
+  ],
+  "courseDescription": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
   "assessments": [],
   "totalWeight": 0,
   "warnings": [

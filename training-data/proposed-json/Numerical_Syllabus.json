@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Ahmed.Alhajaj@ku.ac.ae /02-312 4279",
+  "instructorEmail": "Ahmed.Alhajaj@ku.ac.ae",
+  "schedule": "Tuesday and Thursday: 12:30-2:00 PM",
+  "classroom": null,
+  "officeHours": "Appointment (by email)",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Coursework",

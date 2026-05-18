@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "Contact",
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "MS Teams is normally be used for office hours or informally after/before class",
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Entrepreneurship and Small Business by Paul Burns, Publisher: Red Globe Press, 5th Edition, 2021, ISBN:",
+    "978-1352012491"
+  ],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Coursework",

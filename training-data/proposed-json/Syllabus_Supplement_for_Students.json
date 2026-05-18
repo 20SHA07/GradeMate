@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2023",
   "instructor": "Contact",
+  "instructorEmail": "maria.domingues@ku.ac.ae",
+  "schedule": "Office Hours Wednesdays 10:00-12:00",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",

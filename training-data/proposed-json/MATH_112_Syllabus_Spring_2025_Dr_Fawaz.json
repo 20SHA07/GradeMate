@@ -5,10 +5,20 @@
   "sourceTextFileName": "MATH_112_Syllabus_Spring_2025_Dr_Fawaz.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 111",
-  "courseName": "(C grade or higher)",
+  "courseName": "Calculus II",
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Dr Fawaz Hjouj",
+  "instructorEmail": null,
+  "schedule": "7 Feb 24 Midterm Exam: Wednesday, Feb 26, 2025 @7:30. TBC",
+  "classroom": null,
+  "officeHours": "MW 11:00-12:00, AND, 2:00-4:00 PM",
+  "prerequisites": "MATH 111 (C grade or higher)",
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad",
+    "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
+  ],
+  "courseDescription": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
   "assessments": [
     {
       "name": "Coursework",
@@ -18,7 +28,7 @@
       "source_text_snippet": "Coursework (Quizzes and assignments) 30%"
     },
     {
-      "name": "Project 10",
+      "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,

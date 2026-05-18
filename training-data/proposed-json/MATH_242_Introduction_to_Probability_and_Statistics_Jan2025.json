@@ -9,20 +9,29 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Ms. Meryem Rhadbane",
+  "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
+  "schedule": "As in Banner",
+  "classroom": null,
+  "officeHours": "Monday & Thursday from 4:30 – 5:30 pm, please email me in advance for office location",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Applied Statistics and Probability for Engineers by D. C. Montgomery and G.C. Runger, Publisher: Wiley, 7th Edition (online edition), 2018, ISBN: 978EEGRP45491."
+  ],
+  "courseDescription": "This course introduces students to basic probability models and statistical methods for data analysis. The course will cover introductory probability theory, discrete and continuous probability distributions, elements of descriptive statistics, and different statistical inference methods such as estimation for the mean and the variance, hypothesis testing for the mean and the variance.",
   "assessments": [
-    {
-      "name": "Final Exam",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "There are 2 quizzes scheduled in this course. Each quiz will therefore count for 10% of your final grade for the course. There will be no make-up quizzes. If you fail to attend a scheduled quiz for any reason, then you will receive a grade "
-    },
     {
       "name": "Mid Term Exam",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "In the week 3 of the semester, students will be provided an assignment in groups and they will have to submit the week before the Midterm. Each group will be composed of 3 or 4 students and will have a different data set. The assignment mus"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "In the week 11 of the semester, students will be assigned a project regarding data analysis using a statistical software. Each group will be composed of 3 or 4 students and will have a different data set. A final report on the data analysis"
     }
   ],
   "totalWeight": 20,

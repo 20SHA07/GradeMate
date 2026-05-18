@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2024",
   "instructor": "mohamed.seghier@ku.ac.ae / 5041 (main instructor)",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "W__2-4 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",

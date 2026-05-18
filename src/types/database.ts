@@ -22,6 +22,15 @@ export type CourseRecord = {
   name: string;
   code: string | null;
   credit_hours: number;
+  instructor?: string | null;
+  instructor_email?: string | null;
+  schedule?: string | null;
+  classroom?: string | null;
+  office_hours?: string | null;
+  prerequisites?: string | null;
+  textbooks?: Json | null;
+  description?: string | null;
+  term?: string | null;
   created_at: string;
 };
 
@@ -93,6 +102,28 @@ export type CourseTemplateMaterialRecord = {
   created_at: string;
 };
 
+export type VerifiedExtractionRecord = {
+  id: string;
+  user_id: string | null;
+  source_type: string;
+  source_file_name: string | null;
+  source_text_hash: string;
+  extracted_text: string | null;
+  course_code: string | null;
+  course_name: string | null;
+  credit_hours: number | null;
+  instructor: string | null;
+  confirmed_json: Json;
+  original_extraction_json: Json | null;
+  user_feedback: string;
+  extractor_version: string;
+  ai_provider: string | null;
+  confidence: number | null;
+  total_weight: number | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type Database = {
   public: {
     Tables: {
@@ -118,6 +149,15 @@ export type Database = {
           name: string;
           code?: string | null;
           credit_hours?: number;
+          instructor?: string | null;
+          instructor_email?: string | null;
+          schedule?: string | null;
+          classroom?: string | null;
+          office_hours?: string | null;
+          prerequisites?: string | null;
+          textbooks?: Json | null;
+          description?: string | null;
+          term?: string | null;
           created_at?: string;
         };
         Update: Partial<Omit<CourseRecord, "id" | "created_at">>;
@@ -256,6 +296,34 @@ export type Database = {
             referencedColumns: ["id"];
           }
         ];
+      };
+      verified_extractions: {
+        Row: VerifiedExtractionRecord;
+        Insert: {
+          id?: string;
+          user_id?: string | null;
+          source_type: string;
+          source_file_name?: string | null;
+          source_text_hash: string;
+          extracted_text?: string | null;
+          course_code?: string | null;
+          course_name?: string | null;
+          credit_hours?: number | null;
+          instructor?: string | null;
+          confirmed_json: Json;
+          original_extraction_json?: Json | null;
+          user_feedback: string;
+          extractor_version?: string;
+          ai_provider?: string | null;
+          confidence?: number | null;
+          total_weight?: number | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<
+          Omit<VerifiedExtractionRecord, "id" | "created_at" | "updated_at">
+        >;
+        Relationships: [];
       };
     };
     Views: Record<string, never>;

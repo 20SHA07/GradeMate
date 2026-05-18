@@ -9,20 +9,23 @@
   "creditHours": 3,
   "semester": "Fall 2021",
   "instructor": "David F Dalton",
+  "instructorEmail": "david.dalton@ku.ac.ae",
+  "schedule": "#1",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "TOEFL iBT 79, EmSAT 1400, or IELTS 6.0",
+  "textbooks": [
+    "Storytelling with Data: A Data Visualization Guide for Business Professional by Cole Nussbaum",
+    "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
+  ],
+  "courseDescription": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
   "assessments": [
     {
-      "name": "Assignment 20",
+      "name": "Assignments",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Individual short writing assignments 20%"
-    },
-    {
-      "name": "Assignment 10",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Group short writing assignment 10%"
     },
     {
       "name": "Essay",
@@ -39,9 +42,9 @@
       "source_text_snippet": "Digital presentation 10%"
     }
   ],
-  "totalWeight": 70,
+  "totalWeight": 60,
   "warnings": [
-    "Total weight is below 100 (70%)"
+    "Total weight is below 100 (60%)"
   ],
   "confidence": 0.95,
   "needsHumanReview": true

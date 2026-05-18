@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2023",
   "instructor": "Contact",
+  "instructorEmail": "badr.almahri@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Homework 1",

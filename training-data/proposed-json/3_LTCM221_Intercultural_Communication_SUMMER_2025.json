@@ -9,6 +9,15 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "DR GLENDA EL GAMAL",
+  "instructorEmail": "glenda.elgamal@ku.ac.ae",
+  "schedule": "MON - THURSDAY",
+  "classroom": null,
+  "officeHours": "TBC (Summer term I teach on Main Campus)",
+  "prerequisites": "ENGL 102 or ENGL 112",
+  "textbooks": [
+    "Jandt, F. (2016). An introduction to intercultural communication: Identities in a global community. 8th edition. SAGE Publications, ISBN: 9781506305271"
+  ],
+  "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
   "assessments": [
     {
       "name": "Assignments",

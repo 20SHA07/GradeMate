@@ -5,6 +5,10 @@ import {
   isMissingAssessmentOptionalColumnError
 } from "@/lib/supabase/assessment-write";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
+import {
+  clearGuestVerifiedExtractions,
+  readGuestVerifiedExtractions
+} from "@/lib/syllabus/verified-extractions";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -725,6 +729,15 @@ export async function migrateGuestWorkspaceToSupabase({
     name: course.name,
     code: course.code,
     credit_hours: Number(course.credit_hours) || 3,
+    instructor: course.instructor ?? null,
+    instructor_email: course.instructor_email ?? null,
+    schedule: course.schedule ?? null,
+    classroom: course.classroom ?? null,
+    office_hours: course.office_hours ?? null,
+    prerequisites: course.prerequisites ?? null,
+    textbooks: course.textbooks ?? null,
+    description: course.description ?? null,
+    term: course.term ?? null,
     created_at: course.created_at
   }));
   const assessmentRows = guestData.assessments.map((assessment) => {
@@ -745,6 +758,11 @@ export async function migrateGuestWorkspaceToSupabase({
       created_at: assessment.created_at
     };
   });
+  const verifiedExtractionRows = readGuestVerifiedExtractions().map((row) => ({
+    ...(row as Record<string, unknown>),
+    id: undefined,
+    user_id: userId
+  }));
 
   if (semesterRows.length > 0) {
     const { error } = await supabase
@@ -757,12 +775,27 @@ export async function migrateGuestWorkspaceToSupabase({
   }
 
   if (courseRows.length > 0) {
-    const { error } = await supabase
+    let response = await supabase
       .from("courses")
       .upsert(courseRows, { onConflict: "id" });
 
-    if (error) {
-      throw new Error(getSupabaseErrorMessage(error));
+    if (response.error && /column|schema cache|does not exist/i.test(response.error.message)) {
+      response = await supabase.from("courses").upsert(
+        courseRows.map((course) => ({
+          created_at: course.created_at,
+          code: course.code,
+          credit_hours: course.credit_hours,
+          id: course.id,
+          name: course.name,
+          semester_id: course.semester_id,
+          user_id: course.user_id
+        })),
+        { onConflict: "id" }
+      );
+    }
+
+    if (response.error) {
+      throw new Error(getSupabaseErrorMessage(response.error));
     }
   }
 
@@ -784,5 +817,16 @@ export async function migrateGuestWorkspaceToSupabase({
     }
   }
 
+  if (verifiedExtractionRows.length > 0) {
+    const { error } = await supabase
+      .from("verified_extractions")
+      .insert(verifiedExtractionRows);
+
+    if (error && !/verified_extractions|schema cache|does not exist/i.test(error.message)) {
+      throw new Error(getSupabaseErrorMessage(error));
+    }
+  }
+
   clearGuestWorkspaceData();
+  clearGuestVerifiedExtractions();
 }

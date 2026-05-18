@@ -8,7 +8,14 @@
   "courseName": "Career Preparation",
   "creditHours": 1,
   "semester": "Fall 2024",
-  "instructor": "Assessments will be formative via, online knowledge checks, digital portfolios, peer assessment,, and an",
+  "instructor": "Contact",
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeHours": "March 2023 2",
+  "prerequisites": "GENS 100, Sophomore Standing",
+  "textbooks": [],
+  "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
   "assessments": [
     {
       "name": "Project",
@@ -18,7 +25,7 @@
       "source_text_snippet": "Group project - Reading groups 20%"
     },
     {
-      "name": "Quiz 10",
+      "name": "Final Exam",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,

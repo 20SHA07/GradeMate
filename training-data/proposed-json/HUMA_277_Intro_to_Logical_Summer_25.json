@@ -9,20 +9,21 @@
   "creditHours": 3,
   "semester": "Summer 2023",
   "instructor": "Dr. Mustapha Tajdin",
-  "assessments": [
-    {
-      "name": "Mid Term Exam",
-      "weight_percentage": 50,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Semester Exam - There will be no make-up midterm. If you miss the midterm and you have an approved excuse, the final exam will carry all the weight of the combined midterm and the final exam (e.g. 50%). Note that this means missing the midt"
-    }
+  "instructorEmail": "mustapha.tajdin@ku.ac.ae",
+  "schedule": "CRN 30131, Class Location: R01007, Class Time: MTWT 9:00-10:40.",
+  "classroom": null,
+  "officeHours": "Monday and Thursday 1:00-2:30 or through MS Teams",
+  "prerequisites": "ENGL 102",
+  "textbooks": [
+    "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
   ],
-  "totalWeight": 50,
+  "courseDescription": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
+  "assessments": [],
+  "totalWeight": 0,
   "warnings": [
-    "Total weight is below 100 (50%)",
+    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.95,
+  "confidence": 0.15,
   "needsHumanReview": true
 }

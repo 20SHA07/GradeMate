@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Summer 2025",
   "instructor": "Dr. Adolf Acquaye",
+  "instructorEmail": "adolf.acquaye@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "Contact me by email to schedule",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
@@ -32,7 +39,7 @@
       "source_text_snippet": "Quiz 2 7.5% 23 June"
     },
     {
-      "name": "Project 25",
+      "name": "Project",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,

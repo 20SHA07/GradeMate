@@ -23,8 +23,17 @@ const extractionSchema = z.object({
   courseName: z.string().trim().nullable(),
   creditHours: z.number().positive().nullable(),
   instructor: z.string().trim().nullable(),
+  instructorEmail: z.string().trim().nullable().default(null),
+  semester: z.string().trim().nullable().default(null),
+  schedule: z.string().trim().nullable().default(null),
+  classroom: z.string().trim().nullable().default(null),
+  officeHours: z.string().trim().nullable().default(null),
+  prerequisites: z.string().trim().nullable().default(null),
+  textbooks: z.array(z.string().trim()).default([]),
+  courseDescription: z.string().trim().nullable().default(null),
   assessments: z.array(assessmentSchema),
   warnings: z.array(z.string()),
+  fieldConfidence: z.record(z.number().min(0).max(1)).default({}),
   confidence: z.number().min(0).max(1)
 });
 
@@ -51,6 +60,14 @@ Schema:
   "courseName": string | null,
   "creditHours": number | null,
   "instructor": string | null,
+  "instructorEmail": string | null,
+  "semester": string | null,
+  "schedule": string | null,
+  "classroom": string | null,
+  "officeHours": string | null,
+  "prerequisites": string | null,
+  "textbooks": string[],
+  "courseDescription": string | null,
   "assessments": [
     {
       "name": string,
@@ -61,6 +78,7 @@ Schema:
     }
   ],
   "warnings": string[],
+  "fieldConfidence": object,
   "confidence": number
 }
 
@@ -72,6 +90,8 @@ Rules:
 - Use max_score 100 unless explicitly stated otherwise.
 - Keep assessment names short and student-friendly.
 - Prefer detailed assessment rows over broad grouped rows when both appear.
+- Preserve numbered assessments separately. Do not bundle Quiz 1, Quiz 2, Assignment 1, Lab 1, Project 1, Test 1, or Exam 1 into a grouped parent row.
+- Only group assessments when the syllabus provides only grouped categories.
 - Do not extract letter grade scales, grade points, CLO/PLO tables, weekly schedules, room numbers, course codes, or due dates as assessments.
 - Return JSON only. No markdown. No explanation.
 

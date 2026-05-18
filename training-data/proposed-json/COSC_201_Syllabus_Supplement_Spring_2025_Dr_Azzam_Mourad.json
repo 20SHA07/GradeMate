@@ -9,9 +9,19 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "COSC 101",
+  "textbooks": [
+    "Computer Systems: A Programmer’s Perspective by Randal E. Bryant and David R.",
+    "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
+  ],
+  "courseDescription": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
   "assessments": [
     {
-      "name": "Quiz 15",
+      "name": "Quizzes",
       "weight_percentage": 15,
       "max_score": 100,
       "confidence": 0.98,

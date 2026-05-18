@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "ali.khraibi@ku.ac.ae Tel 2 312 3883",
+  "instructorEmail": "ali.khraibi@ku.ac.ae",
+  "schedule": "Office Hours Tuesday, Thursday, and Friday from 9:00 AM-12:00 Noon",
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 2",
@@ -32,7 +39,7 @@
       "source_text_snippet": "Final Examination Final Examination Finals Week 40%"
     },
     {
-      "name": "Quizzes Two Quizzes Will Be Held And Will Take Up Of The Grade",
+      "name": "Quizzes",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.98,

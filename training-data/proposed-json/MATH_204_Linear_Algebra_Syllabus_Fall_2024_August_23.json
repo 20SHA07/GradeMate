@@ -5,10 +5,20 @@
   "sourceTextFileName": "MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 204",
-  "courseName": "Linear Algebra (3–0–3)",
+  "courseName": "Linear Algebra",
   "creditHours": 3,
   "semester": "Fall 2024",
   "instructor": "Elias Zikkos",
+  "instructorEmail": "elias.zikkos@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Elementary Linear Algebra by Howard Anton, Publisher: Wiley, 12th Edition, 2019 ISBN:",
+    "9781119268048."
+  ],
+  "courseDescription": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
   "assessments": [
     {
       "name": "Coursework",

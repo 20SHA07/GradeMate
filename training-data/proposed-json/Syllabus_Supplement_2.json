@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2021",
   "instructor": "Khaleel",
+  "instructorEmail": "mohammad.alkhaleel@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "Other: By appointment",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
@@ -39,23 +46,16 @@
       "source_text_snippet": "quiz scores will count towards Quiz # 4 Tuesday, Nov. 16, 2021 13.33%"
     },
     {
-      "name": "Quiz 40",
+      "name": "Final Exam",
       "weight_percentage": 40,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "your final grade, i.e. the lowest Quiz 40%"
-    },
-    {
-      "name": "Final Exam",
-      "weight_percentage": 13.33,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "for 13.33% of your final grade"
     }
   ],
-  "totalWeight": 106.65,
+  "totalWeight": 93.32,
   "warnings": [
-    "Total weight is above 100 (106.6%)",
+    "Total weight is below 100 (93.3%)",
     "Course info missing",
     "Credit hours missing"
   ],

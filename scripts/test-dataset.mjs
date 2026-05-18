@@ -97,9 +97,25 @@ function compareDatasetEntry(expected, proposed) {
   const wrongWeights = [];
   const assessmentCountMismatches = [];
   const totalWeightMismatches = [];
-  const fields = ["courseCode", "courseName", "creditHours", "semester", "instructor"];
+  const fields = [
+    "courseCode",
+    "courseName",
+    "creditHours",
+    "semester",
+    "instructor",
+    "instructorEmail",
+    "schedule",
+    "classroom",
+    "officeHours",
+    "prerequisites",
+    "courseDescription"
+  ];
 
   fields.forEach((field) => {
+    if (!hasExpectedValue(expected[field])) {
+      return;
+    }
+
     if (normalizeScalar(expected[field]) !== normalizeScalar(proposed[field])) {
       courseInfoMismatches.push(
         `Wrong ${field}: expected "${expected[field] ?? ""}" got "${proposed[field] ?? ""}"`
@@ -107,15 +123,24 @@ function compareDatasetEntry(expected, proposed) {
     }
   });
 
+  if (
+    hasExpectedValue(expected.textbooks) &&
+    normalizeScalar(expected.textbooks) !== normalizeScalar(proposed.textbooks)
+  ) {
+    courseInfoMismatches.push(
+      `Wrong textbooks: expected "${expected.textbooks ?? ""}" got "${proposed.textbooks ?? ""}"`
+    );
+  }
+
   const expectedAssessments = new Map(
     (expected.assessments ?? []).map((assessment) => [
-      normalizeAssessmentName(assessment.name),
+      normalizeAssessmentKey(assessment),
       assessment
     ])
   );
   const proposedAssessments = new Map(
     (proposed.assessments ?? []).map((assessment) => [
-      normalizeAssessmentName(assessment.name),
+      normalizeAssessmentKey(assessment),
       assessment
     ])
   );
@@ -181,6 +206,10 @@ function compareDatasetEntry(expected, proposed) {
 }
 
 function normalizeScalar(value) {
+  if (Array.isArray(value)) {
+    return value.map((item) => normalizeScalar(item)).join("|");
+  }
+
   if (typeof value === "number") {
     return String(value);
   }
@@ -189,6 +218,38 @@ function normalizeScalar(value) {
     .toLowerCase()
     .replace(/\s+/g, " ")
     .trim();
+}
+
+function hasExpectedValue(value) {
+  if (Array.isArray(value)) {
+    return value.some((item) => hasExpectedValue(item));
+  }
+
+  if (typeof value === "number") {
+    return Number.isFinite(value);
+  }
+
+  return String(value ?? "").trim().length > 0;
+}
+
+function normalizeAssessmentKey(assessment) {
+  const weight = Number(assessment.weight_percentage);
+  let key = normalizeAssessmentName(assessment.name)
+    .replace(/\bquizzes\b/g, "quiz")
+    .replace(/\bassignments\b/g, "assignment")
+    .replace(/\blabs\b/g, "laboratory");
+
+  if (Number.isFinite(weight)) {
+    const normalizedWeight = String(weight).replace(/\.0+$/, "");
+    key = key
+      .split(" ")
+      .filter((token, index, tokens) => {
+        return !(index === tokens.length - 1 && token === normalizedWeight);
+      })
+      .join(" ");
+  }
+
+  return key.trim();
 }
 
 function getTotalWeight(assessments) {

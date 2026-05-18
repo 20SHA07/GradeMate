@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2022",
   "instructor": "Contact",
+  "instructorEmail": "deepak.puthal@ku.ac.ae",
+  "schedule": "Tuesday & Thursday: 14:30 hrs – 15:30 hrs.",
+  "classroom": null,
+  "officeHours": "Additional Office Hours by appointment.",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Homework 1",

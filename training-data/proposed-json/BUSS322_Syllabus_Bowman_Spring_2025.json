@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Technology Ventures: From Idea to Enterprise by Tom Byers, Dorf, and Nelson, Publisher: McGraw Hill Education, 4th Edition,",
+    "2015, International Student Edition, ISBN: 9781259875991"
+  ],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Coursework",

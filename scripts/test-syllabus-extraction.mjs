@@ -74,6 +74,43 @@ expectAssessment(repeatedAssessments, "Quiz 3", 5);
 expectAssessment(repeatedAssessments, "Midterm", 25);
 expectAssessment(repeatedAssessments, "Final Exam", 60);
 
+const numberedRows = extractSyllabusFromText(`Assessment Methodology
+Quiz 1 5%
+Quiz 2 5%
+Quiz 3 5%
+Quiz 4 5%
+Assignments 20%
+Final Exam 60%`);
+expectAssessment(numberedRows, "Quiz 1", 5);
+expectAssessment(numberedRows, "Quiz 2", 5);
+expectAssessment(numberedRows, "Quiz 3", 5);
+expectAssessment(numberedRows, "Quiz 4", 5);
+
+const assignmentRows = extractSyllabusFromText(`Course Evaluation
+Assignment 1 10%
+Assignment 2 10%
+Project 30%
+Final 50%`);
+expectAssessment(assignmentRows, "Assignment 1", 10);
+expectAssessment(assignmentRows, "Assignment 2", 10);
+
+const totalSplit = parseGradeBreakdownMessage(
+  "4 quizzes total 20%, midterm 30%, final 50%"
+);
+expectAssessment(totalSplit, "Quiz 1", 5);
+expectAssessment(totalSplit, "Quiz 2", 5);
+expectAssessment(totalSplit, "Quiz 3", 5);
+expectAssessment(totalSplit, "Quiz 4", 5);
+assert.ok(
+  totalSplit.warnings.some((warning) => /Split 4 quizzes evenly/i.test(warning)),
+  "Expected total split warning"
+);
+
+const groupedOnly = parseGradeBreakdownMessage(
+  "quizzes total 20%, assignments 15%, midterm 25%, final 40%"
+);
+expectAssessment(groupedOnly, "Quizzes", 20);
+
 const unclearSplit = parseGradeBreakdownMessage(
   "exams 50 split between midterm and final, assignments 30, quizzes 20"
 );
@@ -142,5 +179,51 @@ expectAssessment(gradeDistribution, "Homework", 15);
 expectAssessment(gradeDistribution, "Quizzes", 15);
 expectAssessment(gradeDistribution, "Midterm", 30);
 expectAssessment(gradeDistribution, "Final Exam", 40);
+
+const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
+Credit Hours: 3 Credits
+Instructor: Menatalla Abououf
+Email: menatalla.abououf@ku.ac.ae
+Semester: Fall 2025
+Schedule: Mondays and Wednesday: 14:00 - 14:50
+Classroom: C04050
+Office Hours: Mondays & Wednesdays: 12:00 - 2:00
+Prerequisites: COSC 114
+Textbooks:
+- Foundations of Computer Science by Behrouz Forouzan
+- C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry
+Course Catalog Description:
+An introduction to foundations of computer science.
+Assessment Methodology
+Quiz 1 5%
+Quiz 2 5%
+Quiz 3 5%
+Quiz 4 5%
+Mid Term Exam 25%
+Final Exam 35%
+Laboratory 15%
+Lab Final Exam 5%`);
+assert.equal(metadata.courseCode, "COSC 101");
+assert.equal(metadata.courseName, "Foundations of Computer Science");
+assert.equal(metadata.creditHours, 3);
+assert.equal(metadata.instructor, "Menatalla Abououf");
+assert.equal(metadata.instructorEmail, "menatalla.abououf@ku.ac.ae");
+assert.equal(metadata.semester, "Fall 2025");
+assert.equal(metadata.classroom, "C04050");
+assert.equal(metadata.prerequisites, "COSC 114");
+assert.ok(metadata.textbooks.length >= 2, "Expected textbook extraction");
+expectAssessment(metadata, "Quiz 1", 5);
+expectAssessment(metadata, "Quiz 2", 5);
+expectAssessment(metadata, "Quiz 3", 5);
+expectAssessment(metadata, "Quiz 4", 5);
+
+const cosc101Text = fs.readFileSync(
+  "training-data/extracted-text/COSC101_Syllabus_and_Syllabus_Supplement.txt",
+  "utf8"
+);
+const cosc101 = extractSyllabusFromText(cosc101Text);
+["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4"].forEach((name) =>
+  expectAssessment(cosc101, name, 5)
+);
 
 console.log("Syllabus extraction tests passed.");

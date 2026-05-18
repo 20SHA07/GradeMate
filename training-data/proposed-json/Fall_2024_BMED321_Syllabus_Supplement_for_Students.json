@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2024",
   "instructor": "Dr. S yed Imaduddin",
+  "instructorEmail": "maria.domingues@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Group Project Start At Week 12 Final Presentations Week 15",

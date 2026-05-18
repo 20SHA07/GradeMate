@@ -9,6 +9,16 @@
   "creditHours": 3,
   "semester": "Fall 2022",
   "instructor": "Dr. Nader Ayish",
+  "instructorEmail": "nader.ayish@ku.ac.ae",
+  "schedule": "8 am-9:15 am Tuesday and Thursday",
+  "classroom": null,
+  "officeHours": "appointment.",
+  "prerequisites": "ENGL 101",
+  "textbooks": [
+    "Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,",
+    "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
+  ],
+  "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
   "assessments": [
     {
       "name": "Coursework",

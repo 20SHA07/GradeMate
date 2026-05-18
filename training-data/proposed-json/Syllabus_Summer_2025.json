@@ -9,6 +9,18 @@
   "creditHours": 4,
   "semester": "Summer 2025",
   "instructor": "Dr. Dalaver H. Anjum",
+  "instructorEmail": "Dalaver.anjum@ku.ac.ae",
+  "schedule": "MTWR 12:00 pm – 2:30 pm (SAN 2126)",
+  "classroom": null,
+  "officeHours": "Make sure to take an appointment via email:",
+  "prerequisites": "MATH 111",
+  "textbooks": [
+    "Physics for Scientists and Engineers",
+    "Volume 1 by Raymond A. Serway and John W Jewett,",
+    "Publisher: Brooks Cole, 9th International Edition, 2014. ISBN-13: 9781285070438 (ISBN-",
+    "10:1285070437)."
+  ],
+  "courseDescription": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
   "assessments": [
     {
       "name": "Quiz 1",

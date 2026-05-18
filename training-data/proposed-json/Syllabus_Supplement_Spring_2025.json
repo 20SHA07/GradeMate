@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "mohamed.seghier@ku.ac.ae / 5041",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae",
+  "schedule": "Monday: 2:30pm - 4:00 pm",
+  "classroom": null,
+  "officeHours": "Wednesday: 2:30pm - 4:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",

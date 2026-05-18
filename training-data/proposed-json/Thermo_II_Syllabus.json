@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
+  "instructorEmail": "giovanni.palmisano@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": ", report, and calculations will be given with the assignment.",
   "assessments": [
     {
       "name": "Quiz 3",

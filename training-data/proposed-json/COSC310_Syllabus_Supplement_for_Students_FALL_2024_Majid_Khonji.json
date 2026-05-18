@@ -9,6 +9,13 @@
   "creditHours": null,
   "semester": "Fall 2024",
   "instructor": "Contact",
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
@@ -32,7 +39,7 @@
       "source_text_snippet": "Quiz 3 21 Nov 3.34%"
     },
     {
-      "name": "Assignment 31",
+      "name": "Assignments",
       "weight_percentage": 10,
       "max_score": 100,
       "confidence": 0.98,
