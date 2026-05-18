@@ -170,7 +170,7 @@ detected syllabuses.
 ## Syllabus Extraction Dataset Builder
 
 Use the dataset scripts to benchmark GradeMate extraction quality before changing
-the parser or AI prompts. These scripts do not train a model and do not write to
+the deterministic parser. These scripts do not train a model and do not write to
 Supabase.
 
 ```bash
@@ -228,18 +228,31 @@ or **Download expected JSON** to create new golden examples.
 ### Verified Extraction Feedback
 
 After a user confirms extracted rows in Simple or Workspace, GradeMate asks
-whether the extraction looked correct. Guest feedback is stored locally under
-`guestVerifiedExtractions`; signed-in Workspace feedback is inserted into the
-private `verified_extractions` table. This does not train any model
-automatically. Admins can export verified examples for manual review:
+whether the extraction looked correct, was corrected, or needs improvement.
+Guest feedback is stored locally under `guestVerifiedExtractions`; signed-in
+Workspace feedback is inserted into the private `verified_extractions` table
+when that table is configured. If the insert fails, GradeMate falls back to the
+local guest store so the user is not blocked. This does not train any model
+automatically.
+
+Admins can export verified examples for manual review:
 
 ```bash
 SUPABASE_SERVICE_ROLE_KEY="your-service-role-key" npm run dataset:export-verified
+npm run dataset:review-verified
+npm run dataset:promote-verified
 ```
 
-Review exported files in `training-data/verified-json/`, then manually promote
-good examples into `training-data/expected-json/` before using them as benchmark
-fixtures.
+The improvement loop is:
+
+1. Collect verified examples from user-confirmed or user-corrected extractions.
+2. Run `dataset:export-verified` to write them into `training-data/verified-json/`.
+3. Run `dataset:review-verified` and inspect
+   `training-data/verified-review-report.html`.
+4. Run `dataset:promote-verified` to copy approved correct/corrected examples
+   into `training-data/expected-json/` without overwriting existing golden files.
+5. Run `dataset:propose`, `test:dataset`, and `test:extraction`.
+6. Improve parser rules when the benchmark shows a regression or new pattern.
 
 In Supabase Auth URL Configuration, use:
 
@@ -258,6 +271,8 @@ flow and returns users to `/auth/callback`, then `/workspace`.
 ## GitHub Pages
 
 This app is configured for static export through GitHub Actions. Push to `main`
-or `master`, then set the repository Pages source to **GitHub Actions**. The
-workflow publishes the `out` directory and automatically applies the repository
-base path for project pages such as `/GradeMate`.
+or `master`, then set the repository Pages source to **GitHub Actions**. Do not
+choose branch root, `docs`, or `public` as the Pages source, because that can
+serve the README instead of the exported app. The workflow publishes only the
+`out` directory and automatically applies the repository base path for project
+pages such as `/GradeMate`.

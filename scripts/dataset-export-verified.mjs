@@ -54,6 +54,7 @@ for (const row of data ?? []) {
           sourceFileName: row.source_file_name,
           sourceTextHash: row.source_text_hash,
           userFeedback: row.user_feedback,
+          originalExtraction: row.original_extraction_json ?? null,
           extractorVersion: row.extractor_version,
           confidence: row.confidence,
           totalWeight: row.total_weight,

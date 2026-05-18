@@ -8,7 +8,7 @@ const modeCards = [
   {
     title: "Quick GPA Calculator",
     description:
-      "Calculate GPA fast, add courses, and use AI to extract grading breakdowns from syllabi.",
+      "Calculate GPA fast, add courses, and use smart extraction for syllabus grading breakdowns.",
     button: "Start quick calculator",
     href: "/simple",
     icon: Calculator

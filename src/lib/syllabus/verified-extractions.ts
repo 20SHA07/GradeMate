@@ -148,11 +148,9 @@ export async function saveVerifiedExtraction(input: VerifiedExtractionInput) {
   if (input.supabase && input.userId) {
     const { error } = await input.supabase.from("verified_extractions").insert(payload);
 
-    if (error) {
-      throw error;
+    if (!error) {
+      return;
     }
-
-    return;
   }
 
   writeGuestVerifiedExtraction(payload);

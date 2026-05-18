@@ -101,12 +101,18 @@ type ExtractionDraft = {
   extractionSource: ExtractionSource;
   courseInfoRows?: CourseInfoReviewField[];
   reviewRows: ReviewAssessment[];
+  sourceFileName?: string | null;
+  sourceText?: string | null;
   updatedAt: string;
 };
 
 type PendingFeedback = {
-  extraction: ExtractedSyllabus;
+  confirmedExtraction: ExtractedSyllabus;
+  includeExtractedText: boolean;
+  originalExtraction: ExtractedSyllabus;
   source: ExtractionSource;
+  sourceFileName?: string | null;
+  sourceText?: string | null;
 };
 
 type PdfPreview = {
@@ -342,10 +348,31 @@ function makeCourseInfoRows(extraction: ExtractedSyllabus): CourseInfoReviewFiel
 
 function buildConfirmedExtraction(
   extraction: ExtractedSyllabus,
-  rows: ReviewAssessment[]
+  rows: ReviewAssessment[],
+  courseInfoRows: CourseInfoReviewField[] = []
 ): ExtractedSyllabus {
+  const selectedInfo = Object.fromEntries(
+    courseInfoRows
+      .filter((field) => field.apply && field.value.trim())
+      .map((field) => [field.key, field.value.trim()])
+  ) as Partial<Record<CourseInfoReviewField["key"], string>>;
+
   return {
     ...extraction,
+    classroom: selectedInfo.classroom ?? extraction.classroom,
+    courseCode: selectedInfo.code ?? extraction.courseCode,
+    courseDescription: selectedInfo.description ?? extraction.courseDescription,
+    courseName: selectedInfo.name ?? extraction.courseName,
+    creditHours:
+      selectedInfo.credit_hours !== undefined
+        ? Number(selectedInfo.credit_hours) || extraction.creditHours
+        : extraction.creditHours,
+    instructor: selectedInfo.instructor ?? extraction.instructor,
+    instructorEmail: selectedInfo.instructor_email ?? extraction.instructorEmail,
+    officeHours: selectedInfo.office_hours ?? extraction.officeHours,
+    prerequisites: selectedInfo.prerequisites ?? extraction.prerequisites,
+    schedule: selectedInfo.schedule ?? extraction.schedule,
+    semester: selectedInfo.term ?? extraction.semester,
     assessments: rows.map((row) => ({
       confidence: Number(row.confidence) || 0.7,
       max_score: Number(row.max_score) || 100,
@@ -511,6 +538,10 @@ function SmartSyllabusExtractor({
   const [extraction, setExtraction] = useState<ExtractedSyllabus | null>(null);
   const [extractionSource, setExtractionSource] =
     useState<ExtractionSource | null>(null);
+  const [extractionSourceFileName, setExtractionSourceFileName] =
+    useState<string | null>(null);
+  const [extractionSourceText, setExtractionSourceText] =
+    useState<string | null>(null);
   const [courseInfoRows, setCourseInfoRows] = useState<CourseInfoReviewField[]>(
     []
   );
@@ -533,6 +564,8 @@ function SmartSyllabusExtractor({
     if (draft) {
       setExtraction(draft.extraction);
       setExtractionSource(draft.extractionSource);
+      setExtractionSourceFileName(draft.sourceFileName ?? null);
+      setExtractionSourceText(draft.sourceText ?? null);
       setCourseInfoRows(draft.courseInfoRows ?? makeCourseInfoRows(draft.extraction));
       setReviewRows(draft.reviewRows);
       setMessage("Restored your unsaved extraction draft.");
@@ -562,13 +595,26 @@ function SmartSyllabusExtractor({
       extractionSource,
       courseInfoRows,
       reviewRows,
+      sourceFileName: extractionSourceFileName,
+      sourceText: extractionSourceText,
       updatedAt: new Date().toISOString()
     });
-  }, [course.id, courseInfoRows, extraction, extractionSource, isDraftReady, reviewRows]);
+  }, [
+    course.id,
+    courseInfoRows,
+    extraction,
+    extractionSource,
+    extractionSourceFileName,
+    extractionSourceText,
+    isDraftReady,
+    reviewRows
+  ]);
 
   function clearResults() {
     setExtraction(null);
     setExtractionSource(null);
+    setExtractionSourceFileName(null);
+    setExtractionSourceText(null);
     setCourseInfoRows([]);
     setReviewRows([]);
     setPdfPreview(null);
@@ -579,6 +625,8 @@ function SmartSyllabusExtractor({
   function clearReviewOnly() {
     setExtraction(null);
     setExtractionSource(null);
+    setExtractionSourceFileName(null);
+    setExtractionSourceText(null);
     setCourseInfoRows([]);
     setReviewRows([]);
     setError("");
@@ -586,10 +634,14 @@ function SmartSyllabusExtractor({
 
   function showExtractionResult(
     result: ExtractedSyllabus,
-    source: ExtractionSource
+    source: ExtractionSource,
+    sourceText?: string | null,
+    sourceFileName?: string | null
   ) {
     setExtraction(result);
     setExtractionSource(source);
+    setExtractionSourceFileName(sourceFileName ?? null);
+    setExtractionSourceText(sourceText ?? null);
     setCourseInfoRows(makeCourseInfoRows(result));
     setReviewRows(makeReviewRows(result));
     setMessage(
@@ -605,10 +657,11 @@ function SmartSyllabusExtractor({
   async function runExtractionPipeline(
     text: string,
     mode: "quick" | "syllabus",
-    ruleSource: ExtractionSource
+    ruleSource: ExtractionSource,
+    sourceFileName?: string | null
   ) {
     const ruleResult = extractGradeBreakdown(text, { mode });
-    showExtractionResult(ruleResult, ruleSource);
+    showExtractionResult(ruleResult, ruleSource, text, sourceFileName);
   }
 
   async function runExtraction(text: string, mode: "quick" | "syllabus") {
@@ -674,7 +727,7 @@ function SmartSyllabusExtractor({
         );
       }
 
-      await runExtractionPipeline(pdfText, "syllabus", "pdf");
+      await runExtractionPipeline(pdfText, "syllabus", "pdf", file.name);
     } catch (pdfError) {
       console.warn("PDF text extraction failed", pdfError);
       setError(
@@ -768,7 +821,11 @@ function SmartSyllabusExtractor({
 
     setIsSavingExtraction(true);
     const selectedCourseUpdates = getSelectedCourseInfoUpdates();
-    const confirmedExtraction = buildConfirmedExtraction(extraction, validRows);
+    const confirmedExtraction = buildConfirmedExtraction(
+      extraction,
+      validRows,
+      courseInfoRows
+    );
 
     if (isGuest) {
       const guestData = readGuestData();
@@ -826,8 +883,12 @@ function SmartSyllabusExtractor({
       onSaved(savedAssessments, mode);
       clearReviewOnly();
       setPendingFeedback({
-        extraction: confirmedExtraction,
-        source: extractionSource ?? "rule"
+        confirmedExtraction,
+        includeExtractedText: false,
+        originalExtraction: extraction,
+        source: extractionSource ?? "rule",
+        sourceFileName: extractionSourceFileName,
+        sourceText: extractionSourceText
       });
       setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
       setIsSavingExtraction(false);
@@ -947,8 +1008,12 @@ function SmartSyllabusExtractor({
     onSaved(savedAssessments, mode);
     clearReviewOnly();
     setPendingFeedback({
-      extraction: confirmedExtraction,
-      source: extractionSource ?? "rule"
+      confirmedExtraction,
+      includeExtractedText: false,
+      originalExtraction: extraction,
+      source: extractionSource ?? "rule",
+      sourceFileName: extractionSourceFileName,
+      sourceText: extractionSourceText
     });
     setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
     setIsSavingExtraction(false);
@@ -962,8 +1027,12 @@ function SmartSyllabusExtractor({
     try {
       await saveVerifiedExtraction({
         aiProvider: "rule_based",
-        confirmedExtraction: pendingFeedback.extraction,
-        originalExtraction: pendingFeedback.extraction,
+        confirmedExtraction: pendingFeedback.confirmedExtraction,
+        extractedText: pendingFeedback.includeExtractedText
+          ? pendingFeedback.sourceText ?? null
+          : null,
+        originalExtraction: pendingFeedback.originalExtraction,
+        sourceFileName: pendingFeedback.sourceFileName,
         sourceType: getVerifiedSource(pendingFeedback.source),
         supabase: isGuest ? null : supabase,
         userFeedback: feedback,
@@ -975,6 +1044,15 @@ function SmartSyllabusExtractor({
           ? "Thanks — this helps GradeMate improve future extractions."
           : "Thanks — we'll use your corrected version to improve future extraction."
       );
+      if (feedback === "correct") {
+        setMessage("Thanks - this helps GradeMate improve future extractions.");
+      }
+      if (feedback === "corrected") {
+        setMessage("Thanks - your corrections help GradeMate improve future extraction.");
+      }
+      if (feedback === "incorrect") {
+        setMessage("Thanks - we'll use this signal to improve future extraction.");
+      }
     } catch (feedbackError) {
       setError(
         feedbackError instanceof Error
@@ -1187,6 +1265,24 @@ function SmartSyllabusExtractor({
               <p className="mt-1 text-sm text-ink-600">
                 Was this extraction correct?
               </p>
+              <label className="mt-3 flex items-center gap-2 text-xs text-ink-600">
+                <input
+                  checked={pendingFeedback.includeExtractedText}
+                  className="h-4 w-4 rounded border-ink-300 text-teal-700"
+                  onChange={(event) =>
+                    setPendingFeedback((current) =>
+                      current
+                        ? {
+                            ...current,
+                            includeExtractedText: event.target.checked
+                          }
+                        : current
+                    )
+                  }
+                  type="checkbox"
+                />
+                Include extracted syllabus text to help improve detection
+              </label>
             </div>
             <div className="flex flex-wrap gap-2">
               <Button
@@ -1194,6 +1290,13 @@ function SmartSyllabusExtractor({
                 size="sm"
               >
                 Yes, looks correct
+              </Button>
+              <Button
+                onClick={() => void sendExtractionFeedback("corrected")}
+                size="sm"
+                variant="secondary"
+              >
+                I corrected it
               </Button>
               <Button
                 onClick={() => void sendExtractionFeedback("incorrect")}

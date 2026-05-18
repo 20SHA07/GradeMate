@@ -1,12 +1,13 @@
 "use client";
 
-import { Clipboard, Download, FileText, UploadCloud, Wand2 } from "lucide-react";
+import { Clipboard, Download, FileText, Save, UploadCloud, Wand2 } from "lucide-react";
 import { useMemo, useState } from "react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { extractGradeBreakdown, type ExtractedSyllabus } from "@/lib/syllabus/extractSyllabus";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
+import { saveVerifiedExtraction } from "@/lib/syllabus/verified-extractions";
 
 const textareaStyles =
   "w-full rounded-xl border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
@@ -67,6 +68,8 @@ export function ExtractorLabClient() {
   const [result, setResult] = useState<ExtractedSyllabus | null>(null);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [includeExtractedText, setIncludeExtractedText] = useState(false);
+  const [isSavingVerified, setIsSavingVerified] = useState(false);
   const [isReadingPdf, setIsReadingPdf] = useState(false);
   const totalWeight = getTotalWeight(result);
   const outputJson = useMemo(() => buildExpectedJson(result), [result]);
@@ -132,6 +135,30 @@ export function ExtractorLabClient() {
     anchor.download = `${safeName}.json`;
     anchor.click();
     URL.revokeObjectURL(url);
+  }
+
+  async function saveAsVerifiedExample() {
+    if (!result) return;
+
+    setIsSavingVerified(true);
+    setError("");
+
+    try {
+      await saveVerifiedExtraction({
+        aiProvider: "rule_based",
+        confirmedExtraction: result,
+        extractedText: includeExtractedText ? sourceText : null,
+        originalExtraction: result,
+        sourceFileName: fileName || null,
+        sourceType: fileName ? "pdf" : "pasted_text",
+        userFeedback: "correct"
+      });
+      setMessage("Saved as a local verified example.");
+    } catch {
+      setError("Could not save this verified example.");
+    } finally {
+      setIsSavingVerified(false);
+    }
   }
 
   return (
@@ -333,6 +360,26 @@ export function ExtractorLabClient() {
                   <div className="flex flex-wrap items-center justify-between gap-3">
                     <h2 className="font-semibold text-ink-900">Final JSON</h2>
                     <div className="flex flex-wrap gap-2">
+                      <label className="flex items-center gap-2 rounded-lg border border-ink-200 px-3 py-2 text-xs text-ink-600">
+                        <input
+                          checked={includeExtractedText}
+                          className="h-4 w-4 rounded border-ink-300 text-teal-700"
+                          onChange={(event) =>
+                            setIncludeExtractedText(event.target.checked)
+                          }
+                          type="checkbox"
+                        />
+                        Include extracted text
+                      </label>
+                      <Button
+                        disabled={isSavingVerified}
+                        onClick={() => void saveAsVerifiedExample()}
+                        size="sm"
+                        variant="secondary"
+                      >
+                        <Save aria-hidden="true" className="h-4 w-4" />
+                        Save as verified example
+                      </Button>
                       <Button onClick={() => void copyJson()} size="sm" variant="secondary">
                         <Clipboard aria-hidden="true" className="h-4 w-4" />
                         Copy JSON

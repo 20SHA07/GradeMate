@@ -105,6 +105,8 @@ type ReviewState = {
   courseInfo: CourseInfoReviewField[];
   rows: ReviewAssessment[];
   source: ExtractionSource;
+  sourceFileName?: string | null;
+  sourceText?: string | null;
 };
 
 type CourseInfoReviewField = {
@@ -129,8 +131,12 @@ type CourseInfoReviewField = {
 };
 
 type PendingFeedback = {
-  extraction: ExtractedSyllabus;
+  confirmedExtraction: ExtractedSyllabus;
+  includeExtractedText: boolean;
+  originalExtraction: ExtractedSyllabus;
   source: ExtractionSource;
+  sourceFileName?: string | null;
+  sourceText?: string | null;
   courseName: string;
 };
 
@@ -473,10 +479,33 @@ function getVerifiedSource(source: ExtractionSource): VerifiedExtractionSource {
 
 function buildConfirmedExtraction(
   extraction: ExtractedSyllabus,
-  rows: ReviewAssessment[]
+  rows: ReviewAssessment[],
+  courseInfo: CourseInfoReviewField[] = []
 ): ExtractedSyllabus {
+  const selectedInfo = Object.fromEntries(
+    courseInfo
+      .filter((field) => field.apply && field.value.trim())
+      .map((field) => [field.key, field.value.trim()])
+  ) as Partial<Record<CourseInfoReviewField["key"], string>>;
+
   return {
     ...extraction,
+    classroom: selectedInfo.classroom ?? extraction.classroom,
+    courseCode: selectedInfo.code ?? extraction.courseCode,
+    courseDescription:
+      selectedInfo.courseDescription ?? extraction.courseDescription,
+    courseName: selectedInfo.name ?? extraction.courseName,
+    creditHours:
+      selectedInfo.creditHours !== undefined
+        ? Number(selectedInfo.creditHours) || extraction.creditHours
+        : extraction.creditHours,
+    instructor: selectedInfo.instructor ?? extraction.instructor,
+    instructorEmail:
+      selectedInfo.instructorEmail ?? extraction.instructorEmail,
+    officeHours: selectedInfo.officeHours ?? extraction.officeHours,
+    prerequisites: selectedInfo.prerequisites ?? extraction.prerequisites,
+    schedule: selectedInfo.schedule ?? extraction.schedule,
+    semester: selectedInfo.semester ?? extraction.semester,
     assessments: rows.map((row) => ({
       confidence: Number(row.confidence) || 0.7,
       max_score: Number(row.max_score) || 100,
@@ -1048,7 +1077,9 @@ export function SimpleGpaCalculator() {
   function showExtractionResult(
     courseId: string,
     extraction: ExtractedSyllabus,
-    source: ExtractionSource
+    source: ExtractionSource,
+    sourceText?: string | null,
+    sourceFileName?: string | null
   ) {
     setActiveExtractionCourseId(courseId);
     setReview({
@@ -1056,7 +1087,9 @@ export function SimpleGpaCalculator() {
       courseInfo: makeCourseInfoReviewFields(extraction),
       extraction,
       rows: makeReviewRows(extraction),
-      source
+      source,
+      sourceFileName,
+      sourceText
     });
     setMessage(
       extraction.assessments.length > 0
@@ -1070,10 +1103,11 @@ export function SimpleGpaCalculator() {
     courseId: string,
     text: string,
     mode: "quick" | "syllabus",
-    ruleSource: ExtractionSource
+    ruleSource: ExtractionSource,
+    sourceFileName?: string | null
   ) {
     const ruleResult = extractGradeBreakdown(text, { mode });
-    showExtractionResult(courseId, ruleResult, ruleSource);
+    showExtractionResult(courseId, ruleResult, ruleSource, text, sourceFileName);
   }
 
   async function runExtraction(
@@ -1149,7 +1183,7 @@ export function SimpleGpaCalculator() {
         );
       }
 
-      await runExtractionPipeline(courseId, pdfText, "syllabus", "pdf");
+      await runExtractionPipeline(courseId, pdfText, "syllabus", "pdf", file.name);
     } catch (pdfError) {
       console.warn("PDF text extraction failed", pdfError);
       setError(
@@ -1294,7 +1328,8 @@ export function SimpleGpaCalculator() {
     const savedCount = newAssessments.length;
     const confirmedExtraction = buildConfirmedExtraction(
       review.extraction,
-      validRows
+      validRows,
+      review.courseInfo
     );
     const selectedInfo = Object.fromEntries(
       review.courseInfo
@@ -1325,8 +1360,12 @@ export function SimpleGpaCalculator() {
     setReview(null);
     setPendingFeedback({
       courseName: confirmedExtraction.courseName ?? "this course",
-      extraction: confirmedExtraction,
-      source: review.source
+      confirmedExtraction,
+      includeExtractedText: false,
+      originalExtraction: review.extraction,
+      source: review.source,
+      sourceFileName: review.sourceFileName,
+      sourceText: review.sourceText
     });
     setError("");
     setMessage(
@@ -1372,8 +1411,12 @@ export function SimpleGpaCalculator() {
     try {
       await saveVerifiedExtraction({
         aiProvider: "rule_based",
-        confirmedExtraction: pendingFeedback.extraction,
-        originalExtraction: pendingFeedback.extraction,
+        confirmedExtraction: pendingFeedback.confirmedExtraction,
+        extractedText: pendingFeedback.includeExtractedText
+          ? pendingFeedback.sourceText ?? null
+          : null,
+        originalExtraction: pendingFeedback.originalExtraction,
+        sourceFileName: pendingFeedback.sourceFileName,
         sourceType: getVerifiedSource(pendingFeedback.source),
         userFeedback: feedback
       });
@@ -1382,6 +1425,15 @@ export function SimpleGpaCalculator() {
           ? "Thanks — this helps GradeMate improve future extractions."
           : "Thanks — we'll use your corrected version to improve future extraction."
       );
+      if (feedback === "correct") {
+        setMessage("Thanks - this helps GradeMate improve future extractions.");
+      }
+      if (feedback === "corrected") {
+        setMessage("Thanks - your corrections help GradeMate improve future extraction.");
+      }
+      if (feedback === "incorrect") {
+        setMessage("Thanks - we'll use this signal to improve future extraction.");
+      }
       setPendingFeedback(null);
     } catch {
       setError("Could not save feedback right now. Your assessments are still saved.");
@@ -1472,10 +1524,35 @@ export function SimpleGpaCalculator() {
                 <p className="mt-1 text-sm text-ink-500">
                   Was this extraction correct for {pendingFeedback.courseName}?
                 </p>
+                <label className="mt-3 flex items-center gap-2 text-xs text-ink-500">
+                  <input
+                    checked={pendingFeedback.includeExtractedText}
+                    className="h-4 w-4 rounded border-ink-300 text-teal-700"
+                    onChange={(event) =>
+                      setPendingFeedback((current) =>
+                        current
+                          ? {
+                              ...current,
+                              includeExtractedText: event.target.checked
+                            }
+                          : current
+                      )
+                    }
+                    type="checkbox"
+                  />
+                  Include extracted syllabus text to help improve detection
+                </label>
               </div>
               <div className="flex flex-wrap gap-2">
                 <Button onClick={() => void sendFeedback("correct")} size="sm">
                   Yes, looks correct
+                </Button>
+                <Button
+                  onClick={() => void sendFeedback("corrected")}
+                  size="sm"
+                  variant="secondary"
+                >
+                  I corrected it
                 </Button>
                 <Button
                   onClick={() => void sendFeedback("incorrect")}
