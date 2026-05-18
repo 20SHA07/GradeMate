@@ -320,6 +320,10 @@ function shouldUseRuleExtraction(extraction: ExtractedSyllabus) {
 
 function getLocalAiErrorMessage(error: unknown) {
   if (error instanceof Error) {
+    if (/ai assist is not configured/i.test(error.message)) {
+      return "AI assist is not configured. You can still use automatic text detection.";
+    }
+
     if (/local ai is not running/i.test(error.message)) {
       return "Local AI is not running. You can still use manual detection or start Ollama.";
     }
@@ -330,7 +334,21 @@ function getLocalAiErrorMessage(error: unknown) {
   return "Local AI is not running. You can still use manual detection or start Ollama.";
 }
 
+function canUseLocalAiExtraction() {
+  if (typeof window === "undefined") {
+    return false;
+  }
+
+  return ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
+}
+
 async function requestLocalAiExtraction(text: string) {
+  if (!canUseLocalAiExtraction()) {
+    throw new Error(
+      "AI assist is not configured. You can still use automatic text detection."
+    );
+  }
+
   const response = await fetch(
     `${getAppBasePath()}/api/local-ai/extract-syllabus/`,
     {

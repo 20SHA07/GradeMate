@@ -350,7 +350,7 @@ export function GpaCalculator() {
                         {grade.letter}
                       </span>
                       <span className="text-ink-500">
-                        {grade.min}-{grade.max}% · {grade.points.toFixed(1)}
+                        {grade.min}-{grade.max}% - {grade.points.toFixed(1)}
                       </span>
                     </div>
                   ))}

@@ -214,7 +214,7 @@ export function DashboardClient() {
             </div>
             {isGuest ? (
               <p className="mt-4 text-xs text-ink-500">
-                Using Guest Mode — save your progress anytime.
+                Using Guest Mode - save your progress anytime.
               </p>
             ) : null}
           </div>

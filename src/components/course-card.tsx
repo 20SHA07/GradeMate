@@ -51,7 +51,7 @@ export function CourseCard({ course }: { course: Course }) {
             <div className="mb-2 flex items-center justify-between text-sm">
               <span className="font-medium text-ink-700">Current grade</span>
               <span className="text-ink-500">
-                {gradeInfo.roundedPercentage}% · {gradeInfo.letter}
+                {gradeInfo.roundedPercentage}% - {gradeInfo.letter}
               </span>
             </div>
             <Progress value={course.currentGrade} tone="teal" />

@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, CalendarDays, PlusCircle } from "lucide-react";
+import { ArrowRight, BookOpen, CalendarDays, PlusCircle, X } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
@@ -502,7 +502,7 @@ export function SemestersManager() {
                 size="icon"
                 variant="ghost"
               >
-                ×
+                <X aria-hidden="true" className="h-4 w-4" />
               </Button>
             </div>
             <form className="mt-5 space-y-4" onSubmit={createSemester}>
@@ -584,7 +584,7 @@ export function SemestersManager() {
                 size="icon"
                 variant="ghost"
               >
-                ×
+                <X aria-hidden="true" className="h-4 w-4" />
               </Button>
             </div>
             <form className="mt-5 space-y-4" onSubmit={createCourse}>
