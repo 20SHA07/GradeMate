@@ -61,6 +61,7 @@ type AssessmentCandidate = {
   heading?: string;
   assessments: ExtractedAssessment[];
   score: number;
+  warnings?: string[];
 };
 
 const assessmentKeywords = [
@@ -352,6 +353,55 @@ function titleCaseAssessmentName(value: string) {
     .join(" ");
 }
 
+function titleCaseWords(value: string) {
+  return value
+    .split(/\s+/)
+    .filter(Boolean)
+    .map((word) =>
+      assessmentKeywords.includes(word.toLowerCase())
+        ? word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()
+        : word.charAt(0).toUpperCase() + word.slice(1)
+    )
+    .join(" ");
+}
+
+function formatGroupedParentheticalName(value: string) {
+  const match = value.match(
+    /\b((?:course\s*work|coursework|continuous assessment|laboratory work|lab work|assignments?|quizzes?|projects?|exams?|tests?|homework))\s*(\([^)]{2,120}\))/i
+  );
+
+  if (!match) {
+    return null;
+  }
+
+  const prefix = titleCaseWords(match[1].replace(/\s+/g, " ").trim());
+  const details = match[2].replace(/\s+/g, " ").trim();
+
+  return `${prefix} ${details}`;
+}
+
+function preserveFormalAssessmentName(value: string) {
+  const cleaned = value
+    .replace(/\b(?:week|weeks)\s+\d{1,2}\b/gi, " ")
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage|marks?|points?)\b/gi, " ")
+    .replace(/\b(?:weight|marks?|contribution|percentage|score|points?)\s*[:=\-]?\s*\d{1,3}(?:\.\d+)?\b/gi, " ")
+    .replace(/[|:;,]+/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  const formal = cleaned.match(
+    /\b((?:mid\s*term|midterm|semester|final|major|minor)\s+examination(?:\(s\))?)/i
+  );
+
+  if (!formal) {
+    return null;
+  }
+
+  return titleCaseWords(formal[1])
+    .replace(/\bMidterm\b/i, "Midterm")
+    .replace(/\bMid Term\b/i, "Mid Term");
+}
+
 function hasAssessmentKeyword(line: string) {
   const normalized = line.toLowerCase();
 
@@ -424,6 +474,17 @@ function extractAssessmentName(line: string, percentage: number) {
     parts.find((part) => hasAssessmentKeyword(part)) ??
     parts.find((part) => !hasGradingContext(part)) ??
     withoutPercent;
+  const groupedName = formatGroupedParentheticalName(likelyPart);
+
+  if (groupedName) {
+    return groupedName;
+  }
+
+  const formalName = preserveFormalAssessmentName(likelyPart);
+
+  if (formalName) {
+    return formalName;
+  }
 
   return titleCaseAssessmentName(likelyPart);
 }
@@ -957,6 +1018,18 @@ function deriveAssessmentName(line: string) {
 }
 
 function canonicalAssessmentName(rawName: string, fullLine: string) {
+  const groupedName = formatGroupedParentheticalName(fullLine);
+
+  if (groupedName && !hasNumberedAssessmentName(fullLine)) {
+    return groupedName;
+  }
+
+  const formalName = preserveFormalAssessmentName(rawName);
+
+  if (formalName && !hasNumberedAssessmentName(fullLine)) {
+    return formalName;
+  }
+
   const value = `${rawName} ${fullLine}`.toLowerCase();
   const numberedValue = `${rawName} ${removeWeightTokensForNumbering(fullLine)}`.toLowerCase();
   const quizNumber = numberedValue.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
@@ -1173,6 +1246,155 @@ function extractKnownGoldenAssessments(text: string, courseCode: string | null) 
   }));
 }
 
+function extractParentChildAssessmentCandidates(
+  text: string
+): AssessmentCandidate[] {
+  const compactText = cleanLine(text);
+  const courseworkMatch = compactText.match(
+    /\b(?:course\s*work|coursework)\s*\(([^)]*)\)/i
+  );
+
+  if (courseworkMatch?.index === undefined) {
+    return [];
+  }
+
+  const courseworkStart = courseworkMatch.index;
+  const childrenStart = courseworkStart + courseworkMatch[0].length;
+  const afterCoursework = compactText.slice(childrenStart);
+  const nextSectionMatch = afterCoursework.match(
+    /\b(?:mid\s*term|midterm|semester|final|laboratory work|lab work|lab final)\b/i
+  );
+  const childrenEnd =
+    nextSectionMatch?.index === undefined
+      ? compactText.length
+      : childrenStart + nextSectionMatch.index;
+  const childBlock = compactText.slice(childrenStart, childrenEnd);
+  const restBlock = compactText.slice(childrenEnd);
+  const rows: ExtractedAssessment[] = [];
+  const warnings: string[] = [];
+  const quizMatches = Array.from(
+    childBlock.matchAll(/\bquiz\s*#?\s*(\d{1,2})\b/gi)
+  );
+
+  if (quizMatches.length >= 2) {
+    const firstNonQuizChild = childBlock.search(
+      /\b(?:project|homework|assignment|lab|laboratory|presentation|report)\b/i
+    );
+    const quizSegment =
+      firstNonQuizChild >= 0 ? childBlock.slice(0, firstNonQuizChild) : childBlock;
+    const quizWeights = Array.from(
+      quizSegment.matchAll(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/gi)
+    )
+      .map((match) => cleanWeightValue(match[1]))
+      .filter((weight): weight is number => weight !== null);
+
+    if (quizWeights.length === 1) {
+      const splitWeight =
+        Math.round((quizWeights[0] / quizMatches.length) * 100) / 100;
+
+      quizMatches.forEach((match) => {
+        rows.push({
+          name: `Quiz ${Number(match[1])}`,
+          weight_percentage: splitWeight,
+          max_score: 100,
+          confidence: 0.9,
+          source_text_snippet: quizSegment.slice(0, 240)
+        });
+      });
+      warnings.push(
+        `Split Coursework quiz weight ${formatWeight(
+          quizWeights[0]
+        )}% evenly across Quiz ${Number(quizMatches[0][1])}-Quiz ${Number(
+          quizMatches[quizMatches.length - 1][1]
+        )}. Please confirm.`
+      );
+    }
+  }
+
+  addExplicitChildRows(rows, childBlock);
+  addExplicitChildRows(rows, restBlock);
+
+  if (rows.length < 2) {
+    return [];
+  }
+
+  const totalWeight = sumAssessmentWeights(rows);
+
+  if (Math.abs(totalWeight - 100) > 0.5) {
+    return [];
+  }
+
+  return [
+    {
+      label: "parent-child assessment table",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 450,
+      warnings
+    }
+  ];
+}
+
+function addExplicitChildRows(
+  rows: ExtractedAssessment[],
+  text: string
+) {
+  const patterns: Array<{
+    regex: RegExp;
+    name: (match: RegExpMatchArray) => string;
+  }> = [
+    {
+      regex: /\b(project(?:\s*\([^)]+\))?)[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/gi,
+      name: (match) => titleCaseWords(match[1])
+    },
+    {
+      regex:
+        /\b(mid\s*term examination(?:\(s\))?|midterm examination(?:\(s\))?|midterm exam(?:ination)?(?:\(s\))?|midterm)[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/gi,
+      name: (match) => preserveFormalAssessmentName(match[1]) ?? "Midterm"
+    },
+    {
+      regex:
+        /\b(semester examination(?:\(s\))?|semester exam(?:ination)?(?:\(s\))?)[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/gi,
+      name: (match) => preserveFormalAssessmentName(match[1]) ?? "Semester Examination"
+    },
+    {
+      regex:
+        /\b(final examination(?:\(s\))?|final exam(?:ination)?(?:\(s\))?)[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/gi,
+      name: (match) => preserveFormalAssessmentName(match[1]) ?? "Final Exam"
+    },
+    {
+      regex:
+        /\b(laboratory work|lab work|laboratory|labs?)[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/gi,
+      name: (match) => titleCaseWords(match[1])
+    }
+  ];
+
+  patterns.forEach(({ regex, name }) => {
+    Array.from(text.matchAll(regex)).forEach((match) => {
+      const weight = cleanWeightValue(match[2]);
+
+      if (weight === null) {
+        return;
+      }
+
+      const rowName = name(match);
+
+      if (
+        rows.some((row) => normalizeName(row.name) === normalizeName(rowName))
+      ) {
+        return;
+      }
+
+      rows.push({
+        name: rowName,
+        weight_percentage: weight,
+        max_score: 100,
+        confidence: 0.88,
+        source_text_snippet: match[0].slice(0, 240)
+      });
+    });
+  });
+}
+
 function extractDetailedAssessmentCandidates(
   text: string,
   lines: string[],
@@ -1246,7 +1468,12 @@ function extractDetailedAssessmentCandidates(
     currentSection.rows.push(assessment);
   });
 
-  const candidates: AssessmentCandidate[] = sections
+  const candidates: AssessmentCandidate[] = [
+    ...extractParentChildAssessmentCandidates(text)
+  ];
+
+  candidates.push(
+    ...sections
     .map((section) => {
       const rows = dedupeAssessments(section.rows);
       return {
@@ -1262,7 +1489,8 @@ function extractDetailedAssessmentCandidates(
       heading: section.heading,
       assessments: section.rows.map(normalizeAssessmentForOutput),
       score: section.score
-    }));
+    }))
+  );
   const knownGolden = extractKnownGoldenAssessments(text, courseCode);
 
   if (knownGolden.length > 0) {
@@ -1292,6 +1520,43 @@ function findAssessmentTerm(value: string) {
       );
     }) ?? null
   );
+}
+
+function extractGroupedParentheticalRows(text: string) {
+  const rows: Array<{
+    start: number;
+    end: number;
+    assessment: ExtractedAssessment;
+  }> = [];
+  const pattern =
+    /\b((?:course\s*work|coursework|continuous assessment|laboratory work|lab work|assignments?|quizzes?|projects?|exams?|tests?|homework)\s*\([^)]{2,120}\))\s*(?:[:=\-]|\s)*(?:worth|counts?\s+for|accounts?\s+for|weighted\s+at|is|are)?\s*(\d{1,3}(?:\.\d+)?)\s*(?:%|percent|percentage)?/gi;
+
+  Array.from(text.matchAll(pattern)).forEach((match) => {
+    if (match.index === undefined) {
+      return;
+    }
+
+    const name = formatGroupedParentheticalName(match[1]);
+    const weight = cleanWeightValue(match[2]);
+
+    if (!name || weight === null) {
+      return;
+    }
+
+    rows.push({
+      start: match.index,
+      end: match.index + match[0].length,
+      assessment: {
+        name,
+        weight_percentage: weight,
+        max_score: 100,
+        confidence: 0.92,
+        source_text_snippet: match[0]
+      }
+    });
+  });
+
+  return rows;
 }
 
 function extractQuickWeight(text: string) {
@@ -1420,6 +1685,11 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
   const assessments: ExtractedAssessment[] = [];
   const warnings: string[] = [];
   const normalizedText = text.replace(/\s+/g, " ");
+  const groupedParentheticalRows = extractGroupedParentheticalRows(normalizedText);
+
+  groupedParentheticalRows.forEach((row) => {
+    addQuickAssessment(assessments, row.assessment);
+  });
   const splitWarningMatches = Array.from(
     normalizedText.matchAll(
       /\b(exams?|tests?)\b[^.?!,;]{0,40}\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent)?\b[^.?!,;]{0,60}\bsplit\b[^.?!,;]{0,80}\b(midterm|final)\b/gi
@@ -1450,6 +1720,14 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
 
   matches.forEach((match, index) => {
     if (match.index === undefined) {
+      return;
+    }
+
+    if (
+      groupedParentheticalRows.some(
+        (row) => match.index !== undefined && match.index >= row.start && match.index < row.end
+      )
+    ) {
       return;
     }
 
@@ -1669,6 +1947,10 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
 
   if (duplicateCount > 0) {
     warnings.push("Possible duplicate assessments");
+  }
+
+  if (chosenCandidate?.warnings?.length) {
+    warnings.push(...chosenCandidate.warnings);
   }
 
   if (!courseCode || !courseName || creditHours === null) {

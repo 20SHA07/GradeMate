@@ -90,7 +90,11 @@ Rules:
 - Use max_score 100 unless explicitly stated otherwise.
 - Keep assessment names short and student-friendly.
 - Prefer detailed assessment rows over broad grouped rows when both appear.
-- Preserve numbered assessments separately. Do not bundle Quiz 1, Quiz 2, Assignment 1, Lab 1, Project 1, Test 1, or Exam 1 into a grouped parent row.
+- Never invent individual assessments from grouped categories.
+- Parenthetical examples like "quizzes, homework/project" are descriptions, not separate rows, unless each child item has its own explicit weight.
+- Preserve grouped rows when only grouped weights are available.
+- Preserve numbered assessments separately only when they are explicitly listed, such as Quiz 1 5%, Quiz 2 5%.
+- If a table clearly lists multiple same-type child rows and one shared group weight, split that shared weight evenly across those listed children and add a warning.
 - Only group assessments when the syllabus provides only grouped categories.
 - Do not extract letter grade scales, grade points, CLO/PLO tables, weekly schedules, room numbers, course codes, or due dates as assessments.
 - Return JSON only. No markdown. No explanation.

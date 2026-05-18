@@ -36,6 +36,13 @@ function expectAssessment(result, name, weight) {
   assert.equal(assessment.weight_percentage, weight);
 }
 
+function expectAssessmentNames(result, names) {
+  assert.deepEqual(
+    result.assessments.map((assessment) => assessment.name),
+    names
+  );
+}
+
 const commaSeparated = parseGradeBreakdownMessage(
   "quizzes 15, assignments 20, midterm 25, final 40"
 );
@@ -164,7 +171,7 @@ const courseworkAssessment = extractSyllabusFromText(`Coursework Assessment
 Coursework Assessment 40%
 Final Examination 60%`);
 expectAssessment(courseworkAssessment, "Coursework Assessment", 40);
-expectAssessment(courseworkAssessment, "Final Exam", 60);
+expectAssessment(courseworkAssessment, "Final Examination", 60);
 
 const continuousAssessment = extractSyllabusFromText(`Continuous Assessment
 Labs 20%
@@ -192,6 +199,65 @@ expectAssessment(compactSyllabusLine, "Midterm", 30);
 expectAssessment(compactSyllabusLine, "Final Exam", 40);
 expectAssessment(compactSyllabusLine, "Assignments", 20);
 expectAssessment(compactSyllabusLine, "Participation", 10);
+
+const groupedCourseworkTable = extractSyllabusFromText(`Assessment Instruments Contribution to course grade (%)
+Coursework (quizzes, homework/project) 25%
+Laboratory Work 15%
+Semester Examination 25%
+Final Examination 35%`);
+expectAssessmentNames(groupedCourseworkTable, [
+  "Coursework (quizzes, homework/project)",
+  "Laboratory Work",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(groupedCourseworkTable, "Coursework (quizzes, homework/project)", 25);
+expectAssessment(groupedCourseworkTable, "Laboratory Work", 15);
+expectAssessment(groupedCourseworkTable, "Semester Examination", 25);
+expectAssessment(groupedCourseworkTable, "Final Examination", 35);
+
+const parentheticalOnly = parseGradeBreakdownMessage(
+  "Coursework (quizzes, homework/project) 25%"
+);
+expectAssessmentNames(parentheticalOnly, [
+  "Coursework (quizzes, homework/project)"
+]);
+expectAssessment(parentheticalOnly, "Coursework (quizzes, homework/project)", 25);
+
+const explicitQuizRows = extractSyllabusFromText(`Assessment Methodology
+Quiz 1 5%
+Quiz 2 5%
+Quiz 3 5%
+Quiz 4 5%`);
+expectAssessmentNames(explicitQuizRows, ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4"]);
+expectAssessment(explicitQuizRows, "Quiz 1", 5);
+expectAssessment(explicitQuizRows, "Quiz 2", 5);
+expectAssessment(explicitQuizRows, "Quiz 3", 5);
+expectAssessment(explicitQuizRows, "Quiz 4", 5);
+
+const childGroupedCoursework = extractSyllabusFromText(`Assessment Methodology
+Coursework (quizzes, homework/project) Quiz 1 Week 5 Quiz 2 Week 10 Quiz 3 Week 12 Quiz 4 Week 14 15% Project (demo) Week 14 10% Midterm Examination(s) Week 8 25% Final Examination Week 16 35% Laboratory Work Weeks 14 15%`);
+expectAssessment(childGroupedCoursework, "Quiz 1", 3.75);
+expectAssessment(childGroupedCoursework, "Quiz 2", 3.75);
+expectAssessment(childGroupedCoursework, "Quiz 3", 3.75);
+expectAssessment(childGroupedCoursework, "Quiz 4", 3.75);
+expectAssessment(childGroupedCoursework, "Project (demo)", 10);
+expectAssessment(childGroupedCoursework, "Midterm Examination(s)", 25);
+expectAssessment(childGroupedCoursework, "Final Examination", 35);
+expectAssessment(childGroupedCoursework, "Laboratory Work", 15);
+assert.equal(
+  childGroupedCoursework.assessments.reduce(
+    (sum, assessment) => sum + assessment.weight_percentage,
+    0
+  ),
+  100
+);
+assert.ok(
+  childGroupedCoursework.warnings.some((warning) =>
+    /Split Coursework quiz weight 15% evenly across Quiz 1-Quiz 4/i.test(warning)
+  ),
+  "Expected grouped quiz split warning"
+);
 
 const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
 Credit Hours: 3 Credits
