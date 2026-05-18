@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "courseCode": "COSC 201",
+  "courseName": "Computer Systems Organization",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Quiz 15",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

@@ -192,6 +192,27 @@ assessment rows are preferred over broad or unrelated tables.
 `dataset:promote-ready` copies high-confidence 100% proposed JSON files into
 `training-data/expected-json/` without overwriting existing golden files.
 
+`test:dataset` compares every JSON file in `training-data/expected-json/`
+against the latest proposal with regression thresholds. It fails if course info
+changes, assessment counts change, any assessment weight drifts by more than 1%,
+or the total assessment weight differs by more than 1%.
+
+### Golden examples and AI prompts
+
+Golden JSON files are not used to train a model. They are regression fixtures
+and prompt examples. After reviewing `training-data/review-report.html`, you can:
+
+1. Edit or add corrected JSON in `training-data/expected-json/`.
+2. Run `npm run dataset:propose -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"`.
+3. Run `npm run test:dataset`.
+
+GradeMate also keeps a small curated subset of representative golden examples in
+`src/lib/syllabus/fewShotExamples.ts`. Local Ollama and the Supabase Gemini Edge
+Function include two or three of those examples in the prompt, preferring a
+similar department when one is detected and otherwise using a diverse mix of
+engineering/science, math, and humanities/business examples. Keep this list
+small so prompts stay fast and cheap.
+
 In Supabase Auth URL Configuration, use:
 
 ```text

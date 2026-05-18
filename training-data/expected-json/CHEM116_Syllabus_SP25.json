@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "CHEM116_Syllabus_SP25.pdf",
+  "courseCode": "CHEM 116",
+  "courseName": "General Chemistry II",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100
+    }
+  ]
+}

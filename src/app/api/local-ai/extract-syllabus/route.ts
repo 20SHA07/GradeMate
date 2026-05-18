@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
+import { formatFewShotExamplesForPrompt } from "@/lib/syllabus/fewShotExamples";
 
 const maxInputCharacters = 24000;
 
@@ -42,6 +43,8 @@ const requestSchema = z.object({
 });
 
 function buildPrompt(text: string) {
+  const examples = formatFewShotExamplesForPrompt(text);
+
   return `Extract the course grading structure from the syllabus or grading text.
 
 Return strict JSON only.
@@ -72,7 +75,12 @@ Rules:
 - If weights do not total 100%, add a warning.
 - Use max_score 100 unless explicitly stated otherwise.
 - Keep assessment names short and student-friendly.
+- Prefer detailed assessment rows over broad grouped rows when both appear.
+- Do not extract letter grade scales, grade points, CLO/PLO tables, weekly schedules, room numbers, course codes, or due dates as assessments.
 - Return JSON only. No markdown. No explanation.
+
+Examples:
+${examples}
 
 Text:
 ${text}`;
@@ -104,6 +112,77 @@ function getWeightTotal(
 
 function dedupeWarnings(warnings: string[]) {
   return Array.from(new Set(warnings.filter(Boolean)));
+}
+
+function addQualityWarnings(
+  result: z.infer<typeof aiSyllabusSchema>,
+  warnings: string[]
+) {
+  const nextWarnings = [...warnings];
+
+  if (hasPossibleGradeScaleExtraction(result.assessments)) {
+    nextWarnings.push("Possible letter grade scale extracted. Please review before saving.");
+  }
+
+  if (hasPossibleWeeklyScheduleExtraction(result.assessments)) {
+    nextWarnings.push("Possible weekly schedule rows extracted. Please review before saving.");
+  }
+
+  if (hasSuspiciousCourseCodeWeight(result)) {
+    nextWarnings.push("Possible course code number extracted as a weight. Please review before saving.");
+  }
+
+  if (result.assessments.some((assessment) => !assessment.name.trim())) {
+    nextWarnings.push("One or more assessment names are empty.");
+  }
+
+  return nextWarnings;
+}
+
+function hasPossibleGradeScaleExtraction(
+  assessments: z.infer<typeof aiAssessmentSchema>[]
+) {
+  return assessments.some((assessment) => {
+    const name = assessment.name.trim().toLowerCase();
+    const snippet = assessment.source_text_snippet.toLowerCase();
+
+    return (
+      /^(a|a-|b\+|b|b-|c\+|c|c-|d|f|letter grade|grade scale|grade points?)$/.test(name) ||
+      /\b(letter grade|grade scale|grade points?|a\s*[-:]?\s*9\d|b\+?\s*[-:]?\s*8\d|c\+?\s*[-:]?\s*7\d)\b/.test(snippet)
+    );
+  });
+}
+
+function hasPossibleWeeklyScheduleExtraction(
+  assessments: z.infer<typeof aiAssessmentSchema>[]
+) {
+  return assessments.some((assessment) => {
+    const combined = `${assessment.name} ${assessment.source_text_snippet}`.toLowerCase();
+    const hasAssessmentWord =
+      /\b(quiz|exam|midterm|final|assignment|homework|lab|project|participation|presentation|coursework|test)\b/.test(combined);
+
+    return (
+      /\b(week|lecture|topic|chapter|course outcome|clo|plo)\b/.test(combined) &&
+      !hasAssessmentWord
+    );
+  });
+}
+
+function hasSuspiciousCourseCodeWeight(result: z.infer<typeof aiSyllabusSchema>) {
+  const courseNumberMatch = result.courseCode?.match(/\b[A-Z]{2,5}\s*-?\s*(\d{3,4})\b/i);
+  const courseNumber = courseNumberMatch ? Number(courseNumberMatch[1]) : null;
+
+  if (!courseNumber || courseNumber <= 100) {
+    return false;
+  }
+
+  return result.assessments.some((assessment) => {
+    const combined = `${assessment.name} ${assessment.source_text_snippet}`.toLowerCase();
+    const hasAssessmentWord =
+      /\b(quiz|exam|midterm|final|assignment|homework|lab|project|participation|presentation|coursework|test)\b/.test(combined);
+
+    return !hasAssessmentWord && Math.round(assessment.weight_percentage) === courseNumber;
+  });
 }
 
 export async function POST(request: Request) {
@@ -211,13 +290,15 @@ export async function POST(request: Request) {
       warnings.push("Low confidence AI extraction");
     }
 
+    const qualityWarnings = addQualityWarnings(result, warnings);
+
     return NextResponse.json({
       ...result,
       assessments: result.assessments.map((assessment) => ({
         ...assessment,
         max_score: assessment.max_score || 100
       })),
-      warnings: dedupeWarnings(warnings)
+      warnings: dedupeWarnings(qualityWarnings)
     });
   } catch (error) {
     const message =

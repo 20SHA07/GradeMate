@@ -1,0 +1,55 @@
+{
+  "sourceFileName": "Fluid Mechanics Syllabus .pdf",
+  "courseCode": "CHEG 232",
+  "courseName": "/ Fluid Mechanics For Chemical Engineering",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Quiz 1 Week 8 Feb 4%",
+      "weight_percentage": 4,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2 Week 6 22 Feb",
+      "weight_percentage": 4,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3 Week 10 21 March",
+      "weight_percentage": 4,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz Week 13 11 April 4%",
+      "weight_percentage": 4,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 5 Week 15 25 April",
+      "weight_percentage": 4,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory If Applicable",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Semester Examination S Week 8 05 March",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Attendance",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

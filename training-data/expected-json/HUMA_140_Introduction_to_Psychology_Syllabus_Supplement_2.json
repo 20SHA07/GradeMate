@@ -1,0 +1,25 @@
+{
+  "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "courseCode": "HUMA 140",
+  "courseName": "Introduction to Psychology",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": "Dr. Michael Babula",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Project 30",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

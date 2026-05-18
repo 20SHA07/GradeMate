@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "Syllabus - Summer 2025.pdf",
+  "courseCode": "PHYS 121",
+  "courseName": "University Physics I",
+  "creditHours": 4,
+  "semester": "Summer 2025",
+  "instructor": "Dr. Dalaver H. Anjum",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Homework",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

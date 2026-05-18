@@ -1,4 +1,5 @@
 import { z } from "npm:zod@3.24.1";
+import { formatFewShotExamplesForPrompt } from "../_shared/few-shot-examples.ts";
 
 const corsHeaders = {
   "Access-Control-Allow-Origin": "*",
@@ -38,6 +39,8 @@ function jsonResponse(body: unknown, status = 200) {
 }
 
 function getPrompt(text: string) {
+  const examples = formatFewShotExamplesForPrompt(text);
+
   return `Extract the course grading structure from this syllabus or grading text.
 
 Return strict JSON only.
@@ -68,7 +71,12 @@ Rules:
 - If weights do not total 100%, add a warning.
 - Use max_score 100 unless explicitly stated otherwise.
 - Keep assessment names short and student-friendly.
+- Prefer detailed assessment rows over broad grouped rows when both appear.
+- Do not extract letter grade scales, grade points, CLO/PLO tables, weekly schedules, room numbers, course codes, or due dates as assessments.
 - Return JSON only. No markdown. No explanation.
+
+Examples:
+${examples}
 
 Text:
 ${text}`;
@@ -130,6 +138,18 @@ function addWeightWarnings(
     warnings.push(`Total weight is above 100 (${totalWeight.toFixed(1)}%)`);
   }
 
+  if (hasPossibleGradeScaleExtraction(extraction.assessments)) {
+    warnings.push("Possible letter grade scale extracted. Please review before saving.");
+  }
+
+  if (hasPossibleWeeklyScheduleExtraction(extraction.assessments)) {
+    warnings.push("Possible weekly schedule rows extracted. Please review before saving.");
+  }
+
+  if (hasSuspiciousCourseCodeWeight(extraction)) {
+    warnings.push("Possible course code number extracted as a weight. Please review before saving.");
+  }
+
   return {
     ...extraction,
     assessments: extraction.assessments.map((assessment) => ({
@@ -140,6 +160,52 @@ function addWeightWarnings(
     })),
     warnings: Array.from(new Set(warnings))
   };
+}
+
+function hasPossibleGradeScaleExtraction(
+  assessments: z.infer<typeof assessmentSchema>[]
+) {
+  return assessments.some((assessment) => {
+    const name = assessment.name.trim().toLowerCase();
+    const snippet = assessment.source_text_snippet.toLowerCase();
+
+    return (
+      /^(a|a-|b\+|b|b-|c\+|c|c-|d|f|letter grade|grade scale|grade points?)$/.test(name) ||
+      /\b(letter grade|grade scale|grade points?|a\s*[-:]?\s*9\d|b\+?\s*[-:]?\s*8\d|c\+?\s*[-:]?\s*7\d)\b/.test(snippet)
+    );
+  });
+}
+
+function hasPossibleWeeklyScheduleExtraction(
+  assessments: z.infer<typeof assessmentSchema>[]
+) {
+  return assessments.some((assessment) => {
+    const combined = `${assessment.name} ${assessment.source_text_snippet}`.toLowerCase();
+    const hasAssessmentWord =
+      /\b(quiz|exam|midterm|final|assignment|homework|lab|project|participation|presentation|coursework|test)\b/.test(combined);
+
+    return (
+      /\b(week|lecture|topic|chapter|course outcome|clo|plo)\b/.test(combined) &&
+      !hasAssessmentWord
+    );
+  });
+}
+
+function hasSuspiciousCourseCodeWeight(extraction: z.infer<typeof extractionSchema>) {
+  const courseNumberMatch = extraction.courseCode?.match(/\b[A-Z]{2,5}\s*-?\s*(\d{3,4})\b/i);
+  const courseNumber = courseNumberMatch ? Number(courseNumberMatch[1]) : null;
+
+  if (!courseNumber || courseNumber <= 100) {
+    return false;
+  }
+
+  return extraction.assessments.some((assessment) => {
+    const combined = `${assessment.name} ${assessment.source_text_snippet}`.toLowerCase();
+    const hasAssessmentWord =
+      /\b(quiz|exam|midterm|final|assignment|homework|lab|project|participation|presentation|coursework|test)\b/.test(combined);
+
+    return !hasAssessmentWord && Math.round(assessment.weight_percentage) === courseNumber;
+  });
 }
 
 Deno.serve(async (request) => {

@@ -1,0 +1,25 @@
+{
+  "sourceFileName": "Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+  "courseCode": "BMED 321",
+  "courseName": "Mechanics for Biomedical Engineers",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Dr. S yed Imaduddin",
+  "assessments": [
+    {
+      "name": "Group Project Start At Week 12 Final Presentations Week 15",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm Examination Week 7",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination Week 16 Or 17",
+      "weight_percentage": 40,
+      "max_score": 100
+    }
+  ]
+}

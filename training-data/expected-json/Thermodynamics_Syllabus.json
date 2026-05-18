@@ -1,0 +1,25 @@
+{
+  "sourceFileName": "Thermodynamics Syllabus .pdf",
+  "courseCode": "CHEG 230",
+  "courseName": "Chemical Engineering Thermodynamics I",
+  "creditHours": 3,
+  "semester": "Spring 2024",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Quiz 30",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 40,
+      "max_score": 100
+    }
+  ]
+}

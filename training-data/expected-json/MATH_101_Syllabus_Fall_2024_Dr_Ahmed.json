@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf",
+  "courseCode": "MATH 101",
+  "courseName": "Fundamentals of Mathematical Reasoning",
+  "creditHours": 3,
+  "semester": "Fall 2024",
+  "instructor": "Ahmed Ameur",
+  "assessments": [
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Project 10",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Presentation",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100
+    }
+  ]
+}

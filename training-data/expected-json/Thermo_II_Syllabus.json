@@ -1,0 +1,35 @@
+{
+  "sourceFileName": "Thermo II Syllabus .pdf",
+  "courseCode": "CHEG 332",
+  "courseName": "Chemical Engineering Thermodynamics II",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 24,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 32,
+      "max_score": 100
+    },
+    {
+      "name": "Assignment 3",
+      "weight_percentage": 9,
+      "max_score": 100
+    }
+  ]
+}

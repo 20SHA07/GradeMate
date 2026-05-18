@@ -1,0 +1,30 @@
+{
+  "sourceFileName": "Summer 2025 Syllabus BUSS 322 Fundamentals of Innovation.pdf",
+  "courseCode": "BUSS 322",
+  "courseName": "Fundamentals of Innovation & Entrepreneurship",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Project 1",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Project 2",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 40,
+      "max_score": 100
+    }
+  ]
+}

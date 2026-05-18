@@ -1,0 +1,55 @@
+{
+  "sourceFileName": "COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+  "courseCode": "COSC 301",
+  "courseName": "Automata, Computability, and Complexity",
+  "creditHours": null,
+  "semester": "Fall 2022",
+  "instructor": "Contact",
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Homework 3",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

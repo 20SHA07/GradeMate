@@ -1,0 +1,50 @@
+{
+  "sourceFileName": "Syllabus Supplement - Spring 2025.pdf",
+  "courseCode": "BMED 352",
+  "courseName": "Fundamental of Biomedical Signal Processing",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "mohamed.seghier@ku.ac.ae / 5041",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 6.25,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 6.25,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 6.25,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 6.25,
+      "max_score": 100
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 25,
+      "max_score": 100
+    }
+  ]
+}

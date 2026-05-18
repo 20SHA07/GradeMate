@@ -1,0 +1,40 @@
+{
+  "sourceFileName": "Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+  "courseCode": "HUMA 106",
+  "courseName": "Emirates Society",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": "HUMA 106 Emirates Society - Lectures are to be delivered",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Assignments",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Presentation",
+      "weight_percentage": 10,
+      "max_score": 100
+    }
+  ]
+}
