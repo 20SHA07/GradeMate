@@ -15,11 +15,12 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 
 - `/` mode chooser landing page
 - `/simple` GradeMate Simple fast GPA and course-grade calculator with local smart extraction
+- `/workspace` full GradeMate academic tracking workspace
 - `/login` auth entry
 - `/signup` auth registration
 - `/sign-in` legacy auth alias
 - `/sign-up` legacy auth alias
-- `/dashboard` app overview
+- `/dashboard` legacy workspace overview alias
 - `/semesters` semester tracking
 - `/courses` course tracking
 - `/course-library` reusable course template library
@@ -171,7 +172,7 @@ https://20sha07.github.io/GradeMate/**
 To enable Google login, open **Authentication > Providers > Google** in Supabase,
 turn it on, add your Google OAuth client ID/secret, and make sure the same
 redirect URLs above are allowed. GradeMate uses the normal Supabase redirect
-flow and returns users to `/auth/callback`, then `/dashboard`.
+flow and returns users to `/auth/callback`, then `/workspace`.
 
 ## GitHub Pages
 

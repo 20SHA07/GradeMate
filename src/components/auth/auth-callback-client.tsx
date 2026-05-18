@@ -68,7 +68,7 @@ export function AuthCallbackClient() {
         return;
       }
 
-      router.replace("/dashboard");
+      router.replace("/workspace");
     }
 
     void finishConfirmation();
@@ -93,7 +93,7 @@ export function AuthCallbackClient() {
             </Link>
             <Link
               className={buttonStyles({ variant: "secondary" })}
-              href="/dashboard"
+              href="/workspace"
             >
               Continue as guest
             </Link>

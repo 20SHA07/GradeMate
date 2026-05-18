@@ -24,9 +24,9 @@ export function MarketingNav() {
           </Link>
           <Link
             className={buttonStyles({ variant: "primary", size: "sm" })}
-            href="/dashboard"
+            href="/workspace"
           >
-            Open app
+            Open workspace
           </Link>
         </nav>
       </div>

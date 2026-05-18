@@ -53,7 +53,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       const { data } = await client.auth.getSession();
 
       if (data.session) {
-        router.replace("/dashboard");
+        router.replace("/workspace");
       }
     }
 
@@ -93,7 +93,7 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     if (authResponse.data.session) {
-      router.replace("/dashboard");
+      router.replace("/workspace");
       return;
     }
 
@@ -120,7 +120,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
   function continueAsGuest() {
     startGuestSession();
-    router.replace("/dashboard");
+    router.replace("/workspace");
   }
 
   return (

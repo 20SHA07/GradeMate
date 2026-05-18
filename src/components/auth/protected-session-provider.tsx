@@ -132,7 +132,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
   async function signOut() {
     await supabase?.auth.signOut();
     setAuthState({ status: "guest" });
-    router.replace("/dashboard");
+    router.replace("/workspace");
   }
 
   function openSaveProgress() {

@@ -18,7 +18,7 @@ const modeCards = [
     description:
       "Track semesters, save courses, import templates, and manage your full academic plan.",
     button: "Open workspace",
-    href: "/dashboard",
+    href: "/workspace",
     icon: Layers3
   }
 ];

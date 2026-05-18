@@ -1077,7 +1077,7 @@ export function SimpleGpaCalculator() {
             </Button>
             <Link
               className={buttonStyles({ variant: "primary" })}
-              href="/dashboard"
+              href="/workspace"
             >
               Open Workspace
             </Link>
