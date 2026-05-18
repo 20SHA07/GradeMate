@@ -58,7 +58,7 @@ import type {
 } from "@/types/database";
 
 type GradeSource = "calculated" | "manual";
-type ExtractionSource = "quick" | "paste" | "pdf" | "online-ai";
+type ExtractionSource = "quick" | "paste" | "pdf";
 
 type SimpleAssessment = {
   id: string;
@@ -258,38 +258,20 @@ function getConfidenceInfo(confidence = 0.5) {
 }
 
 function getExtractionSourceLabel(source: ExtractionSource) {
-  if (source === "online-ai") {
-    return "Improved with online AI";
-  }
-
   if (source === "pdf") {
     return "Extracted from PDF";
   }
 
-  return "Detected automatically";
+  return source === "paste" ? "Detected from syllabus" : "Detected automatically";
 }
 
-function getExtractionQualityLabel(
-  extraction: ExtractedSyllabus,
-  source: ExtractionSource
-) {
-  if (source === "online-ai") {
-    return "Improved with online AI";
-  }
-
+function getExtractionQualityLabel(extraction: ExtractedSyllabus) {
   return shouldUseRuleExtraction(extraction)
     ? "Detected automatically"
     : "Needs review";
 }
 
-function getExtractionQualityTone(
-  extraction: ExtractedSyllabus,
-  source: ExtractionSource
-) {
-  if (source === "online-ai") {
-    return "teal" as const;
-  }
-
+function getExtractionQualityTone(extraction: ExtractedSyllabus) {
   return shouldUseRuleExtraction(extraction) ? ("green" as const) : ("gold" as const);
 }
 
@@ -418,180 +400,6 @@ function shouldUseRuleExtraction(extraction: ExtractedSyllabus) {
   );
 }
 
-function isOnlineAiEnabled() {
-  return (
-    process.env.NEXT_PUBLIC_ONLINE_AI_ENABLED === "true" &&
-    process.env.NEXT_PUBLIC_AI_PROVIDER === "supabase-edge"
-  );
-}
-
-async function getFunctionErrorMessage(error: unknown) {
-  const fallback =
-    "Online AI assist is unavailable. You can still review the automatic detection.";
-  const context =
-    error && typeof error === "object" && "context" in error
-      ? (error as { context?: unknown }).context
-      : null;
-  const rawMessage =
-    error instanceof Error
-      ? error.message
-      : typeof error === "object" &&
-          error !== null &&
-          "message" in error &&
-          typeof error.message === "string"
-        ? error.message
-        : "";
-
-  if (context instanceof Response) {
-    const payload = (await context
-      .clone()
-      .json()
-      .catch(() => null)) as { error?: unknown } | null;
-
-    if (typeof payload?.error === "string") {
-      const edgeMessage = payload.error;
-
-      if (/gemini|api key|secret/i.test(edgeMessage)) {
-        return "Online AI assist is missing its Gemini API key. You can still review the automatic detection.";
-      }
-
-      if (/quota|rate limit|too many requests/i.test(edgeMessage)) {
-        return "Online AI assist hit its usage limit. You can still review the automatic detection.";
-      }
-
-      return edgeMessage;
-    }
-
-    if (context.status === 404) {
-      return "Online AI assist is not deployed yet. You can still review the automatic detection.";
-    }
-
-    if (context.status === 401 || context.status === 403) {
-      return "Online AI assist is blocked by configuration. You can still review the automatic detection.";
-    }
-
-    if (context.status === 429) {
-      return "Online AI assist hit its usage limit. You can still review the automatic detection.";
-    }
-
-    if (context.status >= 500) {
-      return "Online AI assist is temporarily unavailable. You can still review the automatic detection.";
-    }
-  }
-
-  if (/failed to send|fetch|network|cors|load failed/i.test(rawMessage)) {
-    return fallback;
-  }
-
-  if (/function.*not.*found|not deployed|404/i.test(rawMessage)) {
-    return "Online AI assist is not deployed yet. You can still review the automatic detection.";
-  }
-
-  if (/quota|rate limit|too many requests/i.test(rawMessage)) {
-    return "Online AI assist hit its usage limit. You can still review the automatic detection.";
-  }
-
-  if (/gemini|api key|secret/i.test(rawMessage)) {
-    return "Online AI assist is missing its Gemini API key. You can still review the automatic detection.";
-  }
-
-  return fallback;
-}
-
-function logOnlineAiDebug(
-  stage: "attempt" | "error",
-  details?: { message?: string }
-) {
-  if (process.env.NODE_ENV !== "development") {
-    return;
-  }
-
-  const config = getSupabasePublicConfig();
-
-  console.log("Simple Mode online AI debug", {
-    edgeFunction: "ai-extract-syllabus",
-    errorMessage: details?.message ?? null,
-    hasPublicKey: config.hasPublicKey,
-    hasUrl: config.hasUrl,
-    stage
-  });
-}
-
-function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
-  if (!payload || typeof payload !== "object") {
-    throw new Error(
-      "AI extraction returned an invalid result. Try again or edit manually."
-    );
-  }
-
-  const extraction = payload as Partial<ExtractedSyllabus>;
-
-  if (
-    !Array.isArray(extraction.assessments) ||
-    !Array.isArray(extraction.warnings) ||
-    typeof extraction.confidence !== "number"
-  ) {
-    throw new Error(
-      "AI extraction returned an invalid result. Try again or edit manually."
-    );
-  }
-
-  return {
-    ...extraction,
-    classroom: extraction.classroom ?? null,
-    courseDescription: extraction.courseDescription ?? null,
-    courseName: extraction.courseName ?? null,
-    courseCode: extraction.courseCode ?? null,
-    creditHours: extraction.creditHours ?? null,
-    fieldConfidence: extraction.fieldConfidence ?? {},
-    instructor: extraction.instructor ?? null,
-    instructorEmail: extraction.instructorEmail ?? null,
-    officeHours: extraction.officeHours ?? null,
-    prerequisites: extraction.prerequisites ?? null,
-    schedule: extraction.schedule ?? null,
-    semester: extraction.semester ?? null,
-    textbooks: extraction.textbooks ?? []
-  } as ExtractedSyllabus;
-}
-
-async function requestOnlineAiExtraction(text: string) {
-  if (!isOnlineAiEnabled()) {
-    throw new Error(
-      "Online AI assist is unavailable. You can still review the automatic detection."
-    );
-  }
-
-  let supabase: ReturnType<typeof createSupabaseBrowserClient>;
-
-  try {
-    supabase = createSupabaseBrowserClient();
-  } catch {
-    throw new Error(
-      "Online AI assist is unavailable. You can still review the automatic detection."
-    );
-  }
-
-  logOnlineAiDebug("attempt");
-
-  const { data, error } = await supabase.functions.invoke<
-    ExtractedSyllabus | { error?: string }
-  >("ai-extract-syllabus", {
-    body: { text }
-  });
-
-  if (error) {
-    const message = await getFunctionErrorMessage(error);
-    logOnlineAiDebug("error", { message });
-    throw new Error(message);
-  }
-
-  if (data && "error" in data && data.error) {
-    throw new Error(await getFunctionErrorMessage(new Error(data.error)));
-  }
-
-  return validateExtractionPayload(data);
-}
-
 function getCourseGradeStats(course: SimpleCourse) {
   const rows = course.assessments.map((assessment) => {
     const weight = parsePositiveNumber(assessment.weightPercentage);
@@ -659,7 +467,7 @@ function getCourseQualityPoints(course: SimpleCourse) {
 
 function getVerifiedSource(source: ExtractionSource): VerifiedExtractionSource {
   if (source === "pdf") return "pdf";
-  if (source === "paste" || source === "online-ai") return "pasted_text";
+  if (source === "paste") return "pasted_text";
   return "quick_add";
 }
 
@@ -1265,35 +1073,7 @@ export function SimpleGpaCalculator() {
     ruleSource: ExtractionSource
   ) {
     const ruleResult = extractGradeBreakdown(text, { mode });
-
-    if (shouldUseRuleExtraction(ruleResult)) {
-      showExtractionResult(courseId, ruleResult, ruleSource);
-      return;
-    }
-
-    if (isOnlineAiEnabled()) {
-      try {
-        const aiResult = await requestOnlineAiExtraction(text);
-        showExtractionResult(courseId, aiResult, "online-ai");
-        return;
-      } catch (aiError) {
-        showExtractionResult(courseId, ruleResult, ruleSource);
-        setError(
-          aiError instanceof Error
-            ? aiError.message
-            : "AI assist is unavailable. You can still use automatic detection."
-        );
-        return;
-      }
-    }
-
     showExtractionResult(courseId, ruleResult, ruleSource);
-
-    if (!shouldUseRuleExtraction(ruleResult)) {
-      setError(
-        "AI assist is unavailable. You can still use automatic detection."
-      );
-    }
   }
 
   async function runExtraction(
@@ -1591,7 +1371,7 @@ export function SimpleGpaCalculator() {
 
     try {
       await saveVerifiedExtraction({
-        aiProvider: pendingFeedback.source === "online-ai" ? "gemini" : "rule_based",
+        aiProvider: "rule_based",
         confirmedExtraction: pendingFeedback.extraction,
         originalExtraction: pendingFeedback.extraction,
         sourceType: getVerifiedSource(pendingFeedback.source),
@@ -2805,9 +2585,7 @@ function ExtractionModalContent({
   return (
     <div className="space-y-4">
       <div className="flex flex-wrap items-center gap-2">
-        <Badge tone={isOnlineAiEnabled() ? "teal" : "ink"}>
-          {isOnlineAiEnabled() ? "AI assist: Online" : "AI assist: Automatic"}
-        </Badge>
+        <Badge tone="teal">Smart extraction</Badge>
         <span className="text-sm text-ink-500">
           Results are reviewed before they are applied to {course.name || "this course"}.
         </span>
@@ -3152,11 +2930,11 @@ function ExtractionReview({
         <Badge tone="ink">
           {Math.round(review.extraction.confidence * 100)}% confidence
         </Badge>
-        <Badge tone={review.source === "online-ai" ? "teal" : "ink"}>
+        <Badge tone={review.source === "pdf" ? "teal" : "ink"}>
           {getExtractionSourceLabel(review.source)}
         </Badge>
-        <Badge tone={getExtractionQualityTone(review.extraction, review.source)}>
-          {getExtractionQualityLabel(review.extraction, review.source)}
+        <Badge tone={getExtractionQualityTone(review.extraction)}>
+          {getExtractionQualityLabel(review.extraction)}
         </Badge>
       </div>
 

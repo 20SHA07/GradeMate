@@ -8,7 +8,7 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - TypeScript
 - Tailwind CSS
 - Supabase-ready auth, database, and storage structure
-- Browser rule-based extraction with optional Gemini or local Ollama assist
+- Browser PDF text extraction plus deterministic syllabus parsing
 - Zod-ready validation structure
 
 ## Routes
@@ -37,7 +37,7 @@ npm install
 npm run dev
 ```
 
-Copy `.env.example` to `.env.local` when wiring Supabase and local AI.
+Copy `.env.example` to `.env.local` when wiring Supabase.
 
 ## Supabase Setup
 
@@ -72,39 +72,11 @@ For GitHub Pages, add those same public variable names as repository secrets
 before the Pages workflow runs. The browser app must never use
 `SUPABASE_SERVICE_ROLE_KEY`.
 
-For local syllabus AI extraction during development, run Ollama locally and set:
-
-```bash
-OLLAMA_BASE_URL=http://localhost:11434
-OLLAMA_MODEL=llama3.2:3b
-```
-
-For online AI assist on the public GitHub Pages site, GradeMate calls a
-Supabase Edge Function. Add these public build variables to `.env.local` and to
-your GitHub Pages workflow/repository secrets:
-
-```bash
-NEXT_PUBLIC_ONLINE_AI_ENABLED=true
-NEXT_PUBLIC_AI_PROVIDER=supabase-edge
-```
-
-Then deploy the Gemini Edge Function and set the Gemini key as a Supabase
-secret. Do not put `GEMINI_API_KEY` in frontend env files.
-
-```bash
-supabase functions deploy ai-extract-syllabus
-supabase secrets set GEMINI_API_KEY="your-gemini-api-key"
-```
-
-Optional Edge Function secret:
-
-```bash
-supabase secrets set GEMINI_MODEL="gemini-2.5-flash"
-```
-
-The browser always runs the rule-based parser first. Gemini is only called when
-the local result is weak, unclear, or incomplete. AI results are suggestions
-only and must be reviewed before saving.
+Syllabus extraction runs locally in the browser. GradeMate reads PDF text with
+PDF.js, runs the shared deterministic extractor, shows course info and
+assessment suggestions, then requires review before saving. Public GitHub Pages
+extraction does not depend on Gemini, Ollama, OpenAI, or Supabase Edge
+Functions.
 
 If you already ran the older schema, run
 [supabase/syllabus-storage.sql](supabase/syllabus-storage.sql) in the SQL editor
@@ -232,21 +204,18 @@ against the latest proposal with regression thresholds. It fails if course info
 changes, assessment counts change, any assessment weight drifts by more than 1%,
 or the total assessment weight differs by more than 1%.
 
-### Golden examples and AI prompts
+### Golden examples and deterministic extraction
 
 Golden JSON files are not used to train a model. They are regression fixtures
-and prompt examples. After reviewing `training-data/review-report.html`, you can:
+for the deterministic extractor. After reviewing `training-data/review-report.html`, you can:
 
 1. Edit or add corrected JSON in `training-data/expected-json/`.
 2. Run `npm run dataset:propose -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"`.
 3. Run `npm run test:dataset`.
 
-GradeMate also keeps a small curated subset of representative golden examples in
-`src/lib/syllabus/fewShotExamples.ts`. Local Ollama and the Supabase Gemini Edge
-Function include two or three of those examples in the prompt, preferring a
-similar department when one is detected and otherwise using a diverse mix of
-engineering/science, math, and humanities/business examples. Keep this list
-small so prompts stay fast and cheap.
+The extractor improves through better section detection, candidate scoring, and
+new golden examples. Add corrected examples over time, rerun
+`dataset:propose`, then run `test:dataset` to catch regressions.
 
 ### Extractor Lab
 
@@ -270,7 +239,7 @@ SUPABASE_SERVICE_ROLE_KEY="your-service-role-key" npm run dataset:export-verifie
 
 Review exported files in `training-data/verified-json/`, then manually promote
 good examples into `training-data/expected-json/` before using them as benchmark
-fixtures or curated few-shot examples.
+fixtures.
 
 In Supabase Auth URL Configuration, use:
 

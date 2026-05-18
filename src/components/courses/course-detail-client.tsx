@@ -52,13 +52,11 @@ import {
   type VerifiedExtractionFeedback,
   type VerifiedExtractionSource
 } from "@/lib/syllabus/verified-extractions";
-import { getAppBasePath } from "@/lib/routes";
 import {
   getCoreAssessmentPayload,
   getCoreAssessmentPayloads,
   isMissingAssessmentOptionalColumnError
 } from "@/lib/supabase/assessment-write";
-import type { SupabaseBrowserClient } from "@/lib/supabase/client";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -96,7 +94,7 @@ type CourseInfoReviewField = {
   confidence?: number;
 };
 
-type ExtractionSource = "ai" | "local-ai" | "online-ai" | "pdf" | "rule";
+type ExtractionSource = "pdf" | "rule";
 
 type ExtractionDraft = {
   extraction: ExtractedSyllabus;
@@ -239,14 +237,6 @@ function getConfidenceInfo(confidence: number) {
 }
 
 function getExtractionSourceLabel(source: ExtractionSource | null) {
-  if (source === "online-ai") {
-    return "Improved with online AI";
-  }
-
-  if (source === "ai" || source === "local-ai") {
-    return "Improved with local AI";
-  }
-
   if (source === "pdf") {
     return "Extracted from PDF";
   }
@@ -255,26 +245,16 @@ function getExtractionSourceLabel(source: ExtractionSource | null) {
 }
 
 function getExtractionQualityLabel(
-  extraction: ExtractedSyllabus,
-  source: ExtractionSource | null
+  extraction: ExtractedSyllabus
 ) {
-  if (source === "online-ai") {
-    return "Improved with online AI";
-  }
-
   return shouldUseRuleExtraction(extraction)
     ? "Detected automatically"
     : "Needs review";
 }
 
 function getExtractionQualityTone(
-  extraction: ExtractedSyllabus,
-  source: ExtractionSource | null
+  extraction: ExtractedSyllabus
 ) {
-  if (source === "online-ai") {
-    return "teal" as const;
-  }
-
   return shouldUseRuleExtraction(extraction) ? ("green" as const) : ("gold" as const);
 }
 
@@ -453,176 +433,6 @@ function shouldUseRuleExtraction(extraction: ExtractedSyllabus) {
   );
 }
 
-function getLocalAiErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    if (/ai assist is not configured/i.test(error.message)) {
-      return "AI assist is not configured. You can still use automatic text detection.";
-    }
-
-    if (/local ai is not running/i.test(error.message)) {
-      return "Local AI is not running. You can still use manual detection or start Ollama.";
-    }
-
-    return error.message;
-  }
-
-  return "Local AI is not running. You can still use manual detection or start Ollama.";
-}
-
-function getOnlineAiErrorMessage(error: unknown) {
-  if (error instanceof Error) {
-    return error.message || "AI assist is unavailable. You can still use automatic detection.";
-  }
-
-  return "AI assist is unavailable. You can still use automatic detection.";
-}
-
-function isOnlineAiEnabled() {
-  return (
-    process.env.NEXT_PUBLIC_ONLINE_AI_ENABLED === "true" &&
-    process.env.NEXT_PUBLIC_AI_PROVIDER === "supabase-edge"
-  );
-}
-
-function getAiAssistLabel() {
-  if (isOnlineAiEnabled()) {
-    return "AI assist: Online";
-  }
-
-  if (canUseLocalAiExtraction()) {
-    return "AI assist: Local";
-  }
-
-  return "AI assist: Automatic";
-}
-
-function canUseLocalAiExtraction() {
-  if (typeof window === "undefined") {
-    return false;
-  }
-
-  return ["localhost", "127.0.0.1", "::1"].includes(window.location.hostname);
-}
-
-async function requestLocalAiExtraction(text: string) {
-  if (!canUseLocalAiExtraction()) {
-    throw new Error(
-      "AI assist is not configured. You can still use automatic text detection."
-    );
-  }
-
-  const response = await fetch(
-    `${getAppBasePath()}/api/local-ai/extract-syllabus/`,
-    {
-      body: JSON.stringify({ text }),
-      headers: {
-        "Content-Type": "application/json"
-      },
-      method: "POST"
-    }
-  );
-  const payload = (await response.json().catch(() => null)) as
-    | (Partial<ExtractedSyllabus> & { error?: string })
-    | null;
-
-  if (!response.ok) {
-    throw new Error(
-      payload?.error ??
-        (response.status === 422
-          ? "AI extraction returned an invalid result. Try again or edit manually."
-          : "Local AI is not running. You can still use manual detection or start Ollama.")
-    );
-  }
-
-  return payload as ExtractedSyllabus;
-}
-
-function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
-  if (!payload || typeof payload !== "object") {
-    throw new Error(
-      "AI extraction returned an invalid result. Try again or edit manually."
-    );
-  }
-
-  const extraction = payload as Partial<ExtractedSyllabus>;
-
-  if (
-    !Array.isArray(extraction.assessments) ||
-    !Array.isArray(extraction.warnings) ||
-    typeof extraction.confidence !== "number"
-  ) {
-    throw new Error(
-      "AI extraction returned an invalid result. Try again or edit manually."
-    );
-  }
-
-  return {
-    ...extraction,
-    classroom: extraction.classroom ?? null,
-    courseDescription: extraction.courseDescription ?? null,
-    courseName: extraction.courseName ?? null,
-    courseCode: extraction.courseCode ?? null,
-    creditHours: extraction.creditHours ?? null,
-    fieldConfidence: extraction.fieldConfidence ?? {},
-    instructor: extraction.instructor ?? null,
-    instructorEmail: extraction.instructorEmail ?? null,
-    officeHours: extraction.officeHours ?? null,
-    prerequisites: extraction.prerequisites ?? null,
-    schedule: extraction.schedule ?? null,
-    semester: extraction.semester ?? null,
-    textbooks: extraction.textbooks ?? []
-  } as ExtractedSyllabus;
-}
-
-async function getFunctionErrorMessage(error: unknown) {
-  const fallback =
-    "AI assist is unavailable. You can still use automatic detection.";
-  const context =
-    error && typeof error === "object" && "context" in error
-      ? (error as { context?: unknown }).context
-      : null;
-
-  if (context instanceof Response) {
-    const payload = (await context
-      .clone()
-      .json()
-      .catch(() => null)) as { error?: unknown } | null;
-
-    if (typeof payload?.error === "string") {
-      return payload.error;
-    }
-  }
-
-  return fallback;
-}
-
-async function requestOnlineAiExtraction(
-  text: string,
-  supabase: SupabaseBrowserClient | null
-) {
-  if (!isOnlineAiEnabled() || !supabase) {
-    throw new Error(
-      "AI assist is unavailable. You can still use automatic detection."
-    );
-  }
-
-  const { data, error } = await supabase.functions.invoke<
-    ExtractedSyllabus | { error?: string }
-  >("ai-extract-syllabus", {
-    body: { text }
-  });
-
-  if (error) {
-    throw new Error(await getFunctionErrorMessage(error));
-  }
-
-  if (data && "error" in data && data.error) {
-    throw new Error(data.error);
-  }
-
-  return validateExtractionPayload(data);
-}
-
 function normalizeReviewName(value: string) {
   return value.trim().toLowerCase();
 }
@@ -676,10 +486,7 @@ function buildSaveMessage(savedCount: number, skippedNames: string[]) {
 
 function getVerifiedSource(source: ExtractionSource | null): VerifiedExtractionSource {
   if (source === "pdf") return "pdf";
-  if (source === "rule" || source === "ai" || source === "local-ai" || source === "online-ai") {
-    return "pasted_text";
-  }
-  return "quick_add";
+  return "pasted_text";
 }
 
 function SmartSyllabusExtractor({
@@ -801,35 +608,6 @@ function SmartSyllabusExtractor({
     ruleSource: ExtractionSource
   ) {
     const ruleResult = extractGradeBreakdown(text, { mode });
-
-    if (shouldUseRuleExtraction(ruleResult)) {
-      showExtractionResult(ruleResult, ruleSource);
-      return;
-    }
-
-    if (isOnlineAiEnabled()) {
-      try {
-        const aiResult = await requestOnlineAiExtraction(text, supabase);
-        showExtractionResult(aiResult, "online-ai");
-        return;
-      } catch (aiError) {
-        showExtractionResult(ruleResult, ruleSource);
-        setError(getOnlineAiErrorMessage(aiError));
-        return;
-      }
-    }
-
-    if (canUseLocalAiExtraction()) {
-      try {
-        const aiResult = await requestLocalAiExtraction(text);
-        showExtractionResult(aiResult, "local-ai");
-      } catch (aiError) {
-        showExtractionResult(ruleResult, ruleSource);
-        setError(getLocalAiErrorMessage(aiError));
-      }
-      return;
-    }
-
     showExtractionResult(ruleResult, ruleSource);
   }
 
@@ -1183,12 +961,7 @@ function SmartSyllabusExtractor({
 
     try {
       await saveVerifiedExtraction({
-        aiProvider:
-          pendingFeedback.source === "online-ai"
-            ? "gemini"
-            : pendingFeedback.source === "local-ai"
-              ? "local_ollama"
-              : "rule_based",
+        aiProvider: "rule_based",
         confirmedExtraction: pendingFeedback.extraction,
         originalExtraction: pendingFeedback.extraction,
         sourceType: getVerifiedSource(pendingFeedback.source),
@@ -1220,7 +993,7 @@ function SmartSyllabusExtractor({
               <FileText aria-hidden="true" className="h-4 w-4" />
               Smart Syllabus Extractor
             </div>
-            <Badge tone="teal">{getAiAssistLabel()}</Badge>
+            <Badge tone="teal">Smart extraction</Badge>
           </div>
           <h2 className="mt-2 text-xl font-semibold text-ink-900">
             Create assessments from a syllabus
@@ -1465,19 +1238,12 @@ function SmartSyllabusExtractor({
               {Math.round(extraction.confidence * 100)}% confidence
             </Badge>
             <Badge
-              tone={
-                extractionSource === "ai" ||
-                extractionSource === "local-ai" ||
-                extractionSource === "online-ai" ||
-                extractionSource === "pdf"
-                  ? "teal"
-                  : "ink"
-              }
+              tone={extractionSource === "pdf" ? "teal" : "ink"}
             >
               {getExtractionSourceLabel(extractionSource)}
             </Badge>
-            <Badge tone={getExtractionQualityTone(extraction, extractionSource)}>
-              {getExtractionQualityLabel(extraction, extractionSource)}
+            <Badge tone={getExtractionQualityTone(extraction)}>
+              {getExtractionQualityLabel(extraction)}
             </Badge>
             {extraction.instructor ? (
               <Badge tone="teal">Instructor: {extraction.instructor}</Badge>

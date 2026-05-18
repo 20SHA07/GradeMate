@@ -6,8 +6,6 @@ export type VerifiedExtractionFeedback = "correct" | "incorrect" | "corrected";
 export type VerifiedExtractionSource = "pdf" | "pasted_text" | "quick_add" | "course_library";
 export type VerifiedExtractionAiProvider =
   | "rule_based"
-  | "local_ollama"
-  | "gemini"
   | "none";
 
 export type VerifiedExtractionInput = {
