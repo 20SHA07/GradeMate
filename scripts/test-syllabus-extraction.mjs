@@ -589,6 +589,244 @@ assert.equal(
   false
 );
 
+const engl102DocxStyle = extractSyllabusFromText(`Course Code and Title:
+ENGL 102 Academic English II
+Semester:
+Spring 2026
+Instructor:
+Joud Jabri-Pickett
+Contact Email:
+joud.pickett@ku.ac.ae
+Office Room Number:
+Building 1, Room 1023A
+Assessment Methodology
+Tentative Dates
+Weight
+Coursework:
+Individual Writing: Technical report Part 1
+Week 3
+15%
+Individual Writing: Technical report Part 2
+Week 6
+25%
+Individual Digital presentation
+Week 7
+20%
+Group Oral Presentation of Proposal
+Week 13 & 14
+10%
+Group (</= 3 students) proposal in response to a Request for Proposals (RFP)
+Week 14
+30%
+Instructor Policy`);
+assert.equal(engl102DocxStyle.courseCode, "ENGL 102");
+assert.equal(engl102DocxStyle.courseName, "Academic English II");
+assert.equal(engl102DocxStyle.semester, "Spring 2026");
+assert.equal(engl102DocxStyle.instructor, "Joud Jabri-Pickett");
+assert.equal(engl102DocxStyle.instructorEmail, "joud.pickett@ku.ac.ae");
+assert.equal(engl102DocxStyle.officeRoom, "Building 1, Room 1023A");
+expectAssessmentNames(engl102DocxStyle, [
+  "Individual Writing: Technical report Part 1",
+  "Individual Writing: Technical report Part 2",
+  "Individual Digital presentation",
+  "Group Oral Presentation of Proposal",
+  "Group proposal in response to a Request for Proposals (RFP)"
+]);
+expectAssessment(engl102DocxStyle, "Individual Writing: Technical report Part 1", 15);
+expectAssessment(engl102DocxStyle, "Individual Writing: Technical report Part 2", 25);
+expectAssessment(engl102DocxStyle, "Individual Digital presentation", 20);
+expectAssessment(engl102DocxStyle, "Group Oral Presentation of Proposal", 10);
+expectAssessment(
+  engl102DocxStyle,
+  "Group proposal in response to a Request for Proposals (RFP)",
+  30
+);
+
+const gens300Detailed = extractSyllabusFromText(`Course Code and Title: GENS 300 - Career Preparation
+Assessment
+Assessment Instruments Contribution to Course Grade (%)
+CV Submission 15% 5-7
+Documented evidence of career
+40% 7-14
+planning and industry exploration
+Mock Interview 15% 12
+Attendance of Professional Development workshops (5) 20% 1-13
+Final Quiz 10% 14
+Assessment Methodology:
+Assessment Instruments Tentative Dates Weight (%)
+CV Submission
+-Initial submission weighted (5%) week 5 5-7 15%
+- Final CV version weighed (10%) week 7
+Documented evidence of career planning and industry exploration
+- Career development plan (10%) Week 10
+- Complete two experiences and submit valid evidence in Week 13 (20%) 7-14 40%
+- LinkedIn courses completion (5%) Week 14
+- Weekly online quizzes (5%) Week 1-14
+Mock Interview 12-14 15%
+Attendance of Professional Development workshops (5 workshops) 1-14 20%
+Final Quiz 14 10%
+Teaching Plan`);
+expectAssessmentNames(gens300Detailed, [
+  "Initial CV submission",
+  "Final CV version",
+  "Career development plan",
+  "Complete two experiences and submit valid evidence",
+  "LinkedIn courses completion",
+  "Weekly online quizzes",
+  "Mock Interview",
+  "Attendance of Professional Development workshops (5 workshops)",
+  "Final Quiz"
+]);
+expectAssessment(gens300Detailed, "Initial CV submission", 5);
+expectAssessment(gens300Detailed, "Final CV version", 10);
+expectAssessment(gens300Detailed, "Career development plan", 10);
+expectAssessment(
+  gens300Detailed,
+  "Complete two experiences and submit valid evidence",
+  20
+);
+expectAssessment(gens300Detailed, "LinkedIn courses completion", 5);
+expectAssessment(gens300Detailed, "Weekly online quizzes", 5);
+assert.ok(
+  gens300Detailed.warnings.some((warning) =>
+    /Using detailed assessment methodology instead of summary table/i.test(warning)
+  ),
+  "Expected GENS 300 detailed override warning"
+);
+
+const gens300Fallback = extractSyllabusFromText(`GENS 300 Career Preparation
+Assessment Instruments Contribution to Course Grade (%)
+CV Submission 15% 5-7
+Documented evidence of career planning and industry exploration 40% 7-14
+Mock Interview 15% 12
+Attendance of Professional Development workshops (5) 20% 1-13
+Final Quiz 10% 14
+Assessment Methodology:
+CV Submission - Initial submission weighted (5%) week 5
+Documented evidence of career planning and industry exploration - Career development plan (10%) Week 10
+Mock Interview 15%
+Teaching Plan`);
+expectAssessmentNames(gens300Fallback, [
+  "CV Submission",
+  "Documented evidence of career planning and industry exploration",
+  "Mock Interview",
+  "Attendance of Professional Development workshops (5)",
+  "Final Quiz"
+]);
+expectAssessment(gens300Fallback, "CV Submission", 15);
+expectAssessment(
+  gens300Fallback,
+  "Documented evidence of career planning and industry exploration",
+  40
+);
+
+const cosc312Grouped = extractSyllabusFromText(`Course Code and Title COSC 312 Design and Analysis of Algorithms
+Spring 2026
+Assessment Methodology
+Tentative Dates Weight (%)
+Coursework: Every 2-3 weeks 30%
+Projects Every 3-4 weeks 20
+Semester Examination Week 8 20
+Final Examination Week 16 30
+Teaching Plan
+Week 3 Quiz 1`);
+expectAssessmentNames(cosc312Grouped, [
+  "Coursework",
+  "Projects",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc312Grouped, "Coursework", 30);
+expectAssessment(cosc312Grouped, "Projects", 20);
+expectAssessment(cosc312Grouped, "Semester Examination", 20);
+expectAssessment(cosc312Grouped, "Final Examination", 30);
+
+const phys121DocxStyle = extractSyllabusFromText(`Course Code and Title:
+PHYS 121 _ University Physics I
+Semester:
+Spring 2026 (Section 2)
+Instructor:
+Mr. Nabee Hasheem
+Contact Email:
+nabee.hasheem@ku.ac.ae
+Assessment Methodology
+Coursework
+Tentative Dates
+Weight
+Quizzes:
+4 descriptive questions /30 min
+Quiz 1
+Quiz + WAs = 24% + 6% = 30%
+Quiz 2
+Quiz 3
+Quiz 4
+Web assign
+Laboratory
+1-lab report per each experiment
+During lab time
+20%
+Semester Examination (s)
+Midterm test
+Oct 24, 2025
+20%
+Final test
+TBA (registrar office)
+30%
+Teaching Plan
+Week 3 Quiz 1`);
+assert.equal(phys121DocxStyle.courseCode, "PHYS 121");
+assert.equal(phys121DocxStyle.courseName, "University Physics I");
+assert.equal(phys121DocxStyle.instructor, "Mr. Nabee Hasheem");
+assert.equal(phys121DocxStyle.instructorEmail, "nabee.hasheem@ku.ac.ae");
+expectAssessmentNames(phys121DocxStyle, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Web assign",
+  "Laboratory",
+  "Midterm test",
+  "Final test"
+]);
+expectAssessment(phys121DocxStyle, "Quiz 1", 6);
+expectAssessment(phys121DocxStyle, "Quiz 4", 6);
+expectAssessment(phys121DocxStyle, "Web assign", 6);
+assert.ok(
+  phys121DocxStyle.warnings.some((warning) =>
+    /Split quiz total 24% evenly across 4 quizzes/i.test(warning)
+  ),
+  "Expected PHYS121 DOCX quiz formula split warning"
+);
+
+const cosc354Grouped = extractSyllabusFromText(`Course Code and Title COSC 354 Operating Systems
+Semester:
+Fall 2025
+Instructor Name Azzam Mourad
+Contact Email/ Office Ext. No. azzam.mourad@ku.ac.ae
+Assessment Methodology
+Tentative Dates Weight
+Quizzes and assignments 2-3 quizzes + Assignments 20%
+Laboratory Weekly Tasks 20%
+Semester Examination (s) Week 8 25%
+Final Examination Week 16 35%
+Teaching Plan
+Week 3 Quiz 1
+Week 9 Midterm Exam`);
+expectAssessmentNames(cosc354Grouped, [
+  "Quizzes and assignments",
+  "Laboratory",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc354Grouped, "Quizzes and assignments", 20);
+expectAssessment(cosc354Grouped, "Laboratory", 20);
+expectAssessment(cosc354Grouped, "Semester Examination", 25);
+expectAssessment(cosc354Grouped, "Final Examination", 35);
+assert.equal(
+  cosc354Grouped.assessments.some((assessment) => /quiz\s+\d/i.test(assessment.name)),
+  false
+);
+
 const gradeScaleOnly = extractSyllabusFromText(`Grading Scheme
 Letter Grade Grade Point Grade Range Description
 A 4.00 From 92.5% to 100% Excellent

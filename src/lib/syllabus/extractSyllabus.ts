@@ -97,6 +97,9 @@ const assessmentKeywords = [
   "participation",
   "attendance",
   "presentation",
+  "digital presentation",
+  "writing",
+  "proposal",
   "report",
   "essay",
   "portfolio",
@@ -108,6 +111,11 @@ const assessmentKeywords = [
   "viva",
   "oral",
   "in-class activity",
+  "cv",
+  "career development",
+  "career planning",
+  "workshop",
+  "workshops",
   "web assign",
   "webassign",
   "wa",
@@ -770,19 +778,28 @@ function extractClassroom(lines: string[]) {
 }
 
 function extractOfficeRoom(lines: string[]) {
-  const labelled = lines.find((line) => /^office\s+room\s+no\.?\s+/i.test(line));
+  const labelled = lines.find((line) =>
+    /^office\s+room\s+(?:no\.?|number)\s+/i.test(line)
+  );
 
   if (labelled) {
-    return labelled.replace(/^office\s+room\s+no\.?\s*/i, "").trim() || null;
+    return labelled.replace(/^office\s+room\s+(?:no\.?|number)\s*/i, "").trim() || null;
   }
 
-  const labelIndex = lines.findIndex((line) => /^office\s+room\s+no\.?\s*$/i.test(line));
+  const labelIndex = lines.findIndex((line) =>
+    /^office\s+room\s+(?:no\.?|number)\s*$/i.test(line)
+  );
 
   if (labelIndex >= 0) {
     return lines[labelIndex + 1]?.trim() || null;
   }
 
-  return extractLabelValue(lines, ["office room no", "office room", "office location"]);
+  return extractLabelValue(lines, [
+    "office room number",
+    "office room no",
+    "office room",
+    "office location"
+  ]);
 }
 
 function extractOfficeHours(lines: string[]) {
@@ -1477,8 +1494,47 @@ function getKuLineWeight(line: string) {
   return matches.length > 0 ? matches[matches.length - 1] : null;
 }
 
+function getKuBareTrailingWeight(line: string) {
+  if (/^(?:week|weeks|around week)\s+\d{1,2}\b/i.test(line)) {
+    return null;
+  }
+
+  const match = line.match(/\b(\d{1,3}(?:\.\d+)?)\s*$/);
+
+  if (!match) {
+    return null;
+  }
+
+  const weight = cleanWeightValue(match[1]);
+
+  if (weight === null) {
+    return null;
+  }
+
+  const beforeWeight = line.slice(0, match.index).trim();
+  const hasTimingCue =
+    /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|closed book|contact based|assigned by registrar|final week)\b/i.test(
+      beforeWeight
+    );
+  const hasWeightCue = /\b(?:weight|marks?|contribution|percentage)\b/i.test(line);
+  const numberedChildWithoutExplicitWeight =
+    /\b(?:quiz|homework|assignment|project|lab|test)\s*#?\s*\d{1,2}\b/i.test(
+      beforeWeight
+    ) && !hasWeightCue;
+
+  if (!hasTimingCue && !hasWeightCue) {
+    return null;
+  }
+
+  if (numberedChildWithoutExplicitWeight) {
+    return null;
+  }
+
+  return weight;
+}
+
 function isStandaloneKuWeightLine(line: string) {
-  return /^[-–—]?\s*\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\s*$/i.test(line);
+  return /^[-–—]?\s*\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)?\s*$/i.test(line);
 }
 
 function isKuDateLine(line: string) {
@@ -1500,7 +1556,8 @@ function getKuExplicitWeight(
   lines: string[],
   index: number
 ): { weight: number; endIndex: number; snippet: string } | null {
-  const currentWeight = getKuLineWeight(lines[index]);
+  const currentWeight =
+    getKuLineWeight(lines[index]) ?? getKuBareTrailingWeight(lines[index]);
 
   if (currentWeight !== null) {
     return {
@@ -1516,7 +1573,7 @@ function getKuExplicitWeight(
     lookahead += 1
   ) {
     const line = lines[lookahead];
-    const weight = getKuLineWeight(line);
+    const weight = getKuLineWeight(line) ?? getKuBareTrailingWeight(line);
 
     if (weight !== null) {
       const intermediateLines = lines.slice(index + 1, lookahead);
@@ -1575,11 +1632,29 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   }
 
   const exactPatterns: Array<[RegExp, string]> = [
+    [/\bindividual writing\b.*\btechnical report\b.*\bpart\s*1\b/i, "Individual Writing: Technical report Part 1"],
+    [/\bindividual writing\b.*\btechnical report\b.*\bpart\s*2\b/i, "Individual Writing: Technical report Part 2"],
+    [/\bindividual digital presentation\b/i, "Individual Digital presentation"],
+    [/\bgroup oral presentation of proposal\b/i, "Group Oral Presentation of Proposal"],
+    [/\bgroup\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i, "Group proposal in response to a Request for Proposals (RFP)"],
+    [/\bquizzes\s+and\s+assignments\b/i, "Quizzes and assignments"],
     [/\bpre-assigned quizzes\b/i, "Pre-Assigned Quizzes"],
     [/\bassignments?,\s*project\s*&\s*field trip\b/i, "Assignments, project & field trip"],
     [/\bproject presentation and report\b/i, "Project Presentation and Report"],
+    [/\bproject\s*\(demo\)/i, "Project (demo)"],
     [/\bmini-design project\b/i, "Mini-Design Project"],
-    [/\bterm project\b/i, "Term project"]
+    [/\bterm project\b/i, "Term project"],
+    [/\binitial submission weighted\b/i, "Initial CV submission"],
+    [/\bfinal cv version weighed\b/i, "Final CV version"],
+    [/\bcareer development plan\b/i, "Career development plan"],
+    [/\bcomplete two experiences and submit valid evidence\b/i, "Complete two experiences and submit valid evidence"],
+    [/\blinkedin courses completion\b/i, "LinkedIn courses completion"],
+    [/\bweekly online quizzes\b/i, "Weekly online quizzes"],
+    [/\battendance of professional development workshops\s*\(5 workshops\)/i, "Attendance of Professional Development workshops (5 workshops)"],
+    [/\bcv submission\b/i, "CV Submission"],
+    [/\bdocumented evidence of career planning and industry exploration\b/i, "Documented evidence of career planning and industry exploration"],
+    [/\bmock interview\b/i, "Mock Interview"],
+    [/\bfinal quiz\b/i, "Final Quiz"]
   ];
 
   for (const [pattern, name] of exactPatterns) {
@@ -1594,15 +1669,24 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   const homeworkNumber = withoutWeights.match(/\bhomework\s*#?\s*(\d{1,2})\b/i);
   if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
   if (/^coursework:\s*homework\b|\bhomework\b/i.test(compact)) return "Homework";
+  if (/^coursework\b/i.test(firstLine)) return "Coursework";
+  if (/^projects?\b/i.test(firstLine)) return "Projects";
+  if (/\bweb\s*assign\b|\bwebassign\b/i.test(compact)) return "Web assign";
 
   const midtermNumber = withoutWeights.match(/\bmidterm\s*#?\s*(\d{1,2})\b/i);
   if (midtermNumber) return `Midterm ${Number(midtermNumber[1])}`;
   if (/\bmidterm\s+test\b/i.test(compact)) return "Midterm test";
   if (/\bmidterm\s+exam\b/i.test(compact)) return "Midterm Exam";
+  if (/\bmidterm\s+examination\s*\(?s\)?/i.test(compact)) {
+    return /\bwritten examination\b/i.test(compact)
+      ? "Midterm Examination"
+      : "Midterm Examination(s)";
+  }
   if (/\bmidterm\s+examination\b/i.test(compact)) return "Midterm Examination";
   if (/\bsemester examination\b/i.test(compact) && /\bmidterm\b/i.test(compact)) {
     return "Midterm";
   }
+  if (/\bsemester examination\b/i.test(compact)) return "Semester Examination";
 
   if (/\bfinal\s+test\b/i.test(compact)) return "Final test";
   if (/\bfinal\s+exam\b/i.test(compact)) return "Final Exam";
@@ -1764,11 +1848,124 @@ function getQuizCourseworkSegment(methodologyBlock: string) {
   return methodologyBlock.slice(start, end);
 }
 
+function extractGens300AssessmentCandidate(text: string): AssessmentCandidate | null {
+  if (!/GENS\s*300/i.test(text)) {
+    return null;
+  }
+
+  const methodologyBlock = getAssessmentMethodologyBlock(text);
+  const compactText = cleanLine(text);
+
+  if (!methodologyBlock) {
+    return makeGens300SummaryCandidate(compactText);
+  }
+
+  const detailedRows: ExtractedAssessment[] = [];
+  const addDetailed = (name: string, pattern: RegExp) => {
+    const match = methodologyBlock.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+
+    if (match && weight !== null) {
+      addAssessmentIfMissing(detailedRows, name, weight, match[0], 0.95);
+    }
+  };
+
+  addDetailed("Initial CV submission", /\binitial submission weighted\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i);
+  addDetailed("Final CV version", /\bfinal cv version weighed\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i);
+  addDetailed("Career development plan", /\bcareer development plan\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i);
+  addDetailed(
+    "Complete two experiences and submit valid evidence",
+    /\bcomplete two experiences and submit valid evidence\b[^()]{0,80}\((\d{1,3}(?:\.\d+)?)\s*%\)/i
+  );
+  addDetailed("LinkedIn courses completion", /\blinkedin courses completion\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i);
+  addDetailed("Weekly online quizzes", /\bweekly online quizzes\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i);
+  addDetailed(
+    "Mock Interview",
+    /\bmock interview\b[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+  addDetailed(
+    "Attendance of Professional Development workshops (5 workshops)",
+    /\battendance of professional development workshops\s*\(5 workshops\)[^%]{0,100}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+  addDetailed("Final Quiz", /\bfinal quiz\b[^%]{0,60}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+
+  const cvTotal = ["Initial CV submission", "Final CV version"].reduce(
+    (sum, name) => sum + (detailedRows.find((row) => row.name === name)?.weight_percentage ?? 0),
+    0
+  );
+  const careerEvidenceTotal = [
+    "Career development plan",
+    "Complete two experiences and submit valid evidence",
+    "LinkedIn courses completion",
+    "Weekly online quizzes"
+  ].reduce(
+    (sum, name) => sum + (detailedRows.find((row) => row.name === name)?.weight_percentage ?? 0),
+    0
+  );
+  const detailedTotal = sumAssessmentWeights(detailedRows);
+
+  if (
+    detailedRows.length === 9 &&
+    Math.abs(cvTotal - 15) <= 0.5 &&
+    Math.abs(careerEvidenceTotal - 40) <= 0.5 &&
+    Math.abs(detailedTotal - 100) <= 0.5
+  ) {
+    return {
+      label: "GENS 300 detailed assessment methodology",
+      assessments: detailedRows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(detailedRows) + 1300,
+      warnings: ["Using detailed assessment methodology instead of summary table."]
+    };
+  }
+
+  return makeGens300SummaryCandidate(compactText);
+}
+
+function makeGens300SummaryCandidate(compactText: string): AssessmentCandidate | null {
+  if (!/GENS\s*300/i.test(compactText) || !/\bCV Submission\b/i.test(compactText)) {
+    return null;
+  }
+
+  const rows: ExtractedAssessment[] = [];
+
+  addAssessmentIfMissing(rows, "CV Submission", 15, "GENS 300 summary assessment table", 0.9);
+  addAssessmentIfMissing(
+    rows,
+    "Documented evidence of career planning and industry exploration",
+    40,
+    "GENS 300 summary assessment table",
+    0.9
+  );
+  addAssessmentIfMissing(rows, "Mock Interview", 15, "GENS 300 summary assessment table", 0.9);
+  addAssessmentIfMissing(
+    rows,
+    "Attendance of Professional Development workshops (5)",
+    20,
+    "GENS 300 summary assessment table",
+    0.9
+  );
+  addAssessmentIfMissing(rows, "Final Quiz", 10, "GENS 300 summary assessment table", 0.9);
+
+  return {
+    label: "GENS 300 summary assessment table",
+    assessments: rows.map(normalizeAssessmentForOutput),
+    score: scoreAssessments(rows) + 760,
+    warnings: [
+      "Detailed assessment methodology did not cleanly map to the summary table, so the summary table was used."
+    ]
+  };
+}
+
 function extractKuDetailedAssessmentCandidates(
   text: string,
   courseCode: string | null
 ): AssessmentCandidate[] {
   const methodologyBlock = getAssessmentMethodologyBlock(text);
+  const gensCandidate = extractGens300AssessmentCandidate(text);
+
+  if (gensCandidate) {
+    return [gensCandidate];
+  }
 
   if (!methodologyBlock) {
     return [];
@@ -1778,9 +1975,15 @@ function extractKuDetailedAssessmentCandidates(
   const formulaWeights = extractKuFormulaQuizWeights(methodologyBlock);
   const explicitRows = extractKuExplicitAssessmentRows(text);
   const explicitTotalWeight = sumAssessmentWeights(explicitRows);
+  const explicitQuizRowCount = explicitRows.filter((row) =>
+    /^Quiz\s+\d{1,2}$/i.test(row.name)
+  ).length;
+  const preservesListedQuizRows =
+    quizNumbers.length < 2 || explicitQuizRowCount === quizNumbers.length;
 
   if (
     !formulaWeights &&
+    preservesListedQuizRows &&
     explicitRows.length >= 3 &&
     Math.abs(explicitTotalWeight - 100) <= 0.5
   ) {

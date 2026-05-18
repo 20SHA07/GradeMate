@@ -1,0 +1,36 @@
+{
+  "sourceFileName": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "semester": "Spring 2026",
+  "instructor": "Joud Jabri-Pickett",
+  "instructorEmail": "joud.pickett@ku.ac.ae",
+  "officeRoom": "Building 1, Room 1023A",
+  "assessments": [
+    {
+      "name": "Individual Writing: Technical report Part 1",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Individual Writing: Technical report Part 2",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Individual Digital presentation",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Group Oral Presentation of Proposal",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Group proposal in response to a Request for Proposals (RFP)",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

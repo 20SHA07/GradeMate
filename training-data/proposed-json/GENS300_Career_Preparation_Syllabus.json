@@ -1,0 +1,53 @@
+{
+  "sourceFileName": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "assessments": [
+    {
+      "name": "Initial CV submission",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Final CV version",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Career development plan",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Complete two experiences and submit valid evidence",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "LinkedIn courses completion",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Weekly online quizzes",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Mock Interview",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Attendance of Professional Development workshops (5 workshops)",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Quiz",
+      "weight_percentage": 10,
+      "max_score": 100
+    }
+  ],
+  "totalWeight": 100
+}

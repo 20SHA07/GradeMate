@@ -1,0 +1,50 @@
+{
+  "sourceFileName": "Syllabus-Fall 2026-02.docx",
+  "courseCode": "PHYS 121",
+  "courseName": "University Physics I",
+  "semester": "Spring 2026",
+  "instructor": "Mr. Nabee Hasheem",
+  "instructorEmail": "nabee.hasheem@ku.ac.ae",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 6,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 6,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 6,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 6,
+      "max_score": 100
+    },
+    {
+      "name": "Web assign",
+      "weight_percentage": 6,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm test",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final test",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

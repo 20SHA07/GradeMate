@@ -1,0 +1,31 @@
+{
+  "sourceFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "courseCode": "COSC 354",
+  "courseName": "Operating Systems",
+  "semester": "Fall 2025",
+  "instructor": "Azzam Mourad",
+  "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "assessments": [
+    {
+      "name": "Quizzes and assignments",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100
+    }
+  ],
+  "totalWeight": 100
+}
