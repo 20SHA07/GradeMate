@@ -402,6 +402,193 @@ assert.ok(
   "Expected lab-internal project warning"
 );
 
+const cheg312Detailed = extractSyllabusFromText(`Course Code and Title CHEG 312 Numerical Methods for Chemical Engineers
+Semester: Spring 2026
+Dr. Khalid Al Ali
+Instructor Name Associate Professor
+khalid.alali@ku.ac.ae
+Office Room No. SAN Arzanah Bldg. 2F, Room # 8-271
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework Weekly 10%
+Faculty Discretion, attendance,
+- 5%
+participation
+Quiz 1 (Solving system of linear equations) Week 4 2%
+Quiz 2 (Solving non-linear equations) Week 6 2%
+Quiz 3 (Polynomial Interpolation) Week 5 2%
+Quiz 4 (Numerical Integration + Differentiation) Week 6 2%
+Quiz 5 (ODE-IVP & ODE-BVP) Week 9 2%
+Projects Project Presentation and Report Week 16: April 28, 2026 15%
+Semester Midterm 1 Week 7: Feb 26, 2026 15%
+Examination (s)
+Midterm 2 Week 13: April 16, 2026 15%
+Final Examination Final Exam TBA 30%
+Instructor Policy on late submission of assignments:`);
+assert.equal(cheg312Detailed.instructor, "Dr. Khalid Al Ali");
+assert.equal(cheg312Detailed.officeRoom, "SAN Arzanah Bldg. 2F, Room # 8-271");
+expectAssessmentNames(cheg312Detailed, [
+  "Homework",
+  "Faculty Discretion, attendance, participation",
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Quiz 5",
+  "Project Presentation and Report",
+  "Midterm 1",
+  "Midterm 2",
+  "Final Exam"
+]);
+expectAssessment(cheg312Detailed, "Homework", 10);
+expectAssessment(cheg312Detailed, "Faculty Discretion, attendance, participation", 5);
+expectAssessment(cheg312Detailed, "Quiz 5", 2);
+expectAssessment(cheg312Detailed, "Project Presentation and Report", 15);
+expectAssessment(cheg312Detailed, "Midterm 1", 15);
+expectAssessment(cheg312Detailed, "Midterm 2", 15);
+
+const cheg232Detailed = extractSyllabusFromText(`Course Code and Title CHEG 232 Fluid Mechanics
+Spring 2025
+Semester:
+Instructor Name Dr. Haitem Hassan-Beck
+Contact Email/ Office Ext. No. haitem.hassanbeck@ku.ac.ae/ 5817
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 3 2%
+Quiz 2 Week 5 2%
+Quiz 3 Week 9 2%
+Quiz 4 Week 11 2%
+Quiz 5 Week 15 2%
+Assignments, project & field trip Week 12 10%
+Semester Examination (s) Midterm Week 7 20%
+Laboratory - - 20%
+Final Examination TBA 40%
+Instructor Policy on late submission of assignments:
+Teaching Plan
+Week 3 Test 1
+Week 6 Test 2`);
+assert.equal(cheg232Detailed.semester, "Spring 2025");
+expectAssessmentNames(cheg232Detailed, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Quiz 5",
+  "Assignments, project & field trip",
+  "Midterm",
+  "Laboratory",
+  "Final Examination"
+]);
+expectAssessment(cheg232Detailed, "Quiz 1", 2);
+expectAssessment(cheg232Detailed, "Assignments, project & field trip", 10);
+expectAssessment(cheg232Detailed, "Midterm", 20);
+assert.equal(
+  cheg232Detailed.assessments.some((assessment) => /test\s+[12]/i.test(assessment.name)),
+  false
+);
+
+const cheg350DocxStyle = extractSyllabusFromText(`Course Code and Title
+CHEG 350 Materials Science & Engineering
+Semester:
+Spring 2026
+Instructor Name
+Akram Alfantazi
+Contact Email/ Office Ext. No.
+akram.alfantazi@ku.ac.ae
+Office Room No.
+Arzanah 311
+Assessment Methodology
+Tentative Dates
+Weight
+Coursework:
+Homework 1
+Week 3
+2.5%
+Quiz 1
+Week 4
+8.33%
+Homework 2
+Week 8
+2.5 %
+Quiz 2
+Week 9
+8.33%
+Quiz 3
+Week 13
+8.33%
+Projects
+Term project
+Final week
+10%
+Laboratory (if applicable)
+Semester Examination (s)
+Midterm Exam
+Week 10
+25%
+Final Examination
+Week 16
+35%
+Instructor Policy on late submission of assignments:`);
+assert.equal(cheg350DocxStyle.officeRoom, "Arzanah 311");
+expectAssessmentNames(cheg350DocxStyle, [
+  "Homework 1",
+  "Quiz 1",
+  "Homework 2",
+  "Quiz 2",
+  "Quiz 3",
+  "Term project",
+  "Midterm Exam",
+  "Final Examination"
+]);
+expectAssessment(cheg350DocxStyle, "Homework 1", 2.5);
+expectAssessment(cheg350DocxStyle, "Quiz 1", 8.33);
+expectAssessment(cheg350DocxStyle, "Homework 2", 2.5);
+assert.equal(
+  Math.round(
+    cheg350DocxStyle.assessments.reduce(
+      (sum, assessment) => sum + assessment.weight_percentage,
+      0
+    ) * 100
+  ) / 100,
+  99.99
+);
+assert.equal(
+  cheg350DocxStyle.warnings.some((warning) => /Total weight/i.test(warning)),
+  false
+);
+
+const cheg230Detailed = extractSyllabusFromText(`Course Code and Title CHEG230 Chemical Engineering Thermodynamics I
+Semester:
+Spring 2026
+Instructor Name Dr. Hanifa Taher AlBlooshi
+Contact Email/ Office Ext. No. hanifa.alblooshi@ku.ac.ae / 02-312 3524
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework 10%
+Pre-Assigned Quizzes 10%
+Projects (if applicable) Mini-Design Project 5%
+Laboratory (if applicable) NA
+Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30 %
+Final Examination Written examination (Closed Book) Assigned by Registrar 40 %
+Participation Contact based 5%
+Instructor Policy on Exams, Assignments, and Quizzes:`);
+expectAssessmentNames(cheg230Detailed, [
+  "Homework",
+  "Pre-Assigned Quizzes",
+  "Mini-Design Project",
+  "Midterm Examination",
+  "Final Examination",
+  "Participation"
+]);
+expectAssessment(cheg230Detailed, "Homework", 10);
+expectAssessment(cheg230Detailed, "Pre-Assigned Quizzes", 10);
+expectAssessment(cheg230Detailed, "Mini-Design Project", 5);
+expectAssessment(cheg230Detailed, "Midterm Examination", 30);
+assert.equal(
+  cheg230Detailed.assessments.some((assessment) => /quiz\s+\d/i.test(assessment.name)),
+  false
+);
+
 const gradeScaleOnly = extractSyllabusFromText(`Grading Scheme
 Letter Grade Grade Point Grade Range Description
 A 4.00 From 92.5% to 100% Excellent

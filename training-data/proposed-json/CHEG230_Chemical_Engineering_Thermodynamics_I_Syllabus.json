@@ -1,0 +1,71 @@
+{
+  "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourcePath": "C:/Users/shaha/Downloads/S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourceRelativePath": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourceTextFileName": "CHEG230_Chemical_Engineering_Thermodynamics_I_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 230",
+  "courseName": "Chemical Engineering Thermodynamics I",
+  "creditHours": null,
+  "semester": "Spring 2026",
+  "instructor": "Dr. Hanifa Taher AlBlooshi",
+  "instructorEmail": "hanifa.alblooshi@ku.ac.ae",
+  "schedule": "Office Hours Tuesdays and Thursday from 2:00 to 3:00 pm",
+  "classroom": null,
+  "officeRoom": "SAN Campus: Arzanah (Building 8), 2 level, Room 277",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Homework 10%"
+    },
+    {
+      "name": "Pre-Assigned Quizzes",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Pre-Assigned Quizzes 10%"
+    },
+    {
+      "name": "Mini-Design Project",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects (if applicable) Mini-Design Project 5%"
+    },
+    {
+      "name": "Midterm Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Written examination (Closed Book) Assigned by Registrar 40%"
+    },
+    {
+      "name": "Participation",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Participation Contact based 5%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

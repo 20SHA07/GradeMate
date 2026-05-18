@@ -1,0 +1,66 @@
+{
+  "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "semester": "Spring 2026",
+  "instructor": "Dr. Khalid Al Ali",
+  "instructorEmail": "khalid.alali@ku.ac.ae",
+  "officeRoom": "SAN Arzanah Bldg. 2F, Room # 8-271",
+  "assessments": [
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Faculty Discretion, attendance, participation",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Project Presentation and Report",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm 1",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm 2",
+      "weight_percentage": 15,
+      "max_score": 100
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100
+    }
+  ]
+}

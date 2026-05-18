@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { extractGradeBreakdown, type ExtractedSyllabus } from "@/lib/syllabus/extractSyllabus";
+import { extractTextFromDocxFile } from "@/lib/syllabus/docxText";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
 import { saveVerifiedExtraction } from "@/lib/syllabus/verified-extractions";
 
@@ -88,13 +89,20 @@ export function ExtractorLabClient() {
     setMessage("Extraction complete. Review the fields and JSON below.");
   }
 
-  async function readPdf(file: File | null) {
+  async function readDocument(file: File | null) {
     if (!file) {
       return;
     }
 
-    if (file.type !== "application/pdf" && !file.name.toLowerCase().endsWith(".pdf")) {
-      setError("Choose a PDF syllabus file.");
+    const fileName = file.name.toLowerCase();
+    const isPdf = file.type === "application/pdf" || fileName.endsWith(".pdf");
+    const isDocx =
+      file.type ===
+        "application/vnd.openxmlformats-officedocument.wordprocessingml.document" ||
+      fileName.endsWith(".docx");
+
+    if (!isPdf && !isDocx) {
+      setError("Choose a PDF or DOCX syllabus file.");
       return;
     }
 
@@ -103,13 +111,15 @@ export function ExtractorLabClient() {
     setMessage("");
 
     try {
-      const text = await extractTextFromPdfFile(file);
+      const text = isDocx
+        ? await extractTextFromDocxFile(file)
+        : await extractTextFromPdfFile(file);
       setFileName(file.name);
       setPdfPreview(text.slice(0, 10000));
       setSourceText(text);
       await runExtraction(text);
     } catch {
-      setError("PDF text extraction failed. Paste the grading section instead.");
+      setError("Document text extraction failed. Paste the grading section instead.");
     } finally {
       setIsReadingPdf(false);
     }
@@ -168,7 +178,7 @@ export function ExtractorLabClient() {
           <Badge tone="teal">Development tool</Badge>
           <h1 className="mt-3 text-3xl font-semibold">Extractor Lab</h1>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-            Upload any syllabus PDF or paste text to inspect the same extractor
+            Upload any syllabus PDF/DOCX or paste text to inspect the same extractor
             used by GradeMate Simple and Workspace.
           </p>
         </header>
@@ -178,17 +188,17 @@ export function ExtractorLabClient() {
             <Card className="p-5">
               <div className="flex items-center gap-2 font-semibold text-ink-900">
                 <UploadCloud aria-hidden="true" className="h-5 w-5 text-teal-700" />
-                Upload PDF
+                Upload PDF or DOCX
               </div>
               <input
-                accept="application/pdf"
+                accept="application/pdf,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx"
                 className="mt-4 block w-full rounded-xl border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
                 disabled={isReadingPdf}
-                onChange={(event) => void readPdf(event.target.files?.[0] ?? null)}
+                onChange={(event) => void readDocument(event.target.files?.[0] ?? null)}
                 type="file"
               />
               <p className="mt-3 text-xs text-ink-500">
-                Text is extracted locally in the browser from all pages.
+                Text is extracted locally in the browser from PDF pages or DOCX text.
               </p>
             </Card>
 

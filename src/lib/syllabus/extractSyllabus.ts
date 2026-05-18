@@ -15,6 +15,7 @@ export type ExtractedSyllabus = {
   semester?: string | null;
   schedule?: string | null;
   classroom?: string | null;
+  officeRoom?: string | null;
   officeHours?: string | null;
   prerequisites?: string | null;
   textbooks?: string[];
@@ -35,6 +36,7 @@ export type ExtractedFieldConfidence = {
   semester?: number;
   schedule?: number;
   classroom?: number;
+  officeRoom?: number;
   officeHours?: number;
   prerequisites?: number;
   textbooks?: number;
@@ -68,8 +70,10 @@ const assessmentKeywords = [
   "coursework",
   "course work",
   "continuous assessment",
+  "faculty discretion",
   "quiz",
   "quizzes",
+  "pre-assigned quizzes",
   "exam",
   "examination",
   "midterm",
@@ -89,6 +93,7 @@ const assessmentKeywords = [
   "lab work",
   "laboratory",
   "project",
+  "field trip",
   "participation",
   "attendance",
   "presentation",
@@ -595,9 +600,38 @@ function extractCreditHours(text: string) {
 
 function extractInstructor(lines: string[]) {
   const isInvalidInstructorValue = (value: string) =>
-    /^(name|policy|contact\s+email|office|office\s+room|office\s+hours|room|semester|assessment)\b/i.test(
+    /^(name|policy|associate\s+professor|assistant\s+professor|professor|lecturer|faculty|department|chemical engineering|contact\s+email|office|office\s+room|office\s+hours|room|semester|assessment)\b/i.test(
       value
     );
+  const personLine = (value: string | undefined) => {
+    const cleaned = value?.trim() ?? "";
+
+    if (!cleaned || isInvalidInstructorValue(cleaned)) {
+      return null;
+    }
+
+    return /^(?:Dr\.?\s+)?[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)+$/.test(
+      cleaned
+    )
+      ? cleaned
+      : null;
+  };
+  const labelIndex = lines.findIndex((line) =>
+    /^instructor\s+name\b/i.test(line)
+  );
+
+  if (labelIndex >= 0) {
+    const sameLineValue = lines[labelIndex]
+      .replace(/^instructor\s+name\b\s*[:\-]?\s*/i, "")
+      .trim();
+    const sameLinePerson = personLine(sameLineValue);
+    const previousLinePerson = personLine(lines[labelIndex - 1]);
+    const nextLinePerson = personLine(lines[labelIndex + 1]);
+
+    if (sameLinePerson) return sameLinePerson;
+    if (nextLinePerson) return nextLinePerson;
+    if (previousLinePerson) return previousLinePerson;
+  }
 
   const labelled = extractLabelValue(lines, [
     "instructor name",
@@ -655,12 +689,24 @@ function extractInstructorEmail(text: string) {
 }
 
 function extractSemester(text: string, lines: string[]) {
-  const labelled = lines.find((line) => /^(semester|term)\s*[:\-]/i.test(line));
+  const labelledIndex = lines.findIndex((line) => /^(semester|term)\s*[:\-]/i.test(line));
+  const labelled = labelledIndex >= 0 ? lines[labelledIndex] : null;
 
   if (labelled) {
     const value = labelled.split(/[:\-]/).slice(1).join("-").trim();
     const termMatch = value.match(/\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i);
-    return (termMatch?.[0] ?? value) || null;
+
+    if (termMatch || value) {
+      return (termMatch?.[0] ?? value) || null;
+    }
+
+    const nearby = [lines[labelledIndex - 1], lines[labelledIndex + 1]]
+      .filter(Boolean)
+      .find((line) => /\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i.test(line));
+
+    if (nearby) {
+      return nearby.match(/\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i)?.[0] ?? null;
+    }
   }
 
   return text.match(/\b(Fall|Spring|Summer|Winter)\s+\d{4}\b/i)?.[0] ?? null;
@@ -721,6 +767,22 @@ function extractSchedule(lines: string[]) {
 
 function extractClassroom(lines: string[]) {
   return extractLabelValue(lines, ["classroom", "room", "location", "venue"]);
+}
+
+function extractOfficeRoom(lines: string[]) {
+  const labelled = lines.find((line) => /^office\s+room\s+no\.?\s+/i.test(line));
+
+  if (labelled) {
+    return labelled.replace(/^office\s+room\s+no\.?\s*/i, "").trim() || null;
+  }
+
+  const labelIndex = lines.findIndex((line) => /^office\s+room\s+no\.?\s*$/i.test(line));
+
+  if (labelIndex >= 0) {
+    return lines[labelIndex + 1]?.trim() || null;
+  }
+
+  return extractLabelValue(lines, ["office room no", "office room", "office location"]);
 }
 
 function extractOfficeHours(lines: string[]) {
@@ -805,6 +867,7 @@ function buildFieldConfidence(input: {
   semester: string | null;
   schedule: string | null;
   classroom: string | null;
+  officeRoom: string | null;
   officeHours: string | null;
   prerequisites: string | null;
   textbooks: string[];
@@ -819,6 +882,7 @@ function buildFieldConfidence(input: {
     semester: input.semester ? 0.82 : 0,
     schedule: input.schedule ? 0.72 : 0,
     classroom: input.classroom ? 0.72 : 0,
+    officeRoom: input.officeRoom ? 0.74 : 0,
     officeHours: input.officeHours ? 0.75 : 0,
     prerequisites: input.prerequisites ? 0.76 : 0,
     textbooks: input.textbooks.length > 0 ? 0.72 : 0,
@@ -1360,6 +1424,250 @@ function getFirstWeight(text: string) {
   return match ? cleanWeightValue(match[1]) : null;
 }
 
+function getAssessmentMethodologyLines(text: string) {
+  const lines = text
+    .split(/\r?\n/)
+    .map(cleanLine)
+    .filter(Boolean);
+  const startIndex = lines.findIndex((line) => /\bAssessment Methodology\b/i.test(line));
+
+  if (startIndex === -1) {
+    return [];
+  }
+
+  const blockLines: string[] = [];
+
+  for (let index = startIndex + 1; index < lines.length; index += 1) {
+    const line = lines[index];
+
+    if (isKuAssessmentMethodologyBoundary(line)) {
+      break;
+    }
+
+    blockLines.push(line);
+  }
+
+  return blockLines;
+}
+
+function isKuAssessmentMethodologyBoundary(line: string) {
+  return /^(instructor policy|honou?r code|academic pledge|teaching plan|course learning outcomes?|laboratory schedule|official khalifa university grading system|letter grade|grading scheme)\b/i.test(
+    line
+  );
+}
+
+function isKuMethodologyHelperLine(line: string) {
+  return (
+    /^(tentative dates?|weight|coursework:?|projects?|semester examination\s*\(?s?\)?|laboratory \(if applicable\))$/i.test(
+      line
+    ) ||
+    /^-+$/.test(line) ||
+    /^th$/i.test(line) ||
+    /^--- page \d+ ---$/i.test(line)
+  );
+}
+
+function getKuLineWeight(line: string) {
+  const matches = Array.from(
+    line.matchAll(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/gi)
+  )
+    .map((match) => cleanWeightValue(match[1]))
+    .filter((weight): weight is number => weight !== null);
+
+  return matches.length > 0 ? matches[matches.length - 1] : null;
+}
+
+function isStandaloneKuWeightLine(line: string) {
+  return /^[-–—]?\s*\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\s*$/i.test(line);
+}
+
+function isKuDateLine(line: string) {
+  return /^(?:week|weeks|around week|final week|tba|assigned by registrar|during lab time|weekly|contact based|written examination|closed book|[-–—])\b/i.test(
+    line
+  );
+}
+
+function hasKuExplicitAssessmentSignal(line: string) {
+  return (
+    hasAssessmentKeyword(line) ||
+    /\b(midterm|final|faculty discretion|pre-assigned|mini-design|term project)\b/i.test(
+      line
+    )
+  );
+}
+
+function getKuExplicitWeight(
+  lines: string[],
+  index: number
+): { weight: number; endIndex: number; snippet: string } | null {
+  const currentWeight = getKuLineWeight(lines[index]);
+
+  if (currentWeight !== null) {
+    return {
+      weight: currentWeight,
+      endIndex: index,
+      snippet: lines[index]
+    };
+  }
+
+  for (
+    let lookahead = index + 1;
+    lookahead <= Math.min(lines.length - 1, index + 3);
+    lookahead += 1
+  ) {
+    const line = lines[lookahead];
+    const weight = getKuLineWeight(line);
+
+    if (weight !== null) {
+      const intermediateLines = lines.slice(index + 1, lookahead);
+      const allowedIntermediate = intermediateLines.every(
+        (item) => isKuDateLine(item) || isKuMethodologyHelperLine(item)
+      );
+
+      if (!allowedIntermediate) {
+        return null;
+      }
+
+      if (
+        lookahead > index &&
+        !isStandaloneKuWeightLine(line) &&
+        hasKuExplicitAssessmentSignal(line)
+      ) {
+        return null;
+      }
+
+      let endIndex = lookahead;
+      const nextLine = lines[lookahead + 1];
+
+      if (
+        nextLine &&
+        !getKuLineWeight(nextLine) &&
+        !isKuDateLine(nextLine) &&
+        !isKuMethodologyHelperLine(nextLine) &&
+        !hasKuExplicitAssessmentSignal(nextLine) &&
+        !isKuAssessmentMethodologyBoundary(nextLine)
+      ) {
+        endIndex = lookahead + 1;
+      }
+
+      return {
+        weight,
+        endIndex,
+        snippet: lines.slice(index, endIndex + 1).join(" ")
+      };
+    }
+  }
+
+  return null;
+}
+
+function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
+  const compact = cleanLine(snippet);
+  const firstLine = cleanLine(line);
+  const withoutWeights = removeWeightTokensForNumbering(compact);
+
+  if (/laboratory\s*\(if applicable\)\s*na\b/i.test(compact)) {
+    return null;
+  }
+
+  if (/faculty discretion/i.test(compact)) {
+    return "Faculty Discretion, attendance, participation";
+  }
+
+  const exactPatterns: Array<[RegExp, string]> = [
+    [/\bpre-assigned quizzes\b/i, "Pre-Assigned Quizzes"],
+    [/\bassignments?,\s*project\s*&\s*field trip\b/i, "Assignments, project & field trip"],
+    [/\bproject presentation and report\b/i, "Project Presentation and Report"],
+    [/\bmini-design project\b/i, "Mini-Design Project"],
+    [/\bterm project\b/i, "Term project"]
+  ];
+
+  for (const [pattern, name] of exactPatterns) {
+    if (pattern.test(compact)) {
+      return name;
+    }
+  }
+
+  const quizNumber = withoutWeights.match(/\bquiz\s*#?\s*(\d{1,2})\b/i);
+  if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
+
+  const homeworkNumber = withoutWeights.match(/\bhomework\s*#?\s*(\d{1,2})\b/i);
+  if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
+  if (/^coursework:\s*homework\b|\bhomework\b/i.test(compact)) return "Homework";
+
+  const midtermNumber = withoutWeights.match(/\bmidterm\s*#?\s*(\d{1,2})\b/i);
+  if (midtermNumber) return `Midterm ${Number(midtermNumber[1])}`;
+  if (/\bmidterm\s+test\b/i.test(compact)) return "Midterm test";
+  if (/\bmidterm\s+exam\b/i.test(compact)) return "Midterm Exam";
+  if (/\bmidterm\s+examination\b/i.test(compact)) return "Midterm Examination";
+  if (/\bsemester examination\b/i.test(compact) && /\bmidterm\b/i.test(compact)) {
+    return "Midterm";
+  }
+
+  if (/\bfinal\s+test\b/i.test(compact)) return "Final test";
+  if (/\bfinal\s+exam\b/i.test(compact)) return "Final Exam";
+  if (/\bfinal\s+examination\b/i.test(compact)) return "Final Examination";
+  if (/\blaboratory work\b/i.test(compact)) return "Laboratory Work";
+  if (/\blaboratory\b/i.test(compact)) return "Laboratory";
+  if (/\bparticipation\b/i.test(compact)) return "Participation";
+
+  const candidate = firstLine
+    .replace(/^coursework:\s*/i, "")
+    .replace(/^projects?\s+/i, "")
+    .replace(/^semester\s+examination\s*\(?s?\)?\s*/i, "")
+    .replace(/^final\s+examination\s+/i, "Final Examination ")
+    .replace(/\b(?:week|weeks|around week)\s+\d{1,2}\b.*$/i, "")
+    .replace(/\b(?:weekly|final week|tba|assigned by registrar|during lab time|contact based)\b.*$/i, "")
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\b/gi, "")
+    .replace(/\b(?:weight|tentative dates?)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  return candidate && hasKuExplicitAssessmentSignal(candidate)
+    ? titleCaseWords(candidate)
+    : null;
+}
+
+function extractKuExplicitAssessmentRows(text: string) {
+  const lines = getAssessmentMethodologyLines(text);
+  const rows: ExtractedAssessment[] = [];
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+
+    if (
+      isKuMethodologyHelperLine(line) ||
+      shouldIgnoreAssessmentLine(line, null) ||
+      (!hasKuExplicitAssessmentSignal(line) && !/faculty discretion/i.test(line))
+    ) {
+      continue;
+    }
+
+    const weightInfo = getKuExplicitWeight(lines, index);
+
+    if (!weightInfo) {
+      continue;
+    }
+
+    const name = normalizeKuExplicitAssessmentName(line, weightInfo.snippet);
+
+    if (!name) {
+      continue;
+    }
+
+    addAssessmentIfMissing(
+      rows,
+      name,
+      weightInfo.weight,
+      weightInfo.snippet,
+      0.95
+    );
+    index = Math.max(index, weightInfo.endIndex);
+  }
+
+  return rows;
+}
+
 function makeAssessment(
   name: string,
   weight: number,
@@ -1467,9 +1775,31 @@ function extractKuDetailedAssessmentCandidates(
   }
 
   const quizNumbers = getUniqueQuizNumbers(methodologyBlock);
+  const formulaWeights = extractKuFormulaQuizWeights(methodologyBlock);
+  const explicitRows = extractKuExplicitAssessmentRows(text);
+  const explicitTotalWeight = sumAssessmentWeights(explicitRows);
+
+  if (
+    !formulaWeights &&
+    explicitRows.length >= 3 &&
+    Math.abs(explicitTotalWeight - 100) <= 0.5
+  ) {
+    const explicitWarnings = getBaselineAssessmentBlock(text)
+      ? ["Using detailed assessment methodology instead of summary table."]
+      : [];
+
+    return [
+      {
+        label: "KU explicit assessment methodology",
+        assessments: explicitRows.map(normalizeAssessmentForOutput),
+        score: scoreAssessments(explicitRows) + 1100,
+        warnings: explicitWarnings
+      }
+    ];
+  }
+
   const rows: ExtractedAssessment[] = [];
   const warnings: string[] = [];
-  const formulaWeights = extractKuFormulaQuizWeights(methodologyBlock);
 
   if (quizNumbers.length >= 2 && formulaWeights) {
     const splitWeight =
@@ -2024,6 +2354,7 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
       semester: null,
       schedule: null,
       classroom: null,
+      officeRoom: null,
       officeHours: null,
       prerequisites: null,
       textbooks: [],
@@ -2186,6 +2517,7 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
     semester: fullSyllabusResult.semester,
     schedule: fullSyllabusResult.schedule,
     classroom: fullSyllabusResult.classroom,
+    officeRoom: fullSyllabusResult.officeRoom,
     officeHours: fullSyllabusResult.officeHours,
     prerequisites: fullSyllabusResult.prerequisites,
     textbooks: fullSyllabusResult.textbooks,
@@ -2238,6 +2570,7 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
   const semester = extractSemester(normalizedText, lines);
   const schedule = extractSchedule(lines);
   const classroom = extractClassroom(lines);
+  const officeRoom = extractOfficeRoom(lines);
   const officeHours = extractOfficeHours(lines);
   const prerequisites = extractPrerequisites(lines);
   const textbooks = extractTextbooks(lines);
@@ -2250,6 +2583,7 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
     creditHours,
     instructor,
     instructorEmail,
+    officeRoom,
     officeHours,
     prerequisites,
     schedule,
@@ -2352,6 +2686,7 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
     semester,
     schedule,
     classroom,
+    officeRoom,
     officeHours,
     prerequisites,
     textbooks,

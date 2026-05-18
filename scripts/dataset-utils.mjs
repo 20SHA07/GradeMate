@@ -325,6 +325,7 @@ export function buildDatasetProposal(text, ruleResult, record) {
   const instructorEmail = knownInfo.instructorEmail ?? ruleResult.instructorEmail ?? null;
   const schedule = knownInfo.schedule ?? ruleResult.schedule ?? null;
   const classroom = knownInfo.classroom ?? ruleResult.classroom ?? null;
+  const officeRoom = knownInfo.officeRoom ?? ruleResult.officeRoom ?? null;
   const officeHours = knownInfo.officeHours ?? ruleResult.officeHours ?? null;
   const prerequisites = knownInfo.prerequisites ?? ruleResult.prerequisites ?? null;
   const textbooks = knownInfo.textbooks ?? ruleResult.textbooks ?? [];
@@ -373,6 +374,7 @@ export function buildDatasetProposal(text, ruleResult, record) {
     instructorEmail,
     schedule,
     classroom,
+    officeRoom,
     officeHours,
     prerequisites,
     textbooks,
@@ -426,7 +428,7 @@ export function getDatasetItemAnalysis(value) {
   const totalWeight = Number(value.totalWeight ?? 0);
   const confidence = Number(value.confidence ?? 0);
   const hasAssessments = assessments.length > 0;
-  const isExactly100 = totalWeight === 100;
+  const isExactly100 = Math.abs(totalWeight - 100) <= 0.5;
   const isHighConfidence = confidence >= highConfidenceThreshold;
   const reasons = [];
 
@@ -493,6 +495,8 @@ export function buildExpectedJson(value) {
     creditHours: value.creditHours ?? null,
     semester: value.semester ?? null,
     instructor: value.instructor ?? null,
+    instructorEmail: value.instructorEmail ?? null,
+    officeRoom: value.officeRoom ?? null,
     assessments: (value.assessments ?? []).map((assessment) => ({
       name: assessment.name,
       weight_percentage: assessment.weight_percentage,

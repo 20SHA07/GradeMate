@@ -1,0 +1,51 @@
+{
+  "sourceFileName": "Syllabus Supplement for Students CHEG350 Spring 2026.docx",
+  "courseCode": "CHEG 350",
+  "courseName": "Materials Science & Engineering",
+  "semester": "Spring 2026",
+  "instructor": "Akram Alfantazi",
+  "instructorEmail": "akram.alfantazi@ku.ac.ae",
+  "officeRoom": "Arzanah 311",
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 2.5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 8.33,
+      "max_score": 100
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 2.5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 8.33,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 8.33,
+      "max_score": 100
+    },
+    {
+      "name": "Term project",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 25,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100
+    }
+  ]
+}

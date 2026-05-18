@@ -109,6 +109,7 @@ function toConfirmedJson(extraction: ExtractedSyllabus) {
     creditHours: extraction.creditHours ?? null,
     instructor: extraction.instructor ?? null,
     instructorEmail: extraction.instructorEmail ?? null,
+    officeRoom: extraction.officeRoom ?? null,
     officeHours: extraction.officeHours ?? null,
     prerequisites: extraction.prerequisites ?? null,
     schedule: extraction.schedule ?? null,

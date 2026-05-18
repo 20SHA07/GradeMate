@@ -1,0 +1,55 @@
+{
+  "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "courseCode": "CHEG 232",
+  "courseName": "Fluid Mechanics",
+  "semester": "Spring 2025",
+  "instructor": "Dr. Haitem Hassan-Beck",
+  "instructorEmail": "haitem.hassanbeck@ku.ac.ae",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 2,
+      "max_score": 100
+    },
+    {
+      "name": "Assignments, project & field trip",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100
+    }
+  ]
+}

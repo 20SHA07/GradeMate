@@ -106,6 +106,7 @@ function compareDatasetEntry(expected, proposed) {
     "instructorEmail",
     "schedule",
     "classroom",
+    "officeRoom",
     "officeHours",
     "prerequisites",
     "courseDescription"

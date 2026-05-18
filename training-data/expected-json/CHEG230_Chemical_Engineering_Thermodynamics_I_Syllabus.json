@@ -1,0 +1,40 @@
+{
+  "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "courseCode": "CHEG 230",
+  "courseName": "Chemical Engineering Thermodynamics I",
+  "semester": "Spring 2026",
+  "instructor": "Dr. Hanifa Taher AlBlooshi",
+  "instructorEmail": "hanifa.alblooshi@ku.ac.ae",
+  "assessments": [
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Pre-Assigned Quizzes",
+      "weight_percentage": 10,
+      "max_score": 100
+    },
+    {
+      "name": "Mini-Design Project",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm Examination",
+      "weight_percentage": 30,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100
+    },
+    {
+      "name": "Participation",
+      "weight_percentage": 5,
+      "max_score": 100
+    }
+  ]
+}

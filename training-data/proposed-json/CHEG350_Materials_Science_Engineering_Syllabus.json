@@ -1,0 +1,86 @@
+{
+  "sourceFileName": "Syllabus Supplement for Students CHEG350 Spring 2026.docx",
+  "sourcePath": "C:/Users/shaha/Downloads/Syllabus Supplement for Students CHEG350 Spring 2026.docx",
+  "sourceRelativePath": "Syllabus Supplement for Students CHEG350 Spring 2026.docx",
+  "sourceTextFileName": "CHEG350_Materials_Science_Engineering_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 350",
+  "courseName": "Materials Science & Engineering",
+  "creditHours": null,
+  "semester": "Spring 2026",
+  "instructor": "Akram Alfantazi",
+  "instructorEmail": "akram.alfantazi@ku.ac.ae",
+  "schedule": "Tuesday and Thursday 10:00- 11:30",
+  "classroom": null,
+  "officeRoom": "Arzanah 311",
+  "officeHours": "Tuesday and Thursday 10:00- 11:30",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 2.5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 1 Week 3 2.5%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 8.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 Week 4 8.33%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 2.5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 2 Week 8 2.5 %"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 8.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 9 8.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 8.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 13 8.33%"
+    },
+    {
+      "name": "Term project",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Term project Final week 10%"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Exam Week 10 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Week 16 35%"
+    }
+  ],
+  "totalWeight": 99.99,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}
