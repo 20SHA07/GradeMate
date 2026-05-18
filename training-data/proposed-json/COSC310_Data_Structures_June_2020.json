@@ -1,0 +1,11 @@
+{
+  "sourceFileName": "COSC 310 Data Structures June 2020.pdf",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "assessments": [
+    { "name": "Coursework (Quizzes, homework)", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Laboratory Assignments", "weight_percentage": 25, "max_score": 100 },
+    { "name": "Semester Examination", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Final Examination", "weight_percentage": 35, "max_score": 100 }
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "sourceFileName": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "courseCode": "COSC 301",
+  "courseName": "Automata, Computability, and Complexity",
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "Khaled.elbassioni@ku.ac.ae",
+  "schedule": "MW 11:00-11:50",
+  "classroom": "C02004",
+  "officeRoom": "D04200",
+  "officeHours": "MW 15:00-16:00",
+  "assessments": [
+    { "name": "HW 1", "weight_percentage": 5, "max_score": 100 },
+    { "name": "Quiz 1", "weight_percentage": 7.5, "max_score": 100 },
+    { "name": "HW 2", "weight_percentage": 5, "max_score": 100 },
+    { "name": "Quiz 2", "weight_percentage": 7.5, "max_score": 100 },
+    { "name": "HW 3", "weight_percentage": 5, "max_score": 100 },
+    { "name": "Mid Term Exam", "weight_percentage": 30, "max_score": 100 },
+    { "name": "Final Exam", "weight_percentage": 40, "max_score": 100 }
+  ]
+}

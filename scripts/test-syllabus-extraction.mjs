@@ -827,6 +827,338 @@ assert.equal(
   false
 );
 
+const cosc301Detailed = extractSyllabusFromText(`COSC 301
+Automata, Computability, and Complexity
+Fall 2025
+Semester:
+MW 11:00-11:50
+Schedule:
+C02004
+Classroom:
+Instructor: Dr. Khaled Elbassioni
+Contact Email: Khaled.elbassioni@ku.ac.ae
+Office Room Number: D04200
+Office Hours:
+MW 15:00-16:00
+Assessment
+Coursework (quizzes, homework) 30%
+Semester Examination 30%
+Final Examination 40%
+Assessment Methodology
+Tentative Weight Dates
+Coursework: HW 1 Week 3 5%
+Quiz 1 Week 5 7.5%
+HW 2 Week 9 5%
+Quiz 2 Week 11 7.5%
+HW 3 Week 12 5%
+Mid Term Exam Week 8 30%
+Final Exam Week 16 40%
+Instructor Policy`);
+assert.equal(cosc301Detailed.courseCode, "COSC 301");
+assert.equal(cosc301Detailed.courseName, "Automata, Computability, and Complexity");
+assert.equal(cosc301Detailed.semester, "Fall 2025");
+assert.equal(cosc301Detailed.instructor, "Dr. Khaled Elbassioni");
+assert.equal(cosc301Detailed.instructorEmail, "Khaled.elbassioni@ku.ac.ae");
+assert.equal(cosc301Detailed.schedule, "MW 11:00-11:50");
+assert.equal(cosc301Detailed.classroom, "C02004");
+assert.equal(cosc301Detailed.officeRoom, "D04200");
+assert.equal(cosc301Detailed.officeHours, "MW 15:00-16:00");
+expectAssessmentNames(cosc301Detailed, [
+  "HW 1",
+  "Quiz 1",
+  "HW 2",
+  "Quiz 2",
+  "HW 3",
+  "Mid Term Exam",
+  "Final Exam"
+]);
+expectAssessment(cosc301Detailed, "HW 1", 5);
+expectAssessment(cosc301Detailed, "Quiz 1", 7.5);
+expectAssessment(cosc301Detailed, "HW 3", 5);
+
+const cosc201Summary = extractSyllabusFromText(`COSC 201 Computer Systems Organization
+Assessment:
+All course learning outcomes are assessed using the following assessment tools:
+Coursework (quizzes, homework) 15%
+Lab Work 15%
+Project 20%
+Semester Examination 20%
+Final Examination 30%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes`);
+expectAssessmentNames(cosc201Summary, [
+  "Coursework (quizzes, homework)",
+  "Lab Work",
+  "Project",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc201Summary, "Coursework (quizzes, homework)", 15);
+
+const cosc310OldSummary = extractSyllabusFromText(`COSC 310 Data Structures
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework) 20%
+Laboratory Assignments 25%
+Semester Examination 20%
+Final Examination 35%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes`);
+expectAssessmentNames(cosc310OldSummary, [
+  "Coursework (Quizzes, homework)",
+  "Laboratory Assignments",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc310OldSummary, "Laboratory Assignments", 25);
+
+const cosc310Fall2025 = extractSyllabusFromText(`Course Code and Title COSC 310: Data Structures
+Semester: Fall 2025
+Instructor Name Dr. Khaled Elbassioni
+Contact Email/ Office Ext. No. khaled. elbassioni@ku.ac.ae
+Office Room: D04200
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 5 3.33%
+Quiz 2 Week 8 3.33%
+Quiz 3 Week 13 3.34%
+Projects / Assignment Project/Assignment Week 10 - Week 14 10%
+Laboratory Lab Assignments Weekly (W2 - W13) 10%
+Lab Quizzes Consult with Lab TA 10%
+Lab Test (or a Quiz) Week 14 5%
+Semester Examination (on-campus) Week 9 (Mar 13) 20%
+Final Examination (on-campus) Week 16 (May 5-15) 35%
+Teaching Plan
+Week 5 Quiz 1
+Week 6 Lab Quiz 1`);
+assert.equal(cosc310Fall2025.instructorEmail, "khaled.elbassioni@ku.ac.ae");
+expectAssessmentNames(cosc310Fall2025, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Project/Assignment",
+  "Lab Assignments",
+  "Lab Quizzes",
+  "Lab Test (or a Quiz)",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc310Fall2025, "Quiz 1", 3.33);
+expectAssessment(cosc310Fall2025, "Quiz 3", 3.34);
+expectAssessment(cosc310Fall2025, "Lab Quizzes", 10);
+
+const math232Summary = extractSyllabusFromText(`MATH 232 - Engineering Mathematics
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and HomeWorks) 40%
+Semester Examination(s) 25%
+Final Examination 35%
+Assessment Methodology
+Quizzes
+Weeks 2, 3, 4, 5 & 6 respectively
+1, 2, 3, 4 & 5
+Coursework 40%
+Quizzes
+Weeks 7, 8, 9, 10 & 11 respectively
+6, 7, 8, 9 & 10
+Semester Examination Week 7 25%
+Final Examination Week 15 or 16 35%
+Teaching Plan
+Week 2 Quiz 1`);
+expectAssessmentNames(math232Summary, [
+  "Coursework",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(math232Summary, "Coursework", 40);
+
+const cosc330DocxStyle = extractSyllabusFromText(`Course Code and Title
+COSC 330 Introduction to Artificial Intelligence
+Semester:
+Fall 2025
+Instructor Name
+Naoufel Werghi
+Contact Email/ Office Ext. No.
+Naoufel.werghi@ku.ac.ae
+Assessment Methodology
+Tentative Dates
+Weight(%)
+Coursework:
+Quizzes
+Quiz-1
+Week-3
+7.5
+Quiz-2
+Week-6
+Quiz-3
+Week-10
+Quiz-4
+Week-13
+Labs
+TBA
+7.5
+Mini-project
+TBA
+15
+Semester examination
+WEEK-8
+30
+Final examination
+TBA
+40
+Instructor Policy`);
+assert.equal(cosc330DocxStyle.courseCode, "COSC 330");
+assert.equal(cosc330DocxStyle.courseName, "Introduction to Artificial Intelligence");
+assert.equal(cosc330DocxStyle.instructor, "Naoufel Werghi");
+assert.equal(cosc330DocxStyle.instructorEmail, "Naoufel.werghi@ku.ac.ae");
+expectAssessmentNames(cosc330DocxStyle, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Labs",
+  "Mini-project",
+  "Semester examination",
+  "Final examination"
+]);
+expectAssessment(cosc330DocxStyle, "Quiz 1", 1.875);
+expectAssessment(cosc330DocxStyle, "Quiz 4", 1.875);
+expectAssessment(cosc330DocxStyle, "Labs", 7.5);
+assert.ok(
+  cosc330DocxStyle.warnings.some((warning) =>
+    /Split quiz weight 7.5% evenly across Quiz 1-Quiz 4/i.test(warning)
+  ),
+  "Expected COSC330 quiz split warning"
+);
+
+const cosc336ParentheticalSplit = extractSyllabusFromText(`COSC 336 Introduction to Software Engineering
+Assessment:
+Coursework (Quizzes - 10%, Assignments - 10%) 20%
+Group project 20%
+Semester Examination 20%
+Final Examination 40%
+Contribution to Computer Engineering Program Learning Outcomes`);
+expectAssessmentNames(cosc336ParentheticalSplit, [
+  "Quizzes",
+  "Assignments",
+  "Group project",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(cosc336ParentheticalSplit, "Quizzes", 10);
+expectAssessment(cosc336ParentheticalSplit, "Assignments", 10);
+
+const huma221Fallback = extractSyllabusFromText(`HUMA 221 Intercultural Communication
+Assessment:
+Coursework
+40%
+Seminar participation
+10%
+Semester examination
+20%
+Final project
+30%
+Assessment Methodology
+Coursework:
+Quiz 1
+Week Four
+10%
+Quiz 3
+Week Fourteen
+10%
+10%
+10%
+Project
+Cross-cultural analysis paper
+Week 15
+30%
+Semester Examination:
+Week 8
+20%
+Teaching Plan
+Mid Semester assessment (20%) Exam/analytical paper`);
+expectAssessmentNames(huma221Fallback, [
+  "Coursework",
+  "Seminar participation",
+  "Semester Examination",
+  "Final project"
+]);
+expectAssessment(huma221Fallback, "Coursework", 40);
+expectAssessment(huma221Fallback, "Final project", 30);
+
+const ltcm221Fallback = extractSyllabusFromText(`LTCM 221 Intercultural Communication
+Assessment:
+Coursework
+40%
+Seminar participation
+10%
+Mid-term assessment
+20%
+Final project
+30%
+Assessment Methodology
+Quiz 1
+Week 6
+10%
+Quiz 3
+Week 15
+10%
+10%
+10%
+Project
+Cross-Cultural project
+5%
+5%
+20%
+Semester Examination:
+Quiz 2
+20%
+Teaching Plan
+Quiz 3 20%`);
+expectAssessmentNames(ltcm221Fallback, [
+  "Coursework",
+  "Seminar participation",
+  "Mid-term assessment",
+  "Final project"
+]);
+expectAssessment(ltcm221Fallback, "Mid-term assessment", 20);
+
+const huma140Description = extractSyllabusFromText(`Course Code and Title: HUMA 140 - Introduction to Psychology
+Summer 2025
+Instructor: Dr. Michael Babula
+Contact Email: michael.babula@ku.ac.ae
+Assessment:
+Coursework (Assignments, quizzes) 40%
+Semester Examination(s) 30%
+Final Project 30%
+Description of the Assessments
+Quizzes - (10% each)
+Three quizzes worth 10% each are required for this course.
+Research Assignment (10%)
+Midterm Exam (30%)
+Final Project (30%)
+Assessment Methodology
+Quiz # 1 (Week 2) 10%
+Assignment (Week 4) 10%
+Quiz # 2 (Week 4) 10%
+Quiz # 3 (Week 5) 10%
+Quiz & Assignment Weight 40%
+Midterm Examination: (Week 3) 30%
+Final Project (Weeks 5/6) 30%
+Teaching Plan
+Week 3 Quiz 1`);
+assert.equal(huma140Description.courseCode, "HUMA 140");
+assert.equal(huma140Description.courseName, "Introduction to Psychology");
+assert.equal(huma140Description.instructorEmail, "michael.babula@ku.ac.ae");
+expectAssessmentNames(huma140Description, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Research Assignment",
+  "Midterm Examination",
+  "Final Project"
+]);
+expectAssessment(huma140Description, "Quiz 1", 10);
+expectAssessment(huma140Description, "Research Assignment", 10);
+
 const gradeScaleOnly = extractSyllabusFromText(`Grading Scheme
 Letter Grade Grade Point Grade Range Description
 A 4.00 From 92.5% to 100% Excellent

@@ -1,4 +1,5 @@
 import { getAppBasePath } from "@/lib/routes";
+import { extractTextFromDocxFile } from "@/lib/syllabus/docxText";
 
 type PdfTextItem = {
   str?: unknown;
@@ -11,9 +12,14 @@ const assessmentNamePattern =
 const weightOnlyPattern = /^(\d{1,3}(?:\.\d+)?)\s*(%|percent|percentage)?$/i;
 
 export async function extractTextFromPdfFile(file: File) {
+  const data = new Uint8Array(await file.arrayBuffer());
+
+  if (data[0] === 0x50 && data[1] === 0x4b) {
+    return extractTextFromDocxFile(file);
+  }
+
   const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
   pdfjs.GlobalWorkerOptions.workerSrc = `${getAppBasePath()}/pdf.worker.min.mjs`;
-  const data = new Uint8Array(await file.arrayBuffer());
   const documentTask = pdfjs.getDocument({ data });
   const pdf = await documentTask.promise;
   const pages: string[] = [];

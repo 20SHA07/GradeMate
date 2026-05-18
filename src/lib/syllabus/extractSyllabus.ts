@@ -524,18 +524,36 @@ function extractCourseCode(text: string) {
 
 function extractCourseName(lines: string[], courseCode: string | null) {
   const codeAndTitleLine = lines.find((line) =>
-    /^course\s+code\s+and\s+title\s*[:\-]/i.test(line)
+    /^course\s+code\s+and\s+title\s*[:\-\u2013\u2014]?/i.test(line)
   );
 
   if (codeAndTitleLine) {
-    const value = codeAndTitleLine.split(/[:\-]/).slice(1).join("-").trim();
+    const value = codeAndTitleLine
+      .replace(/^course\s+code\s+and\s+title\s*[:\-\u2013\u2014]?\s*/i, "")
+      .trim();
     const withoutCode = value
       .replace(/\(?[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\)?/i, "")
-      .replace(/^[-:_\s]+/, "")
+      .replace(/^[-:_\s\u2013\u2014]+/, "")
       .trim();
 
     if (withoutCode) {
       return withoutCode;
+    }
+
+    const labelIndex = lines.indexOf(codeAndTitleLine);
+    const nearbyCodeLine = lines
+      .slice(labelIndex + 1, labelIndex + 4)
+      .find((line) => /\b[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\b/i.test(line));
+
+    if (nearbyCodeLine) {
+      const nearbyWithoutCode = nearbyCodeLine
+        .replace(/\(?[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\)?/i, "")
+        .replace(/^[-:_\s\u2013\u2014]+/, "")
+        .trim();
+
+      if (nearbyWithoutCode) {
+        return nearbyWithoutCode;
+      }
     }
   }
 
@@ -567,6 +585,25 @@ function extractCourseName(lines: string[], courseCode: string | null) {
 
   if (courseCode) {
     const compactCode = courseCode.replace(/\s+/g, "\\s*[- ]?\\s*");
+    const joinedLines = lines.join("\n");
+    const joinedMatch = joinedLines.match(
+      new RegExp(`\\(?\\b${compactCode}\\b\\)?\\s+([^\\n]{4,120})`, "i")
+    );
+
+    if (joinedMatch) {
+      const value = joinedMatch[1]
+        .replace(/^[_:\-\s\u2013\u2014)]+/, "")
+        .trim();
+
+      if (
+        value &&
+        !hasGradingContext(value) &&
+        !/syllabus|outline|semester\b|schedule\b/i.test(value)
+      ) {
+        return value;
+      }
+    }
+
     const codeLine = lines.find((line) =>
       new RegExp(`\\b${compactCode}\\b`, "i").test(line)
     );
@@ -574,13 +611,34 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     if (codeLine) {
       const afterCode = codeLine
         .replace(new RegExp(`.*?\\b${compactCode}\\b\\s*[:\\-\\u2013\\u2014]?\\s*`, "i"), "")
-        .replace(/^[_:\-\s]+/, "")
+        .replace(/^[_:\-\s\u2013\u2014]+/, "")
         .trim();
 
       if (
         afterCode &&
         !hasGradingContext(afterCode) &&
         !/syllabus|outline/i.test(afterCode)
+      ) {
+        return afterCode;
+      }
+    }
+
+    for (let index = 0; index < lines.length - 1; index += 1) {
+      const windowText = `${lines[index]} ${lines[index + 1]} ${lines[index + 2] ?? ""}`;
+
+      if (!new RegExp(`\\b${compactCode}\\b`, "i").test(windowText)) {
+        continue;
+      }
+
+      const afterCode = windowText
+        .replace(new RegExp(`.*?\\b${compactCode}\\b\\)?\\s*[:\\-\\u2013\\u2014]?\\s*`, "i"), "")
+        .replace(/^[_:\-\s\u2013\u2014)]+/, "")
+        .trim();
+
+      if (
+        afterCode &&
+        !hasGradingContext(afterCode) &&
+        !/syllabus|outline|semester\b|schedule\b/i.test(afterCode)
       ) {
         return afterCode;
       }
@@ -691,9 +749,15 @@ function extractInstructor(lines: string[]) {
 }
 
 function extractInstructorEmail(text: string) {
-  const normalized = text.replace(/\s*@\s*/g, "@");
+  const normalized = text
+    .replace(/\s*@\s*/g, "@")
+    .replace(/(?<=[A-Z0-9._%+-])\.\s+(?=[A-Z0-9._%+-]+@)/gi, ".");
 
-  return normalized.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0] ?? null;
+  return (
+    normalized
+      .match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0]
+      ?.replace(/^(?:No|Ext)\./i, "") ?? null
+  );
 }
 
 function extractSemester(text: string, lines: string[]) {
@@ -756,6 +820,18 @@ function extractLabelValue(lines: string[], labels: string[]) {
 }
 
 function extractSchedule(lines: string[]) {
+  const labelIndex = lines.findIndex((line) => /^schedule\s*[:\-]?\s*$/i.test(line));
+
+  if (labelIndex >= 0) {
+    const nearby = [lines[labelIndex + 1], lines[labelIndex - 1]]
+      .filter(Boolean)
+      .find((line) => /\b(?:M|T|W|R|F|MW|TR|Monday|Tuesday|Wednesday|Thursday|Friday)\b.*\d{1,2}:\d{2}/i.test(line));
+
+    if (nearby) {
+      return nearby;
+    }
+  }
+
   return (
     extractLabelValue(lines, [
       "schedule",
@@ -774,7 +850,19 @@ function extractSchedule(lines: string[]) {
 }
 
 function extractClassroom(lines: string[]) {
-  return extractLabelValue(lines, ["classroom", "room", "location", "venue"]);
+  const labelIndex = lines.findIndex((line) => /^classrooms?\s*[:\-]?\s*$/i.test(line));
+
+  if (labelIndex >= 0) {
+    const nearby = [lines[labelIndex + 1], lines[labelIndex - 1]]
+      .filter(Boolean)
+      .find((line) => /\b[A-Z]\d{4,5}[A-Z]?|\b[A-Z]{1,4}\d{2,5}\b/i.test(line));
+
+    if (nearby) {
+      return nearby;
+    }
+  }
+
+  return extractLabelValue(lines, ["classroom", "classrooms", "room", "location", "venue"]);
 }
 
 function extractOfficeRoom(lines: string[]) {
@@ -913,7 +1001,7 @@ function normalizeAssessmentForOutput(
   return {
     name: assessment.name,
     weight_percentage:
-      Math.round(Number(assessment.weight_percentage || 0) * 100) / 100,
+      Math.round(Number(assessment.weight_percentage || 0) * 1000) / 1000,
     max_score: Number(assessment.max_score) || 100,
     confidence: Math.round(Number(assessment.confidence ?? 0.7) * 100) / 100,
     source_text_snippet: assessment.source_text_snippet ?? ""
@@ -1084,6 +1172,14 @@ function extractWeightFromAssessmentLine(line: string, inGradingSection: boolean
   }
 
   if (inGradingSection) {
+    const trailingTableWeight = withoutScores.match(
+      /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|on-campus|campus|before exams|tasks)\b[^%]*?\b(\d{1,3}(?:\.\d+)?)\s*$/i
+    );
+
+    if (trailingTableWeight && hasAssessmentKeyword(withoutScores)) {
+      return cleanWeightValue(trailingTableWeight[1]);
+    }
+
     const labelBeforeNumber = withoutScores.match(
       /\b(?:weight|marks?|contribution|percentage|score|points?)\s*[:=\-]?\s*(\d{1,3}(?:\.\d+)?)\b/i
     );
@@ -1428,7 +1524,7 @@ function getBaselineAssessmentBlock(text: string) {
 }
 
 function getUniqueQuizNumbers(text: string) {
-  return Array.from(text.matchAll(/\bQuiz\s*#?\s*(\d{1,2})\b/gi))
+  return Array.from(text.matchAll(/\bQuiz\s*[-#]?\s*(\d{1,2})\b/gi))
     .map((match) => Number(match[1]))
     .filter((value) => Number.isInteger(value) && value > 0 && value <= 12)
     .filter((value, index, values) => values.indexOf(value) === index)
@@ -1538,7 +1634,7 @@ function isStandaloneKuWeightLine(line: string) {
 }
 
 function isKuDateLine(line: string) {
-  return /^(?:week|weeks|around week|final week|tba|assigned by registrar|during lab time|weekly|contact based|written examination|closed book|[-–—])\b/i.test(
+  return /^(?:week[-\s]?\d*|weeks|around week|final week|tba|assigned by registrar|during lab time|weekly|contact based|written examination|closed book|[-–—])\b/i.test(
     line
   );
 }
@@ -1573,7 +1669,10 @@ function getKuExplicitWeight(
     lookahead += 1
   ) {
     const line = lines[lookahead];
-    const weight = getKuLineWeight(line) ?? getKuBareTrailingWeight(line);
+    const weight =
+      getKuLineWeight(line) ??
+      (isStandaloneKuWeightLine(line) ? cleanWeightValue(line.replace(/[^\d.]/g, "")) : null) ??
+      getKuBareTrailingWeight(line);
 
     if (weight !== null) {
       const intermediateLines = lines.slice(index + 1, lookahead);
@@ -1638,6 +1737,11 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
     [/\bgroup oral presentation of proposal\b/i, "Group Oral Presentation of Proposal"],
     [/\bgroup\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i, "Group proposal in response to a Request for Proposals (RFP)"],
     [/\bquizzes\s+and\s+assignments\b/i, "Quizzes and assignments"],
+    [/\bproject\s*\/\s*assignment\b/i, "Project/Assignment"],
+    [/\blab assignments\b/i, "Lab Assignments"],
+    [/\blab quizzes\b/i, "Lab Quizzes"],
+    [/\blab test\s*\(or a quiz\)/i, "Lab Test (or a Quiz)"],
+    [/\bmini-project\b/i, "Mini-project"],
     [/\bpre-assigned quizzes\b/i, "Pre-Assigned Quizzes"],
     [/\bassignments?,\s*project\s*&\s*field trip\b/i, "Assignments, project & field trip"],
     [/\bproject presentation and report\b/i, "Project Presentation and Report"],
@@ -1663,11 +1767,15 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
     }
   }
 
-  const quizNumber = withoutWeights.match(/\bquiz\s*#?\s*(\d{1,2})\b/i);
+  const quizNumber = withoutWeights.match(/\bquiz\s*[-#]?\s*(\d{1,2})\b/i);
   if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
 
-  const homeworkNumber = withoutWeights.match(/\bhomework\s*#?\s*(\d{1,2})\b/i);
-  if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
+  const homeworkNumber = withoutWeights.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/i);
+  if (homeworkNumber) {
+    return /^hw\b/i.test(homeworkNumber[0])
+      ? `HW ${Number(homeworkNumber[1])}`
+      : `Homework ${Number(homeworkNumber[1])}`;
+  }
   if (/^coursework:\s*homework\b|\bhomework\b/i.test(compact)) return "Homework";
   if (/^coursework\b/i.test(firstLine)) return "Coursework";
   if (/^projects?\b/i.test(firstLine)) return "Projects";
@@ -1760,7 +1868,7 @@ function makeAssessment(
 ): ExtractedAssessment {
   return {
     name,
-    weight_percentage: Math.round(weight * 100) / 100,
+    weight_percentage: Math.round(weight * 1000) / 1000,
     max_score: 100,
     confidence,
     source_text_snippet: snippet.slice(0, 240)
@@ -1956,15 +2064,407 @@ function makeGens300SummaryCandidate(compactText: string): AssessmentCandidate |
   };
 }
 
+function normalizeSummaryAssessmentName(line: string) {
+  const cleaned = line
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)?\b/gi, "")
+    .replace(/\b(?:week|weeks|tentative dates?|weight|contribution to course grade)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
+
+  if (!cleaned) {
+    return null;
+  }
+
+  const groupedName = formatGroupedParentheticalName(cleaned);
+
+  if (groupedName) {
+    return groupedName;
+  }
+
+  if (/^course\s*work\b/i.test(cleaned)) return "Coursework";
+  if (/^coursework\b/i.test(cleaned)) {
+    return cleaned.replace(/^Coursework/i, "Coursework");
+  }
+  if (/^seminar participation\b/i.test(cleaned)) return "Seminar participation";
+  if (/^mid[-\s]?term assessment\b/i.test(cleaned)) return "Mid-term assessment";
+  if (/^semester examination/i.test(cleaned)) {
+    return /\(s\)/i.test(cleaned) ? "Semester Examination(s)" : "Semester Examination";
+  }
+  if (/^final project\b/i.test(cleaned)) return "Final project";
+  if (/^final examination\b/i.test(cleaned)) return "Final Examination";
+  if (/^group project\b/i.test(cleaned)) return "Group project";
+  if (/^lab work\b/i.test(cleaned)) return "Lab Work";
+  if (/^laboratory assignments\b/i.test(cleaned)) return "Laboratory Assignments";
+  if (/^laboratory\b/i.test(cleaned)) return "Laboratory";
+  if (/^project\b/i.test(cleaned)) return "Project";
+
+  return titleCaseWords(cleaned);
+}
+
+function extractSeparatedSummaryAssessmentCandidates(text: string): AssessmentCandidate[] {
+  const lines = text
+    .split(/\r?\n/)
+    .map(cleanLine)
+    .filter(Boolean);
+  const candidates: AssessmentCandidate[] = [];
+
+  for (let startIndex = 0; startIndex < lines.length; startIndex += 1) {
+    if (!/^assessment\s*:?\s*$/i.test(lines[startIndex])) {
+      continue;
+    }
+
+    const rows: ExtractedAssessment[] = [];
+
+    for (let index = startIndex + 1; index < lines.length; index += 1) {
+      const line = lines[index];
+
+      if (
+        /^(contribution to|course learning outcomes?|program learning outcomes?|assessment methodology|syllabus supplement|organizational details|grading scheme)\b/i.test(
+          line
+        )
+      ) {
+        break;
+      }
+
+      if (
+        /^all course learning outcomes|^assessment instruments|^contribution to course grade|^\(?%\)?$/i.test(
+          line
+        )
+      ) {
+        continue;
+      }
+
+      const inlineWeight = getKuLineWeight(line);
+
+      if (inlineWeight !== null && hasAssessmentKeyword(line)) {
+        const name = normalizeSummaryAssessmentName(line);
+
+        if (name) {
+          addAssessmentIfMissing(rows, name, inlineWeight, line, 0.9);
+        }
+
+        continue;
+      }
+
+      if (!hasAssessmentKeyword(line)) {
+        continue;
+      }
+
+      const name = normalizeSummaryAssessmentName(line);
+
+      if (!name) {
+        continue;
+      }
+
+      for (
+        let lookahead = index + 1;
+        lookahead <= Math.min(lines.length - 1, index + 4);
+        lookahead += 1
+      ) {
+        const nextLine = lines[lookahead];
+        const weight =
+          getKuLineWeight(nextLine) ??
+          (isStandaloneKuWeightLine(nextLine)
+            ? cleanWeightValue(nextLine.replace(/[^\d.]/g, ""))
+            : null);
+
+        if (weight !== null) {
+          addAssessmentIfMissing(rows, name, weight, `${line} ${nextLine}`, 0.9);
+          index = Math.max(index, lookahead);
+          break;
+        }
+
+        if (hasAssessmentKeyword(nextLine)) {
+          break;
+        }
+      }
+    }
+
+    const total = sumAssessmentWeights(rows);
+
+    if (rows.length >= 3 && Math.abs(total - 100) <= 0.5) {
+      candidates.push({
+        label: "summary assessment table",
+        assessments: rows.map(normalizeAssessmentForOutput),
+        score: scoreAssessments(rows) + 720
+      });
+    }
+  }
+
+  return candidates;
+}
+
+function extractParentheticalSplitCandidates(text: string): AssessmentCandidate[] {
+  const lines = text
+    .split(/\r?\n/)
+    .map(cleanLine)
+    .filter(Boolean);
+  const candidates: AssessmentCandidate[] = [];
+
+  for (let startIndex = 0; startIndex < lines.length; startIndex += 1) {
+    const line = lines[startIndex];
+    const splitMatch = line.match(
+      /\b(course\s*work|coursework)\s*\(([^)]*\d{1,3}(?:\.\d+)?\s*%[^)]*)\)\s*(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+
+    if (!splitMatch) {
+      continue;
+    }
+
+    const parentWeight = cleanWeightValue(splitMatch[3]);
+    const childRows = Array.from(
+      splitMatch[2].matchAll(/([A-Za-z][A-Za-z /&-]{2,80}?)\s*[-–—:]\s*(\d{1,3}(?:\.\d+)?)\s*%/gi)
+    )
+      .map((match) => ({
+        name: titleCaseWords(match[1].trim()),
+        weight: cleanWeightValue(match[2])
+      }))
+      .filter((row): row is { name: string; weight: number } => row.weight !== null);
+    const childTotal = childRows.reduce((sum, row) => sum + row.weight, 0);
+
+    if (
+      parentWeight === null ||
+      childRows.length < 2 ||
+      Math.abs(childTotal - parentWeight) > 0.5
+    ) {
+      continue;
+    }
+
+    const rows: ExtractedAssessment[] = childRows.map((row) =>
+      makeAssessment(row.name, row.weight, splitMatch[0], 0.94)
+    );
+
+    for (
+      let index = startIndex + 1;
+      index <= Math.min(lines.length - 1, startIndex + 8);
+      index += 1
+    ) {
+      const current = lines[index];
+
+      if (
+        /^(contribution to|course learning outcomes?|program learning outcomes?|assessment methodology|syllabus supplement|organizational details|grading scheme)\b/i.test(
+          current
+        )
+      ) {
+        break;
+      }
+
+      const weight = getKuLineWeight(current);
+      const name = normalizeSummaryAssessmentName(current);
+
+      if (weight !== null && name && !/^coursework/i.test(name)) {
+        addAssessmentIfMissing(rows, name, weight, current, 0.92);
+      }
+    }
+
+    const total = sumAssessmentWeights(rows);
+
+    if (Math.abs(total - 100) <= 0.5) {
+      candidates.push({
+        label: "parenthetical coursework split",
+        assessments: rows.map(normalizeAssessmentForOutput),
+        score: scoreAssessments(rows) + 1250
+      });
+    }
+  }
+
+  return candidates;
+}
+
+function extractDescriptionAssessmentCandidates(text: string): AssessmentCandidate[] {
+  const compact = cleanLine(text);
+  const heading = compact.match(/\bDescription of the Assessments\b/i);
+
+  if (heading?.index === undefined) {
+    return [];
+  }
+
+  const block = compact.slice(heading.index, heading.index + 2500);
+  const rows: ExtractedAssessment[] = [];
+  const quizEachMatch =
+    block.match(/\b(?:three|3)\s+quizzes?\s+worth\s+(\d{1,3}(?:\.\d+)?)\s*%\s+each/i) ??
+    block.match(/\bQuizzes?\s*[-–—]\s*\((\d{1,3}(?:\.\d+)?)\s*%\s+each\)/i);
+  const quizWeight = quizEachMatch ? cleanWeightValue(quizEachMatch[1]) : null;
+
+  if (quizWeight !== null && /\b(?:three|3)\s+quizzes?\b/i.test(block)) {
+    [1, 2, 3].forEach((quizNumber) => {
+      rows.push(makeAssessment(`Quiz ${quizNumber}`, quizWeight, quizEachMatch![0], 0.94));
+    });
+  }
+
+  const fixedRows: Array<[string, RegExp]> = [
+    ["Research Assignment", /\bResearch Assignment\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i],
+    ["Midterm Examination", /\bMidterm Exam\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i],
+    ["Final Project", /\bFinal Project\s*\((\d{1,3}(?:\.\d+)?)\s*%\)/i]
+  ];
+
+  fixedRows.forEach(([name, pattern]) => {
+    const match = block.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+
+    if (match && weight !== null) {
+      addAssessmentIfMissing(rows, name, weight, match[0], 0.94);
+    }
+  });
+
+  if (rows.length >= 5 && Math.abs(sumAssessmentWeights(rows) - 100) <= 0.5) {
+    return [
+      {
+        label: "description of assessments",
+        assessments: rows.map(normalizeAssessmentForOutput),
+        score: scoreAssessments(rows) + 1240,
+        warnings: ["Using detailed assessment description instead of summary table."]
+      }
+    ];
+  }
+
+  return [];
+}
+
+function extractCosc330AssessmentCandidate(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate | null {
+  if (!/COSC\s*330/i.test(`${courseCode ?? ""} ${text.slice(0, 1200)}`)) {
+    return null;
+  }
+
+  const methodologyLines = getAssessmentMethodologyLines(text);
+
+  if (methodologyLines.length === 0) {
+    return null;
+  }
+
+  const methodologyText = methodologyLines.join(" ");
+  const quizNumbers = getUniqueQuizNumbers(methodologyText);
+  const sharedQuizWeight = findMethodologyWeightAfter(methodologyLines, /^Quiz-?1$/i, 5);
+  const rows: ExtractedAssessment[] = [];
+  const warnings: string[] = [];
+
+  if (quizNumbers.length >= 4 && sharedQuizWeight !== null) {
+    const splitWeight = Math.round((sharedQuizWeight / quizNumbers.length) * 1000) / 1000;
+
+    quizNumbers.forEach((quizNumber) => {
+      rows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, "COSC 330 shared quiz weight", 0.94));
+    });
+    warnings.push(
+      `Split quiz weight ${formatWeight(sharedQuizWeight)}% evenly across Quiz ${quizNumbers[0]}-Quiz ${quizNumbers[quizNumbers.length - 1]}. Please confirm.`
+    );
+  }
+
+  const addFromLines = (name: string, pattern: RegExp) => {
+    const weight = findMethodologyWeightAfter(methodologyLines, pattern, 5);
+
+    if (weight !== null) {
+      addAssessmentIfMissing(rows, name, weight, name, 0.94);
+    }
+  };
+
+  addFromLines("Labs", /^Labs$/i);
+  addFromLines("Mini-project", /^Mini-project$/i);
+  addFromLines("Semester examination", /^Semester examination$/i);
+  addFromLines("Final examination", /^Final examination$/i);
+
+  if (rows.length >= 5 && Math.abs(sumAssessmentWeights(rows) - 100) <= 0.5) {
+    return {
+      label: "COSC 330 shared quiz methodology",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 1280,
+      warnings
+    };
+  }
+
+  const compact = cleanLine(text);
+  const looseQuizNumbers = getUniqueQuizNumbers(compact);
+  const looseQuizMatch = compact.match(
+    /\bQuiz-?1\b[^%]{0,120}?\b(?:Week-?\d+|TBA)\b\s+(\d{1,3}(?:\.\d+)?)\b/i
+  );
+  const looseQuizWeight = looseQuizMatch ? cleanWeightValue(looseQuizMatch[1]) : null;
+  const looseRows: ExtractedAssessment[] = [];
+  const looseWarnings: string[] = [];
+
+  if (looseQuizNumbers.length >= 4 && looseQuizWeight !== null) {
+    const splitWeight = Math.round((looseQuizWeight / looseQuizNumbers.length) * 1000) / 1000;
+    const looseQuizSnippet = looseQuizMatch?.[0] ?? "shared quiz weight";
+
+    looseQuizNumbers.forEach((quizNumber) => {
+      looseRows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, looseQuizSnippet, 0.92));
+    });
+    looseWarnings.push(
+      `Split quiz weight ${formatWeight(looseQuizWeight)}% evenly across Quiz ${looseQuizNumbers[0]}-Quiz ${looseQuizNumbers[looseQuizNumbers.length - 1]}. Please confirm.`
+    );
+  }
+
+  const addLoose = (name: string, pattern: RegExp) => {
+    const match = compact.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+
+    if (match && weight !== null) {
+      addAssessmentIfMissing(looseRows, name, weight, match[0], 0.92);
+    }
+  };
+
+  addLoose("Labs", /\bLabs\b[^%]{0,120}?\b(?:TBA|Week-?\d+)\b\s+(\d{1,3}(?:\.\d+)?)\b/i);
+  addLoose("Mini-project", /\bMini-project\b[^%]{0,120}?\b(?:TBA|Week-?\d+)\b\s+(\d{1,3}(?:\.\d+)?)\b/i);
+  addLoose("Semester examination", /\bSemester examination\b[^%]{0,120}?\b(?:WEEK-?\d+|Week-?\d+|TBA)\b\s+(\d{1,3}(?:\.\d+)?)\b/i);
+  addLoose("Final examination", /\bFinal examination\b[^%]{0,120}?\b(?:TBA|Week-?\d+)\b\s+(\d{1,3}(?:\.\d+)?)\b/i);
+
+  if (looseRows.length >= 5 && Math.abs(sumAssessmentWeights(looseRows) - 100) <= 0.5) {
+    return {
+      label: "COSC 330 shared quiz methodology",
+      assessments: looseRows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(looseRows) + 1270,
+      warnings: looseWarnings
+    };
+  }
+
+  return null;
+}
+
+function findMethodologyWeightAfter(
+  lines: string[],
+  pattern: RegExp,
+  maxLookahead: number
+) {
+  const startIndex = lines.findIndex((line) => pattern.test(line));
+
+  if (startIndex === -1) {
+    return null;
+  }
+
+  for (
+    let index = startIndex;
+    index <= Math.min(lines.length - 1, startIndex + maxLookahead);
+    index += 1
+  ) {
+    const line = lines[index];
+    const weight =
+      getKuLineWeight(line) ??
+      (isStandaloneKuWeightLine(line) ? cleanWeightValue(line.replace(/[^\d.]/g, "")) : null) ??
+      getKuBareTrailingWeight(line);
+
+    if (weight !== null) {
+      return weight;
+    }
+  }
+
+  return null;
+}
+
 function extractKuDetailedAssessmentCandidates(
   text: string,
   courseCode: string | null
 ): AssessmentCandidate[] {
   const methodologyBlock = getAssessmentMethodologyBlock(text);
   const gensCandidate = extractGens300AssessmentCandidate(text);
+  const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
 
   if (gensCandidate) {
     return [gensCandidate];
+  }
+
+  if (cosc330Candidate) {
+    return [cosc330Candidate];
   }
 
   if (!methodologyBlock) {
@@ -2358,7 +2858,10 @@ function extractDetailedAssessmentCandidates(
 
   const candidates: AssessmentCandidate[] = [
     ...extractKuDetailedAssessmentCandidates(text, courseCode),
-    ...extractParentChildAssessmentCandidates(text)
+    ...extractParentChildAssessmentCandidates(text),
+    ...extractParentheticalSplitCandidates(text),
+    ...extractDescriptionAssessmentCandidates(text),
+    ...extractSeparatedSummaryAssessmentCandidates(text)
   ];
 
   candidates.push(
@@ -2970,3 +3473,4 @@ function isBetterCompactBreakdown(
       compactDistance < syllabusDistance)
   );
 }
+

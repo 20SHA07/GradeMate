@@ -1,0 +1,18 @@
+{
+  "sourceFileName": "COSC 330 Introduction to AI_withSupplementFalll2025.docx",
+  "courseCode": "COSC 330",
+  "courseName": "Introduction to Artificial Intelligence",
+  "semester": "Fall 2025",
+  "instructor": "Naoufel Werghi",
+  "instructorEmail": "Naoufel.werghi@ku.ac.ae",
+  "assessments": [
+    { "name": "Quiz 1", "weight_percentage": 1.875, "max_score": 100 },
+    { "name": "Quiz 2", "weight_percentage": 1.875, "max_score": 100 },
+    { "name": "Quiz 3", "weight_percentage": 1.875, "max_score": 100 },
+    { "name": "Quiz 4", "weight_percentage": 1.875, "max_score": 100 },
+    { "name": "Labs", "weight_percentage": 7.5, "max_score": 100 },
+    { "name": "Mini-project", "weight_percentage": 15, "max_score": 100 },
+    { "name": "Semester examination", "weight_percentage": 30, "max_score": 100 },
+    { "name": "Final examination", "weight_percentage": 40, "max_score": 100 }
+  ]
+}

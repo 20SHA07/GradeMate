@@ -1,0 +1,16 @@
+{
+  "sourceFileName": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "courseCode": "COSC 336",
+  "courseName": "Introduction to Software Engineering",
+  "semester": "Fall 2025",
+  "instructor": "Jamal Bentahar",
+  "instructorEmail": "Jamal.bentahar@ku.ac.ae",
+  "officeRoom": "D04 206",
+  "assessments": [
+    { "name": "Quizzes", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Assignments", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Group project", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Semester Examination", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Final Examination", "weight_percentage": 40, "max_score": 100 }
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "sourceFileName": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "courseCode": "LTCM 221",
+  "courseName": "Intercultural Communication",
+  "instructor": "DR GLENDA EL GAMAL",
+  "instructorEmail": "glenda.elgamal@ku.ac.ae",
+  "assessments": [
+    { "name": "Coursework", "weight_percentage": 40, "max_score": 100 },
+    { "name": "Seminar participation", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Mid-term assessment", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Final project", "weight_percentage": 30, "max_score": 100 }
+  ]
+}

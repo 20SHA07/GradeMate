@@ -1,0 +1,20 @@
+{
+  "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "khaled.elbassioni@ku.ac.ae",
+  "officeRoom": "D04200",
+  "assessments": [
+    { "name": "Quiz 1", "weight_percentage": 3.33, "max_score": 100 },
+    { "name": "Quiz 2", "weight_percentage": 3.33, "max_score": 100 },
+    { "name": "Quiz 3", "weight_percentage": 3.34, "max_score": 100 },
+    { "name": "Project/Assignment", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Lab Assignments", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Lab Quizzes", "weight_percentage": 10, "max_score": 100 },
+    { "name": "Lab Test (or a Quiz)", "weight_percentage": 5, "max_score": 100 },
+    { "name": "Semester Examination", "weight_percentage": 20, "max_score": 100 },
+    { "name": "Final Examination", "weight_percentage": 35, "max_score": 100 }
+  ]
+}

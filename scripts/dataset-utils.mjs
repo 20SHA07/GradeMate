@@ -680,6 +680,10 @@ async function extractDocumentText(filePath, options = {}) {
   const extension = path.extname(filePath).toLowerCase();
 
   if (extension === ".pdf") {
+    if (await fileLooksLikeZip(filePath)) {
+      return extractDocxText(filePath);
+    }
+
     return extractPdfText(filePath, options);
   }
 
@@ -688,6 +692,19 @@ async function extractDocumentText(filePath, options = {}) {
   }
 
   throw new Error(`Unsupported dataset document type: ${extension}`);
+}
+
+async function fileLooksLikeZip(filePath) {
+  const handle = await fs.open(filePath, "r");
+  const buffer = Buffer.alloc(2);
+
+  try {
+    await handle.read(buffer, 0, 2, 0);
+  } finally {
+    await handle.close();
+  }
+
+  return buffer[0] === 0x50 && buffer[1] === 0x4b;
 }
 
 async function extractPdfText(filePath, options = {}) {
@@ -1502,7 +1519,7 @@ function chooseBestAssessments(ruleAssessments = [], detailedAssessments = []) {
   candidates.sort((first, second) => scoreAssessments(second) - scoreAssessments(first));
   return candidates[0].map((assessment) => ({
     name: assessment.name,
-    weight_percentage: Math.round(Number(assessment.weight_percentage) * 100) / 100,
+    weight_percentage: Math.round(Number(assessment.weight_percentage) * 1000) / 1000,
     max_score: Number(assessment.max_score) || 100,
     confidence: Math.round(Number(assessment.confidence ?? 0.7) * 100) / 100,
     source_text_snippet: assessment.source_text_snippet ?? ""
