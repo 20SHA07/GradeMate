@@ -795,12 +795,13 @@ export function CourseLibraryClient() {
 
       <div className="flex flex-col gap-3 rounded-2xl bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-ink-700">
-          Showing {showingStart}-{showingEnd} of {filteredTemplates.length}{" "}
-          templates
+          {isLoading
+            ? "Loading syllabus templates..."
+            : `Showing ${showingStart}-${showingEnd} of ${filteredTemplates.length} templates`}
         </p>
         <div className="flex items-center gap-2">
           <Button
-            disabled={currentPage === 1}
+            disabled={isLoading || currentPage === 1}
             onClick={() => setCurrentPage((page) => Math.max(1, page - 1))}
             size="sm"
             variant="secondary"
@@ -812,7 +813,7 @@ export function CourseLibraryClient() {
             {currentPage} / {pageCount}
           </span>
           <Button
-            disabled={currentPage === pageCount}
+            disabled={isLoading || currentPage === pageCount}
             onClick={() =>
               setCurrentPage((page) => Math.min(pageCount, page + 1))
             }

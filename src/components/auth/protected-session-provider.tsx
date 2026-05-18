@@ -44,6 +44,7 @@ type AuthState =
   | { status: "authenticated"; session: Session };
 
 const migrationDismissedKey = "grademate_guest_migration_dismissed_for";
+const authSessionTimeoutMs = 5000;
 
 export function ProtectedSessionProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -69,17 +70,32 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
     let isMounted = true;
 
     async function loadSession() {
-      const { data } = await client.auth.getSession();
+      const timeoutId = window.setTimeout(() => {
+        if (isMounted) {
+          setAuthState({ status: "guest" });
+        }
+      }, authSessionTimeoutMs);
 
-      if (!isMounted) {
-        return;
+      try {
+        const { data } = await client.auth.getSession();
+        window.clearTimeout(timeoutId);
+
+        if (!isMounted) {
+          return;
+        }
+
+        setAuthState(
+          data.session
+            ? { status: "authenticated", session: data.session }
+            : { status: "guest" }
+        );
+      } catch {
+        window.clearTimeout(timeoutId);
+
+        if (isMounted) {
+          setAuthState({ status: "guest" });
+        }
       }
-
-      setAuthState(
-        data.session
-          ? { status: "authenticated", session: data.session }
-          : { status: "guest" }
-      );
     }
 
     void loadSession();

@@ -546,10 +546,7 @@ function SmartSyllabusExtractor({
       const aiResult = await requestLocalAiExtraction(text);
       showExtractionResult(aiResult, "ai");
     } catch (aiError) {
-      if (ruleResult.assessments.length > 0) {
-        showExtractionResult(ruleResult, ruleSource);
-      }
-
+      showExtractionResult(ruleResult, ruleSource);
       setError(getLocalAiErrorMessage(aiError));
     }
   }
