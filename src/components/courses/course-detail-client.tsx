@@ -48,6 +48,11 @@ import {
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
 import { getAppBasePath } from "@/lib/routes";
+import {
+  getCoreAssessmentPayload,
+  getCoreAssessmentPayloads,
+  isMissingAssessmentOptionalColumnError
+} from "@/lib/supabase/assessment-write";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -763,30 +768,36 @@ function SmartSyllabusExtractor({
       return;
     }
 
-    const { data, error: insertError } = await supabase
+    const insertPayloads = rowsToSave.map((row) => ({
+      user_id: user.id,
+      course_id: course.id,
+      name: row.name.trim(),
+      weight_percentage: Number(row.weight_percentage) || 0,
+      score: null,
+      max_score: Number(row.max_score) || 100,
+      category: "Planned",
+      title: row.name.trim(),
+      weight: Number(row.weight_percentage) || 0
+    }));
+    let insertResponse = await supabase
       .from("assessments")
-      .insert(
-        rowsToSave.map((row) => ({
-          user_id: user.id,
-          course_id: course.id,
-          name: row.name.trim(),
-          weight_percentage: Number(row.weight_percentage) || 0,
-          score: null,
-          max_score: Number(row.max_score) || 100,
-          category: "Planned",
-          title: row.name.trim(),
-          weight: Number(row.weight_percentage) || 0
-        }))
-      )
+      .insert(insertPayloads)
       .select();
 
-    if (insertError) {
-      setError(getSupabaseErrorMessage(insertError));
+    if (isMissingAssessmentOptionalColumnError(insertResponse.error)) {
+      insertResponse = await supabase
+        .from("assessments")
+        .insert(getCoreAssessmentPayloads(insertPayloads))
+        .select();
+    }
+
+    if (insertResponse.error) {
+      setError(getSupabaseErrorMessage(insertResponse.error));
       setIsSavingExtraction(false);
       return;
     }
 
-    const savedAssessments = (data ?? []) as AssessmentRecord[];
+    const savedAssessments = (insertResponse.data ?? []) as AssessmentRecord[];
     onSaved(savedAssessments, mode);
     clearReviewOnly();
     setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
@@ -1451,23 +1462,44 @@ export function CourseDetailClient({
       return;
     }
 
-    const response = editingAssessmentId
+    const writePayload = editingAssessmentId
+      ? payload
+      : {
+          ...payload,
+          user_id: user.id,
+          course_id: course.id
+        };
+    let response = editingAssessmentId
       ? await supabase
           .from("assessments")
-          .update(payload)
+          .update(writePayload)
           .eq("id", editingAssessmentId)
           .eq("user_id", user.id)
           .select()
           .single()
       : await supabase
           .from("assessments")
-          .insert({
-            ...payload,
-            user_id: user.id,
-            course_id: course.id
-          })
+          .insert(writePayload)
           .select()
           .single();
+
+    if (isMissingAssessmentOptionalColumnError(response.error)) {
+      const corePayload = getCoreAssessmentPayload(writePayload);
+
+      response = editingAssessmentId
+        ? await supabase
+            .from("assessments")
+            .update(corePayload)
+            .eq("id", editingAssessmentId)
+            .eq("user_id", user.id)
+            .select()
+            .single()
+        : await supabase
+            .from("assessments")
+            .insert(corePayload)
+            .select()
+            .single();
+    }
 
     setIsSaving(false);
 

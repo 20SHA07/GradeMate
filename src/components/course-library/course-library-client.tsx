@@ -25,6 +25,10 @@ import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
 import { getCourseDetailHref } from "@/lib/routes";
 import {
+  getCoreAssessmentPayloads,
+  isMissingAssessmentOptionalColumnError
+} from "@/lib/supabase/assessment-write";
+import {
   getSupabaseErrorMessage,
   getSupabasePublicConfig
 } from "@/lib/supabase/config";
@@ -487,16 +491,21 @@ export function CourseLibraryClient() {
       return;
     }
 
-    const { error: assessmentError } = await supabase
+    const assessmentPayloads = assessmentsToCopy.map((assessment) =>
+      templateAssessmentPayload(assessment, courseId, user.id)
+    );
+    let assessmentResponse = await supabase
       .from("assessments")
-      .insert(
-        assessmentsToCopy.map((assessment) =>
-          templateAssessmentPayload(assessment, courseId, user.id)
-        )
-      );
+      .insert(assessmentPayloads);
 
-    if (assessmentError) {
-      throw new Error(getSupabaseErrorMessage(assessmentError));
+    if (isMissingAssessmentOptionalColumnError(assessmentResponse.error)) {
+      assessmentResponse = await supabase
+        .from("assessments")
+        .insert(getCoreAssessmentPayloads(assessmentPayloads));
+    }
+
+    if (assessmentResponse.error) {
+      throw new Error(getSupabaseErrorMessage(assessmentResponse.error));
     }
   }
 

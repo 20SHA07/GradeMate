@@ -1,4 +1,9 @@
 import type { SupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  getCoreAssessmentPayload,
+  getCoreAssessmentPayloads,
+  isMissingAssessmentOptionalColumnError
+} from "@/lib/supabase/assessment-write";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import type {
   AssessmentRecord,
@@ -580,29 +585,38 @@ export async function createAssessment(
     throw new Error("Supabase is not available.");
   }
 
-  const { data, error } = await context.supabase
+  const insertPayload = {
+    user_id: context.userId,
+    course_id: input.course_id,
+    name,
+    weight_percentage: weight,
+    score: input.score ?? null,
+    max_score: input.max_score ?? null,
+    category: input.category ?? "Planned",
+    title: name,
+    weight
+  };
+  let response = await context.supabase
     .from("assessments")
-    .insert({
-      user_id: context.userId,
-      course_id: input.course_id,
-      name,
-      weight_percentage: weight,
-      score: input.score ?? null,
-      max_score: input.max_score ?? null,
-      category: input.category ?? "Planned",
-      title: name,
-      weight
-    })
+    .insert(insertPayload)
     .select()
     .single();
 
-  if (error || !data) {
+  if (isMissingAssessmentOptionalColumnError(response.error)) {
+    response = await context.supabase
+      .from("assessments")
+      .insert(getCoreAssessmentPayload(insertPayload))
+      .select()
+      .single();
+  }
+
+  if (response.error || !response.data) {
     throw new Error(
-      getSupabaseErrorMessage(error, "Could not create assessment.")
+      getSupabaseErrorMessage(response.error, "Could not create assessment.")
     );
   }
 
-  return data as AssessmentRecord;
+  return response.data as AssessmentRecord;
 }
 
 export async function updateAssessment(
@@ -624,7 +638,7 @@ export async function updateAssessment(
     throw new Error("Supabase is not available.");
   }
 
-  const { data, error } = await context.supabase
+  let response = await context.supabase
     .from("assessments")
     .update(updates)
     .eq("id", assessmentId)
@@ -632,11 +646,21 @@ export async function updateAssessment(
     .select()
     .single();
 
-  if (error) {
-    throw new Error(getSupabaseErrorMessage(error));
+  if (isMissingAssessmentOptionalColumnError(response.error)) {
+    response = await context.supabase
+      .from("assessments")
+      .update(getCoreAssessmentPayload(updates))
+      .eq("id", assessmentId)
+      .eq("user_id", context.userId)
+      .select()
+      .single();
   }
 
-  return data as AssessmentRecord;
+  if (response.error) {
+    throw new Error(getSupabaseErrorMessage(response.error));
+  }
+
+  return response.data as AssessmentRecord;
 }
 
 export async function deleteAssessment(
@@ -743,12 +767,20 @@ export async function migrateGuestWorkspaceToSupabase({
   }
 
   if (assessmentRows.length > 0) {
-    const { error } = await supabase
+    let response = await supabase
       .from("assessments")
       .upsert(assessmentRows, { onConflict: "id" });
 
-    if (error) {
-      throw new Error(getSupabaseErrorMessage(error));
+    if (isMissingAssessmentOptionalColumnError(response.error)) {
+      response = await supabase
+        .from("assessments")
+        .upsert(getCoreAssessmentPayloads(assessmentRows), {
+          onConflict: "id"
+        });
+    }
+
+    if (response.error) {
+      throw new Error(getSupabaseErrorMessage(response.error));
     }
   }
 

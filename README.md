@@ -45,6 +45,12 @@ If assessment inserts fail with a row-level security error, run
 editor. It refreshes the assessment policies and adds insert triggers that set
 `user_id` from the logged-in Supabase user.
 
+If importing a Course Library template fails with a missing assessment column
+such as `category`, run
+[supabase/assessment-detail-fields.sql](supabase/assessment-detail-fields.sql).
+It adds the optional assessment detail fields used for statuses and backward
+compatibility.
+
 Required environment variables:
 
 ```bash
