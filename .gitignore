@@ -7,6 +7,7 @@ node_modules
 .next
 out
 tsconfig.tsbuildinfo
+public/pdf.worker.min.mjs
 
 # Production
 dist

@@ -47,6 +47,8 @@ jobs:
           NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL || 'https://ipadimpttadajubxubyd.supabase.co' }}
           NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_T4CVUWq_pU1fsAKncAITcQ_aSfNYk8F' }}
           NEXT_PUBLIC_SUPABASE_ANON_KEY: ${{ secrets.NEXT_PUBLIC_SUPABASE_ANON_KEY || secrets.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || 'sb_publishable_T4CVUWq_pU1fsAKncAITcQ_aSfNYk8F' }}
+          NEXT_PUBLIC_ONLINE_AI_ENABLED: ${{ secrets.NEXT_PUBLIC_ONLINE_AI_ENABLED || 'true' }}
+          NEXT_PUBLIC_AI_PROVIDER: ${{ secrets.NEXT_PUBLIC_AI_PROVIDER || 'supabase-edge' }}
 
       - name: Prepare Pages artifact
         run: |

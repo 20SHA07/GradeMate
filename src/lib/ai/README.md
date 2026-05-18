@@ -1,17 +1,25 @@
-AI syllabus extraction lives in the Supabase Edge Function at:
+AI extraction is optional and review-only.
 
-`supabase/functions/extract-syllabus/index.ts`
+Production online assist:
 
-Setup checklist:
+- Edge Function: `supabase/functions/ai-extract-syllabus/index.ts`
+- Deploy with `supabase functions deploy ai-extract-syllabus`.
+- Set `GEMINI_API_KEY` as a Supabase Edge Function secret.
+- Optionally set `GEMINI_MODEL`; the default is `gemini-2.5-flash`.
+- Enable the frontend provider at build time with:
+  - `NEXT_PUBLIC_ONLINE_AI_ENABLED=true`
+  - `NEXT_PUBLIC_AI_PROVIDER=supabase-edge`
 
-- Run `supabase/syllabus-storage.sql` in the Supabase SQL editor.
-- Deploy the Edge Function with `supabase functions deploy extract-syllabus`.
-- Set the Edge Function secret `OPENAI_API_KEY`.
-- Optionally set `OPENAI_MODEL`; the default is `gpt-5-mini`.
+Local development assist:
+
+- `src/app/api/local-ai/extract-syllabus/route.ts`
+- Uses Ollama through `OLLAMA_BASE_URL` and `OLLAMA_MODEL`.
+- This route is local-only and should not be relied on by GitHub Pages.
 
 Flow:
 
-- The browser uploads a PDF to the private `course-syllabi` Supabase Storage bucket.
-- The browser creates a `syllabus_uploads` record owned by the signed-in user.
-- The browser invokes the `extract-syllabus` Edge Function.
-- The function downloads the PDF, sends it to OpenAI as a PDF file input, validates structured JSON with Zod, updates the course, and inserts assessments.
+- The browser rule-based parser runs first.
+- If the parser is strong and weights are close to 100%, the app uses that result.
+- If the parser is weak, unclear, or incomplete, the app calls the configured AI provider.
+- The AI provider returns structured JSON suggestions.
+- The user reviews and confirms before any assessments are saved.

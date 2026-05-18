@@ -3,8 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "copy:pdf-worker": "node scripts/copy-pdf-worker.mjs",
     "dev": "node ./node_modules/next/dist/bin/next dev",
+    "predev": "node scripts/copy-pdf-worker.mjs",
     "build": "node ./node_modules/next/dist/bin/next build",
+    "prebuild": "node scripts/copy-pdf-worker.mjs",
+    "postinstall": "node scripts/copy-pdf-worker.mjs",
     "import:syllabi": "node scripts/import-syllabi.mjs",
     "import:syllabi:dry": "node scripts/import-syllabi.mjs --dry-run",
     "import:templates": "node scripts/import-course-templates.mjs",

@@ -53,6 +53,7 @@ import {
   getCoreAssessmentPayloads,
   isMissingAssessmentOptionalColumnError
 } from "@/lib/supabase/assessment-write";
+import type { SupabaseBrowserClient } from "@/lib/supabase/client";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -71,7 +72,7 @@ type ReviewAssessment = ExtractedAssessment & {
   id: string;
 };
 
-type ExtractionSource = "ai" | "pdf" | "rule";
+type ExtractionSource = "ai" | "local-ai" | "online-ai" | "pdf" | "rule";
 
 type ExtractionDraft = {
   extraction: ExtractedSyllabus;
@@ -160,7 +161,7 @@ function formatWeightDelta(value: number) {
 }
 
 function getWeightReadiness(totalWeight: number) {
-  if (totalWeight === 100) {
+  if (isWeightCloseToReady(totalWeight)) {
     return { label: "Ready", tone: "green" as const };
   }
 
@@ -179,7 +180,7 @@ function getWeightReadiness(totalWeight: number) {
 
 function getWeightHelperText(totalWeight: number) {
   if (isWeightCloseToReady(totalWeight)) {
-    return "Weight total: 100% - ready";
+    return "Weight total: 100% ready";
   }
 
   if (totalWeight < 100) {
@@ -202,7 +203,11 @@ function getConfidenceInfo(confidence: number) {
 }
 
 function getExtractionSourceLabel(source: ExtractionSource | null) {
-  if (source === "ai") {
+  if (source === "online-ai") {
+    return "Improved with online AI";
+  }
+
+  if (source === "ai" || source === "local-ai") {
     return "Improved with local AI";
   }
 
@@ -215,9 +220,8 @@ function getExtractionSourceLabel(source: ExtractionSource | null) {
 
 async function extractTextFromPdfFile(file: File) {
   const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
-  pdfjs.GlobalWorkerOptions.workerSrc =
-    pdfjs.GlobalWorkerOptions.workerSrc ||
-    `https://cdnjs.cloudflare.com/ajax/libs/pdf.js/${pdfjs.version}/pdf.worker.min.mjs`;
+  const basePath = process.env.NODE_ENV === "production" ? "/GradeMate" : "";
+  pdfjs.GlobalWorkerOptions.workerSrc = `${basePath}/pdf.worker.min.mjs`;
   const data = new Uint8Array(await file.arrayBuffer());
   const documentTask = pdfjs.getDocument({ data });
   const pdf = await documentTask.promise;
@@ -339,6 +343,33 @@ function getLocalAiErrorMessage(error: unknown) {
   return "Local AI is not running. You can still use manual detection or start Ollama.";
 }
 
+function getOnlineAiErrorMessage(error: unknown) {
+  if (error instanceof Error) {
+    return error.message || "AI assist is unavailable. You can still use automatic detection.";
+  }
+
+  return "AI assist is unavailable. You can still use automatic detection.";
+}
+
+function isOnlineAiEnabled() {
+  return (
+    process.env.NEXT_PUBLIC_ONLINE_AI_ENABLED === "true" &&
+    process.env.NEXT_PUBLIC_AI_PROVIDER === "supabase-edge"
+  );
+}
+
+function getAiAssistLabel() {
+  if (isOnlineAiEnabled()) {
+    return "AI assist: Online";
+  }
+
+  if (canUseLocalAiExtraction()) {
+    return "AI assist: Local";
+  }
+
+  return "AI assist: Automatic";
+}
+
 function canUseLocalAiExtraction() {
   if (typeof window === "undefined") {
     return false;
@@ -378,6 +409,77 @@ async function requestLocalAiExtraction(text: string) {
   }
 
   return payload as ExtractedSyllabus;
+}
+
+function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
+  if (!payload || typeof payload !== "object") {
+    throw new Error(
+      "AI extraction returned an invalid result. Try again or edit manually."
+    );
+  }
+
+  const extraction = payload as Partial<ExtractedSyllabus>;
+
+  if (
+    !Array.isArray(extraction.assessments) ||
+    !Array.isArray(extraction.warnings) ||
+    typeof extraction.confidence !== "number"
+  ) {
+    throw new Error(
+      "AI extraction returned an invalid result. Try again or edit manually."
+    );
+  }
+
+  return extraction as ExtractedSyllabus;
+}
+
+async function getFunctionErrorMessage(error: unknown) {
+  const fallback =
+    "AI assist is unavailable. You can still use automatic detection.";
+  const context =
+    error && typeof error === "object" && "context" in error
+      ? (error as { context?: unknown }).context
+      : null;
+
+  if (context instanceof Response) {
+    const payload = (await context
+      .clone()
+      .json()
+      .catch(() => null)) as { error?: unknown } | null;
+
+    if (typeof payload?.error === "string") {
+      return payload.error;
+    }
+  }
+
+  return fallback;
+}
+
+async function requestOnlineAiExtraction(
+  text: string,
+  supabase: SupabaseBrowserClient | null
+) {
+  if (!isOnlineAiEnabled() || !supabase) {
+    throw new Error(
+      "AI assist is unavailable. You can still use automatic detection."
+    );
+  }
+
+  const { data, error } = await supabase.functions.invoke<
+    ExtractedSyllabus | { error?: string }
+  >("ai-extract-syllabus", {
+    body: { text }
+  });
+
+  if (error) {
+    throw new Error(await getFunctionErrorMessage(error));
+  }
+
+  if (data && "error" in data && data.error) {
+    throw new Error(data.error);
+  }
+
+  return validateExtractionPayload(data);
 }
 
 function normalizeReviewName(value: string) {
@@ -542,13 +644,30 @@ function SmartSyllabusExtractor({
       return;
     }
 
-    try {
-      const aiResult = await requestLocalAiExtraction(text);
-      showExtractionResult(aiResult, "ai");
-    } catch (aiError) {
-      showExtractionResult(ruleResult, ruleSource);
-      setError(getLocalAiErrorMessage(aiError));
+    if (isOnlineAiEnabled()) {
+      try {
+        const aiResult = await requestOnlineAiExtraction(text, supabase);
+        showExtractionResult(aiResult, "online-ai");
+        return;
+      } catch (aiError) {
+        showExtractionResult(ruleResult, ruleSource);
+        setError(getOnlineAiErrorMessage(aiError));
+        return;
+      }
     }
+
+    if (canUseLocalAiExtraction()) {
+      try {
+        const aiResult = await requestLocalAiExtraction(text);
+        showExtractionResult(aiResult, "local-ai");
+      } catch (aiError) {
+        showExtractionResult(ruleResult, ruleSource);
+        setError(getLocalAiErrorMessage(aiError));
+      }
+      return;
+    }
+
+    showExtractionResult(ruleResult, ruleSource);
   }
 
   async function runExtraction(text: string, mode: "quick" | "syllabus") {
@@ -606,10 +725,9 @@ function SmartSyllabusExtractor({
 
       await runExtractionPipeline(pdfText, "syllabus", "pdf");
     } catch (pdfError) {
+      console.warn("PDF text extraction failed", pdfError);
       setError(
-        pdfError instanceof Error
-          ? pdfError.message
-          : "Could not read this PDF."
+        "PDF text extraction failed. You can paste the grading section instead."
       );
     } finally {
       setIsExtracting(false);
@@ -810,7 +928,7 @@ function SmartSyllabusExtractor({
               <FileText aria-hidden="true" className="h-4 w-4" />
               Smart Syllabus Extractor
             </div>
-            <Badge tone="teal">AI assist: Local</Badge>
+            <Badge tone="teal">{getAiAssistLabel()}</Badge>
           </div>
           <h2 className="mt-2 text-xl font-semibold text-ink-900">
             Create assessments from a syllabus
@@ -842,19 +960,19 @@ function SmartSyllabusExtractor({
         />
         <div className="mt-3 flex flex-wrap gap-2">
           <Button
-            disabled={isExtracting}
-            onClick={() => void runExtraction(quickText, "quick")}
-          >
-            <Wand2 aria-hidden="true" className="h-4 w-4" />
-            Auto-detect
-          </Button>
-          <Button
             onClick={() =>
               setQuickText("quizzes 15, assignments 20, midterm 25, final 40")
             }
             variant="secondary"
           >
             Try sample
+          </Button>
+          <Button
+            disabled={isExtracting}
+            onClick={() => void runExtraction(quickText, "quick")}
+          >
+            <Wand2 aria-hidden="true" className="h-4 w-4" />
+            Auto-detect
           </Button>
           <Button
             onClick={() => {
@@ -1005,7 +1123,10 @@ function SmartSyllabusExtractor({
             </Badge>
             <Badge
               tone={
-                extractionSource === "ai" || extractionSource === "pdf"
+                extractionSource === "ai" ||
+                extractionSource === "local-ai" ||
+                extractionSource === "online-ai" ||
+                extractionSource === "pdf"
                   ? "teal"
                   : "ink"
               }
@@ -1033,6 +1154,13 @@ function SmartSyllabusExtractor({
                 ))}
               </ul>
             </div>
+          ) : null}
+
+          {hasExistingAssessments && reviewRows.length > 0 ? (
+            <p className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
+              This course already has assessments. Choose whether to replace
+              them or append only new names.
+            </p>
           ) : null}
 
           {reviewRows.length === 0 ? (
@@ -1157,7 +1285,7 @@ function SmartSyllabusExtractor({
             </Button>
             {reviewRows.length === 0 ? (
               <Button onClick={clearResults} variant="ghost">
-                Clear results
+                Cancel
               </Button>
             ) : hasExistingAssessments ? (
               <>
@@ -1172,7 +1300,7 @@ function SmartSyllabusExtractor({
                   onClick={() => void saveExtractedAssessments("append")}
                   variant="secondary"
                 >
-                  Append only new assessments
+                  Append new assessments only
                 </Button>
                 <Button onClick={clearResults} variant="ghost">
                   Cancel
@@ -1184,10 +1312,10 @@ function SmartSyllabusExtractor({
                   disabled={isSavingExtraction}
                   onClick={() => void saveExtractedAssessments("append")}
                 >
-                  Confirm and save
+                  Confirm and Save
                 </Button>
                 <Button onClick={clearResults} variant="ghost">
-                  Clear results
+                  Cancel
                 </Button>
               </>
             )}
@@ -1854,7 +1982,15 @@ export function CourseDetailClient({
       </Card>
 
       <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
-        <Card className="overflow-hidden">
+        <div className="space-y-6">
+          <SmartSyllabusExtractor
+            assessments={assessments}
+            course={course}
+            isGuest={isGuest}
+            onSaved={handleExtractedAssessmentsSaved}
+          />
+
+          <Card className="overflow-hidden">
           <div className="border-b border-ink-200 p-5">
             <h2 className="text-lg font-semibold text-ink-900">
               Assessments
@@ -1951,6 +2087,7 @@ export function CourseDetailClient({
             </div>
           )}
         </Card>
+        </div>
 
         <Card className="p-5" id="add-assessment">
           <div className="flex items-start justify-between gap-3">
@@ -2104,13 +2241,6 @@ export function CourseDetailClient({
           </form>
         </Card>
       </section>
-
-      <SmartSyllabusExtractor
-        assessments={assessments}
-        course={course}
-        isGuest={isGuest}
-        onSaved={handleExtractedAssessmentsSaved}
-      />
     </div>
   );
 }

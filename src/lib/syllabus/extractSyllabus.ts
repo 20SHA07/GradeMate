@@ -585,7 +585,7 @@ export function parseGradeBreakdownMessage(input: string): ExtractedSyllabus {
       warnings.push(
         `${titleCaseAssessmentName(match[1])} are ${formatWeight(
           weight
-        )}%, but split is unclear. Please edit manually.`
+        )}%, but the split between midterm and final is unclear. Please edit manually.`
       );
     }
   });

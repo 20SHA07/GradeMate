@@ -8,7 +8,7 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - TypeScript
 - Tailwind CSS
 - Supabase-ready auth, database, and storage structure
-- OpenAI-ready extraction structure
+- Browser rule-based extraction with optional Gemini or local Ollama assist
 - Zod-ready validation structure
 
 ## Routes
@@ -72,6 +72,33 @@ For local syllabus AI extraction during development, run Ollama locally and set:
 OLLAMA_BASE_URL=http://localhost:11434
 OLLAMA_MODEL=llama3.2:3b
 ```
+
+For online AI assist on the public GitHub Pages site, GradeMate calls a
+Supabase Edge Function. Add these public build variables to `.env.local` and to
+your GitHub Pages workflow/repository secrets:
+
+```bash
+NEXT_PUBLIC_ONLINE_AI_ENABLED=true
+NEXT_PUBLIC_AI_PROVIDER=supabase-edge
+```
+
+Then deploy the Gemini Edge Function and set the Gemini key as a Supabase
+secret. Do not put `GEMINI_API_KEY` in frontend env files.
+
+```bash
+supabase functions deploy ai-extract-syllabus
+supabase secrets set GEMINI_API_KEY="your-gemini-api-key"
+```
+
+Optional Edge Function secret:
+
+```bash
+supabase secrets set GEMINI_MODEL="gemini-2.5-flash"
+```
+
+The browser always runs the rule-based parser first. Gemini is only called when
+the local result is weak, unclear, or incomplete. AI results are suggestions
+only and must be reviewed before saving.
 
 If you already ran the older schema, run
 [supabase/syllabus-storage.sql](supabase/syllabus-storage.sql) in the SQL editor

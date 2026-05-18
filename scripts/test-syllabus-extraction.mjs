@@ -40,6 +40,14 @@ expectAssessment(commaSeparated, "Assignments", 20);
 expectAssessment(commaSeparated, "Midterm", 25);
 expectAssessment(commaSeparated, "Final Exam", 40);
 
+const percentSeparated = parseGradeBreakdownMessage(
+  "quizzes 15%, assignments 20%, midterm 25%, final 40%"
+);
+expectAssessment(percentSeparated, "Quizzes", 15);
+expectAssessment(percentSeparated, "Assignments", 20);
+expectAssessment(percentSeparated, "Midterm", 25);
+expectAssessment(percentSeparated, "Final Exam", 40);
+
 const multipleAssessments = parseGradeBreakdownMessage(
   "2 midterms worth 20% each, final 35%, homework 15%, participation 10%"
 );
@@ -57,6 +65,15 @@ expectAssessment(compactText, "Final Exam", 40);
 expectAssessment(compactText, "Labs", 20);
 expectAssessment(compactText, "Projects", 15);
 
+const repeatedAssessments = parseGradeBreakdownMessage(
+  "3 quizzes worth 5% each, midterm 25%, final 60%"
+);
+expectAssessment(repeatedAssessments, "Quiz 1", 5);
+expectAssessment(repeatedAssessments, "Quiz 2", 5);
+expectAssessment(repeatedAssessments, "Quiz 3", 5);
+expectAssessment(repeatedAssessments, "Midterm", 25);
+expectAssessment(repeatedAssessments, "Final Exam", 60);
+
 const unclearSplit = parseGradeBreakdownMessage(
   "exams 50 split between midterm and final, assignments 30, quizzes 20"
 );
@@ -64,7 +81,9 @@ expectAssessment(unclearSplit, "Exams", 50);
 expectAssessment(unclearSplit, "Assignments", 30);
 expectAssessment(unclearSplit, "Quizzes", 20);
 assert.ok(
-  unclearSplit.warnings.some((warning) => /split is unclear/i.test(warning)),
+  unclearSplit.warnings.some((warning) =>
+    /split between midterm and final is unclear/i.test(warning)
+  ),
   "Expected unclear split warning"
 );
 
