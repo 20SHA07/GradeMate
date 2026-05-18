@@ -24,6 +24,7 @@ const navItems = [
   { href: "/semesters", label: "Semesters", icon: Library },
   { href: "/courses", label: "Courses", icon: BookOpen },
   { href: "/course-library", label: "Course Library", icon: BookMarked },
+  { href: "/simple", label: "Quick Calculator", icon: Calculator },
   { href: "/gpa-calculator", label: "GPA Calculator", icon: Calculator }
 ];
 

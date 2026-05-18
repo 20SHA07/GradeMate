@@ -1,6 +1,6 @@
 # GradeMate
 
-GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and grade trackers.
+GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and grade trackers. It includes a no-account Simple Mode for quick GPA math and a full Workspace Mode for semester, course, assessment, syllabus, and Course Library workflows.
 
 ## Stack
 
@@ -13,7 +13,8 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 
 ## Routes
 
-- `/` landing page
+- `/` mode chooser landing page
+- `/simple` GradeMate Simple quick GPA calculator
 - `/login` auth entry
 - `/signup` auth registration
 - `/sign-in` legacy auth alias
