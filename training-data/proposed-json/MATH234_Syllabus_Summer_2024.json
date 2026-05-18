@@ -11,24 +11,29 @@
   "instructor": "Meryem Rhadbane",
   "assessments": [
     {
-      "name": "Process. For Example If The Solutions To The Problems In A Quiz Are Points Then An Additional",
+      "name": "Quiz 1",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "process. For example, if the solutions to the problems in a quiz are worth 40 points then an additional"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40%"
     },
     {
-      "name": "F .00 % 59. 49% Fail",
-      "weight_percentage": 0,
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 0.00% - 59. 49% Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination: Thursday, 27 June 2024 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
     }
   ],
-  "totalWeight": 40,
-  "warnings": [
-    "Total weight is below 100 (40%)"
-  ],
-  "confidence": 0.78,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

@@ -9,11 +9,48 @@
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Mohamed Amine Khamsi",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Homework Week 4 (10%) 40%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "lowest homework Quiz 1 Week 6 (10%)"
+    },
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "grade. Homework Week 9 (10%)"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 Week 11 (10%)"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final TBD by the Registrar’s office 35%"
+    }
   ],
-  "confidence": 0.2,
+  "totalWeight": 105,
+  "warnings": [
+    "Total weight is above 100 (859%)",
+    "Total weight is above 100 (105%)"
+  ],
+  "confidence": 0.95,
   "needsHumanReview": true
 }

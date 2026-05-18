@@ -9,11 +9,52 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "HUMA 106 Emirates Society - Lectures are to be delivered",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 1 Week 2 15%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes Quiz 2 Week 5 15%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Week 4 20%"
+    },
+    {
+      "name": "Assignments",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "In-Class Assignment Week 4 10%"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Research final Project Week 6 30%"
+    },
+    {
+      "name": "Presentation",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Chapter presentations On going 10%"
+    }
   ],
-  "confidence": 0.2,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

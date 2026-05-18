@@ -12,10 +12,11 @@
   "assessments": [],
   "totalWeight": 0,
   "warnings": [
-    "No assessments found",
+    "Low confidence extraction",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "No assessments found"
   ],
-  "confidence": 0.16,
+  "confidence": 0.12,
   "needsHumanReview": true
 }

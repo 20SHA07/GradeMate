@@ -9,12 +9,20 @@
   "creditHours": 3,
   "semester": "Summer 2023",
   "instructor": "Dr. Mustapha Tajdin",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 50,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Exam - There will be no make-up midterm. If you miss the midterm and you have an approved excuse, the final exam will carry all the weight of the combined midterm and the final exam (e.g. 50%). Note that this means missing the midt"
+    }
+  ],
+  "totalWeight": 50,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (50%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

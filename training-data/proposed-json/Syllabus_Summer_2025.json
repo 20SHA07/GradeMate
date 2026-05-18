@@ -11,18 +11,43 @@
   "instructor": "Dr. Dalaver H. Anjum",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 1",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 May 29 25%"
+    },
+    {
+      "name": "Homework",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework WebAssign 5%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory 1-lab report per each During lab time 20%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination Midterm test June 13 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final test TBA (registrar office) 30%"
     }
   ],
-  "totalWeight": 0,
-  "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction"
-  ],
-  "confidence": 0.69,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

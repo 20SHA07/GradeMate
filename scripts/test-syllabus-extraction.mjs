@@ -14,7 +14,7 @@ const moduleShim = { exports: {} };
 
 new Function("exports", "module", compiled)(moduleShim.exports, moduleShim);
 
-const { parseGradeBreakdownMessage } = moduleShim.exports;
+const { extractSyllabusFromText, parseGradeBreakdownMessage } = moduleShim.exports;
 
 function getAssessment(result, name) {
   return result.assessments.find(
@@ -98,5 +98,49 @@ assert.ok(
   ),
   "Course code CS101 should not be treated as 101%"
 );
+
+const evaluationScheme = extractSyllabusFromText(`Evaluation Scheme
+Midterm 30%
+Final 40%
+Assignments 20%
+Participation 10%`);
+expectAssessment(evaluationScheme, "Midterm", 30);
+expectAssessment(evaluationScheme, "Final Exam", 40);
+expectAssessment(evaluationScheme, "Assignments", 20);
+expectAssessment(evaluationScheme, "Participation", 10);
+
+const marksDistribution = extractSyllabusFromText(`Marks Distribution
+Quiz 10 marks
+Assignment 20 marks
+Midterm 30 marks
+Final 40 marks`);
+expectAssessment(marksDistribution, "Quiz", 10);
+expectAssessment(marksDistribution, "Assignment", 20);
+expectAssessment(marksDistribution, "Midterm", 30);
+expectAssessment(marksDistribution, "Final Exam", 40);
+
+const courseworkAssessment = extractSyllabusFromText(`Coursework Assessment
+Coursework Assessment 40%
+Final Examination 60%`);
+expectAssessment(courseworkAssessment, "Coursework Assessment", 40);
+expectAssessment(courseworkAssessment, "Final Exam", 60);
+
+const continuousAssessment = extractSyllabusFromText(`Continuous Assessment
+Labs 20%
+Project 20%
+Final Exam 60%`);
+expectAssessment(continuousAssessment, "Labs", 20);
+expectAssessment(continuousAssessment, "Project", 20);
+expectAssessment(continuousAssessment, "Final Exam", 60);
+
+const gradeDistribution = extractSyllabusFromText(`Grade Distribution
+Homework 15 percent
+Quizzes 15 percent
+Midterm 30 percent
+Final 40 percent`);
+expectAssessment(gradeDistribution, "Homework", 15);
+expectAssessment(gradeDistribution, "Quizzes", 15);
+expectAssessment(gradeDistribution, "Midterm", 30);
+expectAssessment(gradeDistribution, "Final Exam", 40);
 
 console.log("Syllabus extraction tests passed.");

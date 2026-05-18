@@ -71,6 +71,6 @@
   "warnings": [
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.91,
+  "confidence": 0.95,
   "needsHumanReview": false
 }

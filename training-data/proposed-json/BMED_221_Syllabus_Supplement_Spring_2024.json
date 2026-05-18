@@ -9,13 +9,42 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "ali.khraibi@ku.ac.ae Tel 2 312 3883",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found",
-    "Course info missing",
-    "Credit hours missing"
+  "assessments": [
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 Quizzes Week 7 and 13 20%"
+    },
+    {
+      "name": "Homework 4",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Problem Sets Homework 4 in total 10%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final Examination Finals Week 40%"
+    },
+    {
+      "name": "Quizzes Two Quizzes Will Be Held And Will Take Up Of The Grade",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": " Quizzes: Two quizzes will be held and will take up 20% of the grade"
+    }
   ],
-  "confidence": 0.16,
+  "totalWeight": 90,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing",
+    "Total weight is below 100 (90%)"
+  ],
+  "confidence": 0.92,
   "needsHumanReview": true
 }

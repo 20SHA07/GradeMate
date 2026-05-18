@@ -11,20 +11,83 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 1",
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 Week 5 5%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 3 Week 9 5%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 4 Week 12 5%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 5 Week 14 5%"
+    },
+    {
+      "name": "Quiz 6",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 6 Week 15 5%"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project Week 16 5%"
+    },
+    {
+      "name": "Test 1",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Test 1 Week 7 20%"
+    },
+    {
+      "name": "Test 2",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Test 2 Week 13 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final Exam May 2025 30%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 105,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
+    "Total weight is above 100 (878%)",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is above 100 (105%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

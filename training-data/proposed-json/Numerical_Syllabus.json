@@ -11,32 +11,40 @@
   "instructor": "Ahmed.Alhajaj@ku.ac.ae /02-312 4279",
   "assessments": [
     {
-      "name": "Active Engagement In Class Evaluation Constitutes % Of The Overall Final Grade",
-      "weight_percentage": 50,
+      "name": "Coursework",
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "- Active engagement in class evaluation constitutes 0.5% of the overall final grade"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Homework Weekly 10%"
     },
     {
-      "name": "For Unexcused Absences Beyond 7% Of Contact Time After 2 Classes A Penalty Of % Will Be",
-      "weight_percentage": 50,
+      "name": "Project",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "- For unexcused absences beyond 7% of contact time (after 2 classes), a penalty of 0.5% will be"
+      "confidence": 0.98,
+      "source_text_snippet": "Projects Project Presentation and report Week 15: May 1, 2025 25%"
     },
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Mid Term Exam",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Midterm 1 Week 7: Feb 25, 2025 15%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final Exam TBA 30%"
     }
   ],
-  "totalWeight": 100,
+  "totalWeight": 80,
   "warnings": [
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is below 100 (80%)"
   ],
-  "confidence": 0.71,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

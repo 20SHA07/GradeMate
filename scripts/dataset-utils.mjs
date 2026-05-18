@@ -60,27 +60,57 @@ const strongSyllabusIndicators = [
 ];
 
 const gradingHeaders = [
+  /assessment/i,
   /course evaluation/i,
+  /\bevaluation\b/i,
+  /evaluation scheme/i,
   /evaluation criteria/i,
+  /assessment plan/i,
+  /assessment strategy/i,
   /assessment breakdown/i,
+  /assessment criteria/i,
   /grading breakdown/i,
   /grading scheme/i,
+  /course grading/i,
+  /grading policy/i,
+  /grading criteria/i,
   /marking scheme/i,
+  /mark distribution/i,
+  /marks distribution/i,
+  /distribution of marks/i,
+  /grade distribution/i,
   /assessment\s+weight/i,
+  /weighting/i,
   /component\s+percentage/i,
-  /assessment\s+percentage/i
+  /assessment\s+percentage/i,
+  /course requirements/i,
+  /student assessment/i,
+  /continuous assessment/i,
+  /coursework assessment/i
 ];
 
 const assessmentKeywords = [
+  "coursework",
+  "course work",
+  "continuous assessment",
   "quiz",
   "quizzes",
   "exam",
   "midterm",
+  "mid-term",
   "mid term",
+  "semester exam",
+  "semester examination",
+  "major exam",
+  "minor exam",
   "final",
+  "final examination",
   "assignment",
+  "assignments",
   "homework",
+  "hw",
   "lab",
+  "lab work",
   "laboratory",
   "project",
   "participation",
@@ -93,7 +123,10 @@ const assessmentKeywords = [
   "tutorial",
   "practical",
   "test",
-  "case study"
+  "case study",
+  "viva",
+  "oral",
+  "in-class activity"
 ];
 
 export async function ensureTrainingDirs() {
@@ -333,7 +366,7 @@ export function buildDatasetProposal(text, ruleResult, record) {
     totalWeight: Math.round(totalWeight * 100) / 100,
     warnings,
     confidence: Math.round(
-      Math.min(0.99, averageAssessmentConfidence * 0.72 + infoConfidence * 0.2) *
+      Math.min(0.99, averageAssessmentConfidence * 0.82 + infoConfidence * 0.15) *
         100
     ) / 100,
     needsHumanReview:
@@ -530,6 +563,10 @@ function hasPossibleGradingScaleExtraction(assessments) {
     const name = normalizeAssessmentName(assessment.name);
     const snippet = String(assessment.source_text_snippet ?? "").toLowerCase();
 
+    if (hasAssessmentKeyword(assessment.name) && !/letter grade|grade point/.test(snippet)) {
+      return false;
+    }
+
     return (
       /^(a|a b|b c|c d|d f|letter grade|grade scale)$/.test(name) ||
       /\b(letter grade|grade scale|a\s*[-:]?\s*9\d|b\+?\s*[-:]?\s*8\d|c\+?\s*[-:]?\s*7\d)\b/.test(snippet)
@@ -541,6 +578,13 @@ function hasPossibleWeeklyScheduleExtraction(assessments) {
   return assessments.some((assessment) => {
     const name = normalizeAssessmentName(assessment.name);
     const snippet = String(assessment.source_text_snippet ?? "").toLowerCase();
+
+    if (
+      hasAssessmentKeyword(`${assessment.name} ${assessment.source_text_snippet ?? ""}`) &&
+      !/\b(teaching plan|course topics|lecture schedule|laboratory schedule)\b/.test(snippet)
+    ) {
+      return false;
+    }
 
     return (
       /\b(week|lecture|topic|chapter|page|clo|plo|outcome)\b/.test(name) ||
@@ -996,12 +1040,25 @@ function cleanInstructor(value) {
 
 function extractDetailedAssessments(text, record, courseCode) {
   const lines = getCleanLines(text);
-  const extracted = [];
+  const sections = [];
+  let currentSection = null;
   let gradingWindow = 0;
 
   for (const line of lines) {
-    if (gradingHeaders.some((pattern) => pattern.test(line))) {
+    if (isAssessmentSectionHeading(line)) {
       gradingWindow = 35;
+      currentSection = {
+        heading: line,
+        rows: [],
+        headingScore: scoreHeading(line)
+      };
+      sections.push(currentSection);
+      continue;
+    }
+
+    if (isSectionBoundary(line)) {
+      gradingWindow = 0;
+      currentSection = null;
       continue;
     }
 
@@ -1011,22 +1068,22 @@ function extractDetailedAssessments(text, record, courseCode) {
       continue;
     }
 
+    const weight = extractWeightFromAssessmentLine(line, gradingWindow > 0);
+
+    if (weight === null) {
+      continue;
+    }
+
     if (shouldIgnoreAssessmentLine(line, courseCode)) {
       continue;
     }
 
-    const percentMatches = Array.from(
-      line.matchAll(/(\d{1,3}(?:\.\d+)?)\s*(?:%|percent|percentage)\b/gi)
-    ).filter((match) => Number(match[1]) >= 0 && Number(match[1]) <= 100);
-
-    if (percentMatches.length === 0) {
+    if (!hasAssessmentKeyword(line) && gradingWindow <= 0) {
       continue;
     }
 
-    const percentMatch = percentMatches[percentMatches.length - 1];
-    const weight = Number(percentMatch[1]);
     const name = canonicalAssessmentName(
-      deriveAssessmentName(line, percentMatch.index ?? line.length),
+      deriveAssessmentName(line),
       line
     );
 
@@ -1034,36 +1091,64 @@ function extractDetailedAssessments(text, record, courseCode) {
       continue;
     }
 
-    extracted.push({
+    const assessment = {
       name,
       weight_percentage: Math.round(weight * 100) / 100,
       max_score: 100,
-      confidence: gradingWindow ? 0.94 : 0.86,
+      confidence: calculateAssessmentConfidence(line, gradingWindow > 0, weight),
       source_text_snippet: line.slice(0, 240)
-    });
+    };
+
+    if (!currentSection) {
+      currentSection = {
+        heading: "Keyword-based assessment rows",
+        rows: [],
+        headingScore: 0.65
+      };
+      sections.push(currentSection);
+    }
+
+    currentSection.rows.push(assessment);
   }
 
   const knownGolden = extractKnownGoldenAssessments(text, record, courseCode);
-  const deduped = dedupeAssessments([...extracted, ...knownGolden]);
-  return deduped;
+  const sectionCandidates = sections
+    .map((section) => ({
+      heading: section.heading,
+      rows: dedupeAssessments(section.rows),
+      score: scoreAssessmentSection(section)
+    }))
+    .filter((section) => section.rows.length > 0)
+    .sort((first, second) => second.score - first.score);
+  const bestSection = sectionCandidates[0]?.rows ?? [];
+
+  if (knownGolden.length > 0) {
+    return knownGolden;
+  }
+
+  return bestSection;
 }
 
 function shouldIgnoreAssessmentLine(line, courseCode) {
   const normalized = line.toLowerCase();
+  const hasKeyword = hasAssessmentKeyword(line);
 
   if (/^\s*[a-f][+-]?\s+/.test(normalized) && /\d{1,3}\s*%/.test(normalized)) {
     return true;
   }
 
   if (
-    /\b(clo|plo|kpi|outcome|week|lecture|topic|page|chapter|grade scale|letter grade)\b/i.test(
-      line
-    )
+    /\b(clo|plo|kpi|outcome|lecture|topic|page|chapter|grade scale|letter grade)\b/i.test(line) &&
+    !hasKeyword
   ) {
     return true;
   }
 
-  if (/\b\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\b/.test(line)) {
+  if (/\bweek\s+\d{1,2}\b/i.test(line) && !hasKeyword) {
+    return true;
+  }
+
+  if (/\b\d{1,2}[/-]\d{1,2}(?:[/-]\d{2,4})?\b/.test(line) && !hasKeyword) {
     return true;
   }
 
@@ -1078,6 +1163,145 @@ function shouldIgnoreAssessmentLine(line, courseCode) {
   return false;
 }
 
+function isAssessmentSectionHeading(line) {
+  if (/letter grade|grade point|official khalifa university grading system/i.test(line)) {
+    return false;
+  }
+
+  return gradingHeaders.some((pattern) => pattern.test(line));
+}
+
+function isSectionBoundary(line) {
+  return (
+    /^(honou?r code|academic pledge|teaching plan|course learning outcomes?|contribution to|student outcomes?|program learning outcomes?|laboratory schedule|course topics|textbooks?|references?)\b/i.test(
+      line
+    ) ||
+    /official khalifa university.*grading system|letter grade grade point|letter grade percentage/i.test(
+      line
+    )
+  );
+}
+
+function scoreHeading(line) {
+  if (/assessment methodology|assessment instruments|course evaluation|evaluation scheme|marks? distribution|distribution of marks/i.test(line)) {
+    return 1;
+  }
+
+  if (/assessment|evaluation|coursework|continuous assessment|weight/i.test(line)) {
+    return 0.9;
+  }
+
+  if (/grading scheme|grade distribution/i.test(line)) {
+    return 0.72;
+  }
+
+  return 0.62;
+}
+
+function extractWeightFromAssessmentLine(line, inGradingSection) {
+  const withoutScores = line.replace(/\b\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?\b/g, " ");
+  const explicitMatches = Array.from(
+    withoutScores.matchAll(/(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/gi)
+  );
+
+  if (explicitMatches.length > 0) {
+    return cleanWeightValue(explicitMatches[explicitMatches.length - 1][1]);
+  }
+
+  if (inGradingSection) {
+    const labelBeforeNumber = withoutScores.match(
+      /\b(?:weight|marks?|contribution|percentage|score|points?)\s*[:=\-]?\s*(\d{1,3}(?:\.\d+)?)\b/i
+    );
+
+    if (labelBeforeNumber) {
+      return cleanWeightValue(labelBeforeNumber[1]);
+    }
+
+    const numberBeforeLabel = withoutScores.match(
+      /\b(\d{1,3}(?:\.\d+)?)\s*(?:marks?|points?)\b/i
+    );
+
+    if (numberBeforeLabel) {
+      return cleanWeightValue(numberBeforeLabel[1]);
+    }
+
+    if (/\b(weight|weighted|marks?|contribution|percentage|assessment|evaluation|grade)\b/i.test(withoutScores)) {
+      const decimal = withoutScores.match(/\b0\.(\d{1,2})\b/);
+
+      if (decimal) {
+        return cleanWeightValue(Number(`0.${decimal[1]}`) * 100);
+      }
+    }
+  }
+
+  return null;
+}
+
+function cleanWeightValue(value) {
+  const weight = Number(value);
+  return Number.isFinite(weight) && weight > 0 && weight <= 100 ? weight : null;
+}
+
+function calculateAssessmentConfidence(line, inGradingSection, weight) {
+  let confidence = inGradingSection ? 0.82 : 0.68;
+
+  if (hasAssessmentKeyword(line)) {
+    confidence += 0.08;
+  }
+
+  if (/%|percent|percentage|marks?|weight|contribution/i.test(line)) {
+    confidence += 0.05;
+  }
+
+  if (weight > 0 && weight <= 60) {
+    confidence += 0.03;
+  }
+
+  if (/letter grade|grade point|clo|plo|week\s+\d/i.test(line) && !hasAssessmentKeyword(line)) {
+    confidence -= 0.3;
+  }
+
+  return Math.round(Math.max(0.35, Math.min(0.98, confidence)) * 100) / 100;
+}
+
+function scoreAssessmentSection(section) {
+  const rows = dedupeAssessments(section.rows);
+  const total = rows.reduce(
+    (sum, assessment) => sum + Number(assessment.weight_percentage ?? 0),
+    0
+  );
+  const knownRows = rows.filter((row) => hasAssessmentKeyword(row.name)).length;
+  const hasWeightWords = rows.filter((row) =>
+    /weight|marks?|contribution|percentage|%/i.test(row.source_text_snippet ?? "")
+  ).length;
+  const closeToHundred =
+    total === 100 ? 80 : total >= 95 && total <= 105 ? 58 : Math.max(0, 30 - Math.abs(100 - total));
+  const gradeScalePenalty = rows.some((row) =>
+    /letter grade|grade point|excellent|very good|poor|fail/i.test(
+      row.source_text_snippet ?? ""
+    )
+  )
+    ? 85
+    : 0;
+  const schedulePenalty = rows.some((row) =>
+    /\b(course topics|teaching plan|lecture schedule|laboratory schedule)\b/i.test(
+      row.source_text_snippet ?? ""
+    )
+  )
+    ? 45
+    : 0;
+
+  return (
+    closeToHundred +
+    section.headingScore * 20 +
+    Math.min(rows.length, 10) * 7 +
+    knownRows * 5 +
+    hasWeightWords * 2 -
+    gradeScalePenalty -
+    schedulePenalty
+  );
+}
+
 function hasAssessmentKeyword(line) {
   const normalized = line.toLowerCase();
   return assessmentKeywords.some((keyword) =>
@@ -1087,11 +1311,8 @@ function hasAssessmentKeyword(line) {
   );
 }
 
-function deriveAssessmentName(line, percentIndex) {
-  const beforePercent = line.slice(0, percentIndex);
-  const afterPercent = line.slice(percentIndex);
-  const source = hasAssessmentKeyword(beforePercent) ? beforePercent : afterPercent;
-  const parts = source
+function deriveAssessmentName(line) {
+  const parts = line
     .split(/\||\t| {2,}/)
     .map((part) =>
       part
@@ -1109,15 +1330,28 @@ function deriveAssessmentName(line, percentIndex) {
 
 function canonicalAssessmentName(rawName, fullLine) {
   const value = `${rawName} ${fullLine}`.toLowerCase();
+  const quizNumber = value.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
+  const homeworkNumber = value.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
+  const assignmentNumber = value.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
+  const projectNumber = value.match(/\bprojects?\s*#?\s*(\d{1,2})\b/);
+  const testNumber = value.match(/\btests?\s*#?\s*(\d{1,2})\b/);
 
-  if (/\bquiz\s*1\b/.test(value)) return "Quiz 1";
-  if (/\bquiz\s*2\b/.test(value)) return "Quiz 2";
-  if (/\bquiz\s*3\b/.test(value)) return "Quiz 3";
-  if (/\bquiz\s*4\b/.test(value)) return "Quiz 4";
-  if (/\bquiz\s*5\b/.test(value)) return "Quiz 5";
-  if (/\blab\s*final\b/.test(value)) return "Lab Final Exam";
+  if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
+  if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
+  if (assignmentNumber) return `Assignment ${Number(assignmentNumber[1])}`;
+  if (projectNumber) return `Project ${Number(projectNumber[1])}`;
+  if (testNumber) return `Test ${Number(testNumber[1])}`;
+
+  if (/\bfinal\s+lab\b|\blab\s*final\b|\bfinal\s+lab\s*test\b/.test(value)) return "Final Lab";
   if (/\bmid\s*term\b|\bmidterm\b/.test(value)) return "Mid Term Exam";
+  if (/\bsemester examination\b|\bsemester exam\b/.test(value)) return "Semester Examination";
+  if (/\bminor exam\b|\bminor\b/.test(value)) return "Minor Exam";
+  if (/\bmajor exam\b|\bmajor\b/.test(value)) return "Major Exam";
+  if (/\bfinal project\b/.test(value)) return "Final Project";
   if (/\bfinal\b/.test(value)) return "Final Exam";
+  if (/\bcontinuous assessment\b/.test(value)) return "Continuous Assessment";
+  if (/\bcourse\s*work\b|\bcoursework\b/.test(value)) return "Coursework";
+  if (/\blab\s*work\b/.test(value)) return "Lab Work";
   if (/\blaborator(y|ies)\b|\blabs?\b/.test(value)) return "Laboratory";
   if (/\bassignments?\b/.test(value)) return "Assignments";
   if (/\bhomework\b/.test(value)) return "Homework";
@@ -1213,15 +1447,29 @@ function scoreAssessments(assessments) {
     (sum, assessment) => sum + Number(assessment.weight_percentage ?? 0),
     0
   );
-  const closeToHundred = Math.max(0, 100 - Math.abs(100 - total));
+  const closeToHundred =
+    total === 100
+      ? 1000
+      : total >= 95 && total <= 105
+        ? 650
+        : Math.max(0, 120 - Math.abs(100 - total) * 2);
   const detailScore = assessments.length * 8;
   const groupedPenalty = assessments.some((assessment) =>
     /quizzes|exams|labs/i.test(assessment.name)
   )
     ? 8
     : 0;
+  const farFromHundredPenalty =
+    total > 150 || total < 40 ? Math.min(600, Math.abs(100 - total)) : 0;
+  const gradeScalePenalty = assessments.some((assessment) =>
+    /letter grade|grade point|excellent|very good|poor|fail|from .*less than/i.test(
+      assessment.source_text_snippet ?? ""
+    )
+  )
+    ? 600
+    : 0;
 
-  return closeToHundred + detailScore - groupedPenalty;
+  return closeToHundred + detailScore - groupedPenalty - farFromHundredPenalty - gradeScalePenalty;
 }
 
 function dedupeAssessments(assessments) {
@@ -1288,6 +1536,10 @@ function filterRuleWarnings(ruleWarnings = [], details) {
     }
 
     if (/total weight is above 100/i.test(warning) && details.totalWeight <= 100.5) {
+      return false;
+    }
+
+    if (/duplicate/i.test(warning) && !hasDuplicateAssessmentNames(details.assessments)) {
       return false;
     }
 

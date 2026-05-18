@@ -17,14 +17,29 @@ export type ExtractedSyllabus = {
 };
 
 const assessmentKeywords = [
+  "coursework",
+  "course work",
+  "continuous assessment",
   "quiz",
   "quizzes",
   "exam",
+  "examination",
   "midterm",
+  "mid-term",
+  "mid term",
+  "semester exam",
+  "semester examination",
+  "major exam",
+  "minor exam",
   "final",
+  "final examination",
   "assignment",
+  "assignments",
   "homework",
+  "hw",
   "lab",
+  "lab work",
+  "laboratory",
   "project",
   "participation",
   "attendance",
@@ -36,24 +51,43 @@ const assessmentKeywords = [
   "tutorial",
   "practical",
   "test",
-  "case study"
+  "case study",
+  "viva",
+  "oral",
+  "in-class activity"
 ];
 
 const gradingContextWords = [
   "assessment",
   "assessments",
+  "assessment plan",
+  "assessment strategy",
+  "assessment criteria",
   "breakdown",
   "component",
   "course evaluation",
+  "evaluation scheme",
   "evaluation criteria",
   "evaluation",
   "grading",
   "grading scheme",
   "grading breakdown",
+  "course grading",
+  "grading policy",
+  "grading criteria",
   "marking scheme",
+  "mark distribution",
+  "marks distribution",
+  "distribution of marks",
+  "grade distribution",
+  "student assessment",
+  "continuous assessment",
+  "coursework assessment",
   "percentage",
   "weight",
-  "weighted"
+  "weighted",
+  "marks",
+  "contribution"
 ];
 
 const dueDateWords = [
@@ -214,13 +248,21 @@ function normalizeName(value: string) {
 
 function titleCaseAssessmentName(value: string) {
   const cleaned = value
-    .replace(/\b(worth|accounts for|weighted at|weight|percentage|percent)\b/gi, "")
+    .replace(/\b(worth|accounts for|weighted at|weight|marks?|points?|score|percentage|percent)\b/gi, "")
     .replace(/[|:;,\-\u2013\u2014()[\]]+/g, " ")
     .replace(/\s+/g, " ")
     .trim();
 
   if (!cleaned) {
     return "Assessment";
+  }
+
+  if (/^final$/i.test(cleaned) || /^final examination$/i.test(cleaned)) {
+    return "Final Exam";
+  }
+
+  if (/^mid[-\s]?term examination$/i.test(cleaned)) {
+    return "Midterm";
   }
 
   return cleaned
@@ -262,7 +304,7 @@ function looksLikeDueDate(line: string) {
 
 function extractPercent(line: string, inGradingSection: boolean) {
   const percentMatch =
-    line.match(/(\d{1,3}(?:\.\d+)?)\s*(?:%|percent|percentage)\b/i) ??
+    line.match(/(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/i) ??
     line.match(/\b(?:worth|accounts?\s+for|weighted\s+at)\s+(\d{1,3}(?:\.\d+)?)\b/i);
 
   if (percentMatch) {
@@ -271,6 +313,15 @@ function extractPercent(line: string, inGradingSection: boolean) {
   }
 
   if (inGradingSection) {
+    const marksMatch =
+      line.match(/\b(?:weight|marks?|contribution|percentage|points?)\s*[:=\-]?\s*(\d{1,3}(?:\.\d+)?)\b/i) ??
+      line.match(/\b(\d{1,3}(?:\.\d+)?)\s*(?:marks?|points?)\b/i);
+
+    if (marksMatch) {
+      const value = Number(marksMatch[1]);
+      return value > 0 && value <= 100 ? value : null;
+    }
+
     const decimalMatch = line.match(/\b0\.(\d{1,2})\b/);
 
     if (decimalMatch) {
@@ -451,7 +502,7 @@ function findAssessmentTerm(value: string) {
 function extractQuickWeight(text: string) {
   const withoutScores = text.replace(/\b\d+(?:\.\d+)?\s*\/\s*\d+(?:\.\d+)?\b/g, " ");
   const percentMatches = Array.from(
-    withoutScores.matchAll(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent|percentage)\b/gi)
+    withoutScores.matchAll(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/gi)
   );
   const phraseMatches = Array.from(
     withoutScores.matchAll(

@@ -9,12 +9,27 @@
   "creditHours": 3,
   "semester": "Spring 2024",
   "instructor": "Dr Yama Temouri",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Mid-Term Exam (25%):"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Exam (35%):"
+    }
+  ],
+  "totalWeight": 60,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (60%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

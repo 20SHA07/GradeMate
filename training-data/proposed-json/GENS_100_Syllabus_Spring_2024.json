@@ -9,11 +9,33 @@
   "creditHours": 1,
   "semester": "Spring 2024",
   "instructor": "Dr. Nooreya Al Obeidli",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Assignments",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Assignments (Homework and In Class Activities) 25%"
+    },
+    {
+      "name": "Quizzes In Class And Take Home",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes (In class and take home) 25%"
+    },
+    {
+      "name": "Case Study",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Case Study 10%"
+    }
   ],
-  "confidence": 0.2,
+  "totalWeight": 60,
+  "warnings": [
+    "Total weight is below 100 (60%)"
+  ],
+  "confidence": 0.95,
   "needsHumanReview": true
 }

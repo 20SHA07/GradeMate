@@ -12,9 +12,10 @@
   "assessments": [],
   "totalWeight": 0,
   "warnings": [
+    "Low confidence extraction",
     "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.15,
   "needsHumanReview": true
 }

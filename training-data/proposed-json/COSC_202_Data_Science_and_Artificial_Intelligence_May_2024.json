@@ -12,10 +12,11 @@
   "assessments": [],
   "totalWeight": 0,
   "warnings": [
-    "No assessments found",
+    "Low confidence extraction",
     "Semester missing",
+    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.16,
+  "confidence": 0.12,
   "needsHumanReview": true
 }

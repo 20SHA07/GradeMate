@@ -9,12 +9,27 @@
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Ms. Meryem Rhadbane",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Final Exam",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "There are 2 quizzes scheduled in this course. Each quiz will therefore count for 10% of your final grade for the course. There will be no make-up quizzes. If you fail to attend a scheduled quiz for any reason, then you will receive a grade "
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "In the week 3 of the semester, students will be provided an assignment in groups and they will have to submit the week before the Midterm. Each group will be composed of 3 or 4 students and will have a different data set. The assignment mus"
+    }
+  ],
+  "totalWeight": 20,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (20%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

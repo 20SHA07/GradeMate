@@ -11,24 +11,29 @@
   "instructor": "Dr. Michael Babula",
   "assessments": [
     {
-      "name": "Three Quizzes Each Are Required For This Course. Each Quiz Is 25 Questions And Will Test Recall",
-      "weight_percentage": 10,
+      "name": "Coursework",
+      "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "Three quizzes worth 10% each are required for this course. Each quiz is 25 questions and will test recall"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Assignments, quizzes) 40%"
     },
     {
-      "name": "Of Three Essay Questions As Well As 25 Fill In The Blank And Multiple Choice Questions",
-      "weight_percentage": 75,
+      "name": "Semester Examination",
+      "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "of three essay questions worth 75% as well as 25 fill-in-the-blank and multiple choice questions worth"
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination(s) 30%"
+    },
+    {
+      "name": "Project 30",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Project 30%"
     }
   ],
-  "totalWeight": 85,
-  "warnings": [
-    "Total weight is below 100 (85%)"
-  ],
-  "confidence": 0.86,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

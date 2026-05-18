@@ -9,11 +9,66 @@
   "creditHours": 4,
   "semester": "Fall 2024",
   "instructor": "yousuf.alsalami@ku.ac.ae",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework Quiz 1 Sept 26 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 Oct 24 5%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 3 Nov 7 5%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 4 Nov 21 5%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory (if applicable) Lab In Lab 15%"
+    },
+    {
+      "name": "Final Lab",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final LabTest Week 14 15%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (on campus) Oct 11 at 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination (on campus) TBA 30%"
+    }
   ],
-  "confidence": 0.2,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

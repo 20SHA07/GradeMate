@@ -9,11 +9,38 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "Contact",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes, homework) 20%"
+    },
+    {
+      "name": "Project 1",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #1: Design Thinking in Practice 20%"
+    },
+    {
+      "name": "Project 2",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #2: Opportunity Analysis 20%"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Project: Personal Business Plan 40%"
+    }
   ],
-  "confidence": 0.2,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

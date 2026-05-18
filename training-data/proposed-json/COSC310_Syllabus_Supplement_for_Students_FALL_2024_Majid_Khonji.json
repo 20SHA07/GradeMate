@@ -11,20 +11,61 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 1",
+      "weight_percentage": 3.33,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 26 Sept 3.33%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 3.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 17 Oct 3.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3.34,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 3 21 Nov 3.34%"
+    },
+    {
+      "name": "Assignment 31",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Projects / Assignment Assignment 31 Oct – 25 Nov 10%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory Lab Assignments Weekly (W2 – W13) 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (on-campus) Week 9 (Oct 24) 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination (on-campus) Week 16 starting Dec 9 35%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 95,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is below 100 (95%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

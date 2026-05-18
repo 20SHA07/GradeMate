@@ -11,20 +11,116 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Homework 1",
+      "weight_percentage": 3.6,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Homeworks Homework 1 September 2023 3.6%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 2 September 2023 3.6%"
+    },
+    {
+      "name": "Homework 3",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 3 October 2023 3.6%"
+    },
+    {
+      "name": "Homework 4",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 4 October 2023 3.6%"
+    },
+    {
+      "name": "Homework 5",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 5 November 2023 3.6%"
+    },
+    {
+      "name": "Homework 6",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 6 November 2023 3.6%"
+    },
+    {
+      "name": "Homework 7",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 7 December2023 3.6%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes Quiz 1 September 2023 4%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 October 2023 4%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 3 November 2023 4%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 4 November 2023 4%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 5 December 2023 4%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 30%"
+    },
+    {
+      "name": "Attendance",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Attendance 5%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 100.2,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

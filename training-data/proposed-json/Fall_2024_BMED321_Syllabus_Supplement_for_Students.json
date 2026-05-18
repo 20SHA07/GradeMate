@@ -9,13 +9,34 @@
   "creditHours": null,
   "semester": "Fall 2024",
   "instructor": "Dr. S yed Imaduddin",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Group Project Start At Week 12 Final Presentations Week 15",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Group project Start at Week 12; Final Presentations: Week 15 30%"
+    },
+    {
+      "name": "Midterm Examination Week 7",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Midterm Examination Week 7 30%"
+    },
+    {
+      "name": "Final Examination Week 16 Or 17",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final Examination Week 16 or 17 40%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.16,
+  "confidence": 0.87,
   "needsHumanReview": true
 }

@@ -11,27 +11,40 @@
   "instructor": "Dr. Emilia Oueis",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 2",
+      "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz # 2 27 Feb – 03 Mar 20%"
     },
     {
-      "name": "WF .00 Withdrew Failing",
-      "weight_percentage": 0,
+      "name": "Assignment 15",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "WF 0.00 Withdrew Failing"
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory: Lab Reports and Lab Assignments 15%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination: Midterm Exam 06 Mar – 10 Mar 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: TBC by the Registrar’s Office 35%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 90,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is below 100 (90%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

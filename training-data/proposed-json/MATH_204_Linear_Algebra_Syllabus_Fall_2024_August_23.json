@@ -11,25 +11,29 @@
   "instructor": "Elias Zikkos",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Coursework",
+      "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes) 40%"
     },
     {
-      "name": "WF .00 Withdrew Failing",
-      "weight_percentage": 0,
+      "name": "Semester Examination",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "WF 0.00 Withdrew Failing"
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 0,
-  "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction"
-  ],
-  "confidence": 0.69,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

@@ -9,12 +9,20 @@
   "creditHours": 1,
   "semester": "Fall 2024",
   "instructor": "Contact",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Week Ku Resources Quiz",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Week 1 (KU Resources Quiz- 5%)"
+    }
+  ],
+  "totalWeight": 5,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (5%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

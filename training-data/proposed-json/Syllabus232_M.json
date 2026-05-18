@@ -9,13 +9,34 @@
   "creditHours": 3,
   "semester": null,
   "instructor": null,
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes, Homework, Projects) 40%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory Semester Examination(s) 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Semester missing",
     "Instructor missing"
   ],
-  "confidence": 0.12,
+  "confidence": 0.89,
   "needsHumanReview": true
 }

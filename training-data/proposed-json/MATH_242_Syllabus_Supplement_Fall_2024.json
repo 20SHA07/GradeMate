@@ -11,27 +11,55 @@
   "instructor": "Dr. Berihu Gebrehiwot",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 1",
+      "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 Week 6 (10%) 40%"
     },
     {
-      "name": "WF .00 Withdrew Failing",
-      "weight_percentage": 0,
+      "name": "Quiz 2",
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "WF 0.00 Withdrew Failing"
+      "confidence": 0.98,
+      "source_text_snippet": "We drop the lowest quiz Quiz 2 Week 11 (10%)"
+    },
+    {
+      "name": "Assignments",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "grade. Assignment Week 8 (10%)"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project Week 15 (10%)"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination: Week 8: Midterm 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 130,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
+    "Total weight is above 100 (898%)",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is above 100 (130%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

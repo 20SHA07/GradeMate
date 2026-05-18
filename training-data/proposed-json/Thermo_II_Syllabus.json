@@ -11,20 +11,46 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 3",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes 3 Quizzes TBA 15%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory Reports, Quizzes, Presentation Biweekly 20%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 24,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Midterm exam Week 8 24%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 32,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final exam TBA 32%"
+    },
+    {
+      "name": "Assignment 3",
+      "weight_percentage": 9,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Assignments 3 Assignments - 9%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

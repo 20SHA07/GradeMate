@@ -9,13 +9,76 @@
   "creditHours": null,
   "semester": "Fall 2022",
   "instructor": "Contact",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Homework 1 Week 3 10%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 2 Week 6 10%"
+    },
+    {
+      "name": "Homework 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 3 Week 10 10%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 1 Week 4 05%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 Week 6 05%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 3 Week 10 05%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 4 Week 13 05%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Midterm Week 8 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final Examination TBC by the Registrar’s Office 30%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.16,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

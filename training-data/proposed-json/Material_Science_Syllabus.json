@@ -11,18 +11,57 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Homework 1",
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.84,
+      "source_text_snippet": "Coursework: Homework 1 Week 3 5%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 1 Week 4 10%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Homework 2 Week 8 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 2 Week 10 10%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 3 Week 13 10%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam Week of March 17th 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Final Examination Week 16 35%"
     }
   ],
-  "totalWeight": 0,
-  "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction"
-  ],
-  "confidence": 0.69,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.84,
+  "needsHumanReview": false
 }

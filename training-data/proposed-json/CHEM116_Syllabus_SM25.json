@@ -9,13 +9,48 @@
   "creditHours": null,
   "semester": "Summer 2025",
   "instructor": "Dr. Adolf Acquaye",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 1 7.5% 9 June"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination 25% 16 June"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 7.5% 23 June"
+    },
+    {
+      "name": "Project 25",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Group Project 25% TBC"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Exams 35% TBC"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.16,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

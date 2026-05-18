@@ -9,11 +9,26 @@
   "creditHours": 1,
   "semester": "Fall 2024",
   "instructor": "Dr. Samar Mohamed",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Project",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Group project - Reading groups 20%"
+    },
+    {
+      "name": "Quiz 10",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final quiz 10%"
+    }
   ],
-  "confidence": 0.2,
+  "totalWeight": 30,
+  "warnings": [
+    "Total weight is below 100 (30%)"
+  ],
+  "confidence": 0.95,
   "needsHumanReview": true
 }

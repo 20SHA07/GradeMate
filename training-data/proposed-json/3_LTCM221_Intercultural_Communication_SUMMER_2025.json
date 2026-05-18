@@ -9,12 +9,20 @@
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "DR GLENDA EL GAMAL",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Assignments",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "All assignments are due on the date stated by the instructor on this syllabus. Late assignments will be penalized 10% per day (one full letter grade) until submitted. Assignments submitted after the last day of the course will not be accept"
+    }
+  ],
+  "totalWeight": 10,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (10%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

@@ -9,11 +9,33 @@
   "creditHours": 3,
   "semester": "Fall 2022",
   "instructor": "Dr. Nader Ayish",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Team (</= 3 students) proposal in Week 9 30%"
+    },
+    {
+      "name": "Presentation",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Team Oral Presentation of Proposal Week 11 10%"
+    },
+    {
+      "name": "Report",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Individual Writing: Technical report Week 15 40%"
+    }
   ],
-  "confidence": 0.2,
+  "totalWeight": 80,
+  "warnings": [
+    "Total weight is below 100 (80%)"
+  ],
+  "confidence": 0.95,
   "needsHumanReview": true
 }

@@ -11,25 +11,38 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": " Students Absent From In Class/live Online Graded Activities Or Lower I.e. Studio Activities Will",
-      "weight_percentage": 5,
+      "name": "Assignments",
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": " Students absent from in-class/live online graded activities worth 5% or lower (i.e. studio activities) will"
+      "confidence": 0.98,
+      "source_text_snippet": "Portfolio assignments (reflections blog) Weekly 10%"
     },
     {
-      "name": "Or Higher Might Have The Opportunity To Revise Or Retake The Assessment One Time Within A",
+      "name": "Presentation",
       "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "worth 5% or higher might have the opportunity to revise or retake the assessment one time within a"
+      "confidence": 0.98,
+      "source_text_snippet": "Proposal update – oral presentation Week 10 5%"
+    },
+    {
+      "name": "Report",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Progress report Week 10 7%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Grand Challenge Final oral presentation Week 15 10%"
     }
   ],
-  "totalWeight": 10,
+  "totalWeight": 32,
   "warnings": [
-    "Total weight is below 100 (10%)",
-    "Low confidence extraction"
+    "Total weight is below 100 (32%)"
   ],
-  "confidence": 0.69,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

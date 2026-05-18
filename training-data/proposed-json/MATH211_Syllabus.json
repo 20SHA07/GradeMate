@@ -9,12 +9,20 @@
   "creditHours": 4,
   "semester": "Spring 2024",
   "instructor": "Dr. Khaled Dib",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Final Exam",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "There are 4 quizzes scheduled in this course. Only the best 3 quiz scores will count towards your final grade, i.e. the lowest quiz score will be dropped. Each quiz will therefore count for 13.33% of your final grade for the course."
+    }
+  ],
+  "totalWeight": 13.33,
   "warnings": [
-    "No assessments found",
+    "Total weight is below 100 (13.3%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.2,
+  "confidence": 0.95,
   "needsHumanReview": true
 }

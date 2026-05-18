@@ -11,20 +11,40 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Hw Connect Continuously",
+      "weight_percentage": 7,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "HW Connect continuously 7%"
+    },
+    {
+      "name": "Tutorial",
+      "weight_percentage": 8,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Remedial Tutorial Classes 8%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: FINAL EXAM: (TBC) 35%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 75,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is below 100 (75%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

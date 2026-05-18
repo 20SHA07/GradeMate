@@ -11,20 +11,40 @@
   "instructor": "Contact",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Online Hw On Pearson",
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Online HW On Pearson 10%"
+    },
+    {
+      "name": "Project 10",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project Project 10%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination: MIDTERM: Friday, February 28 from 9:00‐10:30am 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: FINAL EXAM: (TBC) 35%"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 80,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is below 100 (80%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

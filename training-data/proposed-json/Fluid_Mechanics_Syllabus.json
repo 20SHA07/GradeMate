@@ -9,13 +9,76 @@
   "creditHours": null,
   "semester": "Spring 2024",
   "instructor": "Contact",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Quiz 1 Week 8 Feb 4%",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 1 Week 4 (8 Feb) 4%"
+    },
+    {
+      "name": "Quiz 2 Week 6 22 Feb",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 2 Week 6 (22 Feb) 4%"
+    },
+    {
+      "name": "Quiz 3 Week 10 21 March",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 3 Week 10 (21 March) 4%"
+    },
+    {
+      "name": "Quiz Week 13 11 April 4%",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 4 Week 13 (11 April) 4%"
+    },
+    {
+      "name": "Quiz 5 Week 15 25 April",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 5 Week 15 (25 April) 4%"
+    },
+    {
+      "name": "Laboratory If Applicable",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Laboratory (if applicable) 20%"
+    },
+    {
+      "name": "Semester Examination S Week 8 05 March",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Semester Examination (s) Week 8 (05 March) 25%"
+    },
+    {
+      "name": "Attendance",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Attendance 5%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final Examination 30%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.16,
+  "confidence": 0.87,
   "needsHumanReview": true
 }

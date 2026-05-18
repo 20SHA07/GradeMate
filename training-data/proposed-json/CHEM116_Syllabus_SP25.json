@@ -9,13 +9,41 @@
   "creditHours": null,
   "semester": "Spring 2025",
   "instructor": "Contact",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz # 3 Week 11 25%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory (if applicable) Lab Reports See Lab Schedule 15%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam See Teaching Plan 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination TBC by the Registrar’s Office End of Term 35%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.16,
+  "confidence": 0.92,
   "needsHumanReview": true
 }

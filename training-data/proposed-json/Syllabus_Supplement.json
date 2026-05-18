@@ -11,20 +11,55 @@
   "instructor": "Sumaiti",
   "assessments": [
     {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
+      "name": "Quiz 1",
+      "weight_percentage": 13.33,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz # 1 Monday, Sept.13, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "There are 4 quizzes scheduled Quiz # 2 Monday, Sep. 27, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "for this course. Only the best 3 Quiz # 3 Monday, Nov. 1, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "quiz scores will count towards Quiz # 4 Monday, Nov. 15, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 40",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "your final grade, i.e. the lowest Quiz 40%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "for 13.33% of your final grade"
     }
   ],
-  "totalWeight": 0,
+  "totalWeight": 106.65,
   "warnings": [
-    "Total weight is below 100 (0%)",
-    "Low confidence extraction",
+    "Total weight is above 100 (186.6%)",
     "Course info missing",
-    "Credit hours missing"
+    "Credit hours missing",
+    "Total weight is above 100 (106.6%)"
   ],
-  "confidence": 0.65,
+  "confidence": 0.92,
   "needsHumanReview": true
 }
