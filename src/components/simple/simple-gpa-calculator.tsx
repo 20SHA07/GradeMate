@@ -2,6 +2,7 @@
 
 import {
   BookOpen,
+  Calculator,
   ClipboardPaste,
   Download,
   FileText,
@@ -12,7 +13,8 @@ import {
   Sparkles,
   Trash2,
   UploadCloud,
-  Wand2
+  Wand2,
+  X
 } from "lucide-react";
 import {
   useEffect,
@@ -20,6 +22,8 @@ import {
   useRef,
   useState,
   type Dispatch,
+  type ReactNode,
+  type RefObject,
   type SetStateAction
 } from "react";
 import { ModeSwitch } from "@/components/navigation/mode-switch";
@@ -144,6 +148,8 @@ type PdfPreview = {
   text: string;
   warning?: string;
 };
+
+type ExtractionTab = "quick" | "paste" | "pdf";
 
 const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
@@ -782,6 +788,7 @@ function readStoredData(): SimpleGpaData {
 
 export function SimpleGpaCalculator() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const courseNameInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
   const [data, setData] = useState<SimpleGpaData>(() => getDefaultData());
   const [isLoaded, setIsLoaded] = useState(false);
   const [importText, setImportText] = useState("");
@@ -813,6 +820,15 @@ export function SimpleGpaCalculator() {
   const [libraryTemplates, setLibraryTemplates] = useState<SimpleTemplate[]>([]);
   const [isLoadingLibrary, setIsLoadingLibrary] = useState(true);
   const [libraryError, setLibraryError] = useState("");
+  const [isFindCourseOpen, setIsFindCourseOpen] = useState(false);
+  const [isImportOpen, setIsImportOpen] = useState(false);
+  const [activeExtractionCourseId, setActiveExtractionCourseId] = useState<
+    string | null
+  >(null);
+  const [extractionTab, setExtractionTab] = useState<ExtractionTab>("quick");
+  const [activePredictorCourseId, setActivePredictorCourseId] = useState<
+    string | null
+  >(null);
 
   useEffect(() => {
     setData(readStoredData());
@@ -974,6 +990,14 @@ export function SimpleGpaCalculator() {
     };
   }, [courseSearch, data.courses, libraryTemplates]);
 
+  const activeExtractionCourse =
+    data.courses.find((course) => course.id === activeExtractionCourseId) ?? null;
+  const activePredictorCourse =
+    data.courses.find((course) => course.id === activePredictorCourseId) ?? null;
+  const activePredictorStats = activePredictorCourse
+    ? getCourseGradeStats(activePredictorCourse)
+    : null;
+
   function resetNotices() {
     setMessage("");
     setError("");
@@ -1069,6 +1093,7 @@ export function SimpleGpaCalculator() {
       ...current,
       courses: [...current.courses, newCourse]
     }));
+    window.setTimeout(() => courseNameInputRefs.current[newCourse.id]?.focus(), 0);
     setMessage(
       course?.name ? `Added ${course.name} to the calculator.` : ""
     );
@@ -1108,6 +1133,8 @@ export function SimpleGpaCalculator() {
       gradeSource: template.assessments.length > 0 ? "calculated" : "manual",
       name: template.course_name
     });
+    setIsFindCourseOpen(false);
+    setCourseSearch("");
   }
 
   function duplicateLocalCourse(course: SimpleCourse) {
@@ -1122,6 +1149,8 @@ export function SimpleGpaCalculator() {
       id: createSimpleId("course"),
       name: course.name ? `${course.name} copy` : "Course copy"
     });
+    setIsFindCourseOpen(false);
+    setCourseSearch("");
   }
 
   function addAssessment(courseId: string) {
@@ -1168,6 +1197,7 @@ export function SimpleGpaCalculator() {
       const importedData = sanitizeImportedData(JSON.parse(text));
       setData(importedData);
       setImportText("");
+      setIsImportOpen(false);
       setMessage("Imported your quick calculator data.");
       setError("");
     } catch (importError) {
@@ -1184,6 +1214,7 @@ export function SimpleGpaCalculator() {
       const importedData = sanitizeImportedData(JSON.parse(importText));
       setData(importedData);
       setImportText("");
+      setIsImportOpen(false);
       setMessage("Imported your quick calculator data.");
       setError("");
     } catch (importError) {
@@ -1211,6 +1242,7 @@ export function SimpleGpaCalculator() {
     extraction: ExtractedSyllabus,
     source: ExtractionSource
   ) {
+    setActiveExtractionCourseId(courseId);
     setReview({
       courseId,
       courseInfo: makeCourseInfoReviewFields(extraction),
@@ -1283,6 +1315,7 @@ export function SimpleGpaCalculator() {
     }
 
     setIsExtractingCourseId(courseId);
+    setActiveExtractionCourseId(courseId);
     setError("");
     setMessage("");
 
@@ -1513,7 +1546,7 @@ export function SimpleGpaCalculator() {
     setError("");
     setMessage(
       [
-        savedCount === 1
+      savedCount === 1
           ? "Saved 1 assessment."
           : `Saved ${savedCount} assessments.`,
         skippedNames.length > 0
@@ -1523,6 +1556,7 @@ export function SimpleGpaCalculator() {
         .filter(Boolean)
         .join(" ")
     );
+    setActiveExtractionCourseId(null);
   }
 
   function updatePredictor(
@@ -1570,52 +1604,34 @@ export function SimpleGpaCalculator() {
   }
 
   return (
-    <main className="min-h-screen bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl space-y-6">
-        <header className="flex flex-col gap-4 rounded-3xl border border-ink-200 bg-white/90 p-5 shadow-soft shadow-black/10 sm:flex-row sm:items-center sm:justify-between">
+    <main className="min-h-screen overflow-x-hidden bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl space-y-5">
+        <header className="flex flex-col gap-4 rounded-3xl border border-ink-200 bg-white/90 p-4 shadow-soft shadow-black/10 sm:flex-row sm:items-center sm:justify-between sm:p-5">
           <div className="flex items-center gap-3">
-            <span className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-sm shadow-teal-950/30">
+            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-sm shadow-teal-950/30">
               <GraduationCap aria-hidden="true" className="h-6 w-6" />
             </span>
             <div>
               <Badge tone="teal">Fast Mode</Badge>
-              <h1 className="mt-2 text-2xl font-semibold text-ink-900">
+              <h1 className="mt-1 text-2xl font-semibold text-ink-900">
                 GradeMate Simple
               </h1>
-              <p className="mt-1 text-sm text-ink-500">
-                Quick GPA and course-grade planning with optional smart extraction.
-              </p>
             </div>
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap items-center gap-2">
             <Button onClick={exportData} variant="secondary">
               <Download aria-hidden="true" className="h-4 w-4" />
               Export
             </Button>
             <Button
-              onClick={() => fileInputRef.current?.click()}
+              onClick={() => setIsImportOpen(true)}
               variant="secondary"
             >
               <FileUp aria-hidden="true" className="h-4 w-4" />
               Import
             </Button>
-            <ModeSwitch className="w-full sm:w-72" compact />
+            <ModeSwitch className="w-full sm:w-64" compact />
             <ThemeToggle />
-            <input
-              accept="application/json"
-              className="hidden"
-              onChange={(event) => {
-                const file = event.target.files?.[0];
-
-                if (file) {
-                  void importFile(file);
-                }
-
-                event.target.value = "";
-              }}
-              ref={fileInputRef}
-              type="file"
-            />
           </div>
         </header>
 
@@ -1688,8 +1704,56 @@ export function SimpleGpaCalculator() {
           </Card>
         ) : null}
 
-        <section className="grid gap-6 lg:grid-cols-[22rem_minmax(0,1fr)]">
-          <div className="space-y-6">
+        <Card className="p-5">
+          <div className="flex flex-col gap-4 md:flex-row md:items-end">
+            <div className="flex-1">
+              <h2 className="text-lg font-semibold text-ink-900">
+                Student Information
+              </h2>
+              <p className="mt-1 text-sm text-ink-500">
+                Add your current GPA to calculate a cumulative result.
+              </p>
+            </div>
+            <div className="grid flex-1 gap-3 sm:grid-cols-2">
+              <label className="block">
+                <span className="text-sm font-medium text-ink-700">
+                  Existing CGPA
+                </span>
+                <input
+                  className={inputStyles}
+                  max="4"
+                  min="0"
+                  onChange={(event) =>
+                    updateData({ existingCgpa: event.target.value })
+                  }
+                  placeholder="3.45"
+                  step="0.01"
+                  type="number"
+                  value={data.existingCgpa}
+                />
+              </label>
+              <label className="block">
+                <span className="text-sm font-medium text-ink-700">
+                  Completed hours
+                </span>
+                <input
+                  className={inputStyles}
+                  min="0"
+                  onChange={(event) =>
+                    updateData({ completedHours: event.target.value })
+                  }
+                  placeholder="60"
+                  step="1"
+                  type="number"
+                  value={data.completedHours}
+                />
+              </label>
+            </div>
+          </div>
+        </Card>
+
+        <section className="space-y-5">
+          <div className="hidden">
             <Card className="p-5">
               <h2 className="text-lg font-semibold text-ink-900">
                 Student Information
@@ -1899,13 +1963,19 @@ export function SimpleGpaCalculator() {
                   Current Semester Courses
                 </h2>
                 <p className="mt-1 text-sm text-ink-500">
-                  Add each course, credits, grades, and optional coursework.
+                  Add each course, credits, and grade. Coursework stays tucked away until you need it.
                 </p>
               </div>
-              <Button onClick={() => addCourse()}>
-                <PlusCircle aria-hidden="true" className="h-4 w-4" />
-                Add course
-              </Button>
+              <div className="flex flex-wrap gap-2">
+                <Button onClick={() => setIsFindCourseOpen(true)} variant="secondary">
+                  <Search aria-hidden="true" className="h-4 w-4" />
+                  Find course
+                </Button>
+                <Button onClick={() => addCourse()}>
+                  <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                  Add course
+                </Button>
+              </div>
             </div>
 
             <div className="divide-y divide-ink-200">
@@ -1920,8 +1990,8 @@ export function SimpleGpaCalculator() {
                     : getGradeInfo(stats.currentGrade);
 
                 return (
-                  <div className="space-y-4 p-5" key={course.id}>
-                    <div className="grid gap-3 xl:grid-cols-[8rem_minmax(0,1.4fr)_7rem_9rem_9rem_7rem_8rem_auto] xl:items-end">
+                  <div className="space-y-3 p-4 sm:p-5" key={course.id}>
+                    <div className="grid gap-3 lg:grid-cols-[8rem_minmax(0,1.3fr)_6rem_8.5rem_8rem_6rem_7rem_auto] lg:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course code
@@ -1945,6 +2015,9 @@ export function SimpleGpaCalculator() {
                             updateCourse(course.id, "name", event.target.value)
                           }
                           placeholder={`Course ${index + 1}`}
+                          ref={(node) => {
+                            courseNameInputRefs.current[course.id] = node;
+                          }}
                           value={course.name}
                         />
                       </label>
@@ -2041,35 +2114,35 @@ export function SimpleGpaCalculator() {
                     </div>
 
                     <div className="grid gap-3 md:grid-cols-4">
-                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                      <div className="rounded-xl bg-ink-100 px-3 py-2">
                         <p className="text-xs font-medium text-ink-500">
                           Course grade
                         </p>
-                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                        <p className="mt-1 text-base font-semibold text-ink-900">
                           {formatPercent(stats.currentGrade)}
                         </p>
                       </div>
-                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                      <div className="rounded-xl bg-ink-100 px-3 py-2">
                         <p className="text-xs font-medium text-ink-500">
                           Letter
                         </p>
-                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                        <p className="mt-1 text-base font-semibold text-ink-900">
                           {calculatedInfo?.letter ?? effectiveLetter}
                         </p>
                       </div>
-                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                      <div className="rounded-xl bg-ink-100 px-3 py-2">
                         <p className="text-xs font-medium text-ink-500">
                           Weight
                         </p>
-                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                        <p className="mt-1 text-base font-semibold text-ink-900">
                           {stats.totalWeight.toFixed(1)}%
                         </p>
                       </div>
-                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                      <div className="rounded-xl bg-ink-100 px-3 py-2">
                         <p className="text-xs font-medium text-ink-500">
                           Remaining
                         </p>
-                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                        <p className="mt-1 text-base font-semibold text-ink-900">
                           {stats.remainingWeight.toFixed(1)}%
                         </p>
                       </div>
@@ -2077,42 +2150,15 @@ export function SimpleGpaCalculator() {
 
                     <CourseworkDetails
                       addAssessment={addAssessment}
-                      addReviewRow={addReviewRow}
                       course={course}
-                      deleteReviewRow={deleteReviewRow}
-                      extractFromPdf={extractFromPdf}
-                      isExtracting={isExtractingCourseId === course.id}
-                      pdfFile={pdfFileByCourse[course.id] ?? null}
-                      pdfPreview={pdfPreviewByCourse[course.id] ?? null}
-                      predictor={predictors[course.id]}
-                      quickText={quickTextByCourse[course.id] ?? ""}
+                      openExtraction={() => {
+                        setActiveExtractionCourseId(course.id);
+                        setExtractionTab("quick");
+                      }}
+                      openPredictor={() => setActivePredictorCourseId(course.id)}
                       removeAssessment={removeAssessment}
-                      review={review?.courseId === course.id ? review : null}
-                      runExtraction={runExtraction}
-                      saveReview={saveReview}
-                      setPdfFile={(file) =>
-                        setPdfFileByCourse((current) => ({
-                          ...current,
-                          [course.id]: file
-                        }))
-                      }
-                      setQuickText={(value) =>
-                        updateCourseText(setQuickTextByCourse, course.id, value)
-                      }
-                      setReview={setReview}
-                      setSyllabusText={(value) =>
-                        updateCourseText(
-                          setSyllabusTextByCourse,
-                          course.id,
-                          value
-                        )
-                      }
                       stats={stats}
-                      syllabusText={syllabusTextByCourse[course.id] ?? ""}
                       updateAssessment={updateAssessment}
-                      updateCourseInfoField={updateCourseInfoField}
-                      updatePredictor={updatePredictor}
-                      updateReviewRow={updateReviewRow}
                     />
                   </div>
                 );
@@ -2120,6 +2166,107 @@ export function SimpleGpaCalculator() {
             </div>
           </Card>
         </section>
+
+        {isFindCourseOpen ? (
+          <SimpleModal
+            onClose={() => setIsFindCourseOpen(false)}
+            title="Find a course"
+          >
+            <CourseSearchModal
+              addTemplateToCalculator={addTemplateToCalculator}
+              courseSearch={courseSearch}
+              courseSearchResults={courseSearchResults}
+              duplicateLocalCourse={duplicateLocalCourse}
+              isLoadingLibrary={isLoadingLibrary}
+              libraryError={libraryError}
+              setCourseSearch={setCourseSearch}
+            />
+          </SimpleModal>
+        ) : null}
+
+        {isImportOpen ? (
+          <SimpleModal
+            onClose={() => setIsImportOpen(false)}
+            title="Import GradeMate Simple"
+          >
+            <ImportModal
+              fileInputRef={fileInputRef}
+              importFile={importFile}
+              importFromText={importFromText}
+              importText={importText}
+              setImportText={setImportText}
+            />
+          </SimpleModal>
+        ) : null}
+
+        {activeExtractionCourse ? (
+          <SimpleModal
+            onClose={() => {
+              setActiveExtractionCourseId(null);
+              setReview(null);
+            }}
+            title="Auto-fill Coursework"
+            wide
+          >
+            <ExtractionModalContent
+              activeTab={extractionTab}
+              addReviewRow={addReviewRow}
+              course={activeExtractionCourse}
+              deleteReviewRow={deleteReviewRow}
+              extractFromPdf={extractFromPdf}
+              isExtracting={isExtractingCourseId === activeExtractionCourse.id}
+              pdfFile={pdfFileByCourse[activeExtractionCourse.id] ?? null}
+              pdfPreview={pdfPreviewByCourse[activeExtractionCourse.id] ?? null}
+              quickText={quickTextByCourse[activeExtractionCourse.id] ?? ""}
+              review={
+                review?.courseId === activeExtractionCourse.id ? review : null
+              }
+              runExtraction={runExtraction}
+              saveReview={saveReview}
+              setActiveTab={setExtractionTab}
+              setPdfFile={(file) =>
+                setPdfFileByCourse((current) => ({
+                  ...current,
+                  [activeExtractionCourse.id]: file
+                }))
+              }
+              setQuickText={(value) =>
+                updateCourseText(
+                  setQuickTextByCourse,
+                  activeExtractionCourse.id,
+                  value
+                )
+              }
+              setReview={setReview}
+              setSyllabusText={(value) =>
+                updateCourseText(
+                  setSyllabusTextByCourse,
+                  activeExtractionCourse.id,
+                  value
+                )
+              }
+              syllabusText={
+                syllabusTextByCourse[activeExtractionCourse.id] ?? ""
+              }
+              updateCourseInfoField={updateCourseInfoField}
+              updateReviewRow={updateReviewRow}
+            />
+          </SimpleModal>
+        ) : null}
+
+        {activePredictorCourse && activePredictorStats ? (
+          <SimpleModal
+            onClose={() => setActivePredictorCourseId(null)}
+            title="What do I need?"
+          >
+            <PredictorModalContent
+              course={activePredictorCourse}
+              predictor={predictors[activePredictorCourse.id]}
+              stats={activePredictorStats}
+              updatePredictor={updatePredictor}
+            />
+          </SimpleModal>
+        ) : null}
       </div>
     </main>
   );
@@ -2127,55 +2274,19 @@ export function SimpleGpaCalculator() {
 
 function CourseworkDetails({
   addAssessment,
-  addReviewRow,
   course,
-  deleteReviewRow,
-  extractFromPdf,
-  isExtracting,
-  pdfFile,
-  pdfPreview,
-  predictor,
-  quickText,
+  openExtraction,
+  openPredictor,
   removeAssessment,
-  review,
-  runExtraction,
-  saveReview,
-  setPdfFile,
-  setQuickText,
-  setReview,
-  setSyllabusText,
   stats,
-  syllabusText,
-  updateAssessment,
-  updateCourseInfoField,
-  updatePredictor,
-  updateReviewRow
+  updateAssessment
 }: {
   addAssessment: (courseId: string) => void;
-  addReviewRow: () => void;
   course: SimpleCourse;
-  deleteReviewRow: (rowId: string) => void;
-  extractFromPdf: (courseId: string) => Promise<void>;
-  isExtracting: boolean;
-  pdfFile: File | null;
-  pdfPreview: PdfPreview | null;
-  predictor: PredictorState | undefined;
-  quickText: string;
+  openExtraction: () => void;
+  openPredictor: () => void;
   removeAssessment: (courseId: string, assessmentId: string) => void;
-  review: ReviewState | null;
-  runExtraction: (
-    courseId: string,
-    text: string,
-    mode: "quick" | "syllabus",
-    source: ExtractionSource
-  ) => Promise<void>;
-  saveReview: (mode: "append" | "replace") => void;
-  setPdfFile: (file: File | null) => void;
-  setQuickText: (value: string) => void;
-  setReview: Dispatch<SetStateAction<ReviewState | null>>;
-  setSyllabusText: (value: string) => void;
   stats: ReturnType<typeof getCourseGradeStats>;
-  syllabusText: string;
   updateAssessment: (
     courseId: string,
     assessmentId: string,
@@ -2185,59 +2296,14 @@ function CourseworkDetails({
     >,
     value: string
   ) => void;
-  updateCourseInfoField: (
-    key: CourseInfoReviewField["key"],
-    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
-  ) => void;
-  updatePredictor: (
-    courseId: string,
-    nextState: Partial<PredictorState>
-  ) => void;
-  updateReviewRow: (
-    rowId: string,
-    field: keyof Pick<
-      ReviewAssessment,
-      "confidence" | "max_score" | "name" | "weight_percentage"
-    >,
-    value: string
-  ) => void;
 }) {
-  const remainingAssessments = stats.rows.filter((row) => !row.isCompleted);
-  const activePredictor = {
-    selectedAssessmentId:
-      predictor?.selectedAssessmentId || remainingAssessments[0]?.assessment.id || "",
-    targetGrade: predictor?.targetGrade || "90"
-  };
-  const selectedRemaining = remainingAssessments.find(
-    (row) => row.assessment.id === activePredictor.selectedAssessmentId
-  );
-  const targetGrade = Number(activePredictor.targetGrade);
-  const neededScore =
-    selectedRemaining && Number.isFinite(targetGrade) && selectedRemaining.weight > 0
-      ? ((targetGrade - stats.completedPoints) / selectedRemaining.weight) * 100
-      : null;
-  const neededAverage =
-    stats.remainingWeight > 0 && Number.isFinite(targetGrade)
-      ? ((targetGrade - stats.completedPoints) / stats.remainingWeight) * 100
-      : null;
-  const predictorMessage =
-    neededScore === null
-      ? "Add a remaining assessment to calculate what you need."
-      : targetGrade <= stats.completedPoints
-        ? "You've already secured this target based on completed work."
-        : neededScore > 100
-          ? "This target is not possible with the remaining weight."
-          : neededScore < 0
-            ? "You've already secured this target based on completed work."
-            : `You need ${neededScore.toFixed(1)}% on ${selectedRemaining?.assessment.name} to reach ${targetGrade.toFixed(1)}%.`;
-
   return (
     <details className="rounded-2xl border border-ink-200 bg-ink-100/50 px-4 py-3 text-sm">
       <summary className="cursor-pointer font-semibold text-ink-900">
         Coursework details
       </summary>
 
-      <div className="mt-5 space-y-5">
+      <div className="mt-4 space-y-4">
         {[
           course.instructor,
           course.instructorEmail,
@@ -2249,9 +2315,9 @@ function CourseworkDetails({
           course.courseDescription,
           ...(course.textbooks ?? [])
         ].some(Boolean) ? (
-          <section className="rounded-2xl border border-ink-200 bg-white p-4">
+          <section className="rounded-xl bg-white p-3">
             <h3 className="font-semibold text-ink-900">Course details</h3>
-            <div className="mt-3 grid gap-3 md:grid-cols-2">
+            <div className="mt-3 grid gap-2 md:grid-cols-2">
               {[
                 ["Instructor", course.instructor],
                 ["Email", course.instructorEmail],
@@ -2262,7 +2328,7 @@ function CourseworkDetails({
                 ["Prerequisites", course.prerequisites]
               ].map(([label, value]) =>
                 value ? (
-                  <div className="rounded-xl bg-ink-100/70 p-3 text-sm" key={label}>
+                  <div className="rounded-lg bg-ink-100/70 p-3 text-sm" key={label}>
                     <p className="text-ink-500">{label}</p>
                     <p className="mt-1 font-medium text-ink-900">{value}</p>
                   </div>
@@ -2270,7 +2336,7 @@ function CourseworkDetails({
               )}
             </div>
             {course.textbooks?.length ? (
-              <div className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm">
+              <div className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm">
                 <p className="text-ink-500">Textbooks</p>
                 <ul className="mt-2 list-disc space-y-1 pl-5">
                   {course.textbooks.map((textbook) => (
@@ -2280,7 +2346,7 @@ function CourseworkDetails({
               </div>
             ) : null}
             {course.courseDescription ? (
-              <p className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
+              <p className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
                 {course.courseDescription}
               </p>
             ) : null}
@@ -2302,17 +2368,17 @@ function CourseworkDetails({
 
           {course.assessments.length === 0 ? (
             <div className="mt-3 rounded-xl border border-ink-200 bg-white p-4 text-ink-500">
-              No coursework yet. Add assessments manually or use smart extraction.
+              No coursework yet. Add rows manually or scan a syllabus.
             </div>
           ) : (
             <div className="mt-3 overflow-x-auto rounded-xl border border-ink-200">
-              <table className="w-full min-w-[760px] text-left text-sm">
+              <table className="w-full min-w-[720px] text-left text-sm">
                 <thead className="bg-ink-100 text-xs uppercase text-ink-500">
                   <tr>
                     <th className="px-4 py-3 font-semibold">Assessment</th>
-                    <th className="px-4 py-3 font-semibold">Weight</th>
                     <th className="px-4 py-3 font-semibold">Score</th>
                     <th className="px-4 py-3 font-semibold">Max</th>
+                    <th className="px-4 py-3 font-semibold">Weight %</th>
                     <th className="px-4 py-3 font-semibold">Contribution</th>
                     <th className="px-4 py-3 text-right font-semibold">
                       Actions
@@ -2334,23 +2400,6 @@ function CourseworkDetails({
                             )
                           }
                           value={row.assessment.name}
-                        />
-                      </td>
-                      <td className="px-4 py-3">
-                        <input
-                          className={inputStyles}
-                          min="0"
-                          onChange={(event) =>
-                            updateAssessment(
-                              course.id,
-                              row.assessment.id,
-                              "weightPercentage",
-                              event.target.value
-                            )
-                          }
-                          step="0.01"
-                          type="number"
-                          value={row.assessment.weightPercentage}
                         />
                       </td>
                       <td className="px-4 py-3">
@@ -2388,6 +2437,23 @@ function CourseworkDetails({
                           value={row.assessment.maxScore}
                         />
                       </td>
+                      <td className="px-4 py-3">
+                        <input
+                          className={inputStyles}
+                          min="0"
+                          onChange={(event) =>
+                            updateAssessment(
+                              course.id,
+                              row.assessment.id,
+                              "weightPercentage",
+                              event.target.value
+                            )
+                          }
+                          step="0.01"
+                          type="number"
+                          value={row.assessment.weightPercentage}
+                        />
+                      </td>
                       <td className="px-4 py-3 font-medium text-ink-900">
                         {row.isCompleted
                           ? `${row.contribution.toFixed(1)}%`
@@ -2412,64 +2478,380 @@ function CourseworkDetails({
             </div>
           )}
 
-          <Button className="mt-3" onClick={() => addAssessment(course.id)}>
-            <PlusCircle aria-hidden="true" className="h-4 w-4" />
-            Add assessment manually
-          </Button>
+          <div className="mt-3 flex flex-wrap gap-2">
+            <Button onClick={() => addAssessment(course.id)} variant="secondary">
+              <PlusCircle aria-hidden="true" className="h-4 w-4" />
+              Add coursework
+            </Button>
+            <Button onClick={openExtraction}>
+              <Wand2 aria-hidden="true" className="h-4 w-4" />
+              Scan syllabus
+            </Button>
+            <Button onClick={openPredictor} variant="secondary">
+              <Calculator aria-hidden="true" className="h-4 w-4" />
+              What do I need?
+            </Button>
+          </div>
         </section>
+      </div>
+    </details>
+  );
+}
 
-        <section className="rounded-2xl border border-ink-200 bg-white p-4">
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="flex items-center gap-2 font-semibold text-ink-900">
-              <Wand2 aria-hidden="true" className="h-4 w-4 text-teal-700" />
-              Smart extraction
-            </div>
-            <Badge tone={isOnlineAiEnabled() ? "teal" : "ink"}>
-              {isOnlineAiEnabled() ? "AI assist: Online" : "AI assist: Automatic"}
-            </Badge>
-          </div>
+function SimpleModal({
+  children,
+  onClose,
+  title,
+  wide = false
+}: {
+  children: ReactNode;
+  onClose: () => void;
+  title: string;
+  wide?: boolean;
+}) {
+  return (
+    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-ink-950/70 px-4 py-6 backdrop-blur-sm">
+      <div
+        className={`w-full rounded-3xl border border-ink-200 bg-white shadow-2xl shadow-black/30 ${
+          wide ? "max-w-5xl" : "max-w-2xl"
+        }`}
+      >
+        <div className="flex items-center justify-between gap-3 border-b border-ink-200 px-5 py-4">
+          <h2 className="text-lg font-semibold text-ink-900">{title}</h2>
+          <Button aria-label="Close" onClick={onClose} size="icon" variant="ghost">
+            <X aria-hidden="true" className="h-4 w-4" />
+          </Button>
+        </div>
+        <div className="p-5">{children}</div>
+      </div>
+    </div>
+  );
+}
 
-          <div className="mt-4 rounded-xl bg-ink-100/70 p-4">
-            <div className="flex items-center gap-2 font-medium text-teal-700">
-              <ClipboardPaste aria-hidden="true" className="h-4 w-4" />
-              Quick add grading breakdown
-            </div>
-            <p className="mt-1 text-ink-500">
-              Type it like a message. GradeMate will turn it into assessments.
+function CourseSearchModal({
+  addTemplateToCalculator,
+  courseSearch,
+  courseSearchResults,
+  duplicateLocalCourse,
+  isLoadingLibrary,
+  libraryError,
+  setCourseSearch
+}: {
+  addTemplateToCalculator: (template: SimpleTemplate) => void;
+  courseSearch: string;
+  courseSearchResults: {
+    localCourses: SimpleCourse[];
+    templates: SimpleTemplate[];
+  };
+  duplicateLocalCourse: (course: SimpleCourse) => void;
+  isLoadingLibrary: boolean;
+  libraryError: string;
+  setCourseSearch: (value: string) => void;
+}) {
+  return (
+    <div className="space-y-4">
+      <label className="block">
+        <span className="text-sm font-medium text-ink-700">
+          Search course code or name
+        </span>
+        <input
+          className={`${inputStyles} mt-1`}
+          onChange={(event) => setCourseSearch(event.target.value)}
+          placeholder="Search course code or name"
+          value={courseSearch}
+        />
+      </label>
+
+      {libraryError ? (
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          {libraryError}
+        </p>
+      ) : null}
+
+      {!courseSearch.trim() ? (
+        <p className="text-sm text-ink-500">
+          Search your added courses or Course Library templates. Templates are added locally.
+        </p>
+      ) : (
+        <div className="grid gap-4 md:grid-cols-2">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-normal text-ink-400">
+              Added courses
             </p>
-            <textarea
-              className={`${textareaStyles} mt-3 min-h-24`}
-              onChange={(event) => setQuickText(event.target.value)}
-              placeholder={sampleBreakdown}
-              value={quickText}
-            />
-            <div className="mt-3 flex flex-wrap gap-2">
-              <Button onClick={() => setQuickText(sampleBreakdown)} variant="secondary">
-                Try sample
-              </Button>
-              <Button
-                disabled={isExtracting}
-                onClick={() =>
-                  void runExtraction(course.id, quickText, "quick", "quick")
-                }
-              >
-                <Sparkles aria-hidden="true" className="h-4 w-4" />
-                Auto-detect
-              </Button>
-              <Button onClick={() => setQuickText("")} variant="secondary">
-                Clear
-              </Button>
+            <div className="mt-2 space-y-2">
+              {courseSearchResults.localCourses.length === 0 ? (
+                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                  No matching local courses.
+                </p>
+              ) : (
+                courseSearchResults.localCourses.map((course) => (
+                  <div className="rounded-xl border border-ink-200 bg-white p-3" key={course.id}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <p className="text-xs font-medium text-teal-700">
+                          {course.code || "No code"}
+                        </p>
+                        <p className="mt-1 truncate font-medium text-ink-900">
+                          {course.name || "Untitled course"}
+                        </p>
+                        <p className="mt-1 text-xs text-ink-500">
+                          {parsePositiveNumber(course.creditHours)} credits ·{" "}
+                          {course.assessments.length} assessments
+                        </p>
+                      </div>
+                      <Button onClick={() => duplicateLocalCourse(course)} size="sm" variant="secondary">
+                        Add
+                      </Button>
+                    </div>
+                  </div>
+                ))
+              )}
             </div>
           </div>
 
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            <div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-normal text-ink-400">
+              Course Library
+            </p>
+            <div className="mt-2 space-y-2">
+              {isLoadingLibrary ? (
+                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                  Loading course templates...
+                </p>
+              ) : courseSearchResults.templates.length === 0 ? (
+                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                  No matching templates. You can still add a course manually.
+                </p>
+              ) : (
+                courseSearchResults.templates.map((template) => (
+                  <div className="rounded-xl border border-ink-200 bg-white p-3" key={template.id}>
+                    <div className="flex items-start justify-between gap-3">
+                      <div className="min-w-0">
+                        <div className="flex flex-wrap items-center gap-2">
+                          <Badge tone="teal">{template.course_code}</Badge>
+                          <Badge tone="ink">
+                            {Number(template.credit_hours) || 3} credits
+                          </Badge>
+                        </div>
+                        <p className="mt-2 font-medium text-ink-900">
+                          {template.course_name}
+                        </p>
+                        <p className="mt-1 text-xs text-ink-500">
+                          {template.assessments.length} detected assessments
+                        </p>
+                      </div>
+                      <Button onClick={() => addTemplateToCalculator(template)} size="sm">
+                        <BookOpen aria-hidden="true" className="h-4 w-4" />
+                        Add
+                      </Button>
+                    </div>
+                  </div>
+                ))
+              )}
+            </div>
+          </div>
+        </div>
+      )}
+    </div>
+  );
+}
+
+function ImportModal({
+  fileInputRef,
+  importFile,
+  importFromText,
+  importText,
+  setImportText
+}: {
+  fileInputRef: RefObject<HTMLInputElement | null>;
+  importFile: (file: File) => Promise<void>;
+  importFromText: () => void;
+  importText: string;
+  setImportText: (value: string) => void;
+}) {
+  return (
+    <div className="space-y-4">
+      <p className="text-sm text-ink-500">
+        Import a saved GradeMate Simple JSON file, or paste exported JSON below.
+      </p>
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={() => fileInputRef.current?.click()}>
+          <FileUp aria-hidden="true" className="h-4 w-4" />
+          Choose JSON file
+        </Button>
+        <input
+          accept="application/json"
+          className="hidden"
+          onChange={(event) => {
+            const file = event.target.files?.[0];
+
+            if (file) {
+              void importFile(file);
+            }
+
+            event.target.value = "";
+          }}
+          ref={fileInputRef}
+          type="file"
+        />
+      </div>
+      <label className="block">
+        <span className="text-sm font-medium text-ink-700">Paste JSON</span>
+        <textarea
+          className={`${textareaStyles} mt-2 min-h-32`}
+          onChange={(event) => setImportText(event.target.value)}
+          placeholder='{"existingCgpa":"3.5","completedHours":"60","courses":[...]}'
+          value={importText}
+        />
+      </label>
+      <Button
+        disabled={!importText.trim()}
+        onClick={importFromText}
+        variant="secondary"
+      >
+        Import pasted JSON
+      </Button>
+    </div>
+  );
+}
+
+function ExtractionModalContent({
+  activeTab,
+  addReviewRow,
+  course,
+  deleteReviewRow,
+  extractFromPdf,
+  isExtracting,
+  pdfFile,
+  pdfPreview,
+  quickText,
+  review,
+  runExtraction,
+  saveReview,
+  setActiveTab,
+  setPdfFile,
+  setQuickText,
+  setReview,
+  setSyllabusText,
+  syllabusText,
+  updateCourseInfoField,
+  updateReviewRow
+}: {
+  activeTab: ExtractionTab;
+  addReviewRow: () => void;
+  course: SimpleCourse;
+  deleteReviewRow: (rowId: string) => void;
+  extractFromPdf: (courseId: string) => Promise<void>;
+  isExtracting: boolean;
+  pdfFile: File | null;
+  pdfPreview: PdfPreview | null;
+  quickText: string;
+  review: ReviewState | null;
+  runExtraction: (
+    courseId: string,
+    text: string,
+    mode: "quick" | "syllabus",
+    source: ExtractionSource
+  ) => Promise<void>;
+  saveReview: (mode: "append" | "replace") => void;
+  setActiveTab: (tab: ExtractionTab) => void;
+  setPdfFile: (file: File | null) => void;
+  setQuickText: (value: string) => void;
+  setReview: Dispatch<SetStateAction<ReviewState | null>>;
+  setSyllabusText: (value: string) => void;
+  syllabusText: string;
+  updateCourseInfoField: (
+    key: CourseInfoReviewField["key"],
+    updates: Partial<Pick<CourseInfoReviewField, "apply" | "value">>
+  ) => void;
+  updateReviewRow: (
+    rowId: string,
+    field: keyof Pick<
+      ReviewAssessment,
+      "confidence" | "max_score" | "name" | "weight_percentage"
+    >,
+    value: string
+  ) => void;
+}) {
+  const tabs: Array<{ id: ExtractionTab; label: string }> = [
+    { id: "quick", label: "Quick Text" },
+    { id: "paste", label: "Paste Syllabus" },
+    { id: "pdf", label: "Upload PDF" }
+  ];
+
+  return (
+    <div className="space-y-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge tone={isOnlineAiEnabled() ? "teal" : "ink"}>
+          {isOnlineAiEnabled() ? "AI assist: Online" : "AI assist: Automatic"}
+        </Badge>
+        <span className="text-sm text-ink-500">
+          Results are reviewed before they are applied to {course.name || "this course"}.
+        </span>
+      </div>
+
+      {!review ? (
+        <>
+          <div className="grid grid-cols-3 rounded-2xl bg-ink-100 p-1">
+            {tabs.map((tab) => (
+              <button
+                className={`rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
+                  activeTab === tab.id
+                    ? "bg-white text-teal-700 shadow-sm"
+                    : "text-ink-500 hover:bg-white/60 hover:text-ink-900"
+                }`}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                type="button"
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
+
+          {activeTab === "quick" ? (
+            <div className="rounded-2xl bg-ink-100/70 p-4">
+              <div className="flex items-center gap-2 font-medium text-teal-700">
+                <ClipboardPaste aria-hidden="true" className="h-4 w-4" />
+                Quick add grading breakdown
+              </div>
+              <p className="mt-1 text-sm text-ink-500">
+                Type it like a message. GradeMate will turn it into assessments.
+              </p>
+              <textarea
+                className={`${textareaStyles} mt-3 min-h-28`}
+                onChange={(event) => setQuickText(event.target.value)}
+                placeholder={sampleBreakdown}
+                value={quickText}
+              />
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Button onClick={() => setQuickText(sampleBreakdown)} variant="secondary">
+                  Try sample
+                </Button>
+                <Button
+                  disabled={isExtracting}
+                  onClick={() =>
+                    void runExtraction(course.id, quickText, "quick", "quick")
+                  }
+                >
+                  <Sparkles aria-hidden="true" className="h-4 w-4" />
+                  Auto-detect
+                </Button>
+                <Button onClick={() => setQuickText("")} variant="secondary">
+                  Clear
+                </Button>
+              </div>
+            </div>
+          ) : null}
+
+          {activeTab === "paste" ? (
+            <div className="rounded-2xl bg-ink-100/70 p-4">
               <div className="flex items-center gap-2 font-medium text-ink-900">
                 <FileText aria-hidden="true" className="h-4 w-4 text-teal-700" />
                 Paste syllabus text
               </div>
               <textarea
-                className={`${textareaStyles} mt-3 min-h-32`}
+                className={`${textareaStyles} mt-3 min-h-40`}
                 onChange={(event) => setSyllabusText(event.target.value)}
                 placeholder="Paste the grading breakdown or syllabus text here..."
                 value={syllabusText}
@@ -2478,28 +2860,22 @@ function CourseworkDetails({
                 <Button
                   disabled={isExtracting}
                   onClick={() =>
-                    void runExtraction(
-                      course.id,
-                      syllabusText,
-                      "syllabus",
-                      "paste"
-                    )
+                    void runExtraction(course.id, syllabusText, "syllabus", "paste")
                   }
                 >
-                  Extract grading breakdown
+                  Extract
                 </Button>
                 <Button onClick={() => setSyllabusText("")} variant="secondary">
                   Clear text
                 </Button>
               </div>
             </div>
+          ) : null}
 
-            <div>
+          {activeTab === "pdf" ? (
+            <div className="rounded-2xl bg-ink-100/70 p-4">
               <div className="flex items-center gap-2 font-medium text-ink-900">
-                <UploadCloud
-                  aria-hidden="true"
-                  className="h-4 w-4 text-teal-700"
-                />
+                <UploadCloud aria-hidden="true" className="h-4 w-4 text-teal-700" />
                 Upload PDF
               </div>
               <input
@@ -2509,8 +2885,7 @@ function CourseworkDetails({
                 type="file"
               />
               <p className="mt-2 text-xs text-ink-500">
-                PDF text is read locally in your browser. If it fails, paste the
-                grading section instead.
+                PDF text is read locally in your browser. If it fails, paste the grading section instead.
               </p>
               <Button
                 className="mt-3"
@@ -2538,128 +2913,158 @@ function CourseworkDetails({
                 </details>
               ) : null}
             </div>
-          </div>
-        </section>
+          ) : null}
+        </>
+      ) : (
+        <ExtractionReview
+          addReviewRow={addReviewRow}
+          course={course}
+          deleteReviewRow={deleteReviewRow}
+          review={review}
+          saveReview={saveReview}
+          setReview={setReview}
+          updateCourseInfoField={updateCourseInfoField}
+          updateReviewRow={updateReviewRow}
+        />
+      )}
+    </div>
+  );
+}
 
-        {review ? (
-          <ExtractionReview
-            course={course}
-            deleteReviewRow={deleteReviewRow}
-            review={review}
-            saveReview={saveReview}
-            setReview={setReview}
-            updateCourseInfoField={updateCourseInfoField}
-            updateReviewRow={updateReviewRow}
-            addReviewRow={addReviewRow}
-          />
-        ) : null}
+function PredictorModalContent({
+  course,
+  predictor,
+  stats,
+  updatePredictor
+}: {
+  course: SimpleCourse;
+  predictor: PredictorState | undefined;
+  stats: ReturnType<typeof getCourseGradeStats>;
+  updatePredictor: (
+    courseId: string,
+    nextState: Partial<PredictorState>
+  ) => void;
+}) {
+  const remainingAssessments = stats.rows.filter((row) => !row.isCompleted);
+  const activePredictor = {
+    selectedAssessmentId:
+      predictor?.selectedAssessmentId || remainingAssessments[0]?.assessment.id || "",
+    targetGrade: predictor?.targetGrade || "90"
+  };
+  const selectedRemaining = remainingAssessments.find(
+    (row) => row.assessment.id === activePredictor.selectedAssessmentId
+  );
+  const targetGrade = Number(activePredictor.targetGrade);
+  const neededScore =
+    selectedRemaining && Number.isFinite(targetGrade) && selectedRemaining.weight > 0
+      ? ((targetGrade - stats.completedPoints) / selectedRemaining.weight) * 100
+      : null;
+  const neededAverage =
+    stats.remainingWeight > 0 && Number.isFinite(targetGrade)
+      ? ((targetGrade - stats.completedPoints) / stats.remainingWeight) * 100
+      : null;
+  const predictorMessage =
+    neededScore === null
+      ? "Add a remaining assessment to calculate what you need."
+      : targetGrade <= stats.completedPoints
+        ? "You've already secured this target based on completed work."
+        : neededScore > 100
+          ? "This target is not possible with the remaining weight."
+          : neededScore < 0
+            ? "You've already secured this target based on completed work."
+            : `You need ${neededScore.toFixed(1)}% on ${selectedRemaining?.assessment.name} to reach ${targetGrade.toFixed(1)}%.`;
 
-        <section className="rounded-2xl border border-ink-200 bg-white p-4">
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-            <div>
-              <h3 className="font-semibold text-ink-900">What do I need?</h3>
-              <p className="mt-1 text-ink-500">
-                Pick a target grade and one remaining assessment.
-              </p>
-            </div>
-            <Badge
-              tone={
-                neededScore === null
-                  ? "ink"
-                  : neededScore > 100
-                    ? "rose"
-                    : neededScore < 0 || targetGrade <= stats.completedPoints
-                      ? "green"
-                      : "teal"
-              }
-            >
-              {neededScore === null
-                ? "Needs remaining work"
-                : neededScore > 100
-                  ? "Impossible"
-                  : neededScore < 0 || targetGrade <= stats.completedPoints
-                    ? "Already secured"
-                    : "Possible"}
-            </Badge>
-          </div>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            <label className="block">
-              <span className="text-sm font-medium text-ink-700">
-                Target grade
-              </span>
-              <input
-                className={inputStyles}
-                max="100"
-                min="0"
-                onChange={(event) =>
-                  updatePredictor(course.id, {
-                    targetGrade: event.target.value
-                  })
-                }
-                step="0.1"
-                type="number"
-                value={activePredictor.targetGrade}
-              />
-            </label>
-            <label className="block md:col-span-2">
-              <span className="text-sm font-medium text-ink-700">
-                Remaining assessment
-              </span>
-              <select
-                className={inputStyles}
-                disabled={remainingAssessments.length === 0}
-                onChange={(event) =>
-                  updatePredictor(course.id, {
-                    selectedAssessmentId: event.target.value
-                  })
-                }
-                value={activePredictor.selectedAssessmentId}
-              >
-                {remainingAssessments.length === 0 ? (
-                  <option>No remaining assessments</option>
-                ) : (
-                  remainingAssessments.map((row) => (
-                    <option
-                      key={row.assessment.id}
-                      value={row.assessment.id}
-                    >
-                      {row.assessment.name}
-                    </option>
-                  ))
-                )}
-              </select>
-            </label>
-          </div>
-          <div className="mt-4 grid gap-3 md:grid-cols-3">
-            <div className="rounded-xl bg-ink-100 px-4 py-3">
-              <p className="text-xs font-medium text-ink-500">
-                Needed score
-              </p>
-              <p className="mt-1 text-lg font-semibold text-ink-900">
-                {formatPercent(neededScore)}
-              </p>
-            </div>
-            <div className="rounded-xl bg-ink-100 px-4 py-3">
-              <p className="text-xs font-medium text-ink-500">
-                Needed average
-              </p>
-              <p className="mt-1 text-lg font-semibold text-ink-900">
-                {formatPercent(neededAverage)}
-              </p>
-            </div>
-            <div className="rounded-xl bg-ink-100 px-4 py-3">
-              <p className="text-xs font-medium text-ink-500">
-                Best possible
-              </p>
-              <p className="mt-1 text-lg font-semibold text-ink-900">
-                {formatPercent(stats.bestPossibleGrade)}
-              </p>
-            </div>
-          </div>
-          <p className="mt-3 text-sm text-ink-600">{predictorMessage}</p>
-        </section>
+  return (
+    <section className="space-y-4">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+        <p className="text-sm text-ink-500">
+          Pick a target grade and one remaining assessment for {course.name || "this course"}.
+        </p>
+        <Badge
+          tone={
+            neededScore === null
+              ? "ink"
+              : neededScore > 100
+                ? "rose"
+                : neededScore < 0 || targetGrade <= stats.completedPoints
+                  ? "green"
+                  : "teal"
+          }
+        >
+          {neededScore === null
+            ? "Needs remaining work"
+            : neededScore > 100
+              ? "Impossible"
+              : neededScore < 0 || targetGrade <= stats.completedPoints
+                ? "Already secured"
+                : "Possible"}
+        </Badge>
       </div>
-    </details>
+      <div className="grid gap-3 md:grid-cols-3">
+        <label className="block">
+          <span className="text-sm font-medium text-ink-700">Target grade</span>
+          <input
+            className={inputStyles}
+            max="100"
+            min="0"
+            onChange={(event) =>
+              updatePredictor(course.id, {
+                targetGrade: event.target.value
+              })
+            }
+            step="0.1"
+            type="number"
+            value={activePredictor.targetGrade}
+          />
+        </label>
+        <label className="block md:col-span-2">
+          <span className="text-sm font-medium text-ink-700">
+            Remaining assessment
+          </span>
+          <select
+            className={inputStyles}
+            disabled={remainingAssessments.length === 0}
+            onChange={(event) =>
+              updatePredictor(course.id, {
+                selectedAssessmentId: event.target.value
+              })
+            }
+            value={activePredictor.selectedAssessmentId}
+          >
+            {remainingAssessments.length === 0 ? (
+              <option>No remaining assessments</option>
+            ) : (
+              remainingAssessments.map((row) => (
+                <option key={row.assessment.id} value={row.assessment.id}>
+                  {row.assessment.name}
+                </option>
+              ))
+            )}
+          </select>
+        </label>
+      </div>
+      <div className="grid gap-3 md:grid-cols-3">
+        <div className="rounded-xl bg-ink-100 px-4 py-3">
+          <p className="text-xs font-medium text-ink-500">Needed score</p>
+          <p className="mt-1 text-lg font-semibold text-ink-900">
+            {formatPercent(neededScore)}
+          </p>
+        </div>
+        <div className="rounded-xl bg-ink-100 px-4 py-3">
+          <p className="text-xs font-medium text-ink-500">Needed average</p>
+          <p className="mt-1 text-lg font-semibold text-ink-900">
+            {formatPercent(neededAverage)}
+          </p>
+        </div>
+        <div className="rounded-xl bg-ink-100 px-4 py-3">
+          <p className="text-xs font-medium text-ink-500">Best possible</p>
+          <p className="mt-1 text-lg font-semibold text-ink-900">
+            {formatPercent(stats.bestPossibleGrade)}
+          </p>
+        </div>
+      </div>
+      <p className="text-sm text-ink-600">{predictorMessage}</p>
+    </section>
   );
 }
 
