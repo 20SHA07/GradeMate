@@ -8,7 +8,7 @@ const modeCards = [
   {
     title: "Quick GPA Calculator",
     description:
-      "No account. No setup. Calculate your semester and cumulative GPA in seconds.",
+      "Calculate GPA fast, add courses, and use AI to extract grading breakdowns from syllabi.",
     button: "Start quick calculator",
     href: "/simple",
     icon: Calculator
@@ -16,7 +16,7 @@ const modeCards = [
   {
     title: "GradeMate Workspace",
     description:
-      "Track semesters, courses, assessments, syllabi, predictions, and course templates.",
+      "Track semesters, save courses, import templates, and manage your full academic plan.",
     button: "Open workspace",
     href: "/dashboard",
     icon: Layers3

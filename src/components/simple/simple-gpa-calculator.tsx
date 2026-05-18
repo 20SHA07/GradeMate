@@ -2,24 +2,64 @@
 
 import Link from "next/link";
 import {
+  ClipboardPaste,
   Download,
+  FileText,
   FileUp,
   GraduationCap,
   PlusCircle,
-  Trash2
+  Sparkles,
+  Trash2,
+  UploadCloud,
+  Wand2
 } from "lucide-react";
-import { useEffect, useMemo, useRef, useState } from "react";
+import {
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+  type Dispatch,
+  type SetStateAction
+} from "react";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { getGradePoint, gradeScale, type LetterGrade } from "@/lib/grading";
+import { createSupabaseBrowserClient } from "@/lib/supabase/client";
+import {
+  extractSyllabusFromText,
+  parseGradeBreakdownMessage,
+  type ExtractedAssessment,
+  type ExtractedSyllabus
+} from "@/lib/syllabus/extractSyllabus";
+import {
+  getGradeInfo,
+  getGradePoint,
+  getLetterGrade,
+  gradeScale,
+  type LetterGrade
+} from "@/lib/grading";
+
+type GradeSource = "calculated" | "manual";
+type ExtractionSource = "quick" | "paste" | "pdf" | "online-ai";
+
+type SimpleAssessment = {
+  id: string;
+  name: string;
+  weightPercentage: string;
+  score: string;
+  maxScore: string;
+  confidence?: number;
+  sourceTextSnippet?: string;
+};
 
 type SimpleCourse = {
   id: string;
   name: string;
   creditHours: string;
   letterGrade: LetterGrade;
+  gradeSource: GradeSource;
+  assessments: SimpleAssessment[];
 };
 
 type SimpleGpaData = {
@@ -28,32 +68,427 @@ type SimpleGpaData = {
   courses: SimpleCourse[];
 };
 
-const simpleStorageKey = "grademate_simple_gpa";
-const defaultCourse: Omit<SimpleCourse, "id"> = {
-  name: "",
-  creditHours: "3",
-  letterGrade: "A"
+type ReviewAssessment = ExtractedAssessment & {
+  id: string;
 };
 
-function createSimpleId() {
+type ReviewState = {
+  courseId: string;
+  extraction: ExtractedSyllabus;
+  rows: ReviewAssessment[];
+  source: ExtractionSource;
+};
+
+type PredictorState = {
+  selectedAssessmentId: string;
+  targetGrade: string;
+};
+
+const simpleStorageKey = "grademate_simple_gpa";
+const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
+const inputStyles =
+  "h-10 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+const textareaStyles =
+  "w-full rounded-xl border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+
+const defaultCourse: Omit<SimpleCourse, "id"> = {
+  assessments: [],
+  creditHours: "3",
+  gradeSource: "manual",
+  letterGrade: "A",
+  name: ""
+};
+
+function createSimpleId(prefix = "simple") {
   return typeof crypto !== "undefined" && "randomUUID" in crypto
     ? crypto.randomUUID()
-    : `simple-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+    : `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+}
+
+function isLetterGrade(value: unknown): value is LetterGrade {
+  return gradeScale.some((grade) => grade.letter === value);
+}
+
+function createAssessment(
+  assessment?: Partial<SimpleAssessment>
+): SimpleAssessment {
+  return {
+    confidence: assessment?.confidence,
+    id: assessment?.id ?? createSimpleId("assessment"),
+    maxScore: assessment?.maxScore ?? "100",
+    name: assessment?.name ?? "Assessment",
+    score: assessment?.score ?? "",
+    sourceTextSnippet: assessment?.sourceTextSnippet,
+    weightPercentage: assessment?.weightPercentage ?? "0"
+  };
 }
 
 function createCourse(course?: Partial<SimpleCourse>): SimpleCourse {
+  const assessments = Array.isArray(course?.assessments)
+    ? course.assessments.map((assessment) => createAssessment(assessment))
+    : [];
+
   return {
-    id: createSimpleId(),
+    id: course?.id ?? createSimpleId("course"),
     ...defaultCourse,
-    ...course
+    ...course,
+    assessments,
+    gradeSource:
+      course?.gradeSource === "calculated" || course?.gradeSource === "manual"
+        ? course.gradeSource
+        : assessments.length > 0
+          ? "calculated"
+          : "manual",
+    letterGrade: isLetterGrade(course?.letterGrade) ? course.letterGrade : "A"
   };
 }
 
 function getDefaultData(): SimpleGpaData {
   return {
-    existingCgpa: "",
     completedHours: "",
-    courses: [createCourse()]
+    courses: [createCourse()],
+    existingCgpa: ""
+  };
+}
+
+function parsePositiveNumber(value: string) {
+  const number = Number(value);
+  return Number.isFinite(number) && number > 0 ? number : 0;
+}
+
+function parseOptionalNonNegativeNumber(value: string) {
+  if (!value.trim()) {
+    return null;
+  }
+
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : null;
+}
+
+function formatGpa(value: number | null) {
+  return value === null || Number.isNaN(value) ? "--" : value.toFixed(2);
+}
+
+function formatPercent(value: number | null) {
+  return value === null || Number.isNaN(value) ? "--" : `${value.toFixed(1)}%`;
+}
+
+function normalizeName(value: string) {
+  return value.trim().toLowerCase();
+}
+
+function getConfidenceInfo(confidence = 0.5) {
+  if (confidence >= 0.8) {
+    return { label: "High", tone: "green" as const };
+  }
+
+  if (confidence >= 0.6) {
+    return { label: "Medium", tone: "gold" as const };
+  }
+
+  return { label: "Low", tone: "rose" as const };
+}
+
+function getExtractionSourceLabel(source: ExtractionSource) {
+  if (source === "online-ai") {
+    return "Improved with online AI";
+  }
+
+  if (source === "pdf") {
+    return "Extracted from PDF";
+  }
+
+  return "Detected automatically";
+}
+
+function makeReviewRows(extraction: ExtractedSyllabus): ReviewAssessment[] {
+  return extraction.assessments.map((assessment) => ({
+    ...assessment,
+    id: createSimpleId("review")
+  }));
+}
+
+function getReviewTotalWeight(rows: ReviewAssessment[]) {
+  return rows.reduce((sum, row) => sum + Number(row.weight_percentage || 0), 0);
+}
+
+function isWeightReady(totalWeight: number) {
+  return totalWeight >= 99.5 && totalWeight <= 100.5;
+}
+
+function getWeightText(totalWeight: number) {
+  if (isWeightReady(totalWeight)) {
+    return "Weight total: 100% ready";
+  }
+
+  if (totalWeight < 100) {
+    return `Missing ${(100 - totalWeight).toFixed(1)}%`;
+  }
+
+  return `Over by ${(totalWeight - 100).toFixed(1)}%`;
+}
+
+function getExtractionTotalWeight(extraction: ExtractedSyllabus) {
+  return extraction.assessments.reduce(
+    (sum, assessment) => sum + Number(assessment.weight_percentage || 0),
+    0
+  );
+}
+
+function shouldUseRuleExtraction(extraction: ExtractedSyllabus) {
+  const totalWeight = getExtractionTotalWeight(extraction);
+  const hasUnclearWarning = extraction.warnings.some((warning) =>
+    /unclear|low confidence|no assessments/i.test(warning)
+  );
+
+  return (
+    extraction.assessments.length > 0 &&
+    extraction.confidence >= 0.72 &&
+    isWeightReady(totalWeight) &&
+    !hasUnclearWarning
+  );
+}
+
+function isOnlineAiEnabled() {
+  return (
+    process.env.NEXT_PUBLIC_ONLINE_AI_ENABLED === "true" &&
+    process.env.NEXT_PUBLIC_AI_PROVIDER === "supabase-edge"
+  );
+}
+
+async function getFunctionErrorMessage(error: unknown) {
+  const fallback =
+    "AI assist is unavailable. You can still use automatic detection.";
+  const context =
+    error && typeof error === "object" && "context" in error
+      ? (error as { context?: unknown }).context
+      : null;
+
+  if (context instanceof Response) {
+    const payload = (await context
+      .clone()
+      .json()
+      .catch(() => null)) as { error?: unknown } | null;
+
+    if (typeof payload?.error === "string") {
+      return payload.error;
+    }
+  }
+
+  return error instanceof Error && error.message ? error.message : fallback;
+}
+
+function validateExtractionPayload(payload: unknown): ExtractedSyllabus {
+  if (!payload || typeof payload !== "object") {
+    throw new Error(
+      "AI extraction returned an invalid result. Try again or edit manually."
+    );
+  }
+
+  const extraction = payload as Partial<ExtractedSyllabus>;
+
+  if (
+    !Array.isArray(extraction.assessments) ||
+    !Array.isArray(extraction.warnings) ||
+    typeof extraction.confidence !== "number"
+  ) {
+    throw new Error(
+      "AI extraction returned an invalid result. Try again or edit manually."
+    );
+  }
+
+  return extraction as ExtractedSyllabus;
+}
+
+async function requestOnlineAiExtraction(text: string) {
+  if (!isOnlineAiEnabled()) {
+    throw new Error(
+      "AI assist is unavailable. You can still use automatic detection."
+    );
+  }
+
+  let supabase: ReturnType<typeof createSupabaseBrowserClient>;
+
+  try {
+    supabase = createSupabaseBrowserClient();
+  } catch {
+    throw new Error(
+      "AI assist is unavailable. You can still use automatic detection."
+    );
+  }
+
+  const { data, error } = await supabase.functions.invoke<
+    ExtractedSyllabus | { error?: string }
+  >("ai-extract-syllabus", {
+    body: { text }
+  });
+
+  if (error) {
+    throw new Error(await getFunctionErrorMessage(error));
+  }
+
+  if (data && "error" in data && data.error) {
+    throw new Error(data.error);
+  }
+
+  return validateExtractionPayload(data);
+}
+
+async function extractTextFromPdfFile(file: File) {
+  const pdfjs = await import("pdfjs-dist/legacy/build/pdf.mjs");
+  const basePath = process.env.NODE_ENV === "production" ? "/GradeMate" : "";
+  pdfjs.GlobalWorkerOptions.workerSrc = `${basePath}/pdf.worker.min.mjs`;
+  const data = new Uint8Array(await file.arrayBuffer());
+  const documentTask = pdfjs.getDocument({ data });
+  const pdf = await documentTask.promise;
+  const pages: string[] = [];
+
+  for (let pageNumber = 1; pageNumber <= pdf.numPages; pageNumber += 1) {
+    const page = await pdf.getPage(pageNumber);
+    const textContent = await page.getTextContent();
+    const pageText = textContent.items
+      .map((item) => {
+        const textItem = item as { str?: unknown };
+        return typeof textItem.str === "string" ? textItem.str : "";
+      })
+      .join(" ");
+
+    pages.push(pageText);
+  }
+
+  return pages.join("\n");
+}
+
+function getCourseGradeStats(course: SimpleCourse) {
+  const rows = course.assessments.map((assessment) => {
+    const weight = parsePositiveNumber(assessment.weightPercentage);
+    const score = parseOptionalNonNegativeNumber(assessment.score);
+    const maxScore = parsePositiveNumber(assessment.maxScore);
+    const isCompleted = score !== null && maxScore > 0;
+    const contribution = isCompleted ? (score / maxScore) * weight : 0;
+
+    return {
+      assessment,
+      contribution,
+      isCompleted,
+      maxScore,
+      score,
+      weight
+    };
+  });
+  const totalWeight = rows.reduce((sum, row) => sum + row.weight, 0);
+  const completedWeight = rows.reduce(
+    (sum, row) => sum + (row.isCompleted ? row.weight : 0),
+    0
+  );
+  const completedPoints = rows.reduce(
+    (sum, row) => sum + row.contribution,
+    0
+  );
+  const remainingWeight = rows.reduce(
+    (sum, row) => sum + (!row.isCompleted ? row.weight : 0),
+    0
+  );
+  const currentGrade =
+    completedWeight > 0 ? (completedPoints / completedWeight) * 100 : null;
+  const calculatedLetter =
+    currentGrade === null ? null : getLetterGrade(currentGrade);
+
+  return {
+    bestPossibleGrade: completedPoints + remainingWeight,
+    calculatedLetter,
+    completedPoints,
+    completedWeight,
+    currentGrade,
+    projectedFinalGrade: completedPoints,
+    remainingWeight,
+    rows,
+    totalWeight
+  };
+}
+
+function getEffectiveLetterGrade(course: SimpleCourse) {
+  const stats = getCourseGradeStats(course);
+
+  if (course.gradeSource === "calculated" && stats.calculatedLetter) {
+    return stats.calculatedLetter;
+  }
+
+  return course.letterGrade;
+}
+
+function getCourseQualityPoints(course: SimpleCourse) {
+  return (
+    parsePositiveNumber(course.creditHours) *
+    getGradePoint(getEffectiveLetterGrade(course))
+  );
+}
+
+function sanitizeImportedData(value: unknown): SimpleGpaData {
+  if (!value || typeof value !== "object") {
+    throw new Error("That file does not look like GradeMate Simple data.");
+  }
+
+  const data = value as Partial<SimpleGpaData>;
+  const courses = Array.isArray(data.courses)
+    ? data.courses.map((course) =>
+        createCourse({
+          assessments: Array.isArray(course.assessments)
+            ? course.assessments.map((assessment) =>
+                createAssessment({
+                  confidence:
+                    typeof assessment.confidence === "number"
+                      ? assessment.confidence
+                      : undefined,
+                  id:
+                    typeof assessment.id === "string"
+                      ? assessment.id
+                      : createSimpleId("assessment"),
+                  maxScore:
+                    typeof assessment.maxScore === "string"
+                      ? assessment.maxScore
+                      : String(assessment.maxScore ?? "100"),
+                  name:
+                    typeof assessment.name === "string"
+                      ? assessment.name
+                      : "Assessment",
+                  score:
+                    typeof assessment.score === "string"
+                      ? assessment.score
+                      : String(assessment.score ?? ""),
+                  sourceTextSnippet:
+                    typeof assessment.sourceTextSnippet === "string"
+                      ? assessment.sourceTextSnippet
+                      : undefined,
+                  weightPercentage:
+                    typeof assessment.weightPercentage === "string"
+                      ? assessment.weightPercentage
+                      : String(assessment.weightPercentage ?? "0")
+                })
+              )
+            : [],
+          creditHours:
+            typeof course.creditHours === "string"
+              ? course.creditHours
+              : String(course.creditHours ?? "3"),
+          gradeSource:
+            course.gradeSource === "calculated" || course.gradeSource === "manual"
+              ? course.gradeSource
+              : undefined,
+          id: typeof course.id === "string" ? course.id : createSimpleId("course"),
+          letterGrade: isLetterGrade(course.letterGrade)
+            ? course.letterGrade
+            : "A",
+          name: typeof course.name === "string" ? course.name : ""
+        })
+      )
+    : [];
+
+  return {
+    completedHours:
+      typeof data.completedHours === "string" ? data.completedHours : "",
+    courses: courses.length > 0 ? courses : [createCourse()],
+    existingCgpa: typeof data.existingCgpa === "string" ? data.existingCgpa : ""
   };
 }
 
@@ -69,83 +504,10 @@ function readStoredData(): SimpleGpaData {
   }
 
   try {
-    const parsedData = JSON.parse(rawData) as Partial<SimpleGpaData>;
-    const courses = Array.isArray(parsedData.courses)
-      ? parsedData.courses.map((course) =>
-          createCourse({
-            id: typeof course.id === "string" ? course.id : createSimpleId(),
-            name: typeof course.name === "string" ? course.name : "",
-            creditHours:
-              typeof course.creditHours === "string"
-                ? course.creditHours
-                : String(course.creditHours ?? "3"),
-            letterGrade: isLetterGrade(course.letterGrade)
-              ? course.letterGrade
-              : "A"
-          })
-        )
-      : [];
-
-    return {
-      existingCgpa:
-        typeof parsedData.existingCgpa === "string"
-          ? parsedData.existingCgpa
-          : "",
-      completedHours:
-        typeof parsedData.completedHours === "string"
-          ? parsedData.completedHours
-          : "",
-      courses: courses.length > 0 ? courses : [createCourse()]
-    };
+    return sanitizeImportedData(JSON.parse(rawData));
   } catch {
     return getDefaultData();
   }
-}
-
-function isLetterGrade(value: unknown): value is LetterGrade {
-  return gradeScale.some((grade) => grade.letter === value);
-}
-
-function parseNumber(value: string) {
-  const number = Number(value);
-  return Number.isFinite(number) && number > 0 ? number : 0;
-}
-
-function formatGpa(value: number | null) {
-  return value === null || Number.isNaN(value) ? "--" : value.toFixed(2);
-}
-
-function getCourseQualityPoints(course: SimpleCourse) {
-  return parseNumber(course.creditHours) * getGradePoint(course.letterGrade);
-}
-
-function sanitizeImportedData(value: unknown): SimpleGpaData {
-  if (!value || typeof value !== "object") {
-    throw new Error("That file does not look like GradeMate Simple data.");
-  }
-
-  const data = value as Partial<SimpleGpaData>;
-  const courses = Array.isArray(data.courses)
-    ? data.courses.map((course) =>
-        createCourse({
-          name: typeof course.name === "string" ? course.name : "",
-          creditHours:
-            typeof course.creditHours === "string"
-              ? course.creditHours
-              : String(course.creditHours ?? "3"),
-          letterGrade: isLetterGrade(course.letterGrade)
-            ? course.letterGrade
-            : "A"
-        })
-      )
-    : [];
-
-  return {
-    existingCgpa: typeof data.existingCgpa === "string" ? data.existingCgpa : "",
-    completedHours:
-      typeof data.completedHours === "string" ? data.completedHours : "",
-    courses: courses.length > 0 ? courses : [createCourse()]
-  };
 }
 
 export function SimpleGpaCalculator() {
@@ -155,6 +517,22 @@ export function SimpleGpaCalculator() {
   const [importText, setImportText] = useState("");
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [quickTextByCourse, setQuickTextByCourse] = useState<
+    Record<string, string>
+  >({});
+  const [syllabusTextByCourse, setSyllabusTextByCourse] = useState<
+    Record<string, string>
+  >({});
+  const [pdfFileByCourse, setPdfFileByCourse] = useState<
+    Record<string, File | null>
+  >({});
+  const [review, setReview] = useState<ReviewState | null>(null);
+  const [isExtractingCourseId, setIsExtractingCourseId] = useState<string | null>(
+    null
+  );
+  const [predictors, setPredictors] = useState<
+    Record<string, PredictorState>
+  >({});
 
   useEffect(() => {
     setData(readStoredData());
@@ -171,7 +549,7 @@ export function SimpleGpaCalculator() {
 
   const summary = useMemo(() => {
     const semesterHours = data.courses.reduce(
-      (sum, course) => sum + parseNumber(course.creditHours),
+      (sum, course) => sum + parsePositiveNumber(course.creditHours),
       0
     );
     const semesterQualityPoints = data.courses.reduce(
@@ -181,7 +559,7 @@ export function SimpleGpaCalculator() {
     const semesterGpa =
       semesterHours > 0 ? semesterQualityPoints / semesterHours : null;
     const existingCgpa = Number(data.existingCgpa);
-    const completedHours = parseNumber(data.completedHours);
+    const completedHours = parsePositiveNumber(data.completedHours);
     const hasExistingGpa =
       Number.isFinite(existingCgpa) && existingCgpa >= 0 && existingCgpa <= 4;
     const cumulativeHours = completedHours + semesterHours;
@@ -200,36 +578,92 @@ export function SimpleGpaCalculator() {
     };
   }, [data]);
 
+  function resetNotices() {
+    setMessage("");
+    setError("");
+  }
+
   function updateData(nextData: Partial<SimpleGpaData>) {
     setData((current) => ({
       ...current,
       ...nextData
     }));
-    setMessage("");
-    setError("");
+    resetNotices();
   }
 
   function updateCourse(
     courseId: string,
-    field: keyof Omit<SimpleCourse, "id">,
+    field: keyof Omit<SimpleCourse, "id" | "assessments">,
     value: string
   ) {
-    const nextValue =
-      field === "letterGrade" ? (isLetterGrade(value) ? value : "A") : value;
+    setData((current) => ({
+      ...current,
+      courses: current.courses.map((course) => {
+        if (course.id !== courseId) {
+          return course;
+        }
 
+        if (field === "letterGrade") {
+          return {
+            ...course,
+            letterGrade: isLetterGrade(value) ? value : course.letterGrade
+          };
+        }
+
+        if (field === "gradeSource") {
+          return {
+            ...course,
+            gradeSource: value === "calculated" ? "calculated" : "manual"
+          };
+        }
+
+        return {
+          ...course,
+          [field]: value
+        };
+      })
+    }));
+    resetNotices();
+  }
+
+  function updateCourseAssessments(
+    courseId: string,
+    updater: (assessments: SimpleAssessment[]) => SimpleAssessment[]
+  ) {
     setData((current) => ({
       ...current,
       courses: current.courses.map((course) =>
         course.id === courseId
           ? {
               ...course,
-              [field]: nextValue
+              assessments: updater(course.assessments),
+              gradeSource: "calculated"
             }
           : course
       )
     }));
-    setMessage("");
-    setError("");
+    resetNotices();
+  }
+
+  function updateAssessment(
+    courseId: string,
+    assessmentId: string,
+    field: keyof Pick<
+      SimpleAssessment,
+      "maxScore" | "name" | "score" | "weightPercentage"
+    >,
+    value: string
+  ) {
+    updateCourseAssessments(courseId, (assessments) =>
+      assessments.map((assessment) =>
+        assessment.id === assessmentId
+          ? {
+              ...assessment,
+              [field]: value
+            }
+          : assessment
+      )
+    );
   }
 
   function addCourse() {
@@ -247,6 +681,20 @@ export function SimpleGpaCalculator() {
         courses: courses.length > 0 ? courses : [createCourse()]
       };
     });
+    setReview((current) => (current?.courseId === courseId ? null : current));
+  }
+
+  function addAssessment(courseId: string) {
+    updateCourseAssessments(courseId, (assessments) => [
+      ...assessments,
+      createAssessment()
+    ]);
+  }
+
+  function removeAssessment(courseId: string, assessmentId: string) {
+    updateCourseAssessments(courseId, (assessments) =>
+      assessments.filter((assessment) => assessment.id !== assessmentId)
+    );
   }
 
   function exportData() {
@@ -295,6 +743,308 @@ export function SimpleGpaCalculator() {
     }
   }
 
+  function updateCourseText(
+    setter: Dispatch<SetStateAction<Record<string, string>>>,
+    courseId: string,
+    value: string
+  ) {
+    setter((current) => ({
+      ...current,
+      [courseId]: value
+    }));
+  }
+
+  function showExtractionResult(
+    courseId: string,
+    extraction: ExtractedSyllabus,
+    source: ExtractionSource
+  ) {
+    setReview({
+      courseId,
+      extraction,
+      rows: makeReviewRows(extraction),
+      source
+    });
+    setMessage(
+      extraction.assessments.length > 0
+        ? `${getExtractionSourceLabel(source)}. Review the grading items before saving.`
+        : "I couldn't find a grading breakdown. Try pasting the grading section, like: midterm 25, final 40, assignments 35."
+    );
+    setError("");
+  }
+
+  async function runExtractionPipeline(
+    courseId: string,
+    text: string,
+    mode: "quick" | "syllabus",
+    ruleSource: ExtractionSource
+  ) {
+    const ruleResult =
+      mode === "quick"
+        ? parseGradeBreakdownMessage(text)
+        : extractSyllabusFromText(text);
+
+    if (shouldUseRuleExtraction(ruleResult)) {
+      showExtractionResult(courseId, ruleResult, ruleSource);
+      return;
+    }
+
+    if (isOnlineAiEnabled()) {
+      try {
+        const aiResult = await requestOnlineAiExtraction(text);
+        showExtractionResult(courseId, aiResult, "online-ai");
+        return;
+      } catch (aiError) {
+        showExtractionResult(courseId, ruleResult, ruleSource);
+        setError(
+          aiError instanceof Error
+            ? aiError.message
+            : "AI assist is unavailable. You can still use automatic detection."
+        );
+        return;
+      }
+    }
+
+    showExtractionResult(courseId, ruleResult, ruleSource);
+
+    if (!shouldUseRuleExtraction(ruleResult)) {
+      setError(
+        "AI assist is unavailable. You can still use automatic detection."
+      );
+    }
+  }
+
+  async function runExtraction(
+    courseId: string,
+    text: string,
+    mode: "quick" | "syllabus",
+    source: ExtractionSource
+  ) {
+    const trimmedText = text.trim();
+    const minimumLength = mode === "quick" ? 6 : 20;
+
+    if (trimmedText.length < minimumLength) {
+      setError(
+        mode === "quick"
+          ? `Type a little more, like: ${sampleBreakdown}.`
+          : "Paste more syllabus text so GradeMate can find the grading breakdown."
+      );
+      return;
+    }
+
+    setIsExtractingCourseId(courseId);
+    setError("");
+    setMessage("");
+
+    try {
+      await runExtractionPipeline(courseId, trimmedText, mode, source);
+    } finally {
+      setIsExtractingCourseId(null);
+    }
+  }
+
+  async function extractFromPdf(courseId: string) {
+    const file = pdfFileByCourse[courseId];
+
+    if (!file) {
+      setError("Choose a PDF syllabus first.");
+      return;
+    }
+
+    const isPdf =
+      file.type === "application/pdf" ||
+      file.name.toLowerCase().endsWith(".pdf");
+
+    if (!isPdf) {
+      setError("Only PDF syllabus files are supported.");
+      return;
+    }
+
+    setIsExtractingCourseId(courseId);
+    setError("");
+    setMessage("");
+
+    try {
+      const pdfText = await extractTextFromPdfFile(file);
+
+      if (pdfText.trim().length < 20) {
+        throw new Error("Could not read enough text from this PDF.");
+      }
+
+      await runExtractionPipeline(courseId, pdfText, "syllabus", "pdf");
+    } catch (pdfError) {
+      console.warn("PDF text extraction failed", pdfError);
+      setError(
+        "PDF text extraction failed. Paste the grading section instead."
+      );
+    } finally {
+      setIsExtractingCourseId(null);
+    }
+  }
+
+  function updateReviewRow(
+    rowId: string,
+    field: keyof Pick<
+      ReviewAssessment,
+      "confidence" | "max_score" | "name" | "weight_percentage"
+    >,
+    value: string
+  ) {
+    setReview((current) =>
+      current
+        ? {
+            ...current,
+            rows: current.rows.map((row) =>
+              row.id === rowId
+                ? {
+                    ...row,
+                    [field]: field === "name" ? value : Number(value) || 0
+                  }
+                : row
+            )
+          }
+        : current
+    );
+  }
+
+  function addReviewRow() {
+    setReview((current) =>
+      current
+        ? {
+            ...current,
+            rows: [
+              ...current.rows,
+              {
+                confidence: 0.5,
+                id: createSimpleId("review"),
+                max_score: 100,
+                name: "Assessment",
+                source_text_snippet: "Added manually during review",
+                weight_percentage: 0
+              }
+            ]
+          }
+        : current
+    );
+  }
+
+  function deleteReviewRow(rowId: string) {
+    setReview((current) =>
+      current
+        ? {
+            ...current,
+            rows: current.rows.filter((row) => row.id !== rowId)
+          }
+        : current
+    );
+  }
+
+  function saveReview(mode: "append" | "replace") {
+    if (!review) {
+      return;
+    }
+
+    const validRows = review.rows.filter(
+      (row) => row.name.trim() && Number(row.weight_percentage) > 0
+    );
+
+    if (validRows.length === 0) {
+      setError("Add at least one assessment with a name and weight.");
+      return;
+    }
+
+    let skippedNames: string[] = [];
+    let savedCount = 0;
+
+    setData((current) => ({
+      ...current,
+      courses: current.courses.map((course) => {
+        if (course.id !== review.courseId) {
+          return course;
+        }
+
+        const existingNames = new Set(
+          course.assessments.map((assessment) => normalizeName(assessment.name))
+        );
+        const seenNames = new Set<string>();
+        const newAssessments: SimpleAssessment[] = [];
+
+        validRows.forEach((row) => {
+          const normalizedName = normalizeName(row.name);
+
+          if (!normalizedName || seenNames.has(normalizedName)) {
+            skippedNames = [...skippedNames, row.name || "Unnamed assessment"];
+            return;
+          }
+
+          seenNames.add(normalizedName);
+
+          if (mode === "append" && existingNames.has(normalizedName)) {
+            skippedNames = [...skippedNames, row.name];
+            return;
+          }
+
+          newAssessments.push(
+            createAssessment({
+              confidence: row.confidence,
+              maxScore: String(row.max_score || 100),
+              name: row.name.trim(),
+              score: "",
+              sourceTextSnippet: row.source_text_snippet,
+              weightPercentage: String(row.weight_percentage || 0)
+            })
+          );
+        });
+
+        savedCount = newAssessments.length;
+
+        return {
+          ...course,
+          assessments:
+            mode === "replace"
+              ? newAssessments
+              : [...course.assessments, ...newAssessments],
+          gradeSource: "calculated"
+        };
+      })
+    }));
+
+    setReview(null);
+    setError("");
+    setMessage(
+      [
+        savedCount === 1
+          ? "Saved 1 assessment."
+          : `Saved ${savedCount} assessments.`,
+        skippedNames.length > 0
+          ? `Skipped duplicates: ${Array.from(new Set(skippedNames)).join(", ")}.`
+          : ""
+      ]
+        .filter(Boolean)
+        .join(" ")
+    );
+  }
+
+  function updatePredictor(
+    courseId: string,
+    nextState: Partial<PredictorState>
+  ) {
+    setPredictors((current) => {
+      const existing = current[courseId] ?? {
+        selectedAssessmentId: "",
+        targetGrade: "90"
+      };
+
+      return {
+        ...current,
+        [courseId]: {
+          ...existing,
+          ...nextState
+        }
+      };
+    });
+  }
+
   return (
     <main className="min-h-screen bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
@@ -304,12 +1054,12 @@ export function SimpleGpaCalculator() {
               <GraduationCap aria-hidden="true" className="h-6 w-6" />
             </span>
             <div>
-              <Badge tone="teal">Simple Mode</Badge>
+              <Badge tone="teal">Fast Mode</Badge>
               <h1 className="mt-2 text-2xl font-semibold text-ink-900">
                 GradeMate Simple
               </h1>
               <p className="mt-1 text-sm text-ink-500">
-                Fast GPA math. No account. Saved on this device.
+                Quick GPA and course-grade planning with optional smart extraction.
               </p>
             </div>
           </div>
@@ -407,7 +1157,7 @@ export function SimpleGpaCalculator() {
                     Existing CGPA
                   </span>
                   <input
-                    className="mt-1 h-11 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                    className={inputStyles}
                     max="4"
                     min="0"
                     onChange={(event) =>
@@ -424,7 +1174,7 @@ export function SimpleGpaCalculator() {
                     Completed hours
                   </span>
                   <input
-                    className="mt-1 h-11 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                    className={inputStyles}
                     min="0"
                     onChange={(event) =>
                       updateData({ completedHours: event.target.value })
@@ -446,7 +1196,7 @@ export function SimpleGpaCalculator() {
                 Paste a GradeMate Simple export here.
               </p>
               <textarea
-                className="mt-4 min-h-32 w-full rounded-xl border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                className={`${textareaStyles} mt-4 min-h-32`}
                 onChange={(event) => setImportText(event.target.value)}
                 placeholder='{"existingCgpa":"3.5","completedHours":"60","courses":[...]}'
                 value={importText}
@@ -469,7 +1219,7 @@ export function SimpleGpaCalculator() {
                   Current Semester Courses
                 </h2>
                 <p className="mt-1 text-sm text-ink-500">
-                  Add each course, credit hours, and expected letter grade.
+                  Add each course, credits, grades, and optional coursework.
                 </p>
               </div>
               <Button onClick={addCourse}>
@@ -480,18 +1230,24 @@ export function SimpleGpaCalculator() {
 
             <div className="divide-y divide-ink-200">
               {data.courses.map((course, index) => {
-                const gradePoints = getGradePoint(course.letterGrade);
+                const stats = getCourseGradeStats(course);
+                const effectiveLetter = getEffectiveLetterGrade(course);
+                const gradePoints = getGradePoint(effectiveLetter);
                 const qualityPoints = getCourseQualityPoints(course);
+                const calculatedInfo =
+                  stats.currentGrade === null
+                    ? null
+                    : getGradeInfo(stats.currentGrade);
 
                 return (
                   <div className="space-y-4 p-5" key={course.id}>
-                    <div className="grid gap-3 lg:grid-cols-[minmax(0,1.4fr)_8rem_9rem_8rem_9rem_auto] lg:items-end">
+                    <div className="grid gap-3 xl:grid-cols-[minmax(0,1.4fr)_7rem_9rem_9rem_7rem_8rem_auto] xl:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course name
                         </span>
                         <input
-                          className="mt-1 h-11 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                          className={inputStyles}
                           onChange={(event) =>
                             updateCourse(course.id, "name", event.target.value)
                           }
@@ -504,7 +1260,7 @@ export function SimpleGpaCalculator() {
                           Credits
                         </span>
                         <input
-                          className="mt-1 h-11 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                          className={inputStyles}
                           min="0"
                           onChange={(event) =>
                             updateCourse(
@@ -520,10 +1276,30 @@ export function SimpleGpaCalculator() {
                       </label>
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
+                          Grade source
+                        </span>
+                        <select
+                          className={inputStyles}
+                          onChange={(event) =>
+                            updateCourse(
+                              course.id,
+                              "gradeSource",
+                              event.target.value
+                            )
+                          }
+                          value={course.gradeSource}
+                        >
+                          <option value="calculated">Use coursework</option>
+                          <option value="manual">Manual grade</option>
+                        </select>
+                      </label>
+                      <label className="block">
+                        <span className="text-sm font-medium text-ink-700">
                           Letter grade
                         </span>
                         <select
-                          className="mt-1 h-11 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                          className={inputStyles}
+                          disabled={course.gradeSource === "calculated"}
                           onChange={(event) =>
                             updateCourse(
                               course.id,
@@ -531,7 +1307,12 @@ export function SimpleGpaCalculator() {
                               event.target.value
                             )
                           }
-                          value={course.letterGrade}
+                          value={
+                            course.gradeSource === "calculated" &&
+                            stats.calculatedLetter
+                              ? stats.calculatedLetter
+                              : course.letterGrade
+                          }
                         >
                           {gradeScale.map((grade) => (
                             <option key={grade.letter} value={grade.letter}>
@@ -544,7 +1325,7 @@ export function SimpleGpaCalculator() {
                         <span className="text-sm font-medium text-ink-700">
                           Points
                         </span>
-                        <p className="mt-1 flex h-11 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
+                        <p className="mt-1 flex h-10 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
                           {gradePoints.toFixed(1)}
                         </p>
                       </div>
@@ -552,7 +1333,7 @@ export function SimpleGpaCalculator() {
                         <span className="text-sm font-medium text-ink-700">
                           Quality points
                         </span>
-                        <p className="mt-1 flex h-11 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
+                        <p className="mt-1 flex h-10 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
                           {qualityPoints.toFixed(1)}
                         </p>
                       </div>
@@ -566,16 +1347,78 @@ export function SimpleGpaCalculator() {
                       </Button>
                     </div>
 
-                    <details className="rounded-xl bg-ink-100/60 px-4 py-3 text-sm text-ink-500">
-                      <summary className="cursor-pointer font-medium text-ink-700">
-                        Coursework details
-                      </summary>
-                      <p className="mt-2">
-                        Keep this quick calculator simple for now. Use the
-                        GradeMate Workspace when you want assessments,
-                        predictions, syllabi, and AI assist.
-                      </p>
-                    </details>
+                    <div className="grid gap-3 md:grid-cols-4">
+                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                        <p className="text-xs font-medium text-ink-500">
+                          Course grade
+                        </p>
+                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                          {formatPercent(stats.currentGrade)}
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                        <p className="text-xs font-medium text-ink-500">
+                          Letter
+                        </p>
+                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                          {calculatedInfo?.letter ?? effectiveLetter}
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                        <p className="text-xs font-medium text-ink-500">
+                          Weight
+                        </p>
+                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                          {stats.totalWeight.toFixed(1)}%
+                        </p>
+                      </div>
+                      <div className="rounded-xl bg-ink-100 px-4 py-3">
+                        <p className="text-xs font-medium text-ink-500">
+                          Remaining
+                        </p>
+                        <p className="mt-1 text-lg font-semibold text-ink-900">
+                          {stats.remainingWeight.toFixed(1)}%
+                        </p>
+                      </div>
+                    </div>
+
+                    <CourseworkDetails
+                      addAssessment={addAssessment}
+                      addReviewRow={addReviewRow}
+                      course={course}
+                      deleteReviewRow={deleteReviewRow}
+                      extractFromPdf={extractFromPdf}
+                      isExtracting={isExtractingCourseId === course.id}
+                      pdfFile={pdfFileByCourse[course.id] ?? null}
+                      predictor={predictors[course.id]}
+                      quickText={quickTextByCourse[course.id] ?? ""}
+                      removeAssessment={removeAssessment}
+                      review={review?.courseId === course.id ? review : null}
+                      runExtraction={runExtraction}
+                      saveReview={saveReview}
+                      setPdfFile={(file) =>
+                        setPdfFileByCourse((current) => ({
+                          ...current,
+                          [course.id]: file
+                        }))
+                      }
+                      setQuickText={(value) =>
+                        updateCourseText(setQuickTextByCourse, course.id, value)
+                      }
+                      setReview={setReview}
+                      setSyllabusText={(value) =>
+                        updateCourseText(
+                          setSyllabusTextByCourse,
+                          course.id,
+                          value
+                        )
+                      }
+                      stats={stats}
+                      syllabusText={syllabusTextByCourse[course.id] ?? ""}
+                      updateAssessment={updateAssessment}
+                      updatePredictor={updatePredictor}
+                      updateReviewRow={updateReviewRow}
+                    />
                   </div>
                 );
               })}
@@ -584,5 +1427,669 @@ export function SimpleGpaCalculator() {
         </section>
       </div>
     </main>
+  );
+}
+
+function CourseworkDetails({
+  addAssessment,
+  addReviewRow,
+  course,
+  deleteReviewRow,
+  extractFromPdf,
+  isExtracting,
+  pdfFile,
+  predictor,
+  quickText,
+  removeAssessment,
+  review,
+  runExtraction,
+  saveReview,
+  setPdfFile,
+  setQuickText,
+  setReview,
+  setSyllabusText,
+  stats,
+  syllabusText,
+  updateAssessment,
+  updatePredictor,
+  updateReviewRow
+}: {
+  addAssessment: (courseId: string) => void;
+  addReviewRow: () => void;
+  course: SimpleCourse;
+  deleteReviewRow: (rowId: string) => void;
+  extractFromPdf: (courseId: string) => Promise<void>;
+  isExtracting: boolean;
+  pdfFile: File | null;
+  predictor: PredictorState | undefined;
+  quickText: string;
+  removeAssessment: (courseId: string, assessmentId: string) => void;
+  review: ReviewState | null;
+  runExtraction: (
+    courseId: string,
+    text: string,
+    mode: "quick" | "syllabus",
+    source: ExtractionSource
+  ) => Promise<void>;
+  saveReview: (mode: "append" | "replace") => void;
+  setPdfFile: (file: File | null) => void;
+  setQuickText: (value: string) => void;
+  setReview: Dispatch<SetStateAction<ReviewState | null>>;
+  setSyllabusText: (value: string) => void;
+  stats: ReturnType<typeof getCourseGradeStats>;
+  syllabusText: string;
+  updateAssessment: (
+    courseId: string,
+    assessmentId: string,
+    field: keyof Pick<
+      SimpleAssessment,
+      "maxScore" | "name" | "score" | "weightPercentage"
+    >,
+    value: string
+  ) => void;
+  updatePredictor: (
+    courseId: string,
+    nextState: Partial<PredictorState>
+  ) => void;
+  updateReviewRow: (
+    rowId: string,
+    field: keyof Pick<
+      ReviewAssessment,
+      "confidence" | "max_score" | "name" | "weight_percentage"
+    >,
+    value: string
+  ) => void;
+}) {
+  const remainingAssessments = stats.rows.filter((row) => !row.isCompleted);
+  const activePredictor = {
+    selectedAssessmentId:
+      predictor?.selectedAssessmentId || remainingAssessments[0]?.assessment.id || "",
+    targetGrade: predictor?.targetGrade || "90"
+  };
+  const selectedRemaining = remainingAssessments.find(
+    (row) => row.assessment.id === activePredictor.selectedAssessmentId
+  );
+  const targetGrade = Number(activePredictor.targetGrade);
+  const neededScore =
+    selectedRemaining && Number.isFinite(targetGrade) && selectedRemaining.weight > 0
+      ? ((targetGrade - stats.completedPoints) / selectedRemaining.weight) * 100
+      : null;
+  const neededAverage =
+    stats.remainingWeight > 0 && Number.isFinite(targetGrade)
+      ? ((targetGrade - stats.completedPoints) / stats.remainingWeight) * 100
+      : null;
+  const predictorMessage =
+    neededScore === null
+      ? "Add a remaining assessment to calculate what you need."
+      : targetGrade <= stats.completedPoints
+        ? "You've already secured this target based on completed work."
+        : neededScore > 100
+          ? "This target is not possible with the remaining weight."
+          : neededScore < 0
+            ? "You've already secured this target based on completed work."
+            : `You need ${neededScore.toFixed(1)}% on ${selectedRemaining?.assessment.name} to reach ${targetGrade.toFixed(1)}%.`;
+
+  return (
+    <details className="rounded-2xl border border-ink-200 bg-ink-100/50 px-4 py-3 text-sm">
+      <summary className="cursor-pointer font-semibold text-ink-900">
+        Coursework details
+      </summary>
+
+      <div className="mt-5 space-y-5">
+        <section>
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-semibold text-ink-900">Assessments</h3>
+              <p className="mt-1 text-ink-500">
+                Your course grade is based on completed work only.
+              </p>
+            </div>
+            <Badge tone={isWeightReady(stats.totalWeight) ? "green" : "gold"}>
+              {getWeightText(stats.totalWeight)}
+            </Badge>
+          </div>
+
+          {course.assessments.length === 0 ? (
+            <div className="mt-3 rounded-xl border border-ink-200 bg-white p-4 text-ink-500">
+              No coursework yet. Add assessments manually or use smart extraction.
+            </div>
+          ) : (
+            <div className="mt-3 overflow-x-auto rounded-xl border border-ink-200">
+              <table className="w-full min-w-[760px] text-left text-sm">
+                <thead className="bg-ink-100 text-xs uppercase text-ink-500">
+                  <tr>
+                    <th className="px-4 py-3 font-semibold">Assessment</th>
+                    <th className="px-4 py-3 font-semibold">Weight</th>
+                    <th className="px-4 py-3 font-semibold">Score</th>
+                    <th className="px-4 py-3 font-semibold">Max</th>
+                    <th className="px-4 py-3 font-semibold">Contribution</th>
+                    <th className="px-4 py-3 text-right font-semibold">
+                      Actions
+                    </th>
+                  </tr>
+                </thead>
+                <tbody className="divide-y divide-ink-200 bg-white">
+                  {stats.rows.map((row) => (
+                    <tr key={row.assessment.id}>
+                      <td className="px-4 py-3">
+                        <input
+                          className={inputStyles}
+                          onChange={(event) =>
+                            updateAssessment(
+                              course.id,
+                              row.assessment.id,
+                              "name",
+                              event.target.value
+                            )
+                          }
+                          value={row.assessment.name}
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          className={inputStyles}
+                          min="0"
+                          onChange={(event) =>
+                            updateAssessment(
+                              course.id,
+                              row.assessment.id,
+                              "weightPercentage",
+                              event.target.value
+                            )
+                          }
+                          step="0.01"
+                          type="number"
+                          value={row.assessment.weightPercentage}
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          className={inputStyles}
+                          min="0"
+                          onChange={(event) =>
+                            updateAssessment(
+                              course.id,
+                              row.assessment.id,
+                              "score",
+                              event.target.value
+                            )
+                          }
+                          placeholder="--"
+                          step="0.01"
+                          type="number"
+                          value={row.assessment.score}
+                        />
+                      </td>
+                      <td className="px-4 py-3">
+                        <input
+                          className={inputStyles}
+                          min="0"
+                          onChange={(event) =>
+                            updateAssessment(
+                              course.id,
+                              row.assessment.id,
+                              "maxScore",
+                              event.target.value
+                            )
+                          }
+                          step="0.01"
+                          type="number"
+                          value={row.assessment.maxScore}
+                        />
+                      </td>
+                      <td className="px-4 py-3 font-medium text-ink-900">
+                        {row.isCompleted
+                          ? `${row.contribution.toFixed(1)}%`
+                          : "Remaining"}
+                      </td>
+                      <td className="px-4 py-3 text-right">
+                        <Button
+                          aria-label={`Delete ${row.assessment.name}`}
+                          onClick={() =>
+                            removeAssessment(course.id, row.assessment.id)
+                          }
+                          size="icon"
+                          variant="danger"
+                        >
+                          <Trash2 aria-hidden="true" className="h-4 w-4" />
+                        </Button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          )}
+
+          <Button className="mt-3" onClick={() => addAssessment(course.id)}>
+            <PlusCircle aria-hidden="true" className="h-4 w-4" />
+            Add assessment manually
+          </Button>
+        </section>
+
+        <section className="rounded-2xl border border-ink-200 bg-white p-4">
+          <div className="flex flex-wrap items-center gap-2">
+            <div className="flex items-center gap-2 font-semibold text-ink-900">
+              <Wand2 aria-hidden="true" className="h-4 w-4 text-teal-700" />
+              Smart extraction
+            </div>
+            <Badge tone={isOnlineAiEnabled() ? "teal" : "ink"}>
+              {isOnlineAiEnabled() ? "AI assist: Online" : "AI assist: Automatic"}
+            </Badge>
+          </div>
+
+          <div className="mt-4 rounded-xl bg-ink-100/70 p-4">
+            <div className="flex items-center gap-2 font-medium text-teal-700">
+              <ClipboardPaste aria-hidden="true" className="h-4 w-4" />
+              Quick add grading breakdown
+            </div>
+            <p className="mt-1 text-ink-500">
+              Type it like a message. GradeMate will turn it into assessments.
+            </p>
+            <textarea
+              className={`${textareaStyles} mt-3 min-h-24`}
+              onChange={(event) => setQuickText(event.target.value)}
+              placeholder={sampleBreakdown}
+              value={quickText}
+            />
+            <div className="mt-3 flex flex-wrap gap-2">
+              <Button onClick={() => setQuickText(sampleBreakdown)} variant="secondary">
+                Try sample
+              </Button>
+              <Button
+                disabled={isExtracting}
+                onClick={() =>
+                  void runExtraction(course.id, quickText, "quick", "quick")
+                }
+              >
+                <Sparkles aria-hidden="true" className="h-4 w-4" />
+                Auto-detect
+              </Button>
+              <Button onClick={() => setQuickText("")} variant="secondary">
+                Clear
+              </Button>
+            </div>
+          </div>
+
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <div>
+              <div className="flex items-center gap-2 font-medium text-ink-900">
+                <FileText aria-hidden="true" className="h-4 w-4 text-teal-700" />
+                Paste syllabus text
+              </div>
+              <textarea
+                className={`${textareaStyles} mt-3 min-h-32`}
+                onChange={(event) => setSyllabusText(event.target.value)}
+                placeholder="Paste the grading breakdown or syllabus text here..."
+                value={syllabusText}
+              />
+              <div className="mt-3 flex flex-wrap gap-2">
+                <Button
+                  disabled={isExtracting}
+                  onClick={() =>
+                    void runExtraction(
+                      course.id,
+                      syllabusText,
+                      "syllabus",
+                      "paste"
+                    )
+                  }
+                >
+                  Extract grading breakdown
+                </Button>
+                <Button onClick={() => setSyllabusText("")} variant="secondary">
+                  Clear text
+                </Button>
+              </div>
+            </div>
+
+            <div>
+              <div className="flex items-center gap-2 font-medium text-ink-900">
+                <UploadCloud
+                  aria-hidden="true"
+                  className="h-4 w-4 text-teal-700"
+                />
+                Upload PDF
+              </div>
+              <input
+                accept="application/pdf"
+                className="mt-3 block w-full rounded-xl border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                onChange={(event) => setPdfFile(event.target.files?.[0] ?? null)}
+                type="file"
+              />
+              <p className="mt-2 text-xs text-ink-500">
+                PDF text is read locally in your browser. If it fails, paste the
+                grading section instead.
+              </p>
+              <Button
+                className="mt-3"
+                disabled={!pdfFile || isExtracting}
+                onClick={() => void extractFromPdf(course.id)}
+              >
+                {isExtracting ? "Reading PDF..." : "Extract from PDF"}
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {review ? (
+          <ExtractionReview
+            course={course}
+            deleteReviewRow={deleteReviewRow}
+            review={review}
+            saveReview={saveReview}
+            setReview={setReview}
+            updateReviewRow={updateReviewRow}
+            addReviewRow={addReviewRow}
+          />
+        ) : null}
+
+        <section className="rounded-2xl border border-ink-200 bg-white p-4">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="font-semibold text-ink-900">What do I need?</h3>
+              <p className="mt-1 text-ink-500">
+                Pick a target grade and one remaining assessment.
+              </p>
+            </div>
+            <Badge
+              tone={
+                neededScore === null
+                  ? "ink"
+                  : neededScore > 100
+                    ? "rose"
+                    : neededScore < 0 || targetGrade <= stats.completedPoints
+                      ? "green"
+                      : "teal"
+              }
+            >
+              {neededScore === null
+                ? "Needs remaining work"
+                : neededScore > 100
+                  ? "Impossible"
+                  : neededScore < 0 || targetGrade <= stats.completedPoints
+                    ? "Already secured"
+                    : "Possible"}
+            </Badge>
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            <label className="block">
+              <span className="text-sm font-medium text-ink-700">
+                Target grade
+              </span>
+              <input
+                className={inputStyles}
+                max="100"
+                min="0"
+                onChange={(event) =>
+                  updatePredictor(course.id, {
+                    targetGrade: event.target.value
+                  })
+                }
+                step="0.1"
+                type="number"
+                value={activePredictor.targetGrade}
+              />
+            </label>
+            <label className="block md:col-span-2">
+              <span className="text-sm font-medium text-ink-700">
+                Remaining assessment
+              </span>
+              <select
+                className={inputStyles}
+                disabled={remainingAssessments.length === 0}
+                onChange={(event) =>
+                  updatePredictor(course.id, {
+                    selectedAssessmentId: event.target.value
+                  })
+                }
+                value={activePredictor.selectedAssessmentId}
+              >
+                {remainingAssessments.length === 0 ? (
+                  <option>No remaining assessments</option>
+                ) : (
+                  remainingAssessments.map((row) => (
+                    <option
+                      key={row.assessment.id}
+                      value={row.assessment.id}
+                    >
+                      {row.assessment.name}
+                    </option>
+                  ))
+                )}
+              </select>
+            </label>
+          </div>
+          <div className="mt-4 grid gap-3 md:grid-cols-3">
+            <div className="rounded-xl bg-ink-100 px-4 py-3">
+              <p className="text-xs font-medium text-ink-500">
+                Needed score
+              </p>
+              <p className="mt-1 text-lg font-semibold text-ink-900">
+                {formatPercent(neededScore)}
+              </p>
+            </div>
+            <div className="rounded-xl bg-ink-100 px-4 py-3">
+              <p className="text-xs font-medium text-ink-500">
+                Needed average
+              </p>
+              <p className="mt-1 text-lg font-semibold text-ink-900">
+                {formatPercent(neededAverage)}
+              </p>
+            </div>
+            <div className="rounded-xl bg-ink-100 px-4 py-3">
+              <p className="text-xs font-medium text-ink-500">
+                Best possible
+              </p>
+              <p className="mt-1 text-lg font-semibold text-ink-900">
+                {formatPercent(stats.bestPossibleGrade)}
+              </p>
+            </div>
+          </div>
+          <p className="mt-3 text-sm text-ink-600">{predictorMessage}</p>
+        </section>
+      </div>
+    </details>
+  );
+}
+
+function ExtractionReview({
+  addReviewRow,
+  course,
+  deleteReviewRow,
+  review,
+  saveReview,
+  setReview,
+  updateReviewRow
+}: {
+  addReviewRow: () => void;
+  course: SimpleCourse;
+  deleteReviewRow: (rowId: string) => void;
+  review: ReviewState;
+  saveReview: (mode: "append" | "replace") => void;
+  setReview: Dispatch<SetStateAction<ReviewState | null>>;
+  updateReviewRow: (
+    rowId: string,
+    field: keyof Pick<
+      ReviewAssessment,
+      "confidence" | "max_score" | "name" | "weight_percentage"
+    >,
+    value: string
+  ) => void;
+}) {
+  const reviewTotalWeight = getReviewTotalWeight(review.rows);
+  const hasExistingAssessments = course.assessments.length > 0;
+
+  return (
+    <section className="space-y-4 rounded-2xl border border-ink-200 bg-ink-50 p-4">
+      <div className="flex flex-wrap items-center gap-2">
+        <Badge tone={isWeightReady(reviewTotalWeight) ? "green" : "gold"}>
+          {getWeightText(reviewTotalWeight)}
+        </Badge>
+        <Badge tone="ink">
+          {Math.round(review.extraction.confidence * 100)}% confidence
+        </Badge>
+        <Badge tone={review.source === "online-ai" ? "teal" : "ink"}>
+          {getExtractionSourceLabel(review.source)}
+        </Badge>
+      </div>
+
+      {!isWeightReady(reviewTotalWeight) && review.rows.length > 0 ? (
+        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          You can still save this, but the weights do not add to 100% yet.
+        </p>
+      ) : null}
+
+      {review.extraction.warnings.length > 0 ? (
+        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+          <p className="font-medium">Review notes</p>
+          <ul className="mt-2 list-disc space-y-1 pl-5">
+            {review.extraction.warnings.map((warning) => (
+              <li key={warning}>{warning}</li>
+            ))}
+          </ul>
+        </div>
+      ) : null}
+
+      {review.rows.length === 0 ? (
+        <div className="rounded-xl border border-ink-200 bg-white p-4 text-sm text-ink-600">
+          <p className="font-medium text-ink-900">
+            I couldn&apos;t find a grading breakdown.
+          </p>
+          <p className="mt-1">
+            Try pasting the grading/evaluation section, like: midterm 25, final
+            40, assignments 35.
+          </p>
+        </div>
+      ) : (
+        <div className="overflow-x-auto rounded-xl border border-ink-200">
+          <table className="w-full min-w-[900px] text-left text-sm">
+            <thead className="bg-ink-100 text-xs uppercase text-ink-500">
+              <tr>
+                <th className="px-4 py-3 font-semibold">Assessment</th>
+                <th className="px-4 py-3 font-semibold">Weight %</th>
+                <th className="px-4 py-3 font-semibold">Max score</th>
+                <th className="px-4 py-3 font-semibold">Confidence</th>
+                <th className="px-4 py-3 font-semibold">Source</th>
+                <th className="px-4 py-3 text-right font-semibold">
+                  Actions
+                </th>
+              </tr>
+            </thead>
+            <tbody className="divide-y divide-ink-200 bg-white">
+              {review.rows.map((row) => {
+                const confidenceInfo = getConfidenceInfo(row.confidence);
+
+                return (
+                  <tr key={row.id}>
+                    <td className="px-4 py-3">
+                      <input
+                        className={inputStyles}
+                        onChange={(event) =>
+                          updateReviewRow(row.id, "name", event.target.value)
+                        }
+                        value={row.name}
+                      />
+                    </td>
+                    <td className="px-4 py-3">
+                      <input
+                        className={inputStyles}
+                        min="0"
+                        onChange={(event) =>
+                          updateReviewRow(
+                            row.id,
+                            "weight_percentage",
+                            event.target.value
+                          )
+                        }
+                        step="0.01"
+                        type="number"
+                        value={row.weight_percentage}
+                      />
+                    </td>
+                    <td className="px-4 py-3">
+                      <input
+                        className={inputStyles}
+                        min="0"
+                        onChange={(event) =>
+                          updateReviewRow(row.id, "max_score", event.target.value)
+                        }
+                        step="0.01"
+                        type="number"
+                        value={row.max_score}
+                      />
+                    </td>
+                    <td className="px-4 py-3">
+                      <div className="flex items-center gap-2">
+                        <Badge tone={confidenceInfo.tone}>
+                          {confidenceInfo.label}
+                        </Badge>
+                        <span className="text-xs text-ink-500">
+                          {Math.round(row.confidence * 100)}%
+                        </span>
+                      </div>
+                    </td>
+                    <td className="max-w-xs px-4 py-3 text-ink-600">
+                      <details>
+                        <summary className="cursor-pointer text-sm font-medium text-teal-700">
+                          View snippet
+                        </summary>
+                        <p className="mt-2 rounded-lg bg-ink-50 p-3 text-xs leading-5 text-ink-600">
+                          {row.source_text_snippet ||
+                            "No source snippet available."}
+                        </p>
+                      </details>
+                    </td>
+                    <td className="px-4 py-3 text-right">
+                      <Button
+                        aria-label={`Delete ${row.name}`}
+                        onClick={() => deleteReviewRow(row.id)}
+                        size="icon"
+                        variant="danger"
+                      >
+                        <Trash2 aria-hidden="true" className="h-4 w-4" />
+                      </Button>
+                    </td>
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+      )}
+
+      <div className="flex flex-wrap gap-2">
+        <Button onClick={addReviewRow} variant="secondary">
+          <PlusCircle aria-hidden="true" className="h-4 w-4" />
+          Add row
+        </Button>
+        {review.rows.length === 0 ? (
+          <Button onClick={() => setReview(null)} variant="ghost">
+            Cancel
+          </Button>
+        ) : hasExistingAssessments ? (
+          <>
+            <Button onClick={() => saveReview("replace")}>
+              Replace existing assessments
+            </Button>
+            <Button onClick={() => saveReview("append")} variant="secondary">
+              Append new assessments only
+            </Button>
+            <Button onClick={() => setReview(null)} variant="ghost">
+              Cancel
+            </Button>
+          </>
+        ) : (
+          <>
+            <Button onClick={() => saveReview("append")}>
+              Confirm and Save
+            </Button>
+            <Button onClick={() => setReview(null)} variant="ghost">
+              Cancel
+            </Button>
+          </>
+        )}
+      </div>
+    </section>
   );
 }
