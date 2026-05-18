@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import {
   BookOpen,
   ClipboardPaste,
@@ -23,9 +22,10 @@ import {
   type Dispatch,
   type SetStateAction
 } from "react";
+import { ModeSwitch } from "@/components/navigation/mode-switch";
 import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Badge } from "@/components/ui/badge";
-import { Button, buttonStyles } from "@/components/ui/button";
+import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
@@ -1464,12 +1464,7 @@ export function SimpleGpaCalculator() {
               <FileUp aria-hidden="true" className="h-4 w-4" />
               Import
             </Button>
-            <Link
-              className={buttonStyles({ variant: "primary" })}
-              href="/workspace"
-            >
-              Open Workspace
-            </Link>
+            <ModeSwitch className="w-full sm:w-72" compact />
             <ThemeToggle />
             <input
               accept="application/json"
