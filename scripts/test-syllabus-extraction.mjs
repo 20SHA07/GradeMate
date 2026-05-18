@@ -254,10 +254,166 @@ assert.equal(
 );
 assert.ok(
   childGroupedCoursework.warnings.some((warning) =>
-    /Split Coursework quiz weight 15% evenly across Quiz 1-Quiz 4/i.test(warning)
+    /Split (?:Coursework quiz|quiz group) weight 15% evenly across Quiz 1-Quiz 4/i.test(warning)
   ),
   "Expected grouped quiz split warning"
 );
+
+const cosc202KuDetailed = extractSyllabusFromText(`COSC 202 Data Science and Artificial Intelligence
+(2 Lecture 3 Laboratory - 3 Credits)
+Assessment
+Assessment Instruments Contribution to course grade (%)
+Coursework (quizzes, homework/project) 25%
+Laboratory Work 15%
+Semester Examination 25%
+Final Examination 35%
+Assessment Methodology
+Tentative Dates Weight (%)
+Quiz 1 Week 5
+Quiz 2 Week 10
+15%
+Coursework (quizzes, homework/project) Quiz 3 Week 12
+Quiz 4 Week 14
+Project (demo) Week 14 10%
+Midterm Examination (s) Week 8 25%
+Final Examination Week 16 35%
+Laboratory Work Weeks 14 15%`);
+expectAssessmentNames(cosc202KuDetailed, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Project (demo)",
+  "Laboratory Work",
+  "Midterm Examination(s)",
+  "Final Examination"
+]);
+expectAssessment(cosc202KuDetailed, "Quiz 1", 3.75);
+expectAssessment(cosc202KuDetailed, "Quiz 4", 3.75);
+expectAssessment(cosc202KuDetailed, "Project (demo)", 10);
+expectAssessment(cosc202KuDetailed, "Laboratory Work", 15);
+assert.equal(
+  cosc202KuDetailed.assessments.reduce(
+    (sum, assessment) => sum + assessment.weight_percentage,
+    0
+  ),
+  100
+);
+assert.ok(
+  cosc202KuDetailed.warnings.some((warning) =>
+    /Split quiz group weight 15% evenly across Quiz 1-Quiz 4/i.test(warning)
+  ),
+  "Expected COSC202 quiz group split warning"
+);
+assert.ok(
+  cosc202KuDetailed.warnings.some((warning) =>
+    /Using detailed assessment methodology instead of summary table/i.test(warning)
+  ),
+  "Expected detailed methodology warning"
+);
+
+const phys121KuDetailed = extractSyllabusFromText(`Course Code and Title: PHYS 121 _ University Physics I
+Spring 2026
+Assessment Methodology
+Coursework Tentative Dates Weight
+Quizzes: Quiz 1 Quiz + WAs =
+4 descriptive questions /30 Quiz 2 24% + 6% = 30%
+min Quiz 3
+Quiz 4
+Web assign
+Laboratory 1-lab report per each During lab time 20%
+Semester Examination (s) Midterm test Feb 27, 2026 20%
+Final test TBA (registrar office) 30%
+Teaching Plan (Lectures):
+Week 3 Quiz 1
+Week 6 Quiz 2`);
+expectAssessmentNames(phys121KuDetailed, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Web assign",
+  "Laboratory",
+  "Midterm test",
+  "Final test"
+]);
+expectAssessment(phys121KuDetailed, "Quiz 1", 6);
+expectAssessment(phys121KuDetailed, "Web assign", 6);
+expectAssessment(phys121KuDetailed, "Laboratory", 20);
+expectAssessment(phys121KuDetailed, "Midterm test", 20);
+expectAssessment(phys121KuDetailed, "Final test", 30);
+assert.equal(
+  phys121KuDetailed.assessments.reduce(
+    (sum, assessment) => sum + assessment.weight_percentage,
+    0
+  ),
+  100
+);
+assert.ok(
+  phys121KuDetailed.warnings.some((warning) =>
+    /Split quiz total 24% evenly across 4 quizzes/i.test(warning)
+  ),
+  "Expected PHYS121 quiz formula split warning"
+);
+
+const ccen210KuDetailed = extractSyllabusFromText(`CCEN 210 Digital Logic Design
+(3 Lecture hours, 3 Laboratory/Studio hours, 4 Credits)
+Assessment
+Assessment Instruments Contribution to Course Grade (%) Week # CLO(s)
+Coursework (Quizzes, homework) 20% 1, 2, 4
+Laboratory 20% 1, 2, 3, 4
+Semester Examination 20% 1, 4
+Final Examination 40% 1, 2, 4
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Around week 3 (Tentative) 20%
+Quiz 2 Around week 5 (Tentative)
+Quiz 3 Around week 11 (Tentative)
+Quiz 4 Around week 13 (Tentative)
+Project Project is part of the lab with 20% Last week of semester
+of the lab grade
+Laboratory There are 7-labs and mini project Weekly starting third week of 20%
+Semester Examination (s) Midterm Exam Week 9 (Tentative) 20%
+Final Examination Final Examination 40%`);
+expectAssessmentNames(ccen210KuDetailed, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Laboratory",
+  "Midterm Exam",
+  "Final Examination"
+]);
+expectAssessment(ccen210KuDetailed, "Quiz 1", 5);
+expectAssessment(ccen210KuDetailed, "Quiz 4", 5);
+expectAssessment(ccen210KuDetailed, "Laboratory", 20);
+expectAssessment(ccen210KuDetailed, "Midterm Exam", 20);
+expectAssessment(ccen210KuDetailed, "Final Examination", 40);
+assert.ok(
+  ccen210KuDetailed.warnings.some((warning) =>
+    /Split coursework quiz weight 20% evenly across Quiz 1-Quiz 4/i.test(warning)
+  ),
+  "Expected CCEN210 coursework split warning"
+);
+assert.ok(
+  ccen210KuDetailed.warnings.some((warning) =>
+    /Project appears to be part of the laboratory grade/i.test(warning)
+  ),
+  "Expected lab-internal project warning"
+);
+
+const gradeScaleOnly = extractSyllabusFromText(`Grading Scheme
+Letter Grade Grade Point Grade Range Description
+A 4.00 From 92.5% to 100% Excellent
+B+ 3.30 From 86.5% to less than 89.5%
+F 0.00 Less than 59.5% Fail`);
+assert.equal(gradeScaleOnly.assessments.length, 0);
+
+const teachingPlanOnly = extractSyllabusFromText(`Teaching Plan (Lectures)
+Week 3 Motion in 2D Quiz 1
+Week 6 Energy Quiz 2
+Week 10 Momentum Quiz 3`);
+assert.equal(teachingPlanOnly.assessments.length, 0);
 
 const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
 Credit Hours: 3 Credits

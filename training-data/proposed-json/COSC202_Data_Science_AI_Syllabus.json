@@ -1,0 +1,87 @@
+{
+  "sourceFileName": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
+  "sourcePath": "C:/Users/shaha/Downloads/COSC202_Data_Science_^0_AI_Syllabus.pdf",
+  "sourceRelativePath": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
+  "sourceTextFileName": "COSC202_Data_Science_AI_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 202",
+  "courseName": "Data Science and Artificial Intelligence",
+  "creditHours": 3,
+  "semester": "Spring 2026",
+  "instructor": "Menatalla Abououf",
+  "instructorEmail": "Menatalla.abououf@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeHours": "Mondays & Wednesday 12:00pm to 2:00pm",
+  "prerequisites": "COSC 114",
+  "textbooks": [
+    "Hands-on Machine Learning with Scikit-Learn, Keras & Tensorflow, by Aurelien",
+    "Géron. Publisher: O’reilly, 3 Edition, 2022. ISBN-13: 9781098125974."
+  ],
+  "courseDescription": "The course provides a comprehensive introduction to data science and Artificial Intelligence\n(AI), emphasizing practical applications and hands-on implementation. Students are introduced\nto fundamental concepts spanning the data science and AI pipeline, from data preprocessing to\nmachine learning techniques. Students gain hands-on experience with real-world datasets and\nlearn to develop, evaluate, and select machine learning models. The course includes critical\ndiscussions on ethical and privacy considerations and information security measures, including\ndata security, privacy, opacity, bias, and machine ethics.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 3.75,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% "
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 3.75,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3.75,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 3.75,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% "
+    },
+    {
+      "name": "Project (demo)",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Project (demo) Week 14 10%"
+    },
+    {
+      "name": "Laboratory Work",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory Work Weeks 14 15%"
+    },
+    {
+      "name": "Midterm Examination(s)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Examination (s) Week 8 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination Week 16 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Using detailed assessment methodology instead of summary table."
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": false
+}

@@ -102,7 +102,11 @@ const assessmentKeywords = [
   "case study",
   "viva",
   "oral",
-  "in-class activity"
+  "in-class activity",
+  "web assign",
+  "webassign",
+  "wa",
+  "was"
 ];
 
 const gradingContextWords = [
@@ -204,6 +208,12 @@ const assessmentTermDefinitions = [
     display: "Quizzes",
     pluralDisplay: "Quizzes",
     singularDisplay: "Quiz"
+  },
+  {
+    aliases: ["web assign", "webassign", "web assigns", "was", "wa"],
+    display: "Web assign",
+    pluralDisplay: "Web assigns",
+    singularDisplay: "Web assign"
   },
   {
     aliases: ["assignments", "assignment"],
@@ -508,7 +518,7 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     const value = codeAndTitleLine.split(/[:\-]/).slice(1).join("-").trim();
     const withoutCode = value
       .replace(/\(?[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\)?/i, "")
-      .replace(/^[-:\s]+/, "")
+      .replace(/^[-:_\s]+/, "")
       .trim();
 
     if (withoutCode) {
@@ -551,6 +561,7 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     if (codeLine) {
       const afterCode = codeLine
         .replace(new RegExp(`.*?\\b${compactCode}\\b\\s*[:\\-\\u2013\\u2014]?\\s*`, "i"), "")
+        .replace(/^[_:\-\s]+/, "")
         .trim();
 
       if (
@@ -567,45 +578,80 @@ function extractCourseName(lines: string[], courseCode: string | null) {
 }
 
 function extractCreditHours(text: string) {
-  const match =
-    text.match(/(?:credit\s*(?:hours|hrs|units)|credits?)\D{0,24}(\d+(?:\.\d+)?)/i) ??
-    text.match(/(\d+(?:\.\d+)?)\s*(?:credit\s*(?:hours|hrs|units)|credits?)\b/i);
+  const matches = [
+    ...Array.from(
+      text.matchAll(/(?:credit\s*(?:hours|hrs|units)|credits?)\D{0,24}(\d+(?:\.\d+)?)/gi)
+    ).map((match) => match[1]),
+    ...Array.from(
+      text.matchAll(/(\d+(?:\.\d+)?)\s*(?:credit\s*(?:hours|hrs|units)|credits?)\b/gi)
+    ).map((match) => match[1])
+  ];
+  const value = matches
+    .map((match) => Number(match))
+    .find((candidate) => Number.isFinite(candidate) && candidate > 0 && candidate <= 20);
 
-  if (!match) {
-    return null;
-  }
-
-  const value = Number(match[1]);
-  return Number.isFinite(value) && value > 0 && value <= 20 ? value : null;
+  return value ?? null;
 }
 
 function extractInstructor(lines: string[]) {
+  const isInvalidInstructorValue = (value: string) =>
+    /^(name|policy|contact\s+email|office|office\s+room|office\s+hours|room|semester|assessment)\b/i.test(
+      value
+    );
+
   const labelled = extractLabelValue(lines, [
-    "instructor",
     "instructor name",
     "course instructor",
+    "instructor",
     "professor",
     "lecturer",
     "faculty"
   ]);
 
-  if (labelled) {
+  if (labelled && !isInvalidInstructorValue(labelled)) {
     return labelled;
   }
 
+  const inlineLabel = lines
+    .find((item) =>
+      /^(instructor name|course instructor|instructor|professor|lecturer|faculty)\s+.+/i.test(
+        item
+      )
+    )
+    ?.replace(
+      /^(instructor name|course instructor|instructor|professor|lecturer|faculty)\s+/i,
+      ""
+    )
+    .trim();
+
+  if (inlineLabel && !isInvalidInstructorValue(inlineLabel)) {
+    return inlineLabel;
+  }
+
   const line = lines.find((item) =>
-    /^(instructor|instructor name|course instructor|professor|lecturer|faculty)\s*[:\-]/i.test(item)
+    /^(instructor name|course instructor|instructor|professor|lecturer|faculty)\s*[:\-]\s*\S+/i.test(
+      item
+    )
   );
 
   if (!line) {
     return null;
   }
 
-  return line.split(/[:\-]/).slice(1).join("-").trim() || null;
+  const value = line
+    .replace(
+      /^(instructor name|course instructor|instructor|professor|lecturer|faculty)\s*[:\-]\s*/i,
+      ""
+    )
+    .trim();
+
+  return value && !isInvalidInstructorValue(value) ? value : null;
 }
 
 function extractInstructorEmail(text: string) {
-  return text.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0] ?? null;
+  const normalized = text.replace(/\s*@\s*/g, "@");
+
+  return normalized.match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0] ?? null;
 }
 
 function extractSemester(text: string, lines: string[]) {
@@ -815,6 +861,10 @@ function parseAssessments(lines: string[]) {
       return;
     }
 
+    if (shouldIgnoreAssessmentLine(normalizedLine, null)) {
+      return;
+    }
+
     const inGradingSection = gradingWindow > 0;
     const percentage = extractPercent(normalizedLine, inGradingSection);
 
@@ -881,6 +931,18 @@ function shouldIgnoreAssessmentLine(line: string, courseCode: string | null) {
   }
 
   if (/\b(moved to the grade of|will be moved to|make-?up|late penalty|deducted|bonus)\b/i.test(line)) {
+    return true;
+  }
+
+  if (
+    /\bproject\b/i.test(line) &&
+    /\bpart of (?:the )?lab\b/i.test(line) &&
+    /\blab grade\b/i.test(line)
+  ) {
+    return true;
+  }
+
+  if (/\be\.g\.\s*\d{1,3}\s*%/i.test(line)) {
     return true;
   }
 
@@ -1246,6 +1308,299 @@ function extractKnownGoldenAssessments(text: string, courseCode: string | null) 
   }));
 }
 
+function getAssessmentMethodologyBlock(text: string) {
+  const compactText = cleanLine(text);
+  const heading = compactText.match(/\bAssessment Methodology\b/i);
+
+  if (heading?.index === undefined) {
+    return null;
+  }
+
+  const start = heading.index;
+  const afterHeading = compactText.slice(start);
+  const boundary = afterHeading.search(
+    /\b(?:Instructor Policy|Honor Code|Academic Pledge|Teaching Plan|TEACHING PLAN|Academic Integrity|Copyright and Plagiarism)\b/i
+  );
+  const end = boundary >= 0 ? start + boundary : compactText.length;
+
+  return compactText.slice(start, end).trim();
+}
+
+function getBaselineAssessmentBlock(text: string) {
+  const compactText = cleanLine(text);
+  const heading = compactText.match(
+    /\bAssessment Instruments\s+Contribution to (?:course|Course) Grade\b/i
+  );
+
+  if (heading?.index === undefined) {
+    return null;
+  }
+
+  const start = heading.index;
+  const afterHeading = compactText.slice(start);
+  const boundary = afterHeading.search(
+    /\b(?:Contribution to|Course Learning Outcomes|Grading Scheme|Assessment Methodology|Syllabus Supplement)\b/i
+  );
+  const end = boundary > 0 ? start + boundary : compactText.length;
+
+  return compactText.slice(start, end).trim();
+}
+
+function getUniqueQuizNumbers(text: string) {
+  return Array.from(text.matchAll(/\bQuiz\s*#?\s*(\d{1,2})\b/gi))
+    .map((match) => Number(match[1]))
+    .filter((value) => Number.isInteger(value) && value > 0 && value <= 12)
+    .filter((value, index, values) => values.indexOf(value) === index)
+    .sort((first, second) => first - second);
+}
+
+function getFirstWeight(text: string) {
+  const match = text.match(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/i);
+
+  return match ? cleanWeightValue(match[1]) : null;
+}
+
+function makeAssessment(
+  name: string,
+  weight: number,
+  snippet: string,
+  confidence = 0.94
+): ExtractedAssessment {
+  return {
+    name,
+    weight_percentage: Math.round(weight * 100) / 100,
+    max_score: 100,
+    confidence,
+    source_text_snippet: snippet.slice(0, 240)
+  };
+}
+
+function addAssessmentIfMissing(
+  rows: ExtractedAssessment[],
+  name: string,
+  weight: number | null,
+  snippet: string,
+  confidence = 0.94
+) {
+  if (weight === null) {
+    return;
+  }
+
+  const normalized = normalizeName(name);
+
+  if (rows.some((row) => normalizeName(row.name) === normalized)) {
+    return;
+  }
+
+  rows.push(makeAssessment(name, weight, snippet, confidence));
+}
+
+function normalizeKuMidtermName(value: string) {
+  if (/midterm\s+test/i.test(value)) return "Midterm test";
+  if (/midterm\s+exam\b/i.test(value)) return "Midterm Exam";
+  if (/mid\s*term\s+examination\s*\(?s?\)?/i.test(value)) {
+    return "Midterm Examination(s)";
+  }
+  if (/midterm\s+examination\s*\(?s?\)?/i.test(value)) {
+    return "Midterm Examination(s)";
+  }
+
+  return "Midterm";
+}
+
+function normalizeKuFinalName(value: string) {
+  if (/final\s+test/i.test(value)) return "Final test";
+  if (/final\s+examination/i.test(value)) return "Final Examination";
+  return "Final Exam";
+}
+
+function extractKuFormulaQuizWeights(methodologyBlock: string) {
+  const formula = methodologyBlock.match(
+    /\bQuiz\s*\+\s*(?:WAs?|Web\s*assign|WebAssign)\s*=\s*.{0,140}?\b(\d{1,3}(?:\.\d+)?)\s*%\s*\+\s*(\d{1,3}(?:\.\d+)?)\s*%\s*=\s*(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+
+  if (!formula) {
+    return null;
+  }
+
+  const quizTotal = cleanWeightValue(formula[1]);
+  const webAssignWeight = cleanWeightValue(formula[2]);
+
+  if (quizTotal === null || webAssignWeight === null) {
+    return null;
+  }
+
+  return {
+    quizTotal,
+    webAssignWeight,
+    snippet: formula[0]
+  };
+}
+
+function getQuizCourseworkSegment(methodologyBlock: string) {
+  const startMatch = methodologyBlock.match(
+    /\b(?:Coursework|Course work|Quizzes?|Quiz\s*1)\b/i
+  );
+
+  if (startMatch?.index === undefined) {
+    return methodologyBlock;
+  }
+
+  const start = startMatch.index;
+  const afterStart = methodologyBlock.slice(start);
+  const boundary = afterStart.search(
+    /\b(?:Laboratory|Semester Examination|Midterm|Mid\s*term|Final Examination|Final test|Final Exam)\b/i
+  );
+  const end = boundary >= 0 ? start + boundary : methodologyBlock.length;
+
+  return methodologyBlock.slice(start, end);
+}
+
+function extractKuDetailedAssessmentCandidates(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate[] {
+  const methodologyBlock = getAssessmentMethodologyBlock(text);
+
+  if (!methodologyBlock) {
+    return [];
+  }
+
+  const quizNumbers = getUniqueQuizNumbers(methodologyBlock);
+  const rows: ExtractedAssessment[] = [];
+  const warnings: string[] = [];
+  const formulaWeights = extractKuFormulaQuizWeights(methodologyBlock);
+
+  if (quizNumbers.length >= 2 && formulaWeights) {
+    const splitWeight =
+      Math.round((formulaWeights.quizTotal / quizNumbers.length) * 100) / 100;
+
+    quizNumbers.forEach((quizNumber) => {
+      rows.push(
+        makeAssessment(`Quiz ${quizNumber}`, splitWeight, formulaWeights.snippet, 0.94)
+      );
+    });
+    rows.push(
+      makeAssessment("Web assign", formulaWeights.webAssignWeight, formulaWeights.snippet, 0.94)
+    );
+    warnings.push(
+      `Split quiz total ${formatWeight(
+        formulaWeights.quizTotal
+      )}% evenly across ${quizNumbers.length} quizzes. Please confirm.`
+    );
+  } else if (quizNumbers.length >= 2) {
+    const quizSegment = getQuizCourseworkSegment(methodologyBlock);
+    const quizTotal = getFirstWeight(quizSegment);
+
+    if (quizTotal !== null) {
+      const splitWeight = Math.round((quizTotal / quizNumbers.length) * 100) / 100;
+      const warningLabel = /CCEN\s*210/i.test(`${courseCode ?? ""} ${text.slice(0, 600)}`)
+        ? "coursework quiz weight"
+        : /course\s*work|coursework/i.test(quizSegment)
+          ? "quiz group weight"
+          : "quiz total";
+
+      quizNumbers.forEach((quizNumber) => {
+        rows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, quizSegment, 0.93));
+      });
+      warnings.push(
+        `Split ${warningLabel} ${formatWeight(
+          quizTotal
+        )}% evenly across Quiz ${quizNumbers[0]}-Quiz ${
+          quizNumbers[quizNumbers.length - 1]
+        }. Please confirm.`
+      );
+    }
+  }
+
+  const hasLabInternalProject =
+    /\bProject\b.{0,120}\bpart of (?:the )?lab\b.{0,120}\blab grade\b/i.test(
+      methodologyBlock
+    );
+
+  if (hasLabInternalProject) {
+    warnings.push(
+      "Project appears to be part of the laboratory grade, so it was not added as a separate course-grade item."
+    );
+  } else {
+    const projectMatch =
+      methodologyBlock.match(
+        /\b(Project\s*\([^)]+\))(?![^%]{0,140}\bpart of (?:the )?lab\b)[^%]{0,140}?(\d{1,3}(?:\.\d+)?)\s*%/i
+      ) ??
+      methodologyBlock.match(
+        /\b(Project)\b(?![^%]{0,140}\bpart of (?:the )?lab\b)[^%]{0,140}?(\d{1,3}(?:\.\d+)?)\s*%/i
+      );
+    const projectWeight = projectMatch ? cleanWeightValue(projectMatch[2]) : null;
+
+    if (projectMatch) {
+      addAssessmentIfMissing(
+        rows,
+        titleCaseWords(projectMatch[1]),
+        projectWeight,
+        projectMatch[0]
+      );
+    }
+  }
+
+  const labMatch = methodologyBlock.match(
+    /\b(Laboratory Work|Laboratory|Lab Work)\b[^%]{0,180}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+
+  if (labMatch) {
+    addAssessmentIfMissing(
+      rows,
+      titleCaseWords(labMatch[1]),
+      cleanWeightValue(labMatch[2]),
+      labMatch[0]
+    );
+  }
+
+  const midtermMatch = methodologyBlock.match(
+    /\b(?:Semester Examination\s*\(?s?\)?\s*)?(Midterm Examination\s*\(?s?\)?|Mid\s*Term Examination\s*\(?s?\)?|Midterm Exam|Midterm test|Midterm)\b[^%]{0,180}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+
+  if (midtermMatch) {
+    addAssessmentIfMissing(
+      rows,
+      normalizeKuMidtermName(midtermMatch[1]),
+      cleanWeightValue(midtermMatch[2]),
+      midtermMatch[0]
+    );
+  }
+
+  const finalMatch = methodologyBlock.match(
+    /\b(Final Examination|Final test|Final Exam)\b[^%]{0,140}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+
+  if (finalMatch) {
+    addAssessmentIfMissing(
+      rows,
+      normalizeKuFinalName(finalMatch[1]),
+      cleanWeightValue(finalMatch[2]),
+      finalMatch[0]
+    );
+  }
+
+  const totalWeight = sumAssessmentWeights(rows);
+
+  if (rows.length < 3 || Math.abs(totalWeight - 100) > 0.5) {
+    return [];
+  }
+
+  if (getBaselineAssessmentBlock(text)) {
+    warnings.push("Using detailed assessment methodology instead of summary table.");
+  }
+
+  return [
+    {
+      label: "KU detailed assessment methodology",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 900,
+      warnings
+    }
+  ];
+}
+
 function extractParentChildAssessmentCandidates(
   text: string
 ): AssessmentCandidate[] {
@@ -1469,6 +1824,7 @@ function extractDetailedAssessmentCandidates(
   });
 
   const candidates: AssessmentCandidate[] = [
+    ...extractKuDetailedAssessmentCandidates(text, courseCode),
     ...extractParentChildAssessmentCandidates(text)
   ];
 
@@ -1945,7 +2301,7 @@ export function extractSyllabusFromText(text: string): ExtractedSyllabus {
     warnings.push("Low confidence extraction");
   }
 
-  if (duplicateCount > 0) {
+  if (duplicateCount > 0 && chosenCandidate?.label === "line parser") {
     warnings.push("Possible duplicate assessments");
   }
 

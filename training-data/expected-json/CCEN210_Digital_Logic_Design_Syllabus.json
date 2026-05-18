@@ -1,0 +1,44 @@
+{
+  "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "courseCode": "CCEN 210",
+  "courseName": "Digital Logic Design",
+  "creditHours": 4,
+  "semester": "Spring 2026",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 20,
+      "max_score": 100
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100
+    }
+  ]
+}

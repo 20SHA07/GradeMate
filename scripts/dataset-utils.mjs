@@ -1020,6 +1020,15 @@ function extractInstructor(lines) {
   for (let index = 0; index < lines.length; index += 1) {
     const line = lines[index];
 
+    if (
+      /\binstructor\s+policy\b/i.test(line) ||
+      !/^\s*(instructor(?:\s+name)?|course instructor|professor|lecturer|faculty)\b/i.test(
+        line
+      )
+    ) {
+      continue;
+    }
+
     if (!/\b(instructor|professor|lecturer|faculty)\b\s*[:\-–—]?/i.test(line)) {
       continue;
     }
@@ -1049,6 +1058,16 @@ function cleanInstructor(value) {
     .replace(/\b(email|office|hours|phone)\b.*$/i, "")
     .replace(/\s+/g, " ")
     .trim();
+
+  if (/^(name|policy)\b/i.test(cleaned)) {
+    return null;
+  }
+
+  if (
+    /^(name|contact|room|semester|assessment|office|schedule|course|title)\b/i.test(cleaned)
+  ) {
+    return null;
+  }
 
   return cleaned.length >= 3 ? cleaned : null;
 }
