@@ -63,7 +63,7 @@ function getPageActions(pathname: string) {
 
   if (normalizedPathname === "/course-library") {
     return [
-      { href: "/courses", label: "Contribute syllabus", icon: UploadCloud }
+      { href: "/contribute-syllabus", label: "Contribute syllabus", icon: UploadCloud }
     ] satisfies PageAction[];
   }
 

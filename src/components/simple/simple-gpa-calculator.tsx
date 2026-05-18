@@ -1887,7 +1887,15 @@ export function SimpleGpaCalculator() {
                       </p>
                     ) : courseSearchResults.templates.length === 0 ? (
                       <p className="mt-2 text-sm text-ink-500">
-                        No matching templates. You can still add a course manually.
+                        No matching templates. You can still add a course
+                        manually or{" "}
+                        <a
+                          className="font-medium text-teal-700 hover:text-teal-600"
+                          href="/contribute-syllabus"
+                        >
+                          contribute a syllabus
+                        </a>
+                        .
                       </p>
                     ) : (
                       <div className="mt-2 space-y-2">
@@ -2628,7 +2636,14 @@ function CourseSearchModal({
                 </p>
               ) : courseSearchResults.templates.length === 0 ? (
                 <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
-                  No matching templates. You can still add a course manually.
+                  No matching templates. You can still add a course manually or{" "}
+                  <a
+                    className="font-medium text-teal-700 hover:text-teal-600"
+                    href="/contribute-syllabus"
+                  >
+                    contribute a syllabus
+                  </a>
+                  .
                 </p>
               ) : (
                 courseSearchResults.templates.map((template) => (

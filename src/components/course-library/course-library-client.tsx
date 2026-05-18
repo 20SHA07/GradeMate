@@ -35,6 +35,7 @@ import {
 import {
   createAssessment as storeCreateAssessment,
   createCourse as storeCreateCourse,
+  deleteAssessment as storeDeleteAssessment,
   getAssessments,
   getWorkspaceSnapshot,
   recordImportedTemplate,
@@ -590,7 +591,15 @@ export function CourseLibraryClient() {
             throw new Error("Could not update course.");
           }
 
-          await copyTemplateAssessmentsToGuest(targetCourse.id, "missing");
+          const existingAssessments = await getAssessments(workspaceContext);
+          await Promise.all(
+            existingAssessments
+              .filter((assessment) => assessment.course_id === targetCourse?.id)
+              .map((assessment) =>
+                storeDeleteAssessment(workspaceContext, assessment.id)
+              )
+          );
+          await copyTemplateAssessmentsToGuest(targetCourse.id, "all");
           setCourses((current) =>
             current.map((course) =>
               course.id === targetCourse?.id ? targetCourse : course
@@ -642,7 +651,22 @@ export function CourseLibraryClient() {
         }
 
         targetCourse = data as CourseRecord;
-        await copyTemplateAssessments(targetCourse.id, "missing");
+        const { error: deleteAssessmentsError } = await supabase
+          .from("assessments")
+          .delete()
+          .eq("course_id", targetCourse.id)
+          .eq("user_id", user.id);
+
+        if (deleteAssessmentsError) {
+          throw new Error(
+            getSupabaseErrorMessage(
+              deleteAssessmentsError,
+              "Could not replace existing assessments."
+            )
+          );
+        }
+
+        await copyTemplateAssessments(targetCourse.id, "all");
       } else {
         const { data, error: courseError } = await supabase
           .from("courses")
@@ -689,7 +713,10 @@ export function CourseLibraryClient() {
     <div className="space-y-6">
       <PageHeader
         actions={
-          <Link className={buttonStyles({ variant: "secondary" })} href="/courses">
+          <Link
+            className={buttonStyles({ variant: "secondary" })}
+            href="/contribute-syllabus"
+          >
             <FileText aria-hidden="true" className="h-4 w-4" />
             Contribute syllabus
           </Link>
@@ -929,7 +956,6 @@ export function CourseLibraryClient() {
                   </Button>
                   <Button
                     className="w-full sm:w-auto"
-                    disabled={semesters.length === 0}
                     onClick={() => openImportModal(template)}
                   >
                     <Download aria-hidden="true" className="h-4 w-4" />
@@ -963,7 +989,7 @@ export function CourseLibraryClient() {
             turn it into assessments.
           </p>
         </div>
-        <Link className={buttonStyles()} href="/courses">
+        <Link className={buttonStyles()} href="/contribute-syllabus">
           <FileText aria-hidden="true" className="h-4 w-4" />
           Contribute syllabus
         </Link>
@@ -1131,7 +1157,6 @@ export function CourseLibraryClient() {
 
                   <Button
                     className="w-full"
-                    disabled={semesters.length === 0}
                     onClick={() => openImportModal(detailTemplate)}
                   >
                     <Download aria-hidden="true" className="h-4 w-4" />
@@ -1187,26 +1212,46 @@ export function CourseLibraryClient() {
               </p>
             ) : null}
 
-            <label className="mt-5 block">
-              <span className="text-sm font-medium text-ink-700">
-                Semester
-              </span>
-              <select
-                className={`${inputStyles} mt-1`}
-                onChange={(event) => {
-                  setSelectedSemesterId(event.target.value);
-                  setDuplicateAction("cancel");
-                  setImportError("");
-                }}
-                value={selectedSemesterId}
-              >
-                {semesters.map((semester) => (
-                  <option key={semester.id} value={semester.id}>
-                    {semester.name}
-                  </option>
-                ))}
-              </select>
-            </label>
+            {semesters.length === 0 ? (
+              <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4">
+                <p className="text-sm font-medium text-amber-900">
+                  Create a semester first.
+                </p>
+                <p className="mt-1 text-sm text-amber-800">
+                  GradeMate needs a semester before it can import this course.
+                </p>
+                <Link
+                  className={buttonStyles({
+                    className: "mt-3",
+                    variant: "secondary"
+                  })}
+                  href="/semesters"
+                >
+                  Create semester
+                </Link>
+              </div>
+            ) : (
+              <label className="mt-5 block">
+                <span className="text-sm font-medium text-ink-700">
+                  Semester
+                </span>
+                <select
+                  className={`${inputStyles} mt-1`}
+                  onChange={(event) => {
+                    setSelectedSemesterId(event.target.value);
+                    setDuplicateAction("cancel");
+                    setImportError("");
+                  }}
+                  value={selectedSemesterId}
+                >
+                  {semesters.map((semester) => (
+                    <option key={semester.id} value={semester.id}>
+                      {semester.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            )}
 
             {duplicateCourse ? (
               <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4">
@@ -1224,7 +1269,7 @@ export function CourseLibraryClient() {
                   {[
                     ["cancel", "Cancel"],
                     ["duplicate", "Import anyway"],
-                    ["update", "Update existing"]
+                    ["update", "Replace assessments"]
                   ].map(([value, label]) => (
                     <label
                       className="flex items-center gap-2 rounded-lg border border-amber-200 bg-white px-3 py-2 text-sm text-ink-800"
@@ -1244,8 +1289,8 @@ export function CourseLibraryClient() {
                 </div>
                 {duplicateAction === "update" ? (
                   <p className="mt-3 text-xs leading-5 text-amber-800">
-                    Existing assessments are preserved. GradeMate will add
-                    template assessments whose names are missing.
+                    GradeMate will update the course info, replace existing
+                    assessments, and copy the template breakdown.
                   </p>
                 ) : null}
               </div>
@@ -1316,7 +1361,10 @@ export function CourseLibraryClient() {
               </Button>
               <Button
                 className="w-full sm:w-auto"
-                disabled={importingTemplateId === importTemplate.id}
+                disabled={
+                  importingTemplateId === importTemplate.id ||
+                  semesters.length === 0
+                }
                 onClick={() => void importSelectedTemplate()}
               >
                 <Download aria-hidden="true" className="h-4 w-4" />

@@ -102,6 +102,50 @@ export type CourseTemplateMaterialRecord = {
   created_at: string;
 };
 
+export type ProfileRecord = {
+  id: string;
+  email: string | null;
+  role: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type SyllabusContributionRecord = {
+  id: string;
+  submitted_by_user_id: string;
+  course_code: string | null;
+  course_name: string | null;
+  department: string | null;
+  credit_hours: number | null;
+  university: string | null;
+  campus: string | null;
+  term: string | null;
+  instructor: string | null;
+  instructor_email: string | null;
+  syllabus_file_name: string | null;
+  syllabus_file_path: string | null;
+  extracted_json: Json | null;
+  extraction_confidence: number | null;
+  status: string;
+  reviewer_user_id: string | null;
+  review_notes: string | null;
+  approved_course_template_id: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
+export type ContributionAssessmentRecord = {
+  id: string;
+  contribution_id: string;
+  name: string;
+  weight_percentage: number;
+  max_score: number;
+  confidence: number | null;
+  source_text_snippet: string | null;
+  created_at: string;
+  updated_at: string;
+};
+
 export type VerifiedExtractionRecord = {
   id: string;
   user_id: string | null;
@@ -127,6 +171,18 @@ export type VerifiedExtractionRecord = {
 export type Database = {
   public: {
     Tables: {
+      profiles: {
+        Row: ProfileRecord;
+        Insert: {
+          id: string;
+          email?: string | null;
+          role?: string;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<Omit<ProfileRecord, "id" | "created_at">>;
+        Relationships: [];
+      };
       semesters: {
         Row: SemesterRecord;
         Insert: {
@@ -293,6 +349,62 @@ export type Database = {
             columns: ["course_template_id"];
             isOneToOne: false;
             referencedRelation: "course_templates";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
+      syllabus_contributions: {
+        Row: SyllabusContributionRecord;
+        Insert: {
+          id?: string;
+          submitted_by_user_id: string;
+          course_code?: string | null;
+          course_name?: string | null;
+          department?: string | null;
+          credit_hours?: number | null;
+          university?: string | null;
+          campus?: string | null;
+          term?: string | null;
+          instructor?: string | null;
+          instructor_email?: string | null;
+          syllabus_file_name?: string | null;
+          syllabus_file_path?: string | null;
+          extracted_json?: Json | null;
+          extraction_confidence?: number | null;
+          status?: string;
+          reviewer_user_id?: string | null;
+          review_notes?: string | null;
+          approved_course_template_id?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<
+          Omit<SyllabusContributionRecord, "id" | "created_at">
+        >;
+        Relationships: [];
+      };
+      contribution_assessments: {
+        Row: ContributionAssessmentRecord;
+        Insert: {
+          id?: string;
+          contribution_id: string;
+          name: string;
+          weight_percentage?: number;
+          max_score?: number;
+          confidence?: number | null;
+          source_text_snippet?: string | null;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<
+          Omit<ContributionAssessmentRecord, "id" | "created_at">
+        >;
+        Relationships: [
+          {
+            foreignKeyName: "contribution_assessments_contribution_id_fkey";
+            columns: ["contribution_id"];
+            isOneToOne: false;
+            referencedRelation: "syllabus_contributions";
             referencedColumns: ["id"];
           }
         ];

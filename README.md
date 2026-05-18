@@ -24,6 +24,9 @@ GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and
 - `/semesters` semester tracking
 - `/courses` course tracking
 - `/course-library` reusable course template library
+- `/contribute-syllabus` submit a syllabus for Course Library review
+- `/my-contributions` track your submitted syllabus contributions
+- `/admin/contributions` admin review queue for submitted syllabuses
 - `/gpa-calculator` semester-aware GPA calculator
 - `/extractor-lab` development page for manually testing syllabus extraction
 
@@ -113,6 +116,30 @@ schema. To collect private verified extraction feedback, run
 [supabase/verified-extractions.sql](supabase/verified-extractions.sql). Verified
 examples are private to the submitting user through RLS; the service role can
 export them later for admin review.
+
+### Syllabus contribution review
+
+To let users submit syllabuses for the shared Course Library, run
+[supabase/syllabus-contributions.sql](supabase/syllabus-contributions.sql) in
+the Supabase SQL editor. It creates:
+
+- `profiles`
+- `syllabus_contributions`
+- `contribution_assessments`
+- private RLS policies for user submissions
+- admin-only policies for approving contributions into Course Library templates
+
+After running the SQL, promote your admin account:
+
+```sql
+update profiles
+set role = 'admin'
+where email = 'your-email@example.com';
+```
+
+Normal users can create and view only their own contributions. Admins can review
+all submissions at `/admin/contributions`, approve them into `course_templates`,
+request changes, or reject them. Raw contribution data is not public.
 
 ## Course Template Import
 
