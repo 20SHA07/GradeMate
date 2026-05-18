@@ -1736,11 +1736,61 @@ export function extractGradeBreakdown(
   text: string,
   options?: { mode?: ExtractionMode }
 ): ExtractedSyllabus {
-  return options?.mode === "quick"
-    ? parseGradeBreakdownMessage(text)
-    : extractSyllabusFromText(text);
+  if (options?.mode === "quick") {
+    return parseGradeBreakdownMessage(text);
+  }
+
+  const syllabusResult = extractSyllabusFromText(text);
+
+  if (!shouldCheckCompactBreakdown(text)) {
+    return syllabusResult;
+  }
+
+  const compactResult = parseGradeBreakdownMessage(text);
+
+  return isBetterCompactBreakdown(compactResult, syllabusResult)
+    ? compactResult
+    : syllabusResult;
 }
 
 function formatWeight(value: number) {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
+}
+
+function shouldCheckCompactBreakdown(text: string) {
+  const nonEmptyLineCount = text
+    .split(/\r?\n/)
+    .filter((line) => line.trim()).length;
+  const assessmentTermCount = Array.from(
+    text.matchAll(new RegExp(`\\b(${assessmentAliasPattern})\\b`, "gi"))
+  ).length;
+
+  return nonEmptyLineCount <= 8 && assessmentTermCount >= 2;
+}
+
+function sumAssessmentWeights(assessments: ExtractedAssessment[]) {
+  return assessments.reduce(
+    (sum, assessment) => sum + Number(assessment.weight_percentage ?? 0),
+    0
+  );
+}
+
+function isBetterCompactBreakdown(
+  compactResult: ExtractedSyllabus,
+  syllabusResult: ExtractedSyllabus
+) {
+  if (compactResult.assessments.length < 2) {
+    return false;
+  }
+
+  const compactTotal = sumAssessmentWeights(compactResult.assessments);
+  const syllabusTotal = sumAssessmentWeights(syllabusResult.assessments);
+  const compactDistance = Math.abs(100 - compactTotal);
+  const syllabusDistance = Math.abs(100 - syllabusTotal);
+
+  return (
+    compactResult.assessments.length > syllabusResult.assessments.length ||
+    (compactResult.assessments.length === syllabusResult.assessments.length &&
+      compactDistance < syllabusDistance)
+  );
 }

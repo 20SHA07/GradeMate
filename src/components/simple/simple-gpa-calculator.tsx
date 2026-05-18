@@ -1470,12 +1470,57 @@ export function SimpleGpaCalculator() {
       return;
     }
 
-    let skippedNames: string[] = [];
-    let savedCount = 0;
+    const targetCourse = data.courses.find((course) => course.id === review.courseId);
+
+    if (!targetCourse) {
+      setError("Could not find this course. Refresh and try again.");
+      return;
+    }
+
+    const existingNames = new Set(
+      targetCourse.assessments.map((assessment) => normalizeName(assessment.name))
+    );
+    const seenNames = new Set<string>();
+    const skippedNames: string[] = [];
+    const newAssessments: SimpleAssessment[] = [];
+
+    validRows.forEach((row) => {
+      const normalizedName = normalizeName(row.name);
+
+      if (!normalizedName || seenNames.has(normalizedName)) {
+        skippedNames.push(row.name || "Unnamed assessment");
+        return;
+      }
+
+      seenNames.add(normalizedName);
+
+      if (mode === "append" && existingNames.has(normalizedName)) {
+        skippedNames.push(row.name);
+        return;
+      }
+
+      newAssessments.push(
+        createAssessment({
+          confidence: row.confidence,
+          maxScore: String(row.max_score || 100),
+          name: row.name.trim(),
+          score: "",
+          sourceTextSnippet: row.source_text_snippet,
+          weightPercentage: String(row.weight_percentage || 0)
+        })
+      );
+    });
+
+    const savedCount = newAssessments.length;
     const confirmedExtraction = buildConfirmedExtraction(
       review.extraction,
       validRows
     );
+    const selectedInfo = Object.fromEntries(
+      review.courseInfo
+        .filter((field) => field.apply && field.value.trim())
+        .map((field) => [field.key, field.value.trim()])
+    ) as Partial<SimpleCourse>;
 
     setData((current) => ({
       ...current,
@@ -1483,46 +1528,6 @@ export function SimpleGpaCalculator() {
         if (course.id !== review.courseId) {
           return course;
         }
-
-        const existingNames = new Set(
-          course.assessments.map((assessment) => normalizeName(assessment.name))
-        );
-        const seenNames = new Set<string>();
-        const newAssessments: SimpleAssessment[] = [];
-
-        validRows.forEach((row) => {
-          const normalizedName = normalizeName(row.name);
-
-          if (!normalizedName || seenNames.has(normalizedName)) {
-            skippedNames = [...skippedNames, row.name || "Unnamed assessment"];
-            return;
-          }
-
-          seenNames.add(normalizedName);
-
-          if (mode === "append" && existingNames.has(normalizedName)) {
-            skippedNames = [...skippedNames, row.name];
-            return;
-          }
-
-          newAssessments.push(
-            createAssessment({
-              confidence: row.confidence,
-              maxScore: String(row.max_score || 100),
-              name: row.name.trim(),
-              score: "",
-              sourceTextSnippet: row.source_text_snippet,
-              weightPercentage: String(row.weight_percentage || 0)
-            })
-          );
-        });
-
-        savedCount = newAssessments.length;
-        const selectedInfo = Object.fromEntries(
-          review.courseInfo
-            .filter((field) => field.apply && field.value.trim())
-            .map((field) => [field.key, field.value.trim()])
-        ) as Partial<SimpleCourse>;
 
         return {
           ...course,
@@ -1753,6 +1758,7 @@ export function SimpleGpaCalculator() {
         </Card>
 
         <section className="space-y-5">
+          {false ? (
           <div className="hidden">
             <Card className="p-5">
               <h2 className="text-lg font-semibold text-ink-900">
@@ -1955,6 +1961,8 @@ export function SimpleGpaCalculator() {
               </Button>
             </Card>
           </div>
+
+          ) : null}
 
           <Card className="overflow-hidden">
             <div className="flex flex-col gap-3 border-b border-ink-200 p-5 sm:flex-row sm:items-center sm:justify-between">
@@ -2518,7 +2526,7 @@ function SimpleModal({
       >
         <div className="flex items-center justify-between gap-3 border-b border-ink-200 px-5 py-4">
           <h2 className="text-lg font-semibold text-ink-900">{title}</h2>
-          <Button aria-label="Close" onClick={onClose} size="icon" variant="ghost">
+          <Button aria-label="Close modal" onClick={onClose} size="icon" variant="ghost">
             <X aria-hidden="true" className="h-4 w-4" />
           </Button>
         </div>
@@ -2916,16 +2924,36 @@ function ExtractionModalContent({
           ) : null}
         </>
       ) : (
-        <ExtractionReview
-          addReviewRow={addReviewRow}
-          course={course}
-          deleteReviewRow={deleteReviewRow}
-          review={review}
-          saveReview={saveReview}
-          setReview={setReview}
-          updateCourseInfoField={updateCourseInfoField}
-          updateReviewRow={updateReviewRow}
-        />
+        <>
+          {activeTab === "pdf" && pdfPreview ? (
+            <details className="rounded-xl border border-ink-200 bg-ink-50 p-3">
+              <summary className="cursor-pointer text-sm font-medium text-teal-700">
+                Extracted text preview
+              </summary>
+              {pdfPreview.warning ? (
+                <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                  {pdfPreview.warning}
+                </p>
+              ) : null}
+              <p className="mt-3 text-xs font-medium text-ink-500">
+                {pdfPreview.fileName}
+              </p>
+              <pre className="mt-2 max-h-56 overflow-auto whitespace-pre-wrap rounded-lg bg-white p-3 text-xs leading-5 text-ink-700">
+                {pdfPreview.text || "No text was extracted."}
+              </pre>
+            </details>
+          ) : null}
+          <ExtractionReview
+            addReviewRow={addReviewRow}
+            course={course}
+            deleteReviewRow={deleteReviewRow}
+            review={review}
+            saveReview={saveReview}
+            setReview={setReview}
+            updateCourseInfoField={updateCourseInfoField}
+            updateReviewRow={updateReviewRow}
+          />
+        </>
       )}
     </div>
   );

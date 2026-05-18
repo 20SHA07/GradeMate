@@ -14,7 +14,11 @@ const moduleShim = { exports: {} };
 
 new Function("exports", "module", compiled)(moduleShim.exports, moduleShim);
 
-const { extractSyllabusFromText, parseGradeBreakdownMessage } = moduleShim.exports;
+const {
+  extractGradeBreakdown,
+  extractSyllabusFromText,
+  parseGradeBreakdownMessage
+} = moduleShim.exports;
 
 function getAssessment(result, name) {
   return result.assessments.find(
@@ -179,6 +183,15 @@ expectAssessment(gradeDistribution, "Homework", 15);
 expectAssessment(gradeDistribution, "Quizzes", 15);
 expectAssessment(gradeDistribution, "Midterm", 30);
 expectAssessment(gradeDistribution, "Final Exam", 40);
+
+const compactSyllabusLine = extractGradeBreakdown(
+  "Evaluation Scheme: Midterm 30%, Final 40%, Assignments 20%, Participation 10%",
+  { mode: "syllabus" }
+);
+expectAssessment(compactSyllabusLine, "Midterm", 30);
+expectAssessment(compactSyllabusLine, "Final Exam", 40);
+expectAssessment(compactSyllabusLine, "Assignments", 20);
+expectAssessment(compactSyllabusLine, "Participation", 10);
 
 const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
 Credit Hours: 3 Credits
