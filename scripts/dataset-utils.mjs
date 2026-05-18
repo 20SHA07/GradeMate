@@ -10,6 +10,8 @@ export const proposedJsonDir = path.join(trainingDataDir, "proposed-json");
 export const expectedJsonDir = path.join(trainingDataDir, "expected-json");
 export const datasetIndexPath = path.join(trainingDataDir, "dataset-index.json");
 export const reviewReportPath = path.join(trainingDataDir, "review-report.html");
+export const highConfidenceThreshold = 0.85;
+export const lowConfidenceThreshold = 0.7;
 
 const supportedExtensions = new Set([".pdf", ".docx"]);
 
@@ -363,6 +365,150 @@ export async function readJsonFiles(folderPath) {
   return results;
 }
 
+export async function readDatasetIndex() {
+  if (!fsSync.existsSync(datasetIndexPath)) {
+    return null;
+  }
+
+  return JSON.parse(await fs.readFile(datasetIndexPath, "utf8"));
+}
+
+export function getDatasetItemAnalysis(value) {
+  const assessments = Array.isArray(value.assessments) ? value.assessments : [];
+  const totalWeight = Number(value.totalWeight ?? 0);
+  const confidence = Number(value.confidence ?? 0);
+  const hasAssessments = assessments.length > 0;
+  const isExactly100 = totalWeight === 100;
+  const isHighConfidence = confidence >= highConfidenceThreshold;
+  const reasons = [];
+
+  if (!isExactly100) {
+    reasons.push("total weight not 100");
+  }
+
+  if (!value.courseCode) {
+    reasons.push("no course code");
+  }
+
+  if (!value.courseName) {
+    reasons.push("no course name");
+  }
+
+  if (!hasAssessments) {
+    reasons.push("no assessments found");
+  }
+
+  if (hasPossibleGradingScaleExtraction(assessments)) {
+    reasons.push("possible grading scale extracted");
+  }
+
+  if (hasPossibleWeeklyScheduleExtraction(assessments)) {
+    reasons.push("possible weekly schedule extracted");
+  }
+
+  if (hasDuplicateAssessmentNames(assessments) || hasOverlappingWarnings(value)) {
+    reasons.push("duplicate/overlapping assessment sections");
+  }
+
+  if (confidence < lowConfidenceThreshold) {
+    reasons.push("low confidence");
+  }
+
+  const status = !hasAssessments
+    ? "failed"
+    : isExactly100 && isHighConfidence && reasons.length === 0
+      ? "ready"
+      : "needs-review";
+
+  return {
+    assessmentCount: assessments.length,
+    confidence,
+    isExactly100,
+    isHighConfidence,
+    reasons,
+    status,
+    statusLabel:
+      status === "ready"
+        ? "Ready"
+        : status === "failed"
+          ? "Failed"
+          : "Needs review",
+    totalWeight
+  };
+}
+
+export function buildExpectedJson(value) {
+  return {
+    sourceFileName: value.sourceFileName ?? null,
+    courseCode: value.courseCode ?? null,
+    courseName: value.courseName ?? null,
+    creditHours: value.creditHours ?? null,
+    semester: value.semester ?? null,
+    instructor: value.instructor ?? null,
+    assessments: (value.assessments ?? []).map((assessment) => ({
+      name: assessment.name,
+      weight_percentage: assessment.weight_percentage,
+      max_score: assessment.max_score ?? 100
+    }))
+  };
+}
+
+export function buildDatasetSummary(proposalFiles, datasetIndex = null) {
+  const analyses = proposalFiles.map((file) => ({
+    ...file,
+    analysis: getDatasetItemAnalysis(file.value)
+  }));
+  const errorReasonCounts = new Map();
+
+  analyses.forEach((file) => {
+    file.analysis.reasons.forEach((reason) => {
+      errorReasonCounts.set(reason, (errorReasonCounts.get(reason) ?? 0) + 1);
+    });
+  });
+
+  const cosc101 = analyses.find(
+    (file) =>
+      file.fileName === "COSC101_Syllabus_and_Syllabus_Supplement.json" ||
+      /COSC\s*101/i.test(`${file.value.courseCode ?? ""} ${file.value.sourceFileName ?? ""}`)
+  );
+  const cosc101Ready = Boolean(
+    cosc101 &&
+      cosc101.analysis.status === "ready" &&
+      cosc101.analysis.isExactly100
+  );
+
+  return {
+    analyses,
+    cosc101,
+    cosc101Ready,
+    errorReasonCounts: Array.from(errorReasonCounts.entries())
+      .map(([reason, count]) => ({ reason, count }))
+      .sort((first, second) => second.count - first.count || first.reason.localeCompare(second.reason)),
+    failed: analyses.filter((file) => file.analysis.status === "failed").length,
+    likelySyllabiFound: datasetIndex?.syllabusFilesFound ?? analyses.length,
+    lowConfidence: analyses.filter(
+      (file) => file.analysis.confidence < lowConfidenceThreshold
+    ).length,
+    needsReview: analyses.filter(
+      (file) => file.analysis.status === "needs-review"
+    ).length,
+    noAssessmentsFound: analyses.filter(
+      (file) => file.analysis.assessmentCount === 0
+    ).length,
+    proposedJsonFilesCreated: analyses.length,
+    ready: analyses.filter((file) => file.analysis.status === "ready").length,
+    skipped: datasetIndex?.skippedMaterialFiles ?? 0,
+    totalFilesScanned: datasetIndex?.totalFilesScanned ?? null,
+    totalWeightAbove100: analyses.filter((file) => file.analysis.totalWeight > 100)
+      .length,
+    totalWeightBelow100: analyses.filter(
+      (file) => file.analysis.assessmentCount > 0 && file.analysis.totalWeight < 100
+    ).length,
+    totalWeightExactly100: analyses.filter((file) => file.analysis.isExactly100)
+      .length
+  };
+}
+
 export function normalizeAssessmentName(value) {
   return String(value ?? "")
     .toLowerCase()
@@ -377,6 +523,41 @@ export function htmlEscape(value) {
     .replace(/</g, "&lt;")
     .replace(/>/g, "&gt;")
     .replace(/"/g, "&quot;");
+}
+
+function hasPossibleGradingScaleExtraction(assessments) {
+  return assessments.some((assessment) => {
+    const name = normalizeAssessmentName(assessment.name);
+    const snippet = String(assessment.source_text_snippet ?? "").toLowerCase();
+
+    return (
+      /^(a|a b|b c|c d|d f|letter grade|grade scale)$/.test(name) ||
+      /\b(letter grade|grade scale|a\s*[-:]?\s*9\d|b\+?\s*[-:]?\s*8\d|c\+?\s*[-:]?\s*7\d)\b/.test(snippet)
+    );
+  });
+}
+
+function hasPossibleWeeklyScheduleExtraction(assessments) {
+  return assessments.some((assessment) => {
+    const name = normalizeAssessmentName(assessment.name);
+    const snippet = String(assessment.source_text_snippet ?? "").toLowerCase();
+
+    return (
+      /\b(week|lecture|topic|chapter|page|clo|plo|outcome)\b/.test(name) ||
+      /\b(week|lecture|topic|chapter|page|clo|plo|outcome)\b/.test(snippet)
+    );
+  });
+}
+
+function hasDuplicateAssessmentNames(assessments) {
+  const names = assessments.map((assessment) => normalizeAssessmentName(assessment.name));
+  return new Set(names).size !== names.length;
+}
+
+function hasOverlappingWarnings(value) {
+  return (value.warnings ?? []).some((warning) =>
+    /duplicate|overlap|multiple assessment|multiple grading/i.test(String(warning))
+  );
 }
 
 async function walkFiles(rootDir) {

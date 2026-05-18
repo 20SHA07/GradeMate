@@ -169,7 +169,9 @@ Supabase.
 ```bash
 npm run dataset:scan -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
 npm run dataset:propose -- "C:\Users\shaha\Downloads\drive-download-20260516T203409Z-3-002"
+npm run dataset:summary
 npm run dataset:review
+npm run dataset:promote-ready
 npm run test:dataset
 ```
 
@@ -185,6 +187,10 @@ common course materials such as slides, labs, assignments, exams, notes, and
 practice files, and records parsing errors for review. The first golden fixture
 is `COSC101_Syllabus_and Syllabus_Supplement`, which checks that detailed
 assessment rows are preferred over broad or unrelated tables.
+
+`dataset:summary` prints the same readiness/error counts as the report.
+`dataset:promote-ready` copies high-confidence 100% proposed JSON files into
+`training-data/expected-json/` without overwriting existing golden files.
 
 In Supabase Auth URL Configuration, use:
 
