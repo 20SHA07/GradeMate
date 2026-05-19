@@ -167,6 +167,88 @@ The older `import:templates` command scans broader course-material folders and
 is kept for experiments. The Course Library UI only shows templates created from
 detected syllabuses.
 
+### Rebuild Course Library from the deterministic extractor
+
+After improving the golden examples and extractor rules, rebuild Course Library
+templates from the collected syllabuses instead of using older extraction output:
+
+```bash
+npm run test:dataset
+npm run library:rebuild
+npm run library:review
+npm run library:diff
+npm run library:import-rebuilt:dry
+```
+
+The rebuild writes JSON templates to
+`training-data/course-library-rebuild/templates/`. The review and dry-run reports
+separate ready canonical templates from needs-review files, duplicate conflicts,
+non-canonical duplicates, and related materials. Inspect these before importing:
+
+- `training-data/course-library-rebuild/review-report.html`
+- `training-data/course-library-rebuild/supabase-import-plan.html`
+- `training-data/course-library-rebuild/supabase-import-plan.json`
+
+For Supabase backup/import commands, set server-only credentials in your
+terminal. The service-role key must never be placed in frontend code or GitHub
+Pages public variables.
+
+PowerShell:
+
+```powershell
+$env:SUPABASE_URL="https://YOUR-PROJECT.supabase.co"
+$env:SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+```
+
+Bash:
+
+```bash
+export SUPABASE_URL="https://YOUR-PROJECT.supabase.co"
+export SUPABASE_SERVICE_ROLE_KEY="your-service-role-key"
+```
+
+`NEXT_PUBLIC_SUPABASE_URL` is also accepted for the project URL, but
+`SUPABASE_SERVICE_ROLE_KEY` is required for backup, real import, and production
+verification.
+
+Back up the current Course Library before importing:
+
+```bash
+npm run library:export-current
+```
+
+Preview the rebuilt import without writing to Supabase:
+
+```bash
+npm run library:import-rebuilt:dry
+```
+
+Apply the import only after reviewing the plan:
+
+```bash
+npm run library:import-rebuilt -- --confirm
+```
+
+The real import refuses to run without `--confirm` and skips needs-review
+templates, duplicate conflicts, and non-canonical duplicates by default. Use
+these flags only after manual review:
+
+```bash
+npm run library:import-rebuilt -- --confirm --include-needs-review
+npm run library:import-rebuilt -- --confirm --resolve-conflicts
+npm run library:import-rebuilt -- --confirm --canonical-file "Source File.pdf"
+```
+
+After importing, verify production rows:
+
+```bash
+npm run library:verify-production
+```
+
+This checks that every selected ready canonical template exists in Supabase, has
+assessment rows, and totals 99.5-100.5%. It writes
+`training-data/course-library-rebuild/production-verify-report.html`.
+
 ## Syllabus Extraction Dataset Builder
 
 Use the dataset scripts to benchmark GradeMate extraction quality before changing

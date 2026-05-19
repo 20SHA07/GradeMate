@@ -25,6 +25,8 @@ export const diffJsonPath = path.join(rebuildRootDir, "diff-report.json");
 export const diffHtmlPath = path.join(rebuildRootDir, "diff-report.html");
 export const importPlanJsonPath = path.join(rebuildRootDir, "supabase-import-plan.json");
 export const importPlanHtmlPath = path.join(rebuildRootDir, "supabase-import-plan.html");
+export const productionVerifyJsonPath = path.join(rebuildRootDir, "production-verify-report.json");
+export const productionVerifyHtmlPath = path.join(rebuildRootDir, "production-verify-report.html");
 export const backupDir = path.resolve("training-data", "course-library-backups");
 export const defaultLibrarySourceDir = path.resolve(
   "training-data",
@@ -496,7 +498,7 @@ export function buildSupabasePayload(template) {
       source_hash: template.sourceHash,
       extractor_version: template.extractorVersion,
       extraction_warnings: template.warnings,
-      template_status: "ready",
+      template_status: template.ready ? "ready" : "needs_review",
       semester: template.semester,
       instructor_email: template.instructorEmail,
       schedule: template.schedule,

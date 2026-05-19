@@ -5,762 +5,1049 @@
   <title>GradeMate Course Library Import Plan</title>
   <style>
     body { font-family: Inter, system-ui, sans-serif; margin: 24px; background: #08111f; color: #e5eefc; }
-    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; margin: 18px 0; }
+    .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin: 18px 0; }
     .card { background: #101d2f; border: 1px solid #213653; border-radius: 10px; padding: 14px; }
     .value { font-size: 28px; font-weight: 800; }
-    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
-    th, td { border-bottom: 1px solid #213653; padding: 8px; text-align: left; }
+    .muted { color: #9fb0c7; }
+    .section { margin-top: 28px; }
+    table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+    th, td { border-bottom: 1px solid #213653; padding: 8px; text-align: left; vertical-align: top; }
     th { color: #7dd3fc; }
+    .pill { border-radius: 999px; padding: 2px 8px; background: #24364f; color: #dbeafe; font-size: 12px; }
+    .insert { background: #064e3b; }
+    .update { background: #713f12; }
+    code { color: #5eead4; }
   </style>
 </head>
 <body>
   <h1>GradeMate Course Library Import Plan</h1>
-  <p>Current source: backup 2026-05-19T17-21-13-420Z</p>
+  <p class="muted">Generated 2026-05-19T17:49:57.359Z. Current source: backup 2026-05-19T17-21-13-420Z</p>
   <section class="cards">
-    <div class="card"><div>importableTemplates</div><div class="value">74</div></div><div class="card"><div>inserts</div><div class="value">10</div></div><div class="card"><div>updates</div><div class="value">64</div></div><div class="card"><div>assessmentChanges</div><div class="value">64</div></div><div class="card"><div>skippedExistingTemplates</div><div class="value">37</div></div>
+    <div class="card"><div>Would insert</div><div class="value">10</div></div>
+    <div class="card"><div>Would update</div><div class="value">64</div></div>
+    <div class="card"><div>Would skip</div><div class="value">15</div></div>
+    <div class="card"><div>Needs review</div><div class="value">5</div></div>
+    <div class="card"><div>Conflicts</div><div class="value">2</div></div>
+    <div class="card"><div>Duplicates</div><div class="value">8</div></div>
+    <div class="card"><div>Ready canonical</div><div class="value">74</div></div>
+    <div class="card"><div>Importable</div><div class="value">74</div></div>
   </section>
-  <table>
-    <thead><tr><th>Action</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Source</th></tr></thead>
-    <tbody><tr>
-        <td>update</td>
+  <p class="muted">Real import requires <code>--confirm</code>. Needs-review templates require <code>--include-needs-review</code>. Duplicate conflicts require <code>--resolve-conflicts</code> or <code>--canonical-file</code>.</p>
+  <section class="section">
+    <h2>Insertable Ready Canonical Templates (74)</h2>
+    <table>
+      <thead><tr><th>Action</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Duplicate status</th><th>Source</th></tr></thead>
+      <tbody><tr>
+        <td><span class="pill update">update</span></td>
         <td>BMED 221</td>
         <td>Anatomy and Physiological Modeling for Engineers</td>
         <td>Spring 2024</td>
         <td>6</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED221_BMED_221_Syllabus_Supplement_Spring_2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 321</td>
         <td>Mechanics for Biomedical Engineers</td>
         <td>Fall 2024</td>
         <td>3</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED321_Fall_2024_-_BMED321_Syllabus_Supplement_for_Students.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 342</td>
         <td>Molecular Genetics, Technologies and Tools</td>
         <td>Spring 2025</td>
         <td>8</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED342_BMED_342_Supplementary_Course_Form_2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 351</td>
         <td>Biomedical Circuits and Signals</td>
         <td>Fall 2024</td>
         <td>8</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED351_Syllabus_Supplement_BMED_351_Fall2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 351</td>
         <td>Biomedical Circuits and Systems</td>
         <td></td>
         <td>4</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 352</td>
         <td>Fundamental of Biomedical Signal Processing</td>
         <td>Spring 2025</td>
         <td>8</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED352_Syllabus_Supplement_-_Spring_2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BMED 352</td>
         <td>Fundamentals of Biomedical Signal Processing</td>
         <td></td>
         <td>4</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BMED352_Course_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BUSS 150</td>
         <td>Introduction to Economics</td>
         <td>Spring 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BUSS 150</td>
         <td>Introduction to Economics</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BUSS 322</td>
         <td>Fundamentals of Innovation &amp; Entrepreneurship</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>BUSS 322</td>
         <td>Fundamentals of Innovation &amp; Entrepreneurship</td>
         <td>Summer 2025</td>
         <td>4</td>
         <td>100</td>
         <td>No</td>
+        <td>unique</td>
         <td>BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CCEN 210</td>
         <td>Digital Logic Design</td>
         <td>Spring 2026</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>Proposed Spring2026_CCEN 210 Digital Logic Design.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 205</td>
         <td>Principles of Chemical Engineering</td>
         <td>Fall 2023</td>
         <td>15</td>
         <td>100.2</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG205_CHEG_205_-_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 230</td>
         <td>Chemical Engineering Thermodynamics I</td>
         <td>Spring 2024</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG230_Thermodynamics_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 230</td>
         <td>Chemical Engineering Thermodynamics I</td>
         <td>Spring 2026</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>S26_CHEG230_Syllabus Supplement for Students.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>CHEG 232</td>
         <td>Fluid Mechanics For Chemical Engineering</td>
         <td>Spring 2024</td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG232_Fluid_Mechanics_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 232</td>
         <td>Fluid Mechanics</td>
         <td>Spring 2025</td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 312</td>
         <td>Numerical Methods for Chemical Engineers</td>
         <td>Spring 2025</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG312_Numerical_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 312</td>
         <td>Numerical Methods for Chemical Engineers</td>
         <td>Spring 2026</td>
         <td>11</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 332</td>
         <td>Chemical Engineering Thermodynamics II</td>
         <td>Spring 2025</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG332_Thermo_II_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEG 350</td>
         <td>Materials Science &amp; Engineering</td>
         <td>Spring 2024</td>
         <td>7</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG350_Material_Science_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>CHEG 380</td>
         <td>Introduction to Polymer Science and Technology</td>
         <td>Spring 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEG380_CHEG380_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEM 115</td>
         <td>General Chemistry I</td>
         <td>Spring 2023</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEM 116</td>
         <td>General Chemistry II</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>duplicate</td>
         <td>CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEM 211</td>
         <td>Fundamentals of Organic Chemistry</td>
         <td>Spring 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEM211_CHEM_211_Spring_2024-Syllabus_Supplement.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>CHEM 211</td>
         <td>Fundamentals of Organic Chemistry</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 101</td>
         <td>Foundations of Computer Science</td>
         <td>Fall 2025</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>COSC 114</td>
         <td>Introduction to Computing - Python</td>
         <td>Fall 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 201</td>
         <td>Computer Systems Organization</td>
         <td></td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC 201 Computer Systems Organization.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 201</td>
         <td>Computer Systems Organization</td>
         <td>Spring 2025</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 202</td>
         <td>Data Science and Artificial Intelligence</td>
         <td>Spring 2026</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC202_Data_Science_^0_AI_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 301</td>
         <td>Automata, Computability, and Complexity</td>
         <td>Fall 2025</td>
         <td>7</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC 301 Automata, Computability, and Complexity_Fall2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 301</td>
         <td>Automata, Computability, and Complexity</td>
         <td>Fall 2022</td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 310</td>
         <td>Data Structures</td>
         <td></td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC 310 Data Structures June 2020.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 310</td>
         <td>Data Structures</td>
         <td>Fall 2025</td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC310 - Syllabus Supplement for Students FALL 2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 310</td>
         <td>Data Structures</td>
         <td>Fall 2024</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>COSC 312</td>
         <td>Design and Analysis of Algorithms</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC 312 Design and Analysis of Algorithms-S26.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 330</td>
         <td>Introduction to Artificial Intelligence</td>
         <td>Fall 2025</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC 330 Introduction to AI_withSupplementFalll2025.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 330</td>
         <td>Introduction to Artificial Intelligence</td>
         <td>Spring 2025</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 336</td>
         <td>Introduction to Software Engineering</td>
         <td>Fall 2025</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>COSC 354</td>
         <td>Operating Systems</td>
         <td>Fall 2025</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>COSC 495</td>
         <td>COSC 4XX: Introduction to Game Development and XR</td>
         <td>Spring 2025</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>COSC495_COSC_495-GameDev-November2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>ENGL 101</td>
         <td>Academic English I</td>
         <td>Spring 2022</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>ENGL 102</td>
         <td>Academic English II</td>
         <td>Spring 2026</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>Eng 102 - Syllabus Spring 2026 (JJP).docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>ENGL 102</td>
         <td>Academic English II</td>
         <td>Fall 2022</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>ENGL102_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>ENGR 114</td>
         <td>Introduction to Computing using Python</td>
         <td>Spring 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Spring_2024.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>ESMA 200</td>
         <td>. Time value of money, 4. Inflation and its</td>
         <td>Summer 2025</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>CHEM116_CHEM116_Syllabus_SM25.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>GENS 100</td>
         <td>Academic Development and Success</td>
         <td>Spring 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>GENS100_GENS_100_Syllabus_Spring_2024.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>GENS 100</td>
         <td>Academic Development and Success</td>
         <td>Fall 2024</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>GENS 101</td>
         <td>Grand Challenges</td>
         <td>Fall 2022</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>GENS101_Grand_Challenges_syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>GENS 300</td>
         <td>Career Preparation</td>
         <td></td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>GENS 300 Revised Syllabus Jan 2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>GENS 300</td>
         <td>Career Preparation</td>
         <td>Fall 2024</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>duplicate</td>
         <td>GENS300_GENS_300_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>insert</td>
+        <td><span class="pill insert">insert</span></td>
         <td>HUMA 106</td>
         <td>Emirates Society</td>
         <td>Summer 2024</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>HUMA106_Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>HUMA 140</td>
         <td>Introduction to Psychology</td>
         <td>Summer 2025</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>duplicate</td>
         <td>HUMA 140 Introduction to Psychology Syllabus &amp; Supplement(2).pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>HUMA 221</td>
         <td>Intercultural Communication</td>
         <td></td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>HUMA 221 Intercultural Communication final 2025 (2).pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>HUMA 229</td>
         <td>Critical Thinking</td>
         <td>Fall 2025</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>HUMA 277</td>
         <td>Introduction to Logical Reasoning</td>
         <td>Summer 2023</td>
         <td>4</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>HUMA277_HUMA_277_Intro_to_Logical_Summer_25.docx</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 101</td>
         <td>Fundamentals of Mathematical Reasoning</td>
         <td>Fall 2024</td>
         <td>5</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH101_MATH_101_Syllabus_-_Fall_2024_-_Dr._Ahmed.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 111</td>
         <td>CALCULUS I</td>
         <td>Spring 2025</td>
         <td>9</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH111_MATH_111_Syllabus_-_Spring_2025_-_Dr._Imad.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 112</td>
         <td>Calculus II</td>
         <td>Spring 2025</td>
         <td>7</td>
         <td>100</td>
         <td>Yes</td>
+        <td>duplicate</td>
         <td>MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 204</td>
         <td>Linear Algebra</td>
         <td>Fall 2024</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 211</td>
         <td>Differential Equations and Linear Algebra</td>
         <td>Spring 2025</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH211_Math_211_Syllabus_Supplement_Spring_25-updated.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 224</td>
         <td>Real Analysis I</td>
         <td>Spring 2025</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH224_MATH224_Syllabus_-_Spring_2025_-_Prof._Khamsi.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 232</td>
         <td>Engineering Mathematics</td>
         <td>Fall 2025</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH 232 - Engineering Mathematics - Syllabus(2).pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 232</td>
         <td>Engineering Mathematics</td>
         <td>Fall 2021</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>duplicate</td>
         <td>MATH232_Syllabus_Supplement_e40ca893_2.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 232</td>
         <td>Engineering Mathematics</td>
         <td></td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH232_Syllabus232_M.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 234</td>
         <td>Discrete Mathematics</td>
         <td>Summer 2024</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH234_MATH234_Syllabus_Summer_2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 242</td>
         <td>Introduction to Probability and Statistics</td>
         <td>Fall 2024</td>
         <td>6</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH242_MATH_242_-_Syllabus_Supplement_Fall_2024.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 242</td>
         <td>Introduction to Probability and Statistics</td>
         <td>Summer 2024</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH242_Summer_2024_Syllabus.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 244</td>
         <td>Probability</td>
         <td>Spring 2025</td>
         <td>3</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH244_MATH_244_Syllabus-_Spring_2025_-_Dr._Yerkin.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>MATH 251</td>
         <td>Operations Research I</td>
         <td>Spring 2023</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>MATH251_MATH_251_Syllabus_-_Spring_2025_-_Dr._Pedro.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>PHYS 121</td>
         <td>University Physics I</td>
         <td>Spring 2026</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>DOC-20260518-WA0022..pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>PHYS 121</td>
         <td>University Physics I</td>
         <td>Summer 2025</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>PHYS121_Syllabus_-_Summer_2025.pdf</td>
       </tr>
 <tr>
-        <td>update</td>
+        <td><span class="pill update">update</span></td>
         <td>PHYS 121</td>
         <td>University Physics I</td>
         <td>Fall 2026</td>
         <td>8</td>
         <td>100</td>
         <td>Yes</td>
+        <td>unique</td>
         <td>Syllabus-Fall 2026-02.docx</td>
       </tr></tbody>
-  </table>
+    </table>
+  </section>
+  <section class="section">
+    <h2>Selected Needs-Review Templates (0)</h2>
+    <table>
+      <thead><tr><th>Action</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Duplicate status</th><th>Source</th></tr></thead>
+      <tbody><tr><td colspan="9">None</td></tr></tbody>
+    </table>
+  </section>
+  <section class="section">
+    <h2>Selected Duplicate Conflicts (0)</h2>
+    <table>
+      <thead><tr><th>Action</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Duplicate status</th><th>Source</th></tr></thead>
+      <tbody><tr><td colspan="9">None</td></tr></tbody>
+    </table>
+  </section>
+  <section class="section">
+    <h2>Skipped: needs review (5)</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody><tr>
+        <td>BMED 322</td>
+        <td></td>
+        <td>Spring 2023</td>
+        <td>5</td>
+        <td>100</td>
+        <td>unique</td>
+        <td>missing course name</td>
+        <td>BMED322_Syllabus_Supplement_for_Students.pdf</td>
+      </tr>
+<tr>
+        <td>BMED 341</td>
+        <td>Molecular Cell Biology (3 Lecture, 1 Laboratory 4 Credits) Prerequisite: Biomedical Engine or Biology 211 and C</td>
+        <td>Fall 2024</td>
+        <td>0</td>
+        <td>0</td>
+        <td>unique</td>
+        <td>no assessments; total weight 0 is not 100; low confidence; No assessments found</td>
+        <td>BMED341_BMED341_Syllabus_Fall_2024.doc</td>
+      </tr>
+<tr>
+        <td>CHEG 324</td>
+        <td>Mass Transfer</td>
+        <td>Spring 2025</td>
+        <td>10</td>
+        <td>105</td>
+        <td>unique</td>
+        <td>total weight 105 is not 100; Total weight is above 100 (105%)</td>
+        <td>CHEG324_Mass_Syllabus.pdf</td>
+      </tr>
+<tr>
+        <td>HUMA 221</td>
+        <td>Intercultural Communication</td>
+        <td>Summer 2025</td>
+        <td>4</td>
+        <td>100</td>
+        <td>unique</td>
+        <td>Using summary table because detailed assessment methodology is ambiguous.</td>
+        <td>LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx</td>
+      </tr>
+<tr>
+        <td>LTCM 221</td>
+        <td>Intercultural Communication</td>
+        <td></td>
+        <td>4</td>
+        <td>100</td>
+        <td>unique</td>
+        <td>Using summary table because detailed assessment methodology is ambiguous.</td>
+        <td>LTCM 221 SYLLABUS SPRING 2026_1.pdf</td>
+      </tr></tbody>
+    </table>
+  </section>
+<section class="section">
+    <h2>Skipped: duplicate conflicts (2)</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody><tr>
+        <td>MATH 211</td>
+        <td>DifferenƟal EquaƟons and Linear Algebra</td>
+        <td>Spring 2025</td>
+        <td>1</td>
+        <td>5</td>
+        <td>conflict</td>
+        <td>non-canonical duplicate conflict</td>
+        <td>MATH211_MATH211_Project_Phase_1.pdf</td>
+      </tr>
+<tr>
+        <td>MATH 211</td>
+        <td>DifferenƟal EquaƟons and Linear Algebra</td>
+        <td>Spring 2025</td>
+        <td>1</td>
+        <td>5</td>
+        <td>conflict</td>
+        <td>non-canonical duplicate conflict</td>
+        <td>MATH211_MATH211_Project_Phase_2.pdf</td>
+      </tr></tbody>
+    </table>
+  </section>
+<section class="section">
+    <h2>Skipped: non-canonical duplicates (8)</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody><tr>
+        <td>CHEM 116</td>
+        <td>General Chemistry II</td>
+        <td>Spring 2025</td>
+        <td>4</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx</td>
+        <td>CHEM116_CHEM116_Syllabus_SP25.pdf</td>
+      </tr>
+<tr>
+        <td>GENS 300</td>
+        <td>Career Preparation</td>
+        <td>Fall 2024</td>
+        <td>5</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of GENS300_GENS_300_Syllabus.pdf</td>
+        <td>GENS300_GENS_300_Syllabus_43c33d94_2.pdf</td>
+      </tr>
+<tr>
+        <td>GENS 300</td>
+        <td>Career Preparation</td>
+        <td>Fall 2024</td>
+        <td>5</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of GENS300_GENS_300_Syllabus.pdf</td>
+        <td>GENS300_GENS_300_Syllabus_43c33d94_3.pdf</td>
+      </tr>
+<tr>
+        <td>GENS 300</td>
+        <td>Career Preparation</td>
+        <td>Fall 2024</td>
+        <td>5</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of GENS300_GENS_300_Syllabus.pdf</td>
+        <td>GENS300_GENS_300_Syllabus_43c33d94.pdf</td>
+      </tr>
+<tr>
+        <td>HUMA 140</td>
+        <td>Introduction to Psychology</td>
+        <td>Summer 2025</td>
+        <td>6</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of HUMA 140 Introduction to Psychology Syllabus &amp; Supplement(2).pdf</td>
+        <td>HUMA140_HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2.pdf</td>
+      </tr>
+<tr>
+        <td>MATH 112</td>
+        <td>Calculus II</td>
+        <td>Spring 2025</td>
+        <td>7</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf</td>
+        <td>MATH112_MATH_112_Syllabus_-_Spring_2025_-_Dr._Fawaz.pdf</td>
+      </tr>
+<tr>
+        <td>MATH 232</td>
+        <td>Engineering Mathematics</td>
+        <td>Fall 2021</td>
+        <td>3</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of MATH232_Syllabus_Supplement_e40ca893_2.pdf</td>
+        <td>MATH232_Syllabus_Supplement_e40ca893.pdf</td>
+      </tr>
+<tr>
+        <td>MATH 232</td>
+        <td>Engineering Mathematics</td>
+        <td>Fall 2021</td>
+        <td>3</td>
+        <td>100</td>
+        <td>duplicate</td>
+        <td>duplicate of MATH232_Syllabus_Supplement_e40ca893_2.pdf</td>
+        <td>MATH232_Syllabus_Supplement.pdf</td>
+      </tr></tbody>
+    </table>
+  </section>
+<section class="section">
+    <h2>Skipped: related/non-syllabus material (0)</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody><tr><td colspan="8">None</td></tr></tbody>
+    </table>
+  </section>
+<section class="section">
+    <h2>Skipped: other rebuilt templates (0)</h2>
+    <table>
+      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody><tr><td colspan="8">None</td></tr></tbody>
+    </table>
+  </section>
 </body>
 </html>

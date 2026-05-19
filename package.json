@@ -32,6 +32,7 @@
     "library:export-current": "node scripts/library-export-current.mjs",
     "library:import-rebuilt:dry": "node scripts/library-import-rebuilt.mjs --dry-run",
     "library:import-rebuilt": "node scripts/library-import-rebuilt.mjs",
+    "library:verify-production": "node scripts/library-verify-production.mjs",
     "syllabi:collect": "node scripts/collect-syllabi.mjs",
     "syllabi:index": "node scripts/index-syllabi.mjs",
     "syllabi:summary": "node scripts/syllabi-summary.mjs",
