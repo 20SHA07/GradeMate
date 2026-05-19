@@ -391,13 +391,13 @@ Site URL: https://20sha07.github.io/GradeMate
 
 Redirect URLs:
 https://20sha07.github.io/GradeMate/auth/callback
-https://20sha07.github.io/GradeMate/dashboard
 https://20sha07.github.io/GradeMate/workspace
+https://20sha07.github.io/GradeMate/dashboard
 https://20sha07.github.io/GradeMate/simple
 http://localhost:3000/auth/callback
 http://localhost:3001/auth/callback
-http://localhost:3000/dashboard
-http://localhost:3001/dashboard
+http://localhost:3000/workspace
+http://localhost:3001/workspace
 ```
 
 The frontend computes `emailRedirectTo` with the deployed base path, so
@@ -405,7 +405,17 @@ production links return to `/GradeMate/auth/callback` and local development
 links return to `/auth/callback`. If a confirmation link is opened in a
 different browser or after its PKCE session expires, GradeMate shows recovery
 steps, a login link, guest mode, and a resend-confirmation option when the email
-address is known.
+address is known. See [Email delivery checklist](docs/email-delivery-checklist.md)
+if verification emails do not arrive.
+
+For production, configure a custom SMTP provider in Supabase. Supabase built-in
+email is useful for early testing but may not reliably deliver friend-launch
+emails. Reasonable free or low-cost options include Resend, Brevo, SendGrid, and
+Postmark.
+
+For small private friend testing only, you can temporarily disable email
+confirmation in **Authentication > Providers > Email**. Signup will create usable
+accounts immediately. Turn confirmation back on before any broader public launch.
 
 To enable Google login, open **Authentication > Providers > Google** in Supabase,
 turn it on, add your Google OAuth client ID/secret, and make sure the same

@@ -14,6 +14,7 @@ await checkBuiltRoutes();
 await checkLandingOutput();
 await checkExtractorLabProductionOutput();
 await checkAuthCallbackUx();
+await checkPasswordAuthUx();
 await writeReports();
 
 console.log("GradeMate local smoke check complete");
@@ -95,16 +96,16 @@ async function checkAuthCallbackUx() {
   addCheck({
     area: "Auth",
     name: "Callback route renders in static export",
-    status: builtHtml.includes("Confirming your account") ? "pass" : "fail",
+    status: builtHtml.includes("Verifying your account") ? "pass" : "fail",
     detail: "out/auth/callback/index.html should exist and render the client callback shell."
   });
   addCheck({
     area: "Auth",
     name: "PKCE failure has friendly recovery copy",
     status:
-      source.includes("We could not complete this sign-in link") &&
+      source.includes("This verification link expired or was opened in a different browser") &&
       source.includes("Continue as guest") &&
-      source.includes("Resend confirmation email")
+      source.includes("Resend verification email")
         ? "pass"
         : "fail",
     detail:
@@ -117,6 +118,76 @@ async function checkAuthCallbackUx() {
       ? "fail"
       : "pass",
     detail: "Users should never see the raw Supabase verifier-storage error."
+  });
+}
+
+async function checkPasswordAuthUx() {
+  const source = await readText("src/components/auth/auth-form.tsx");
+  const loginHtml = await readText("out/login/index.html");
+  const signupHtml = await readText("out/signup/index.html");
+
+  addCheck({
+    area: "Auth",
+    name: "Login uses password flow",
+    status:
+      source.includes("signInWithPassword") &&
+      !source.includes("signInWithOtp")
+        ? "pass"
+        : "fail",
+    detail: "Normal login should use email/password, not passwordless magic links."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Signup uses verification email flow",
+    status:
+      source.includes("signUp") &&
+      source.includes("emailRedirectTo: getAuthRedirectUrl()") &&
+      source.includes("Resend verification email")
+        ? "pass"
+        : "fail",
+    detail: "Signup should request email verification and support resend."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Resend verification uses Supabase signup resend",
+    status:
+      source.includes("supabase.auth.resend") &&
+      source.includes('type: "signup"')
+        ? "pass"
+        : "fail",
+    detail: "Resend should use Supabase signup verification email, not magic-link login."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Email and password fields render",
+    status:
+      loginHtml.includes('type="email"') &&
+      loginHtml.includes('type="password"') &&
+      signupHtml.includes('type="email"') &&
+      signupHtml.includes('type="password"')
+        ? "pass"
+        : "fail",
+    detail: "Login and signup pages should render normal email/password inputs."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Guest mode remains visible",
+    status:
+      loginHtml.includes("Continue as guest") &&
+      signupHtml.includes("Continue as guest")
+        ? "pass"
+        : "fail",
+    detail: "Auth should never block guest usage."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Google login hidden",
+    status:
+      !loginHtml.includes("Continue with Google") &&
+      !signupHtml.includes("Sign up with Google")
+        ? "pass"
+        : "fail",
+    detail: "Google auth is paused and should not appear in the launch UI."
   });
 }
 

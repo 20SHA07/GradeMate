@@ -19,7 +19,7 @@ import {
 } from "@/lib/supabase/config";
 
 const expiredSignInLinkMessage =
-  "We could not complete this sign-in link. This usually happens if the link was opened in a different browser or the session expired.";
+  "This verification link expired or was opened in a different browser. Please log in again or request a new verification email.";
 
 function isPkceVerifierError(error: unknown) {
   const message =
@@ -86,7 +86,7 @@ export function AuthCallbackClient() {
             ? "Google login was canceled. You can try again or continue as a guest."
             : isPkceVerifierError(callbackErrorDescription)
               ? expiredSignInLinkMessage
-              : "We could not complete this sign-in link. Please try signing in again."
+              : "We could not complete this verification link. Please try logging in again."
         );
         return;
       }
@@ -99,7 +99,7 @@ export function AuthCallbackClient() {
           setError(
             isPkceVerifierError(exchangeError)
               ? expiredSignInLinkMessage
-              : "We could not complete this sign-in link. Please try signing in again."
+              : "We could not complete this verification link. Please try logging in again."
           );
           return;
         }
@@ -152,12 +152,12 @@ export function AuthCallbackClient() {
     setIsResending(false);
 
     if (resendError) {
-      setError("We could not send another confirmation email. Please try again from the login page.");
+      setError(getFriendlyCallbackAuthErrorMessage(resendError));
       return;
     }
 
     rememberPendingAuthEmail(email.trim());
-    setMessage("Confirmation email sent. Open it in this same browser.");
+    setMessage("Verification email sent. Check your inbox and spam folder.");
   }
 
   function continueAsGuest() {
@@ -168,12 +168,12 @@ export function AuthCallbackClient() {
   return (
     <Card className="w-full max-w-md p-6 text-center">
       <h1 className="text-2xl font-semibold text-ink-900">
-        {error ? "Sign-in link needs a reset" : "Confirming your account"}
+        {error ? "Verification link needs a reset" : "Verifying your account"}
       </h1>
       <p className="mt-2 text-sm leading-6 text-ink-500">
         {error
-          ? "Try signing in again from the same browser you used to request the link."
-          : "Hang tight while GradeMate finishes your sign up."}
+          ? "Try logging in again from the same browser you used to create the account."
+          : "Hang tight while GradeMate verifies your email."}
       </p>
       {error ? (
         <>
@@ -192,7 +192,7 @@ export function AuthCallbackClient() {
               onClick={() => void resendConfirmationEmail()}
               variant="secondary"
             >
-              {isResending ? "Sending..." : `Resend confirmation email`}
+              {isResending ? "Sending..." : `Resend verification email`}
             </Button>
           ) : null}
           <div className="mt-5 grid gap-2 sm:grid-cols-2">
@@ -208,11 +208,25 @@ export function AuthCallbackClient() {
             </button>
           </div>
           <p className="mt-4 text-xs leading-5 text-ink-500">
-            If you requested a sign-in link on another device, open the new email
+            If you requested a verification email on another device, open the new email
             on that same device or request a fresh link here.
           </p>
         </>
       ) : null}
     </Card>
   );
+}
+
+function getFriendlyCallbackAuthErrorMessage(error: unknown) {
+  const message = getSupabaseErrorMessage(error, "");
+
+  if (/rate limit|too many|security purposes|after \d+/i.test(message)) {
+    return "Please wait before requesting another email.";
+  }
+
+  if (/smtp|email.*not.*configured|error sending|send.*email|provider/i.test(message)) {
+    return "Email sending is not configured yet. Continue as guest or try later.";
+  }
+
+  return "We could not send another verification email. Please try again from the login page.";
 }

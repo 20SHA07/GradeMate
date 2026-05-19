@@ -6,7 +6,6 @@ import { LockKeyhole, Mail, UserRound } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { signInWithGoogle } from "@/lib/auth/oauth";
 import { rememberPendingAuthEmail } from "@/lib/auth/pending-email";
 import { startGuestSession } from "@/lib/guest-session";
 import { getAuthRedirectUrl } from "@/lib/routes";
@@ -30,7 +29,6 @@ export function AuthForm({ mode }: AuthFormProps) {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isGoogleSubmitting, setIsGoogleSubmitting] = useState(false);
   const [isResending, setIsResending] = useState(false);
   const [canResendConfirmation, setCanResendConfirmation] = useState(false);
   const supabase = useMemo(() => {
@@ -43,7 +41,6 @@ export function AuthForm({ mode }: AuthFormProps) {
   const supabaseConfig = useMemo(() => getSupabasePublicConfig(), []);
 
   const isSignup = mode === "signup";
-  const showGoogleAuth = false;
 
   useEffect(() => {
     if (!supabase) {
@@ -93,11 +90,13 @@ export function AuthForm({ mode }: AuthFormProps) {
     setIsSubmitting(false);
 
     if (authResponse.error) {
-      if (/email not confirmed|not confirmed/i.test(getSupabaseErrorMessage(authResponse.error))) {
+      const friendlyMessage = getFriendlyAuthErrorMessage(authResponse.error);
+
+      if (/confirm|verify/i.test(friendlyMessage)) {
         setCanResendConfirmation(true);
-        setError("This account still needs email confirmation. You can resend the confirmation email below.");
+        setError(friendlyMessage);
       } else {
-        setError(getSupabaseErrorMessage(authResponse.error));
+        setError(friendlyMessage);
       }
       return;
     }
@@ -108,26 +107,9 @@ export function AuthForm({ mode }: AuthFormProps) {
     }
 
     setCanResendConfirmation(true);
-    setMessage("Check your email to confirm your account. Open the link in this same browser.");
-  }
-
-  async function handleGoogleSignIn() {
-    setError("");
-    setMessage("");
-    setCanResendConfirmation(false);
-
-    if (!supabase) {
-      setError(supabaseConfig.missingSupabaseMessage);
-      return;
-    }
-
-    setIsGoogleSubmitting(true);
-    const { error: googleError } = await signInWithGoogle(supabase);
-
-    if (googleError) {
-      setIsGoogleSubmitting(false);
-      setError(getSupabaseErrorMessage(googleError));
-    }
+    setMessage(
+      `Check your email to verify your account. We sent a verification link to ${email.trim()}. Open it in the same browser if possible.`
+    );
   }
 
   function continueAsGuest() {
@@ -161,12 +143,12 @@ export function AuthForm({ mode }: AuthFormProps) {
     setIsResending(false);
 
     if (resendError) {
-      setError("We could not send another confirmation email. Please try again in a moment.");
+      setError(getFriendlyAuthErrorMessage(resendError));
       return;
     }
 
     setCanResendConfirmation(true);
-    setMessage("Confirmation email sent. Open it in this same browser.");
+    setMessage("Verification email sent. Check your inbox and spam folder.");
   }
 
   return (
@@ -177,7 +159,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         </h1>
         <p className="mt-2 text-sm leading-6 text-ink-500">
           {isSignup
-            ? "Create your GradeMate workspace with email and password."
+            ? "Create your GradeMate workspace with a normal email and password."
             : "Log in to manage your semesters, courses, and GPA plan."}
         </p>
       </div>
@@ -242,22 +224,33 @@ export function AuthForm({ mode }: AuthFormProps) {
         ) : null}
 
         {canResendConfirmation ? (
-          <button
-            className={buttonStyles({
-              className: "w-full",
-              variant: "secondary"
-            })}
-            disabled={isSubmitting || isGoogleSubmitting || isResending}
-            onClick={() => void resendConfirmationEmail()}
-            type="button"
-          >
-            {isResending ? "Sending..." : "Resend confirmation email"}
-          </button>
+          <div className="grid gap-2 sm:grid-cols-2">
+            <Link
+              className={buttonStyles({
+                className: "w-full",
+                variant: "secondary"
+              })}
+              href="/login"
+            >
+              I verified, go to login
+            </Link>
+            <button
+              className={buttonStyles({
+                className: "w-full",
+                variant: "secondary"
+              })}
+              disabled={isSubmitting || isResending}
+              onClick={() => void resendConfirmationEmail()}
+              type="button"
+            >
+              {isResending ? "Sending..." : "Resend verification email"}
+            </button>
+          </div>
         ) : null}
 
         <button
           className={buttonStyles({ className: "w-full" })}
-          disabled={isSubmitting || isGoogleSubmitting || isResending}
+          disabled={isSubmitting || isResending}
           type="submit"
         >
           {isSubmitting ? "Working..." : isSignup ? "Create account" : "Log in"}
@@ -271,33 +264,12 @@ export function AuthForm({ mode }: AuthFormProps) {
       </div>
 
       <div className="space-y-3">
-        {showGoogleAuth ? (
-          <button
-            className={buttonStyles({
-              className: "w-full",
-              variant: "secondary"
-            })}
-            disabled={isSubmitting || isGoogleSubmitting}
-            onClick={() => void handleGoogleSignIn()}
-            type="button"
-          >
-            <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-sm font-semibold text-ink-900">
-              G
-            </span>
-            {isGoogleSubmitting
-              ? "Opening Google..."
-              : isSignup
-                ? "Sign up with Google"
-                : "Continue with Google"}
-          </button>
-        ) : null}
-
         <button
           className={buttonStyles({
             className: "w-full",
             variant: "secondary"
           })}
-          disabled={isSubmitting || isGoogleSubmitting || isResending}
+          disabled={isSubmitting || isResending}
           onClick={continueAsGuest}
           type="button"
         >
@@ -320,4 +292,26 @@ export function AuthForm({ mode }: AuthFormProps) {
       </p>
     </Card>
   );
+}
+
+function getFriendlyAuthErrorMessage(error: unknown) {
+  const message = getSupabaseErrorMessage(error, "");
+
+  if (/rate limit|too many|security purposes|after \d+/i.test(message)) {
+    return "Please wait before requesting another email.";
+  }
+
+  if (/smtp|email.*not.*configured|error sending|send.*email|provider/i.test(message)) {
+    return "Email sending is not configured yet. Continue as guest or try later.";
+  }
+
+  if (/email not confirmed|not confirmed/i.test(message)) {
+    return "This account still needs email verification. You can resend the verification email below.";
+  }
+
+  if (/invalid login|invalid.*credentials/i.test(message)) {
+    return "Email or password is incorrect.";
+  }
+
+  return message || "Something went wrong. Please try again or continue as guest.";
 }
