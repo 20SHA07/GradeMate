@@ -1,6 +1,8 @@
 import fs from "node:fs/promises";
 import { createClient } from "@supabase/supabase-js";
 import {
+  computeCourseTemplateUniqueKey,
+  computeCourseTemplateUniqueKeyFromDb,
   fetchAllRows,
   getCanonicalReadyTemplates,
   getSupabaseServiceConfig,
@@ -28,10 +30,12 @@ try {
     fetchAllRows(supabase, "course_templates"),
     fetchAllRows(supabase, "course_template_assessments")
   ]);
+  const publicRead = await verifyPublicRead(supabaseUrl);
   const report = buildVerificationReport({
     expectedTemplates,
     productionAssessments,
-    productionTemplates
+    productionTemplates,
+    publicRead
   });
 
   await fs.writeFile(productionVerifyJsonPath, `${JSON.stringify(report, null, 2)}\n`, "utf8");
@@ -43,10 +47,18 @@ try {
   console.log(`Missing: ${report.summary.missing}`);
   console.log(`Without assessments: ${report.summary.withoutAssessments}`);
   console.log(`Bad totals: ${report.summary.badTotals}`);
+  console.log(`Duplicate unique keys: ${report.summary.duplicateUniqueKeys}`);
+  console.log(`Public read: ${report.summary.publicReadStatus}`);
   console.log(`Ready: ${report.summary.ready}`);
   console.log(`HTML: ${productionVerifyHtmlPath}`);
 
-  if (report.summary.missing > 0 || report.summary.withoutAssessments > 0 || report.summary.badTotals > 0) {
+  if (
+    report.summary.missing > 0 ||
+    report.summary.withoutAssessments > 0 ||
+    report.summary.badTotals > 0 ||
+    report.summary.duplicateUniqueKeys > 0 ||
+    report.summary.publicReadStatus === "failed"
+  ) {
     process.exitCode = 1;
   }
 } catch (error) {
@@ -64,6 +76,7 @@ async function loadExpectedTemplates() {
       courseCode: action.courseCode,
       courseName: action.courseName,
       semester: action.semester,
+      uniqueKey: action.uniqueKey ?? action.payload?.template?.unique_key ?? null,
       totalWeight: action.totalWeight,
       assessmentCount: action.assessmentCount,
       payload: action.payload
@@ -78,6 +91,7 @@ async function loadExpectedTemplates() {
     courseCode: template.courseCode,
     courseName: template.courseName,
     semester: template.semester,
+    uniqueKey: computeCourseTemplateUniqueKey(template),
     totalWeight: template.totalWeight,
     assessmentCount: template.assessments.length,
     payload: null
@@ -96,7 +110,8 @@ async function loadImportPlan() {
 function buildVerificationReport({
   expectedTemplates,
   productionAssessments,
-  productionTemplates
+  productionTemplates,
+  publicRead
 }) {
   const assessmentsByTemplateId = groupBy(
     productionAssessments,
@@ -125,6 +140,7 @@ function buildVerificationReport({
       issues,
       source: expected.source,
       sourceFileName: expected.sourceFileName,
+      uniqueKey: expected.uniqueKey,
       courseCode: expected.courseCode,
       courseName: expected.courseName,
       semester: expected.semester,
@@ -140,6 +156,7 @@ function buildVerificationReport({
   const badTotals = rows.filter((row) =>
     row.issues.some((issue) => issue.startsWith("total "))
   ).length;
+  const duplicateUniqueKeys = findDuplicateProductionUniqueKeys(productionTemplates);
 
   return {
     generatedAt: new Date().toISOString(),
@@ -151,32 +168,71 @@ function buildVerificationReport({
       missing,
       withoutAssessments,
       badTotals,
+      duplicateUniqueKeys: duplicateUniqueKeys.length,
+      publicReadStatus: publicRead.status,
       ready: rows.filter((row) => row.status === "ready").length,
       problems: rows.filter((row) => row.status !== "ready").length
     },
+    publicRead,
+    duplicateUniqueKeys,
     rows
   };
 }
 
 function findProductionTemplate(productionTemplates, expected) {
-  const exact = productionTemplates.find(
-    (template) =>
-      normalizeScalar(template.course_code) === normalizeScalar(expected.courseCode) &&
-      normalizeScalar(template.course_name) === normalizeScalar(expected.courseName) &&
-      normalizeScalar(template.semester ?? template.term) === normalizeScalar(expected.semester)
-  );
-
-  if (exact) {
-    return exact;
-  }
-
   return (
     productionTemplates.find(
-      (template) =>
-        normalizeScalar(template.course_code) === normalizeScalar(expected.courseCode) &&
-        normalizeScalar(template.course_name) === normalizeScalar(expected.courseName)
+      (template) => computeCourseTemplateUniqueKeyFromDb(template) === expected.uniqueKey
     ) ?? null
   );
+}
+
+async function verifyPublicRead(supabaseUrl) {
+  const publicKey =
+    process.env.NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!publicKey) {
+    return {
+      status: "skipped",
+      message:
+        "NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY is not set."
+    };
+  }
+
+  const publicClient = createClient(supabaseUrl, publicKey, {
+    auth: { persistSession: false }
+  });
+  const { data, error } = await publicClient
+    .from("course_templates")
+    .select("id, unique_key, course_code, course_name")
+    .eq("template_status", "ready")
+    .limit(1);
+
+  if (error) {
+    return {
+      status: "failed",
+      message: error.message
+    };
+  }
+
+  return {
+    status: "passed",
+    message: `Public query returned ${data?.length ?? 0} ready template(s).`
+  };
+}
+
+function findDuplicateProductionUniqueKeys(productionTemplates) {
+  const groups = groupBy(productionTemplates, (template) =>
+    computeCourseTemplateUniqueKeyFromDb(template)
+  );
+
+  return Array.from(groups.entries())
+    .filter(([key, values]) => key && values.length > 1)
+    .map(([uniqueKey, values]) => ({
+      uniqueKey,
+      count: values.length,
+      ids: values.map((value) => value.id)
+    }));
 }
 
 function buildVerificationHtml(report) {
@@ -184,6 +240,7 @@ function buildVerificationHtml(report) {
     .map(
       (row) => `<tr>
         <td><span class="pill ${row.status}">${htmlEscape(row.status)}</span></td>
+        <td><code>${htmlEscape(row.uniqueKey)}</code></td>
         <td>${htmlEscape(row.courseCode)}</td>
         <td>${htmlEscape(row.courseName)}</td>
         <td>${htmlEscape(row.semester)}</td>
@@ -226,12 +283,14 @@ function buildVerificationHtml(report) {
     ${summaryCard("Missing", report.summary.missing)}
     ${summaryCard("No assessments", report.summary.withoutAssessments)}
     ${summaryCard("Bad totals", report.summary.badTotals)}
+    ${summaryCard("Duplicate keys", report.summary.duplicateUniqueKeys)}
+    ${summaryCard("Public read", report.summary.publicReadStatus)}
     ${summaryCard("Ready", report.summary.ready)}
     ${summaryCard("Production templates", report.summary.productionTemplates)}
     ${summaryCard("Production rows", report.summary.productionAssessments)}
   </section>
   <table>
-    <thead><tr><th>Status</th><th>Code</th><th>Name</th><th>Semester</th><th>Source</th><th>Expected rows</th><th>Expected total</th><th>Production id</th><th>Production rows</th><th>Production total</th><th>Issues</th></tr></thead>
+    <thead><tr><th>Status</th><th>Unique key</th><th>Code</th><th>Name</th><th>Semester</th><th>Source</th><th>Expected rows</th><th>Expected total</th><th>Production id</th><th>Production rows</th><th>Production total</th><th>Issues</th></tr></thead>
     <tbody>${rows}</tbody>
   </table>
 </body>
@@ -266,13 +325,6 @@ function sumAssessments(assessments) {
 
 function isReadyTotal(value) {
   return Number(value) >= 99.5 && Number(value) <= 100.5;
-}
-
-function normalizeScalar(value) {
-  return String(value ?? "")
-    .toLowerCase()
-    .replace(/\s+/g, " ")
-    .trim();
 }
 
 function formatNumber(value) {

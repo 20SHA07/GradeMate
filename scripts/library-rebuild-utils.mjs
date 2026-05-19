@@ -480,9 +480,74 @@ export async function fetchAllRows(supabase, table, select = "*") {
   return rows;
 }
 
+export function computeCourseTemplateUniqueKey(template) {
+  return buildCourseTemplateUniqueKey({
+    courseCode: template.courseCode,
+    courseName: template.courseName,
+    semester: template.semester,
+    sourceHash: template.sourceHash,
+    sourceFileName: template.sourceFileName,
+    id: template.id
+  });
+}
+
+export function computeCourseTemplateUniqueKeyFromDb(template) {
+  return (
+    template.unique_key ??
+    buildCourseTemplateUniqueKey({
+      courseCode: template.course_code,
+      courseName: template.course_name,
+      semester: template.semester ?? template.term,
+      sourceHash: template.source_hash,
+      sourceFileName:
+        template.source_file_name ??
+        template.source_syllabus_file_name ??
+        template.source_syllabus_path,
+      id: template.id
+    })
+  );
+}
+
+export function buildCourseTemplateUniqueKey({
+  courseCode,
+  courseName,
+  id,
+  semester,
+  sourceFileName,
+  sourceHash
+}) {
+  const code = normalizeUniqueKeyPart(courseCode) || "unknown-code";
+  const name = normalizeUniqueKeyPart(courseName) || "unknown-course";
+  const term = normalizeUniqueKeyPart(semester);
+
+  if (term) {
+    return `${code}::${name}::${term}`;
+  }
+
+  const sourceSuffix =
+    normalizeUniqueKeyPart(sourceHash)?.slice(0, 12) ||
+    normalizeUniqueKeyPart(sourceFileName)?.slice(0, 48) ||
+    normalizeUniqueKeyPart(id)?.slice(0, 12) ||
+    "unknown-source";
+
+  return `${code}::${name}::unknown::${sourceSuffix}`;
+}
+
+export function normalizeUniqueKeyPart(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, "-");
+}
+
 export function buildSupabasePayload(template) {
+  const uniqueKey = computeCourseTemplateUniqueKey(template);
+
   return {
     template: {
+      unique_key: uniqueKey,
       course_code: template.courseCode,
       course_name: template.courseName,
       department: template.department,
@@ -530,6 +595,7 @@ export function buildSupabasePayload(template) {
 
 export function stripOptionalTemplateColumns(payload) {
   const allowed = new Set([
+    "unique_key",
     "course_code",
     "course_name",
     "department",
@@ -613,6 +679,14 @@ function buildTemplateFromProposal({
 
   return {
     id: createSlug(file.fileName),
+    uniqueKey: buildCourseTemplateUniqueKey({
+      courseCode: proposal.courseCode,
+      courseName: proposal.courseName,
+      semester: proposal.semester,
+      sourceHash,
+      sourceFileName: file.fileName,
+      id: createSlug(file.fileName)
+    }),
     sourceFileName: file.fileName,
     sourcePath: file.relativePath,
     sourceRelativePath: file.relativePath,

@@ -64,6 +64,7 @@ export type SyllabusUploadRecord = {
 
 export type CourseTemplateRecord = {
   id: string;
+  unique_key?: string | null;
   course_code: string;
   course_name: string;
   department: string | null;
@@ -300,6 +301,7 @@ export type Database = {
         Row: CourseTemplateRecord;
         Insert: {
           id?: string;
+          unique_key?: string | null;
           course_code: string;
           course_name: string;
           department?: string | null;

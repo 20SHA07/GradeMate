@@ -1,5 +1,6 @@
 create table if not exists course_templates (
   id uuid primary key default gen_random_uuid(),
+  unique_key text,
   course_code text not null,
   course_name text not null,
   department text,
@@ -17,15 +18,21 @@ create table if not exists course_templates (
 );
 
 alter table course_templates add column if not exists instructor text;
+alter table course_templates add column if not exists unique_key text;
 alter table course_templates add column if not exists term text;
 alter table course_templates add column if not exists source_syllabus_file_name text;
 alter table course_templates add column if not exists source_syllabus_path text;
 alter table course_templates add column if not exists updated_at timestamp with time zone default now();
 
 alter table course_templates drop constraint if exists course_templates_course_code_key;
+alter table course_templates drop constraint if exists course_templates_code_name_unique;
 
-create unique index if not exists course_templates_code_name_unique
-on course_templates(course_code, course_name);
+drop index if exists course_templates_code_name_unique;
+drop index if exists course_templates_code_name_semester_unique;
+
+create unique index if not exists course_templates_unique_key_unique
+on course_templates(unique_key)
+where unique_key is not null;
 
 create table if not exists course_template_assessments (
   id uuid primary key default gen_random_uuid(),

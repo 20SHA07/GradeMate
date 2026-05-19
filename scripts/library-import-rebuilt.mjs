@@ -2,6 +2,8 @@ import fs from "node:fs/promises";
 import { createClient } from "@supabase/supabase-js";
 import {
   buildSupabasePayload,
+  computeCourseTemplateUniqueKey,
+  computeCourseTemplateUniqueKeyFromDb,
   fetchAllRows,
   getSupabaseServiceConfig,
   htmlEscape,
@@ -9,8 +11,7 @@ import {
   importPlanJsonPath,
   loadLatestBackup,
   readRebuiltTemplates,
-  stripOptionalAssessmentColumns,
-  stripOptionalTemplateColumns
+  stripOptionalAssessmentColumns
 } from "./library-rebuild-utils.mjs";
 
 const args = process.argv.slice(2);
@@ -59,6 +60,7 @@ try {
   const supabase = createClient(supabaseUrl, serviceRoleKey, {
     auth: { persistSession: false }
   });
+  await assertSupabaseSchemaReady(supabase, plan);
   const result = await executeImport(supabase, plan);
 
   console.log("Course Library import complete");
@@ -140,6 +142,7 @@ function classifyRebuiltTemplates(
     const skipBase = summarizeTemplateForSkip(template);
     const chosenAsCanonical = chosenCanonicalFiles.has(template.sourceFileName);
     const effectiveCanonical = template.canonical || chosenAsCanonical;
+    const uniqueKey = computeCourseTemplateUniqueKey(template);
 
     if (template.duplicateStatus === "conflict") {
       const explicitlyAllowed = allowConflicts || chosenAsCanonical;
@@ -147,6 +150,7 @@ function classifyRebuiltTemplates(
       if (!effectiveCanonical || !template.ready || !explicitlyAllowed) {
         skipped.duplicateConflicts.push({
           ...skipBase,
+          uniqueKey,
           reason: template.canonical
             ? "duplicate conflict skipped until --resolve-conflicts or --canonical-file is used"
             : "non-canonical duplicate conflict"
@@ -158,6 +162,7 @@ function classifyRebuiltTemplates(
     if (template.sourceType !== "syllabus") {
       skipped.relatedMaterials.push({
         ...skipBase,
+        uniqueKey,
         reason: template.sourceType ?? "not syllabus"
       });
       return;
@@ -166,6 +171,7 @@ function classifyRebuiltTemplates(
     if (template.duplicateStatus === "duplicate" && !effectiveCanonical) {
       skipped.nonCanonicalDuplicates.push({
         ...skipBase,
+        uniqueKey,
         reason: template.canonicalReason ?? "non-canonical duplicate"
       });
       return;
@@ -175,6 +181,7 @@ function classifyRebuiltTemplates(
       if (!allowNeedsReview) {
         skipped.needsReview.push({
           ...skipBase,
+          uniqueKey,
           reason: (template.reasons ?? []).join("; ") || "needs review"
         });
         return;
@@ -183,6 +190,7 @@ function classifyRebuiltTemplates(
       if (!template.courseCode || !template.courseName || template.assessments.length === 0) {
         skipped.needsReview.push({
           ...skipBase,
+          uniqueKey,
           reason:
             "needs-review template lacks required course info or assessments and cannot be imported"
         });
@@ -193,6 +201,7 @@ function classifyRebuiltTemplates(
     if (!effectiveCanonical) {
       skipped.other.push({
         ...skipBase,
+        uniqueKey,
         reason: template.canonicalReason ?? "not canonical"
       });
       return;
@@ -209,8 +218,10 @@ function classifyRebuiltTemplates(
     );
   });
 
+  const deduped = dedupeImportableTemplatesByUniqueKey(importableTemplates, skipped);
+
   return {
-    importableTemplates,
+    importableTemplates: deduped,
     skipped,
     summary: {
       totalRebuilt: templates.length,
@@ -221,11 +232,11 @@ function classifyRebuiltTemplates(
           !template.needsReview &&
           template.sourceType === "syllabus"
       ).length,
-      importableReadyCanonical: importableTemplates.filter(
+      importableReadyCanonical: deduped.filter(
         (template) => template.ready && !template.needsReview
       ).length,
-      importableNeedsReview: importableTemplates.filter((template) => template.needsReview).length,
-      importableConflicts: importableTemplates.filter(
+      importableNeedsReview: deduped.filter((template) => template.needsReview).length,
+      importableConflicts: deduped.filter(
         (template) => template.duplicateStatus === "conflict"
       ).length,
       skippedNeedsReview: skipped.needsReview.length,
@@ -235,6 +246,36 @@ function classifyRebuiltTemplates(
       skippedOther: skipped.other.length
     }
   };
+}
+
+function dedupeImportableTemplatesByUniqueKey(importableTemplates, skipped) {
+  const groups = groupBy(importableTemplates, (template) => computeCourseTemplateUniqueKey(template));
+  const deduped = [];
+
+  for (const [uniqueKey, templates] of groups.entries()) {
+    if (templates.length === 1) {
+      deduped.push(templates[0]);
+      continue;
+    }
+
+    const [canonical, ...duplicates] = [...templates].sort(
+      (first, second) =>
+        Number(second.confidence ?? 0) - Number(first.confidence ?? 0) ||
+        (second.assessments?.length ?? 0) - (first.assessments?.length ?? 0)
+    );
+
+    deduped.push(canonical);
+
+    duplicates.forEach((template) => {
+      skipped.duplicateConflicts.push({
+        ...summarizeTemplateForSkip(template),
+        uniqueKey,
+        reason: `same unique_key as ${canonical.sourceFileName}`
+      });
+    });
+  }
+
+  return deduped;
 }
 
 function summarizeTemplateForSkip(template) {
@@ -262,8 +303,14 @@ function buildImportPlan(importableTemplates, current, selection) {
     (assessment) => assessment.course_template_id
   );
   const actions = importableTemplates.map((template) => {
-    const existing = findExistingTemplate(current.templates, template);
     const payload = buildSupabasePayload(template);
+    const uniqueKey = payload.template.unique_key;
+    const existing = findExistingTemplate(current.templates, uniqueKey);
+    const oldCourseCodeNameConflicts = findOldCourseCodeNameConflicts(
+      current.templates,
+      template,
+      uniqueKey
+    );
     const existingAssessments = existing
       ? assessmentsByTemplateId.get(existing.id) ?? []
       : [];
@@ -276,7 +323,8 @@ function buildImportPlan(importableTemplates, current, selection) {
     return {
       action,
       templateId: existing?.id ?? null,
-      key: `${template.courseCode} | ${template.courseName} | ${template.semester ?? ""}`,
+      key: uniqueKey,
+      uniqueKey,
       sourceFileName: template.sourceFileName,
       courseCode: template.courseCode,
       courseName: template.courseName,
@@ -290,9 +338,12 @@ function buildImportPlan(importableTemplates, current, selection) {
       duplicateStatus: template.duplicateStatus,
       duplicateGroupKey: template.duplicateGroupKey,
       assessmentChange,
+      oldCourseCodeNameConflict: oldCourseCodeNameConflicts.length > 0,
+      oldCourseCodeNameConflicts,
       existing: existing
         ? {
             id: existing.id,
+            uniqueKey: computeCourseTemplateUniqueKeyFromDb(existing),
             courseCode: existing.course_code,
             courseName: existing.course_name,
             semester: existing.semester ?? existing.term ?? null,
@@ -340,6 +391,8 @@ function buildImportPlan(importableTemplates, current, selection) {
       relatedMaterialCount: selection.summary.skippedRelatedMaterials,
       otherSkippedCount: selection.summary.skippedOther,
       assessmentChanges: actions.filter((action) => action.assessmentChange).length,
+      oldCourseCodeNameConflicts: actions.filter((action) => action.oldCourseCodeNameConflict)
+        .length,
       existingTemplatesNotTouched: existingTemplatesNotTouched.length
     },
     actions,
@@ -368,26 +421,32 @@ function assertRealImportGuards(plan) {
   }
 }
 
-function findExistingTemplate(currentTemplates, rebuiltTemplate) {
-  const exact = currentTemplates.find(
-    (template) =>
-      normalizeScalar(template.course_code) === normalizeScalar(rebuiltTemplate.courseCode) &&
-      normalizeScalar(template.course_name) === normalizeScalar(rebuiltTemplate.courseName) &&
-      normalizeScalar(template.semester ?? template.term) ===
-        normalizeScalar(rebuiltTemplate.semester)
-  );
-
-  if (exact) {
-    return exact;
-  }
-
+function findExistingTemplate(currentTemplates, uniqueKey) {
   return (
     currentTemplates.find(
-      (template) =>
-        normalizeScalar(template.course_code) === normalizeScalar(rebuiltTemplate.courseCode) &&
-        normalizeScalar(template.course_name) === normalizeScalar(rebuiltTemplate.courseName)
+      (template) => computeCourseTemplateUniqueKeyFromDb(template) === uniqueKey
     ) ?? null
   );
+}
+
+function findOldCourseCodeNameConflicts(currentTemplates, rebuiltTemplate, uniqueKey) {
+  return currentTemplates
+    .filter(
+      (template) =>
+        normalizeScalar(template.course_code) === normalizeScalar(rebuiltTemplate.courseCode) &&
+        normalizeScalar(template.course_name) === normalizeScalar(rebuiltTemplate.courseName) &&
+        computeCourseTemplateUniqueKeyFromDb(template) !== uniqueKey
+    )
+    .map((template) => ({
+      id: template.id,
+      uniqueKey: computeCourseTemplateUniqueKeyFromDb(template),
+      semester: template.semester ?? template.term ?? null,
+      sourceFileName:
+        template.source_file_name ??
+        template.source_syllabus_file_name ??
+        template.source_syllabus_path ??
+        null
+    }));
 }
 
 async function writeImportPlan(plan) {
@@ -405,6 +464,7 @@ function printPlanSummary(plan) {
   console.log(`Needs review skipped: ${plan.summary.needsReviewCount}`);
   console.log(`Duplicate conflicts skipped: ${plan.summary.conflictCount}`);
   console.log(`Non-canonical duplicates skipped: ${plan.summary.duplicateCount}`);
+  console.log(`Old course_code+course_name conflicts: ${plan.summary.oldCourseCodeNameConflicts}`);
   console.log(`Assessment changes: ${plan.summary.assessmentChanges}`);
   console.log(`JSON: ${importPlanJsonPath}`);
   console.log(`HTML: ${importPlanHtmlPath}`);
@@ -417,13 +477,11 @@ async function executeImport(supabase, plan) {
   let materialsInserted = 0;
 
   for (const action of plan.actions) {
-    let templateId = action.templateId;
+    const templateId = await upsertTemplate(supabase, action.payload.template);
 
     if (action.action === "insert") {
-      templateId = await insertTemplate(supabase, action.payload.template);
       inserted += 1;
     } else {
-      await updateTemplate(supabase, templateId, action.payload.template);
       updated += 1;
     }
 
@@ -442,53 +500,57 @@ async function executeImport(supabase, plan) {
   };
 }
 
-async function insertTemplate(supabase, payload) {
+async function assertSupabaseSchemaReady(supabase, plan) {
+  const duplicateActionKeys = findDuplicateActionKeys(plan.actions);
+
+  if (duplicateActionKeys.length > 0) {
+    throw new Error(
+      `Refusing to import duplicate unique_key values: ${duplicateActionKeys.join(", ")}`
+    );
+  }
+
   const result = await supabase
     .from("course_templates")
-    .insert(payload)
-    .select("id")
-    .single();
+    .select("id, unique_key")
+    .limit(1);
 
-  if (!result.error && result.data?.id) {
-    return result.data.id;
+  if (isUniqueKeySchemaError(result.error)) {
+    throw new Error("Run supabase/course-template-unique-key.sql first.");
   }
 
-  if (!isMissingColumnError(result.error)) {
-    throw new Error(`course_templates insert: ${result.error?.message ?? "Unknown error"}`);
+  if (result.error) {
+    throw new Error(`course_templates schema check: ${result.error.message}`);
   }
-
-  const retry = await supabase
-    .from("course_templates")
-    .insert(stripOptionalTemplateColumns(payload))
-    .select("id")
-    .single();
-
-  if (retry.error || !retry.data?.id) {
-    throw new Error(`course_templates insert: ${retry.error?.message ?? "Unknown error"}`);
-  }
-
-  return retry.data.id;
 }
 
-async function updateTemplate(supabase, templateId, payload) {
-  const result = await supabase.from("course_templates").update(payload).eq("id", templateId);
-
-  if (!result.error) {
-    return;
-  }
-
-  if (!isMissingColumnError(result.error)) {
-    throw new Error(`course_templates update: ${result.error.message}`);
-  }
-
-  const retry = await supabase
+async function upsertTemplate(supabase, payload) {
+  const result = await supabase
     .from("course_templates")
-    .update(stripOptionalTemplateColumns(payload))
-    .eq("id", templateId);
+    .upsert(payload, { onConflict: "unique_key" })
+    .select("id")
+    .single();
 
-  if (retry.error) {
-    throw new Error(`course_templates update: ${retry.error.message}`);
+  if (result.error || !result.data?.id) {
+    if (isUniqueKeySchemaError(result.error) || isOldCodeNameUniqueError(result.error)) {
+      throw new Error("Run supabase/course-template-unique-key.sql first.");
+    }
+
+    throw new Error(`course_templates upsert: ${result.error?.message ?? "Unknown error"}`);
   }
+
+  return result.data.id;
+}
+
+function findDuplicateActionKeys(actions) {
+  const counts = new Map();
+
+  actions.forEach((action) => {
+    counts.set(action.uniqueKey, (counts.get(action.uniqueKey) ?? 0) + 1);
+  });
+
+  return Array.from(counts.entries())
+    .filter(([, count]) => count > 1)
+    .map(([key]) => key);
 }
 
 async function replaceAssessments(supabase, templateId, assessments) {
@@ -547,6 +609,18 @@ async function replaceMaterial(supabase, templateId, material) {
 
 function isMissingColumnError(error) {
   return /column|schema cache|Could not find/i.test(error?.message ?? "");
+}
+
+function isUniqueKeySchemaError(error) {
+  const message = error?.message ?? "";
+  return (
+    /unique_key|on conflict|constraint/i.test(message) &&
+    (isMissingColumnError(error) || /no unique|no constraint|on conflict/i.test(message))
+  );
+}
+
+function isOldCodeNameUniqueError(error) {
+  return /course_templates_code_name_unique|duplicate key value/i.test(error?.message ?? "");
 }
 
 function groupBy(values, keyFn) {
@@ -654,6 +728,7 @@ function buildImportPlanHtml(plan) {
     ${summaryCard("Needs review", plan.summary.needsReviewCount)}
     ${summaryCard("Conflicts", plan.summary.conflictCount)}
     ${summaryCard("Duplicates", plan.summary.duplicateCount)}
+    ${summaryCard("Old code/name conflicts", plan.summary.oldCourseCodeNameConflicts)}
     ${summaryCard("Ready canonical", plan.summary.readyCanonical)}
     ${summaryCard("Importable", plan.summary.importableReadyCanonical)}
   </section>
@@ -676,12 +751,14 @@ function buildActionTable(title, actions) {
     .map(
       (action) => `<tr>
         <td><span class="pill ${htmlEscape(action.action)}">${htmlEscape(action.action)}</span></td>
+        <td><code>${htmlEscape(action.uniqueKey)}</code></td>
         <td>${htmlEscape(action.courseCode)}</td>
         <td>${htmlEscape(action.courseName)}</td>
         <td>${htmlEscape(action.semester)}</td>
         <td>${action.assessmentCount}</td>
         <td>${action.totalWeight}</td>
         <td>${action.assessmentChange ? "Yes" : "No"}</td>
+        <td>${action.oldCourseCodeNameConflict ? "Yes" : "No"}</td>
         <td>${htmlEscape(action.duplicateStatus)}</td>
         <td>${htmlEscape(action.sourceFileName)}</td>
       </tr>`
@@ -691,8 +768,8 @@ function buildActionTable(title, actions) {
   return `<section class="section">
     <h2>${htmlEscape(title)} (${actions.length})</h2>
     <table>
-      <thead><tr><th>Action</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Duplicate status</th><th>Source</th></tr></thead>
-      <tbody>${rows || `<tr><td colspan="9">None</td></tr>`}</tbody>
+      <thead><tr><th>Action</th><th>Unique key</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Assessment change</th><th>Old code/name conflict</th><th>Duplicate status</th><th>Source</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="11">None</td></tr>`}</tbody>
     </table>
   </section>`;
 }
@@ -701,6 +778,7 @@ function buildSkippedTable(title, values) {
   const rows = values
     .map(
       (value) => `<tr>
+        <td><code>${htmlEscape(value.uniqueKey)}</code></td>
         <td>${htmlEscape(value.courseCode)}</td>
         <td>${htmlEscape(value.courseName)}</td>
         <td>${htmlEscape(value.semester)}</td>
@@ -716,8 +794,8 @@ function buildSkippedTable(title, values) {
   return `<section class="section">
     <h2>${htmlEscape(title)} (${values.length})</h2>
     <table>
-      <thead><tr><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
-      <tbody>${rows || `<tr><td colspan="8">None</td></tr>`}</tbody>
+      <thead><tr><th>Unique key</th><th>Code</th><th>Name</th><th>Semester</th><th>Rows</th><th>Total</th><th>Duplicate status</th><th>Reason</th><th>Source</th></tr></thead>
+      <tbody>${rows || `<tr><td colspan="9">None</td></tr>`}</tbody>
     </table>
   </section>`;
 }

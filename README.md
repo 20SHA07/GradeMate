@@ -217,6 +217,13 @@ Back up the current Course Library before importing:
 npm run library:export-current
 ```
 
+Before the first rebuilt import, run
+[supabase/course-template-unique-key.sql](supabase/course-template-unique-key.sql)
+in the Supabase SQL editor. This preserves existing templates, adds
+`course_templates.unique_key`, drops the old `course_code + course_name`
+uniqueness rule, and lets the same course exist across different semesters or
+source-specific unknown-term templates.
+
 Preview the rebuilt import without writing to Supabase:
 
 ```bash

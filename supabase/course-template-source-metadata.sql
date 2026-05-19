@@ -1,6 +1,9 @@
 -- Optional metadata columns for deterministic Course Library rebuilds.
--- Apply in Supabase SQL Editor before running `npm run library:import-rebuilt -- --confirm`.
+-- For rebuilt imports, prefer supabase/course-template-unique-key.sql. It
+-- includes these metadata columns and replaces the old course_code+course_name
+-- uniqueness rule with stable unique_key upserts.
 
+alter table course_templates add column if not exists unique_key text;
 alter table course_templates add column if not exists source_file_name text;
 alter table course_templates add column if not exists source_folder_path text;
 alter table course_templates add column if not exists source_syllabus_file_name text;
@@ -28,10 +31,11 @@ alter table course_templates
 add constraint course_templates_template_status_check
 check (template_status in ('ready', 'needs_review', 'archived'));
 
-drop index if exists course_templates_code_name_unique;
+alter table course_templates
+drop constraint if exists course_templates_code_name_unique;
 
-create unique index if not exists course_templates_code_name_semester_unique
-on course_templates (course_code, course_name, (coalesce(semester, term, '')));
+drop index if exists course_templates_code_name_unique;
+drop index if exists course_templates_code_name_semester_unique;
 
 create index if not exists course_templates_template_status_idx
 on course_templates(template_status);
