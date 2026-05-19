@@ -26,6 +26,10 @@
     "dataset:export-verified": "node scripts/dataset-export-verified.mjs",
     "dataset:review-verified": "node scripts/dataset-review-verified.mjs",
     "dataset:promote-verified": "node scripts/dataset-promote-verified.mjs",
+    "syllabi:collect": "node scripts/collect-syllabi.mjs",
+    "syllabi:index": "node scripts/index-syllabi.mjs",
+    "syllabi:summary": "node scripts/syllabi-summary.mjs",
+    "syllabi:zip": "node scripts/zip-syllabi.mjs",
     "test:dataset": "node scripts/test-dataset.mjs"
   },
   "dependencies": {

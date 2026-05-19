@@ -676,7 +676,7 @@ function scoreSyllabusText(text) {
   );
 }
 
-async function extractDocumentText(filePath, options = {}) {
+export async function extractDocumentText(filePath, options = {}) {
   const extension = path.extname(filePath).toLowerCase();
 
   if (extension === ".pdf") {
