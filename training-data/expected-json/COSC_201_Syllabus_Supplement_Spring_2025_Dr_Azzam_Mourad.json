@@ -13,7 +13,7 @@
   "schedule": null,
   "classroom": null,
   "officeRoom": "D04209",
-  "officeHours": null,
+  "officeHours": "Tuesday-Thursday: 10-11 AM and 12-1 PM; Monday-Wednesday: By appointment",
   "prerequisites": "COSC 101",
   "textbooks": [
     "Computer Systems: A Programmer’s Perspective by Randal E. Bryant and David R.",
@@ -22,43 +22,43 @@
   "courseDescription": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
   "assessments": [
     {
-      "name": "Quizzes Quizzes 15%",
+      "name": "Coursework (quizzes, homework)",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quizzes Quizzes 15%"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (quizzes, homework) 15%"
     },
     {
-      "name": "Projects",
-      "weight_percentage": 20,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Project Week 13 20%"
-    },
-    {
-      "name": "Laboratory",
+      "name": "Lab Work",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Laboratory Lab reports/progress 15%"
+      "confidence": 0.9,
+      "source_text_snippet": "Lab Work 15%"
     },
     {
-      "name": "Semester Examination (s)",
+      "name": "Project",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Semester Examination (s) 3 -7 March, 2025 20%"
+      "confidence": 0.9,
+      "source_text_snippet": "Project 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination 20%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final Examination After May 2, 2025 30%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 30%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.93,
+  "confidence": 0.89,
   "needsHumanReview": false
 }

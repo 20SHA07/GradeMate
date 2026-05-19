@@ -1,0 +1,57 @@
+{
+  "sourceFileName": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourcePath": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourceRelativePath": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourceTextFileName": "CHEM116_CHEM116_Syllabus_SP25.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEM 116",
+  "courseName": "General Chemistry II",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Gisha Elizabeth Luckachan",
+  "instructorEmail": "gisha.luckachan@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus, Bu Hasa 20 001",
+  "officeHours": "Tuesday: 11:00 am-1:00 pm; Thursday: 11:00 am-1:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework / Quizzes",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Coursework: Quiz # 1 Week 3"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory (if applicable) Lab Reports See Lab Schedule 15%"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam See Teaching Plan 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination TBC by the Registrar’s Office End of Term 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.89,
+  "needsHumanReview": true
+}

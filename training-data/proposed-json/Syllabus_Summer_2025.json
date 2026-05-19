@@ -24,7 +24,7 @@
   "courseDescription": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
   "assessments": [
     {
-      "name": "Quiz 1",
+      "name": "Quizzes",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,

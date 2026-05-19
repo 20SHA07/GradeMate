@@ -1,0 +1,98 @@
+{
+  "sourceFileName": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourcePath": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourceRelativePath": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourceTextFileName": "GENS_300_Revised_Syllabus_Jan_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "creditHours": 1,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "- GENS 100, Sophomore Standing",
+  "textbooks": [
+    "Materials",
+    "K. Brooks, What Color Is Your Parachute? for College. New York, NY, USA: Ten Speed Press, 2021, ISBN: 978-1-9848-",
+    "Course Structure & Learning Methodology",
+    "Studio sessions are 1 x 100 minutes per week. Sessions involve interactive activities in a blended learning"
+  ],
+  "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and labor market\nspecialist. This activity-based course is focused on field exploration, CV and digital profile development, and\nprofessional communication. Course delivery is a blend of in-person and asynchronous online learning experiences.",
+  "assessments": [
+    {
+      "name": "Initial CV submission",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Initial submission weighted (5%)"
+    },
+    {
+      "name": "Final CV version",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final CV version weighed (10%)"
+    },
+    {
+      "name": "Career development plan",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Career development plan (10%)"
+    },
+    {
+      "name": "Complete two experiences and submit valid evidence",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Complete two experiences and submit valid evidence in Week 13 (20%)"
+    },
+    {
+      "name": "LinkedIn courses completion",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "LinkedIn courses completion (5%)"
+    },
+    {
+      "name": "Weekly online quizzes",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Weekly online quizzes (5%)"
+    },
+    {
+      "name": "Mock Interview",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Mock Interview 12-14 15%"
+    },
+    {
+      "name": "Attendance of Professional Development workshops (5 workshops)",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Attendance of Professional Development workshops (5 workshops) 1-14 20%"
+    },
+    {
+      "name": "Final Quiz",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Quiz 14 10%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Using detailed assessment methodology instead of summary table.",
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "confidence": 0.87,
+  "needsHumanReview": true
+}

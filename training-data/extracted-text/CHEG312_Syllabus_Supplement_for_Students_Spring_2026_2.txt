@@ -1,0 +1,174 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title CHEG 312 Numerical Methods for Chemical Engineers
+Semester: Spring 2026
+Dr. Khalid Al Ali
+Instructor Name Associate Professor
+Chemical Engineering
+khalid.alali@ku.ac.ae
+Contact Email/ Office Ext. No.
+Office Tel. #: (02) 312 4290 (SAN Campus)
+Office Room No. SAN Arzanah Bldg. 2F, Room # 8-271
+• My office: Monday 11:00 AM - 01:00 PM
+Office Hours Wednesday 11:00 AM - 01:00 PM
+• Microsoft Teams (or by email appointment)
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework Weekly 10%
+Faculty Discretion, attendance,
+- 5%
+participation
+Quiz 1 (Solving system of linear equations) Week 4 2%
+Quiz 2 (Solving non-linear equations) Week 6 2%
+Quiz 3 (Polynomial Interpolation) Week 5 2%
+Quiz 4 (Numerical Integration + Differentiation) Week 6 2%
+Quiz 5 (ODE-IVP & ODE-BVP) Week 9 2%
+Projects Project Presentation and Report Week 16: April 28, 2026 15%
+Semester Midterm 1 Week 7: Feb 26, 2026 15%
+Examination (s)
+Midterm 2 Week 13: April 16, 2026 15%
+Final Examination Final Exam TBA 30%
+Instructor Policy on late submission of assignments:
+• Attendance: Mandatory, 5% of the final grade accounts for attendance and class participation.
+• A student may be absent for no more than 7% of contact time (2 classes) from a course with no
+penalty, provided that the student’s absence does not result in him/her missing any items of
+assessment (quizzes, exams, turning in homework, etc.).
+Syllabus Supplement for Students Page 1 of 4
+
+--- Page 2 ---
+• For unexcused absences beyond 7% of contact time (after 2 classes), a penalty of 0.5% will be
+deducted from your total mark (out of 100%) for each unexcused absence up to 7 classes.
+• Quizzes: Thursdays at the end of the class
+• The weekly homework submission should be handled electronically via the Blackboard, so you'll
+need to scan your homework as Pdf file before uploading it
+• You may discuss problems with classmates, but must always write up solutions on your own
+• The due date is always Tuesday morning at 10 AM, and no late homework will be
+accepted under any circumstances after the deadline.
+• A complete solution set to all assigned problems will be posted in Blackboard by the following
+morning.
+• The grade will be based on student’s effort toward solving all problems and Partial progress
+toward solutions will be awarded partial credit.
+• ★★ indicates class milestones
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Plan
+- Course Introduction
+Week 1
+Introduction to numerical methods for chemical engineering
+Starting Jan 12, 2026
+- Problem Solving Methodology
+- Mathematical formulation / Numerical algorithm & Programming
+Solution of simultaneous linear algebraic equations
+Week 2
+Starting Jan 19, 2026 - Matrices and linear algebra
+- Gauss Elimination method
+- Cramer’s method
+Week 3
+- Jacobi method
+Starting Jan 26, 2026
+- Underdetermined and overdetermined systems
+Solution of nonlinear equations
+- Initial approximation and convergence
+Week 4
+Starting Feb 02, 2026 - Bisection method
+- Regula-Falsi method
+Quiz 1 (Solving system of linear equations)
+- Newton-Raphson method
+Week 5
+Starting Feb 09, 2026 - Secant method
+- Solving a system of nonlinear Equations
+Week 6
+Starting Feb 16, 2026 Curve fitting and interpolation
+Syllabus Supplement for Students Page 2 of 4
+
+--- Page 3 ---
+- Function discovery
+- Least squares regression
+Quiz 2 (Solving non-linear equations)
+- Polynomial Interpolation (Standard + Lagrange)
+Week 7
+- Polynomial Interpolation (Newton)
+Starting Feb 23, 2026
+MIDTERM-EXAM I ★★★★★★★★★
+Numerical differentiation and integration
+Week 8
+- Numerical Integration
+Starting March 02, 2026
+- Rectangular and mid-points methods
+Quiz 3 (Polynomial Interpolation)
+- Gauss Quadrature method
+Week 9
+Starting March 09, 2026 - Numerical Differentiation
+- Finite Difference Formulas and Partial Differentiation
+Week 10
+Starting March 16, 2026 Spring Break + Eid Al Fiter ★★★★★★★★★
+Week 11
+Starting March 23,
+Spring Break ★★★★★★★★★
+2026
+Ordinary differential equations: initial-value problems
+Week 12
+- Euler’s Explicit method
+Starting March 30, 2026
+- Euler’s Implicit method
+Quiz 4 (Numerical Integration + Differentiation)
+Week 13 - Modified Euler’s method
+Starting April 06, 2026
+- Rung-Kutta method
+Ordinary differential equations: boundary-value problems (BVPs)
+Week 14 - Shooting method – Linear Interpolation
+Starting April 13, 2026
+MIDTERM-EXAM II ★★★★★★★★★
+Ordinary differential equations: boundary-value problems (BVPs)
+- Shooting method – Bisection method
+Week 15
+- Shooting method – Secant method
+Starting April 20, 2026
+- Finite difference method (Discretization)
+- Quiz 5 (ODE-IVP & ODE-BVP)
+- Commemoration & National Days (1,2 & 3 Dec)
+Week 16
+Starting April 27, 2026 Partial differential equations
+Project presentation and report
+Week 17
+FINAL EXAM WEEK
+Starting May 04, 2026
+Syllabus Supplement for Students Page 3 of 4
+
+--- Page 4 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 4 of 4

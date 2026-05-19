@@ -1,0 +1,204 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title MATH 211 Differential Equations and Linear Algebra
+Semester: Spring 2025
+Instructor Name Nadia Nwayhed
+Contact Email/ Office Ext. No. nadia.nwayhed@ku.ac.ae
+Office Room No. SAN campus room 1006C
+TR: 8‐8:50 am in Room R02002 in the Main campus
+Office Hours or 12:50 – 1:30 by appt
+MW: 12:50‐1:30 pm in my office 1006C in the SAN campus
+Assessment Strategy
+Tentative Dates Weight
+Coursework: Quiz # 1 Week 3: Quiz 1: chapter 1
+Quiz # 2 Week 6: Quiz 2: chapter 3
+20%
+Quiz # 3 Week 13: Quiz 3: Ch 5,6
+Quiz # 4 Week 15: Quiz 4: Ch 7,10
+Online HW On Pearson 10%
+Project Project 10%
+th
+Midterm Examination: MIDTERM: Friday, February 28 from 9:00‐10:30am 25%
+Final Examination: FINAL EXAM: (TBC) 35%
+Course Catalog Description: This course introduces ordinary differential equations with linear algebra. The
+course covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector
+spaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order
+differential equations, higher‐order linear equations with constant coefficients, linear and almost linear
+systems of differential equations, and Laplace transforms.
+Textbook: Differential Equations and Linear Algebra by C. Edwards, D. Penney and David Calvis, Publisher:
+th
+Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181.
+Reference Materials: Differential Equations and Linear Algebra by Gilbert Strang, Publisher: Wellesley‐
+Cambridge, UK edition, 2015, ISBN: 9780980232790.
+Syllabus Supplement for Students Page 1 of 5
+
+--- Page 2 ---
+Course Learning Outcomes
+1 Solve systems of linear equations.
+2 Compute eigenvalues, Eigenvectors and Eigenspaces.
+3 Apply the concepts of vector spaces to the solution of ordinary differential equations.
+4 Solve real world problems using ordinary differential equations and systems of differential equations.
+5 Solve initial value problems using Laplace transforms.
+Instructor Policy on Late Submission of Assignments
+MAKE UP POLICY
+• Quizzes – There will be no make‐up quizzes. If the student fails to attend a scheduled quiz without an
+approved absence from the Registrar’s Office, then a grade of zero for that quiz will be assigned.
+• If the Student Success Department confirms that your absence from a quiz is approved, then the grade you
+will receive will either be your Semester Examination grade (Quiz 1 and Quiz 2) or your Final Examination grade
+(Quiz 3 and Quiz 4).
+• Semester Examination ‐ There will be no make‐up Semester Examination. If you fail to attend the scheduled
+Semester Examination without an approved absence from the Student Success Department, then you will
+receive a grade of zero for the Semester Examination.
+• If the Student Success Department confirms that the absence on the Semester Examination is approved, then
+the grade that you achieve for the Final Examination will also be assigned as your grade for the Semester
+Examination.
+• A maximum of 40% of the course grade can be compensated through the above policy
+Syllabus Supplement for Students Page 2 of 5
+
+--- Page 3 ---
+Grading Scheme
+The passing grade for Math 211 is D.
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and
+minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four‐point
+scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A‐ 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B‐ 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C‐ 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of Engineering
+Undergraduate courses.
+Percentage Grade Range
+Letter Grade (rounded)
+A 93%‐100%
+A‐ 90%‐92%
+B+ 87%‐89%
+B 83%‐86%
+B‐ 80%‐82%
+C+ 77%‐79%
+C 73%‐76%
+C‐ 70%‐72%
+D 60%‐69%
+F < 60%
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will
+behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 3 of 5
+
+--- Page 4 ---
+Additional Information
+Assessments
+There are four quizzes scheduled for this course, counting for 20% of the final grade. Online Homework will
+count for 10%, a Project for 10%, a Midterm for 25% and a Final Exam for 35%.
+Calculator Policy
+You may use a basic scientific calculator to help you with arithmetic computations in this course. The calculator
+must not have a graphing capability. The calculator must not be capable of performing symbolic manipulation.
+The calculator must not be capable of computing derivatives and integrals. A good example of an appropriate
+calculator is the Casio fx‐82ES.
+You will be permitted to use your (basic) calculator in the Quizzes, Midterm Examination and the Final
+Examination.
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final Examination.
+Mobile phones must be switched off during quizzes and exams and must be put away for the duration of the
+quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success. Please make every effort to
+arrive at the class periods in a timely fashion. Students arriving late to class are a distraction to both the instructor
+and the other students in the classroom. If students require the class periods to end on time then the class periods
+must begin on time.
+If you are absent from any class period it is your responsibility to make‐up the missed material.
+Grading
+Writing correct solutions is essential in the life of a scientist, including the correct use of the mathematical
+symbols. Not only one needs to be understood by others, but only by paying attention to what is written a
+student can acquire a good understanding of the concepts. Therefore, in all assessments, the correctness of the
+solution writing will be evaluated and marks will be deducted for mistakes (notations, clarity, structure of the
+solution, etc)
+For quizzes and midterm, students have TWO DAYS after they get back their copy to check if there are any
+grading mistakes, and if so, ask for revision. After two days, the result will be considered final and no more
+revision will be allowed.
+Conflict Resolution Procedure
+For any issue, the following procedure needs to be followed:
+1) students need to talk first to their instructor;
+2) if (1) did not resolve the issue, students can talk to the course coordinator;
+3) if (1) and (2) did not resolve the issue, students can talk to the chair of the math department;
+4) if none of the above resolved the issue, students can talk to the Associate dean of undergraduate studies.
+5) No Grade Appeal is approved if the student has not seen the copy of his/her final exam.
+There will be no leniency with phones and any other electronics during exams.
+Syllabus Supplement for Students Page 4 of 5
+
+--- Page 5 ---
+Teaching Plan
+Ch1: First Order Differential Equations
+1.1 Differential Equations and Mathematical Models
+Week 1 (Jan 13) 1.2 Integrals as General and Particular Solutions
+1.4 Separable Equations and Applications
+th
+End of Add/Drop for UG & PG: Friday Jan 17
+1.5 Linear First‐Order Equation
+Week 2 (Jan 20)
+1.6 Substitution Methods
+Chapter 3: Linear Systems and Matrices
+3.1 Introduction to Linear Systems
+Week 3 (Jan 27)
+3.2 Matrices and Gaussian Elimination
+Quiz 1: Ch 1
+3.3 Reduced Row‐Echelon Matrices
+Week 4 (Feb 3)
+3.4 Matrix Operations
+3.5 Inverse of Matrices
+Week 5 (Feb 10)
+3.6 Determinants
+Chapter 4 Vector Spaces
+n
+4.2 The Vector Space R and Subspaces
+Week 6 (Feb 17)
+4.3 Linear Combinations and Independence of Vectors
+Quiz 2: Ch 3
+Catch up
+Week 7 (Feb 24) th
+Midterm Exam: Friday, February 28 @ 9:00‐10:30 am
+4.4 Bases and Dimension for Vector Spaces
+4.5 Row and Column Spaces
+Week 8 (Mar 3) n
+4.6 Orthogonal Vector in R
+th
+Midterm Grade Due Date: Friday, Mar 7
+Chapter 5: Higher‐Order Linear Differential Equations
+5.1 Introduction: Second‐Order Linear Differential Equations
+Week 9 (Mar 10) 5.2 General Solutions of Linear Equations
+5.3 Homogeneous Equations with constant Coefficients
+5.4 Mechanical Vibrations
+5.5 Nonhomogeneous Equations: The Method of Undetermined Coefficients
+5.6 Forced Oscillations and Resonance
+Chapter 6 Eigenvalues and Eigenvectors
+Week 10 (Mar 17)
+6.1 Introduction to Eigenvalues
+6.2 Diagonalization of Matrices
+st
+Last day to Withdraw with a “W”: Friday Mar 21
+Week 11 (Mar 24) Spring Break
+Week 12 (Mar 31) Fitr Break
+Chapter 7 Linear Systems of Differential Equations
+7.1 First‐Order Systems and Applications
+Week 13 (Apr 7) 7.2 Matrices and Linear System
+7.3 The Eigenvalue Method for Linear Systems
+Quiz 3: Ch5,6
+Chapter 10 Laplace Transform Methods
+10.1 Laplace Transform and Inverse Transforms
+Week 14 (Apr 14)
+10.2 Transformation of Initial Value Problems
+10.3 Translation and Partial Fractions
+10.4 Derivatives, Integrals, and Products of transforms
+Week 15 (Apr 21) 10.5 Periodic and Piecewise Continuous Input Functions
+Quiz 4: Ch7,10
+Week 16 (Apr 28) Catch Up
+May 5 – 15 Final Exams Period
+Syllabus Supplement for Students Page 5 of 5

@@ -1,0 +1,381 @@
+COSC 330 Introduction to Artificial Intelligence
+(2 Lecture, 3 Laboratory – 3 Credits)
+
+Prerequisite: COSC 202, MATH 204 or Math 211, COSC 230 
+
+Course Catalog Description:
+This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies. 
+
+Textbook:
+Artificial Intelligence: A Modern Approach by Peter Norvig and Stuart Russell. 4th Edition, 2021,ISBN-10 – 1292401133 ; ISBN-13 - 978-1292401133
+
+Reference Materials:
+Artificial Intelligence: A System Approach by M. Tim Jones. Publisher: Jones and Barlett Publishers, 1st Edition, 2008, ISBN: 9780763773373.
+
+Artificial Intelligence, Structures and Strategies for Complex Problem Solving by George F. Luger. Publisher: Addison – Wesley, 6th Edition, 2008 , ISBN-13: 978-0321545893
+
+Course Topics:
+AI: General introduction and overview (2 lectures)
+Intelligent agents and distinguished environments. ( 2 lectures)
+Uninformed Search Techniques (3 lectures)
+Informed search techniques (4 lectures)
+Knowledge/rule-based representation and reasoning (2 lectures)
+Decision tree (4 lectures)
+Classification: linear classifier (3 lectures)
+Naïve Bayes Classifier (3 lectures)
+Artificial Neural Networks: Multi-Layer Perceptron, Backpropagation algorithm. (4 lectures) 
+Game theory (3 lectures)
+
+Course Structure:
+Lectures are 2 × 50 minutes per week. The laboratory session is 1 × 150 minutes per week. Every newly taught topic is followed by a tutorial and a problem-solving session to encourage student participation. Coursework comprises quizzes and mini-project homework to provide students with a self-learning environment. Laboratory sessions follow the lectures to provide practical examples of theoretical topics.
+
+Lab Work:
+Review Python
+Review Python: Tree and Graph processing 
+Search-1
+Search-2
+Linear classifier
+Bayesian Classification
+Artificial Neural Network
+Decision tree 
+Game Theory
+Computer Resources:
+Workstations (both Windows and Linux/Unix OS) equipped with powerful GPU cards.
+
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Assessment Instruments
+ Contribution to course grade (%)
+ 
+Course work (Quizzes, Labs,mini project)
+ 30
+ 
+Semester Examination
+ 30
+ 
+Final Examination
+ 40
+ 
+
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLO):
+1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 
+H
+ H
+ --
+ ---
+ 
+ L
+ 
+H – High M – Medium L – Low
+
+Contribution to Engineering Program Learning Outcomes (PLO):
+1
+ 2
+ 3
+ 4
+ 5
+ 6
+ 7
+ 
+H
+ H
+ --
+ ---
+ L
+ 
+ 
+ 
+H – High M – Medium L – Low
+
+Course Learning Outcomes (CLO) and Program Learning Outcomes (PLO):
+No
+ Course Learning Outcomes
+ Student Outcomes
+ 
+
+ 
+ Eng. 
+ C S
+ 
+1
+ Recognize general concept of Artificial Intelligence and agent architectures 
+ 
+1,2
+ 
+1
+ 
+2
+ Use various search techniques to solve real-life problems.
+ 1,2
+ 1
+ 
+3
+ Apply rule-based and knowledge-based representation
+ 1,2
+ 1,2,6
+ 
+4
+ Solve classification problems using fundamental machine learning systems 
+ 1,2
+ 1,2,6
+ 
+5
+ Explain game theory
+ 1,2,5
+ 1,2
+ 
+
+Syllabus Supplement for Students
+
+ 
+Course Code and Title
+ COSC 330 Introduction to Artificial Intelligence
+ 
+Semester:
+ 
+ 
+
+ Fall 2025
+ 
+Instructor Name
+ Naoufel Werghi
+ 
+Contact Email/ Office Ext. No.
+ Naoufel.werghi@ku.ac.ae
+3049
+ 
+Office Room No.
+ C04017
+ 
+Office Hours
+ Monday -Wednesday 1:30 -3 pm, C04017 
+ 
+
+Assessment Methodology 
+ 
+
+ Tentative Dates
+ Weight(%) 
+ 
+Coursework: 
+Quizzes 
+ Quiz-1
+ Week-3
+ 7.5
+ 
+
+ Quiz-2
+ Week-6
+ 
+ 
+
+ Quiz-3
+ Week-10
+ 
+ 
+
+ Quiz-4
+ Week-13
+ 
+ 
+Labs
+ 
+ TBA
+ 7.5
+ 
+Mini-project
+ 
+ TBA
+ 15
+ 
+Semester examination
+ 
+ WEEK-8
+ 30
+ 
+Final examination
+ 
+ TBA
+ 40
+ 
+
+Instructor Policy on late submission of assignments:
+The BB submission link will remain open after the due date. Late penalty: 10% score reduction for each day of delay. Submission after the solution is released will get an automatic zero score. 
+ 
+
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations." 
+ 
+
+TEACHING PLAN (Lecture, Tentative):
+Teaching Plan
+Week 1
+ General Introduction to AI
+ 
+Week 2:
+ Intelligent agents
+ 
+Week 3:
+ Projects handed-in Lab starts
+Uninformed search wedensday quiz-1
+ 
+Week 4: 
+ Informed search 
+ 
+Week-5
+ Informed search
+ 
+Week 6:
+ Linear classifier Wedenesday quiz-2
+ 
+Week 7:
+ Linear classifier 
+ 
+Week 8:
+ Bayesian Classification 
+Bayesian Classification 
+ 
+Week 9
+ Mid-term exam:
+Artificial Neural Network 
+ 
+Week 10
+ Artificial Neural Network Wednesday quiz-3
+ 
+Week 11
+ Decision tree 
+ 
+Week 12
+ Decision tree 
+ 
+Week 13
+ Game theory Wednesday quiz-4
+ 
+Week 14
+ Game theory
+ 
+Week 15
+ Knowledge-Rule based representation and reasoning
+ 
+LABORATORY SCHEDULE (Tentative): 
+Week-3
+ Review Python
+ 
+Week-4
+ Review Python: Tree and Graph processing 
+ 
+Week-5
+ Search-1
+ 
+Week-6
+ Search-2 
+ 
+Week-7
+ Linear classifier
+ 
+Week-10
+ Bayesian Classification
+ 
+Week-11
+ Artificial Neural Network
+ 
+Week-12
+ Decision tree 
+ 
+Week-13
+ Game Theory. 
+ 
+
+Grading Scheme 
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as set out below: 
+
+ Letter Grade Grade Point Description 
+A 
+ 4.00 
+ Excellent 
+ 
+A- 
+ 3.70 
+ Very Good 
+ 
+B+ 
+ 3.30 
+ 
+ 
+B 
+ 3.00 
+ Good 
+ 
+B- 
+ 2.70 
+ 
+ 
+C+ 
+ 2.30 
+ Satisfactory 
+ 
+C 
+ 2.00 
+ 
+ 
+C- 
+ 1.70 
+ Less Than Satisfactory 
+ 
+D 
+ 1.00 
+ Poor 
+ 
+F 
+ 0.00 
+ Fail 
+ 
+WF 
+ 0.00 
+ Withdrew Failing 
+ 
+ 
+The following indicates typical ranges associated with letter grades for KU Undergraduate courses. 
+ 
+Letter Grade
+ Percentage Grade Range 
+ 
+ A 
+ From 92.5% to 100%
+ 
+ A- 
+ From 89.5% to less than 92.5%
+ 
+ B+ 
+ From 86.5% to less than 89.5%
+ 
+ B 
+ From 82.5% to less than 86.5%
+ 
+ B- 
+ From 79.5% to less than 82.5%
+ 
+ C+ 
+ From 76.5% to less than 79.5%
+ 
+ C 
+ From 72.5% to less than 76.5%
+ 
+ C- 
+ From 69.5% to less than 72.5%
+ 
+ D 
+ From 59.5% to less than 69.5%
+ 
+ F 
+ Less than 59.5%
+ 
+
+ PAGE \* MERGEFORMAT 1
+November 2024

@@ -13,44 +13,44 @@
   "schedule": null,
   "classroom": null,
   "officeRoom": "SAN Campus: Building 8 (Arzanah), 2 level, Room 8-265",
-  "officeHours": null,
+  "officeHours": "M,W: 2:00-3:00 pm",
   "prerequisites": null,
   "textbooks": [],
   "courseDescription": ", report, and calculations will be given with the assignment.",
   "assessments": [
     {
-      "name": "Quiz 3",
+      "name": "3 Quizzes",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Quizzes 3 Quizzes TBA 15%"
     },
     {
-      "name": "Laboratory",
+      "name": "Laboratory Reports, Quizzes, Presentation",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Laboratory Reports, Quizzes, Presentation Biweekly 20%"
     },
     {
-      "name": "Semester Examination (s)",
+      "name": "Midterm Exam",
       "weight_percentage": 24,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Semester Examination (s) Midterm exam Week 8 24%"
     },
     {
-      "name": "Final Examination",
+      "name": "Final exam",
       "weight_percentage": 32,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Final Examination Final exam TBA 32%"
     },
     {
-      "name": "Assignment 3",
+      "name": "3 Assignments",
       "weight_percentage": 9,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Assignments 3 Assignments - 9%"
     }
   ],
@@ -59,6 +59,6 @@
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.92,
+  "confidence": 0.89,
   "needsHumanReview": true
 }

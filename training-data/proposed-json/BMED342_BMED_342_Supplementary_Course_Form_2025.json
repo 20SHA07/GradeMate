@@ -1,0 +1,85 @@
+{
+  "sourceFileName": "BMED342_BMED_342_Supplementary_Course_Form_2025.pdf",
+  "sourcePath": "BMED342_BMED_342_Supplementary_Course_Form_2025.pdf",
+  "sourceRelativePath": "BMED342_BMED_342_Supplementary_Course_Form_2025.pdf",
+  "sourceTextFileName": "BMED342_BMED_342_Supplementary_Course_Form_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 342",
+  "courseName": "Molecular Genetics, Technologies and Tools",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Pierre Zalloua, PhD; Muhammad Farooq Rai, PhD",
+  "instructorEmail": "pierre.zalloua@ku.ac.ae; muhammad.rai@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Dr. Pierre: A02094",
+  "officeHours": "Mondays & Wednesdays: 09:00 AM - 10:00 AM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 TBD 6%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 TBD 6%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 TBD 6%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 TBD 6%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 5 TBD 6%"
+    },
+    {
+      "name": "Assignment",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects (if applicable) Assignment TBD 10%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory (if applicable) Laboratory Lab section 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Final Examination To be confirmed 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

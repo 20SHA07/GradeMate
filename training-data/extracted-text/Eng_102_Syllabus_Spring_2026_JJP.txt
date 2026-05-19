@@ -1,0 +1,327 @@
+ENGL 102 Academic English II
+(3 Lectures, 0 Laboratory – 3 Credits) 
+
+Prerequisite: ENGL 101
+Co-requisite: None
+
+Course Catalog Description:
+This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation. 
+
+Textbook: 
+Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,
+Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244
+
+Reference Materials: 
+IEEE Editorial Style Manual (available online: https://www.ieee.org/content/dam/ieee-org/ieee/web/org/conferences/style_references_manual.pdf)
+University of Pittsburgh Library System: Citation Styles (available online: https://pitt.libguides.com/citationhelp)
+
+Course Topics: 
+Review: Writing about numbers, abstracting/summarization, citing, referencing (2 lectures)
+Writing to specifications (6 lectures)
+Planning/Timeline Development (3 lectures)
+Using Excel/Writing a budget narrative (6 lectures)
+Close reading and interpretation of research reports (6 lectures)
+Using databases and multiple online references to support arguments (4 lectures)
+Composing in multiple genres for a variety of audiences (8 lectures)
+Avoiding plagiarism through paraphrasing and citation (2 lectures)
+Advanced digital composition, including video and audio formats (8 lectures)
+
+Structure and Learning Methodologies:
+Lectures will be 2 x 75-minute sessions per week. Instruction will be a combination of lectures/seminar discussions, writing/composing workshops, and small-group activities. Skills introduced in ENGL 101 will be extended and developed.
+
+Laboratory and/or Computer Resources: None. Students will use their own laptops.
+
+Assessment: 
+All course learning outcomes are assessed using the following assessment tools. 
+Individual Writing: Technical report
+Part 1 
+ 15%
+ 
+Individual Writing: Technical report
+Part 2 
+ 25%
+ 
+Digital presentation of technical report
+ 20%
+ 
+Group (</= 3 students) proposal in response to a Request for Funding Proposal (RFP)
+ 30%
+ 
+Oral presentation of group proposal 
+ 10%
+ 
+Contribution to General Education Learning Outcomes (GELOs):
+1A
+ 1B
+ 1C
+ 1D
+ 1E
+ 2A
+ 2B
+ 2C
+ 2D
+ 2E
+ 3A
+ 3B
+ 3C
+ 3D
+ 3E
+ 
+---
+ ---
+ ---
+ ---
+ L
+ H
+ M
+ M
+ M
+ H
+ ---
+ L
+ ---
+ M
+ ---
+ 
+H – High M – Medium L – Low
+
+Course Learning Outcomes, GELOs:
+No.
+ Course Learning Outcomes
+ GELOs
+ 
+1
+ Write extended professional reports and proposals to specification
+ 1E, 2A, 2E
+ 
+2
+ Interpret quantitative data in writing
+ 2A, 2B, 2C
+ 
+3
+ Apply advanced knowledge of style guides (IEEE) for formatting, citation, and reference
+ 2A
+ 
+4
+ Develop advanced paraphrasing skills to avoid plagiarism
+ 2A, 3D
+ 
+5
+ Write persuasively from evidence with increased sophistication in a variety of extended formats
+ 1E, 2C, 2D
+ 
+6
+ Compose digitally using advanced features of Office and video/audio editing
+ 2A, 2B
+ 
+7
+ Design, compose and edit a proposal within a team
+ 2A, 2C, 2E, 3B
+ 
+
+Organizational Details
+ 
+Course Code and Title:
+ ENGL 102 Academic English II
+ 
+Semester:
+ Spring 2026
+ 
+Schedule:
+ 
+ 
+Instructor:
+ Joud Jabri-Pickett
+ 
+Contact Email:
+ joud.pickett@ku.ac.ae
+ 
+Office Room Number:
+ Building 1, Room 1023A
+ 
+Office Hours:
+ Mon./Wed. 9-12 (By appointment: In-office or MS Teams)
+ 
+
+Assessment Methodology 
+ 
+
+ Tentative Dates
+ Weight
+ 
+Coursework:
+ Individual Writing: Technical report Part 1
+ Week 3 (Jan. 26-30 in class) 
+ 15%
+ 
+
+ Individual Writing: Technical report Part 2
+ Week 6 (Feb.16-20)
+ 25%
+ 
+
+ Individual Digital presentation
+ Week 7 (Mar. 9-12)
+ 20%
+ 
+
+ Group Oral Presentation of Proposal
+ Week 13 & 14 (in class)
+
+ 10%
+ 
+
+ Group (</= 3 students) proposal in response to a Request for Proposals (RFP)
+ Week 14 (Apr. 27-May 1)
+ 30%
+ 
+
+Instructor Policy on Late Submission of Assignments:
+
+All assignments are due on the date stated by the instructor on this syllabus. There are to be no late assignments.
+Extensions without penalty may be granted to students by request of a student or students to the instructor. 
+No extensions of more than one week may be granted. Longer extensions for health-related and other extenuating circumstances may be granted with documentation from the student.
+ 
+
+Honor Code Academic Pledge:
+
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+
+Teaching Plan (Lectures):
+
+Week
+ Dates
+ Topics and Reminders
+ 
+1
+ Jan. 12-16
+ Review: Writing about numbers; abstracts and summaries; citation and ref.
+ 
+2
+ Jan. 19-23
+ Introduction: Technical reports; topic development, writing to specifications; Research and Literature Review
+ 
+3
+ Jan. 26- 30
+ Technical report: Research and Literature Review
+ 
+4
+ Feb. 2-6
+ Technical report: Survey and Methodology section
+ 
+5
+ Feb. 9-13
+ Technical report: Survey and Methodology section
+ 
+6
+ Feb. 16-20
+ Technical report: Results and Discussion section
+ 
+7
+ Feb. 23-27
+ Digital presentation submission
+ 
+8
+ Mar. 2-6
+ Introduction: Writing a proposal in response to an RFP
+ 
+9
+ Mar. 9-13
+ Proposal: Brainstorming/Design/Research
+ 
+ 11
+ Mar.30-Apr.3
+ Proposal: Structuring the proposal
+ 
+12
+ Apr. 6-10
+ Proposal: Oral Presentations
+ 
+13
+ Apr. 13-17
+ Proposal: Oral Presentations
+ 
+13
+ Apr. 20-24
+ Group response to RFP
+ 
+14
+ Apr. 27-May 1
+ Group response to RFP
+ 
+15
+ 
+ 
+ 
+This is a tentative schedule and may be adjusted as required with advance notice given to students.
+
+Additional Information:
+
+As a general policy and at the discretion of the instructor, students receiving a grade of less than 70% for any assessment will have the opportunity to revise or retake the assessment one time.
+
+Students who are found to plagiarize (copy in any form including AI assistance) text, images, or other materials at any percentage of the total volume of an assignment will receive a warning and one opportunity to completely revise their work. A second violation of plagiarism will result in failure or penalization and a report to the Chair of English, the Dean of the College of Arts and Sciences, and ultimately the Senior Vice President for Academic and Student Services. Students are advised to consult the Handbook for all policies related to plagiarism and other forms of cheating.
+ 
+
+Grading Scheme:
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses.  Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale. Typical ranges associated with letter grades are set out below:
+
+Letter Grade
+ Grade Point
+ Percentage Grade Range (rounded)
+ Description
+ 
+A
+ 4.00
+ 92.5%-100%
+ Excellent
+ 
+A-
+ 3.70
+ 89.5%-92%
+ Very Good
+ 
+B+
+ 3.30
+ 86.5%-89%
+ 
+ 
+B
+ 3.00
+ 82.5%-86%
+ Good
+ 
+B-
+ 2.70
+ 79.5%-82%
+ 
+ 
+C+
+ 2.30
+ 76.5%-79%
+ Satisfactory
+ 
+C
+ 2.00
+ 72.5%-76%
+ 
+ 
+C-
+ 1.70
+ 69.5%-72%
+ Less Than Satisfactory
+ 
+D
+ 1.00
+ 59.5%-69%
+ Poor
+ 
+F
+ 0.00
+ < 59%
+ Fail
+ 
+
+ENGL 102 Academic English II (3–0–3)
+
+June 2020 PAGE3

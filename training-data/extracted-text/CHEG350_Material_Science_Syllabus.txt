@@ -1,0 +1,178 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title CHEG 350 Materials Science & Engineering
+Semester: Spring 2024
+Instructor Name Akram Alfantazi
+Contact Email/ Office Ext. No. akram.alfantazi@ku.ac.ae
+Office Room No. Arzanah 311
+Office Hours Tuesday and Thursday 11:00- 12:45
+Ass e s s m e n t M e tho d ology
+Tentative Dates Weight
+Coursework: Homework 1 Week 3 5%
+Quiz 1 Week 4 10%
+Homework 2 Week 8 5%
+Quiz 2 Week 10 10%
+Quiz 3 Week 13 10%
+Projects (if applicable)
+Laboratory (if applicable)
+Semester Examination (s) Midterm Exam Week of March 17th 25%
+Final Examination Week 16 35%
+Instructor Policy on late submission of assignments:
+Assignments should be submitted in class on the due date. No grades for missed or late submission.
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Plan Introduction. Atomic structure and interatomic bonding
+Week 1
+Week 2 The structure of crystalline solids
+Week 3 Imperfections in solids
+Week 4 Diffusion
+Week 5 Mechanical properties of metals
+Week 6 Dislocations and strengthening mechanisms
+Week 7 Failure: fracture, fatigue, creep
+Week 8 Phase diagrams
+Week 9 Phase transformations
+Week 10 Ceramic materials
+Week 11 Polymers
+Week 12 Polymers and Composite materials
+Week 13 Thermal properties of materials
+Week 14 Electrochemistry
+Week 15 Review
+LABORATORY SCHEDULE (if applicable):
+Teaching Plan NA
+Week 1
+Week 2
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Week 3
+Week 4
+Week 5
+Week 6
+Week 7
+Week 8
+Week 9
+Week 10
+Week 11
+Week 12
+Week 13
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four - point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+Syllabus Supplement for Students Page 3 of 3
+
+--- Page 4 ---
+87%-89%
+B+
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 4 of 3
+
+--- Page 5 ---
+CHEG 350 Materials Science & Engineering
+(3 lectures – 3 credits)
+Prerequisites: CHEM 116, PHYS 122
+Course Catalog Description:
+Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and
+composites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and
+microstructure; phase diagrams and phase transformations; mechanical properties; material
+failure; corrosion and degradation.
+Textbook:
+Materials Science and Engineering: An Introduction by William D. Callister, Publisher: Wiley,
+th
+9 Intl Edition, 2014, ISBN-13: 9781118319222
+Reference Materials:
+th
+Introduction to Materials Science for Engineers by James F. Shackelford, Prentice Hall, 8 Ed.,
+2015.
+th
+Foundations of Materials Science and Engineering by William F. Smith, McGraw-Hill, 5 Ed.,
+2010.
+Course Topics:
+1. Introduction. Atomic structure and interatomic bonding. (4 lectures)
+2. The structure of crystalline solids (4 lectures)
+3. Imperfections in solids (3 lectures)
+4. Diffusion (3 lectures)
+5. Mechanical properties of metals (4 lectures)
+6. Dislocations and strengthening mechanisms. (3 lectures)
+7. Failure: fracture, fatigue, creep (4 lectures)
+8. Phase diagrams (4 lectures)
+9. Phase transformations(4 lectures)
+10. Ceramic materials (4 lectures)
+11. Polymers and Composite materials (4 lectures)
+12. Corrosion and electrochemistry. (4 lectures)
+Structure and learning methodologies:
+The course will be delivered through three 50-min PowerPoint-enhanced lectures per week.
+Homework problems/questions will be given regularly to help students elaborate the subjects
+taught, and are considered as assigned homework every student should work out and deliver.
+On average, one-week time will be available for each homework assignment that the students
+should distribute evenly in order to work on and deliver the solutions to the given problems on
+time. Homework solutions should be neat and stapled. Five quizzes, one midterm exam, and
+one final exam will be given. The grade distribution of the given assessment tools is shown in
+the below table.
+Assessment:
+Coursework (homework, participation/in-class activities) 20%
+Quizzes 30%
+Midterm Exam 20%
+Final Exam 30%
+Contribution to Engineering Students Outcomes:
+1 2 3 4 5 6 7
+H M --- --- --- --- ---
+May 2017 1
+
+--- Page 6 ---
+CHEG 350 Materials Science and Engineering (3-0-3)
+___________________________________________________________________________
+Course Learning Outcomes & Student Outcomes:
+No Course Learning Outcomes Student
+Outcomes
+Understand the basic atomic structure of engineering materials 1
+1
+Discover the fundamentals of crystallography 1
+2
+Develop a sound understanding of imperfections in solids and diffusion 1
+3
+process
+Develop a good understanding of mechanical properties of engineering 1,2
+4
+materials
+Develop a good understanding of simple concepts in fracture mechanics and 1,2
+5
+material failure
+Discover and analyze phase diagrams 1
+6
+7 Develop a good introductory understanding of materials such as metals, iron 1
+carbon systems, ceramics, polymers, and composites
+*This syllabus is augmented by a Syllabus Supplement for Students.
+May 2017 2

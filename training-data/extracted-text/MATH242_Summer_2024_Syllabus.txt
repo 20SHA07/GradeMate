@@ -1,0 +1,243 @@
+--- Page 1 ---
+MATH 242 Introduction to Probability and Statistics
+(3 Lectures, 0 Laboratory, 0 Tutorials – 3 Credits)
+Prerequisite: MATH 112
+Course Catalog Description:
+This course introduces students to basic probability models and statistical methods for data analysis.
+The course will cover introductory probability theory, discrete and continuous probability
+distributions, elements of descriptive statistics, and different statistical inference methods such as
+estimation for the mean and the variance, hypothesis testing for the mean and the variance.
+Textbook:
+Applied Statistics and Probability for Engineers by D. C. Montgomery and G.C. Runger, Publisher:
+th
+Wiley, 7 Edition (online edition), 2018, ISBN: 978EEGRP45491.
+Reference Materials:
+th
+• Probability and Statistics by M.H. De Groot and M.J. Schervish, Publisher: Pearson, 4 Edition
+(New International Edition), 2013. ISBN: 9781292025049.
+• All of Statistics: A Concise Course in Statistical Inference, by L. Wasserman, Publisher:
+nd
+Springer, 2 Corrected Edition, 2004. ISBN: 9780387402727.
+Course Topics:
+1. Introduction to Probability: Sample spaces, axioms of probability and counting methods (4
+lectures)
+2. Conditional probability: Law of total probability, Bayes’ theorem and independent events (3
+lectures)
+3. Discrete and continuous random variables: probability mass functions, probability density
+functions, cumulative distribution functions and their use in computing probabilities (4 lectures)
+4. Two-dimensional random vectors, joint and marginal distributions (3 lectures)
+5. Independent random variables and the notion of a random sample (1 lecture)
+6. Expectation, variance and median of a random variable (3 lectures)
+7. Covariance and correlation (2 lectures)
+8. Common discrete probability distributions: Bernoulli, Binomial and Poisson (3 lectures)
+9. Common continuous probability distributions: Normal and Gamma distributions (3 lectures)
+10. Large Sample Theory: the law of large numbers, the central limit theorem and precision
+computations (4 lectures)
+11. Elements of descriptive statistics: frequencies, tables and graphs (2 lectures)
+12. Sampling distributions (I): Sample Mean, Sample Variance and their distributions when
+sampling from Normal distributions (2 lectures)
+13. Sampling distributions (II): The chi-squared, the t distribution (2 lectures)
+14. Confidence intervals for the mean based on small normal samples or large arbitrary samples (3
+lectures)
+15. Confidence intervals for a proportion based on large arbitrary samples (2 lectures)
+16. Hypotheses testing: t-tests of the mean, tests of a proportion, tests of the variance (4 lectures)
+Structure and Learning Methodologies:
+Lectures will be either 3 x 50 minutes or 2 x 75 minutes per week. Lectures will be presented using
+the whiteboard, and may be complemented with handouts and/or PowerPoint slides.
+UCC: March 2021 1
+
+--- Page 2 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3)
+___________________________________________________________________________
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and assigments) 40%
+Laboratory)
+Semester Examination(s) 25%
+Final Examination 35%
+Contribution to Applied Mathematics & Statistics Students Outcomes (AMS-SOs):
+a b c d e f g h i j k l
+H M --- --- --- --- --- --- --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & AMS-SOs:
+No. Course Learning Outcomes AMS-SOs
+1 Identify and apply appropriate counting techniques and probability laws. a
+2 Calculate probabilistic measures related to random variables based on
+a
+discrete and continuous distribution functions.
+3 Apply probabilistic models to various engineering problems. a, b
+4 Select appropriate statistical techniques for statistical decision-making
+a, b
+based on the type of data available.
+5 Draw sound statistical conclusions from experiments and observational
+a, b
+studies.
+UCC: March 2021 2
+
+--- Page 3 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3)
+___________________________________________________________________________
+Organizational Details
+Course Code and Title: MATH 242 Introduction to Probability and Statistics
+Summer 2024
+Semester:
+Schedule: As in Banner
+Instructor: Dr. Berihu Gebrehiwot
+Contact Email: berihu.gebrehiwot@ku.ac.ae
+Office Room Number: San Campus Building 1, Room No. 1211
+Office Hours
+After 2pm-please email me in advance for office location
+(tentative): (G building-G01030 C)
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 2 (10%) 40%
+We drop the lowest quiz Quiz 2 Week 4 (10%)
+grade. Quiz 3 Week 5 (10%)
+th st
+Midterm Examination: Week 3 (17 -21 June) Exact date to be decided 25%
+Final Examination: TBD by the Registrar’s Office 35%
+Instructor Policy on Late Submission of Assignments:
+• QUIZZES – There will be no make-up quizzes. If you fail to attend a scheduled quiz for any
+reason, then you will receive a grade of zero for that quiz. The scheduling of the quizzes is not
+flexible. The quizzes will occur on the dates and time assigned to them above.
+• MIDTERM - There will be no make-up Midterm Examination. If you fail to attend a scheduled
+Midterm Examination for any reason, then you will receive a grade of zero for that Midterm
+Examination.
+• If the Registrar’s Office confirms that the absence on the Midterm Examination was valid, then the
+grade that you achieve for the Final Examination will also be assigned as your grade for the Midterm
+Examination.
+• The project will be conducted in groups of 3 students.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+UCC: March 2021 3
+
+--- Page 4 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3)
+___________________________________________________________________________
+Week 1 Basic concepts of probability, Probability axioms and Counting
+Chapter 2: Sections 2.1- 2.4
+Week 1 Conditional probability and statistical independence, total law of
+probability, Bayes rule
+Chapter 2: Sections 2.5- 2.8
+Week 1 Discrete random variables, PMF, Discrete random variables: Expectation,
+variance
+Chapter 2: Section 2.9, Chapter 3: Sections 3.1-3.3
+Week 2 Common discrete probability laws (geometric, binomial, negative binomial,
+hypergeometric)
+Chapter 3: Sections 3.4 -3.8
+Week 2 Continuous random variables: pdf, CDF, expectation, variance
+Chapter 4: Sections 4.1-4.3
+Common continuous probability laws (uniform, exponential, normal,
+Gamma)
+Chapter 4: Sections 4.4-4.5
+Week 2 Common continuous probability laws (uniform, exponential, normal,
+Gamma)
+Chapter 4: Sections 4.6-4.8
+Quiz 1 Wednesday
+Week 3 Random vectors, Joint distributions Marginal distributions (discrete rv),
+Expectation, Variance, Conditional distributions discrete random vectors
+Chapter 5: 5.1, 5.2, 5.5.1 (discrete distributions)
+Exp. of a function of r.v., Independence, Covariance and correlation discrete
+random vectors
+Chapter 5: 5.4 (discrete distributions)
+Week 3 Joint continuous distributions, Marginal distributions (continuous rv)
+Independence
+Chapter 5: 5.1, 5.2, (Continuous distributions)
+MIDTERM (the exact day will be communicated to you)
+Week 3 Exp of a function of more random variables, Covariance, correlation
+Linear combinations of random variables: mean and variance
+Chapter 5: 5.4 (continuous distributions)
+Week 4 Large Sample Theory: Chapter 5: Section 5.6
+Descriptive statistics, Chapter 6
+Week 4
+Biased/Unbiased Estimators and Sampling distributions, Chapter 7
+Quiz 2 Wednesday
+Week 4 Confidence intervals for mean Chapter 8: Sections 8.1-8.2
+Week 5 Confidence intervals for variance
+Chapter 8: Sections 8.3
+Hypothesis testing, Chapter 9: Section 9.1, Section 9.2,
+Week 5 Hypothesis testing, Chapter 9: 9.3
+Quiz 3 Wednesday
+Week 6 Hypothesis testing, Chapter 9: 9.3
+This is a tentative schedule and may be adjusted as required.
+UCC: March 2021 4
+
+--- Page 5 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3)
+___________________________________________________________________________
+Additional Information:
+Assessment
+There are 4 quizzes scheduled in this course. Only the best 3 quiz scores will count towards your final
+grade, i.e. the lowest quiz score will be dropped. Each quiz will therefore count for 10% of your final
+grade for the course. There will be no make-up quizzes. If you fail to attend a scheduled quiz for any
+reason, then you will receive a grade of zero for that quiz.
+Project
+In the week 11 of the semester, students will be assigned a project regarding data analysis using a
+statistical software. Each group will be composed of 3 or 4 students and will have a different data set.
+A final report on the data analysis must be submitted in the week 15 of the semester. If the report is
+submitted late, the project grade will be decreased by 10% for each day of delay.
+Calculator Policy
+You may use a basic scientific calculator to help you with arithmetic calculations. Calculators with any
+sort of graphing, symbolic manipulation or integral and derivative calculation capabilities are strictly
+prohibited. Any such device found with a student during any form of assessment will be treated as a
+violation of the above-stated Honor Code Academic Pledge.
+You will be permitted to only use a basic calculator in the Quizzes, Midterm Examination and the
+Final Examination. Please do not try to use a more powerful calculator in the Quizzes and
+Examinations as it will be confiscated.
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final
+Examination. Mobile phones must be switched off during quizzes and exams and must be put away
+for the duration of the quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please arrive at the class periods in a timely fashion. Classes will start as scheduled. Students arriving
+late to class are a distraction to both the instructor and the other students in the classroom. As per the
+University policies, any student arriving late to class is to be considered absent.
+All electronic devices must be switched off and put away during the class time. Any student using any
+such device will be warned and marked as absent. This disrespectful behavior will be penalized and, at
+the second offence, the student will be asked to leave the classroom.
+Students are expected to bring a pen or pencil, notepaper, and a calculator to each class period.
+Please ensure that you sign your name on the Attendance Sheet which is handed-out at the beginning
+of each class period. Please do not sign-in for absent friends. If you do not sign the Attendance Sheet,
+then you will be marked “Absent” in the Banner.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+Homework Policy
+You are expected to solve all examples presented in the classroom as well as exercises at the end of
+each section of the book. Homework solutions will not be collected-in nor graded. Homework is your
+responsibility. Assistance is readily available from the Instructor at his Office Hours.
+UCC: March 2021 5
+
+--- Page 6 ---
+MATH 242 Introduction to Probability and Statistics (3-0-3)
+___________________________________________________________________________
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter
+grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter
+grade is assigned a grade point on a four-point scale. Typical ranges associated with letter
+grades are set out below:
+Letter
+Percentage Grade Range Description
+Grade
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than
+Very Good
+From 86.5% to less than 92.5%
+B+
+89.5%
+B From 82.5% to less than
+Good
+86.5%
+B- From 79.5% to less than
+From 76.5% to less than 82.5%
+C+
+Satisfactory
+79.5%
+C From 72.5% to less than
+76.5%
+C- From 69.5% to less than Less Than Satisfactory
+From 59.5% to less than 72.5% Poor
+D
+69.5%
+F Less than 59.5% Fail
+UCC: March 2021 6

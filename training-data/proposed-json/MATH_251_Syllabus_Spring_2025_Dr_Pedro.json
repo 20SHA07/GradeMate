@@ -22,7 +22,7 @@
   "courseDescription": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
   "assessments": [
     {
-      "name": "Quiz 1",
+      "name": "Quizzes",
       "weight_percentage": 15,
       "max_score": 100,
       "confidence": 0.98,

@@ -1,0 +1,87 @@
+{
+  "sourceFileName": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourcePath": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourceRelativePath": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourceTextFileName": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_Python_Fall_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 114",
+  "courseName": "Introduction to Computing - Python",
+  "creditHours": 4,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Yousuf Alsalami",
+  "instructorEmail": "yousuf.alsalami@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C03-017",
+  "officeHours": "Tue Thu 3:15 pm - 4:15 pm",
+  "prerequisites": "None",
+  "textbooks": [
+    "Python Programming: Using Problem-Solving Approach by R. Thareja, Publisher: Oxford University",
+    "Press, 2017, ISBN: 978-0-19-948017-3"
+  ],
+  "courseDescription": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework Quiz 1 Sept 26 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Oct 24 5%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Nov 7 5%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Nov 21 5%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory (if applicable) Lab In Lab 15%"
+    },
+    {
+      "name": "Final LabTest",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final LabTest Week 14 15%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (on campus) Oct 11 at 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination (on campus) TBA 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Using detailed assessment methodology instead of summary table."
+  ],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

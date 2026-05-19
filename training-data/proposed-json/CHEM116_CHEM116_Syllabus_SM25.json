@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "CHEM116_CHEM116_Syllabus_SM25.pdf",
+  "sourcePath": "CHEM116_CHEM116_Syllabus_SM25.pdf",
+  "sourceRelativePath": "CHEM116_CHEM116_Syllabus_SM25.pdf",
+  "sourceTextFileName": "CHEM116_CHEM116_Syllabus_SM25.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ESMA 200",
+  "courseName": ". Time value of money, 4. Inflation and its",
+  "creditHours": null,
+  "semester": "Summer 2025",
+  "instructor": "Dr. Adolf Acquaye",
+  "instructorEmail": "adolf.acquaye@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "Contact me by email to schedule",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 1 7.5% 9 June"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Midterm Examination 25% 16 June"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quiz 2 7.5% 23 June"
+    },
+    {
+      "name": "Group project",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Group Project 25% TBC"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Exams 35% TBC"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": true
+}

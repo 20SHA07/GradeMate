@@ -1,0 +1,147 @@
+--- Page 1 ---
+Course Information Sheet
+Course Code and Title MATH 232 Engineering Mathematics
+Semester: Fall 2021
+Instructor Name Mohammad Al-Khaleel
+Contact Email mohammad.alkhaleel@ku.ac.ae
+Office Ext. No. 8445
+Office Room No. R-3009C/ Online at the moment
+Sun. Tue. Thu.: 10:00-11:00/ Online at the moment
+Office Hours
+Other: By appointment
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz # 1 Tuesday, Sept.14, 2021 13.33%
+There are 4 quizzes scheduled Quiz # 2 Tuesday, Sep. 28, 2021 13.33%
+for this course. Only the best 3 Quiz # 3 Tuesday, Nov. 2, 2021 13.33%
+quiz scores will count towards Quiz # 4 Tuesday, Nov. 16, 2021 13.33%
+your final grade, i.e. the lowest Quiz 40%
+quiz score will be dropped. Weight
+Each quiz will therefore count
+for 13.33% of your final grade
+for the course.
+Tuesday, Oct 19, 2021 (Tentatively) 25%
+Midterm Examination:
+TBA by the Registrar’s Office 35%
+Final Examination:
+Syllabus Supplement for Students Page 1 of 5
+
+--- Page 2 ---
+Instructor Policy on late submission of assignments:
+There are no make-up quizzes/midterm in this course.
+Any absence for an assessment needs to be validated by Student Success Office. If validated:
+- for Midterm: The Final Exam result will become the result of the missed Midterm;
+- for a quiz: There is no make up for a missed quiz. Student will receive zero credit for any missed quiz.
+- for the Final Exam: the official university policy will be applied.
+Only Student Success Office can declare an absence justified. Without an email to the instructor from
+Student Success Office confirming that the absence is excused, absent students will receive a zero for
+the missed assessment.
+The scheduling of the classroom quizzes is not flexible. The tests will occur on the dates and time
+assigned unless a major change in the academic calendar.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A‐ 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B‐ 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C‐ 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for undergraduate
+courses.
+Syllabus Supplement for Students Page 2 of 5
+
+--- Page 3 ---
+Letter Grade Percentage Grade Range
+A 92.5%-100%
+A- 89.5% to <92.5%
+B+ 86.5% to <89.5%
+B 82.5% to <86.5%
+B- 79.5% to <82.5%
+C+ 76.5% to <79.5%
+C 72.5% to <76.5%
+C- 69.5% to <72.5%
+D 59.5% to <69.5%
+F < 59.5%
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TENTATIVE LECTURE PLAN
+Teaching Plan
+Week 1 -3 14.1 Functions of Several Variables
+14.2 Limits and Continuity
+14.3 Partial Derivatives
+14.4 Tangent Planes and Linear Approximations
+14.5 The Chain Rule
+Quiz 1
+Week 4-6 14.6 Directional Derivatives and the Gradient Vector
+14.7 Maximum and Minimum Values
+15.1 Double Integrals over Rectangles and Iterated Integrals
+Quiz 2
+Week 7-9 15.2 Double Integrals over General Regions
+15.3 Double Integrals in Polar Coordinates
+15.4 Applications of Double Integrals MidTerm
+Syllabus Supplement for Students Page 3 of 5
+
+--- Page 4 ---
+15.5 Surface Area
+15.6 Triple Integrals
+Week 10-12 15.7 Triple Integrals in Cylindrical Coordinates
+15.8 Triple Integrals in Spherical Coordinates
+Introduction to Complex Numbers
+a. Complex arithmetic, complex argument, and polar form.
+b. Complex powers, roots, trigonometric and exponential functions. Quiz 3
+Week 13-15 11.1 Fourier Series
+11.2 Arbitrary Period. Even and Odd Functions. Half-Range Expansions
+11.3 Forced Oscillations
+11.4 Approximation by Trigonometric Polynomials Quiz 4
+11.7 Fourier Integral
+11.8 Fourier Cosine and Sine Transforms
+11.9 Fourier Transform. Discrete and Fast Fourier Transforms
+Week 16 Final Exams
+Additional Information:
+Changes will be made to the timetable for the above Teaching Plan if more, or less, time is required for
+students to successfully learn the individual topics.
+Assessment
+There are four quizzes, one midterm exam, and one final exam scheduled for this course.
+There will be no make-up tests under any circumstances. In addition, for any online assessment, there
+will be up to 20% grade deduction from each assessment in case of failure to follow any of the
+Respondus procedure and 0 if there is no video.
+Calculator Policy
+Only basic calculators with no graphic display will be allowed during quizzes and exams.
+Classroom Policies
+Lectures start on time. For Online lectures, it is the student’s responsibility to make sure that his/her
+computer is working, and the network is available. All technical issues must be addressed to the IT
+department. A student that doesn’t log in or did not respond to the call of the instructor will be marked
+“absent” in Banner, even if his/her name was shown on BB.
+Please do not leave the online class, instructors may take the attendance many times during each period.
+Syllabus Supplement for Students Page 4 of 5
+
+--- Page 5 ---
+Students are expected to have for each class what they need for an effective lecture: handouts (posted on
+Moodle), pen/pencil, notepaper, calculator etc.
+Expectations from students
+To succeed well in this course, students are required to work at least 1 hour outside the classroom for
+each hour spend in class. This is an average requirement for an average student with a sufficient
+background. It therefore could be more if some topics from previous courses are not known well enough.
+Selected problems for each section are recommended as practice. Practice problems will not be
+collected, but are essential part of the learning process, and are therefore mandatory.
+Grading
+Writing correct solutions is essential in the life of a scientist, including the correct use of the
+mathematical symbols. Not only one needs to be understood by others, but only by paying attention to
+what is written a student can acquire a good understanding of the concepts. Therefore, in all
+assessments, the correctness of the solution writing will be evaluated and marks will be deducted
+for mistakes (notations, clarity, structure of the solution, etc)
+For quizzes and midterm, students have one week after they get back their copy to check if there are any
+grading mistakes, and if so, ask for revision. After one week, the result will be considered final and no
+more revision will be allowed.
+Syllabus Supplement for Students Page 5 of 5

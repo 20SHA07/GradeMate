@@ -1,0 +1,71 @@
+{
+  "sourceFileName": "CHEG312_Numerical_Syllabus.pdf",
+  "sourcePath": "CHEG312_Numerical_Syllabus.pdf",
+  "sourceRelativePath": "CHEG312_Numerical_Syllabus.pdf",
+  "sourceTextFileName": "CHEG312_Numerical_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Ahmed Eissa AlHajaj",
+  "instructorEmail": "Ahmed.Alhajaj@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Arzanah, Room # 8-339",
+  "officeHours": "Tuesday and Thursday: 12:30-2:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Homework Weekly 10%"
+    },
+    {
+      "name": "Faculty Discretion, attendance, participation",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Faculty Discretion, attendance, - 5%"
+    },
+    {
+      "name": "Project Presentation and Report",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects Project Presentation and report Week 15: May 1, 2025 25%"
+    },
+    {
+      "name": "Midterm 1",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) Midterm 1 Week 7: Feb 25, 2025 15%"
+    },
+    {
+      "name": "Midterm 2",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm 2 Week 12: Apr 17, 2025 15%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Final Exam TBA 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

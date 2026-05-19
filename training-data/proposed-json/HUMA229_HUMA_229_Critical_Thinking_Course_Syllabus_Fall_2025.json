@@ -1,0 +1,80 @@
+{
+  "sourceFileName": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourcePath": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourceRelativePath": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourceTextFileName": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "HUMA 229",
+  "courseName": "Critical Thinking",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Lisa Kassem",
+  "instructorEmail": "Lisa.kassem@ku.ac.ae",
+  "schedule": "Tuesdays & Thursdays from 10:30 to 11:45",
+  "classroom": null,
+  "officeRoom": "Bu Hasa 2104 (SAN Campus)",
+  "officeHours": "Mondays & Wednesdays: 1:30 to 3:00 in Bu Hasa room 2104 (SAN campus); Tuesdays & Thursdays: 12:00 to 1:30 CTL (The Hive), Main Campus",
+  "prerequisites": "ENGL 102",
+  "textbooks": [
+    "R. Paul and L. Elder, Critical Thinking: Tools for Taking Charge of Your Professional and Personal Life. Upper Saddle River, NJ: Financial Times Prentice Hall, 2002. ISBN: 0-13-064760-8."
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 2.5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 1 (2.5%)"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2.5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 2 (2.5%)"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Concept Quiz 3 (10%)"
+    },
+    {
+      "name": "Essay",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Critical Analysis Essay (20%)"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 2.5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 4 (2.5%)"
+    },
+    {
+      "name": "Presentation",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Group Digital Presentation: Video Podcast (20%)"
+    },
+    {
+      "name": "Case Study",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Individual Writing: Case Study 1 (15%)"
+    }
+  ],
+  "totalWeight": 72.5,
+  "warnings": [
+    "Total weight is below 100 (72.5%)",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.84,
+  "needsHumanReview": true
+}

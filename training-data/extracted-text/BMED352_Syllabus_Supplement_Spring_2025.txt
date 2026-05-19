@@ -1,0 +1,105 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title BMED 352 – Fundamental of Biomedical Signal Processing
+Spring 2025
+Semester:
+Instructor Name Dr Mohamed Seghier / Ms Sarah Bawazir
+mohamed.seghier@ku.ac.ae / 5041
+Contact Email/ Office Ext. No.
+sarah.bawazir@ku.ac.ae /4560
+Office Room No. B02042
+Monday: 2:30pm - 4:00 pm
+Office Hours
+Wednesday: 2:30pm - 4:00 pm
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 4 6.25%
+Quiz 2 Week 7 6.25%
+Quiz 3 Week 12 6.25%
+Quiz 4 Week 14 6.25%
+Projects Weekly 10%
+Laboratory Weekly 15%
+Semester Examination (s) Week 10 25%
+Final Examination Starting May 6 25%
+Instructor Policy on late submission of assignments:
+Lab reports must be submitted during lab hours. Otherwise it will not be accepted. Missing quiz can
+only be replaced with a valid excuse verified by Student Service Office.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+TEACHING PLAN (Lecture):
+Teaching Plan Introduction
+Week 1
+Week 2 Sampling theorem
+Week 3 Analogue to digital conversion
+Week 4 Discrete Fourier Transform
+Week 5 Discrete Fourier Transform
+Week 6 Discrete System Convolution
+Week 7 Discrete System Convolution
+Week 8 Z-transform and state-space representation of discrete time system
+Week 9 Z-transform and state-space representation of discrete time system
+Week 10 Digital filters (FIR)
+Week 11 Digital filters (FIR)
+Week 12 Noise removal and signal enhancement
+Week 13 Noise removal and signal enhancement
+Week 14 Functional organization of a medical device and use of AI based models
+Week 15 Bio signal processing
+LABORATORY SCHEDULE:
+Teaching Plan
+No lab
+Week 1
+Week 2 Introduction to MATLAB signal processing toolbox and simulink
+Week 3 Introduction to MATLAB signal processing toolbox and simulink
+Week 4 Design of a simple discrete system in MATLAB
+Week 5 Discrete Fourier transform (DFT) of Electroencephalogram (EEG) and Electromyogram (EMG)
+signals using MATLAB
+Week 6 Design of a Finite Impulse Response (FIR) filter
+Week 7 Design of a Finite Impulse Response (FIR) filter
+Week 8 Design of a linear model for cardiovascular and cardiorespiratory coupling/control
+Week 9 Midterm Exam (no lab)
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Week 10 Design of a digital band pass filter for ECG signals using MATLAB
+Week 11 Design a simple microcontroller based system for biosignal measurement and processing
+Week 12
+Project
+Week 13
+Project
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 3 of 3

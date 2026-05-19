@@ -1,0 +1,50 @@
+{
+  "sourceFileName": "MATH244_MATH_244_Syllabus-_Spring_2025_-_Dr._Yerkin.pdf",
+  "sourcePath": "MATH244_MATH_244_Syllabus-_Spring_2025_-_Dr._Yerkin.pdf",
+  "sourceRelativePath": "MATH244_MATH_244_Syllabus-_Spring_2025_-_Dr._Yerkin.pdf",
+  "sourceTextFileName": "MATH244_MATH_244_Syllabus_Spring_2025_Dr_Yerkin.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 244",
+  "courseName": "Probability",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Yerkin Kitapbayev",
+  "instructorEmail": "Yerkin.kitapbayev@ku.ac.ae",
+  "schedule": "Tue/Thur 12:00-13:15, Room R02006",
+  "classroom": null,
+  "officeRoom": "SAN 1204",
+  "officeHours": "By appointment",
+  "prerequisites": "MATH 101, MATH 112",
+  "textbooks": [
+    "Statistical Inference by G. Casella, R.L. Berger, Publisher: Cengage Learning, 2 Edition, (e-book) 2021, ISBN:",
+    "9780357753125"
+  ],
+  "courseDescription": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes and assignments) 40%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
+}

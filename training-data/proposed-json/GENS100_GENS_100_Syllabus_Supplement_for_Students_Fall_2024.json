@@ -1,0 +1,44 @@
+{
+  "sourceFileName": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourcePath": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourceRelativePath": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourceTextFileName": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 100",
+  "courseName": "Academic Development and Success",
+  "creditHours": 1,
+  "semester": "Fall 2024",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeRoom": "SAN****, MAIN *****",
+  "officeHours": null,
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
+  "assessments": [
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Week 1 (KU Resources Quiz- 5%)"
+    },
+    {
+      "name": "Case Study",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Case study Week 4"
+    }
+  ],
+  "totalWeight": 9,
+  "warnings": [
+    "Total weight is below 100 (9%)",
+    "Instructor missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

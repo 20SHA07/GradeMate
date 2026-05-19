@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourcePath": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourceRelativePath": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourceTextFileName": "CHEM115_CHEM115_Syllabus_Spring_2023_S03.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEM 115",
+  "courseName": "General Chemistry I",
+  "creditHours": null,
+  "semester": "Spring 2023",
+  "instructor": "Dr. Emilia Oueis",
+  "instructorEmail": "Emilia.oueis@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "2010",
+  "officeHours": "Mondays and Wednesdays from 10:00 to 12:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quizzes",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz # 2 27 Feb – 03 Mar 20%"
+    },
+    {
+      "name": "Aleks Objectives",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "Aleks Objectives 10%"
+    },
+    {
+      "name": "Lab Reports and Lab Assignments",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Laboratory: Lab Reports and Lab Assignments 15%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Semester Examination: Midterm Exam 06 Mar – 10 Mar 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final Examination: TBC by the Registrar’s Office 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.84,
+  "needsHumanReview": true
+}

@@ -1,0 +1,52 @@
+{
+  "sourceFileName": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourcePath": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourceRelativePath": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourceTextFileName": "MATH_232_Engineering_Mathematics_Syllabus_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Mohammad Al-Khaleel",
+  "instructorEmail": "mohammad.alkhaleel@ku.ac.ae",
+  "schedule": "Tuesday and Thursday from 13:30 to 14:45",
+  "classroom": null,
+  "officeRoom": "SAN - 1212",
+  "officeHours": "Mondays and Wednesdays from 12:30 to 13:30; or by appointment",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:",
+    "9781305266728.",
+    "Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:",
+    "9780470458365."
+  ],
+  "courseDescription": "This course introduces students to selected topics from mathematical analysis with engineering\napplications. The first part is a calculus part which covers the definition of functions of several variables\nand their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient\nvectors, and multiple integrals for functions of several variables. The second part of the course deals\nwith Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier\ntransforms.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework 40%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination Week 7: Date, time, and venue to be determined 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Week 15 or 16: RO 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

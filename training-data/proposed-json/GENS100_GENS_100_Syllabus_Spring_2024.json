@@ -1,0 +1,49 @@
+{
+  "sourceFileName": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourcePath": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourceRelativePath": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourceTextFileName": "GENS100_GENS_100_Syllabus_Spring_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 100",
+  "courseName": "Academic Development and Success",
+  "creditHours": 1,
+  "semester": "Spring 2024",
+  "instructor": "Dr. Nooreya Al Obeidli",
+  "instructorEmail": "Nooreya.alobeidli@ku.ac.ae",
+  "schedule": "Monday 11 am – 11:50 am Classroom: SAN 1110",
+  "classroom": null,
+  "officeRoom": "SAN: building 2, 2 floor, student success, office 2228E",
+  "officeHours": "Monday 12 pm – 3 pm",
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
+  "assessments": [
+    {
+      "name": "Assignments (Homework and In Class Activities)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Assignments (Homework and In Class Activities) 25%"
+    },
+    {
+      "name": "Quizzes (In class and take home)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes (In class and take home) 25%"
+    },
+    {
+      "name": "Case Study",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Case Study 10%"
+    }
+  ],
+  "totalWeight": 60,
+  "warnings": [
+    "Total weight is below 100 (60%)"
+  ],
+  "confidence": 0.95,
+  "needsHumanReview": true
+}

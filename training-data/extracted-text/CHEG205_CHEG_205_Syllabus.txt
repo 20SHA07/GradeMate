@@ -1,0 +1,102 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title
+CHEG 205 Principles of Chemical Engineering
+Semester Fall 2023
+Instructor Name Dr. Badr Al Mahri
+Contact Email/ Office Ext. No. badr.almahri@ku.ac.ae; +971 2 312-5022
+Office Room No. 2205 SAN Campus
+Office Hours M. and W. 2:00 pm – 3:00 pm
+Assessment Methodology
+Tentative Dates Weight
+Homeworks Homework 1 September 2023 3.6%
+Homework 2 September 2023 3.6%
+Homework 3 October 2023 3.6%
+Homework 4 October 2023 3.6%
+Homework 5 November 2023 3.6%
+Homework 6 November 2023 3.6%
+Homework 7 December2023 3.6%
+Quizzes Quiz 1 September 2023 4%
+Quiz 2 October 2023 4%
+Quiz 3 November 2023 4%
+Quiz 4 November 2023 4%
+Quiz 5 December 2023 4%
+Midterm Examination 20%
+Final Examination 30%
+Attendance 5%
+Instructor Policy on late submission of assignments:
+No late submissions will be accepted.
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Topic(s)
+Week
+1 Introduction to chemical engineering; dimensions &units, unit conversion; dimensional
+homogeneity & dimensionless numbers; data analysis, representation, fitting
+2 Process variables: Mass, volume, specific gravity, flow rate, chemical composition, mole
+and mass fractions, pressure, temperature
+3 Material Balances: basic process units; flowcharts, continuous, batch, semi-batch
+processes; basis of calculation; degree of freedom analysis
+4 Multi-unit processes. Recycle, bypass
+5 Reactive processes: stoichiometry; conversion, extent of reaction; chemical equilibrium;
+multiple reactions
+6 Atomic species balances; Combustion
+7 Single-phase systems: PVT relations; ideal gas; gas mixtures; real gas equations of state;
+corresponding states; compressibility factor
+8 Multi-phase systems: Phase equilibria; phase diagrams; vapor pressure; the Gibbs phase
+rule; single-condensable component VLE; humidity
+9 Multi-component VLE; Raoult’s & Henry’s Laws; bubble point & dew point; VLE
+phase diagrams; solutions; solubility; liquid miscibility; ternary phase diagrams;
+adsorption
+10 Energy and energy balances: Forms of energy; 1st law of thermodynamics; energy
+balance on closed systems
+11 Energy balances on open systems; Enthalpy; steam tables; mechanical energy balance;
+Bernoulli equation
+12 Nonreactive processes; hypothetical paths for ΔH determination; pressure & temperature
+changes; heat capacity & sensible heats
+13 Phase changes; latent heats; humidification; psychometric charts; heat of mixing and
+solution; enthalpy-concentration charts; combined materials & energy balances
+14 Energy balances on reactive processes: Heat of reaction; Hess’s law; heat of formation;
+ΔH by heat of reaction & heat of formation approaches
+15 Fuels & combustion; adiabatic flame temperature
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. E ach letter grade is assigned a
+grade point on a fo ur - point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 3 of 3

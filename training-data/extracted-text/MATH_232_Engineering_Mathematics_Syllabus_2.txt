@@ -1,0 +1,248 @@
+--- Page 1 ---
+MATH 232 Engineering Mathematics
+(3 Lecture – 3 Credits)
+Prerequisite: MATH 112
+Course Catalog Description:
+This course introduces students to selected topics from mathematical analysis with engineering
+applications. The first part is a calculus part which covers the definition of functions of several variables
+and their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient
+vectors, and multiple integrals for functions of several variables. The second part of the course deals
+with Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier
+transforms.
+Textbook:
+th
+Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:
+9781305266728.
+th
+Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:
+9780470458365.
+Reference Materials: None
+Course Topics:
+1. Introduction to Complex Numbers (3 lectures)
+• Complex arithmetic, complex argument, and polar form.
+• Complex powers, roots, trigonometric and exponential functions.
+2. Partial Derivatives
+• Functions of several variables. (1 lecture)
+• Limits and continuity (examples only). (3 lectures)
+• Partial derivatives. (2 lectures)
+• Tangent Planes and Linear Approximation (examples only). (2 lectures)
+• Chain Rule. (2 lectures)
+• Gradient vector and directional derivatives. (2 lectures)
+• Minimum and Maximum values. (3 lectures)
+3. Multiple Integrals
+• Double integrals over rectangles. (1 lectures)
+• Iterated integrals. (2 lectures)
+• Double integrals over general regions. (2 lectures)
+• Double integrals in polar coordinates. (1 lecture)
+• Applications of double integrals. (2 lectures)
+• Surface area. (1 lecture)
+• Triple integrals in cylindrical and spherical coordinates. (6 lectures)
+4. Fourier Analysis
+• Introduction to Fourier Series. (1 lecture)
+• Periodic functions, Fourier sine and cosine series. (3 lectures)
+• Complex Fourier series, Parseval’s theorem. (3 lectures)
+• Fourier integrals, Fourier cosine and sine transforms. (3 lectures)
+• Complex Fourier transform, convolution. (2 lectures)
+UCC: OCTOBER 2024 1
+
+--- Page 2 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+___________________________________________________________________________
+Structure and Learning Methodologies:
+Lectures are either 3 x 50 minutes or 2 x 75 minutes per week. Lectures are presented using the whiteboard and
+may be complemented with handouts and/or PowerPoint slides.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and HomeWorks) 40%
+Semester Examination(s) 25%
+Final Examination 35%
+Contribution to General Education Learning Outcomes (GELOs):s
+1A 1B 1C 1D 1E 2A 2B 2C 2D 2E 3A 3B 3C 3D 3E
+--- H --- --- --- --- --- L --- --- L --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & GELOs:
+No. Course Learning Outcomes GELOs
+1. Perform calculations involving complex numbers, trigonometric and
+1B
+exponential functions of complex numbers.
+2. Solve problems involving Fourier integrals representations and transforms
+1B
+for different functions.
+3. Compute limits, partial derivatives, and directional derivatives of
+1B
+functions of several variables.
+4. Identify and classify relative and absolute extrema of functions of several
+1B, 2C
+variables.
+5. Apply various multiple integration techniques to calculate double
+1B
+integrals and triple integrals.
+6. Analyze periodic waveforms and represent them in a Fourier series. 1B, 3A
+UCC: OCTOBER 2024 2
+
+--- Page 3 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+___________________________________________________________________________
+Organizational Details
+Course Code and Title: MATH 232 – Engineering Mathematics
+Semester: Fall 2025
+Schedule: Tuesday and Thursday from 13:30 to 14:45
+Instructor: Mohammad Al-Khaleel
+Contact Email: mohammad.alkhaleel@ku.ac.ae
+Office Room Number: SAN - 1212
+Office Hours: Mondays and Wednesdays from 12:30 to 13:30; or by appointment
+Assessment Methodology
+Tentative Dates Weight
+Quizzes
+Weeks 2, 3, 4, 5 & 6 respectively
+1, 2, 3, 4 & 5
+Coursework 40%
+Quizzes
+Weeks 7, 8, 9, 10 & 11 respectively
+6, 7, 8, 9 & 10
+Semester Examination Week 7: Date, time, and venue to be determined 25%
+Final Examination Week 15 or 16: RO 35%
+Instructor Policy on Late Submission of Assignments:
+Quizzes
+There will be no make-up quizzes. If the student fails to attend a scheduled quiz without an approved absence
+from the Registrar’s Office, then a grade of zero for that quiz will be assigned.
+If the student fails to attend a quiz and the Student Success Department confirms that the student's absence
+from that quiz is approved, then the grade that will be assigned to that quiz is the grade of the Semester
+Examination if that quiz took place before the Semester Examination; the grade of the Final Examination if
+that quiz took place after the Semester Examination.
+Semester Examination
+There will be no make-up Semester Examination. If the student fails to attend the scheduled Semester
+Examination without an approved absence from the Student Success Department, then a grade of zero will be
+assigned for the Semester Examination.
+If the student fails to attend the Semester Examination and the Student Success Department confirms that
+the absence from the Semester Examination is approved, then the grade for the Final Examination will also be
+assigned as the grade for the Semester Examination.
+A maximum of 40% of the course grade can be compensated through the above policy.
+UCC: OCTOBER 2024 3
+
+--- Page 4 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+___________________________________________________________________________
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will
+behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures – This is a tentative schedule and may be adjusted as required):
+Week Dates Topics and Reminders
+August 25 14.1 - Functions of Several Variables
+1
+August 29 14.2 - Limits and Continuity
+14.3 - Partial Derivatives
+September 01
+2 14.4 - Tangent Planes and Linear Approximations
+September 05
+Quiz 1
+14.5 - The Chain Rule
+September 08
+3 14.6 - Directional Derivatives and the Gradient Vector
+September 12
+Quiz 2
+September 15 14.7 - Maximum and Minimum Values
+4
+September 19 Quiz 3
+September 22 15.1 - Double Integrals over Rectangles and Iterated Integrals
+5
+September 26 Quiz 4
+15.2 - Double Integrals over General Regions
+September 29
+6 15.3 - Double Integrals in Polar Coordinates
+October 03
+Quiz 5
+15.4 - Applications of Double Integrals
+October 06
+7 15.5 - Surface Area
+October 10
+Semester Examination (Date, time, and venue to be determined)
+15.6 - Triple Integrals
+October 20
+8 15.7 - Triple Integrals in Cylindrical Coordinates
+October 24
+Quiz 6
+15.7 - Triple Integrals in Cylindrical Coordinates (continued)
+October 27
+9 15.8 - Triple Integrals in Spherical Coordinates
+October 31
+Quiz 7
+13.1 - Complex Numbers
+November 03 13.2 - Polar Forms of Complex Numbers. Powers and Roots
+10
+November 07 13.5 - Complex Exponentials
+Quiz 8
+11.1 - Fourier Series
+November 10
+11 11.2 - Arbitrary Period. Even and Odd Functions. Half-Range Expansions
+November 14
+Quiz 9
+11.4 - Approximation by Trigonometric Polynomials
+November 17
+12 11.7 - Fourier Integral
+November 21
+Quiz 10
+November 24 11.8 - Fourier Cosine and Sine Transforms
+13
+November 28 11.9 - Fourier Transform. Discrete and Fast Fourier Transforms
+December 01
+14 Revisions
+December 05
+December 06
+15 & 16 Final Examinations Period
+December 14
+UCC: OCTOBER 2024 4
+
+--- Page 5 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+___________________________________________________________________________
+Additional Information:
+Changes will be made to the timetable for the above Teaching Plan if more or less time is required for students
+to successfully learn the individual topics.
+Mobile phones must be switched off during quizzes and exams and must be put away for the duration of the
+quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please arrive at the class periods in a timely fashion. Classes will start as scheduled.
+Students arriving late are a distraction to both the instructor and the other students in the classroom. Students
+arriving late are disrespectful to the institution, the professor and their fellow students.
+All mobile phones, iPads, iPods, laptop computers etc. must be switched off and put away during the class
+time.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses
+and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point
+on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+UCC: OCTOBER 2024 5
+
+--- Page 6 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+___________________________________________________________________________
+The following is an indicative of typical ranges associated with letter grades for KU courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+UCC: OCTOBER 2024 6

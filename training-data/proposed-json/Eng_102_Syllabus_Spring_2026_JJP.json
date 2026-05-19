@@ -1,0 +1,66 @@
+{
+  "sourceFileName": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourcePath": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourceRelativePath": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourceTextFileName": "Eng_102_Syllabus_Spring_2026_JJP.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "creditHours": 3,
+  "semester": "Spring 2026",
+  "instructor": "Joud Jabri-Pickett",
+  "instructorEmail": "joud.pickett@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Building 1, Room 1023A",
+  "officeHours": "Mon./Wed. 9-12 (By appointment: In-office or MS Teams)",
+  "prerequisites": "ENGL 101",
+  "textbooks": [
+    "Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,",
+    "Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244"
+  ],
+  "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation.",
+  "assessments": [
+    {
+      "name": "Individual Writing: Technical report Part 1",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Individual Writing: Technical report Part 1 Week 3 (Jan. 26-30 in class) 15%"
+    },
+    {
+      "name": "Individual Writing: Technical report Part 2",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Individual Writing: Technical report Part 2 Week 6 (Feb.16-20) 25%"
+    },
+    {
+      "name": "Individual Digital presentation",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Individual Digital presentation Week 7 (Mar. 9-12) 20%"
+    },
+    {
+      "name": "Group Oral Presentation of Proposal",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Group Oral Presentation of Proposal Week 13 & 14 (in class) 10%"
+    },
+    {
+      "name": "Group proposal in response to a Request for Proposals (RFP)",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Group (</= 3 students) proposal in response to a Request for Proposals (RFP) Week 14 (Apr. 27-May 1) 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

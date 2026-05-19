@@ -1,0 +1,87 @@
+{
+  "sourceFileName": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourcePath": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourceRelativePath": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourceTextFileName": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 101",
+  "courseName": "Foundations of Computer Science",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Menatalla Abououf",
+  "instructorEmail": "menatalla.abououf@ku.ac.ae",
+  "schedule": "Mondays and Wednesday: 14:00 - 14:50",
+  "classroom": "C04050",
+  "officeRoom": "D04207",
+  "officeHours": "Mondays & Wednesdays: 12:00 - 2:00",
+  "prerequisites": "COSC 114",
+  "textbooks": [
+    "Foundations of Computer Science by Behrouz Forouzan",
+    "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
+  ],
+  "courseDescription": "Extracted from the Course Catalog Description section",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    },
+    {
+      "name": "Lab Final Exam",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "COSC 101 detailed assessment breakdown from syllabus supplement"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.95,
+  "needsHumanReview": false
+}

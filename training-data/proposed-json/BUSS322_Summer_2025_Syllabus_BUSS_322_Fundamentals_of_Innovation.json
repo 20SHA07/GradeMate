@@ -1,0 +1,59 @@
+{
+  "sourceFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourcePath": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourceRelativePath": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourceTextFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BUSS 322",
+  "courseName": "Fundamentals of Innovation & Entrepreneurship",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": null,
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "MS Teams is normally be used for office hours or informally after/before class",
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Entrepreneurship and Small Business by Paul Burns, Publisher: Red Globe Press, 5th Edition, 2021, ISBN:",
+    "978-1352012491"
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes, homework) 20%"
+    },
+    {
+      "name": "Project 1",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #1: Design Thinking in Practice 20%"
+    },
+    {
+      "name": "Project 2",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #2: Opportunity Analysis 20%"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Project: Personal Business Plan 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Instructor missing"
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": true
+}

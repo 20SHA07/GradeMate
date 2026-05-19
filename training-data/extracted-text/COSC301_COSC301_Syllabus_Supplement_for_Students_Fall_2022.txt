@@ -1,0 +1,53 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title COSC301 Automata, Computability, and Complexity
+Semester: Fall 2022
+Instructor Name Dr Deepak Puthal
+Contact Email/ Office Ext. No. deepak.puthal@ku.ac.ae / 4022
+Office Room No. C04014 (Main Campus)
+Tuesday & Thursday: 14:30 hrs – 15:30 hrs.
+Office Hours
+Additional Office Hours by appointment.
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework 1 Week 3 10%
+Homework 2 Week 6 10%
+Homework 3 Week 10 10%
+Quiz 1 Week 4 05%
+Quiz 2 Week 6 05%
+Quiz 3 Week 10 05%
+Quiz 4 Week 13 05%
+Projects (if applicable)
+Laboratory (if applicable)
+Semester Examination (s) Midterm Week 8 20%
+Final Examination Final Examination TBC by the Registrar’s Office 30%
+Instructor Policy on late submission of assignments:
+Penalty of 5% for each day.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 1 of 2
+
+--- Page 2 ---
+TEACHING PLAN (Lecture):
+Teaching Plan
+Week 1 Introduction: Automata, computability and complexity; mathematical background;
+mathematical proofs (Sec. 0.1, 0.2, 0.3, 0.4)
+Week 2 Finite automata: examples; definitions; designing finite automata (Sec. 1.1)
+Week 3 Nondeterministic finite automata; regular expressions (Sec 1.2, 1.3)
+Week 4 Pumping lemma; context free grammars (Sec 1.4, 2.1)
+Week 5 Pushdown automata; Turing machines (Sec 2.2, 3.1)
+Week 6 Variants of Turing machines and algorithms (Sec. 3.2, 3.3)
+Week 7 Decidable languages (Sec 4.1)
+Week 8 Decidable languages (Sec 4.1)
+Week 9 Reducibility: Undecidable Problems from Language Theory, Reductions via
+computation histories (Sec. 5.1)
+Week 10 Post correspondence problem (Sec. 5.2)
+Week 11 Mapping reducibility; computable functions (Sec. 5.3)
+Week 12 The recursion theorem (Sec. 6.1)
+Week 13 Measuring complexity; the class P (Sec. 7.1, 7.2)
+Week 14 The class NP; NP-completeness (Sec 7.3, 7.4)
+Week 15 Additional NP-complete problems (Sec. 7.4, 7.5)
+This is a tentative schedule and may be adjusted as required.
+NOTE: The Teaching Plan is subject to change, please check regularly for updates in RED font.
+Syllabus Supplement for Students Page 2 of 2

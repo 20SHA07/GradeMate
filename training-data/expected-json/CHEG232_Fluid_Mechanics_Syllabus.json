@@ -1,55 +1,101 @@
 {
-  "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourceFileName": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourcePath": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourceRelativePath": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourceTextFileName": "CHEG232_Fluid_Mechanics_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "CHEG 232",
-  "courseName": "Fluid Mechanics",
-  "semester": "Spring 2025",
-  "instructor": "Dr. Haitem Hassan-Beck",
-  "instructorEmail": "haitem.hassanbeck@ku.ac.ae",
+  "courseName": "Fluid Mechanics For Chemical Engineering",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Dr. Emad Alhseinat",
+  "instructorEmail": "Emad.alhseinat@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "255 Arzanah",
+  "officeHours": "Monday _10:30-11:30; or ask for appointment through email.",
+  "prerequisites": null,
+  "textbooks": [
+    "Week 2 Fluid Statics: Fundamentals of Fluid Statics: (Chapter 2 textbook)",
+    "Week 3 The Balance Equation: Mass Balance",
+    "(Chapter 3 textbook)",
+    "Week 4 The Balance Equation: Energy Balance",
+    "(Chapter 4 textbook)",
+    "Week 5 Bernoulli’s Equation",
+    "Chapter 5 (textbook)",
+    "Week 6 Examples on Bernoulli’s Equation"
+  ],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
-      "weight_percentage": 2,
-      "max_score": 100
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 1 Week 4 (8 Feb) 4%"
     },
     {
       "name": "Quiz 2",
-      "weight_percentage": 2,
-      "max_score": 100
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 2 Week 6 (22 Feb) 4%"
     },
     {
       "name": "Quiz 3",
-      "weight_percentage": 2,
-      "max_score": 100
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 3 Week 10 (21 March) 4%"
     },
     {
       "name": "Quiz 4",
-      "weight_percentage": 2,
-      "max_score": 100
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 4 Week 13 (11 April) 4%"
     },
     {
       "name": "Quiz 5",
-      "weight_percentage": 2,
-      "max_score": 100
-    },
-    {
-      "name": "Assignments, project & field trip",
-      "weight_percentage": 10,
-      "max_score": 100
-    },
-    {
-      "name": "Midterm",
-      "weight_percentage": 20,
-      "max_score": 100
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz 5 Week 15 (25 April) 4%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Laboratory (if applicable) 20%"
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Semester Examination (s) Week 8 (05 March) 25%"
+    },
+    {
+      "name": "Attendance",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Attendance 5%"
     },
     {
       "name": "Final Examination",
-      "weight_percentage": 40,
-      "max_score": 100
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final Examination 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.87,
+  "needsHumanReview": true
 }

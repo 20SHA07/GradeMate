@@ -1,0 +1,118 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title COSC 310: Data Structures
+Semester: Fall 2025
+Instructor Name Dr. Khaled Elbassioni
+Contact Email/ Office Ext. No. khaled. elbassioni@ku.ac.ae
+Office Room: D04200
+Lecture Room: G02002 TUE-THU: 12:00 PM - 12:50 PM
+TUE-THU: 15:00 PM-16:00 PM
+Office Hours
+Or by an appointment.
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 5 3.33%
+Quiz 2 Week 8 3.33%
+Quiz 3 Week 13 3.34%
+Projects / Assignment Project/Assignment Week 10 – Week 14 10%
+Laboratory Lab Assignments Weekly (W2 – W13) 10%
+Lab Quizzes Consult with Lab TA 10%
+Lab Test (or a Quiz) Week 14 5%
+Semester Examination (on-campus) Week 9 (Mar 13) 20%
+Final Examination (on-campus) Week 16 (May 5-15) 35%
+Instructor Policy on late submission of assignments:
+Penalty of 20% for each delayed day.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+TEACHING PLAN (Tentative Lectures):
+Week 1 (25 Aug – 1 Sep) Introduction: Review of Object-Oriented Design.
+*25 Aug - Classes Begin
+*1 Sep - End of Add/Drop
+Week 2 (1 – 5 Sep) Algorithm Complexity Performance of Algorithms, Time and Space tradeoff.
+Worst-case and Average-case performance.
+Week 3 (8 – 12 Sep) The big- Oh Notation, Complexity Calculations examples.
+Week 4 (15 – 19 Sep) NP completeness and approximation algorithms.
+Week 5 (22 – 26 Sep) Fundamental Data Structures: Concept of Abstract Data Types (ADTs)
+(Quiz 1 – Thu 25 Sep).
+Week 6 (29 Sep – 3 Oct) ADT specification: Unsorted and Sorted Lists.
+Week 7 (6 – 10 Oct) Stacks.
+Week 8 (13 – 17 Oct) Queues (Quiz 2 – Thu 16 Oct).
+Week 9 (20 – 24 Oct) Sorting and Searching Algorithms: Sorting: Behavior of Sorting Algorithms,
+Selection Sort, Insertion Sort, Bubble Sort. Midterm Exam 21/23 Oct
+Week 10 (27 – 31 Oct) Quick Sort, Hashing, Radix Sort. Assignment Issue – Wed 29 Oct
+*31 Oct- Last day to drop w/”W”
+Week 11 (3 – 7 Nov) Heap Sort, Merge Sort.
+Week 12 (10 – 14 Nov) Binary Search Trees.
+Week 13 (17 – 21 Nov) Advanced Data Structures: Priority Queues, Heaps (Quiz 3 – Thu 20 Nov).
+Week 14 (24 – 28 Nov) Graphs & Sets Algorithms Assignment Deadline: Thu 27 Nov at 11:59 PM
+Week 15 (1 Dec – 5 Dec) Graphs & Sets Algorithms.
+*5 Dec - Last Day of Classes
+*18 Dec - Final Grades Due
+LABORATORY SCHEDULE (Tentative Plan):
+Week 1 No Lab
+Week 2 Dynamic Memory Allocation
+Analysis of Algorithm Complexity (Part 1): Test different algorithms and measure the
+Week 3
+time complexity effects in practice.
+Analysis of Algorithm Complexity (Part 2): Link the Algorithm complexity concepts
+Week 4
+from theory to practice.
+Manipulating Unsorted Lists
+Week 5
+Lab Quiz 1
+Week 6 Manipulating Sorted Lists
+Week 7 Manipulating Stacks
+Manipulating Queues
+Week 8
+Lab Quiz 2
+Week 9 Experiments with Sorting Algorithms Performance: Bubble & Selection Sort
+Week 10 Experiments with Sorting Algorithms Performance: Quick Sort & Heap Sort
+Manipulating Binary Search Tree (BST)
+Week 11
+Lab Quiz 3
+Week 12 Priority Queues
+Week 13 Graphs/Hoffman Codes
+Postfix Calculator Using Dynamic Stacks (Tentative Topic)
+Week 14
+Final Lab Test
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses
+and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point
+on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of Engineering
+Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 3 of 3

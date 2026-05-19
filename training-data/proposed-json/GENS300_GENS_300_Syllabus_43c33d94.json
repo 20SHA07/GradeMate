@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "GENS300_GENS_300_Syllabus_43c33d94.pdf",
+  "sourcePath": "GENS300_GENS_300_Syllabus_43c33d94.pdf",
+  "sourceRelativePath": "GENS300_GENS_300_Syllabus_43c33d94.pdf",
+  "sourceTextFileName": "GENS300_GENS_300_Syllabus_43c33d94.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "creditHours": 1,
+  "semester": "Fall 2024",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "March 2023 2",
+  "prerequisites": "GENS 100, Sophomore Standing",
+  "textbooks": [],
+  "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
+  "assessments": [
+    {
+      "name": "CV Submission",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Documented evidence of career planning and industry exploration",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Mock Interview",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Attendance of Professional Development workshops (5)",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Final Quiz",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Detailed assessment methodology did not cleanly map to the summary table, so the summary table was used.",
+    "Instructor missing"
+  ],
+  "confidence": 0.86,
+  "needsHumanReview": true
+}

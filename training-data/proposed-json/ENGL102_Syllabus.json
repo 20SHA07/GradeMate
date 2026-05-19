@@ -1,0 +1,57 @@
+{
+  "sourceFileName": "ENGL102_Syllabus.pdf",
+  "sourcePath": "ENGL102_Syllabus.pdf",
+  "sourceRelativePath": "ENGL102_Syllabus.pdf",
+  "sourceTextFileName": "ENGL102_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "creditHours": 3,
+  "semester": "Fall 2022",
+  "instructor": "Dr. Nader Ayish",
+  "instructorEmail": "nader.ayish@ku.ac.ae",
+  "schedule": "8 am-9:15 am Tuesday and Thursday",
+  "classroom": null,
+  "officeRoom": "Umm Shaif, Building 4, room 4003",
+  "officeHours": "Tuesday and Thursday, 9:15 am-10:15 am; 12:15 pm-1:15 pm; and by",
+  "prerequisites": "ENGL 101",
+  "textbooks": [
+    "Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,",
+    "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
+  ],
+  "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Team (</= 3 students) proposal in Week 9 30%"
+    },
+    {
+      "name": "Team Oral Presentation Of Proposal",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Team Oral Presentation of Proposal Week 11 10%"
+    },
+    {
+      "name": "Individual Writing: Technical Report",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Individual Writing: Technical report Week 15 40%"
+    },
+    {
+      "name": "Digital Presentation Of Technical Report",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Digital presentation of technical report Week 15 20%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

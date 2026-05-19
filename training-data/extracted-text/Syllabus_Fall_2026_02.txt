@@ -1,0 +1,319 @@
+Physics 121_Syllabus Supplement for Students
+
+Organizational Details
+ 
+Course Code and Title:
+ PHYS 121 _ University Physics I
+ 
+Semester:
+ Spring 2026 (Section 2)
+ 
+Schedule:
+ CRN 20228: MW 11:00-12:40 
+ 
+Instructor:
+ Mr. Nabee Hasheem
+ 
+Contact Email:
+ nabee.hasheem@ku.ac.ae
+ 
+Office Room Number:
+ SAN 3109
+ 
+Office Hours:
+ TR 10:00 AM-12:00 
+ 
+
+Assessment Methodology 
+ 
+Coursework
+ Tentative Dates
+ Weight 
+ 
+Quizzes: 
+4 descriptive questions /30 min
+ Quiz 1
+ 
+ Quiz + WAs = 24% + 6% = 30%
+
+ 
+
+ Quiz 2
+ 
+ 
+ 
+
+ Quiz 3
+ 
+ 
+ 
+
+ Quiz 4
+ 
+ 
+ 
+
+ Web assign
+ 
+ 
+ 
+Laboratory
+ 1-lab report per each experiment
+ During lab time
+ 20%
+ 
+Semester Examination (s)
+ Midterm test
+ Oct 24, 2025
+ 20%
+ 
+
+ Final test
+ TBA (registrar office)
+ 30%
+ 
+
+Instructor Policy on Late Submission of Assignments:
+Quizzes: There will be 4 descriptive quizzes. There will be no makeup quiz. If you miss a quiz, it is your responsibility to contact the registration office and provide them with a legitimate excuse (medical note, for example), and take their approval. 
+WAs: WA for each chapter will be provided on Cengage online to be attempted. Please complete the task before the deadline. No extension on the deadline. 
+Midterm (MT): MT Exam will be descriptive, and there will be no make-up MT. If you miss this test and you have a valid excuse, the final exam will carry all the point weight of the combined midterm and the final exam (e.g. 50%).
+Final Exam: Final Exam will be will be descriptive, and will be scheduled by the registration office. 
+ 
+
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+Teaching Plan (Lectures):
+
+This is a tentative schedule and may be adjusted as required.
+Week 1 (Jan 12-16)
+ Ch1 (1- 6): Physics & Measurement, Ch2 (1-8): Motion in 1D
+Jan 15: End of add/drop for UG
+ 
+Week 2 (Jan 19-23)
+ Ch3(1-4): Motion in 1D Ch4 (1-5): Vectors 
+ 
+Week 3 (Jan 26-30)
+ Ch4 (1-5): Motion in 2D Quiz 1
+ 
+Week 4 (Feb 2-6)
+ Ch5 (1-8): The Laws of Motion 
+ 
+Week 5 (Feb 9-13)
+ Ch6 (1-2): Circular Motion 
+ 
+Week 6 (Feb 16-20)
+ Ch7 (1-8): Energy of a System Quiz 2
+ 
+Week 7 (Feb 23-27)
+ Ch8 (1-5): Conservation of Energy
+Midterm exam: Feb 27 (9:00- 10:30 AM) 
+ 
+Week 8 (March 2-6)
+ Ch9 (1-7): Linear Momentum and Collisions
+ 
+Week 9 (March 9-13)
+ Ch9 (1-7): Linear Momentum and Collisions 
+ 
+Week 10 (March 16-27)
+ Spring Break
+ 
+Week 11 (March 30-April 3)
+ Ch10 (1-8): Rotation of Rigid Objects 
+Monday, March 30: Last Day to withdraw with “W”
+ 
+Week 12 (April 6-10)
+ Ch10 (1-8): Rotation of Rigid Objects Quiz 3 
+ 
+Week 13 (April 13-17)
+ Ch11 (1-4): Angular Momentum; Ch12 (1-3): Static Equilibrium 
+ 
+Week 14 (April 20-24)
+ Ch12 (1-3): Static Equilibrium; Ch15 (1-3,5): Oscillatory Motion Quiz 4 
+ 
+Week 15 (April 27-May 1)
+ Ch16 (1-3): Wave Motion 
+ 
+Week 16-17 (May 4-14)
+ Final Exams (TBA)
+ 
+ 
+ 
+ 
+
+This is a tentative schedule and may be adjusted as required.
+Mid-term exam: Chapters 1-8
+
+LABORATORY SCHEDULE:
+
+PHYS 121 Spring 2026
+ 
+ 
+Week
+ Date
+ Experiment
+ 
+ 
+Week 1
+ Jan 12-16
+ Introduction to Physics Lab
+ 
+ 
+Week 2
+ Jan 19-23
+ Exp 1
+ Basic Measurement
+ 
+ 
+Week 3
+ Jan 26-30
+ Exp 2
+ Free Fall
+ 
+ 
+Week 4
+ Feb 2-6
+ Exp 3
+ Projectile motion
+ 
+ 
+Week 5
+ Feb 9-13
+ Exp 4
+ Newton's Law
+ 
+ 
+Week 6
+ Feb 16-20
+ Exp 5
+ Hooke's Law
+ 
+ 
+Week 7
+ Feb 23-27
+ Mid Term - No Lab
+ 
+ 
+Week 8
+ March 2-6
+ Mid Term - No Lab
+ 
+ 
+Week 9
+ March 9-13
+ Exp 6
+ Pendulum Energies
+ 
+ 
+Week 10
+ March 16-27
+ 
+ Spring Break
+ 
+ 
+Week 11
+ March 30-April 3
+ Exp 7
+ Inelastic Collision
+ 
+ 
+Week 12
+ April 6-10
+ Exp 8
+ Elastic Collision
+ 
+ 
+Week 13
+ April 13-17
+ Exp 9
+ Forces and Torques
+ 
+ 
+Week 14
+ April 20-24
+ Exp 10
+ SHM Mass and Spring
+ 
+ 
+Week 15
+ April 27-May 1
+ No Lab
+ 
+ 
+Week 16-17
+ May 4 – May 14
+ Final Exam
+ 
+ 
+
+ 
+ 
+ 
+ 
+ 
+
+This is a tentative schedule and may be adjusted as required
+
+Additional Information:
+Topics covered in the lectures are taken from the textbook “Physics for Scientists and Engineers, Raymond A. Serway and John W Jewett, Brooks Cole Publisher, 10th International Edition, 2019”. This will be available on the Moodle page of the course.
+
+For more information about physics lab, please refer to the Lab-Moodle page, and any questions regarding labs and experiments should be directed to the lab instructor.
+ 
+
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses.  Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale. Typical ranges associated with letter grades are set out below:
+
+Letter Grade
+ Grade Point
+ Percentage Grade Range
+ Description
+ 
+A
+ 4.00
+ 92.5%-100%
+ Excellent
+ 
+A-
+ 3.70
+ 89.5% to < 92.5%
+ Very Good
+ 
+B+
+ 3.30
+ 86.5% to < 89.5%
+ 
+ 
+B
+ 3.00
+ 82.5% to < 86.5%
+ Good
+ 
+B-
+ 2.70
+ 79.5% < 82.5%
+ 
+ 
+C+
+ 2.30
+ 76.5% to < 79.5%
+ Satisfactory
+ 
+C
+ 2.00
+ 72.5% to < 76.5%
+ 
+ 
+C-
+ 1.70
+ 69.5% to < 72.5%
+ Less Than Satisfactory
+ 
+D
+ 1.00
+ 59.5% to < 69.5%
+ Poor
+ 
+F
+ 0.00
+ < 59.5%
+ Fail

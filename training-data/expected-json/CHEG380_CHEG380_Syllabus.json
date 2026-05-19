@@ -1,0 +1,60 @@
+{
+  "sourceFileName": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourcePath": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourceRelativePath": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourceTextFileName": "CHEG380_CHEG380_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 380",
+  "courseName": "Introduction to Polymer Science and Technology",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Saeed Alhassan",
+  "instructorEmail": "Saeed.alkhazraji@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus Arzanah 315",
+  "officeHours": "Monday 2 PM – 3 PM; Tuesday 11 AM-12 PM",
+  "prerequisites": null,
+  "textbooks": [
+    "Fundamental principles of polymeric materials by Stephen L",
+    "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
+  ],
+  "courseDescription": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
+  "assessments": [
+    {
+      "name": "Quizzes (6, drop 2 lowest)",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework Quizzes (6, drop 2 lowest) See schedule 15"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Project Will be assigned 2 week 15"
+    },
+    {
+      "name": "Exams (2)",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Exams (2) Week 7 and Week 15 40"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Exam Finals week 30"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

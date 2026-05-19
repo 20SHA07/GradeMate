@@ -1,0 +1,134 @@
+{
+  "sourceFileName": "CHEG205_CHEG_205_-_Syllabus.pdf",
+  "sourcePath": "CHEG205_CHEG_205_-_Syllabus.pdf",
+  "sourceRelativePath": "CHEG205_CHEG_205_-_Syllabus.pdf",
+  "sourceTextFileName": "CHEG205_CHEG_205_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 205",
+  "courseName": "Principles of Chemical Engineering",
+  "creditHours": null,
+  "semester": "Fall 2023",
+  "instructor": "Dr. Badr Al Mahri",
+  "instructorEmail": "badr.almahri@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "2205 SAN Campus",
+  "officeHours": "M. and W. 2:00 pm – 3:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homeworks Homework 1 September 2023 3.6%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 2 September 2023 3.6%"
+    },
+    {
+      "name": "Homework 3",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 3 October 2023 3.6%"
+    },
+    {
+      "name": "Homework 4",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 4 October 2023 3.6%"
+    },
+    {
+      "name": "Homework 5",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 5 November 2023 3.6%"
+    },
+    {
+      "name": "Homework 6",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 6 November 2023 3.6%"
+    },
+    {
+      "name": "Homework 7",
+      "weight_percentage": 3.6,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 7 December2023 3.6%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quizzes Quiz 1 September 2023 4%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 October 2023 4%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 November 2023 4%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 November 2023 4%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 5 December 2023 4%"
+    },
+    {
+      "name": "Midterm Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Examination 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination 30%"
+    },
+    {
+      "name": "Attendance",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Attendance 5%"
+    }
+  ],
+  "totalWeight": 100.2,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

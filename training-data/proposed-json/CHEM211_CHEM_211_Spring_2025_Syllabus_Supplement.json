@@ -1,0 +1,58 @@
+{
+  "sourceFileName": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx",
+  "sourcePath": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx",
+  "sourceRelativePath": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx",
+  "sourceTextFileName": "CHEM211_CHEM_211_Spring_2025_Syllabus_Supplement.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEM 211",
+  "courseName": "Fundamentals of Organic Chemistry",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Manzar Abbas",
+  "instructorEmail": "manzar.abbas@ku.ac.ae",
+  "schedule": "Tuesday, Thursday (12:00 – 1:15 pm) at PMA 3016",
+  "classroom": null,
+  "officeRoom": "Buhasa 2012A",
+  "officeHours": "(Tuesday, Thursday) 02.00 PM - 03.30 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
+  "assessments": [
+    {
+      "name": "Coursework (Best 4 out of 5 quizzes)",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade)"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Exam"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.89,
+  "needsHumanReview": true
+}

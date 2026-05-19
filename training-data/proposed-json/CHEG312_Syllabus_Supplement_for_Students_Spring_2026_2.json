@@ -1,0 +1,106 @@
+{
+  "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourcePath": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourceRelativePath": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourceTextFileName": "CHEG312_Syllabus_Supplement_for_Students_Spring_2026_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "creditHours": null,
+  "semester": "Spring 2026",
+  "instructor": "Dr. Khalid Al Ali",
+  "instructorEmail": "khalid.alali@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Arzanah Bldg. 2F, Room # 8-271",
+  "officeHours": "Monday 11:00 AM - 01:00 PM; Wednesday 11:00 AM - 01:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Homework Weekly 10%"
+    },
+    {
+      "name": "Faculty Discretion, attendance, participation",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Faculty Discretion, attendance, - 5%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 (Solving system of linear equations) Week 4 2%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 (Solving non-linear equations) Week 6 2%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 (Polynomial Interpolation) Week 5 2%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 (Numerical Integration + Differentiation) Week 6 2%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 5 (ODE-IVP & ODE-BVP) Week 9 2%"
+    },
+    {
+      "name": "Project Presentation and Report",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects Project Presentation and Report Week 16: April 28, 2026 15%"
+    },
+    {
+      "name": "Midterm 1",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Midterm 1 Week 7: Feb 26, 2026 15%"
+    },
+    {
+      "name": "Midterm 2",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm 2 Week 13: April 16, 2026 15%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Final Exam TBA 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

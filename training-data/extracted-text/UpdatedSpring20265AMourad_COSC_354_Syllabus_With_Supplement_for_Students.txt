@@ -1,0 +1,187 @@
+--- Page 1 ---
+COSC 354 Operating Systems
+(2 Lecture, 3 Laboratory – 3 credits)
+Prerequisite:
+COSC 201
+Course Catalogue Description:
+This course covers the important problems in operating system design and implementation. The course will start with a
+brief historical perspective of the evolution of operating systems that covers the major components, including process
+management (processes, threads, CPU scheduling, inter-process communication, and deadlock management), memory
+management (paging, segmentation, and address translation), device and file management.
+Textbook:
+th
+1. Operating Systems Concepts, by A. Silberschatz and P. B. Galvin. Publisher: Addison Wesley, 10 edition, 2021,
+ISBN: 1118063333.
+2. KU ECCE354 Laboratory Manual.
+Reference Materials:
+th
+1. Modern Operating Systems by Andrew S. Tanenbaum, Publisher: Pearson, 4 Revised Edition, 2014, ISBN:
+9781292061429.
+Course Topics:
+1. Historical overview: Motivation for operating systems, historical perspective. (1 lecture)
+2. OS concepts, functions, and structure: Basic functions and components of a general-purpose operating system. OS
+concepts and system calls. (3 lectures)
+3. Processes, Inter-Process Communication, and Threads: process model, process table, process state diagram, context
+switching, shared memory, pipes, and sockets. Thread models and communication. (6 lectures)
+4. Process Synchronization and Management: race condition and critical regions, mutual exclusion with busy waiting,
+sleep and wakeup, semaphores, mutexes, Producer/consumer, and read/write problems and solutions. (6 lectures)
+5. Deadlock management. (2 lectures)
+6. Process scheduling: goals of process scheduling, preemptive and non-preemptive scheduling. Scheduling in batch
+and interactive system. Round-robin, priority scheduling, starvation, and aging. (4 lectures)
+7. Memory management: functions of memory manager, basic management techniques, multiprogramming modeling
+and issues, swapping. Virtual memory with paging, address translation, page tables, multi-level tables, TLB, page
+replacement algorithms, page fault handling. Segmentation of memory. (6 lectures)
+8. File and device management. (2 lectures)
+Course Structure and Learning Methodologies:
+Lectures are 2 x 50 minutes per week. The laboratory sessions are 1 x 120 minutes per week. The course uses a
+combination of in-class and out-of-class learning methods. In-class methods include lecture presentations in
+PowerPoint, workable exercises, tutorials, live demos of operating system tools and OS internals to illustrate key
+concepts, and YouTube videos made by the instructors. Out-of-class methods include hands-on assignments and
+projects on theoretical and practical aspects of Linux and Windows OSes. Labs follow the lectures to provide hands-on
+experience for the studied subjects. Heavy participation and interaction between instructor and students are exhibited
+in class and during office hours to solidify concepts and enrich the learning experience.
+Computer Resources:
+PCs and/or Workstations with Unix, Linux, and/or Windows OS
+Laboratory/Assignments Topics: (not necessary in this order)
+• Introduction to Linux/Ubuntu Platforms
+1
+
+--- Page 2 ---
+• Basic Operating systems functionalities
+• System Calls () in Linux
+• Process Management & Threads
+• Process Synchronization (Solution to producer-consumer problems)
+• Deadlock Modeling
+• CPU Scheduling
+• Memory Management
+Laboratory Resources:
+Computer lab must be equipped with the latest Linux/Ubuntu operating system.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (quizzes, assignments) 20%
+Laboratory 20%
+Semester Examination 25%
+Final Examination 35%
+Contribution to Engineering Program Learning Outcomes:
+1 2 3 4 5 6 7
+H - - - - H M
+H – High M – Medium L – Low
+Mapping of Course Learning Outcomes & Engineering Program Learning Outcomes:
+Course Learning Outcomes Eng. PLOs
+1. Identify the basic components of a general-purpose OS and key concepts of
+threads and processes such as process management, inter-process 1
+communication, process synchronization, process scheduling, and deadlock
+management.
+2. Solve process/thread management, communication, and synchronization 1
+problems.
+3.
+4. Analyze performance of various CPU scheduling algorithms 6
+5. Compare different design aspects and techniques of memory management 1,6
+including such as virtual memory, paging, and segmentation.
+Contribution to CS Program Learning Outcomes:
+1 2 3 4 5 6
+H H - - - H
+H – High M – Medium L – Low
+Mapping of Course Learning Outcomes & CS Program Learning Outcomes:
+Course Learning Outcomes CS PLOs
+1. Identify the basic components of a general-purpose OS and key concepts of threads
+and processes such as process management, inter-process communication, process 1,2
+synchronization, process scheduling, and deadlock management
+2. Solve process/thread management, communication, and synchronization problems. 1,2,6
+3. Analyze performance of various CPU scheduling algorithms. 1,2
+2
+
+--- Page 3 ---
+4. Compare different design aspects and techniques of memory management. 1,2
+3
+
+--- Page 4 ---
+Syllabus Supplement for Students
+Course Code and Title COSC 354 Operating Systems
+Semester:
+Fall 2025
+Instructor Name Azzam Mourad
+Contact Email/ Office Ext. No. azzam.mourad@ku.ac.ae
+Office Room No. D04209
+Office Hours Tuesday-Thursday: 12PM-1PM and 2PM-3PM
+Monday-Wednesday: By appointment
+Assessment Methodology
+Tentative Dates Weight
+Quizzes and assignments 2-3 quizzes + Assignments 20%
+Laboratory Weekly Tasks 20%
+Semester Examination (s) Week 8 25%
+Final Examination Week 16 35%
+Instructor Policy on late submission of lab exercises:
+You are strongly recommended to return your lab solutions in the due date. Delays will be penalized
+byone grade per day unless exceptional circumstances.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+4
+
+--- Page 5 ---
+TEACHING PLAN (Tentative) (Lecture):
+Week 1: Historical overview: Motivation for operating systems, historical perspective.
+OS concepts, functions and structure: Basic functions and components of a
+general-purpose operating system.
+Week 2: Operating System Structure and System calls in Operating Systems
+Week 3: Processes and Threads: process model, process table, process state diagram,
+and context switching.
+Week 4: Processes and Threads: Inter-Process Communications
+Quiz 1
+Week 5: Threading in Operating System.
+Week 6: Process Synchronization: race condition and critical regions, mutual
+exclusion with busy waiting.
+Week 7: Process Synchronization: Sleep and wake up, Semaphores, mutexes,
+message-passing.
+Week 8: Producer/consumer and read/writeproblems and solutions.
+Midterm Exam
+Week 9: Deadlock management and deadlock modeling algorithms.
+Week 10: Process scheduling: goals of process scheduling, preemptive and non-
+preemptive scheduling. Scheduling in batch and interactive system
+Week 11: Round-robin scheduling, priority scheduling, starvation and aging.
+Week 12: Memory Management: functions of the memory manager, basic
+management techniques, multiprogramming modeling, and issues,
+swapping.
+Quiz 2
+Week 13: Memory Management: Virtual memory with paging, address translation,
+page tables, multi-level tables, TLB
+Week 14: Memory Management: Page replacement algorithms, page fault handling.
+Segmentation of memory.
+Week 15: Directories organization and operations. File system implementation.
+(if time permits)
+5
+
+--- Page 6 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for KU Undergraduate
+courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+6

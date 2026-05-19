@@ -1,0 +1,58 @@
+{
+  "sourceFileName": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourcePath": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourceRelativePath": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourceTextFileName": "LTCM_221_SYLLABUS_SPRING_2026_1.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "LTCM 221",
+  "courseName": "Intercultural Communication",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": "DR GLENDA EL GAMAL",
+  "instructorEmail": "glenda.elgamal@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "022-A Building 1, SAN Campus MAIN TBA",
+  "officeHours": null,
+  "prerequisites": "ENGL 102 or ENGL 112",
+  "textbooks": [
+    "Jandt, F. (2016). An introduction to intercultural communication: Identities in a global community. 8th edition. SAGE Publications, ISBN: 9781506305271"
+  ],
+  "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework 40%"
+    },
+    {
+      "name": "Seminar participation",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Seminar participation 10%"
+    },
+    {
+      "name": "Mid-term assessment",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Mid-term assessment 20%"
+    },
+    {
+      "name": "Final project",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final project 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Semester missing"
+  ],
+  "confidence": 0.86,
+  "needsHumanReview": true
+}

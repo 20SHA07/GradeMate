@@ -1,0 +1,186 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title CHEG230 Chemical Engineering Thermodynamics I
+Semester:
+Spring 2026
+Instructor Name Dr. Hanifa Taher AlBlooshi
+Contact Email/ Office Ext. No. hanifa.alblooshi@ku.ac.ae / 02-312 3524
+nd
+Office Room No. SAN Campus: Arzanah (Building 8), 2 level, Room 277
+Office Hours Tuesdays and Thursday from 2:00 to 3:00 pm
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Homework 10%
+Pre-Assigned Quizzes 10%
+Projects (if applicable) Mini-Design Project 5%
+Laboratory (if applicable) NA
+th
+Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%
+Final Examination Written examination (Closed Book) Assigned by Registrar 40%
+Participation Contact based 5%
+Instructor Policy on Exams, Assignments, and Quizzes:
+Homework will be assigned approximately every 2-3 weeks. These are a fundamental part of the
+learning process. While students are encouraged to discuss these problems collaboratively, the
+submitted homework by each student must represent their own independent work and understanding.
+All homework must be formatted with a title page and submitted in class at the beginning of the period
+on the due date. To be eligible for credit, solutions must demonstrate clear and logical reasoning. Late
+submissions will be penalized and are only accepted with prior approval or an official, verifiable
+excuse. Homework questions will often require you to propose a solution strategy, justify your
+assumptions, and compare alternative approaches. The goal is to develop your engineering judgment.
+Quizzes will be designed to give you rapid feedback on how well you understand the prior week’s
+topics. Each quiz will last for 30 minutes covering the materials discussed in class and assigned in the
+practice work. Unless stated otherwise, all quizzes are closed-book. The simple and most used
+expressions need to be known and memorized. All other formulae will be provided. The date of the
+quiz will be announced beforehand for the main ones. Couple of pop-up quizzes will be given without
+prior notice in the first 10 minutes of the class. Quiz questions may require you to propose a solution
+strategy, justify your assumptions, and compare alternative approaches.
+Lectures, quizzes and homework are expected to be attended/submitted at the scheduled date and on
+time. Any arrangements regarding examinations due to special emergency situations or authorized
+university activities must be made in advance with the instructor. Missing a midterm or final exam
+needs an official excuse.
+Syllabus Supplement for Students Page 1 of 5
+
+--- Page 2 ---
+Mini-Project is a significant component of this course, designed to help student integrate and apply
+thermodynamic principles to a realistic, open-ended engineering problem. The project will proceed in
+phases, beginning with system definition and first-law analysis, progressing to real fluid and second-
+law evaluation, and culminating in a professional presentation. Students may work in teams of 3–4,
+with collaboration expected within your team, though each member must contribute meaningfully to
+all phases. The presentation should include an executive summary, system description, analysis,
+results, and conclusions. The project is worth 5% of your final grade and will be assessed on technical
+accuracy, critical analysis, clarity, and completeness. All work must adhere to academic integrity
+standards; while discussion of approaches is encouraged, sharing detailed calculations is prohibited.
+Dedicated project office hours will be available for assistance throughout the process.
+Exams: There will be one/two midterm exam(s) during the semester and a comprehensive final exam.
+The date of the exam will be determined by the Registration Office. Exams will be held on a different
+location. All Exams–including the final–will be closed-book and any allowed material will be announced
+in advance. The final examination will cover all the materials of the course.
+Exam re-evaluation: If a student believes that there might be an error in grading a quiz or an exam,
+he/she should see the instructor within one (1) week after the assignment/quiz or exam is returned. It
+should be noted that the entire exam will be re-graded not just the problem in question, in order to ensure
+consistence and fairness. Final course grades may only be contested by following the approved academic
+appeal procedures.
+A make-up quiz will be allowed under extenuating circumstance, such as hospitalization or bereavement.
+Even in these situations, students should realize that the instructor has the right of not to accept an
+authenticated excuse. The excuse must be authenticated by Student Success Department and brought to
+the instructor immediately (within a week) to qualify for permission to make up any quiz missed.
+Repeated quizzes are normally more challenging than the ones that are already given.
+Class participation worth 5% of the final grade, is assessed based on your consistent and constructive
+engagement during lectures and tutorials, reflecting the professional discourse expected in engineering.
+This grade evaluates the quality of student intellectual contribution, which includes asking clarifying
+questions to resolve thermodynamic concepts, volunteering answers to conceptual prompts, engaging
+in problem-solving at the board during tutorials, and contributing meaningfully to peer discussions. To
+earn credit, you must demonstrate prepared and thoughtful interaction; merely attending class without
+active engagement will result in a minimal score. Please note that adherence to the attendance policy is
+fundamental, as absences will inherently limit your opportunity to contribute and will affect this
+portion of your grade.
+Attendance is mandatory for this course. The curriculum is cumulative, and missing class creates
+significant gaps in understanding that are difficult to overcome. Attendance will be recorded at every
+meeting and reported to the University Registrar. In general,
+▪ Students are expected to arrive on time and remain for the duration of the class.
+▪ Arriving late disrupts the learning environment. Three instances of lateness will be recorded as
+one unexcused absence. Arriving more than 15 minutes after the start of class will be recorded
+as a full absence.
+▪ Leaving class during lecture is disruptive and strongly discouraged except of emergency.
+Syllabus Supplement for Students Page 2 of 5
+
+--- Page 3 ---
+▪ Although the university permits limited absences without penalty, provided no graded
+assessments are missed. A student may be absent for up to 7% of total contact hours (equivalent
+to 3 lectures) without direct grade penalty, assuming all assessments (quizzes, exams,
+homework submissions) are completed. Each additional unexcused absence will result in
+a class participation, up to a maximum penalty of 50% in partipation grade.
+▪ Consistent attendance is a mandatory requirement for this course, and excessive absences will
+result in an administrative withdrawal. If a student's total absences reach 20% of the course's
+contact hours, the following academic penalties apply: should this threshold be met on or
+before the university's official withdrawal deadline, a final grade of WA (Withdrawn
+Academically) will be assigned by the Registrar. If the 20% absence threshold is exceeded after
+this deadline, the student will receive a final grade of WF (Withdrawn After Deadline).
+▪ Absences resulting in missing any item of assessment worth less than 5% of the student’s final
+grade, should be reviewed by the instructor who makes the final decision regarding missed
+assessment grade calculation. During the final exams period, medical excuses should be issued
+by KU main clinics or in-campus clinics (Sas Al Nakhl or Arzanah). All other medical excuses
+will not be accepted.
+▪ When students are scheduled to participate in an institutionally scheduled activity or encounter
+unavoidable circumstances, class absences that fall during the sanctioned time shall be
+considered as excused absences.
+▪ It is the student’s responsibility to manage their attendance within these limits and to
+communicate proactively with the instructor regarding any extended, excused absences (e.g.,
+documented illness, university-sanctioned events)
+▪ The university recognizes several specific circumstances as grounds for excused absences,
+provided they are properly documented and, where required, pre-approved. These include
+religious observance for Al Hajj (requiring 10-business day pre-approval), marriage (up to 7
+calendar days), and childbirth (up to 14 days for the mother and 3 for the father). Medical
+reasons are accepted for hospitalization (in-patient stays longer than one night), contagious
+diseases, or travel abroad for treatment (pre-approval required), which also extends to escorting
+an immediate family member for such treatment if the student is under the 20% absence
+threshold. Bereavement for an immediate family member is granted up to 5 calendar days.
+Other excused situations include national service duties, legal or judicial orders, appointments
+with official authorities, and emergencies as determined by Student Success. It is important to
+note that minor medical issues not involving an overnight hospital stay do not qualify for an
+excused absence and will count toward the allowable 7% absence limit.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 3 of 5
+
+--- Page 4 ---
+TEACHING PLAN (Lecture):
+Week 1 Chapter 1: General introduction to chemical engineering thermodynamics. Define units of
+pressure, temperature, density, mass, and moles, SI and English system, and conversion of
+units.
+Week 2 Chapter 2: First Law of Thermodynamics: Introducing relevant concepts and terminology,
+e.g. internal energy, potential energy, kinetic energy, specific volume, heat capacity, heat,
+work, enthalpy, state and state functions.
+Week 3 Energy balance for a closed system: Applications
+Week 4 Analysis of open systems: Mass and Energy Balances.
+Week 5 Open systems: Selected applications, e.g. turbines, nozzle, etc.
+Week 6 Chapter3: Volumetric properties of pure fluids: PVT behavior of pure substances, ideal
+gas and equations of state (EoS)
+Week 7 Cubic equations of state, theorem of corresponding states, generalized correlations for
+gases, generalized correlations for liquids.
+Week 8 Chapter 4: Heat Effects: Sensible heat effects, latent heat of pure substances.
+o o
+Week 9 Standard heat of reaction ( H), temperature dependence of  H, heat effects of reactions.
+Week 10 Chapter 5: Second law of thermodynamics: Introduction, heat engines, Carnot theorem
+Week 11 Second law of thermodynamics: Entropy, entropy change of an ideal gas, mathematical
+statement of the second law, Entropy balance for open systems.
+Week 12 Second law of thermodynamics: Ideal work, lost work, third law of thermodynamics.
+Week 13 Chapter 6: Thermodynamic Properties of fluids: Property relations for homogenous phases
+Week 14 Thermodynamic Properties of fluids: Residual properties, two phase systems, generalized
+property correlations for gases
+Week 15 Chapter 7: Selected applications of thermodynamics to flow processes.
+Grading Scheme
+The official grading system uses letter grades with pluses and minuses. Passing grades range from A
+to D. Each is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+Syllabus Supplement for Students Page 4 of 5
+
+--- Page 5 ---
+The letter grades are associated with the following grade ranges:
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92.9%
+B+ 87%-89.9%
+B 83%-86.9%
+B- 80%-82.9%
+C+ 77%-79.9%
+C 73%-76.9%
+C- 70%-72.9%
+D 60%-69.9%
+F < 60%
+Syllabus Supplement for Students Page 5 of 5

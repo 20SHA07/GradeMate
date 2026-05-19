@@ -1,0 +1,212 @@
+--- Page 1 ---
+COSC 202 Data Science and Artificial Intelligence
+(2 Lecture 3 Laboratory– 3 Credits)
+Prerequisite: COSC 114
+Course Catalog Description:
+The course provides a comprehensive introduction to data science and Artificial Intelligence
+(AI), emphasizing practical applications and hands-on implementation. Students are introduced
+to fundamental concepts spanning the data science and AI pipeline, from data preprocessing to
+machine learning techniques. Students gain hands-on experience with real-world datasets and
+learn to develop, evaluate, and select machine learning models. The course includes critical
+discussions on ethical and privacy considerations and information security measures, including
+data security, privacy, opacity, bias, and machine ethics.
+Textbook:
+• Hands-on Machine Learning with Scikit-Learn, Keras & Tensorflow, by Aurelien
+rd
+Géron. Publisher: O’reilly, 3 Edition, 2022. ISBN-13: 9781098125974.
+Reference Materials:
+• First Principles with Python by Joel Grus, Data Science from Scratch. Publisher:
+nd
+O’Reilly Media; 2 Edition, 2019. ISBN-10: 1492041130. ISBN-13: 978-1492041139.
+Course Topics:
+1. Introduction to Computer Science, Data Science and AI: History of Data Science and
+AI, Data Science and AI Applications and Trends (2 lectures)
+2. Introduction to fundamentals of data science: essential data structures, data pre-
+processing and cleaning, exploratory data analysis, examples of features, and data
+visualization (6 lectures)
+3. Introduction to machine learning: overview of ML pipeline, challenges of ML,
+introduction to regression (with linear regression) (5 lectures)
+4. Introduction to classification (3 lectures)
+5. Introduction to neural networks: multi-layer perceptron, activation functions,
+backpropagation algorithm (6 lectures)
+6. Introduction to unsupervised learning and k-means clustering (2 lectures)
+7. Introduction to deep learning: convolutional neural networks and overview of
+generative AI applications and implications (3 lectures)
+8. Ethics and privacy in AI, and information security: privacy and surveillance,
+manipulation of behavior, opacity, bias, autonomous systems, machine ethics, and
+information security (3 lectures)
+Course Structure and Methodology:
+Lectures are 2 x 50 minutes; Laboratory sessions are 1 x 150 min per week. The course is
+delivered through classroom lectures, problem-solving sessions, and laboratory work.
+Individual assignments and quizzes are held throughout the semester to reinforce knowledge
+of the material.
+May 2024
+
+--- Page 2 ---
+Lab Topics:
+Week Topics
+3 Introduction to Jupyter notebook and Python
+4 Data visualization techniques
+5 Exploratory data analysis using statistical tools – part I
+6 Data preparation for ML
+7 Regression with ML
+9 Classification with ML
+10 Foundations of information security and privacy with ML
+11 Neural networks
+12 Project – part I
+13 Project – part II
+14 Project demonstrations
+Computing Resources:
+Standard computer lab with personal computers; Python interpreter and IDE.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Assessment Instruments Contribution to course grade (%)
+Coursework (quizzes, homework/project) 25%
+Laboratory Work 15%
+Semester Examination 25%
+Final Examination 35%
+May 2024
+
+--- Page 3 ---
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+M M - L - M
+H – High M – Medium L – Low
+Contribution to Engineering Program Learning Outcomes (PLOs):
+1 2 3 4 5 6 7
+M M - L - M -
+H – High M – Medium L – Low
+Course Learning Outcomes (CLOs) and Engineering Program Learning Outcomes
+(PLOs):
+No. Course Learning Outcomes PLOs PLOs
+CS ENG
+1 Assess ethical, privacy, and security issues, and best 4 4
+practices in data science and AI
+2 Apply AI principles and techniques to solve engineering 1,2 1,2
+and science problems
+3 Demonstrate the ability to collect, prepare and process data 1, 6 1, 6
+for analysis.
+4 Analyze data using different data science methods and 1, 2 1, 2
+techniques
+May 2024
+
+--- Page 4 ---
+Syllabus Supplement for Students
+Course Code and Title
+COSC 202 Data Science and Artificial Intelligence
+Semester Spring 2026
+Instructor Name Menatalla Abououf
+Contact Email Menatalla.abououf@ku.ac.ae
+Office Room No. C4206
+Office Hours
+Mondays & Wednesday 12:00pm to 2:00pm
+Assessment Methodology
+Tentative Dates Weight (%)
+Quiz 1 Week 5
+Quiz 2 Week 10
+15%
+Coursework (quizzes, homework/project) Quiz 3 Week 12
+Quiz 4 Week 14
+Project (demo) Week 14 10%
+Midterm Examination (s) Week 8 25%
+Final Examination Week 16 35%
+Laboratory Work Weeks 14 15%
+May 2024
+
+--- Page 5 ---
+Instructor Policy on late submission of assignments:
+Assignments (i.e., take-home quizzes, if any) must be done individually and to be submitted on the due
+date.
+You are encouraged to:
+1. Set your personal deadline earlier than the actual one
+2. Keep backups of all your important files
+3. Ensure someone else does not pick up your printouts
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Teaching Plan
+History and applications of data science and AI, and trends
+Week 1
+Week 2 Essential data structures, and data pre-processing and cleaning
+Week 3 Exploratory data analysis
+Week 4 Data preparation and transformation, and case study
+Introduction to ML:
+Week 5
+Types of ML, challenges of ML
+Introduction to ML pipeline:
+Week 6 Performance metrics in regression, testing and validation, hyper-
+parameter tuning and model selection
+Introduction to ML pipeline:
+Week 7
+Performance metrics in classification (accuracy, precision, recall),
+Introduction to ML pipeline:
+Week 8
+Performance metrics in classification (accuracy, precision, recall),
+Introduction to neural networks:
+Week 9 The multi-layer perceptron, activation functions, regression MLPs,
+classification MLPs
+May 2024
+
+--- Page 6 ---
+Introduction to neural networks:
+Week 10 The multi-layer perceptron, activation functions, regression MLPs,
+classification MLPs
+Introduction to neural networks:
+Week 11
+introduction to gradient descent and backpropagation algorithm
+Week 12 Deep learning with convolutional neural networks
+Week 13 Unsupervised learning with k -means clustering
+Brief overview of generative AI and applications,
+Week 14
+ethics, security, and privacy in AI
+Week 15 Ethics, security, and privacy in AI
+LABORATORY SCHEDULE (if applicable):
+Teaching Plan
+Week 1 No lab
+Week 2 No lab
+Week 3 Introduction to Jupyter notebook and Python
+Week 4 Data visualization techniques
+Week 5 Exploratory data analysis using statistical tools
+Week 6 Data preparation for ML
+Week 7 Regression with ML
+Week 8 No lab - assessment
+Week 9 Classification with ML
+Week 10 Foundations of information security and privacy with ML
+Week 11 Neural networks
+Week 12 Project – part I
+May 2024
+
+--- Page 7 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following indicates typical ranges associated with letter grades for KU Undergraduate courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+May 2024

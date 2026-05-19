@@ -10,22 +10,49 @@
   "semester": "Spring 2025",
   "instructor": "Dr. Gisha Elizabeth Luckachan",
   "instructorEmail": "gisha.luckachan@ku.ac.ae",
-  "schedule": "Tuesday: 11:00 am-1:00 pm",
+  "schedule": null,
   "classroom": null,
   "officeRoom": "SAN Campus, Bu Hasa 20001",
-  "officeHours": "Tuesday: 11:00 am-1:00 pm",
+  "officeHours": "Tuesday: 11:00 am-1:00 pm; Thursday: 11:00 am-1:00 pm",
   "prerequisites": null,
   "textbooks": [],
   "courseDescription": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Coursework / Quizzes",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Coursework:"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory (if applicable)"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Exam"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "Low confidence extraction",
     "Course info missing",
     "Credit hours missing",
-    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.12,
+  "confidence": 0.89,
   "needsHumanReview": true
 }

@@ -13,7 +13,7 @@
   "schedule": null,
   "classroom": null,
   "officeRoom": "SAN Campus Arzanah 315",
-  "officeHours": null,
+  "officeHours": "Monday 2 PM – 3 PM; Tuesday 11 AM-12 PM",
   "prerequisites": null,
   "textbooks": [
     "Fundamental principles of polymeric materials by Stephen L",
@@ -22,68 +22,39 @@
   "courseDescription": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 1,
+      "name": "Quizzes (6, drop 2 lowest)",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 3: Starting Ch.9. Addition Polymerization Quiz #1"
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework Quizzes (6, drop 2 lowest) See schedule 15"
     },
     {
-      "name": "Quiz 2",
-      "weight_percentage": 2,
+      "name": "Project",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 4: Starting Ch.10-11. Advanced Polymerization Techniques Quiz #2"
+      "confidence": 0.95,
+      "source_text_snippet": "Project Will be assigned 2 week 15"
     },
     {
-      "name": "Quiz 3",
-      "weight_percentage": 3,
+      "name": "Exams (2)",
+      "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 5: Starting Ch.12. Polymerization Practice Quiz #3"
+      "confidence": 0.95,
+      "source_text_snippet": "Exams (2) Week 7 and Week 15 40"
     },
     {
-      "name": "Exam 1",
-      "weight_percentage": 1,
+      "name": "Final Exam",
+      "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Week 7: Starting Ch.5. Characterization of Molecular Weight Exam #1"
-    },
-    {
-      "name": "Quiz 4",
-      "weight_percentage": 4,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 9: Starting Ch.7. Polymer Solubility and Solutions Quiz #4"
-    },
-    {
-      "name": "Quiz 5",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 10: Starting Ch.13. Rubber Elasticity Quiz #5"
-    },
-    {
-      "name": "Quiz 6",
-      "weight_percentage": 6,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 14: Starting Ch.15. Linear Viscoelasticity Quiz #6"
-    },
-    {
-      "name": "Exam 2",
-      "weight_percentage": 2,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Week 15: Starting Ch.16. Mechanical Properties Exam #2"
+      "confidence": 0.95,
+      "source_text_snippet": "Final Exam Finals week 30"
     }
   ],
-  "totalWeight": 24,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (24%)",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.89,
+  "confidence": 0.9,
   "needsHumanReview": true
 }

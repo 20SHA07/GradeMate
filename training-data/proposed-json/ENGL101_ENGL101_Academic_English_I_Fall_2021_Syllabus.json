@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourcePath": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourceRelativePath": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourceTextFileName": "ENGL101_ENGL101_Academic_English_I_Fall_2021_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "ENGL 101",
+  "courseName": "Academic English I",
+  "creditHours": 3,
+  "semester": "Spring 2022",
+  "instructor": "David F Dalton",
+  "instructorEmail": "david.dalton@ku.ac.ae",
+  "schedule": "#1",
+  "classroom": null,
+  "officeRoom": "NA",
+  "officeHours": null,
+  "prerequisites": "TOEFL iBT 79, EmSAT 1400, or IELTS 6.0",
+  "textbooks": [
+    "Storytelling with Data: A Data Visualization Guide for Business Professional by Cole Nussbaum",
+    "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
+  ],
+  "courseDescription": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
+  "assessments": [
+    {
+      "name": "Individual Short Writing Assignments %",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Individual short writing assignments 20%"
+    },
+    {
+      "name": "Group Short Writing Assignment %",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Group short writing assignment 10%"
+    },
+    {
+      "name": "Individual Writing: Supporting Or Refuting A Claim %",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Individual Writing: Supporting or refuting a claim 30%"
+    },
+    {
+      "name": "Individual Writing: Focused Essay %",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Individual Writing: Focused essay 30%"
+    },
+    {
+      "name": "Digital Presentation %",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Digital presentation 10%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.89,
+  "needsHumanReview": false
+}

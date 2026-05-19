@@ -1,0 +1,78 @@
+{
+  "sourceFileName": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourcePath": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourceRelativePath": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourceTextFileName": "CHEG350_Material_Science_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 350",
+  "courseName": "Materials Science & Engineering",
+  "creditHours": 3,
+  "semester": "Spring 2024",
+  "instructor": "Akram Alfantazi",
+  "instructorEmail": "akram.alfantazi@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Arzanah 311",
+  "officeHours": "Tuesday and Thursday 11:00- 12:45",
+  "prerequisites": "CHEM 116, PHYS 122",
+  "textbooks": [
+    "Materials Science and Engineering: An Introduction by William D. Callister, Publisher: Wiley,",
+    "9 Intl Edition, 2014, ISBN-13: 9781118319222"
+  ],
+  "courseDescription": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Coursework: Homework 1 Week 3 5%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 1 Week 4 10%"
+    },
+    {
+      "name": "Homework 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Homework 2 Week 8 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 2 Week 10 10%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Quiz 3 Week 13 10%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam Week of March 17th 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.84,
+      "source_text_snippet": "Final Examination Week 16 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.84,
+  "needsHumanReview": false
+}

@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf",
+  "sourcePath": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf",
+  "sourceRelativePath": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf",
+  "sourceTextFileName": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 201",
+  "courseName": "Computer Systems Organization",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Azzam Mourad",
+  "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04209",
+  "officeHours": "Tuesday-Thursday: 10-11 AM and 12-1 PM; Monday-Wednesday: By appointment",
+  "prerequisites": "COSC 101",
+  "textbooks": [
+    "Computer Systems: A Programmer’s Perspective by Randal E. Bryant and David R.",
+    "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
+  ],
+  "courseDescription": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
+  "assessments": [
+    {
+      "name": "Coursework (quizzes, homework)",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (quizzes, homework) 15%"
+    },
+    {
+      "name": "Lab Work",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Lab Work 15%"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Project 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.89,
+  "needsHumanReview": false
+}

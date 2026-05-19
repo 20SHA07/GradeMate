@@ -1,0 +1,71 @@
+{
+  "sourceFileName": "BMED221_BMED_221_Syllabus_Supplement_Spring_2024.pdf",
+  "sourcePath": "BMED221_BMED_221_Syllabus_Supplement_Spring_2024.pdf",
+  "sourceRelativePath": "BMED221_BMED_221_Syllabus_Supplement_Spring_2024.pdf",
+  "sourceTextFileName": "BMED221_BMED_221_Syllabus_Supplement_Spring_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 221",
+  "courseName": "Anatomy and Physiological Modeling for Engineers",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Ali A. Khraibi and Okobi Ekpo",
+  "instructorEmail": "ali.khraibi@ku.ac.ae; okobi.ekpo@ku.ac.ae",
+  "schedule": "Finals Thursday May 09, 2024 Time: 12:30-14:30",
+  "classroom": null,
+  "officeRoom": "A02092 (Ali A. Khraibi)",
+  "officeHours": "Tuesday, Thursday, and Friday from 9:00 AM-12:00 Noon",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "2 Quizzes",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz 2 Quizzes Week 7 and 13 20%"
+    },
+    {
+      "name": "Problem Sets Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Problem Sets Homework 4 in total 10%"
+    },
+    {
+      "name": "Modeling Topic Proposal",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Modeling Topic Proposal Week 7 5%"
+    },
+    {
+      "name": "Working Model Due",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Working Model Due Week 11 5%"
+    },
+    {
+      "name": "Complete Model White Paper and Presentations",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Complete Model White Paper Week 13-15 20% And Presentations"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination Final Examination Finals Week 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.91,
+  "needsHumanReview": true
+}

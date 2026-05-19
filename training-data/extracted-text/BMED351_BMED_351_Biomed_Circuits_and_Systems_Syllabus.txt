@@ -1,0 +1,83 @@
+--- Page 1 ---
+BMED 351 Biomedical Circuits and Systems
+(3 Lectures, 3 laboratories – 4 Credits)
+Prerequisites: PHYS 122, BMED 212
+Course Catalog Description:
+The primary objective of this course is to study analogue, digital electronic circuits and their application
+to biomedical instrumentation and physiological measurements. The course will focus strongly on
+electronic hardware and software design issues required to produce medical instruments, which satisfy
+International standards for safety, performance and quality control. Students will be equipped with the
+fundamental knowledge required to design Biosignal processing system.
+Textbooks:
+th
+Fundamentals of Electric Circuits by C. K. Alexander & M. N.O. Sadiku, Publisher: McGraw-Hill, 6
+International edition, 2016, ISBN: 9781259251320
+Reference Materials:
+ Medical Instrumentation: Application and Design (4th edition), J. Webster, ed., John Wiley &
+Sons, Hoboken, NJ, 2009
+ Fredrick M. Cady, Software and Hardware Engineering: Assembly and C programming for the
+Freescale HCS12 Microcontroller, Oxford University Press, 2007
+Course topics:
+1. Electronic circuit elements (resistor, capacitor, inductor, diode, transistor (6 lectures)
+2. Ohm’s law, Kirchhoff’s current and voltage laws (8 lectures)
+3. Thevenin’s and superposition Theorem for circuit analysis (6 lectures)
+4. Transient and steady state analysis of ele ctronic circuit (3 lectures)
+5. Operational amplifier and instrumentation amplifier (6 lectures)
+6. Design of simple passive and active analogue filters (3 lectures)
+7. Signal sampling theory, analogue to digital converter and digital to analogue converter. (5 lectures)
+8. Basic Concepts of electronic circuits for safety systems in medical instrumentation Action
+Potentials of cells and Bio-potential Electrodes (2 lectures)
+9. Biomedical sensor electronics and sensor calibration (2 lectures)
+10. Microcomputer system in biomedical devices (4 lectures)
+Laboratory experiments:
+1) Introduction to Biomedical Circuits Experiment Instruments and circuit components
+2) Design and implementation of a simple circuit to demonstrate Kirchoff’s current and voltage laws
+3) Design and implementation of a simple circuit to demonstrate Thevenin’s and Superposition
+theorem
+4) Design and implementation of a practical operational amplifier to amplify and add the two
+sinusoidal signals.
+5) Demonstration of relationship between voltage and current in diode and transistor
+6) Design and implementation of active and passive analogue filters (low pass and high pass)
+7) Design of a simple data acquisition system using a microcontroller system by applying the sampling
+theorem.
+8) Demonstrate the measurement of bio-potentials (heart Electrocardiogram, muscles
+Electromyogram, brain Electroencephalogram) through e-health data acquisition system.
+9) Demonstrate the measurement of biomedical signals by using biomedical sensors (pressure
+transducers for Blood Pressure and Respiratory flow spirometry, condenser microphone for heart
+December 2020 1
+
+--- Page 2 ---
+BMED 351 Biomedical Circuits and Systems (3-3-4)
+_____________________________________________________________________________________________
+sound, Infrared light emitting diode for blood flow measurement) through e-health data acquisition
+system.
+10) Project work on design and implementation of an independent biomedical electronic system
+Structure and learning methodologies:
+Lectures will be 2x75 minutes and 1x150 minutes laboratory per week. Learning methodology includes
+classroom lecture, problem based learning, laboratory experiments and project based collaborative
+learning.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework, projects) 25%
+Laboratory 25%
+Semester Examination(s) 25%
+Final Examination 25%
+Contribution to Engineering Students Outcomes:
+1 2 3 4 5 6 7
+H L L --- H H M
+H – High M – Medium L – Low
+Contribution to Engineering Students Learning Outcomes:
+No Course Learning Outcomes Student
+Outcomes
+1 Design and demonstrate the skills through implementing, testing and debugging 1,5
+simple biomedical circuits on prototyping breadboards
+2 Apply sampling theorem fundamentals to design Analogue to Digital conversion 2,5
+processes for biomedical signal acquisition
+3 Design a microcontroller system to capture and process the biomedical signals 2
+4 Apply basic principles and operation of bio-potential electrodes, biomedical 1
+sensors and generation of bio-signals.
+5 Design electronic circuit to protect human safety and performance standards in the 1, 2
+development of medical instrumentation
+6 Develop skills in biomedical signal acquisition using MATLAB 1,7
+*This syllabus is augmented by a Syllabus Supplement for Students.
+December 2020 2

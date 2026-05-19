@@ -1,0 +1,130 @@
+--- Page 1 ---
+Syllabus Supplement for Students
+Course Code and Title BMED 351 - Biomedical Circuits and Signals
+Fall 2024
+Semester:
+Instructor Name Dr Mohamed Seghier and Dr Mohamed Elgendi
+mohamed.seghier@ku.ac.ae / 5041 (main instructor)
+Contact Email/ Office Ext. No. mohamed.elgendi@ku.ac.ae (main instructor)
+sarah.bawazir@ku.ac.ae / 8369 (lab instructor)
+Office Room No. B02186D
+M__2-4 pm
+Office Hours
+W__2-4 pm
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 4 6.25%
+Quiz 2 Week 7 6.25%
+Quiz 3 Week 12 6.25%
+Quiz 4 Week 14 6.25%
+Projects Weekly 10%
+Laboratory Weekly 15%
+Semester Examination (s) Week 10 25%
+Final Examination Starting December 13 25%
+Instructor Policy on late submission of assignments:
+Problem solving class (assigned work) follows the lecture modules. Attendance is mandatory.
+Missing quiz can only be replaced with valid excuse verified by student’s office.
+Laboratory reports must be submitted before the next lab class starts. Late submission on two
+occasions will incur 5% penalty.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Syllabus Supplement for Students Page 1 of 3
+
+--- Page 2 ---
+TEACHING PLAN (Lecture):
+Teaching Plan
+Introduction
+Week 1
+Week 2
+Electrical Circuit elements and basic laws
+Week 3
+Electrical Circuit elements and basic laws
+Week 4
+Circuit analysis techniques (KCL, KVL, Superposition, Thevenin and Norton Th.)
+Week 5
+Circuit analysis techniques (KCL, KVL, Superposition, Thevenin and Norton Th.)
+Week 6
+Circuit analysis techniques (KCL, KVL, Superposition, Thevenin and Norton Th.)
+Week 7
+Circuit analysis techniques (KCL, KVL, Superposition, Thevenin and Norton Th.)
+Week 8
+Operational amplifiers
+Week 9
+Operational amplifiers
+Week 10
+Transient and steady state analysis of electronic circuit
+Week 11
+Transient and steady state analysis of electronic circuit
+Week 12
+Sinusoids and Phasors
+Week 13
+Sinusoids and Phasors
+Week 14
+Analogue filters
+Week 15
+Analogue filters
+LABORATORY SCHEDULE:
+Teaching Plan
+No lab
+Week 1
+Week 2 Introduction to Lab activities
+Week 3
+Experiment on KCL and KVL
+Week 4
+Experiment on Superposition Theorem
+Week 5
+Experiment on Thevenin Theorem
+Week 6
+Operational amplifiers
+Week 7
+Operational amplifiers
+Week 8
+Bio-potential measurement
+Week 9
+Analogue filters (low pass and high pass)
+Week 10
+Analogue filters (low pass and high pass)
+Syllabus Supplement for Students Page 2 of 3
+
+--- Page 3 ---
+Week 11
+Project
+Week 12
+Project
+Week 13
+Project
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned
+a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%
+Note: Any curving of the above letter grades is at the discretion of the instructor.
+Syllabus Supplement for Students Page 3 of 3

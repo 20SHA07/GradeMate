@@ -1,0 +1,178 @@
+--- Page 1 ---
+ENGR 114 Introduction to Computing - Python
+(3 Lectures, 1 Tutorial, 2 Laboratories – 4 Credits)
+Prerequisite: None
+Course Catalog Description:
+Introduction to computer systems: computer hardware components, operating system, compiling,
+debugging, libraries, linking. Programming based problem solving that includes program development
+lifecycle. Imperative programming: data types, conditional expressions and statements, repetitive
+structures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),
+file I/O.
+Textbook:
+Python Programming: Using Problem Solving approach by R. Thareja, Publisher: Oxford University
+Press, 2017, ISBN: 978-0-19-948017-3
+Reference Materials:
+How to Think Like a Computer Scientist: Learning with Python 3 Documentation Release 3rd Edition,
+Peter Wentworth, Jeffrey Elkner, Allen B. Downey and Chris Meyers, April 2018 (available online:
+https://media.readthedocs.org/pdf/howtothink/latest/howtothink.pdf)
+Course Topics:
+1. Introduction to computer units and computer language: Machine language, Assembly Language
+and High level language. (3 lectures)
+2. Introduction to Python programming environment (IDLE, Wing IDE 101). (1 lecture + 1 lab)
+3. Syntax and semantics concepts, memory concepts, basic data type declarations and their ranges,
+output formatting for data types, assignments, arithmetic and logic operators, operators’
+precedence, associativity. (3 lectures + 1 Lab)
+4. Problem solving approaches, algorithms using pseudocode and flowchart. (3 lectures + 1 Lab)
+5. Control structures I (selections): if, else, elif, selection structures. (3 lectures + 1.5 Labs)
+6. Control structures II (repetitions): for, and while loop repetition structures, counter controlled vs.
+sentinel controlled loop structures, nested loops, break and continue program control statements.
+(4 lectures + 1.5 Labs)
+7. Functions: passing information to and from functions, scope and visibility of identifiers, iterative
+vs. recursive functions. Built in functions and user defined functions. (5 lectures + 2 Labs)
+8. Lists: declaring, passing to functions, linear search, multi-dimensional, sorting. Manipulating of
+Lists 1D and 2D. (4 lectures + 1 Lab).
+9. Strings: Fundamentals of characters and strings, string manipulation functions in Python (ex: find,
+len, etc.), string user defined functions (ex: upper, count, etc.). (4 lectures + 1 Lab)
+10. Data Structures: dictionary, tuple, passing and returning to/from function. (4 lectures + 1 Lab)
+11. File I/O: streams insertion and extraction, stream manipulators, open, read, write and update. (3
+lectures + 1 Labs)
+12. Scientific computing using NumPy arrays, Pandas DataFrames and Python plotting (matplotlib,
+seaborn) (3 lectures + 2 labs)
+13. Basic introduction to Artificial Intelligence (2 lectures + 1 lab)
+Course Structure:
+Lectures will be 3 x 50-minutes per week; Laboratory sessions will be 1 x 100 min per week; Tutorial
+sessions will be 1 x 50 min per week.
+Computer Resources:
+Computer lab equipped with IDE environments such as IDLE and Wing IDE 101,
+Laboratory/Assignments Topics:
+
+--- Page 2 ---
+June 2022 1 ENGR 114 Introduction to Computing – Python (3-3-4)
+___________________________________________________________________________
+• Running and debugging simple Python programs.
+• Basic I/O and formatting.
+• Selections in Python.
+• Repetitions in Python.
+• Built in and user defined functions.
+• Functions (recursive vs iterative).
+• Lists and Strings.
+• Data Structures (Dictionary, tuple).
+• File I/O.
+Laboratory Resources:
+2 IDEs (IDLE and Wing IDE 101)
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework, lab work) 35%
+Final Lab 15%
+Semester Examination 20%
+Final Examination 30%
+Contribution to Engineering Students Outcomes:
+1 2 3 4 5 6 7
+M M - - - - H
+H – High M – Medium L – Low
+Course Learning Outcomes & Student Outcomes:
+Course Learning Outcomes Student Outcomes
+1. Locate and correct errors in Python code 1, 7
+2. Develop Python solutions using control structures. 1, 2, 7
+3. Analyze Python code with control structures. 7
+4. Solve problems using Python functions 1, 2 7
+5. Develop small-scale Python code using lists, strings, dicts, tuples 1, 2, 7
+6. Develop Python code using input and output files 1, 7
+7. Develop basic Python code for scientific computing 1, 2, 7
+
+--- Page 3 ---
+Syllabus Supplement for Students
+Course Code and Title ENGR114: Introduction to Computing using Python
+Semester: Spring 2024
+Instructor Name Dr. Jamal Zemerly
+Contact Email jamal.zemerly@ku.ac.ae
+Office Room No. C04041
+MW: 12:15 - 5:00 PM in San Campus
+Office Hours
+Other: by email appointment or if I am online on Teams
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 5 5%
+Quiz 2 Week 9 5%
+Quiz 3 Week 11 5%
+Quiz 4 Week 13 5%
+Projects (if applicable)
+Laboratory (if applicable) Lab Assignments Weekly (W2– W14) 15%
+Final Lab Week 15 15%
+Semester Examination (on campus) Week 7 20%
+Final Examination (on campus) TBD 30%
+Instructor Policy on late submission of assignments:
+No Late Submission is accepted.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+
+--- Page 4 ---
+TEACHING PLAN (Lecture):
+Week 1 Introduction to computer units and computer language: Machine language, Assembly
+Language and High level language.
+Week 2 Introduction to Python programming environment (IDLE, Wing IDE 101).
+Syntax and semantics concepts, memory concepts, basic data type declarations and their
+ranges, output formatting for data types, assignments, arithmetic and logic operators.
+Week 3 Operators’ precedence, associativity. Problem solving approaches,
+Week 4 Algorithms using pseudocode and flowchart, Control structures I (selections): if, else, elif,
+selection structures.
+Week 5 Control structures I (selections): if, else, elif, selection structures, Control structures II
+(repetitions): for, and while loop repetition structures, counter controlled vs. sentinel-
+controlled loop structures.
+Week 6 Nested loops, break and continue program control statements. Functions: passing
+information to/from functions, scope and visibility of identifiers, iterative vs. recursive
+functions.
+Week 7 Functions: passing information to/from functions, scope and visibility of identifiers,
+iterative vs. recursive functions.
+Week 8 Built in and user defined functions. Lists: declaring, passing to functions, Manipulating of
+Lists 1D and 2D.
+Week 9 Linear search, sorting. Strings: Fundamentals of characters and strings, string
+manipulation functions (ex: find, len.), string user defined functions (ex: upper, count,
+etc.).
+Week 10 Strings: Fundamentals of characters and strings, string manipulation functions (ex: find,
+len.), string user defined functions (ex: upper, count, etc.).
+Week 11 Data Structures: dictionary, tuple, passing and returning to/from function
+Week 12 Data Structures: dictionary, tuple, passing and returning to/from function. File I/O:
+streams insertion and extraction, stream manipulators, open, read, write and update.
+Week 13 File I/O: streams insertion and extraction, stream manipulators, open, read, write and
+update. Scientific computing using NumPy arrays, Pandas DataFrames and Python
+plotting (matplotlib, seaborn).
+Week 14 Scientific computing using NumPy arrays, Pandas DataFrames and Python plotting
+(matplotlib, seaborn). Basic introduction to Artificial Intelligence
+Week 15 Revision
+LABORATORY SCHEDULE (if applicable):
+Week 1 No Lab
+Week 2 Lab Introduction
+Week 3 Running and debugging simple Python programs
+Week 4 Basic I/O and formatting.
+Week 5 Selections in Python
+Week 6 Repetitions in Python
+Week 7 Built in and user defined functions
+Week 8 Functions (recursive vs iterative)
+Week 10 Lists and Strings
+Week 12 Dictionary/Tuple
+Week 13 File I/O
+Week 14 Scientific Computing
+Week 15 Final Lab Test
+
+--- Page 5 ---
+Grading Scheme
+Khalifa University Letter Grades & Grade Boundaries: In this course we will use the following
+letter grades and grade boundaries for computing students’ final course grades,
+Letter
+Percentage Grade Range Description
+Grade
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than 92.5%
+Very Good
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+Good
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+Satisfactory
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5% Less Than Satisfactory
+D From 59.5% to less than 69.5% Poor
+F Less than 59.5% Fail

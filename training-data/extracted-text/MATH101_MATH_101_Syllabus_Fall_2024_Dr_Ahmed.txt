@@ -1,0 +1,223 @@
+--- Page 1 ---
+MATH 101 Fundamentals of Mathematical Reasoning
+(3 Lecture – 3 Credits)
+Prerequisite: None
+Course Catalog Description:
+This course provides a foundation in logical and mathematical reasoning. It develops first year university
+students’ structured logical thinking and mathematical rigor. The course introduces methods of proof,
+basic concepts and properties of real numbers, relations and functions. The course also presents an
+introduction to combinatorics, set theory and number theory.
+Textbook:
+• Mathematical Reasoning Writing and Proof by Ted Sundstrom, Open Textbook Initiative, American
+Institute of Mathematics, Version 2.1, 2021
+Reference Materials:
+• Mathematical Proofs: A Transition to Advanced Mathematics by Gary Chartrand,
+th
+Albert D. Polimeni, Ping Zhang, Publisher: Pearson, 4 Edition, 2017, ISBN: 9780134746753.
+Course Topics:
+Numbers (1 lecture)
+• Introduction to different types of numbers: natural, integers, rational, irrational, real.
+Logic I (4 lectures)
+• Propositional calculus: truth tables, tautology, contradiction, negation.
+Logic II (4 lectures)
+• Predicate calculus: implication, equivalence, existential and universal quantifiers.
+Methods of Proof (6 lectures)
+• Direct method: basic proofs and examples.
+• Contrapositive: understanding and applying contrapositive proofs.
+• Contradiction: proofs by contradiction and its applications.
+Mathematical Induction (3 lectures)
+• Induction: principle of mathematical induction, strong induction.
+Set Theory Operations on sets (6 lectures)
+• Basics of set theory: definition of sets, subset, cardinality.
+• Operations on sets: union, intersection, difference, complement.
+• Venn diagrams: representing relationships between sets.
+Set Theory Properties (3 lectures)
+• De Morgan’s Laws: understanding and applying De Morgan's Laws.
+• Infinitude of primes: proof and implications.
+UCC: March 2024 1
+
+--- Page 2 ---
+MATH 101 Fundamentals of Mathematical Reasoning (3 – 0 – 3)
+Functions (6 lectures)
+• Introduction to relations and functions.
+• Injectivity, surjectivity, bijectivity: definitions and examples.
+• Composition and inverse of functions.
+Number Theory (6 lectures)
+• Prime numbers: definition, properties, distribution.
+• Divisibility and prime decomposition: fundamental theorem of arithmetic.
+• Greatest common divisor (GCD) and least common multiple (LCM).
+• Change of base and operations in bases other than 10.
+Basic Combinatorics (6 lectures)
+• Counting rules: multiplication principle, addition principle.
+• Permutations: arrangements, permutations with repetition.
+• Combinations: selection, combinations with repetition.
+• Binomial theorem: expansion and applications.
+Structure and Learning Methodologies:
+Lectures are either 3 x 50 minutes per week or 2 x 75 minutes per week. Lectures will be presented
+using the whiteboard, and may be complemented with handouts and/or PowerPoint slides. Students will
+work in groups on a project related to the course topics.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes and assignments) 20%
+Project 10%
+Presentation 10%
+)
+Semester Examination 25%
+Final Examination 35%
+Contribution to Applied Mathematics & Statistics Student Outcomes (PLOs):
+a b c d e f g h
+H --- --- --- --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & PLOS:
+No Course Learning Outcomes PLOs
+1 Demonstrate proficiency in the basic concepts of number theory a
+2 Utilize fundamental concepts of set theory and counting a
+3 Analyze properties of relationships and functions a
+4 Employ formal logical reasoning in mathematical contexts a
+5 Apply basic mathematical proving techniques (direct method, contrapositive
+a
+and contradiction)
+UCC: March 2024 2
+
+--- Page 3 ---
+MATH 101 Fundamentals of Mathematical Reasoning (3 – 0 – 3)
+Organizational Details
+Course Code and Title: MATH 101 Fundamentals of Mathematical Reasoning
+Fall 2024
+Semester:
+Schedule: MW 14:00-15:15
+Instructor: Ahmed Ameur
+Contact Email: Ahmed.ameur@ku.ac.ae
+Office Room Number: SAN Campus Building 1 Office 019A
+Office Hours:
+MW 10:00-11:50
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Week 3
+Quiz 2 Week 6 20%
+Quiz 3 Week 10
+Quiz 4 Week 13
+Project 10%
+Presentation 10%
+Midterm Examination: Week 8: 25%
+Final Examination: TBD by the Registrar’s Office 35%
+Instructor Policy on Late Submission of Assignments:
+QUIZZES – There will be no make-up quizzes. If you fail to attend a scheduled quiz for any reason,
+then you will receive a grade of zero for that quiz.
+If the student fails to attend a quiz and the Student Success Department confirms that the student's
+absence from that quiz is approved, then the grade that will be assigned to that quiz is
+● the grade of the Semester Examination if that quiz took place before the Semester Examination;
+● the grade of the Final Examination if that quiz took place after the Semester Examination
+SEMESTER EXAMINATION - There will be no make-up Semester Examination. If you fail to attend
+a scheduled Semester Examination for any reason, then you will receive a grade of zero for that
+Semester Examination. If the student fails to attend the Semester Examination and the Student Success
+Department confirms that the absence from the Semester Examination is approved, then the grade for
+the Final Examination will also be assigned as the grade for the Semester Examination.
+A maximum of 40% of the course grade can be compensated through the above policy
+UCC: March 2024 3
+
+--- Page 4 ---
+MATH 101 Fundamentals of Mathematical Reasoning (3 – 0 – 3)
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+Dates Topics and Reminders
+Week 1 (Aug 26) Chapter 1 – Introduction to Writing Proofs in Mathematics
+Week 2 (Sept 2) Chapter 2 – Logical Reasoning
+Week 3 (Sept 9) Chapter 3 – Constructing and Writing Proofs in Mathematics
+Quiz 1
+Week 4 (Sept 16) Chapter 3 – Constructing and Writing Proofs in Mathematics
+Week 5 (Sept 23) Chapter 4 – Mathematical Induction
+Week 6 (Sept 30) Chapter 5 - Set Theory
+Quiz 2
+Week 7 (Oct 7) Chapter 5 - Set Theory
+th
+Midterm: Wednesday, OCT 9 2024
+Week 8 (Oct 14) Chapter 6– Functions
+Week 9 (Oct 21) Chapter 6– Functions
+Week 10 (Oct 28) Chapter 6– Functions
+Quiz 3
+Week 11 (Nov 4) Chapter 7 – Equivalence Relations
+Week 12 (Nov 11) Chapter 7 – Equivalence Relations
+Week 13 (Nov 18) Chapter 8 – Finite and Infinite Sets
+Quiz 4
+Project Due
+Week 14 (Nov 25) Chapter 8 – Finite and Infinite Sets
+Presentation
+Week 15 (Dec 2) Chapter 8 – Finite and Infinite Sets & Review
+This is a tentative schedule and may be adjusted as required.
+Additional Information:
+UCC: March 2024 4
+
+--- Page 5 ---
+MATH 101 Fundamentals of Mathematical Reasoning (3 – 0 – 3)
+Assessment
+There are 4 quizzes scheduled in this course.
+Project
+The project will be assigned in the week 5 of the semester. Students will work in groups of 3 Students
+are encouraged to come up with their own topics. Otherwise, the professor will assign a topic to them.
+Students will submit a written report on week 13 and present their work on week 14. Any late submission
+will be penalized by 5% of the assessment grade per day.
+Mobile phone Policy
+Mobile phones must be switched off during quizzes and exams and must be put away for the duration
+of the quiz/exam.
+Calculator Policy
+You may use a basic scientific calculator to help you with arithmetic calculations.
+Calculators with any sort of graphing, symbolic manipulation or integral and derivative calculation
+capabilities are strictly prohibited.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.Please make every
+effort to arrive at the class periods in a timely fashion. Students arriving late to class are a distraction to
+both the instructor and the other students in the classroom. As per the University policies, any student
+arriving late to class is to be considered absent.
+If you are absent for any lecture, it is your responsibility to cover the missed material.
+UCC: March 2024 5
+
+--- Page 6 ---
+MATH 101 Fundamentals of Mathematical Reasoning (3 – 0 – 3)
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned
+a grade point on a four-point scale. Typical ranges associated with letter grades are set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for KU courses.
+Letter
+Percentage Grade Range Description
+Grade
+A From 92.5% to 100% Excellent
+A- From 89.5% to less than
+Very Good
+92.5%
+B+ From 86.5% to less than
+89.5%
+B From 82.5% to less than
+Good
+86.5%
+B- From 79.5% to less than
+82.5%
+C+ From 76.5% to less than
+Satisfactory
+79.5%
+C From 72.5% to less than
+76.5%
+C- From 69.5% to less than Less Than Satisfactory
+72.5%
+D From 59.5% to less than Poor
+69.5%
+F Less than 59.5% Fail
+UCC: March 2024 6

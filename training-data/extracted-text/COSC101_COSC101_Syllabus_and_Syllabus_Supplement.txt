@@ -1,0 +1,421 @@
+COSC 101 Foundations of Computer Science 
+(2 Lecture, 3 Laboratory – 3 Credits) 
+
+Prerequisite: COSC 114
+
+Course Catalog Description: 
+This course provides a comprehensive introduction to computer science, designed to give students a broad understanding of the field. The aim is to explore various topics, including number systems, data storage, data operations, and computer organization. It also equips students with a foundation and practical knowledge of operating systems, algorithms, data structures, and the social and ethical issues in computing. In addition, the C language is introduced to the students.
+
+Textbooks: 
+Foundations of Computer Science by Behrouz Forouzan, Publisher: Cengage, 5th Edition, 2023. ISBN-10: 1473787327, ISBN-13: 978-1473787322.
+C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry, Que Corporation, 3rd Edition, 2013. ISBN-10: ‎0789751984, ISBN-13: ‎978-0789751980.
+
+Course Topics: 
+Introduction (2 lectures) (Forouzan, Chapter 1)
+C programming basics, input/output (2 lectures) (Miller and Perry, Part I, II)
+Number systems (2 lectures) (Forouzan, Chapter 2)
+Data types and operators, control structures (condition) (2 lectures) (Miller and Perry, Part II, III)
+Data storage (2 lectures) (Forouzan, Chapter 3)
+Operations on data (2 lectures) (Forouzan, Chapter 4)
+Control structures (repetition/loops) (2 lectures) (Miller and Perry, Part III)
+Computer organization (2 lectures) (Forouzan, Chapter 5)
+Data structures (2 lectures) (Forouzan, Chapter 12)
+Arrays and pointers (2 lectures) (Miller and Perry, Part IV)
+Dynamic memory allocation and functions (2 lectures) (Miller and Perry, Part IV, V) 
+Recursion; file handling (2 lectures) (Miller and Perry, Part V)
+Operating systems (2 lectures) (Forouzan, Chapter 7)
+Algorithms (2 lectures) (Forouzan, Chapter 8)
+Social and ethical issues (2 lectures) (Forouzan, Chapter 22)
+
+Structure and learning methodologies: 
+Lectures are 2 x 50 minutes; Laboratory sessions are 1 x 150 min per week. The course is delivered through classroom lectures, problem-solving sessions, and laboratory work done individually. Individual assignments and quizzes are held throughout the semester to reinforce knowledge of the material. 
+
+Lab Topics: 
+
+Week
+ Topics
+ 
+3
+ C programming basics, input/output 
+ 
+4
+ Number systems 
+ 
+5
+ Data types and operators, control structures (condition) 
+ 
+6
+ Data storage 
+ 
+7
+ Operations on data 
+ 
+8
+ Control structures (repetition) 
+ 
+9
+ Computer organization 
+ 
+10
+ Arrays and pointers 
+ 
+11
+ Dynamic memory allocation and functions 
+ 
+12
+ Recursion; file handling 
+ 
+13
+ Operating systems 
+ 
+14
+ Data structures and algorithms
+ 
+
+Computing Resources: 
+Standard computer lab with personal computers; C compiler and IDE. 
+
+Assessment: 
+All course learning outcomes are assessed using the following assessment tools. 
+
+Assessment Instruments 
+ Contribution to course grade (%) 
+ 
+Coursework (quizzes, homework) 
+ 20% 
+ 
+Laboratory Work 
+ 20% 
+ 
+Semester Examination 
+ 25% 
+ 
+Final Examination 
+ 35% 
+ 
+
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLO):
+1 
+ 2 
+ 3 
+ 4 
+ 5 
+ 6 
+ 
+H 
+ M 
+ --- 
+ M
+ --- 
+ L 
+ 
+
+Course Learning Outcomes (CLO) and Program Learning Outcomes (PLO):
+No. 
+ Course Learning Outcomes 
+ CS PLOs 
+ 
+1 
+ Identify the principles of computer science 
+ 1 
+ 
+2 
+ Develop programs in C programming language
+ 1, 2, 6
+ 
+3
+ Describe various principles of computer operations (number systems, data storage, operations on data, and computer organization)
+ 1, 2
+ 
+4
+ Explain basic principles of computer systems and applications (operating systems, algorithms, data structures)
+ 1, 2, 6
+ 
+5
+ Recognize basic principles of computer ethics 
+ 4 
+ 
+
+Syllabus Supplement for Students
+Organizational Details
+ 
+Course Code and Title:
+ (COSC 101) Foundations of Computer Science
+ 
+Semester:
+ Spring 2025
+ 
+Schedule:
+ 2:00 PM – 2:50 PM
+ 
+Classroom:
+ G03005
+ 
+Instructor:
+ Dr. Zeyar Aung
+ 
+Contact Email:
+ Zeyar.aung@ku.ac.ae
+ 
+Office Room Number:
+ D04207
+ Contact Number: 
+ 0501310423 (emergency only)
+ 
+Office Hours:
+ Mon/Wed 2:00 PM – 5:00 PM
+ 
+
+Assessment Methodology
+ 
+
+ Tentative Dates
+ Weight 
+ 
+Coursework: 
+ HW # 1 (tentative)
+ Week 5
+ 5%
+ 
+
+ Quiz 1
+ Week 10
+ 5%
+ 
+
+ HW #2 (tentative)
+ Week 12
+ 5%
+ 
+
+ Quiz 2
+ Week 13
+ 5%
+ 
+Mid Term Exam
+ Week 8
+ 25%
+ 
+Final Exam
+ Week 16 
+ 35%
+ 
+Laboratory
+ Weeks 3-14
+ 15%
+ 
+Lab Final Exam
+ Week 15
+ 5%
+ 
+
+Instructor Policy on Late Submission of Homework:
+Any late submission will incur a penalty of 10% of the assignment’s weight per day after deadline.
+ 
+
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+
+Teaching Plan (Lectures):
+Week 1 
+ Introduction 
+ 
+Week 2 
+ C programming basics, input/output 
+ 
+Week 3 
+ Number systems 
+ 
+Week 4 
+ Data types and operators, control structures (condition) 
+ 
+Week 5 
+ Data storage 
+ 
+Week 6 
+ Operations on data 
+ 
+Week 7 
+ Control structures (repetition)
+ 
+Week 8 
+ Computer organization; Mid-term exam
+ 
+Week 9 
+ Data structure 
+ 
+Week 10 
+ Arrays and pointers 
+ 
+Week 11 
+ Dynamic memory allocation and functions 
+ 
+Week 12 
+ Recursion; file handling 
+ 
+Week 13 
+ Operating systems 
+ 
+Week 14 
+ Algorithms 
+ 
+Week 15 
+ Social and ethical issues 
+ 
+Week 16
+ Final exam
+ 
+
+Teaching Plan (Laboratories):
+Week 1
+ No Lab 
+ 
+Week 2
+ No Lab
+ 
+Week 3
+ C programming basics, input/output 
+ 
+Week 4
+ Number systems 
+ 
+Week 5
+ Data types and operators, control structures (condition) 
+ 
+Week 6
+ Data storage 
+ 
+Week 7
+ Operations on data 
+ 
+Week 8
+ Control structures (repetition) 
+ 
+Week 9
+ Computer organization 
+ 
+Week 10
+ Arrays and pointers 
+ 
+Week 11
+ Dynamic memory allocation and functions 
+ 
+Week 12
+ Recursion; file handling 
+ 
+Week 13
+ Operating systems 
+ 
+Week 14
+ Data structures and algorithms
+ 
+Week 15
+ Final Lab Test
+ 
+
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses.  Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as set out below:
+
+Letter Grade
+ Grade Point
+ Description
+ 
+A
+ 4.00
+ Excellent
+ 
+A-
+ 3.70
+ Very Good
+ 
+B+
+ 3.30
+ 
+ 
+B
+ 3.00
+ Good
+ 
+B-
+ 2.70
+ 
+ 
+C+
+ 2.30
+ Satisfactory
+ 
+C
+ 2.00
+ 
+ 
+C-
+ 1.70
+ Less Than Satisfactory
+ 
+D
+ 1.00
+ Poor
+ 
+F
+ 0.00
+ Fail
+ 
+
+The following is indicative of typical ranges associated with letter grades for the College of Engineering Undergraduate courses. 
+Letter Grade
+ Percentage Grade Range
+(rounded)
+ 
+
+ A
+ 
+ 93%-100%
+ 
+
+ A-
+ 
+ 90%-92%
+ 
+
+ B+
+ 
+ 87%-89%
+ 
+
+ B
+ 
+ 83%-86%
+ 
+
+ B-
+ 
+ 80%-82%
+ 
+
+ C+
+ 
+ 77%-79%
+ 
+
+ C
+ 
+ 73%-76%
+ 
+
+ C-
+ 
+ 70%-72%
+ 
+
+ D
+ 
+ 60%-69%
+ 
+
+ F
+ 
+ < 60%
+ 
+
+ PAGE

@@ -1,0 +1,85 @@
+{
+  "sourceFileName": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf",
+  "sourcePath": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf",
+  "sourceRelativePath": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf",
+  "sourceTextFileName": "COSC310_COSC310_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Majid Khonji",
+  "instructorEmail": "majid.khonji@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C02033",
+  "officeHours": "TR: 12:00-13:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 3.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 26 Sept 3.33%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 3.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 17 Oct 3.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3.34,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 21 Nov 3.34%"
+    },
+    {
+      "name": "Projects",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects / Assignment Assignment 31 Oct – 25 Nov 10%"
+    },
+    {
+      "name": "Lab Assignments",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory Lab Assignments Weekly (W2 – W13) 20%"
+    },
+    {
+      "name": "Lab Test (Last Lab)",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Lab Test (Last Lab) Week 14 5%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (on-campus) Week 9 (Oct 24) 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination (on-campus) Week 16 starting Dec 9 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

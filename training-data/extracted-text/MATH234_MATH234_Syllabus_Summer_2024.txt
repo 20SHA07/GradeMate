@@ -1,0 +1,213 @@
+--- Page 1 ---
+MATH 234 Discrete Mathematics
+(3 Lectures, 0 Laboratory – 3 Credits)
+Prerequisite: MATH 112
+Co-requisite: None
+Course Catalog Description:
+Topics covered in this course include propositional and predicate calculus, mathematical reasoning
+including mathematical induction, an introduction to sets, basic number theory, functions, relations,
+graphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.
+Textbook:
+th
+Discrete Mathematics and its Applications, Global Edition by K.H. Rosen, Publisher: McGraw Hill, 7
+Edition, 2012. ISBN: 9780071315012.
+Reference Materials:
+th
+Discrete Mathematics with Applications by Susanna S. Epp, Publisher: Brooks Cole, 4 Edition, 2010.
+ISBN: 9780495391326.
+th
+Discrete Mathematics by Richard Johnsonbaugh, Publisher: Pearson, 8 Edition, 2007.
+ISBN: 9780321964687.
+Course Topics:
+1. Propositional and predicate calculus. (4 lectures)
+2. Mathematical reasoning and mathematical induction. (6 lectures)
+3. Sets, functions, and cardinality. (4 lectures)
+4. Counting techniques. (6 lectures)
+5. Relations, graphs and trees. (8 lectures)
+6. Basic number theory. (6 lectures)
+7. Linear recurrence relations. (6 lectures)
+8. Boolean Algebra. (5 lectures)
+Structure and Learning Methodologies:
+Lectures will either be 3 x 50 minutes or 2 x 75 minutes per week. Lectures will be presented using the
+whiteboard, and may be complemented with handouts and/or PowerPoint slides.
+Laboratory Experiment Topics: Not applicable.
+Laboratory and/or Computer Resources: Not applicable.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, Homework, Projects) 40%
+Semester Examination(s) 25%
+Final Examination 35%
+UCC: June 2018
+1
+
+--- Page 2 ---
+MATH 234 Discrete Mathematics (3 – 0 – 3)
+___________________________________________________________________________________________
+______________________
+Contribution to Applied Mathematics & Statistics Students Outcomes (AMS-SOs):
+a b c d e f g h i j k l
+H --- H --- --- --- --- --- --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & AMS-SOs:
+No. Course Learning Outcomes AMS-SOs
+1. Apply the methods of propositional and predicate calculus, and set theory. a
+2. Construct mathematically valid proofs using standard proof techniques. a, c
+3. Describe and apply graph and tree structures to solve problems. a
+4. Assess, using counting techniques, fundamental discrete structures. a
+5. Solve problems in number theory involving primality and congruence. a
+6. Apply recurrence relations to solve engineering problems. a, c
+7. Apply Boolean algebra to logic circuits. a
+UCC: June 2018
+2
+
+--- Page 3 ---
+MATH 234 Discrete Mathematics (3 – 0 – 3)
+___________________________________________________________________________________________
+______________________
+Organizational Details
+Course Code and Title: MATH 234 Discrete Mathematics
+Summer 2024
+Semester:
+Schedule: MTWR 9:00 - 10:40
+Instructor: Meryem Rhadbane
+Contact Email: Meryem.rhadbane@ku.ac.ae
+Office Room Number: Building 1 office 021B San
+Office Hours:
+3:00 p.m. – 4:00 p.m.
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Monday 10-06-2024 40%
+Quiz 2 Tuesday 25-06-2024
+Quiz 3 Thursday 04-07-2024 (Best 3 of 4)
+Quiz 4 Thursday 11-07-2024
+Midterm Examination: Thursday, 27 June 2024 25%
+5:00 p.m. – 6:15 p.m.
+Final Examination: TBD by the Registrar’s Office 35%
+Instructor Policy on Late Submission of Assignments:
+ Quizzes – There will be no make-up quizzes. If you fail to attend a scheduled quiz without an
+approved absence from the Registrar’s Office, then you will receive a grade of zero for that quiz.
+ If the Registrar’s Office confirms that your absence from a quiz is approved, then the grade you
+will receive will either be your Midterm Examination grade (Quiz 1 and Quiz 2) or your Final
+Examination grade (Quiz 3 and Quiz 4).
+ Midterm Examination - There will be no make-up Midterm Examination. If you fail to attend the
+scheduled Midterm Examination without an approved absence from the Registrar’s Office, then
+you will receive a grade of zero for the Midterm Examination.
+ If the Registrar’s Office confirms that the absence on the Midterm Examination is approved, then
+the grade that you achieve for the Final Examination will also be assigned as your grade for the
+Midterm Examination.
+UCC: June 2018
+3
+
+--- Page 4 ---
+MATH 234 Discrete Mathematics (3 – 0 – 3)
+___________________________________________________________________________________________
+______________________
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+TENTATIVE Teaching Plan (Lectures):
+Week Dates Topics and Reminders
+1 3 – 6 June Chapter 1: Propositions, predicates, and reasoning
+2 10 – 13 June Chapter 2: Sets and functions
+Chapter 2: Cardinality
+3 Chapter 4: Basic number theory
+24 – 27 June
+Chapter 2 & 5: Sequences and mathematical induction
+4 Chapter 8: Linear recurrence relations
+1 – 4 July
+Chapter 9: Relations
+5 Chapter 10: Graphs
+8– 11 July Chapter 11: Trees
+Chapter 6: Counting techniques
+6 Chapter 6: Counting techniques (continue)
+15 – 18 July
+Final exam
+This is a tentative schedule and may be adjusted as required.
+Additional Information:
+Assessment
+There are four classroom quizzes scheduled for this course. Each quiz will therefore count for 10% of
+your final grade for the course.
+There are no make-up quizzes in this course. The scheduling of the quizzes is not flexible. The
+quizzes will occur on the dates and times assigned to them above. Please refer to “Instructor Policy on
+Late Submission of Assignments” above for the rules regarding absence from quizzes.
+Every assessment instrument (Quizzes, Midterm Examination and Final Examination) will include a
+“Mathematical Language and Writing” component within the total grade. A number of points,
+approximately 10% of the points awarded for the solution of the problems, will be awarded for the
+quality and accuracy of the mathematical language and writing that has been used in the solution
+process. For example, if the solutions to the problems in a quiz are worth 40 points then an additional
+4 points will be allocated for mathematical language and writing, so the quiz will be graded out of a
+UCC: June 2018
+4
+
+--- Page 5 ---
+MATH 234 Discrete Mathematics (3 – 0 – 3)
+___________________________________________________________________________________________
+______________________
+total of 44 points. Unreadable and/or poorly written algebraic steps in the solution process will also be
+penalized.
+Calculator Policy
+You may use a basic scientific calculator to help you with arithmetic computations in the MATH-206
+course. The calculator must not have a graphing capability. The calculator must not be capable of
+performing symbolic manipulation. The calculator must not be capable of computing derivatives and
+integrals. A good example of an appropriate calculator is the Casio fx-82ES.
+You will be permitted to use your (basic) calculator in the Quizzes, Midterm Examination and the
+Final Examination. Please do not try to use a more powerful calculator in the Quizzes and
+Examinations as it will be confiscated.
+Mobile phones may not be used as calculators in the Quizzes, Midterm Examination or Final
+Examination. Mobile phones must be switched off during quizzes and exams and must be put away
+for the duration of the quiz/exam.
+Classroom Policies
+Discipline is one of the main components of your academic and professional success.
+Please make every effort to arrive at the class periods in a timely fashion. Students arriving late to
+class are a distraction to both the instructor and the other students in the online classroom. If students
+require the class periods to end on-time then the class periods must begin on-time.
+Attendance for online classes will be recorded automatically through Blackboard. The system has
+been set to automatically mark you late after 5 minutes, absent after 10 minutes, and absent if you
+are not present for at least 80% of the scheduled class time. Once you are marked absent in
+Blackboard/Banner the absence can only be excused through the Registration Office.
+If you are absent from any class period it is your responsibility to make-up the missed material.
+All electronic devices must be switched off and put away during the class time.
+Students are expected to bring the course textbook to each class period. Students are also expected to
+bring a pen or pencil, notepaper, a calculator and a ruler. If all of this equipment makes your bag heavy,
+consider leaving your mobile phone at home to lessen the load you have to carry.
+Homework Policy
+Homework is your responsibility. Homework exercises will be assigned at the end of every class period.
+These exercises have been selected to enable you to practice the material covered in the class and to
+self-test your learning of the material. Homework solutions will not be collected-in and graded. You
+UCC: June 2018
+5
+
+--- Page 6 ---
+MATH 234 Discrete Mathematics (3 – 0 – 3)
+___________________________________________________________________________________________
+______________________
+are expected to have completed the homework exercises, and to have sought assistance with any of the
+exercises which have caused you difficulty, before the next class period. Assistance is readily available
+in Instructor Office Hours.
+The “secret for success” in this course is very simple:
+1. Attend all scheduled class periods, arriving punctually and prepared.
+2. Take good notes during classes, especially the worked problems.
+3. Do the homework exercises … all of them … before the next class period.
+4. Use Instructor Office Hours to resolve any difficulties with the material.
+5. Use the online Mathematics Learning Center on a regular basis.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned
+a grade point on a four - point scale. Typical ranges associated with letter grades are set out below:
+Letter Grade Percentage Grade Range
+Grade Point (rounded) Description
+A 4.00 92.50%-100% Excellent
+A- 3.70 89.50% - 92.49%
+Very Good
+B+ 3.30 86.50% - 89.49%
+B 3.00 82.50% - 86.49%
+Good
+B- 2.70 79.50% - 82.49%
+C+ 2.30 76.50% - 79.49%
+Satisfactory
+C 2.00 72.50% - 76.49%
+C- 1.70 69.50% - 72.49% Less Than Satisfactory
+D 1.00 59.50% - 69.49% Poor
+F 0.00 0.00% - 59. 49% Fail
+UCC: June 2018
+6

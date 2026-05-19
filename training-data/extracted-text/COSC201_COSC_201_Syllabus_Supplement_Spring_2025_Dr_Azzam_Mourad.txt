@@ -1,0 +1,229 @@
+--- Page 1 ---
+COSC 201 Computer Systems Organization
+(2 Lecture, 3 Laboratory – 3 Credits)
+Prerequisite: COSC 101
+Course Catalog Description:
+This course thoroughly explains computer logical organization, including components and
+interrelationships. It covers the central processor’s native language and basic architectures for
+high-performance design. Topics include Von Neumann architecture, low-level aspects of C
+programming, data representation, computer arithmetic, assembly language programming,
+and digital logic design.
+Textbook:
+• Computer Systems: A Programmer’s Perspective by Randal E. Bryant and David R.
+O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669.
+Reference Materials:
+• Low-Level Programming: C, Assembly, and Program Execution on Intel® 64
+Architecture by Igor Zhirkov. Publisher: Apress, 1st Edition, 2017. ISBN: 978-
+1484224021.
+Course Topics:
+1. Overview: Bit representation of information, program translation, compilation systems. (2
+lectures)
+2. Overview: Hardware organization, processors, instructions, memory hierarchies. (2
+lectures)
+3. Assembly programming: Introduction and program structure. (2 lectures)
+4. Low-level C programming: Pointers and arrays, functions, dynamic memory management.
+(2 lectures)
+5. Representation and manipulation of information: information storage, integer
+representations, integer arithmetic, Floating point, arithmetic, and logical operations. (4
+lectures)
+6. Machine-level representation of programs: Assembly addresses and memory allocation. (4
+lectures)
+7. Processor architecture: Digital logic design. (4 lectures)
+8. Processor architecture: Instruction set architecture, sequential and pipelined
+implementations. (4 lectures)
+9. Memory hierarchy: Storage technologies, locality, cache levels, I/O, and disks. (4 lectures)
+10. Optimizing program performance: Eliminating loop inefficiencies, reducing procedure
+calls, eliminating unneeded memory references, loop unrolling, and Enhancing parallelism.
+(2 lectures)
+Course Structure and Methodology:
+Lectures are 2 x 50 minutes; Laboratory sessions are 1 x 150 min per week. The course is
+delivered in the form of classroom lectures, problem solving sessions, and laboratories work
+done individually. Individual assignments and quizzes are held throughout the semester to
+reinforce knowledge of the material.
+1
+
+--- Page 2 ---
+Lab Topics:
+1. Assembly programming: Introduction and program structure.
+2. Low-level C programming: Pointers and arrays, functions, dynamic memory
+management.
+3. Representation and manipulation of information: information storage, integer
+representations, integer arithmetic
+4. Representation and manipulation of information: Floating point arithmetic
+5. Machine-level representation of programs: Assembly addresses and memory, flow
+control, stack frames.
+6. Machine-level representation of programs: Instructions, array allocation and access.
+7. Processor architecture: Instruction set architecture.
+8. Processor architecture: sequential and pipelined implementations.
+9. Memory hierarchy: Storage technologies, locality, cache levels.
+10. Memory hierarchy: writing cache-friendly code, I/O and disks.
+11. Optimizing program performance: Eliminating loop inefficiencies, reducing procedure
+calls, eliminating unneeded memory references, loop unrolling.
+12. Optimizing program performance: Enhancing parallelism, understanding memory
+performance, identifying, and eliminating performance bottlenecks.
+Computing Resources:
+A standard computer science lab with personal computers; C compiler and Assembler; systems
+diagnosis and performance monitoring tools.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools:
+Coursework (quizzes, homework) 15%
+Lab Work 15%
+Project 20%
+Semester Examination 20%
+Final Examination 30%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+H L --- --- L M
+H – High M – Medium L – Low
+Course Learning Outcomes (CLOs) and Program Learning Outcomes (PLO):
+No. Course Learning Outcomes CS PLOs
+1 Describe basic concepts of computer organization, such as data 1, 2, 6
+representation, computer arithmetic, digital logic, processor architecture,
+pipelining, and memory hierarchies.
+2 Understand fundamental components of a digital computer and their 1, 2
+interconnections.
+3 Evaluate computer system performance. 1, 2, 5, 6
+4 Implement Assembly language programs and low-level C programs. 1, 2, 5, 6
+2
+
+--- Page 3 ---
+Syllabus Supplement for Students
+Course Code and Title COSC 201 Computer Systems Organization
+Semester:
+th nd
+13 Jan-2 May, 2025
+Spring 2025
+Instructor Name Azzam Mourad
+Contact Email/ Office Ext. azzam.mourad@ku.ac.ae
+No.
+Office Room No. D04209
+Office Hours Tuesday-Thursday: 10-11 AM and 12-1 PM
+Monday-Wednesday: By appointment
+Assessment Methodology
+Tentative Dates Weight
+Quizzes Quizzes 15%
+Project Week 13 20%
+Laboratory Lab reports/progress 15%
+th nd
+(20 Jan – 2 May 2025)
+rd th
+Semester Examination (s) 3 -7 March, 2025 20%
+nd
+Final Examination After May 2, 2025 30%
+Instructor Policy on late submission of lab exercises:
+The Blackboard submission link will remain open after the due date. Late penalty: 10%
+score reduction for each day of delay. Submission after the solution is released will get an
+automatic zero score.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+3
+
+--- Page 4 ---
+TEACHING PLAN (Lecture):
+Week 1:
+Overview and Introduction
+th th
+13 -17 Jan
+Week 2: C Programming
+th th
+20 – 24 Jan
+Week 3 Data Representation – Part I: Information Storage, Integer, and
+Integer Arithmetic
+th st
+27 – 31 Jan
+Week 4 Data Representation – Part II: Floating Point Arithmetic
+rd th
+3 – 7 Feb Quiz1
+Week 5 Machine Language – Part I: Arithmetic and Logical Operations
+th th
+10 – 14 Feb Quiz1
+Week 6 Machine Language – Part II: Control Structures and Memory
+Allocation
+th st
+17 – 21 Feb
+Week 7 Machine Language – Part III: Arrays and Structures
+th th
+24 – 28 Feb
+Week 8 Processor Architecture: Digital Logic Design, Instruction Set,
+rd th
+3 – 7 March Sequential and Pipelined Implementations
+Midterm Exam
+Week 9 Memory Hierarchy
+th th
+10 – 14 March
+Week 10 Cache-Aware Programming
+th st
+17 – 21 March
+Week 11 Midterm Break
+th th
+24 – 28 March
+Week 12 Eid Break
+st th
+31 – 4 April
+Week 13 Code Optimization
+th th
+7 – 11 April Quiz2
+Week 14 Exceptions and Interrupts
+th th
+14 – 18 April
+Week 15 Virtual Memory Management and Linking
+st th
+21 – 25 April
+Week 16 Virtual Memory
+th nd
+28 - 2 May
+4
+
+--- Page 5 ---
+LABORATORY SCHEDULE (if applicable):
+Teaching Plan
+C & Linux Tutorial
+Weeks 2-3
+Week 4 C Type Casting
+Week 5 Assembler
+Week 6 Assembly: Control Instructions
+Week 7 Assembly: Procedures and Stack
+Week 8 Assembly: Arrays and Structures
+Week 9 Loop Unrolling
+Week 10 Measuring Performance
+Week 11 Spatial Locality
+Week 12 Object Files
+Week 13 Signal Handling
+Week 14 The Heap and Dynamic Memory Allocation
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades
+with pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is
+assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+5
+
+--- Page 6 ---
+The following is indicative of typical ranges associated with letter grades for the Undergraduate
+courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+6

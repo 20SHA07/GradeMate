@@ -1,35 +1,66 @@
 {
   "sourceFileName": "Syllabus - Summer 2025.pdf",
+  "sourcePath": "PHYS\\PHYS 121 University Physics I\\Syllabus - Summer 2025.pdf",
+  "sourceRelativePath": "PHYS\\PHYS 121 University Physics I\\Syllabus - Summer 2025.pdf",
+  "sourceTextFileName": "Syllabus_Summer_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "PHYS 121",
   "courseName": "University Physics I",
   "creditHours": 4,
   "semester": "Summer 2025",
   "instructor": "Dr. Dalaver H. Anjum",
+  "instructorEmail": "Dalaver.anjum@ku.ac.ae",
+  "schedule": "MTWR 12:00 pm – 2:30 pm (SAN 2126)",
+  "classroom": null,
+  "officeRoom": "SAN 2220",
+  "officeHours": "Wednesday: 3 pm – 4 pm",
+  "prerequisites": "MATH 111",
+  "textbooks": [
+    "Physics for Scientists and Engineers",
+    "Volume 1 by Raymond A. Serway and John W Jewett,",
+    "Publisher: Brooks Cole, 9th International Edition, 2014. ISBN-13: 9781285070438 (ISBN-",
+    "10:1285070437)."
+  ],
+  "courseDescription": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
   "assessments": [
     {
-      "name": "Quiz 1",
+      "name": "Quizzes",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 May 29 25%"
     },
     {
       "name": "Homework",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework WebAssign 5%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory 1-lab report per each During lab time 20%"
     },
     {
       "name": "Mid Term Exam",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination Midterm test June 13 20%"
     },
     {
       "name": "Final Exam",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final test TBA (registrar office) 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

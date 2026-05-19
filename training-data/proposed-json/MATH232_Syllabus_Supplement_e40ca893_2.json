@@ -1,0 +1,65 @@
+{
+  "sourceFileName": "MATH232_Syllabus_Supplement_e40ca893_2.pdf",
+  "sourcePath": "MATH232_Syllabus_Supplement_e40ca893_2.pdf",
+  "sourceRelativePath": "MATH232_Syllabus_Supplement_e40ca893_2.pdf",
+  "sourceTextFileName": "MATH232_Syllabus_Supplement_e40ca893_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "creditHours": null,
+  "semester": "Fall 2021",
+  "instructor": "Mohammad Al-Khaleel",
+  "instructorEmail": "mohammad.alkhaleel@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "R-3009C/ Online at the moment",
+  "officeHours": "Sun. Tue. Thu.: 10:00-11:00/ Online at the moment",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz # 1 Tuesday, Sept.14, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "There are 4 quizzes scheduled Quiz # 2 Tuesday, Sep. 28, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "for this course. Only the best 3 Quiz # 3 Tuesday, Nov. 2, 2021 13.33%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 13.33,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "quiz scores will count towards Quiz # 4 Tuesday, Nov. 16, 2021 13.33%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "your final grade, i.e. the lowest Quiz 40%"
+    }
+  ],
+  "totalWeight": 93.32,
+  "warnings": [
+    "Total weight is below 100 (93.3%)",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": true
+}

@@ -1303,6 +1303,129 @@ expectAssessmentNames(policyParagraphPercentages, [
   "Final Examination"
 ]);
 
+const cheg380GroupedDrops = extractSyllabusFromText(`Course Code and Title CHEG380 Introduction to Polymer Science and Technology
+Assessment Methodology
+Tentative Dates Weight
+Coursework Quizzes (6, drop 2 lowest) See schedule 15
+Project Will be assigned 2 week 15
+Exams (2) Week 7 and Week 15 40
+Final Exam Finals week 30
+Teaching Plan
+Week Topics Assessments
+Week 2 Quiz 1`);
+expectAssessmentNames(cheg380GroupedDrops, [
+  "Quizzes (6, drop 2 lowest)",
+  "Project",
+  "Exams (2)",
+  "Final Exam"
+]);
+expectAssessment(cheg380GroupedDrops, "Quizzes (6, drop 2 lowest)", 15);
+assert.equal(
+  cheg380GroupedDrops.assessments.some((assessment) => /^Quiz\s+\d/i.test(assessment.name)),
+  false,
+  "Drop-lowest grouped quizzes should remain grouped"
+);
+
+const chem115SharedQuizGroup = extractSyllabusFromText(`Course Code and Title: CHEM 115 General Chemistry I
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz # 1 06 Feb - 10 Feb
+Quiz # 2 27 Feb - 03 Mar 20%
+Quiz # 3 03 Apr - 07 Apr
+Quiz # 4 17 Apr - 21 Apr
+Aleks Objectives 10%
+Laboratory: Lab Reports and Lab Assignments 15%
+Semester Examination: Midterm Exam 20%
+Final Examination 35%`);
+expectAssessmentNames(chem115SharedQuizGroup, [
+  "Quizzes",
+  "Aleks Objectives",
+  "Lab Reports and Lab Assignments",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(chem115SharedQuizGroup, "Quizzes", 20);
+
+const chem211BestFourGroup = extractSyllabusFromText(`CHEM 211-04 Fundamentals of Organic Chemistry
+Assessment Methodology
+Tentative Dates Weight
+Coursework (Best 4 out of 5 will count towards the grade)
+Quiz 1
+Week 3
+20%
+Quiz 2
+Week 6
+Quiz 3
+Week 11
+Quiz 4
+Week 13
+Quiz 5 (Homework based)
+Week 15
+Laboratory Week 14 25%
+Midterm Exam Week 8 20%
+Final Examination TBA 35%`);
+expectAssessmentNames(chem211BestFourGroup, [
+  "Coursework (Best 4 out of 5 quizzes)",
+  "Laboratory",
+  "Midterm Exam",
+  "Final Examination"
+]);
+expectAssessment(chem211BestFourGroup, "Coursework (Best 4 out of 5 quizzes)", 20);
+
+const cosc202DetailedSplit = extractSyllabusFromText(`COSC 202 Data Science and Artificial Intelligence
+Assessment:
+Assessment Instruments Contribution to course grade (%)
+Coursework (quizzes, homework/project) 25%
+Laboratory Work 15%
+Semester Examination 25%
+Final Examination 35%
+Syllabus Supplement for Students
+Assessment Methodology
+Tentative Dates Weight (%)
+Quiz 1 Week 5
+Quiz 2 Week 10
+15%
+Coursework (quizzes, homework/project) Quiz 3 Week 12
+Quiz 4 Week 14
+Project (demo) Week 14 10%
+Midterm Examination(s) Week 8 25%
+Final Examination Week 16 35%
+Laboratory Work Weeks 14 15%`);
+expectAssessmentNames(cosc202DetailedSplit, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Project (demo)",
+  "Laboratory Work",
+  "Midterm Examination(s)",
+  "Final Examination"
+]);
+expectAssessment(cosc202DetailedSplit, "Quiz 1", 3.75);
+
+const cosc201SafeSummary = extractSyllabusFromText(`COSC 201 Computer Systems Organization
+Assessment:
+Coursework (quizzes, homework) 15%
+Lab Work 15%
+Project 20%
+Semester Examination 20%
+Final Examination 30%
+Syllabus Supplement for Students
+Assessment Methodology
+Tentative Dates Weight
+Quizzes Quizzes 15%
+Project Week 13 20%
+Laboratory Lab reports/progress 15%
+Semester Examination (s) 20%
+Final Examination 30%`);
+expectAssessmentNames(cosc201SafeSummary, [
+  "Coursework (quizzes, homework)",
+  "Lab Work",
+  "Project",
+  "Semester Examination",
+  "Final Examination"
+]);
+
 const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
 Credit Hours: 3 Credits
 Instructor: Menatalla Abououf

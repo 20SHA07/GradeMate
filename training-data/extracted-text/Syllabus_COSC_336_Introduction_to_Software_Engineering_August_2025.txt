@@ -1,0 +1,176 @@
+--- Page 1 ---
+COSC 336 Introduction to Software Engineering
+(2 Lecture, 3 Laboratory – 3 Credits)
+Prerequisite: COSC 230
+Course Catalog Description:
+The course introduces software engineering concepts and best practices. It discusses software
+processes and project management concepts. The course elaborates on software requirements,
+modeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams
+and emerging software development methods.
+Textbook:
+th
+Software Engineering: A Practitioner’s Approach by Roger Pressman. Publisher: McGraw-Hill, 9
+Edition, 2019. ISBN: 978-1259872976
+Reference Materials:
+th
+Software Engineering by Ian Sommerville. Publisher: Pearson, 10 Edition, 2016. ISBN: 978-
+0133943030
+Course Topics:
+1. Introduction to Software engineering, historical background. Definition of SE. SE Process. SE
+Process Model. Key Challenges facing SE. (2 lectures)
+2. The Software Process, Process Iteration: incremental and spiral development, Aspect- oriented
+Software Development, Agile Development, Component-based development, process activities,
+automated process support (CASE tools). (4 lectures)
+3. Project Management Concepts: S/W management activities, S/W management structure, personnel
+issues, planning & scheduling, Risk management. (2 lecture)
+4. Software Requirements Engineering Using Unified Modeling Language (UML) Use-Cases:
+Requirement engineering definition, requirements elicitation, and requirements specification.
+Functional, non-functional & domain requirements. System and software requirements. UML use-
+cases, use-case diagrams. (5 lectures)
+5. System Models: Context models, behavioral models: data models, object models (4 lectures)
+6. Architectural Design – The design process. Architectural design: Repository model, Client-server
+architecture & Abstract Machine model. Control Modeling; Modular decomposition. Distributed
+Systems Architectures. (5 lectures)
+7. Object Oriented Software Design – Objects and Object Classes; Object Oriented Design Process;
+Design Evolution. (4 lectures)
+8. Testing & Maintenance – Language choice; coding practice, verification and validation, testing
+strategies; Types of maintenance, system documentation, program evolution dynamics, maintenance
+costs (2 lectures)
+Course Structure and Learning Methodologies:
+Lectures are 2 x 50 minutes. Laboratory sessions are 150 minutes per week in the laboratory.
+The course material is presented using PowerPoint slides and lecture notes, available to the students
+through Blackboard. The course involves group homework/assignments and projects that involve
+students in a self-learning environment.
+August 2025 1
+
+--- Page 2 ---
+COSC 336 Introduction to Software Engineering (2-3-3)
+____________________________________________________________________________________________________________
+Computer Resources:
+C++, Java, Rational Rose software, and Project Management Software
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes – 10%, Assignments – 10%) 20%
+Group project 20%
+Semester Examination 20%
+Final Examination 40%
+Contribution to Computer Engineering Program Learning Outcomes:
+1 2 3 4 5 6 7
+H M M M H
+H – High M – Medium L – Low
+Course Learning Outcomes & Computer Engineering Program Learning Outcomes:
+Course Learning Outcomes PLO
+1-Demonstrate an understanding of the software engineering principles. 1, 4, 7
+2-Formulate software requirements and software specification. 2, 3, 4
+3- Apply the fundamentals of the software planning and management 4, 7
+4- Design a system, component or process to meet desired needs 1, 2, 7
+5-Recognize different software testing techniques. 1, 3
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+H H M - L H
+H – High M – Medium L – Low
+Course Learning Outcomes & Computer Science Program Learning Outcomes (PLOs):
+Course Learning Outcomes CS PLOs
+1-Demonstrate an understanding of the software engineering principles. 1,3,4
+2-Formulate software requirements and software specification. 1,2,6
+3- Apply the fundamentals of the software planning and management 1,3,4
+4- Design a system, component or process to meet desired needs 2,6
+5-Recognize different software testing techniques. 2,6
+May 2024 2
+
+--- Page 3 ---
+COSC 336 Introduction to Software Engineering (2-3-3)
+____________________________________________________________________________________________________________
+Syllabus Supplement for Students
+Course Code and Title COSC 336 Introduction to Software Engineering
+Semester Fall 2025
+Instructor Name Jamal Bentahar
+Contact Email/ Office Ext. Jamal.bentahar@ku.ac.ae
+No.
+Office Room No. D04 206
+Office Hours Mondays and Wednesdays from 12h00 to 13h00
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Before exams 20%
+Project Week 15 20%
+Semester Examination Week 8 20%
+Final Examination Week 16 40%
+Instructor Policy on late submission of assignments:
+No late submission will be accepted
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic
+work and will behave according to university rules and UAE societal norms and expectations."
+TEACHING PLAN (Lecture):
+Weekly Teaching Plan
+Week 1 Introduction to Software Engineering
+Week 2 The Software Process: Waterfall Model, Component-Based
+Week 3 The Software Process: Iterative Process, Incremental Process
+Week 4 Feasibility Analysis
+Week 5 Software Requirements Engineering
+May 2024 3
+
+--- Page 4 ---
+COSC 336 Introduction to Software Engineering (2-3-3)
+____________________________________________________________________________________________________________
+Week 6 Software Requirements Engineering Using Unified Modeling Language (UML)
+Use-Cases
+Week 7 Project Management Concepts
+Week 8 System Models: Use Case Diagrams, Sequence Diagram
+Week 9 System Models: Entity relationship Diagram
+Week 10 Object-Oriented Software Design
+Week 11 Architectural Design: Type of architectures
+Week 12 Architectural Design: Control, event-based
+Week 13 Testing & Maintenance
+Week 14 Black Box Testing
+Week 15 Revision
+TEACHING PLAN (Lab):
+Weekly Teaching Plan
+Week 2 Project Announcement
+Week 3 Problem Definition
+Week 4 Feasibility Analysis
+Week 5 Software Requirements Engineering
+Week 6 Project Management Concepts
+Week 7 System Model
+Week 8 Object-Oriented Software Design
+Week 9 Architectural Design
+Week 10 Prototype implementation: Interface
+Week 11 Prototype Implementation: Core functionalities
+Week 12 Demo presentation
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with
+pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a
+grade point on a four-point scale as set out below:
+Grade Letter Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+May 2024 4
+
+--- Page 5 ---
+COSC 336 Introduction to Software Engineering (2-3-3)
+____________________________________________________________________________________________________________
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is indicative of typical ranges associated with letter grades for KU Undergraduate
+courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+May 2024 5

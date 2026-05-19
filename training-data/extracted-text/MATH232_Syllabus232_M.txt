@@ -1,0 +1,90 @@
+--- Page 1 ---
+MATH 232 Engineering Mathematics
+(3 Lectures, 0 Laboratories – 3 Credits)
+Prerequisite: MATH 112
+Co-requisite: None
+Course Catalog Description:
+This course covers selected topics from mathematical analysis with engineering applications, including
+complex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.
+Textbook:
+th
+Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:
+9781305266728.
+th
+Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:
+9780470458365.
+Reference Materials: None
+Course Topics:
+1. Introduction to Complex Numbers [Stewart Appendix ]. (6 lectures)
+a. Complex arithmetic, complex argument, and polar form.
+b. Complex powers, roots, trigonometric and exponential functions.
+2. Partial Derivatives [Stewart 14.1-14.7]. (12 lectures)
+a. Functions of several variables.
+b. Limits and continuity (examples only).
+c. Partial derivatives.
+d. Tangent Planes and Linear Approximation (examples only).
+e. Chain Rule.
+f. Gradient vector and directional derivatives.
+g. Minimum and Maximum values.
+3. Multiple Integrals [Stewart 15.1-15.9]. (12 lectures)
+a. Double integrals over rectangles.
+b. Iterated integrals.
+c. Double integrals over general regions.
+d. Double integrals in polar coordinates.
+e. Applications of double integrals.
+f. Surface area.
+g. Triple integrals in cylindrical and spherical coordinates.
+4. Fourier Analysis [Kreyszig 11.1-11.4, 11.7-11.9]. (15 lectures)
+a. Introduction to Fourier Series.
+b. Periodic functions, Fourier sine and cosine series.
+c. Complex Fourier series, Parseval’s theorem.
+d. Fourier integrals, Fourier cosine and sine transforms.
+e. Complex Fourier transform, convolution.
+Note: One lecture is a 50 minute class period.
+June 2018 1
+
+--- Page 2 ---
+MATH 232 Engineering Mathematics (3 – 0 – 3)
+_________________________________________________________________________________________________________________
+Structure and Learning Methodologies:
+Lectures will either be 3 x 50 minutes or 2 x 75 minutes per week. Lectures will be presented using the
+whiteboard, and may be complemented with handouts and/or PowerPoint slides.
+Laboratory Experiment Topics: Not applicable.
+Laboratory and/or Computer Resources: Not applicable.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, Homework, Projects) 40%
+Laboratory Semester Examination(s) 25%
+Final Examination 35%
+) Contribution to Engineering Students Outcomes:
+a b c d e f g h i j k
+H --- --- --- M --- --- --- --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes & Student Outcomes:
+No. Course Learning Outcomes B.Sc.
+Engineering
+Outcomes
+1. Define and perform calculations involving functions of complex numbers. a
+2. Define and perform calculations involving series of complex numbers in the
+a
+context of trigonometric and exponential functions.
+3. Compute limits, partial derivatives, and directional derivatives of functions of
+a
+several variables.
+4. Identify and classify relative and absolute extrema of functions of several
+a, e
+variables.
+5. Apply various multiple integration techniques including iterated integrals, double
+a, e
+integrals, and integration in spherical and cylindrical coordinates.
+6. Analyze periodic waveforms and represent them in a Fourier series. a, e
+*This syllabus is augmented by a Syllabus Supplement for Students.
+Please note the following:
+*1 Credit equals
+1 hour Lecture/ week/ semester.
+2 hours studio/ week/ semester.
+3 hours lab/ week/ semester.
+Further Breakdown
+1 semester equals 15 weeks.
+1 hour equals 50 minutes.
+June 2018 2

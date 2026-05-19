@@ -1,0 +1,92 @@
+{
+  "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourcePath": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourceRelativePath": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourceTextFileName": "v_4_Syllabus_Supplement_CHEG232_Spring_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CHEG 232",
+  "courseName": "Fluid Mechanics",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Haitem Hassan-Beck",
+  "instructorEmail": "haitem.hassanbeck@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "8-289 – Arzanah building",
+  "officeHours": "Tuesday: 12:00-13:30 AM My office; Thursday: 12:00-13:30 AM My office",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 2%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 5 2%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 9 2%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Week 11 2%"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 5 Week 15 2%"
+    },
+    {
+      "name": "Assignments, project & field trip",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Assignments, project & field trip Week 12 10%"
+    },
+    {
+      "name": "Midterm",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) Midterm Week 7 20%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory - - 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination TBA 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

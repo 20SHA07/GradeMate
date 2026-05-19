@@ -1189,7 +1189,12 @@ function shouldIgnoreAssessmentLine(line, courseCode) {
   const normalized = line.toLowerCase();
   const hasKeyword = hasAssessmentKeyword(line);
 
-  if (/^\s*[a-f][+-]?\s+/.test(normalized) && /\d{1,3}\s*%/.test(normalized)) {
+  if (
+    /^\s*(?:[a-f][+-]?|wf)\b/i.test(line) ||
+    /\bfrom\s+to\s+(?:less than\s+)?\d{1,3}(?:\.\d+)?\s*%?/i.test(line) ||
+    /\bfrom\s+\d{1,3}(?:\.\d+)?\s*%?\s+to\s+(?:less than\s+)?\d{1,3}(?:\.\d+)?\s*%?/i.test(line) ||
+    /\b(?:excellent|very good|good|satisfactory|poor|fail|withdrew failing)\b.*\bfrom\b.*\bto\b/i.test(line)
+  ) {
     return true;
   }
 
@@ -1228,12 +1233,16 @@ function isAssessmentSectionHeading(line) {
     return false;
   }
 
+  if (/^week\b.*\b(?:topics?|activities?|assessments?)\b/i.test(line)) {
+    return false;
+  }
+
   return gradingHeaders.some((pattern) => pattern.test(line));
 }
 
 function isSectionBoundary(line) {
   return (
-    /^(honou?r code|academic pledge|teaching plan|course learning outcomes?|contribution to|student outcomes?|program learning outcomes?|laboratory schedule|course topics|textbooks?|references?)\b/i.test(
+    /^(honou?r code|academic pledge|teaching plan|course learning outcomes?|contribution to|student outcomes?|program learning outcomes?|laboratory schedule|course topics|textbooks?|references?|week\b.*(?:topics?|activities?|assessments?))\b/i.test(
       line
     ) ||
     /official khalifa university.*grading system|letter grade grade point|letter grade percentage/i.test(
@@ -1403,6 +1412,23 @@ function canonicalAssessmentName(rawName, fullLine) {
   if (/\bcomplete model white paper\b/i.test(compact)) {
     return "Complete Model White Paper and Presentations";
   }
+  if (/\bcoursework\s*\/\s*quizzes\b/i.test(compact)) return "Coursework / Quizzes";
+  if (/\bcoursework\s*\(\s*best\s+4\s+out\s+of\s+5\s+(?:will count|quizzes?)/i.test(compact)) {
+    return "Coursework (Best 4 out of 5 quizzes)";
+  }
+  if (/\bquizzes\s*\(\s*6\s*,\s*drop\s+2\s+lowest\s*\)/i.test(compact)) {
+    return "Quizzes (6, drop 2 lowest)";
+  }
+  if (/\bexams\s*\(\s*2\s*\)/i.test(compact)) return "Exams (2)";
+  if (/\bquizzes\s+3\s+quizzes\b/i.test(compact)) return "3 Quizzes";
+  if (/\bassignments\s+3\s+assignments\b/i.test(compact)) return "3 Assignments";
+  if (/\blaboratory reports?,\s*quizzes?,\s*presentation\b/i.test(compact)) {
+    return "Laboratory Reports, Quizzes, Presentation";
+  }
+  if (/\baleks objectives\b/i.test(compact)) return "Aleks Objectives";
+  if (/\blab reports? and lab assignments\b/i.test(compact)) {
+    return "Lab Reports and Lab Assignments";
+  }
   if (/\bgroup project\b/i.test(compact)) return "Group project";
   if (/\bprojects?\s*\/\s*assignements\b/i.test(compact)) {
     return "Projects / Assignements";
@@ -1413,6 +1439,13 @@ function canonicalAssessmentName(rawName, fullLine) {
   if (/\bbloomberg market (?:concept )?certification\b/i.test(compact)) {
     return "Bloomberg Market Concept Certification";
   }
+  const sharedQuizWeight = compact.match(
+    /\bquiz\s*#?\s*\d{1,2}\b[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+  if (sharedQuizWeight && Number(sharedQuizWeight[1]) >= 15 && !/^Quiz\s+\d{1,2}$/i.test(String(rawName ?? "").trim())) {
+    return "Quizzes";
+  }
+
   const quizNumber = numberedValue.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
   const homeworkNumber = numberedValue.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
   const assignmentNumber = numberedValue.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);

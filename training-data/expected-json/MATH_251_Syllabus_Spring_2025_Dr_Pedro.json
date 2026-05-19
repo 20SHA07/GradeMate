@@ -1,35 +1,64 @@
 {
   "sourceFileName": "MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+  "sourcePath": "MATH\\MATH 251 Operations Research I\\MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+  "sourceRelativePath": "MATH\\MATH 251 Operations Research I\\MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf",
+  "sourceTextFileName": "MATH_251_Syllabus_Spring_2025_Dr_Pedro.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 251",
   "courseName": "Operations Research I",
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Dr. Pedro Rochedo",
+  "instructorEmail": "pedro.rochedo@ku.ac.ae",
+  "schedule": "M&W 08:00-09:40 Classroom: G01029",
+  "classroom": null,
+  "officeRoom": "MAIN Campus - B04209",
+  "officeHours": "M&W 1:00PM to 3:00PM (or by appointment)",
+  "prerequisites": "MATH 204 or MATH 211",
+  "textbooks": [
+    "Introduction to Operations Research by Hillier, F.S. and Lieberman, G.J, Publisher: McGraw",
+    "Hill, 11 edition, 2022, ISBN: 9781307810240."
+  ],
+  "courseDescription": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
   "assessments": [
     {
-      "name": "Quiz 1",
+      "name": "Quizzes",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework: Quiz 1 Week 4 15%"
     },
     {
-      "name": "Homework 10",
+      "name": "Homework",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Homework 10%"
     },
     {
-      "name": "Project 20",
+      "name": "Project",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project 20%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination: Week 8 25%"
     },
     {
       "name": "Final Exam",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination: Final Exam Week 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

@@ -1,0 +1,57 @@
+{
+  "sourceFileName": "MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf",
+  "sourcePath": "MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf",
+  "sourceRelativePath": "MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf",
+  "sourceTextFileName": "MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 111",
+  "courseName": "Calculus II",
+  "creditHours": 4,
+  "semester": "Spring 2025",
+  "instructor": "Asma Mughrabi",
+  "instructorEmail": "asma.mughrabi@ku.ac.ae",
+  "schedule": "MW 1-3 pm (Section 11)",
+  "classroom": null,
+  "officeRoom": "SAN 1020B",
+  "officeHours": "MW 12-1 pm & TR 10-11am",
+  "prerequisites": "MATH 111 (C grade or higher)",
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad",
+    "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
+  ],
+  "courseDescription": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes and assignments) 30%"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project 10%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
+}

@@ -528,6 +528,7 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     const cleaned = cleanLine(value ?? "")
       .replace(/^course\s+code\s+and\s+title\b\s*[:\-\u2013\u2014]?\s*/i, "")
       .replace(/\(?[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\)?/i, "")
+      .replace(/^[-_ ]?\d{1,2}\b\s*/i, "")
       .replace(/^[/\\|:_\-\s\u2013\u2014)]+/, "")
       .replace(/\bCourse Code and Title\b/gi, "")
       .replace(/\b(Fall|Spring|Summer|Winter)\s+\d{4}$/i, "")
@@ -717,7 +718,7 @@ function extractInstructor(lines: string[]) {
     if (
       !cleaned ||
       isInvalidInstructorValue(cleaned) ||
-      /@|office|room|hours?|tel|ext\.?|assessment|semester|course code|communicat|crn|subject line|^[A-Z]{2,5}\s*\d{3,4}\b/i.test(cleaned)
+      /@|office|room|hours?|tel|ext\.?|assessment|semester|schedule|course code|communicat|crn|subject line|^[A-Z]{2,5}\s*\d{3,4}\b|\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri)\b.*\d{1,2}[:.]\d{2}/i.test(cleaned)
     ) {
       return null;
     }
@@ -901,20 +902,37 @@ function extractSchedule(lines: string[]) {
     }
   }
 
-  return (
-    extractLabelValue(lines, [
-      "schedule",
-      "class time",
-      "meeting time",
-      "lecture time",
-      "class schedule"
-    ]) ??
-    lines.find((line) =>
-      !/office hours?/i.test(line) &&
-      /\b(Mondays?|Tuesdays?|Wednesdays?|Thursdays?|Fridays?|Saturdays?|Sundays?)\b.*\b\d{1,2}:\d{2}\b/i.test(line)
-    ) ??
-    null
-  );
+  const labelledSchedule = extractLabelValue(lines, [
+    "schedule",
+    "class time",
+    "meeting time",
+    "lecture time",
+    "class schedule"
+  ]);
+
+  if (labelledSchedule) {
+    return labelledSchedule;
+  }
+
+  for (let index = 0; index < lines.length; index += 1) {
+    const line = lines[index];
+
+    if (
+      /office hours?/i.test(line) ||
+      /^office hours?/i.test(lines[index - 1] ?? "") ||
+      /^office hours?/i.test(lines[index - 2] ?? "") ||
+      /^office hours?/i.test(lines[index - 3] ?? "") ||
+      /^office hours?/i.test(lines[index + 1] ?? "")
+    ) {
+      continue;
+    }
+
+    if (/\b(Mondays?|Tuesdays?|Wednesdays?|Thursdays?|Fridays?|Saturdays?|Sundays?)\b.*\b\d{1,2}:\d{2}\b/i.test(line)) {
+      return line;
+    }
+  }
+
+  return null;
 }
 
 function extractClassroom(lines: string[]) {
@@ -965,19 +983,39 @@ function extractOfficeRoom(lines: string[]) {
 }
 
 function extractOfficeHours(lines: string[]) {
-  const labelIndex = lines.findIndex((line) => /^office hours\s*[:\-]?\s*$/i.test(line));
+  const inline = lines.find((line) => /^office hours\s+.+/i.test(line));
 
-  if (labelIndex >= 0) {
-    const nearby = [lines[labelIndex - 1], lines[labelIndex + 1]]
+  if (inline) {
+    const inlineValue = inline.replace(/^office hours\s*/i, "").trim();
+    const inlineIndex = lines.indexOf(inline);
+    const nearby = [lines[inlineIndex - 1], inlineValue, lines[inlineIndex + 1]]
       .filter(Boolean)
-      .find((line) =>
+      .filter((line) =>
         /\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|am|pm|\d{1,2}:\d{2})\b/i.test(
           line
         )
-      );
+      )
+      .map((line) => line.replace(/^[\u2022\-]\s*(?:my office:\s*)?/i, "").trim());
 
-    if (nearby) {
-      return nearby;
+    if (nearby.length > 0) {
+      return Array.from(new Set(nearby)).join("; ");
+    }
+  }
+
+  const labelIndex = lines.findIndex((line) => /^office hours\s*[:\-]?\s*$/i.test(line));
+
+  if (labelIndex >= 0) {
+    const nearby = [lines[labelIndex - 1], lines[labelIndex + 1], lines[labelIndex + 2]]
+      .filter(Boolean)
+      .filter((line) =>
+        /\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|am|pm|\d{1,2}:\d{2})\b/i.test(
+          line
+        )
+      )
+      .map((line) => line.replace(/^[\u2022\-]\s*(?:my office:\s*)?/i, "").trim());
+
+    if (nearby.length > 0) {
+      return Array.from(new Set(nearby)).join("; ");
     }
   }
 
@@ -1127,6 +1165,23 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (/\bmidterm\s+exam\b/i.test(name)) return "Midterm Exam";
   if (/\bfinal\s+test\b/i.test(name)) return "Final test";
   if (/\bproblem sets?\s+homework\b/i.test(compact)) return "Problem Sets Homework";
+  if (/\bcoursework\s*\/\s*quizzes\b/i.test(compact)) return "Coursework / Quizzes";
+  if (/\bcoursework\s*\(\s*best\s+4\s+out\s+of\s+5\s+(?:will count|quizzes?)/i.test(compact)) {
+    return "Coursework (Best 4 out of 5 quizzes)";
+  }
+  if (/\bquizzes\s*\(\s*6\s*,\s*drop\s+2\s+lowest\s*\)/i.test(compact)) {
+    return "Quizzes (6, drop 2 lowest)";
+  }
+  if (/\bexams\s*\(\s*2\s*\)/i.test(compact)) return "Exams (2)";
+  if (/\bquizzes\s+3\s+quizzes\b/i.test(compact)) return "3 Quizzes";
+  if (/\bassignments\s+3\s+assignments\b/i.test(compact)) return "3 Assignments";
+  if (/\blaboratory reports?,\s*quizzes?,\s*presentation\b/i.test(compact)) {
+    return "Laboratory Reports, Quizzes, Presentation";
+  }
+  if (/\baleks objectives\b/i.test(compact)) return "Aleks Objectives";
+  if (/\blab reports? and lab assignments\b/i.test(compact)) {
+    return "Lab Reports and Lab Assignments";
+  }
   if (/\bmodeling topic proposal\b/i.test(compact)) return "Modeling Topic Proposal";
   if (/\bworking model due\b/i.test(compact)) return "Working Model Due";
   if (/\bcomplete model white paper\b/i.test(compact)) {
@@ -1144,6 +1199,13 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   }
   if (/\blaboratory\s*\(if applicable\)/i.test(compact)) return "Laboratory";
 
+  const sharedQuizWeight = compact.match(
+    /\bquiz\s*#?\s*\d{1,2}\b[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/i
+  );
+  if (sharedQuizWeight && Number(sharedQuizWeight[1]) >= 15 && !/^Quiz\s+\d{1,2}$/i.test(cleanLine(name))) {
+    return "Quizzes";
+  }
+
   const quizNumber = compactForNumbering.match(/\bquiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/i);
   if (quizNumber && Number(quizNumber[1]) <= 12) return `Quiz ${Number(quizNumber[1])}`;
 
@@ -1151,6 +1213,9 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (midtermNumber && Number(midtermNumber[1]) <= 12) {
     return `Midterm ${Number(midtermNumber[1])}`;
   }
+
+  const testNumber = compactForNumbering.match(/\btest\s*[-#]?\s*(\d{1,2})\b/i);
+  if (testNumber && Number(testNumber[1]) <= 12) return `Test ${Number(testNumber[1])}`;
 
   if (/\bsemester examination\s*\(s\)/i.test(compact)) return "Semester Examination (s)";
 
@@ -1238,10 +1303,14 @@ function parseAssessments(lines: string[]) {
 }
 
 function shouldIgnoreAssessmentLine(line: string, courseCode: string | null) {
-  const normalized = line.toLowerCase();
   const hasKeyword = hasAssessmentKeyword(line);
 
-  if (/^\s*[a-f][+-]?\s+/.test(normalized) && /\d{1,3}\s*%/.test(normalized)) {
+  if (
+    /^\s*(?:[a-f][+-]?|wf)\b/i.test(line) ||
+    /\bfrom\s+to\s+(?:less than\s+)?\d{1,3}(?:\.\d+)?\s*%?/i.test(line) ||
+    /\bfrom\s+\d{1,3}(?:\.\d+)?\s*%?\s+to\s+(?:less than\s+)?\d{1,3}(?:\.\d+)?\s*%?/i.test(line) ||
+    /\b(?:excellent|very good|good|satisfactory|poor|fail|withdrew failing)\b.*\bfrom\b.*\bto\b/i.test(line)
+  ) {
     return true;
   }
 
@@ -1292,12 +1361,16 @@ function isAssessmentSectionHeading(line: string) {
     return false;
   }
 
+  if (/^week\b.*\b(?:topics?|activities?|assessments?)\b/i.test(line)) {
+    return false;
+  }
+
   return gradingHeaderPatterns.some((pattern) => pattern.test(line));
 }
 
 function isSectionBoundary(line: string) {
   return (
-    /^(honou?r code|academic pledge|teaching plan|course learning outcomes?|contribution to|student outcomes?|program learning outcomes?|laboratory schedule|course topics|textbooks?|references?)\b/i.test(
+    /^(honou?r code|academic pledge|teaching plan|course learning outcomes?|contribution to|student outcomes?|program learning outcomes?|laboratory schedule|course topics|textbooks?|references?|week\b.*(?:topics?|activities?|assessments?))\b/i.test(
       line
     ) ||
     /official khalifa university.*grading system|letter grade grade point|letter grade percentage/i.test(
@@ -1334,7 +1407,7 @@ function extractWeightFromAssessmentLine(line: string, inGradingSection: boolean
 
   if (inGradingSection) {
     const trailingTableWeight = withoutScores.match(
-      /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|on-campus|campus|before exams|tasks)\b[^%]*?\b(\d{1,3}(?:\.\d+)?)\s*$/i
+      /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|on-campus|campus|before exams|tasks|schedule|assigned)\b[^%]*?\b(\d{1,3}(?:\.\d+)?)\s*$/i
     );
 
     if (trailingTableWeight && hasAssessmentKeyword(withoutScores)) {
@@ -1770,7 +1843,7 @@ function getKuBareTrailingWeight(line: string) {
 
   const beforeWeight = line.slice(0, match.index).trim();
   const hasTimingCue =
-    /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|closed book|contact based|assigned by registrar|final week)\b/i.test(
+    /\b(?:week|weeks|weekly|every|tba|registrar|during lab time|closed book|contact based|assigned by registrar|final week|schedule|assigned)\b/i.test(
       beforeWeight
     );
   const hasWeightCue = /\b(?:weight|marks?|contribution|percentage)\b/i.test(line);
@@ -1893,6 +1966,15 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
 
   const exactPatterns: Array<[RegExp, string]> = [
     [/\b(?:quiz\s+)?2\s+quizzes\b/i, "2 Quizzes"],
+    [/\bcoursework\s*\/\s*quizzes\b/i, "Coursework / Quizzes"],
+    [/\bcoursework\s*\(\s*best\s+4\s+out\s+of\s+5\s+(?:will count|quizzes?)/i, "Coursework (Best 4 out of 5 quizzes)"],
+    [/\bquizzes\s*\(\s*6\s*,\s*drop\s+2\s+lowest\s*\)/i, "Quizzes (6, drop 2 lowest)"],
+    [/\bexams\s*\(\s*2\s*\)/i, "Exams (2)"],
+    [/\bquizzes\s+3\s+quizzes\b/i, "3 Quizzes"],
+    [/\bassignments\s+3\s+assignments\b/i, "3 Assignments"],
+    [/\blaboratory reports?,\s*quizzes?,\s*presentation\b/i, "Laboratory Reports, Quizzes, Presentation"],
+    [/\baleks objectives\b/i, "Aleks Objectives"],
+    [/\blab reports? and lab assignments\b/i, "Lab Reports and Lab Assignments"],
     [/\bproblem sets?\s+homework\b/i, "Problem Sets Homework"],
     [/\bmodeling topic proposal\b/i, "Modeling Topic Proposal"],
     [/\bworking model due\b/i, "Working Model Due"],
@@ -1946,9 +2028,12 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
       ? `HW ${Number(homeworkNumber[1])}`
       : `Homework ${Number(homeworkNumber[1])}`;
   }
+  const testNumber = withoutWeights.match(/\btest\s*#?\s*(\d{1,2})\b/i);
+  if (testNumber) return `Test ${Number(testNumber[1])}`;
   if (/^coursework:\s*homework\b|\bhomework\b/i.test(compact)) return "Homework";
   if (/^coursework\b/i.test(firstLine)) return "Coursework";
-  if (/^projects?\b/i.test(firstLine)) return "Projects";
+  if (/^project\b/i.test(firstLine)) return "Project";
+  if (/^projects\b/i.test(firstLine)) return "Projects";
   if (/\bweb\s*assign\b|\bwebassign\b/i.test(compact)) return "Web assign";
 
   const midtermNumber = withoutWeights.match(/\bmidterm\s*#?\s*(\d{1,2})\b/i);
@@ -2106,6 +2191,86 @@ function extractKuFormulaQuizWeights(methodologyBlock: string) {
     webAssignWeight,
     snippet: formula[0]
   };
+}
+
+function extractKuGroupedMethodologyCandidate(text: string): AssessmentCandidate | null {
+  const lines = getAssessmentMethodologyLines(text);
+
+  if (lines.length === 0) {
+    return null;
+  }
+
+  const block = lines.join(" ");
+  const rows: ExtractedAssessment[] = [];
+
+  const addFromLines = (
+    name: string,
+    pattern: RegExp,
+    confidence = 0.94,
+    maxLookahead = 5
+  ) => {
+    const startIndex = lines.findIndex((line) => pattern.test(line));
+
+    if (startIndex === -1) {
+      return;
+    }
+
+    const weight = findMethodologyWeightAfter(lines, pattern, maxLookahead);
+
+    if (weight !== null) {
+      addAssessmentIfMissing(rows, name, weight, lines[startIndex], confidence);
+    }
+  };
+
+  if (/\bquizzes\s*\(\s*6\s*,\s*drop\s+2\s+lowest\s*\)/i.test(block)) {
+    addFromLines("Quizzes (6, drop 2 lowest)", /\bquizzes\s*\(\s*6\s*,\s*drop\s+2\s+lowest\s*\)/i);
+    addFromLines("Project", /^Project\b/i);
+    addFromLines("Exams (2)", /^Exams\s*\(\s*2\s*\)/i);
+    addFromLines("Final Exam", /^Final Exam\b/i);
+  }
+
+  if (/\b3\s+Quizzes\b/i.test(block) && /\b3\s+Assignments\b/i.test(block)) {
+    addFromLines("3 Quizzes", /\b3\s+Quizzes\b/i);
+    addFromLines("Laboratory Reports, Quizzes, Presentation", /^Laboratory Reports/i);
+    addFromLines("Midterm exam", /^Semester Examination/i);
+    addFromLines("Final exam", /^Final Examination/i);
+    addFromLines("3 Assignments", /\b3\s+Assignments\b/i);
+  }
+
+  const hasBestOrDropQuizGroup =
+    /\b(?:best\s+4\s+out\s+of\s+5|drop\s+lowest|drop\s+2\s+lowest)\b/i.test(block);
+  const hasHomeworkBonusQuizGroup = /\be-Homework\b|\bbonus\b/i.test(block);
+  const hasChemSharedQuizGroup =
+    /\bCHEM\s*11[56]\b/i.test(text.slice(0, 1200)) &&
+    /\bCoursework:?\s+Quiz\s*#?\s*1\b/i.test(block);
+
+  if (hasBestOrDropQuizGroup || hasHomeworkBonusQuizGroup || hasChemSharedQuizGroup) {
+    const courseworkName = hasBestOrDropQuizGroup && /\bbest\s+4\s+out\s+of\s+5\b/i.test(block)
+      ? "Coursework (Best 4 out of 5 quizzes)"
+      : hasHomeworkBonusQuizGroup
+        ? "Coursework / Quizzes"
+        : "Quizzes";
+
+    addFromLines(courseworkName, /\bCoursework\b|\bQuiz\s*#?\s*1\b/i);
+    addFromLines("Lab Reports and Lab Assignments", /\bLab Reports and Lab Assignments\b/i);
+    if (!rows.some((row) => /lab reports and lab assignments/i.test(row.name))) {
+      addFromLines("Laboratory", /^Laboratory\b/i);
+    }
+    addFromLines("Midterm Exam", /\bMidterm Exam\b/i);
+    addFromLines("Final Examination", /\bFinal Examination\b/i);
+  }
+
+  const total = sumAssessmentWeights(rows);
+
+  if (rows.length >= 4 && Math.abs(total - 100) <= 0.5) {
+    return {
+      label: "KU grouped assessment methodology",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 1350
+    };
+  }
+
+  return null;
 }
 
 function getQuizCourseworkSegment(methodologyBlock: string) {
@@ -2331,6 +2496,10 @@ function extractSeparatedSummaryAssessmentCandidates(text: string): AssessmentCa
 
     for (let index = startIndex + 1; index < lines.length; index += 1) {
       const line = lines[index];
+
+      if (/^contribution to course grade\b/i.test(line)) {
+        continue;
+      }
 
       if (
         /^(contribution to|course learning outcomes?|program learning outcomes?|assessment methodology|syllabus supplement|organizational details|grading scheme)\b/i.test(
@@ -2673,6 +2842,7 @@ function extractKuDetailedAssessmentCandidates(
   const gensCandidate = extractGens300AssessmentCandidate(text);
   const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
   const modelingCandidate = extractModelingProjectAssessmentCandidate(text);
+  const groupedMethodologyCandidate = extractKuGroupedMethodologyCandidate(text);
 
   if (gensCandidate) {
     return [gensCandidate];
@@ -2680,6 +2850,10 @@ function extractKuDetailedAssessmentCandidates(
 
   if (modelingCandidate) {
     return [modelingCandidate];
+  }
+
+  if (groupedMethodologyCandidate) {
+    return [groupedMethodologyCandidate];
   }
 
   if (cosc330Candidate) {
@@ -2699,8 +2873,15 @@ function extractKuDetailedAssessmentCandidates(
   ).length;
   const baselineBlock = getBaselineAssessmentBlock(text);
   const shouldPreferSafeSummary =
-    explicitRows.length <= 4 &&
-    explicitRows.some((row) => isLooseDetailedRowName(row.name));
+    (explicitRows.length <= 4 &&
+      explicitRows.some((row) => isLooseDetailedRowName(row.name))) ||
+    /\bquizzes\s+quizzes\b/i.test(methodologyBlock) ||
+    Boolean(
+      baselineBlock &&
+        explicitRows.some((row) =>
+          /\bquizzes\s+quizzes\b/i.test(`${row.name} ${row.source_text_snippet}`)
+        )
+    );
   const preservesListedQuizRows =
     quizNumbers.length < 2 || explicitQuizRowCount === quizNumbers.length;
 
@@ -2745,7 +2926,7 @@ function extractKuDetailedAssessmentCandidates(
         formulaWeights.quizTotal
       )}% evenly across ${quizNumbers.length} quizzes. Please confirm.`
     );
-  } else if (quizNumbers.length >= 2) {
+  } else if (quizNumbers.length >= 2 && !/\b(?:best\s+\d+\s+out\s+of\s+\d+|drop\s+\d*\s*lowest|drop-lowest)\b/i.test(methodologyBlock)) {
     const quizSegment = getQuizCourseworkSegment(methodologyBlock);
     const quizTotal = getFirstWeight(quizSegment);
 

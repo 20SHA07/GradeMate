@@ -19,7 +19,7 @@
   "courseDescription": null,
   "assessments": [
     {
-      "name": "Quiz 2",
+      "name": "Quizzes",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.92,
@@ -33,7 +33,7 @@
       "source_text_snippet": "Aleks Objectives 10%"
     },
     {
-      "name": "Laboratory Lab Reports And Lab Assignments",
+      "name": "Lab Reports and Lab Assignments",
       "weight_percentage": 15,
       "max_score": 100,
       "confidence": 0.92,
@@ -52,20 +52,6 @@
       "max_score": 100,
       "confidence": 0.92,
       "source_text_snippet": "Final Examination: TBC by the Registrar’s Office 35%"
-    },
-    {
-      "name": "F .00 Fail",
-      "weight_percentage": 0,
-      "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "F 0.00 Fail"
-    },
-    {
-      "name": "WF .00 Withdrew Failing",
-      "weight_percentage": 0,
-      "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "WF 0.00 Withdrew Failing"
     }
   ],
   "totalWeight": 100,
@@ -73,6 +59,6 @@
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.79,
+  "confidence": 0.84,
   "needsHumanReview": true
 }

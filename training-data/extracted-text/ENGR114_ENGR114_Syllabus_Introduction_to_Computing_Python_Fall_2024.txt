@@ -1,0 +1,211 @@
+--- Page 1 ---
+COSC 114 Introduction to Computing - Python
+(3 Lecture, 3 Laboratory – 4 Credits)
+Prerequisite: None
+Course Catalog Description:
+This course introduces computer systems, including computer hardware components, operating systems,
+compiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that
+covers the program development lifecycle. It includes imperative programming such as data types,
+conditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,
+arrays, strings, data structures (database, tuple), and file Input/Output (I/O).
+Textbook:
+Python Programming: Using Problem-Solving Approach by R. Thareja, Publisher: Oxford University
+Press, 2017, ISBN: 978-0-19-948017-3
+Reference Materials:
+How to Think Like a Computer Scientist: Learning with Python 3. Documentation Release 3rd Edition,
+Peter Wentworth, Jeffrey Elkner, Allen B. Downey and Chris Meyers, April 2018 (available online:
+https://media.readthedocs.org/pdf/howtothink/latest/howtothink.pdf)
+Course Topics:
+1. Introduction to computer units and computer language: Machine language, Assembly Language,
+and High-level language. (3 lectures)
+2. Introduction to Python programming environments. (1 lecture)
+3. Syntax and semantics concepts, memory concepts, basic data type declarations and their ranges,
+output formatting for data types, assignments, arithmetic and logic operators, operators’
+precedence, and associativity. (3 lectures)
+4. Problem-solving approaches and algorithms using pseudocode and flowchart. (3 lectures)
+5. Control structures I (selections): if, else, elif, selection structures. (3 lectures)
+6. Control structures II (repetitions): for, and while loop repetition structures, counter controlled vs.
+Sentinel-controlled loop structures, nested loops, break and continue program control statements.
+(4 lectures)
+7. Functions: passing information to and from functions, scope and visibility of identifiers, iterative
+vs. recursive functions. Built-in functions and user-defined functions. (5 lectures)
+8. Lists: declaring, passing to functions, linear search, multi-dimensional, sorting. Manipulating of
+Lists 1D and 2D. (5 lectures).
+9. Strings: Fundamentals of characters and strings, string manipulation functions in Python (ex: find,
+len, etc.), string user-defined functions (ex: upper, count, etc.). (4 lectures)
+10. Data Structures: dictionary, tuple, passing and returning to/from function. (4 lectures)
+11. File I/O: streams insertion and extraction, stream manipulators, open, read, write, and update. (4
+lectures)
+12. Introduction to Scientific computing using NumPy (3 lectures)
+Course Structure and Methodology:
+Lectures are 3 x 50 minutes per week; Laboratory session is 1 x 150 min per week
+May 2024
+
+--- Page 2 ---
+Computing Resources:
+Computer lab equipped with IDE environments
+Laboratory/Assignments Topics:
+1. Running and debugging simple Python programs.
+2. Basic I/O and formatting.
+3. Selections in Python.
+4. Repetitions in Python.
+5. Built-in and user-defined functions.
+6. Functions (recursive vs iterative).
+7. Lists and Strings.
+8. Data Structures (Dictionary, tuple).
+9. File I/O.
+Laboratory Resources:
+Computer lab equipped with IDE environments
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Assessment Instruments Contribution to course grade (%)
+Coursework (Quizzes, homework, lab work) 35%
+Final Lab 15%
+Semester Examination 20%
+Final Examination 30%
+Contribution to Engineering Program Learning Outcomes:
+1 2 3 4 5 6 7
+M M - - - - H
+H – High M – Medium L – Low
+Course Learning Outcomes & Eng. Program Learning Outcomes:
+Course Learning Outcomes PLOs
+1. Correct errors in Python code 1, 7
+2. Develop Python solutions using control structures, lists, strings, 1, 2, 7
+dicts, and tuples
+3. Solve problems using Python functions 1, 2 7
+4. Implement Python code using input and output files 1, 7
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLO):
+1 2 3 4 5 6
+M M --- --- --- M
+H – High M – Medium L – Low
+May 2024
+
+--- Page 3 ---
+Course Learning Outcomes & CS Program Learning Outcomes:
+Course Learning Outcomes PLOs
+1. Correct errors in Python code 1
+2. Develop Python solutions using control structures, lists, strings, 1, 2,6
+dicts, and tuples
+3. Solve problems using Python functions 1, 2
+4. Implement Python code using input and output files 1, 2,6
+May 2024
+
+--- Page 4 ---
+Syllabus Supplement for Students
+Course Code and
+COSC 114: Introduction to Computing using Python
+Title
+Semester:
+FALL 2024
+Instructor Name Dr. Yousuf Alsalami
+yousuf.alsalami@ku.ac.ae
+Contact Email/
+Office Room No. C03-017
+Lecture Room: SAN4108
+Office Hours Tue Thu 3:15 pm - 4:15 pm
+Assessment Methodology
+Tentative Dates Wei
+ght
+Coursework Quiz 1 Sept 26 5%
+Quiz 2 Oct 24 5%
+Quiz 3 Nov 7 5%
+Quiz 4 Nov 21 5%
+Laboratory (if applicable) Lab In Lab 15%
+Assignments&
+Quizzes
+Final LabTest Week 14 15%
+Semester Examination (on campus) Oct 11 at 20%
+10:00am-
+11:30am
+May 2024
+
+--- Page 5 ---
+Final Examination (on campus) TBA 30%
+Instructor Policy on late submission of assignments:
+A Penalty of 20% per day for any late submission will be applied, if necessary.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in
+academic work and will behave according to university rules and UAE societal norms and
+expectations."
+TEACHING PLAN (Lecture):
+Week 1 Introduction to computer units and computer language: Machine language,
+Assembly Language and High-level language
+Week 2 Introduction to Python programming environment (IDLE, Wing IDE 101)
+Syntax and semantics concepts, memory concepts, basic data type declarations and
+their ranges, output formatting for data types, assignments, arithmetic and logic
+operators
+Week 3 Operators’ precedence, associativity
+Problem solving approaches
+Week 4 Algorithms using pseudocode and flowchart
+Control structures I (selections): if, else, elif, selection structures
+Week 5 Control structures II (repetitions): for, and while loop repetition structures, counter
+controlled vs. sentinel-controlled loop structures,
+Week 6 Nested loops, break and continue program control statements
+Functions: passing information to/from functions
+Week 7 Functions: scope and visibility of identifiers, iterative vs. recursive functions
+Week 8 Built in and user defined functions
+Lists: declaring, passing to functions, Manipulating of Lists 1D and 2D
+Week 9 Linear search, sorting
+Strings: Fundamentals of characters and strings
+Week 10 Strings: string manipulation functions (ex: find, len.), string user defined functions
+May 2024
+
+--- Page 6 ---
+(ex: upper, count, etc.)
+Week 11 Data Structures: tuple, passing and returning to/from function
+Week 12 Data Structures: dictionary
+File I/O: streams insert and extraction
+Week 13 File I/O: stream manipulators, open, read, write and update
+Week 14 Introduction to Scientific computing using NumPy
+Week 15 Revision
+LABORATORY SCHEDULE (if applicable):
+Week 1 No Lab
+Week 2 Lab 0 -Introduction to Python
+Week 3 Lab 1- Syntax and Semantics of Python
+Week 4 Lab 2 - Operators and Expressions in Python
+Week 5 Lab 3-Control Statements in Python _Part I
+Week 6 Lab 4-Control Statements in Python_Part II
+Week 7 Lab 5-Functions in Python_Part I
+Week 9 Lab 6-Functions in Python_Part II
+Week 10 Lab 7- List manipulation in Python
+Week 12 Lab 8-String manipulation and Data structures in Python
+Week 13 Lab 9- File I/O in Python
+Week 15 Final Lab Test
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and
+minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point
+scale as set out below:
+Letter Grade Grade Point Description
+May 2024
+
+--- Page 7 ---
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following indicates typical ranges associated with letter grades for KU Undergraduate courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+May 2024
+
+--- Page 8 ---
+May 2024

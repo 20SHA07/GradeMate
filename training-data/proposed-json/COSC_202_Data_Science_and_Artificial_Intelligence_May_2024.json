@@ -19,14 +19,41 @@
     "Artificial Intelligence with Python, by Alberto Artasanchez and Prateek Joshi. Publisher: Packt Publishing Ltd, 2nd Edition, 2020. ISBN-10: 183921953X. ISBN-13: 978-1839219535."
   ],
   "courseDescription": "The course is designed to give engineers a comprehensive understanding of the key concepts, techniques, tools, and applications of data science and Artificial Intelligence (AI). The course focuses on applications in various engineering domains. Course topics include data analysis and visualization, machine learning, deep learning, applications, natural language processing, computer vision, autonomous driving, and ethics considerations. Students will learn how these concepts can be applied to real-world problems and gain hands-on experience with popular AI and data science tools and libraries.",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Coursework (quizzes, homework/project)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (quizzes, homework/project) 25%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Laboratory Work 15%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 35%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "Low confidence extraction",
     "Semester missing",
-    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.12,
+  "confidence": 0.86,
   "needsHumanReview": true
 }

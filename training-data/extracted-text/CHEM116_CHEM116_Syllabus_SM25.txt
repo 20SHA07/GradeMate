@@ -1,0 +1,85 @@
+--- Page 1 ---
+ESMA 200:
+Engineering Economic Analysis
+Course Overview
+Summer 2025
+
+--- Page 2 ---
+ku.ac.ae ku.ac.ae
+Instructor’s Contact Information
+Instructor: Dr. Adolf Acquaye
+E-mail: adolf.acquaye@ku.ac.ae
+Office Hours:
+Contact me by email to schedule
+
+--- Page 3 ---
+ESMA 201 L0 Introduction to Engineering Systems and Management 26 August 2024 ku.ac.ae ku.ac.ae 3
+Course Learning Outcomes
+No Course Learning Outcomes
+1 Describe theoretical and conceptual basis of economics (such as, time value of
+money, interest rates, inflation etc.) upon which engineering projects are
+evaluated
+2 Define and provide examples of time value of money, compare different
+interest rates such as, simple, compound, MARR, nominal, and effective
+3 Compare economic alternatives based on equivalent present worth, future
+worth, capitalized cost, annual worth, cost benefit ratio, sensitivity, breakeven
+& payback period analysis
+4 Make analytical decisions by replacement and breakeven analysis of projects
+and alternatives
+
+--- Page 4 ---
+ku.ac.ae ku.ac.ae
+Core Textbooks
+✓ Leland Blank, A., & Anthony Tarquin, P. E. (2017). ✓ Chan S. Park (2016) Contemporary Engineering
+Engineering economy. McGraw-Hill; 8th Edition. Economics, Sixth Edition., Pearson/Prentice Hall
+
+--- Page 5 ---
+ku.ac.ae ku.ac.ae 16
+Main Topics in ESMA 200
+2. Time value of money, 4. Inflation and its
+1. Engineering 3. Interest rate, yields,
+cash flows, and impact on project cash
+Economic Decisions compounding
+economic equivalence flows
+(1 session) (1 session)
+(2 sessions) (1 session)
+7. Rate of return
+5. Present worth 6. Annual equivalent 8. Cost benefit analysis
+analysis and payback
+analysis worth analysis for decision-making
+period
+(2 sessions) (1 session) (2 sessions)
+(2 sessions)
+9. Adjustments to Cash 11. Comparison of
+10. Project break-even
+Flows (Depreciation, alternatives &
+and sensitivity analysis
+taxes, etc.) replacement decisions
+(2 sessions)
+(1 session) (3 session)
+
+--- Page 6 ---
+ku.ac.ae ku.ac.ae
+Assessments and Dates
+Assessment Weight Date or Due Date
+Quiz 1 7.5% 9 June
+Midterm Examination 25% 16 June
+Quiz 2 7.5% 23 June
+Group Project 25% TBC
+Final Exams 35% TBC
+
+--- Page 7 ---
+ku.ac.ae ku.ac.ae 21
+Logistics – Examinations
+1. Quizzes has been announced in advance. Missing any examination (e.g., quiz, midterm,
+etc.) will result in a grade of 0.
+2. In case a student has a justification for the absence (e.g., medical report), this should be
+directed to the registration office (AND NOT THE INSTRUCTOR) per the university
+policy guidelines.
+3. The registration will then contact the instructor to inform him/her whether the justification
+was accepted or not. Only in that case, the portion of the grade for the examination (e.g.,
+5% for a quiz) will be moved to the grade of the final exam.
+4. There will be no make-ups exams.
+
+--- Page 8 ---
+ku.ac.ae ku.ac.ae

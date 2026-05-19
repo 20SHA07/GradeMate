@@ -1,0 +1,50 @@
+{
+  "sourceFileName": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourcePath": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourceRelativePath": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourceTextFileName": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 204",
+  "courseName": "Linear Algebra",
+  "creditHours": 4,
+  "semester": "Fall 2024",
+  "instructor": "Elias Zikkos",
+  "instructorEmail": "elias.zikkos@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "San Campus, Building 1, Room 218",
+  "officeHours": "Monday and Wednesday 9am to 11am, Monday 2pm to 4pm, at the HIVE",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Elementary Linear Algebra by Howard Anton, Publisher: Wiley, 12th Edition, 2019 ISBN:",
+    "9781119268048."
+  ],
+  "courseDescription": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes) 40%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
+}

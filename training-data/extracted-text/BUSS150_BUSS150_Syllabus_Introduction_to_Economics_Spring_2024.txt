@@ -1,0 +1,389 @@
+BUSS 150 Introduction to Economics
+(3 Lectures, 0 Laboratories – 3 Credits)
+
+Prerequisites: ENGL 112, ENGL 102
+
+Course Catalog Description: 
+This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed. 
+
+Textbook:
+Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552
+
+Reference Materials:
+URL: www.pearsonmylabandmastering.com
+MyEconLab
+The Economist
+
+Course Topics: 
+An introduction to economics (3 lectures)
+Production possibilities and opportunity costs (3 lectures)
+The market forces of supply and demand (3 lectures)
+Elasticity (3 lectures) 
+Economic efficiency and equity (3 lecture) 
+Government in markets (3 lectures)
+Firms in competitive markets (3 lectures)
+Monopoly and monopolistic competition (3 Lectures)
+Oligopoly (3 lectures) 
+Measuring a nation’s income (3 lectures) 
+Measuring the cost of living (3 lectures)
+Money, growth and inflation (3 lectures)
+13. The exchange rate and balance of payments (3 lectures)
+14. Aggregate demand and aggregate supply (3 lectures)
+
+Course Structure and Learning Methodologies: 
+Lectures will either be 3 x 50 minutes or 2 x 75 minutes per week. Class will be conducted using PowerPoint-based lectures with problem-solving and in-class exercises. Real world cases and current economic news will be utilized for class discussions. The course uses a mixture of lectures, class discussions and assigned tasks to develop students’ understanding of basic economic concepts and their applications. Bloomberg Market Concept tools and terminals will be engaged in this course (for topics 10 to 15) to enable the student to track, forecast, and understand market and economic changes and concepts. This approach allows students to learn the basics in class and use the Bloomberg Terminal to check their understanding of the course material by completing online assignments. 
+
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, tests)
+ 30%
+ 
+Bloomberg Market Concept Certification
+ 10%
+ 
+Semester Examination(s)
+ 25%
+ 
+Final Examination 
+ 35%
+ 
+
+Contribution to Business Students Outcomes:
+a
+ b
+ c
+ d
+ e
+ f
+ 
+M
+ M
+ H
+ 
+ 
+ 
+ 
+H – High M – Medium L – Low
+
+Contribution to Engineering Students Outcomes:
+a
+ b
+ c
+ d
+ e
+ f
+ g
+ h
+ i
+ j
+ k
+ 
+L
+ L
+ ---
+ ---
+ ---
+ ---
+ ---
+ M
+ ---
+ M
+ ---
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+H – High M – Medium L – Low
+ 
+
+Course Learning Outcomes & Student Outcomes:
+No.
+ Course Learning Outcome
+ Business
+Student 
+Outcomes
+ Engineering
+Student
+Outcomes
+ 
+1
+ Evaluate the basic principles and concepts of economics.
+ c
+ h
+ 
+2
+ Compare basic economic theory and principles in current microeconomic and macroeconomic issues.
+ c
+ h, j
+ 
+3
+ Utilize economic principles and reasoning to solve economic problems.
+ c
+ h
+ 
+4
+ Interpret charts, graphs, and tables and use the information to make informed decisions.
+ b
+ a, b
+ 
+5
+ Apply knowledge of economics and technology to identify, formulate, analyze, and solve problems.
+ a
+ j
+ 
+
+Syllabus Supplement for Students
+
+ 
+Course Code and Title:
+ BUSS 150 Introduction to Economics
+ 
+Semester: 
+ Spring 2024
+ 
+Instructor Name:
+ Dr Yama Temouri
+ 
+Contact Email
+ yama.temouri@ku.ac.ae 
+ 
+Office Room No. Tel Ex:
+ 
+ 
+Office Hours:
+ Arrange via email
+ 
+
+Assessment Methodology 
+ 
+
+ Tentative Dates
+ Weight 
+ 
+Coursework:
+ Test 1
+ Week 5 and covering Chapters 1 to 3 (Date)
+ 7.5%
+ 
+
+ Test 2
+ Week 7 and covering Chapters 4 to 6 (Date)
+ 7.5%
+ 
+
+ Test 3
+ Week 11 and covering Chapters 11 to 14 (Date)
+ 7.5%
+ 
+
+ Test 4
+ Week 13 and covering Chapters 21 to 23 (Date)
+ 7.5%
+ 
+
+ Overall Test Weighting
+ 
+ 30%
+ 
+Midterm Exam:
+ Week 8 covering Chapters 1 to 6 (In class Date)
+ 25%
+ 
+Online Assessment
+ Bloomberg Market Certification (Deadline: Date)
+ 10%
+ 
+Final Exam:
+ 6-16 May; covering ALL Chapters
+ 35%
+ 
+
+Instructor Policy on late submission of assignments:
+No make-up class tests (i.e., Tests 1 to 4 as stated above) will be given. If a student misses a class test, the weight of the missed class test will be transferred to the Final Exam. 
+As per University policy, a documented justifiable missed Mid-Semester Exam will receive the same grade as attained on the Final Exam (if the absence on the Mid-Semester Exam is approved by the University). An unapproved absence for the Mid-Semester Exam is not considered a justification and will be graded as a zero.
+A make-up Final Exam will only be given if approved by the Registrar’s Office for documented justifiable reasons. An unapproved absence for the Final exam is not considered a justification and will be graded as a zero (i.e. no make-up Final exam will be given without the approval of the Registrar’s Office). 
+ 
+
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave according to university rules and UAE societal norms and expectations."
+ 
+
+TEACHING PLAN: 
+(This is a tentative schedule and may be adjusted as required).
+
+Week 1
+
+ What is Economics? (Chapter 1)
+ 
+Week 2
+
+ Production Possibilities and Opportunity Cost (Chapter 2)
+
+ 
+Week 3
+
+ Demand and Supply (Chapter 3)
+ 
+Week 4
+
+ Elasticity (Chapter 4)
+ 
+Week 5
+
+ Test 1 covering Chapters 1, 2 and 3
+Economic Efficiency (Chapter 5)
+ 
+Week 6
+
+ Government Actions in Markets (Chapter 6)
+ 
+Week 7
+
+ Test 2 covering Chapters 4, 5 and 6 
+Output and Costs (Chapter 11)
+ 
+Week 8
+ Midterm Exam
+Perfect Competition (Chapter 12)
+ 
+Week 9
+
+ Monopoly (Chapter 13)
+ 
+Week 10
+
+ Monopolistic Competition (Chapter 14)
+
+ 
+Week 11
+ Test 3 covering Chapters 11, 12, 13 and 14 
+Monitoring the Value of Production GDP (Chapter 21)
+ 
+Week 12
+
+ Monitoring Jobs and Inflation (Chapter 22)
+ 
+Week 13
+
+ Economic Growth (Chapter 23)
+Test 4 covering Chapters 21, 22 and 23 
+ 
+Week 14
+
+ The Exchange Rate and the Balance of Payments (Chapter 26)
+ 
+Week 15
+
+ Self-Revision
+Final Exam: 6-16 May
+ 
+
+Additional Information:
+
+Tests (30%):
+There will be four online-class tests during the semester. All of the tests will be 25 minutes in length and will be given on the tentative dates listed above (subject to change). The tests will cover material you should have mastered since the previous test, but do require you to understand and make use of material taught since the beginning of the course. No make-up tests will be given.
+
+Bloomberg Market Certification (10%):
+Bloomberg Market Concepts (BMC) is a self-paced e-learning course that provides an interactive introduction to the financial markets. Students are required to successfully complete only the “Economic Indicators” module under Core Concepts to receive allocated marks for the online assessment component. The BMC scores the subsequent assessment online out of 100, but you will receive either a Pass or Fail grade (i.e. zero or 100%).
+
+Mid-Term Exam (25%):
+Mid-Term Examination will be held in Week 7 during class time. No make-up midterm exams will be given. 
+
+Final Exam (35%):
+The final exam will cover material from the entire course. The date for the final examination is determined by the Registrar’s Office. No make-up exams will be given, unless approved by the University. 
+
+Calculator Policy:
+Non-programmable calculators may be used during the in-class tests and exams. Use of any other electronic device, including programmable calculators, during exams will result in an automatic zero score on the exam. Students are not allowed to share calculators.
+ 
+
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and minuses.  Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as set out below:
+
+Letter Grade
+ Percentage Grade Range
+ Description
+ 
+
+ A
+ From 92.5% to 100%
+ Excellent
+ 
+
+ A-
+ From 89.5% to less than 92.5%
+ Very Good
+ 
+
+ B+
+ From 86.5% to less than 89.5%
+ 
+ 
+
+ B
+ From 82.5% to less than 86.5%
+ Good
+ 
+
+ B-
+ From 79.5% to less than 82.5%
+ 
+ 
+
+ C+
+ From 76.5% to less than 79.5%
+ Satisfactory
+ 
+
+ C
+ From 72.5% to less than 76.5%
+ 
+ 
+
+ C-
+ From 69.5% to less than 72.5%
+ Less Than Satisfactory
+ 
+
+ D
+ From 59.5% to less than 69.5%
+ Poor
+ 
+
+ F
+ Less than 59.5%
+ Fail
+ 
+
+Access to E-textbook
+
+To register for MyLab Economics BUSS150 - Spring 2024
+Students can access the e-textbook and the online resources (for example, practice questions) via BLACKBOARD by clicking on the link in the “contents” folder and by following the steps to register at https://screencast-o-matic.com/watch/c3hvXkVrWcO.
+
+Access to Bloomberg
+
+In order to complete the Bloomberg assessment, you must follow the step-by-step instructions as given below:
+ 
+Note: Bloomberg consists of 6 courses, but Economics students are required to do only one course; the “Economic Indicators” course. It has 19 questions and takes approximately one hour to complete the test! You will receive full marks by attempting the course, regardless of the mark given by the Bloomberg software. In other words, by going through it and submitting it, you will get full marks. If you do not submit it, you will get zero marks.
+For those of you, who have already done this Bloomberg course (i.e. Economic Indicators), please send me a screenshot of this completion and you will get full marks. You do NOT need to send me a screenshot if you are doing this assignment for the first time.
+
+Step-by-step instructions:
+1.  Students create a student account via https://www.bloomberg.com/professional/product/bloomberg-market-concepts/
+2.  Click on “BMC LOGIN”
+3.  Select “Sign up as a Learner”. During the signup stage for BUSS150-Spring2024, students must use the 10-digit code, which is: TBA
+4.  Select Required E-Leaning Course from available six different courses: Choose “Economic Indicators” only !!!
+5.  Complete the course before the deadline of 06 May 2024 !
+
+P.S. I have also put these instructions in the “info” folder on blackboard.
+
+ Spring 2024 PAGE \* MERGEFORMAT 7
+
+BUSS 150 Introduction to Economics

@@ -1,0 +1,85 @@
+{
+  "sourceFileName": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourcePath": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourceRelativePath": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourceTextFileName": "BMED352_Syllabus_Supplement_Spring_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "BMED 352",
+  "courseName": "Fundamental of Biomedical Signal Processing",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr Mohamed Seghier / Ms Sarah Bawazir",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae; sarah.bawazir@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B02042",
+  "officeHours": "Monday: 2:30pm - 4:00 pm; Wednesday: 2:30pm - 4:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 6.25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 Week 4 6.25%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 6.25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 7 6.25%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 6.25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 12 6.25%"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 6.25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Week 14 6.25%"
+    },
+    {
+      "name": "Projects",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects Weekly 10%"
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory Weekly 15%"
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) Week 10 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Starting May 6 25%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}
