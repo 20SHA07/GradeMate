@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight, Calculator, GraduationCap, Layers3 } from "lucide-react";
+import { ArrowRight, BookMarked, Calculator, GraduationCap, Layers3 } from "lucide-react";
 import { MarketingNav } from "@/components/navigation/marketing-nav";
 import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
@@ -20,6 +20,14 @@ const modeCards = [
     button: "Open workspace",
     href: "/workspace",
     icon: Layers3
+  },
+  {
+    title: "Course Library",
+    description:
+      "Find KU course templates, import grading breakdowns, and contribute syllabuses for review.",
+    button: "Browse library",
+    href: "/course-library",
+    icon: BookMarked
   }
 ];
 
@@ -40,7 +48,7 @@ export default function LandingPage() {
           </p>
         </div>
 
-        <div className="mt-10 grid gap-5 md:grid-cols-2">
+        <div className="mt-10 grid gap-5 md:grid-cols-3">
           {modeCards.map((mode) => {
             const Icon = mode.icon;
 

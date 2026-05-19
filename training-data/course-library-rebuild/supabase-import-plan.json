@@ -1,6 +1,6 @@
 {
-  "generatedAt": "2026-05-19T18:01:44.492Z",
-  "currentSource": "backup 2026-05-19T17-21-13-420Z",
+  "generatedAt": "2026-05-19T18:31:58.103Z",
+  "currentSource": "backup 2026-05-19T18-06-32-923Z",
   "options": {
     "includeNeedsReview": false,
     "resolveConflicts": false,
@@ -12,17 +12,17 @@
     "importableReadyCanonical": 74,
     "importableNeedsReview": 0,
     "importableConflicts": 0,
-    "wouldInsert": 67,
-    "wouldUpdate": 7,
+    "wouldInsert": 41,
+    "wouldUpdate": 33,
     "wouldSkip": 15,
     "needsReviewCount": 5,
     "conflictCount": 2,
     "duplicateCount": 8,
     "relatedMaterialCount": 0,
     "otherSkippedCount": 0,
-    "assessmentChanges": 67,
-    "oldCourseCodeNameConflicts": 57,
-    "existingTemplatesNotTouched": 77
+    "assessmentChanges": 41,
+    "oldCourseCodeNameConflicts": 40,
+    "existingTemplatesNotTouched": 59
   },
   "actions": [
     {
@@ -84,7 +84,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.479Z"
+          "updated_at": "2026-05-19T18:31:58.099Z"
         },
         "assessments": [
           {
@@ -215,7 +215,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.100Z"
         },
         "assessments": [
           {
@@ -316,7 +316,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -467,7 +467,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -581,7 +581,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "2dda3647-0537-414e-ae42-a30b6a7297f3",
-          "uniqueKey": "bmed-351::biomedical-circuits-and-systems::unknown::bmed351-bmed-351-biomed-circuits-and-systems-syl",
+          "uniqueKey": "bmed-351::biomedical-circuits-and-systems::unknown::a55658725e08",
           "semester": null,
           "sourceFileName": "BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf"
         }
@@ -620,7 +620,7 @@
             "International edition, 2016, ISBN: 9781259251320"
           ],
           "course_description": "The primary objective of this course is to study analogue, digital electronic circuits and their application\nto biomedical instrumentation and physiological measurements. The course will focus strongly on\nelectronic hardware and software design issues required to produce medical instruments, which satisfy\nInternational standards for safety, performance and quality control. Students will be equipped with the\nfundamental knowledge required to design Biosignal processing system.",
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -731,7 +731,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -845,7 +845,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "a1f12755-6e04-4487-bd42-a989713e0ae9",
-          "uniqueKey": "bmed-352::fundamentals-of-biomedical-signal-processing::unknown::bmed352-course-syllabus-pdf",
+          "uniqueKey": "bmed-352::fundamentals-of-biomedical-signal-processing::unknown::913604616893",
           "semester": null,
           "sourceFileName": "BMED352_Course_Syllabus.pdf"
         }
@@ -884,7 +884,7 @@
             "Hall, ISBN: 9781292025728, Pearson New International Edition, 2013."
           ],
           "course_description": "The primary objective of this course is to study analogue and digital signal processing techniques\nand microcomputer system, and their application to biomedical instrumentation and physiological\nmeasurements. This course is designed for students who are expected to have prior knowledge in\ncircuits and physiological system modelling. The main focus is on the technical aspects of\nbiosignal processing and its hardware implementation in medical instruments.",
-          "updated_at": "2026-05-19T18:01:44.481Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -995,7 +995,7 @@
             "Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552"
           ],
           "course_description": "This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed.",
-          "updated_at": "2026-05-19T18:01:44.482Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1107,7 +1107,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T18:01:44.482Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1160,8 +1160,8 @@
       }
     },
     {
-      "action": "update",
-      "templateId": "20ea9e33-4ce2-4039-90fb-be6758a71008",
+      "action": "insert",
+      "templateId": null,
       "key": "buss-322::fundamentals-of-innovation-and-entrepreneurship::spring-2025",
       "uniqueKey": "buss-322::fundamentals-of-innovation-and-entrepreneurship::spring-2025",
       "sourceFileName": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf",
@@ -1176,18 +1176,17 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "buss 322|fundamentals of innovation & entrepreneurship|spring 2025",
-      "assessmentChange": false,
-      "oldCourseCodeNameConflict": false,
-      "oldCourseCodeNameConflicts": [],
-      "existing": {
-        "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
-        "uniqueKey": "buss-322::fundamentals-of-innovation-and-entrepreneurship::spring-2025",
-        "courseCode": "BUSS 322",
-        "courseName": "Fundamentals of Innovation & Entrepreneurship",
-        "semester": "Spring 2025",
-        "totalWeight": 100,
-        "assessmentCount": 4
-      },
+      "assessmentChange": true,
+      "oldCourseCodeNameConflict": true,
+      "oldCourseCodeNameConflicts": [
+        {
+          "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
+          "uniqueKey": "buss-322::fundamentals-of-innovation-entrepreneurship::summer-2025",
+          "semester": "Summer 2025",
+          "sourceFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf"
+        }
+      ],
+      "existing": null,
       "payload": {
         "template": {
           "unique_key": "buss-322::fundamentals-of-innovation-and-entrepreneurship::spring-2025",
@@ -1218,7 +1217,7 @@
             "2015, International Student Edition, ISBN: 9781259875991"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.482Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1292,9 +1291,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
-          "uniqueKey": "buss-322::fundamentals-of-innovation-and-entrepreneurship::spring-2025",
-          "semester": "Spring 2025",
-          "sourceFileName": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf"
+          "uniqueKey": "buss-322::fundamentals-of-innovation-entrepreneurship::summer-2025",
+          "semester": "Summer 2025",
+          "sourceFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf"
         }
       ],
       "existing": null,
@@ -1330,7 +1329,7 @@
             "978-1352012491"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.482Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1383,8 +1382,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
       "key": "ccen-210::digital-logic-design::spring-2026",
       "uniqueKey": "ccen-210::digital-logic-design::spring-2026",
       "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
@@ -1399,17 +1398,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "ccen 210|digital logic design|spring 2026",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
-          "uniqueKey": "ccen-210::digital-logic-design::unknown::dld-notes-mux-chapter-onwards-pdf",
-          "semester": null,
-          "sourceFileName": "DLD notes MUX chapter onwards_.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
+        "uniqueKey": "ccen-210::digital-logic-design::spring-2026",
+        "courseCode": "CCEN 210",
+        "courseName": "Digital Logic Design",
+        "semester": "Spring 2026",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "ccen-210::digital-logic-design::spring-2026",
@@ -1443,7 +1443,7 @@
             "McGraw-Hill, 2025, ISBN: 978-1-265-12041-2."
           ],
           "course_description": "This course covers the principles of digital logic design, including data representation in digital systems, Boolean\nalgebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided\ndesign (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic\ncircuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments\nprovide hands-on experience with simulating, implementing, and testing digital circuits.",
-          "updated_at": "2026-05-19T18:01:44.482Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1496,8 +1496,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "3379a222-e574-4912-aa2e-7a01e605b5c0",
       "key": "cheg-205::principles-of-chemical-engineering::fall-2023",
       "uniqueKey": "cheg-205::principles-of-chemical-engineering::fall-2023",
       "sourceFileName": "CHEG205_CHEG_205_-_Syllabus.pdf",
@@ -1512,17 +1512,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 205|principles of chemical engineering|fall 2023",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "3379a222-e574-4912-aa2e-7a01e605b5c0",
-          "uniqueKey": "cheg-205::principles-of-chemical-engineering::unknown::cheg-205-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "CHEG 205 - Syllabus .pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "3379a222-e574-4912-aa2e-7a01e605b5c0",
+        "uniqueKey": "cheg-205::principles-of-chemical-engineering::fall-2023",
+        "courseCode": "CHEG 205",
+        "courseName": "Principles of Chemical Engineering",
+        "semester": "Fall 2023",
+        "totalWeight": 100.2,
+        "assessmentCount": 15
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-205::principles-of-chemical-engineering::fall-2023",
@@ -1553,7 +1554,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1737,9 +1738,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
-          "uniqueKey": "cheg-230::chemical-engineering-thermodynamics-i::unknown::thermodynamics-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Thermodynamics Syllabus .pdf"
+          "uniqueKey": "cheg-230::chemical-engineering-thermodynamics-i::spring-2026",
+          "semester": "Spring 2026",
+          "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf"
         }
       ],
       "existing": null,
@@ -1773,7 +1774,7 @@
             "Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6."
           ],
           "course_description": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1816,8 +1817,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
       "key": "cheg-230::chemical-engineering-thermodynamics-i::spring-2026",
       "uniqueKey": "cheg-230::chemical-engineering-thermodynamics-i::spring-2026",
       "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf",
@@ -1832,17 +1833,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 230|chemical engineering thermodynamics i|spring 2026",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
-          "uniqueKey": "cheg-230::chemical-engineering-thermodynamics-i::unknown::thermodynamics-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Thermodynamics Syllabus .pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
+        "uniqueKey": "cheg-230::chemical-engineering-thermodynamics-i::spring-2026",
+        "courseCode": "CHEG 230",
+        "courseName": "Chemical Engineering Thermodynamics I",
+        "semester": "Spring 2026",
+        "totalWeight": 100,
+        "assessmentCount": 6
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-230::chemical-engineering-thermodynamics-i::spring-2026",
@@ -1873,7 +1875,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -1946,8 +1948,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "8fb254de-6ef3-4e34-a62a-fb0cd3da4682",
       "key": "cheg-232::fluid-mechanics-for-chemical-engineering::spring-2024",
       "uniqueKey": "cheg-232::fluid-mechanics-for-chemical-engineering::spring-2024",
       "sourceFileName": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
@@ -1962,10 +1964,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 232|fluid mechanics for chemical engineering|spring 2024",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "8fb254de-6ef3-4e34-a62a-fb0cd3da4682",
+        "uniqueKey": "cheg-232::fluid-mechanics-for-chemical-engineering::spring-2024",
+        "courseCode": "CHEG 232",
+        "courseName": "Fluid Mechanics For Chemical Engineering",
+        "semester": "Spring 2024",
+        "totalWeight": 100,
+        "assessmentCount": 9
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-232::fluid-mechanics-for-chemical-engineering::spring-2024",
@@ -2005,7 +2015,7 @@
             "Week 6 Examples on Bernoulli’s Equation"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2108,8 +2118,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "598057f6-a625-40d8-a226-4a07edaad45d",
       "key": "cheg-232::fluid-mechanics::spring-2025",
       "uniqueKey": "cheg-232::fluid-mechanics::spring-2025",
       "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
@@ -2124,17 +2134,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 232|fluid mechanics|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "598057f6-a625-40d8-a226-4a07edaad45d",
-          "uniqueKey": "cheg-232::fluid-mechanics::unknown::fluid-mechanics-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Fluid Mechanics Syllabus .pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "598057f6-a625-40d8-a226-4a07edaad45d",
+        "uniqueKey": "cheg-232::fluid-mechanics::spring-2025",
+        "courseCode": "CHEG 232",
+        "courseName": "Fluid Mechanics",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 9
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-232::fluid-mechanics::spring-2025",
@@ -2165,7 +2176,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2289,9 +2300,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "96939388-563b-4eb4-a266-b27aa59d4201",
-          "uniqueKey": "cheg-312::numerical-methods-for-chemical-engineers::unknown::numerical-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Numerical Syllabus.pdf"
+          "uniqueKey": "cheg-312::numerical-methods-for-chemical-engineers::spring-2026",
+          "semester": "Spring 2026",
+          "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf"
         }
       ],
       "existing": null,
@@ -2325,7 +2336,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2398,8 +2409,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "96939388-563b-4eb4-a266-b27aa59d4201",
       "key": "cheg-312::numerical-methods-for-chemical-engineers::spring-2026",
       "uniqueKey": "cheg-312::numerical-methods-for-chemical-engineers::spring-2026",
       "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
@@ -2414,17 +2425,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 312|numerical methods for chemical engineers|spring 2026",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "96939388-563b-4eb4-a266-b27aa59d4201",
-          "uniqueKey": "cheg-312::numerical-methods-for-chemical-engineers::unknown::numerical-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Numerical Syllabus.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "96939388-563b-4eb4-a266-b27aa59d4201",
+        "uniqueKey": "cheg-312::numerical-methods-for-chemical-engineers::spring-2026",
+        "courseCode": "CHEG 312",
+        "courseName": "Numerical Methods for Chemical Engineers",
+        "semester": "Spring 2026",
+        "totalWeight": 100,
+        "assessmentCount": 11
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-312::numerical-methods-for-chemical-engineers::spring-2026",
@@ -2455,7 +2467,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.483Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2578,8 +2590,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
       "key": "cheg-332::chemical-engineering-thermodynamics-ii::spring-2025",
       "uniqueKey": "cheg-332::chemical-engineering-thermodynamics-ii::spring-2025",
       "sourceFileName": "CHEG332_Thermo_II_Syllabus.pdf",
@@ -2594,17 +2606,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 332|chemical engineering thermodynamics ii|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
-          "uniqueKey": "cheg-332::chemical-engineering-thermodynamics-ii::unknown::thermo-ii-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Thermo II Syllabus .pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
+        "uniqueKey": "cheg-332::chemical-engineering-thermodynamics-ii::spring-2025",
+        "courseCode": "CHEG 332",
+        "courseName": "Chemical Engineering Thermodynamics II",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-332::chemical-engineering-thermodynamics-ii::spring-2025",
@@ -2635,7 +2648,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": ", report, and calculations will be given with the assignment.",
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2719,9 +2732,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "b136416c-2388-40df-97ff-3de157f5ce13",
-          "uniqueKey": "cheg-350::materials-science-and-engineering::unknown::material-science-syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Material Science Syllabus .pdf"
+          "uniqueKey": "cheg-350::materials-science-engineering::spring-2024",
+          "semester": "Spring 2024",
+          "sourceFileName": "CHEG350_Material_Science_Syllabus.pdf"
         }
       ],
       "existing": null,
@@ -2755,7 +2768,7 @@
             "9 Intl Edition, 2014, ISBN-13: 9781118319222"
           ],
           "course_description": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2838,8 +2851,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b1540e59-0de2-4fea-bd70-64ba714847a6",
       "key": "cheg-380::introduction-to-polymer-science-and-technology::spring-2024",
       "uniqueKey": "cheg-380::introduction-to-polymer-science-and-technology::spring-2024",
       "sourceFileName": "CHEG380_CHEG380_Syllabus.pdf",
@@ -2854,10 +2867,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cheg 380|introduction to polymer science and technology|spring 2024",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "b1540e59-0de2-4fea-bd70-64ba714847a6",
+        "uniqueKey": "cheg-380::introduction-to-polymer-science-and-technology::spring-2024",
+        "courseCode": "CHEG 380",
+        "courseName": "Introduction to Polymer Science and Technology",
+        "semester": "Spring 2024",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "cheg-380::introduction-to-polymer-science-and-technology::spring-2024",
@@ -2891,7 +2912,7 @@
             "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
           ],
           "course_description": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.101Z"
         },
         "assessments": [
           {
@@ -2944,8 +2965,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "1efd995b-da6e-4987-b079-6626205e22ef",
       "key": "chem-115::general-chemistry-i::spring-2023",
       "uniqueKey": "chem-115::general-chemistry-i::spring-2023",
       "sourceFileName": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
@@ -2960,17 +2981,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "chem 115|general chemistry i|spring 2023",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "1efd995b-da6e-4987-b079-6626205e22ef",
-          "uniqueKey": "chem-115::general-chemistry-i::unknown::chem115-syllabus-spring-2023-s03-pdf",
-          "semester": null,
-          "sourceFileName": "CHEM115-Syllabus_Spring 2023_S03.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "1efd995b-da6e-4987-b079-6626205e22ef",
+        "uniqueKey": "chem-115::general-chemistry-i::spring-2023",
+        "courseCode": "CHEM 115",
+        "courseName": "General Chemistry I",
+        "semester": "Spring 2023",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "chem-115::general-chemistry-i::spring-2023",
@@ -3001,7 +3023,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3064,8 +3086,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "68083853-6e62-4918-b985-aa5464e94d11",
       "key": "chem-116::general-chemistry-ii::spring-2025",
       "uniqueKey": "chem-116::general-chemistry-ii::spring-2025",
       "sourceFileName": "CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
@@ -3080,17 +3102,18 @@
       "canonical": true,
       "duplicateStatus": "duplicate",
       "duplicateGroupKey": "chem 116|general chemistry ii|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "68083853-6e62-4918-b985-aa5464e94d11",
-          "uniqueKey": "chem-116::general-chemistry-ii::unknown::chem116-syllabus-sp25-pdf",
-          "semester": null,
-          "sourceFileName": "CHEM116_Syllabus_SP25.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "68083853-6e62-4918-b985-aa5464e94d11",
+        "uniqueKey": "chem-116::general-chemistry-ii::spring-2025",
+        "courseCode": "CHEM 116",
+        "courseName": "General Chemistry II",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "chem-116::general-chemistry-ii::spring-2025",
@@ -3122,7 +3145,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3196,9 +3219,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
-          "uniqueKey": "chem-211::fundamentals-of-organic-chemistry::unknown::chem-211-spring-2024-syllabus-supplement-docx",
-          "semester": null,
-          "sourceFileName": "CHEM 211_Spring 2024-Syllabus Supplement.docx"
+          "uniqueKey": "chem-211::fundamentals-of-organic-chemistry::spring-2025",
+          "semester": "Spring 2025",
+          "sourceFileName": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx"
         }
       ],
       "existing": null,
@@ -3233,7 +3256,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T18:01:44.484Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3286,8 +3309,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
       "key": "chem-211::fundamentals-of-organic-chemistry::spring-2025",
       "uniqueKey": "chem-211::fundamentals-of-organic-chemistry::spring-2025",
       "sourceFileName": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx",
@@ -3302,17 +3325,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "chem 211|fundamentals of organic chemistry|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
-          "uniqueKey": "chem-211::fundamentals-of-organic-chemistry::unknown::chem-211-spring-2024-syllabus-supplement-docx",
-          "semester": null,
-          "sourceFileName": "CHEM 211_Spring 2024-Syllabus Supplement.docx"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
+        "uniqueKey": "chem-211::fundamentals-of-organic-chemistry::spring-2025",
+        "courseCode": "CHEM 211",
+        "courseName": "Fundamentals of Organic Chemistry",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "chem-211::fundamentals-of-organic-chemistry::spring-2025",
@@ -3344,7 +3368,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3397,8 +3421,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "497d5678-164d-4309-b999-51571aeba9f3",
       "key": "cosc-101::foundations-of-computer-science::fall-2025",
       "uniqueKey": "cosc-101::foundations-of-computer-science::fall-2025",
       "sourceFileName": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
@@ -3413,17 +3437,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 101|foundations of computer science|fall 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "497d5678-164d-4309-b999-51571aeba9f3",
-          "uniqueKey": "cosc-101::foundations-of-computer-science::unknown::cosc101-syllabus-and-syllabus-supplement-docx",
-          "semester": null,
-          "sourceFileName": "COSC101_Syllabus_and Syllabus_Supplement.docx"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "497d5678-164d-4309-b999-51571aeba9f3",
+        "uniqueKey": "cosc-101::foundations-of-computer-science::fall-2025",
+        "courseCode": "COSC 101",
+        "courseName": "Foundations of Computer Science",
+        "semester": "Fall 2025",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-101::foundations-of-computer-science::fall-2025",
@@ -3456,7 +3481,7 @@
             "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
           ],
           "course_description": "Extracted from the Course Catalog Description section",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3549,8 +3574,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "c9e5962d-0ff3-427c-8c56-6707334070ec",
       "key": "cosc-114::introduction-to-computing-python::fall-2024",
       "uniqueKey": "cosc-114::introduction-to-computing-python::fall-2024",
       "sourceFileName": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
@@ -3565,10 +3590,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 114|introduction to computing - python|fall 2024",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "c9e5962d-0ff3-427c-8c56-6707334070ec",
+        "uniqueKey": "cosc-114::introduction-to-computing-python::fall-2024",
+        "courseCode": "COSC 114",
+        "courseName": "Introduction to Computing - Python",
+        "semester": "Fall 2024",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-114::introduction-to-computing-python::fall-2024",
@@ -3599,7 +3632,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3673,9 +3706,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
-          "uniqueKey": "cosc-201::computer-systems-organization::unknown::cosc-201-syllabus-supplement-spring-2025-dr-azza",
-          "semester": null,
-          "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf"
+          "uniqueKey": "cosc-201::computer-systems-organization::spring-2025",
+          "semester": "Spring 2025",
+          "sourceFileName": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf"
         }
       ],
       "existing": null,
@@ -3712,7 +3745,7 @@
             "Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course provides a basic understanding of the fundamental logical organization of a\ncomputer (its parts and their relationship) and how it actually works; exposure to a central\nprocessor's native language, and to basic computer components and basic architectures for high\nperformance design. Topics include: Von Neumann architecture, C programming (low-level\naspects), data representation, computer arithmetic, assembly language programming, digital\nlogic design, registers, instruction counter, processor architecture, pipelining, memory\nhierarchies, caching, virtual memory, interrupts, input and output, buses.",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3775,8 +3808,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
       "key": "cosc-201::computer-systems-organization::spring-2025",
       "uniqueKey": "cosc-201::computer-systems-organization::spring-2025",
       "sourceFileName": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf",
@@ -3791,17 +3824,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 201|computer systems organization|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
-          "uniqueKey": "cosc-201::computer-systems-organization::unknown::cosc-201-syllabus-supplement-spring-2025-dr-azza",
-          "semester": null,
-          "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
+        "uniqueKey": "cosc-201::computer-systems-organization::spring-2025",
+        "courseCode": "COSC 201",
+        "courseName": "Computer Systems Organization",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-201::computer-systems-organization::spring-2025",
@@ -3832,7 +3866,7 @@
             "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -3895,8 +3929,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
       "key": "cosc-202::data-science-and-artificial-intelligence::spring-2026",
       "uniqueKey": "cosc-202::data-science-and-artificial-intelligence::spring-2026",
       "sourceFileName": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
@@ -3911,17 +3945,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 202|data science and artificial intelligence|spring 2026",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
-          "uniqueKey": "cosc-202::data-science-and-artificial-intelligence::unknown::lab-8-students-grades-csv-csv",
-          "semester": null,
-          "sourceFileName": "Lab 8 - Students Grades CSV.csv"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
+        "uniqueKey": "cosc-202::data-science-and-artificial-intelligence::spring-2026",
+        "courseCode": "COSC 202",
+        "courseName": "Data Science and Artificial Intelligence",
+        "semester": "Spring 2026",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-202::data-science-and-artificial-intelligence::spring-2026",
@@ -3955,7 +3990,7 @@
             "Géron. Publisher: O’reilly, 3 Edition, 2022. ISBN-13: 9781098125974."
           ],
           "course_description": "The course provides a comprehensive introduction to data science and Artificial Intelligence\n(AI), emphasizing practical applications and hands-on implementation. Students are introduced\nto fundamental concepts spanning the data science and AI pipeline, from data preprocessing to\nmachine learning techniques. Students gain hands-on experience with real-world datasets and\nlearn to develop, evaluate, and select machine learning models. The course includes critical\ndiscussions on ethical and privacy considerations and information security measures, including\ndata security, privacy, opacity, bias, and machine ethics.",
-          "updated_at": "2026-05-19T18:01:44.485Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4069,9 +4104,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "9752128d-1522-4742-95ad-63ac7ef566af",
-          "uniqueKey": "cosc-301::automata-computability-and-complexity::unknown::cosc301-syllabus-supplement-for-students-fall-20",
-          "semester": null,
-          "sourceFileName": "COSC301 - Syllabus Supplement for Students Fall 2022.pdf"
+          "uniqueKey": "cosc-301::automata-computability-and-complexity::fall-2022",
+          "semester": "Fall 2022",
+          "sourceFileName": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf"
         }
       ],
       "existing": null,
@@ -4105,7 +4140,7 @@
             "Learning, 3rd Edition, 2012, ISBN: 978-1133187790."
           ],
           "course_description": "This course is about fundamental ideas in the theory of computation, including formal\nlanguages, computability and complexity. In this course, students gain proficiency in the\nconcepts of automata, formal languages, grammar, algorithms, computability, decidability, and\ncomplexity.",
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4188,8 +4223,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "9752128d-1522-4742-95ad-63ac7ef566af",
       "key": "cosc-301::automata-computability-and-complexity::fall-2022",
       "uniqueKey": "cosc-301::automata-computability-and-complexity::fall-2022",
       "sourceFileName": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf",
@@ -4204,17 +4239,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 301|automata, computability, and complexity|fall 2022",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "9752128d-1522-4742-95ad-63ac7ef566af",
-          "uniqueKey": "cosc-301::automata-computability-and-complexity::unknown::cosc301-syllabus-supplement-for-students-fall-20",
-          "semester": null,
-          "sourceFileName": "COSC301 - Syllabus Supplement for Students Fall 2022.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "9752128d-1522-4742-95ad-63ac7ef566af",
+        "uniqueKey": "cosc-301::automata-computability-and-complexity::fall-2022",
+        "courseCode": "COSC 301",
+        "courseName": "Automata, Computability, and Complexity",
+        "semester": "Fall 2022",
+        "totalWeight": 100,
+        "assessmentCount": 9
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-301::automata-computability-and-complexity::fall-2022",
@@ -4245,7 +4281,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4369,9 +4405,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
-          "uniqueKey": "cosc-310::data-structures::unknown::cosc310-syllabus-supplement-for-students-fall-20",
-          "semester": null,
-          "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf"
+          "uniqueKey": "cosc-310::data-structures::fall-2024",
+          "semester": "Fall 2024",
+          "sourceFileName": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf"
         }
       ],
       "existing": null,
@@ -4408,7 +4444,7 @@
             "Algorithms in Java, Wiley, 6th Edition, 2014, ISBN: 978-1118771334."
           ],
           "course_description": "Review of object-oriented design. Analysis of algorithm complexity. Fundamental data\nstructures: Concept of Abstract Data Types (ADTs), Queues, Stacks, Lists, Trees; Java\nCollections Framework. Fundamental computing algorithms: binary search trees, hash tables,\nheaps, balanced trees, sorting algorithms, searching algorithms.",
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4482,9 +4518,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
-          "uniqueKey": "cosc-310::data-structures::unknown::cosc310-syllabus-supplement-for-students-fall-20",
-          "semester": null,
-          "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf"
+          "uniqueKey": "cosc-310::data-structures::fall-2024",
+          "semester": "Fall 2024",
+          "sourceFileName": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf"
         }
       ],
       "existing": null,
@@ -4518,7 +4554,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4621,8 +4657,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
       "key": "cosc-310::data-structures::fall-2024",
       "uniqueKey": "cosc-310::data-structures::fall-2024",
       "sourceFileName": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf",
@@ -4637,17 +4673,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 310|data structures|fall 2024",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
-          "uniqueKey": "cosc-310::data-structures::unknown::cosc310-syllabus-supplement-for-students-fall-20",
-          "semester": null,
-          "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2024 Majid Khonji.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
+        "uniqueKey": "cosc-310::data-structures::fall-2024",
+        "courseCode": "COSC 310",
+        "courseName": "Data Structures",
+        "semester": "Fall 2024",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-310::data-structures::fall-2024",
@@ -4678,7 +4715,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4771,8 +4808,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "25e68e7d-f86b-4009-abd3-fc12ebb5ca2d",
       "key": "cosc-312::design-and-analysis-of-algorithms::spring-2025",
       "uniqueKey": "cosc-312::design-and-analysis-of-algorithms::spring-2025",
       "sourceFileName": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
@@ -4787,10 +4824,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 312|design and analysis of algorithms|spring 2025",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "25e68e7d-f86b-4009-abd3-fc12ebb5ca2d",
+        "uniqueKey": "cosc-312::design-and-analysis-of-algorithms::spring-2025",
+        "courseCode": "COSC 312",
+        "courseName": "Design and Analysis of Algorithms",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-312::design-and-analysis-of-algorithms::spring-2025",
@@ -4821,7 +4866,7 @@
             "to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305."
           ],
           "course_description": "This course covers the most important algorithm strategies and solution techniques,\nindependent of programming language or computer hardware. Topics include: Big-O notation;\nworst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,\nsearching, and selection; algorithm design techniques: divide-and-conquer, dynamic\nprogramming, greedy algorithms, randomization; algorithms for fundamental graph problems;\nstring algorithms; and numerical methods.",
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -4895,9 +4940,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
-          "uniqueKey": "cosc-330::introduction-to-artificial-intelligence::unknown::9-ann-classifier-part-2-pdf",
-          "semester": null,
-          "sourceFileName": "9-ANN-Classifier-part-2.pdf"
+          "uniqueKey": "cosc-330::introduction-to-artificial-intelligence::spring-2025",
+          "semester": "Spring 2025",
+          "sourceFileName": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx"
         }
       ],
       "existing": null,
@@ -4934,7 +4979,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5027,8 +5072,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
       "key": "cosc-330::introduction-to-artificial-intelligence::spring-2025",
       "uniqueKey": "cosc-330::introduction-to-artificial-intelligence::spring-2025",
       "sourceFileName": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx",
@@ -5043,17 +5088,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 330|introduction to artificial intelligence|spring 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
-          "uniqueKey": "cosc-330::introduction-to-artificial-intelligence::unknown::9-ann-classifier-part-2-pdf",
-          "semester": null,
-          "sourceFileName": "9-ANN-Classifier-part-2.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
+        "uniqueKey": "cosc-330::introduction-to-artificial-intelligence::spring-2025",
+        "courseCode": "COSC 330",
+        "courseName": "Introduction to Artificial Intelligence",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-330::introduction-to-artificial-intelligence::spring-2025",
@@ -5087,7 +5133,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T18:01:44.486Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5180,8 +5226,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "db2ea26a-8112-4603-855e-d78914e006be",
       "key": "cosc-336::introduction-to-software-engineering::fall-2025",
       "uniqueKey": "cosc-336::introduction-to-software-engineering::fall-2025",
       "sourceFileName": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
@@ -5196,17 +5242,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 336|introduction to software engineering|fall 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "db2ea26a-8112-4603-855e-d78914e006be",
-          "uniqueKey": "cosc-336::introduction-to-software-engineering::unknown::chapter-1-pdf",
-          "semester": null,
-          "sourceFileName": "Chapter 1.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "db2ea26a-8112-4603-855e-d78914e006be",
+        "uniqueKey": "cosc-336::introduction-to-software-engineering::fall-2025",
+        "courseCode": "COSC 336",
+        "courseName": "Introduction to Software Engineering",
+        "semester": "Fall 2025",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-336::introduction-to-software-engineering::fall-2025",
@@ -5237,7 +5284,7 @@
             "Edition, 2019. ISBN: 978-1259872976"
           ],
           "course_description": "The course introduces software engineering concepts and best practices. It discusses software\nprocesses and project management concepts. The course elaborates on software requirements,\nmodeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams\nand emerging software development methods.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5300,8 +5347,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
       "key": "cosc-354::operating-systems::fall-2025",
       "uniqueKey": "cosc-354::operating-systems::fall-2025",
       "sourceFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
@@ -5316,17 +5363,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 354|operating systems|fall 2025",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
-          "uniqueKey": "cosc-354::operating-systems::unknown::final-previouses-with-answers-not-my-solution-pd",
-          "semester": null,
-          "sourceFileName": "Final Previouses with answers (not my solution).pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
+        "uniqueKey": "cosc-354::operating-systems::fall-2025",
+        "courseCode": "COSC 354",
+        "courseName": "Operating Systems",
+        "semester": "Fall 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-354::operating-systems::fall-2025",
@@ -5360,7 +5408,7 @@
             "2. KU ECCE354 Laboratory Manual."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5413,8 +5461,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "495a9a24-d378-4eec-b7e7-f9ef337d8f3c",
       "key": "cosc-495::cosc-4xx-introduction-to-game-development-and-xr::spring-2025",
       "uniqueKey": "cosc-495::cosc-4xx-introduction-to-game-development-and-xr::spring-2025",
       "sourceFileName": "COSC495_COSC_495-GameDev-November2024.pdf",
@@ -5429,10 +5477,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "cosc 495|cosc 4xx: introduction to game development and xr|spring 2025",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "495a9a24-d378-4eec-b7e7-f9ef337d8f3c",
+        "uniqueKey": "cosc-495::cosc-4xx-introduction-to-game-development-and-xr::spring-2025",
+        "courseCode": "COSC 495",
+        "courseName": "COSC 4XX: Introduction to Game Development and XR",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "cosc-495::cosc-4xx-introduction-to-game-development-and-xr::spring-2025",
@@ -5466,7 +5522,7 @@
             "0136619940/dp/0136619940/ref=dp_ob_image_bk"
           ],
           "course_description": "This course provides students with the fundamentals of video game development and extended reality\n(XR) technologies, focusing on building interactive 2D and 3D games and XR applications. The\ncourse covers the game development process from concept to prototype.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5519,8 +5575,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
       "key": "engl-101::academic-english-i::spring-2022",
       "uniqueKey": "engl-101::academic-english-i::spring-2022",
       "sourceFileName": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
@@ -5535,17 +5591,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "engl 101|academic english i|spring 2022",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
-          "uniqueKey": "engl-101::academic-english-i::unknown::engl101-academic-english-i-fall-2021-syllabus-pd",
-          "semester": null,
-          "sourceFileName": "ENGL101 Academic English I - Fall 2021 Syllabus.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
+        "uniqueKey": "engl-101::academic-english-i::spring-2022",
+        "courseCode": "ENGL 101",
+        "courseName": "Academic English I",
+        "semester": "Spring 2022",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "engl-101::academic-english-i::spring-2022",
@@ -5576,7 +5633,7 @@
             "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
           ],
           "course_description": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5660,9 +5717,9 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
-          "uniqueKey": "engl-102::academic-english-ii::unknown::syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Syllabus.pdf"
+          "uniqueKey": "engl-102::academic-english-ii::fall-2022",
+          "semester": "Fall 2022",
+          "sourceFileName": "ENGL102_Syllabus.pdf"
         }
       ],
       "existing": null,
@@ -5698,7 +5755,7 @@
             "Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5761,8 +5818,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b353497b-8a3a-4922-890a-2bb766e4deb4",
       "key": "engl-102::academic-english-ii::fall-2022",
       "uniqueKey": "engl-102::academic-english-ii::fall-2022",
       "sourceFileName": "ENGL102_Syllabus.pdf",
@@ -5777,17 +5834,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "engl 102|academic english ii|fall 2022",
-      "assessmentChange": true,
-      "oldCourseCodeNameConflict": true,
-      "oldCourseCodeNameConflicts": [
-        {
-          "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
-          "uniqueKey": "engl-102::academic-english-ii::unknown::syllabus-pdf",
-          "semester": null,
-          "sourceFileName": "Syllabus.pdf"
-        }
-      ],
-      "existing": null,
+      "assessmentChange": false,
+      "oldCourseCodeNameConflict": false,
+      "oldCourseCodeNameConflicts": [],
+      "existing": {
+        "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
+        "uniqueKey": "engl-102::academic-english-ii::fall-2022",
+        "courseCode": "ENGL 102",
+        "courseName": "Academic English II",
+        "semester": "Fall 2022",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "engl-102::academic-english-ii::fall-2022",
@@ -5818,7 +5876,7 @@
             "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5871,8 +5929,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "c1e2fe9f-f715-487d-a6b0-7f76fc8296c8",
       "key": "engr-114::introduction-to-computing-using-python::spring-2024",
       "uniqueKey": "engr-114::introduction-to-computing-using-python::spring-2024",
       "sourceFileName": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Spring_2024.pdf",
@@ -5887,10 +5945,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "engr 114|introduction to computing using python|spring 2024",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "c1e2fe9f-f715-487d-a6b0-7f76fc8296c8",
+        "uniqueKey": "engr-114::introduction-to-computing-using-python::spring-2024",
+        "courseCode": "ENGR 114",
+        "courseName": "Introduction to Computing using Python",
+        "semester": "Spring 2024",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "engr-114::introduction-to-computing-using-python::spring-2024",
@@ -5921,7 +5987,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "Introduction to computer systems: computer hardware components, operating system, compiling,\ndebugging, libraries, linking. Programming based problem solving that includes program development\nlifecycle. Imperative programming: data types, conditional expressions and statements, repetitive\nstructures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),\nfile I/O.",
-          "updated_at": "2026-05-19T18:01:44.487Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -5974,8 +6040,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "4565ef81-3e16-4cbd-8d25-189cf16dbde6",
       "key": "esma-200::time-value-of-money-4-inflation-and-its::summer-2025",
       "uniqueKey": "esma-200::time-value-of-money-4-inflation-and-its::summer-2025",
       "sourceFileName": "CHEM116_CHEM116_Syllabus_SM25.pdf",
@@ -5990,10 +6056,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "esma 200|. time value of money, 4. inflation and its|summer 2025",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "4565ef81-3e16-4cbd-8d25-189cf16dbde6",
+        "uniqueKey": "esma-200::time-value-of-money-4-inflation-and-its::summer-2025",
+        "courseCode": "ESMA 200",
+        "courseName": ". Time value of money, 4. Inflation and its",
+        "semester": "Summer 2025",
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "unique_key": "esma-200::time-value-of-money-4-inflation-and-its::summer-2025",
@@ -6024,7 +6098,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6087,8 +6161,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "5a72fba2-8827-440c-9872-f131865aeb2d",
       "key": "gens-100::academic-development-and-success::spring-2024",
       "uniqueKey": "gens-100::academic-development-and-success::spring-2024",
       "sourceFileName": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
@@ -6103,10 +6177,18 @@
       "canonical": true,
       "duplicateStatus": "unique",
       "duplicateGroupKey": "gens 100|academic development and success|spring 2024",
-      "assessmentChange": true,
+      "assessmentChange": false,
       "oldCourseCodeNameConflict": false,
       "oldCourseCodeNameConflicts": [],
-      "existing": null,
+      "existing": {
+        "id": "5a72fba2-8827-440c-9872-f131865aeb2d",
+        "uniqueKey": "gens-100::academic-development-and-success::spring-2024",
+        "courseCode": "GENS 100",
+        "courseName": "Academic Development and Success",
+        "semester": "Spring 2024",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "unique_key": "gens-100::academic-development-and-success::spring-2024",
@@ -6134,7 +6216,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6204,8 +6286,15 @@
       "duplicateStatus": "unique",
       "duplicateGroupKey": "gens 100|academic development and success|fall 2024",
       "assessmentChange": true,
-      "oldCourseCodeNameConflict": false,
-      "oldCourseCodeNameConflicts": [],
+      "oldCourseCodeNameConflict": true,
+      "oldCourseCodeNameConflicts": [
+        {
+          "id": "5a72fba2-8827-440c-9872-f131865aeb2d",
+          "uniqueKey": "gens-100::academic-development-and-success::spring-2024",
+          "semester": "Spring 2024",
+          "sourceFileName": "GENS100_GENS_100_Syllabus_Spring_2024.pdf"
+        }
+      ],
       "existing": null,
       "payload": {
         "template": {
@@ -6237,7 +6326,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6311,7 +6400,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "80d4db25-a05d-44c4-aad8-9b89400aab96",
-          "uniqueKey": "gens-101::grand-challenges::unknown::grand-challenges-syllabus-pdf",
+          "uniqueKey": "gens-101::grand-challenges::unknown::de3ac9755f53",
           "semester": null,
           "sourceFileName": "Grand Challenges syllabus .pdf"
         }
@@ -6346,7 +6435,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6430,7 +6519,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "05e905d1-37a6-4201-8aba-cd4efbfab703",
-          "uniqueKey": "gens-300::career-preparation::unknown::gens-300-syllabus-pdf",
+          "uniqueKey": "gens-300::career-preparation::unknown::ee9a8999cef8",
           "semester": null,
           "sourceFileName": "GENS 300 Syllabus.pdf"
         }
@@ -6472,7 +6561,7 @@
             "Studio sessions are 1 x 100 minutes per week. Sessions involve interactive activities in a blended learning"
           ],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and labor market\nspecialist. This activity-based course is focused on field exploration, CV and digital profile development, and\nprofessional communication. Course delivery is a blend of in-person and asynchronous online learning experiences.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6596,7 +6685,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "05e905d1-37a6-4201-8aba-cd4efbfab703",
-          "uniqueKey": "gens-300::career-preparation::unknown::gens-300-syllabus-pdf",
+          "uniqueKey": "gens-300::career-preparation::unknown::ee9a8999cef8",
           "semester": null,
           "sourceFileName": "GENS 300 Syllabus.pdf"
         }
@@ -6631,7 +6720,7 @@
           "prerequisites": "GENS 100, Sophomore Standing",
           "textbooks": [],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6750,7 +6839,7 @@
             "The course will be delivered through the following methodologies: lectures, class"
           ],
           "course_description": "The course acquaints students with the geographical, cultural, demographical, economic and\nsocial aspects of UAE society. It highlights the evolution of the country from a traditional to a\nmodern society. Topics such as UAE political system, family, population, migration, youth, and\nthe development of civil society are addressed.",
-          "updated_at": "2026-05-19T18:01:44.488Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6844,7 +6933,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "e3b94235-4b0a-4a46-ae51-e10100b36b84",
-          "uniqueKey": "huma-140::introduction-to-psychology::unknown::huma-140-introduction-to-psychology-syllabus-and",
+          "uniqueKey": "huma-140::introduction-to-psychology::unknown::36f1c1b11a89",
           "semester": null,
           "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf"
         }
@@ -6882,7 +6971,7 @@
             "Edition, 2019, ISBN: 9781319133726"
           ],
           "course_description": "This course examines historical and current topics related to the mind and behavior with research methods\nand the scientific method as a foundation. Areas covered in this course include biology, development,\nmemory, learning, social psychology, personality, psychological disorders, health psychology, and\npositive psychology.",
-          "updated_at": "2026-05-19T18:01:44.489Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -6976,7 +7065,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "69fc89d5-4dff-4b23-afd8-a3cab32e7e42",
-          "uniqueKey": "huma-221::intercultural-communication::unknown::3-ltcm221-intercultural-communication-summer-202",
+          "uniqueKey": "huma-221::intercultural-communication::unknown::3e89396f17a0",
           "semester": null,
           "sourceFileName": "3_LTCM221 Intercultural Communication SUMMER 2025.docx"
         }
@@ -7014,7 +7103,7 @@
             "An introduction to intercultural communication: Identities in a global community. F. Jandt, (2025). 8th edition. SAGE Publications, ISBN: 9781071887110"
           ],
           "course_description": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
-          "updated_at": "2026-05-19T18:01:44.489Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -7088,7 +7177,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "5403ecf4-0bcc-42f1-a719-488f625f2efb",
-          "uniqueKey": "huma-229::critical-thinking::unknown::huma-229-critical-thinking-course-syllabus-fall-",
+          "uniqueKey": "huma-229::critical-thinking::unknown::75cfcc5da2e3",
           "semester": null,
           "sourceFileName": "HUMA 229 Critical Thinking Course Syllabus Fall 2025.docx"
         }
@@ -7125,7 +7214,7 @@
             "R. Paul and L. Elder, Critical Thinking: Tools for Taking Charge of Your Professional and Personal Life. Upper Saddle River, NJ: Financial Times Prentice Hall, 2002. ISBN: 0-13-064760-8."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.489Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -7219,7 +7308,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "b1ff108f-7720-4599-9de3-8aa2bdacac5c",
-          "uniqueKey": "huma-277::introduction-to-logical-reasoning::unknown::emotions-and-rational-thinking-pdf",
+          "uniqueKey": "huma-277::introduction-to-logical-reasoning::unknown::c61008cc7620",
           "semester": null,
           "sourceFileName": "Emotions and Rational Thinking.pdf"
         }
@@ -7257,7 +7346,7 @@
             "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
           ],
           "course_description": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
-          "updated_at": "2026-05-19T18:01:44.489Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -7331,7 +7420,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "e3f89b8a-6cb8-4f29-9e2d-79f68af21612",
-          "uniqueKey": "math-101::fundamentals-of-mathematical-reasoning::unknown::math-101-syllabus-fall-2024-dr-ahmed-pdf",
+          "uniqueKey": "math-101::fundamentals-of-mathematical-reasoning::unknown::7e3cbf8bf2c3",
           "semester": null,
           "sourceFileName": "MATH 101 Syllabus - Fall 2024 - Dr. Ahmed.pdf"
         }
@@ -7367,7 +7456,7 @@
             "Institute of Mathematics, Version 2.1, 2021"
           ],
           "course_description": "This course provides a foundation in logical and mathematical reasoning. It develops first year university\nstudents’ structured logical thinking and mathematical rigor. The course introduces methods of proof,\nbasic concepts and properties of real numbers, relations and functions. The course also presents an\nintroduction to combinatorics, set theory and number theory.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.102Z"
         },
         "assessments": [
           {
@@ -7451,7 +7540,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "369b55e4-e1af-443a-8bac-20321f223dde",
-          "uniqueKey": "math-111::calculus-i::unknown::math-111-syllabus-spring-2025-dr-imad-pdf",
+          "uniqueKey": "math-111::calculus-i::unknown::26ab30e67ce5",
           "semester": null,
           "sourceFileName": "MATH 111 Syllabus - Spring 2025 - Dr. Imad.pdf"
         }
@@ -7491,7 +7580,7 @@
             "McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472."
           ],
           "course_description": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -7615,7 +7704,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "0182ce3b-fe22-40d2-b745-c2d74ebb4981",
-          "uniqueKey": "math-112::calculus-ii::unknown::math-112-calculus-ii-syllabus-spring-2025-am-pdf",
+          "uniqueKey": "math-112::calculus-ii::unknown::b5823f5a35ad",
           "semester": null,
           "sourceFileName": "MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf"
         }
@@ -7653,7 +7742,7 @@
             "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
           ],
           "course_description": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -7757,7 +7846,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "25476997-18b0-42aa-85fe-b29cb12478a7",
-          "uniqueKey": "math-204::linear-algebra::unknown::math-204-linear-algebra-syllabus-fall-2024-augus",
+          "uniqueKey": "math-204::linear-algebra::unknown::b43e5218af79",
           "semester": null,
           "sourceFileName": "MATH 204 Linear Algebra Syllabus Fall 2024 (August 23).pdf"
         }
@@ -7795,7 +7884,7 @@
             "9781119268048."
           ],
           "course_description": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -7859,7 +7948,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "7ee7e58f-bf00-46ff-96e6-e27b2db5a551",
-          "uniqueKey": "math-211::differential-equations-and-linear-algebra::unknown::math211-syllabus-docx",
+          "uniqueKey": "math-211::differential-equations-and-linear-algebra::unknown::1580fa840e81",
           "semester": null,
           "sourceFileName": "MATH211-Syllabus.docx"
         }
@@ -7899,7 +7988,7 @@
             "Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181."
           ],
           "course_description": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8013,7 +8102,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "44117c46-ee12-45ea-99ee-523822cd5a5c",
-          "uniqueKey": "math-224::real-analysis-i::unknown::math224-syllabus-spring-2025-prof-khamsi-pdf",
+          "uniqueKey": "math-224::real-analysis-i::unknown::e1c7b55184fc",
           "semester": null,
           "sourceFileName": "MATH224 Syllabus - Spring 2025 - Prof. Khamsi.pdf"
         }
@@ -8049,7 +8138,7 @@
             "ISBN: 9780321892539."
           ],
           "course_description": "This course gives students a thorough understanding of essential concepts in analysis such as real numbers,\nlimits, continuity, and convergence of sequences and series. The course also covers a rigorous definition\nof derivative and construction of the Riemann integral and their properties including the Fundamental\nTheorem of Calculus. Students are required to read and write proofs using a precise knowledge of\ndefinitions and theorems.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8113,7 +8202,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
-          "uniqueKey": "math-232::engineering-mathematics::unknown::syllabus-supplement-pdf",
+          "uniqueKey": "math-232::engineering-mathematics::unknown::60f9d2b57d7f",
           "semester": null,
           "sourceFileName": "Syllabus Supplement.pdf"
         }
@@ -8151,7 +8240,7 @@
             "9780470458365."
           ],
           "course_description": "This course introduces students to selected topics from mathematical analysis with engineering\napplications. The first part is a calculus part which covers the definition of functions of several variables\nand their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient\nvectors, and multiple integrals for functions of several variables. The second part of the course deals\nwith Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier\ntransforms.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8215,7 +8304,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
-          "uniqueKey": "math-232::engineering-mathematics::unknown::syllabus-supplement-pdf",
+          "uniqueKey": "math-232::engineering-mathematics::unknown::60f9d2b57d7f",
           "semester": null,
           "sourceFileName": "Syllabus Supplement.pdf"
         }
@@ -8252,7 +8341,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8316,7 +8405,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
-          "uniqueKey": "math-232::engineering-mathematics::unknown::syllabus-supplement-pdf",
+          "uniqueKey": "math-232::engineering-mathematics::unknown::60f9d2b57d7f",
           "semester": null,
           "sourceFileName": "Syllabus Supplement.pdf"
         }
@@ -8357,7 +8446,7 @@
             "9780470458365."
           ],
           "course_description": "This course covers selected topics from mathematical analysis with engineering applications, including\ncomplex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.",
-          "updated_at": "2026-05-19T18:01:44.490Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8421,7 +8510,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "3fbc4a6a-a5aa-4a6c-801c-656a584cefc3",
-          "uniqueKey": "math-234::discrete-mathematics::unknown::math234-syllabus-summer-2024-pdf",
+          "uniqueKey": "math-234::discrete-mathematics::unknown::0c1163d96480",
           "semester": null,
           "sourceFileName": "MATH234 Syllabus (Summer 2024).pdf"
         }
@@ -8459,7 +8548,7 @@
             "Edition, 2012. ISBN: 9780071315012."
           ],
           "course_description": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8523,7 +8612,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "a70f6611-04f6-4593-9857-efc0d0d61b12",
-          "uniqueKey": "math-242::introduction-to-probability-and-statistics::unknown::math-242-syllabus-supplement-fall-2024-pdf",
+          "uniqueKey": "math-242::introduction-to-probability-and-statistics::unknown::2d5af744488b",
           "semester": null,
           "sourceFileName": "MATH 242 - Syllabus Supplement Fall 2024.pdf"
         }
@@ -8559,7 +8648,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8653,7 +8742,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "a70f6611-04f6-4593-9857-efc0d0d61b12",
-          "uniqueKey": "math-242::introduction-to-probability-and-statistics::unknown::math-242-syllabus-supplement-fall-2024-pdf",
+          "uniqueKey": "math-242::introduction-to-probability-and-statistics::unknown::2d5af744488b",
           "semester": null,
           "sourceFileName": "MATH 242 - Syllabus Supplement Fall 2024.pdf"
         }
@@ -8691,7 +8780,7 @@
             "Wiley, 7 Edition (online edition), 2018, ISBN: 978EEGRP45491."
           ],
           "course_description": "This course introduces students to basic probability models and statistical methods for data analysis.\nThe course will cover introductory probability theory, discrete and continuous probability\ndistributions, elements of descriptive statistics, and different statistical inference methods such as\nestimation for the mean and the variance, hypothesis testing for the mean and the variance.",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8755,7 +8844,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "eb898e23-9787-484d-aed9-6386460aae57",
-          "uniqueKey": "math-244::probability::unknown::math-244-syllabus-spring-2025-dr-yerkin-pdf",
+          "uniqueKey": "math-244::probability::unknown::5332a35812db",
           "semester": null,
           "sourceFileName": "MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf"
         }
@@ -8793,7 +8882,7 @@
             "9780357753125"
           ],
           "course_description": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -8857,7 +8946,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "c29763da-defc-4653-a162-636286c8edde",
-          "uniqueKey": "math-251::operations-research-i::unknown::math-251-syllabus-spring-2025-dr-pedro-pdf",
+          "uniqueKey": "math-251::operations-research-i::unknown::8b829af48e2c",
           "semester": null,
           "sourceFileName": "MATH 251 Syllabus - Spring 2025 - Dr. Pedro.pdf"
         }
@@ -8895,7 +8984,7 @@
             "Hill, 11 edition, 2022, ISBN: 9781307810240."
           ],
           "course_description": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -9009,7 +9098,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
-          "uniqueKey": "phys-121::university-physics-i::unknown::syllabus-summer-2025-pdf",
+          "uniqueKey": "phys-121::university-physics-i::unknown::31e65ffdc669",
           "semester": null,
           "sourceFileName": "Syllabus - Summer 2025.pdf"
         }
@@ -9046,7 +9135,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -9160,7 +9249,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
-          "uniqueKey": "phys-121::university-physics-i::unknown::syllabus-summer-2025-pdf",
+          "uniqueKey": "phys-121::university-physics-i::unknown::31e65ffdc669",
           "semester": null,
           "sourceFileName": "Syllabus - Summer 2025.pdf"
         }
@@ -9200,7 +9289,7 @@
             "10:1285070437)."
           ],
           "course_description": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -9314,7 +9403,7 @@
       "oldCourseCodeNameConflicts": [
         {
           "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
-          "uniqueKey": "phys-121::university-physics-i::unknown::syllabus-summer-2025-pdf",
+          "uniqueKey": "phys-121::university-physics-i::unknown::31e65ffdc669",
           "semester": null,
           "sourceFileName": "Syllabus - Summer 2025.pdf"
         }
@@ -9352,7 +9441,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\n92.5%-100%\nExcellent\nA-\n3.70\n89.5% to < 92.5%\nVery Good",
-          "updated_at": "2026-05-19T18:01:44.491Z"
+          "updated_at": "2026-05-19T18:31:58.103Z"
         },
         "assessments": [
           {
@@ -9809,15 +9898,21 @@
         "semester": null
       },
       {
-        "id": "6005caeb-fa5b-49fe-a7b5-a216adcdcfeb",
-        "courseCode": "AERO 201",
-        "courseName": "Engineering Dynamics",
-        "semester": null
-      },
-      {
         "id": "511a18fc-a867-4722-ad68-b9eff4ae323f",
         "courseCode": "BIOL 111",
         "courseName": "General Biology I",
+        "semester": null
+      },
+      {
+        "id": "80914ca9-7388-44fb-9f92-8dee189bc02e",
+        "courseCode": "CHEG 380",
+        "courseName": "Introduction To Polymer Science and Engineering",
+        "semester": null
+      },
+      {
+        "id": "6005caeb-fa5b-49fe-a7b5-a216adcdcfeb",
+        "courseCode": "AERO 201",
+        "courseName": "Engineering Dynamics",
         "semester": null
       },
       {
@@ -9851,12 +9946,6 @@
         "semester": null
       },
       {
-        "id": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
-        "courseCode": "CCEN 210",
-        "courseName": "Digital Logic Design",
-        "semester": null
-      },
-      {
         "id": "6fc7f9e4-ee7a-4f75-9aa8-7f4a29b5f494",
         "courseCode": "CCEN 302",
         "courseName": "Signals and Communication Systems",
@@ -9887,69 +9976,9 @@
         "semester": null
       },
       {
-        "id": "3379a222-e574-4912-aa2e-7a01e605b5c0",
-        "courseCode": "CHEG 205",
-        "courseName": "Principles of Chemical Engineering",
-        "semester": null
-      },
-      {
-        "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
-        "courseCode": "CHEG 230",
-        "courseName": "Chemical Engineering Thermodynamics I",
-        "semester": null
-      },
-      {
-        "id": "598057f6-a625-40d8-a226-4a07edaad45d",
-        "courseCode": "CHEG 232",
-        "courseName": "Fluid Mechanics",
-        "semester": null
-      },
-      {
-        "id": "96939388-563b-4eb4-a266-b27aa59d4201",
-        "courseCode": "CHEG 312",
-        "courseName": "Numerical Methods for Chemical Engineers",
-        "semester": null
-      },
-      {
         "id": "bc76fe55-bc33-49a8-bd14-3cd0c0019684",
         "courseCode": "CHEG 324",
         "courseName": "Mass Transfer",
-        "semester": null
-      },
-      {
-        "id": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
-        "courseCode": "CHEG 332",
-        "courseName": "Chemical Engineering Thermodynamics II",
-        "semester": null
-      },
-      {
-        "id": "b136416c-2388-40df-97ff-3de157f5ce13",
-        "courseCode": "CHEG 350",
-        "courseName": "Materials Science & Engineering",
-        "semester": null
-      },
-      {
-        "id": "80914ca9-7388-44fb-9f92-8dee189bc02e",
-        "courseCode": "CHEG 380",
-        "courseName": "Introduction To Polymer Science and Engineering",
-        "semester": null
-      },
-      {
-        "id": "1efd995b-da6e-4987-b079-6626205e22ef",
-        "courseCode": "CHEM 115",
-        "courseName": "General Chemistry I",
-        "semester": null
-      },
-      {
-        "id": "68083853-6e62-4918-b985-aa5464e94d11",
-        "courseCode": "CHEM 116",
-        "courseName": "General Chemistry II",
-        "semester": null
-      },
-      {
-        "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
-        "courseCode": "CHEM 211",
-        "courseName": "Fundamentals of Organic Chemistry",
         "semester": null
       },
       {
@@ -9965,63 +9994,15 @@
         "semester": null
       },
       {
-        "id": "497d5678-164d-4309-b999-51571aeba9f3",
-        "courseCode": "COSC 101",
-        "courseName": "Foundations of Computer Science",
-        "semester": null
-      },
-      {
         "id": "24b5064d-7797-476d-b6fc-372790809281",
         "courseCode": "COSC 114",
         "courseName": "Introduction to Computing Python",
         "semester": null
       },
       {
-        "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
-        "courseCode": "COSC 201",
-        "courseName": "Computer Systems Organization",
-        "semester": null
-      },
-      {
-        "id": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
-        "courseCode": "COSC 202",
-        "courseName": "Data Science and Artificial Intelligence",
-        "semester": null
-      },
-      {
         "id": "eefd7518-6d06-45ef-a839-73d221d16eec",
         "courseCode": "COSC 230",
         "courseName": "Object Oriented Programming",
-        "semester": null
-      },
-      {
-        "id": "9752128d-1522-4742-95ad-63ac7ef566af",
-        "courseCode": "COSC 301",
-        "courseName": "Automata, Computability, and Complexity",
-        "semester": null
-      },
-      {
-        "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
-        "courseCode": "COSC 310",
-        "courseName": "Data Structures",
-        "semester": null
-      },
-      {
-        "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
-        "courseCode": "COSC 330",
-        "courseName": "Introduction to Artificial Intelligence",
-        "semester": null
-      },
-      {
-        "id": "db2ea26a-8112-4603-855e-d78914e006be",
-        "courseCode": "COSC 336",
-        "courseName": "Introduction to Software Engineering",
-        "semester": null
-      },
-      {
-        "id": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
-        "courseCode": "COSC 354",
-        "courseName": "Operating Systems",
         "semester": null
       },
       {
@@ -10046,18 +10027,6 @@
         "id": "fb270911-4e7b-49f4-a19b-6e180f4b94aa",
         "courseCode": "ELEN 312",
         "courseName": "Electronic Circuits & Devices",
-        "semester": null
-      },
-      {
-        "id": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
-        "courseCode": "ENGL 101",
-        "courseName": "Academic English I",
-        "semester": null
-      },
-      {
-        "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
-        "courseCode": "ENGL 102",
-        "courseName": "Academic English II",
         "semester": null
       },
       {
@@ -10263,6 +10232,18 @@
         "courseCode": "BMED 352",
         "courseName": "Fundamentals of Biomedical Signal Processing",
         "semester": null
+      },
+      {
+        "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
+        "courseCode": "BUSS 322",
+        "courseName": "Fundamentals of Innovation & Entrepreneurship",
+        "semester": "Summer 2025"
+      },
+      {
+        "id": "b136416c-2388-40df-97ff-3de157f5ce13",
+        "courseCode": "CHEG 350",
+        "courseName": "Materials Science & Engineering",
+        "semester": "Spring 2024"
       }
     ]
   }

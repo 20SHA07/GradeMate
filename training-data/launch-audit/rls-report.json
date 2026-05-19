@@ -1,0 +1,69 @@
+{
+  "generatedAt": "2026-05-19T18:36:50.030Z",
+  "summary": {
+    "passed": 12,
+    "failed": 0
+  },
+  "checks": [
+    {
+      "name": "Profiles table exists",
+      "status": "pass",
+      "detail": "/create table if not exists profiles/i"
+    },
+    {
+      "name": "Admin role helper exists",
+      "status": "pass",
+      "detail": "/function public\\.is_admin/i"
+    },
+    {
+      "name": "Private semesters use owner RLS",
+      "status": "pass",
+      "detail": "/semesters for select[\\s\\S]*auth\\.uid\\(\\) = user_id/i"
+    },
+    {
+      "name": "Private courses use owner RLS",
+      "status": "pass",
+      "detail": "/courses for select[\\s\\S]*auth\\.uid\\(\\) = user_id/i"
+    },
+    {
+      "name": "Private assessments use owner RLS",
+      "status": "pass",
+      "detail": "/assessments for select[\\s\\S]*auth\\.uid\\(\\) = user_id/i"
+    },
+    {
+      "name": "Public templates expose ready only",
+      "status": "pass",
+      "detail": "/course_templates for select[\\s\\S]*template_status[\\s\\S]*ready/i"
+    },
+    {
+      "name": "Public template assessments require ready parent",
+      "status": "pass",
+      "detail": "/course_template_assessments for select[\\s\\S]*course_templates[\\s\\S]*template_status[\\s\\S]*ready/i"
+    },
+    {
+      "name": "Users can create own syllabus contributions",
+      "status": "pass",
+      "detail": "/syllabus_contributions for insert[\\s\\S]*auth\\.uid\\(\\) = submitted_by_user_id/i"
+    },
+    {
+      "name": "Admins can review all contributions",
+      "status": "pass",
+      "detail": "/Admins can view all contributions[\\s\\S]*public\\.is_admin\\(\\)/i"
+    },
+    {
+      "name": "Users can create own verified feedback",
+      "status": "pass",
+      "detail": "/verified_extractions for insert[\\s\\S]*auth\\.uid\\(\\) = user_id/i"
+    },
+    {
+      "name": "Admins can view verified feedback",
+      "status": "pass",
+      "detail": "/Admins can view all verified extractions[\\s\\S]*(public\\.is_admin\\(\\)|profiles[\\s\\S]*role = 'admin')/i"
+    },
+    {
+      "name": "Service import uniqueness uses unique_key",
+      "status": "pass",
+      "detail": "/course_templates_unique_key_unique|unique_key text/i"
+    }
+  ]
+}

@@ -1,5 +1,50 @@
 create extension if not exists pgcrypto;
 
+create table if not exists profiles (
+  id uuid primary key references auth.users(id) on delete cascade,
+  email text,
+  role text not null default 'user' check (role in ('user', 'admin')),
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
+
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer
+set search_path = public
+stable
+as $$
+  select exists (
+    select 1
+    from public.profiles
+    where id = auth.uid()
+      and role = 'admin'
+  );
+$$;
+
+create or replace function public.handle_new_profile()
+returns trigger
+language plpgsql
+security definer
+set search_path = public
+as $$
+begin
+  insert into public.profiles (id, email, role)
+  values (new.id, new.email, 'user')
+  on conflict (id) do update
+  set email = excluded.email,
+      updated_at = now();
+
+  return new;
+end;
+$$;
+
+drop trigger if exists on_auth_user_created_create_profile on auth.users;
+create trigger on_auth_user_created_create_profile
+after insert on auth.users
+for each row execute function public.handle_new_profile();
+
 create table if not exists semesters (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references auth.users(id) on delete cascade,
@@ -215,6 +260,7 @@ create index if not exists course_template_assessments_template_id_idx on course
 create index if not exists course_template_materials_template_id_idx on course_template_materials(course_template_id);
 
 alter table semesters enable row level security;
+alter table profiles enable row level security;
 alter table courses enable row level security;
 alter table assessments enable row level security;
 alter table syllabus_uploads enable row level security;
@@ -268,6 +314,40 @@ create trigger set_syllabus_uploads_user_id
 before insert on syllabus_uploads
 for each row
 execute function public.set_current_user_id();
+
+drop policy if exists "Users can view their own profile" on profiles;
+drop policy if exists "Users can insert their own profile" on profiles;
+drop policy if exists "Users can update their own profile" on profiles;
+drop policy if exists "Users can update their own profile email" on profiles;
+drop policy if exists "Admins can view all profiles" on profiles;
+drop policy if exists "Admins can update profiles" on profiles;
+
+create policy "Users can view their own profile"
+on profiles for select
+to authenticated
+using (auth.uid() = id);
+
+create policy "Users can insert their own profile"
+on profiles for insert
+to authenticated
+with check (auth.uid() = id and role = 'user');
+
+create policy "Users can update their own profile"
+on profiles for update
+to authenticated
+using (auth.uid() = id)
+with check (auth.uid() = id and role = 'user');
+
+create policy "Admins can view all profiles"
+on profiles for select
+to authenticated
+using (public.is_admin());
+
+create policy "Admins can update profiles"
+on profiles for update
+to authenticated
+using (public.is_admin())
+with check (public.is_admin());
 
 drop policy if exists "Users can view their own semesters" on semesters;
 drop policy if exists "Users can create their own semesters" on semesters;
@@ -431,17 +511,31 @@ drop policy if exists "Anyone can view course template materials" on course_temp
 create policy "Anyone can view course templates"
 on course_templates for select
 to anon, authenticated
-using (true);
+using (coalesce(template_status, 'ready') = 'ready');
 
 create policy "Anyone can view course template assessments"
 on course_template_assessments for select
 to anon, authenticated
-using (true);
+using (
+  exists (
+    select 1
+    from course_templates
+    where course_templates.id = course_template_assessments.course_template_id
+      and coalesce(course_templates.template_status, 'ready') = 'ready'
+  )
+);
 
 create policy "Anyone can view course template materials"
 on course_template_materials for select
 to anon, authenticated
-using (true);
+using (
+  exists (
+    select 1
+    from course_templates
+    where course_templates.id = course_template_materials.course_template_id
+      and coalesce(course_templates.template_status, 'ready') = 'ready'
+  )
+);
 
 drop policy if exists "Users can view their own syllabus files" on storage.objects;
 drop policy if exists "Users can upload their own syllabus files" on storage.objects;
@@ -521,6 +615,7 @@ alter table verified_extractions enable row level security;
 
 drop policy if exists "Users can view their own verified extractions" on verified_extractions;
 drop policy if exists "Users can create their own verified extractions" on verified_extractions;
+drop policy if exists "Admins can view all verified extractions" on verified_extractions;
 
 create policy "Users can view their own verified extractions"
 on verified_extractions for select
@@ -531,3 +626,8 @@ create policy "Users can create their own verified extractions"
 on verified_extractions for insert
 to authenticated
 with check (auth.uid() = user_id);
+
+create policy "Admins can view all verified extractions"
+on verified_extractions for select
+to authenticated
+using (public.is_admin());

@@ -1,0 +1,70 @@
+{
+  "generatedAt": "2026-05-19T18:36:50.625Z",
+  "summary": {
+    "passed": 10,
+    "warnings": 0,
+    "failures": 0
+  },
+  "checks": [
+    {
+      "area": "Build",
+      "name": "out directory exists",
+      "status": "pass",
+      "detail": "Run npm run build before npm run smoke:local."
+    },
+    {
+      "area": "Routes",
+      "name": "/",
+      "status": "pass",
+      "detail": "out/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/simple",
+      "status": "pass",
+      "detail": "out/simple/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/course-library",
+      "status": "pass",
+      "detail": "out/course-library/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/workspace",
+      "status": "pass",
+      "detail": "out/workspace/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/dashboard",
+      "status": "pass",
+      "detail": "out/dashboard/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/admin",
+      "status": "pass",
+      "detail": "out/admin/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/admin/contributions",
+      "status": "pass",
+      "detail": "out/admin/contributions/index.html"
+    },
+    {
+      "area": "Landing",
+      "name": "App landing page rendered",
+      "status": "pass",
+      "detail": "Static homepage should render the app mode chooser, not README content."
+    },
+    {
+      "area": "Extractor Lab",
+      "name": "Production lab is hidden by default",
+      "status": "pass",
+      "detail": "Extractor Lab should be dev-only unless NEXT_PUBLIC_ENABLE_EXTRACTOR_LAB=true."
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GradeMate RLS Check</title>
+  <style>
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+    main { max-width: 900px; margin: 0 auto; padding: 32px 18px; }
+    table { width: 100%; border-collapse: collapse; background: #111827; border-radius: 14px; overflow: hidden; }
+    td, th { padding: 12px; border-bottom: 1px solid #334155; text-align: left; }
+    tr.pass td:last-child { color: #86efac; font-weight: 700; }
+    tr.fail td:last-child { color: #fda4af; font-weight: 700; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GradeMate RLS Check</h1>
+    <p>12 passed, 0 failed.</p>
+    <table><tbody>
+      <tr class="pass">
+        <td>Profiles table exists</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Admin role helper exists</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Private semesters use owner RLS</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Private courses use owner RLS</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Private assessments use owner RLS</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Public templates expose ready only</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Public template assessments require ready parent</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Users can create own syllabus contributions</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Admins can review all contributions</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Users can create own verified feedback</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Admins can view verified feedback</td>
+        <td>pass</td>
+      </tr>
+      <tr class="pass">
+        <td>Service import uniqueness uses unique_key</td>
+        <td>pass</td>
+      </tr></tbody></table>
+  </main>
+</body>
+</html>

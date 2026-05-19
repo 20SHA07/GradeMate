@@ -110,8 +110,11 @@ where email = 'your-email@example.com';
 ```
 
 Normal users can create and view only their own contributions. Admins can review
-all submissions at `/admin/contributions`, approve them into `course_templates`,
-request changes, or reject them. Raw contribution data is not public.
+all submissions at `/admin/contributions`, approve them into `course_templates`
+using the rebuilt `unique_key` model, request changes, or reject them. The same
+admin page also shows recent verified extraction feedback so corrected examples
+can be reviewed for the benchmark. Raw contribution and feedback data is not
+public.
 
 ## Course Template Import
 
@@ -255,6 +258,40 @@ npm run library:verify-production
 This checks that every selected ready canonical template exists in Supabase, has
 assessment rows, and totals 99.5-100.5%. It writes
 `training-data/course-library-rebuild/production-verify-report.html`.
+
+## Launch Readiness Checks
+
+Before sharing GradeMate with friends, run the local launch checks. These do not
+write to Supabase and do not import Course Library rows:
+
+```bash
+npm run test:extraction
+npm run test:dataset
+npm run library:rebuild
+npm run library:review
+npm run build
+npm run typecheck
+npm run launch:audit
+npm run db:check-rls
+npm run smoke:local
+```
+
+Outputs are written to:
+
+- `training-data/launch-audit/report.html`
+- `training-data/launch-audit/rls-report.html`
+- `training-data/launch-audit/smoke-report.html`
+
+When Supabase service-role credentials are configured locally, also run:
+
+```bash
+npm run library:export-current
+npm run library:import-rebuilt:dry
+npm run library:verify-production
+```
+
+Do not run the real Course Library import again unless the dry-run and
+production verification indicate a problem, and never run it without `--confirm`.
 
 ## Syllabus Extraction Dataset Builder
 

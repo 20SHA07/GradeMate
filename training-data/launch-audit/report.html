@@ -1,0 +1,224 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GradeMate Launch Audit</title>
+  <style>
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 18px; }
+    h1 { margin: 0 0 8px; font-size: 32px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+    .card { border: 1px solid #334155; border-radius: 14px; padding: 16px; background: #111827; }
+    .card strong { display: block; font-size: 28px; color: #5eead4; }
+    table { width: 100%; border-collapse: collapse; overflow: hidden; border-radius: 14px; background: #111827; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #334155; text-align: left; vertical-align: top; }
+    th { color: #94a3b8; font-size: 12px; text-transform: uppercase; }
+    tr.fail td:nth-child(3) { color: #fda4af; font-weight: 700; }
+    tr.warn td:nth-child(3) { color: #facc15; font-weight: 700; }
+    tr.pass td:nth-child(3) { color: #86efac; font-weight: 700; }
+    @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } table { font-size: 13px; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GradeMate Launch Audit</h1>
+    <p>Generated 2026-05-19T18:36:50.302Z</p>
+    <section class="cards">
+      <div class="card"><span>Ready</span><strong>31</strong></div>
+      <div class="card"><span>Warnings</span><strong>0</strong></div>
+      <div class="card"><span>Failures</span><strong>0</strong></div>
+    </section>
+    <table>
+      <thead><tr><th>Area</th><th>Check</th><th>Status</th><th>Detail</th></tr></thead>
+      <tbody>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run build</td>
+          <td>pass</td>
+          <td>node ./node_modules/next/dist/bin/next build</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run typecheck</td>
+          <td>pass</td>
+          <td>node ./node_modules/typescript/bin/tsc --noEmit</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run test:extraction</td>
+          <td>pass</td>
+          <td>node scripts/test-syllabus-extraction.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run test:dataset</td>
+          <td>pass</td>
+          <td>node scripts/test-dataset.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:rebuild</td>
+          <td>pass</td>
+          <td>node scripts/library-rebuild.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:review</td>
+          <td>pass</td>
+          <td>node scripts/library-review.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:verify-production</td>
+          <td>pass</td>
+          <td>node scripts/library-verify-production.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run launch:audit</td>
+          <td>pass</td>
+          <td>node scripts/launch-audit.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run db:check-rls</td>
+          <td>pass</td>
+          <td>node scripts/db-check-rls.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run smoke:local</td>
+          <td>pass</td>
+          <td>node scripts/smoke-local.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Landing</td>
+          <td>pass</td>
+          <td>src/app/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Simple Mode</td>
+          <td>pass</td>
+          <td>src/app/simple/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Workspace</td>
+          <td>pass</td>
+          <td>src/app/(app)/workspace/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Dashboard</td>
+          <td>pass</td>
+          <td>src/app/(app)/dashboard/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Course Library</td>
+          <td>pass</td>
+          <td>src/app/(app)/course-library/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Contribute Syllabus</td>
+          <td>pass</td>
+          <td>src/app/(app)/contribute-syllabus/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Admin</td>
+          <td>pass</td>
+          <td>src/app/(app)/admin/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Admin Contributions</td>
+          <td>pass</td>
+          <td>src/app/(app)/admin/contributions/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Extractor Lab</td>
+          <td>pass</td>
+          <td>src/app/extractor-lab/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Landing</td>
+          <td>Mode chooser content</td>
+          <td>pass</td>
+          <td>Landing page should show quick calculator, workspace, and library choices.</td>
+        </tr>
+        <tr class="pass">
+          <td>Landing</td>
+          <td>No README/docs landing</td>
+          <td>pass</td>
+          <td>Homepage source does not look like README documentation.</td>
+        </tr>
+        <tr class="pass">
+          <td>Extraction</td>
+          <td>No normal production AI failure wording</td>
+          <td>pass</td>
+          <td>No blocked AI/Edge Function wording found in src.</td>
+        </tr>
+        <tr class="pass">
+          <td>Supabase</td>
+          <td>Service role key not referenced in frontend</td>
+          <td>pass</td>
+          <td>Frontend source does not reference service-role secrets.</td>
+        </tr>
+        <tr class="pass">
+          <td>Supabase</td>
+          <td>Public env config exists</td>
+          <td>pass</td>
+          <td>Frontend reads only public Supabase URL and publishable/anon key.</td>
+        </tr>
+        <tr class="pass">
+          <td>Course Library</td>
+          <td>Rebuild canonical ready templates</td>
+          <td>pass</td>
+          <td>74 canonical ready / 82 ready / 7 needs review</td>
+        </tr>
+        <tr class="pass">
+          <td>Course Library</td>
+          <td>Production verification</td>
+          <td>pass</td>
+          <td>matched 74/74, public read passed</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>schema.sql</td>
+          <td>pass</td>
+          <td>supabase/schema.sql</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>course-template-unique-key.sql</td>
+          <td>pass</td>
+          <td>supabase/course-template-unique-key.sql</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>public-course-library-rls.sql</td>
+          <td>pass</td>
+          <td>supabase/public-course-library-rls.sql</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>syllabus-contributions.sql</td>
+          <td>pass</td>
+          <td>supabase/syllabus-contributions.sql</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>verified-extractions.sql</td>
+          <td>pass</td>
+          <td>supabase/verified-extractions.sql</td>
+        </tr></tbody>
+    </table>
+  </main>
+</body>
+</html>

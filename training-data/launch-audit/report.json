@@ -1,0 +1,198 @@
+{
+  "summary": {
+    "generatedAt": "2026-05-19T18:36:50.302Z",
+    "ready": 31,
+    "warnings": 0,
+    "failures": 0
+  },
+  "checks": [
+    {
+      "area": "Scripts",
+      "name": "npm run build",
+      "status": "pass",
+      "detail": "node ./node_modules/next/dist/bin/next build"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run typecheck",
+      "status": "pass",
+      "detail": "node ./node_modules/typescript/bin/tsc --noEmit"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run test:extraction",
+      "status": "pass",
+      "detail": "node scripts/test-syllabus-extraction.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run test:dataset",
+      "status": "pass",
+      "detail": "node scripts/test-dataset.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:rebuild",
+      "status": "pass",
+      "detail": "node scripts/library-rebuild.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:review",
+      "status": "pass",
+      "detail": "node scripts/library-review.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:verify-production",
+      "status": "pass",
+      "detail": "node scripts/library-verify-production.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run launch:audit",
+      "status": "pass",
+      "detail": "node scripts/launch-audit.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run db:check-rls",
+      "status": "pass",
+      "detail": "node scripts/db-check-rls.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run smoke:local",
+      "status": "pass",
+      "detail": "node scripts/smoke-local.mjs"
+    },
+    {
+      "area": "Routes",
+      "name": "Landing",
+      "status": "pass",
+      "detail": "src/app/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Simple Mode",
+      "status": "pass",
+      "detail": "src/app/simple/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Workspace",
+      "status": "pass",
+      "detail": "src/app/(app)/workspace/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Dashboard",
+      "status": "pass",
+      "detail": "src/app/(app)/dashboard/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Course Library",
+      "status": "pass",
+      "detail": "src/app/(app)/course-library/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Contribute Syllabus",
+      "status": "pass",
+      "detail": "src/app/(app)/contribute-syllabus/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Admin",
+      "status": "pass",
+      "detail": "src/app/(app)/admin/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Admin Contributions",
+      "status": "pass",
+      "detail": "src/app/(app)/admin/contributions/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Extractor Lab",
+      "status": "pass",
+      "detail": "src/app/extractor-lab/page.tsx"
+    },
+    {
+      "area": "Landing",
+      "name": "Mode chooser content",
+      "status": "pass",
+      "detail": "Landing page should show quick calculator, workspace, and library choices."
+    },
+    {
+      "area": "Landing",
+      "name": "No README/docs landing",
+      "status": "pass",
+      "detail": "Homepage source does not look like README documentation."
+    },
+    {
+      "area": "Extraction",
+      "name": "No normal production AI failure wording",
+      "status": "pass",
+      "detail": "No blocked AI/Edge Function wording found in src."
+    },
+    {
+      "area": "Supabase",
+      "name": "Service role key not referenced in frontend",
+      "status": "pass",
+      "detail": "Frontend source does not reference service-role secrets."
+    },
+    {
+      "area": "Supabase",
+      "name": "Public env config exists",
+      "status": "pass",
+      "detail": "Frontend reads only public Supabase URL and publishable/anon key."
+    },
+    {
+      "area": "Course Library",
+      "name": "Rebuild canonical ready templates",
+      "status": "pass",
+      "detail": "74 canonical ready / 82 ready / 7 needs review"
+    },
+    {
+      "area": "Course Library",
+      "name": "Production verification",
+      "status": "pass",
+      "detail": "matched 74/74, public read passed"
+    },
+    {
+      "area": "Database",
+      "name": "schema.sql",
+      "status": "pass",
+      "detail": "supabase/schema.sql"
+    },
+    {
+      "area": "Database",
+      "name": "course-template-unique-key.sql",
+      "status": "pass",
+      "detail": "supabase/course-template-unique-key.sql"
+    },
+    {
+      "area": "Database",
+      "name": "public-course-library-rls.sql",
+      "status": "pass",
+      "detail": "supabase/public-course-library-rls.sql"
+    },
+    {
+      "area": "Database",
+      "name": "syllabus-contributions.sql",
+      "status": "pass",
+      "detail": "supabase/syllabus-contributions.sql"
+    },
+    {
+      "area": "Database",
+      "name": "verified-extractions.sql",
+      "status": "pass",
+      "detail": "supabase/verified-extractions.sql"
+    }
+  ],
+  "needsActionBeforeSharing": [],
+  "optionalReview": []
+}

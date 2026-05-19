@@ -8,12 +8,14 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { buildCourseTemplateUniqueKey } from "@/lib/course-template-key";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import type {
   ContributionAssessmentRecord,
   CourseTemplateRecord,
   ProfileRecord,
-  SyllabusContributionRecord
+  SyllabusContributionRecord,
+  VerifiedExtractionRecord
 } from "@/types/database";
 
 type StatusFilter = "pending_review" | "needs_changes" | "approved" | "rejected";
@@ -21,6 +23,17 @@ type StatusFilter = "pending_review" | "needs_changes" | "approved" | "rejected"
 type ContributionWithRows = SyllabusContributionRecord & {
   assessments: ContributionAssessmentRecord[];
 };
+
+type VerifiedFeedbackSummary = Pick<
+  VerifiedExtractionRecord,
+  | "id"
+  | "course_code"
+  | "course_name"
+  | "created_at"
+  | "source_type"
+  | "total_weight"
+  | "user_feedback"
+>;
 
 const statusFilters: StatusFilter[] = [
   "pending_review",
@@ -74,6 +87,8 @@ export function AdminContributionsClient() {
   const [activeStatus, setActiveStatus] = useState<StatusFilter>("pending_review");
   const [contributions, setContributions] = useState<ContributionWithRows[]>([]);
   const [profiles, setProfiles] = useState<Record<string, ProfileRecord>>({});
+  const [verifiedFeedback, setVerifiedFeedback] = useState<VerifiedFeedbackSummary[]>([]);
+  const [verifiedFeedbackMessage, setVerifiedFeedbackMessage] = useState("");
   const [selected, setSelected] = useState<ContributionWithRows | null>(null);
   const [reviewNotes, setReviewNotes] = useState("");
   const [isSaving, setIsSaving] = useState(false);
@@ -117,7 +132,8 @@ export function AdminContributionsClient() {
     const [
       contributionsResponse,
       assessmentsResponse,
-      profilesResponse
+      profilesResponse,
+      verifiedFeedbackResponse
     ] = await Promise.all([
       supabase
         .from("syllabus_contributions")
@@ -127,7 +143,12 @@ export function AdminContributionsClient() {
         .from("contribution_assessments")
         .select("*")
         .order("created_at", { ascending: true }),
-      supabase.from("profiles").select("*")
+      supabase.from("profiles").select("*"),
+      supabase
+        .from("verified_extractions")
+        .select("id,course_code,course_name,created_at,source_type,total_weight,user_feedback")
+        .order("created_at", { ascending: false })
+        .limit(20)
     ]);
 
     if (contributionsResponse.error || assessmentsResponse.error) {
@@ -144,6 +165,20 @@ export function AdminContributionsClient() {
     const assessmentRows =
       (assessmentsResponse.data ?? []) as ContributionAssessmentRecord[];
     const profileRows = (profilesResponse.data ?? []) as ProfileRecord[];
+    if (verifiedFeedbackResponse.error) {
+      setVerifiedFeedback([]);
+      setVerifiedFeedbackMessage(
+        getSupabaseErrorMessage(
+          verifiedFeedbackResponse.error,
+          "Verified extraction feedback is not available yet."
+        )
+      );
+    } else {
+      setVerifiedFeedback(
+        (verifiedFeedbackResponse.data ?? []) as VerifiedFeedbackSummary[]
+      );
+      setVerifiedFeedbackMessage("");
+    }
 
     setProfiles(
       Object.fromEntries(profileRows.map((profileRow) => [profileRow.id, profileRow]))
@@ -172,6 +207,18 @@ export function AdminContributionsClient() {
         (contribution) => contribution.status === activeStatus
       ),
     [activeStatus, contributions]
+  );
+  const verifiedFeedbackCounts = useMemo(
+    () =>
+      verifiedFeedback.reduce(
+        (counts, row) => {
+          counts[row.user_feedback as keyof typeof counts] =
+            (counts[row.user_feedback as keyof typeof counts] ?? 0) + 1;
+          return counts;
+        },
+        { correct: 0, corrected: 0, incorrect: 0 }
+      ),
+    [verifiedFeedback]
   );
 
   function openReview(contribution: ContributionWithRows) {
@@ -205,16 +252,27 @@ export function AdminContributionsClient() {
         typeof extractedJson.courseDescription === "string"
           ? extractedJson.courseDescription
           : null;
+      const uniqueKey = buildCourseTemplateUniqueKey({
+        courseCode,
+        courseName,
+        fallbackId: contribution.id,
+        semester: contribution.term,
+        sourceName:
+          contribution.syllabus_file_name ??
+          contribution.syllabus_file_path ??
+          contribution.id
+      });
 
       const { data: existingTemplate, error: lookupError } = await supabase
         .from("course_templates")
         .select("*")
-        .eq("course_code", courseCode)
-        .eq("course_name", courseName)
+        .eq("unique_key", uniqueKey)
         .maybeSingle();
 
       if (lookupError) {
-        throw lookupError;
+        throw new Error(
+          `${lookupError.message} Run supabase/course-template-unique-key.sql first if the unique_key column is missing.`
+        );
       }
 
       let template: CourseTemplateRecord | null =
@@ -232,12 +290,17 @@ export function AdminContributionsClient() {
             description: description ?? template.description,
             extraction_confidence:
               contribution.extraction_confidence ?? template.extraction_confidence,
+            extraction_warnings: template.extraction_warnings ?? [],
             instructor: contribution.instructor ?? template.instructor,
+            instructor_email:
+              contribution.instructor_email ?? template.instructor_email,
             source_syllabus_file_name:
               contribution.syllabus_file_name ?? template.source_syllabus_file_name,
             source_syllabus_path:
               contribution.syllabus_file_path ?? template.source_syllabus_path,
+            template_status: "ready",
             term: contribution.term ?? template.term,
+            semester: contribution.term ?? template.semester,
             updated_at: new Date().toISOString()
           })
           .eq("id", template.id)
@@ -268,11 +331,16 @@ export function AdminContributionsClient() {
             department:
               contribution.department ?? departmentFromCode(courseCode),
             description,
+            extraction_warnings: [],
             extraction_confidence: contribution.extraction_confidence ?? 0.7,
             instructor: contribution.instructor,
+            instructor_email: contribution.instructor_email,
+            semester: contribution.term,
             source_syllabus_file_name: contribution.syllabus_file_name,
             source_syllabus_path: contribution.syllabus_file_path,
-            term: contribution.term
+            template_status: "ready",
+            term: contribution.term,
+            unique_key: uniqueKey
           })
           .select()
           .single();
@@ -423,6 +491,72 @@ export function AdminContributionsClient() {
           </Button>
         ))}
       </div>
+
+      <Card className="p-4">
+        <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <h2 className="font-semibold text-ink-900">
+              Verified extraction feedback
+            </h2>
+            <p className="mt-1 text-sm text-ink-500">
+              Recent user-confirmed extraction results for improving the
+              deterministic benchmark.
+            </p>
+          </div>
+          <div className="flex flex-wrap gap-2">
+            <Badge tone="green">{verifiedFeedbackCounts.correct} correct</Badge>
+            <Badge tone="teal">{verifiedFeedbackCounts.corrected} corrected</Badge>
+            <Badge tone="gold">{verifiedFeedbackCounts.incorrect} needs work</Badge>
+          </div>
+        </div>
+        {verifiedFeedbackMessage ? (
+          <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+            {verifiedFeedbackMessage}
+          </p>
+        ) : verifiedFeedback.length === 0 ? (
+          <p className="mt-3 text-sm text-ink-500">
+            No verified extraction feedback has been submitted yet.
+          </p>
+        ) : (
+          <div className="mt-4 overflow-x-auto">
+            <table className="w-full min-w-[640px] text-left text-sm">
+              <thead className="text-xs uppercase text-ink-400">
+                <tr>
+                  <th className="px-2 py-2">Course</th>
+                  <th className="px-2 py-2">Feedback</th>
+                  <th className="px-2 py-2">Source</th>
+                  <th className="px-2 py-2">Total</th>
+                  <th className="px-2 py-2">Submitted</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-ink-100">
+                {verifiedFeedback.slice(0, 8).map((row) => (
+                  <tr key={row.id}>
+                    <td className="px-2 py-2 font-medium text-ink-900">
+                      {row.course_code || "No code"}{" "}
+                      <span className="font-normal text-ink-500">
+                        {row.course_name || "Untitled"}
+                      </span>
+                    </td>
+                    <td className="px-2 py-2 text-ink-700">
+                      {statusLabel(row.user_feedback)}
+                    </td>
+                    <td className="px-2 py-2 text-ink-700">
+                      {statusLabel(row.source_type)}
+                    </td>
+                    <td className="px-2 py-2 text-ink-700">
+                      {row.total_weight == null ? "n/a" : `${row.total_weight}%`}
+                    </td>
+                    <td className="px-2 py-2 text-ink-500">
+                      {new Date(row.created_at).toLocaleDateString()}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
+      </Card>
 
       {visibleContributions.length === 0 ? (
         <EmptyState
