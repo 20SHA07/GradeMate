@@ -31,6 +31,11 @@ import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import {
+  getTargetDifficultyLabel,
+  getTargetDifficultyTone,
+  targetGradeOptions
+} from "@/lib/grade-targets";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
 import {
@@ -1871,8 +1876,8 @@ export function SimpleGpaCalculator() {
                     : getGradeInfo(stats.currentGrade);
 
                 return (
-                  <div className="space-y-3 p-4 sm:p-5" key={course.id}>
-                    <div className="grid gap-3 lg:grid-cols-[8rem_minmax(0,1.3fr)_6rem_8.5rem_8rem_6rem_7rem_auto] lg:items-end">
+                  <div className="space-y-3 px-4 py-3 sm:px-5" key={course.id}>
+                    <div className="grid gap-3 xl:grid-cols-[7.5rem_minmax(10rem,1fr)_5rem_8.5rem_7.5rem_auto] xl:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course code
@@ -1968,65 +1973,36 @@ export function SimpleGpaCalculator() {
                           ))}
                         </select>
                       </label>
-                      <div>
-                        <span className="text-sm font-medium text-ink-700">
-                          Points
-                        </span>
-                        <p className="mt-1 flex h-10 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
-                          {gradePoints.toFixed(1)}
-                        </p>
-                      </div>
-                      <div>
-                        <span className="text-sm font-medium text-ink-700">
-                          Quality points
-                        </span>
-                        <p className="mt-1 flex h-10 items-center rounded-xl bg-ink-100 px-3 text-sm font-semibold text-ink-900">
-                          {qualityPoints.toFixed(1)}
-                        </p>
-                      </div>
                       <Button
                         aria-label={`Remove ${course.name || `course ${index + 1}`}`}
+                        className="justify-self-start xl:justify-self-end"
                         onClick={() => removeCourse(course.id)}
                         size="icon"
-                        variant="danger"
+                        variant="ghost"
                       >
                         <Trash2 aria-hidden="true" className="h-4 w-4" />
                       </Button>
                     </div>
 
-                    <div className="grid gap-3 md:grid-cols-4">
-                      <div className="rounded-xl bg-ink-100 px-3 py-2">
-                        <p className="text-xs font-medium text-ink-500">
-                          Course grade
-                        </p>
-                        <p className="mt-1 text-base font-semibold text-ink-900">
-                          {formatPercent(stats.currentGrade)}
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-ink-100 px-3 py-2">
-                        <p className="text-xs font-medium text-ink-500">
-                          Letter
-                        </p>
-                        <p className="mt-1 text-base font-semibold text-ink-900">
-                          {calculatedInfo?.letter ?? effectiveLetter}
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-ink-100 px-3 py-2">
-                        <p className="text-xs font-medium text-ink-500">
-                          Weight
-                        </p>
-                        <p className="mt-1 text-base font-semibold text-ink-900">
-                          {stats.totalWeight.toFixed(1)}%
-                        </p>
-                      </div>
-                      <div className="rounded-xl bg-ink-100 px-3 py-2">
-                        <p className="text-xs font-medium text-ink-500">
-                          Remaining
-                        </p>
-                        <p className="mt-1 text-base font-semibold text-ink-900">
-                          {stats.remainingWeight.toFixed(1)}%
-                        </p>
-                      </div>
+                    <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-500">
+                      <Badge tone="teal">
+                        Course {formatPercent(stats.currentGrade)}
+                      </Badge>
+                      <Badge tone="ink">
+                        Letter {calculatedInfo?.letter ?? effectiveLetter}
+                      </Badge>
+                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
+                        Points {gradePoints.toFixed(1)}
+                      </span>
+                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
+                        Quality {qualityPoints.toFixed(1)}
+                      </span>
+                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
+                        Weight {stats.totalWeight.toFixed(1)}%
+                      </span>
+                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
+                        Remaining {stats.remainingWeight.toFixed(1)}%
+                      </span>
                     </div>
 
                     <CourseworkDetails
@@ -2138,7 +2114,7 @@ export function SimpleGpaCalculator() {
         {activePredictorCourse && activePredictorStats ? (
           <SimpleModal
             onClose={() => setActivePredictorCourseId(null)}
-            title="What do I need?"
+            title="Target grade planner"
           >
             <PredictorModalContent
               course={activePredictorCourse}
@@ -2869,6 +2845,20 @@ function PredictorModalContent({
     stats.remainingWeight > 0 && Number.isFinite(targetGrade)
       ? ((targetGrade - stats.completedPoints) / stats.remainingWeight) * 100
       : null;
+  const targetAlreadySecured =
+    Number.isFinite(targetGrade) && targetGrade <= stats.completedPoints;
+  const statusTone =
+    neededAverage === null
+      ? "ink"
+      : targetAlreadySecured
+        ? "green"
+        : getTargetDifficultyTone(neededAverage);
+  const statusLabel =
+    neededAverage === null
+      ? "Needs remaining work"
+      : targetAlreadySecured
+        ? "Already secured"
+        : getTargetDifficultyLabel(neededAverage);
   const predictorMessage =
     neededScore === null
       ? "Add a remaining assessment to calculate what you need."
@@ -2883,32 +2873,51 @@ function PredictorModalContent({
   return (
     <section className="space-y-4">
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-ink-500">
-          Pick a target grade and one remaining assessment for {course.name || "this course"}.
-        </p>
-        <Badge
-          tone={
-            neededScore === null
-              ? "ink"
-              : neededScore > 100
-                ? "rose"
-                : neededScore < 0 || targetGrade <= stats.completedPoints
-                  ? "green"
-                  : "teal"
-          }
-        >
-          {neededScore === null
-            ? "Needs remaining work"
-            : neededScore > 100
-              ? "Impossible"
-              : neededScore < 0 || targetGrade <= stats.completedPoints
-                ? "Already secured"
-                : "Possible"}
-        </Badge>
+        <div>
+          <p className="text-base font-semibold text-ink-900">
+            Target grade planner
+          </p>
+          <p className="mt-1 text-sm text-ink-500">
+            Pick a target and see what {course.name || "this course"} still needs.
+          </p>
+        </div>
+        <Badge tone={statusTone}>{statusLabel}</Badge>
       </div>
-      <div className="grid gap-3 md:grid-cols-3">
+      {course.assessments.length === 0 ? (
+        <div className="rounded-2xl border border-dashed border-ink-200 bg-ink-50 px-4 py-6 text-sm text-ink-500">
+          Add coursework or scan a syllabus to unlock predictions.
+        </div>
+      ) : null}
+      <div className="rounded-2xl border border-ink-200 bg-ink-50 p-3">
+        <p className="text-sm font-medium text-ink-700">Choose target</p>
+        <div className="mt-2 flex flex-wrap gap-2">
+          {targetGradeOptions.map((option) => {
+            const isSelected = activePredictor.targetGrade === String(option.value);
+
+            return (
+              <button
+                className={`rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+                  isSelected
+                    ? "border-teal-600 bg-teal-600 text-white shadow-sm shadow-teal-950/20"
+                    : "border-ink-200 bg-white text-ink-700 hover:border-teal-300 hover:text-teal-700"
+                }`}
+                key={option.label}
+                onClick={() =>
+                  updatePredictor(course.id, {
+                    targetGrade: String(option.value)
+                  })
+                }
+                type="button"
+              >
+                {option.label} {option.value}%
+              </button>
+            );
+          })}
+        </div>
+      </div>
+      <div className="grid gap-3 md:grid-cols-[12rem_minmax(0,1fr)]">
         <label className="block">
-          <span className="text-sm font-medium text-ink-700">Target grade</span>
+          <span className="text-sm font-medium text-ink-700">Custom target</span>
           <input
             className={inputStyles}
             max="100"
@@ -2923,7 +2932,7 @@ function PredictorModalContent({
             value={activePredictor.targetGrade}
           />
         </label>
-        <label className="block md:col-span-2">
+        <label className="block">
           <span className="text-sm font-medium text-ink-700">
             Remaining assessment
           </span>
@@ -2949,7 +2958,13 @@ function PredictorModalContent({
           </select>
         </label>
       </div>
-      <div className="grid gap-3 md:grid-cols-3">
+      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
+        <div className="rounded-xl bg-ink-100 px-4 py-3">
+          <p className="text-xs font-medium text-ink-500">Current so far</p>
+          <p className="mt-1 text-lg font-semibold text-ink-900">
+            {formatPercent(stats.currentGrade)}
+          </p>
+        </div>
         <div className="rounded-xl bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">Needed score</p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
@@ -2957,7 +2972,9 @@ function PredictorModalContent({
           </p>
         </div>
         <div className="rounded-xl bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">Needed average</p>
+          <p className="text-xs font-medium text-ink-500">
+            Needed average remaining
+          </p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
             {formatPercent(neededAverage)}
           </p>
@@ -2968,8 +2985,16 @@ function PredictorModalContent({
             {formatPercent(stats.bestPossibleGrade)}
           </p>
         </div>
+        <div className="rounded-xl bg-ink-100 px-4 py-3">
+          <p className="text-xs font-medium text-ink-500">If remaining zero</p>
+          <p className="mt-1 text-lg font-semibold text-ink-900">
+            {formatPercent(stats.projectedFinalGrade)}
+          </p>
+        </div>
       </div>
-      <p className="text-sm text-ink-600">{predictorMessage}</p>
+      <p className="rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
+        {predictorMessage}
+      </p>
     </section>
   );
 }

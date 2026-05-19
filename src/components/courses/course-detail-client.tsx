@@ -5,9 +5,11 @@ import { useParams } from "next/navigation";
 import {
   ArrowLeft,
   BookOpen,
+  CalendarDays,
   ClipboardPaste,
   Edit3,
   FileText,
+  Info,
   Layers3,
   Percent,
   PlusCircle,
@@ -35,6 +37,11 @@ import {
   getWeightedContribution,
   isCompletedAssessment
 } from "@/lib/grades";
+import {
+  getTargetDifficultyLabel,
+  getTargetDifficultyTone,
+  targetGradeOptions
+} from "@/lib/grade-targets";
 import {
   createGuestId,
   readGuestData,
@@ -70,6 +77,8 @@ type AssessmentForm = {
   maxScore: string;
   category: string;
 };
+
+type CourseDetailTab = "assessments" | "planner" | "extractor" | "details";
 
 type ReviewAssessment = ExtractedAssessment & {
   id: string;
@@ -1653,6 +1662,7 @@ export function CourseDetailClient({
     null
   );
   const [targetGrade, setTargetGrade] = useState("90");
+  const [activeTab, setActiveTab] = useState<CourseDetailTab>("assessments");
   const [selectedNeedAssessmentId, setSelectedNeedAssessmentId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -1824,11 +1834,20 @@ export function CourseDetailClient({
     Number.isFinite(targetNumeric) &&
     targetNumeric <= gradeSummary.completedContribution
       ? { label: "Already secured", tone: "green" as const }
-      : neededRemainingAverage !== null && neededRemainingAverage > 100
-        ? { label: "Impossible", tone: "rose" as const }
-        : neededRemainingAverage !== null && neededRemainingAverage >= 90
-          ? { label: "At risk", tone: "gold" as const }
-          : { label: "Possible", tone: "teal" as const };
+      : {
+          label: getTargetDifficultyLabel(neededRemainingAverage),
+          tone: getTargetDifficultyTone(neededRemainingAverage)
+        };
+  const hasCourseDetails = [
+    course?.instructor,
+    course?.instructor_email,
+    course?.term,
+    course?.schedule,
+    course?.classroom,
+    course?.office_hours,
+    course?.prerequisites,
+    course?.description
+  ].some(Boolean) || (Array.isArray(course?.textbooks) && course.textbooks.length > 0);
 
   function updateAssessmentForm(field: keyof AssessmentForm, value: string) {
     setAssessmentForm((current) => ({
@@ -2041,19 +2060,43 @@ export function CourseDetailClient({
     );
   }
 
+  const detailTabs: {
+    id: CourseDetailTab;
+    label: string;
+    icon: typeof Layers3;
+  }[] = [
+    { id: "assessments", label: "Assessments", icon: Layers3 },
+    { id: "planner", label: "Planner", icon: Target },
+    { id: "extractor", label: "Syllabus Auto-Fill", icon: Wand2 },
+    { id: "details", label: "Course Details", icon: Info }
+  ];
+
   return (
-    <div className="space-y-8">
+    <div className="space-y-6">
       <PageHeader
         actions={
-          <Link className={buttonStyles({ variant: "secondary" })} href="/semesters">
-            <ArrowLeft aria-hidden="true" className="h-4 w-4" />
-            Back to semester
-          </Link>
+          <div className="flex flex-wrap gap-2">
+            <Link className={buttonStyles({ variant: "secondary" })} href="/semesters">
+              <ArrowLeft aria-hidden="true" className="h-4 w-4" />
+              Back
+            </Link>
+            <Button
+              onClick={() => {
+                setActiveTab("assessments");
+                resetAssessmentForm();
+              }}
+              variant="secondary"
+            >
+              <PlusCircle aria-hidden="true" className="h-4 w-4" />
+              Add assessment
+            </Button>
+            <Button onClick={() => setActiveTab("extractor")}>
+              <Wand2 aria-hidden="true" className="h-4 w-4" />
+              Scan syllabus
+            </Button>
+          </div>
         }
-        description={
-          semester?.name ??
-          "Track grades, assessments, predictions, and syllabus uploads."
-        }
+        description={semester?.name ?? "Track this course without the clutter."}
         eyebrow={course.code || "Course"}
         title={course.name}
       />
@@ -2064,539 +2107,546 @@ export function CourseDetailClient({
         </p>
       ) : null}
 
-      <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-        <Card className="p-5">
-          <p className="text-sm font-medium text-ink-500">Credit hours</p>
-          <p className="mt-2 text-3xl font-semibold text-ink-900">
-            {Number(course.credit_hours)}
-          </p>
-          <p className="mt-1 text-sm text-ink-500">Course workload</p>
-        </Card>
-        <Card className="p-5">
-          <p className="text-sm font-medium text-ink-500">Current grade</p>
-          <p className="mt-2 text-3xl font-semibold text-ink-900">
-            {formatPercent(gradeSummary.currentGrade)}
-          </p>
-          <p className="mt-1 text-sm text-ink-500">
-            {gradeSummary.completedWeight}% completed weight
-          </p>
-        </Card>
-        <Card className="p-5">
-          <p className="text-sm font-medium text-ink-500">Letter grade</p>
-          <p className="mt-2 text-3xl font-semibold text-ink-900">
-            {currentLetterGrade}
-          </p>
-          <p className="mt-1 text-sm text-ink-500">Based on current grade</p>
-        </Card>
-        <Card className="p-5">
-          <div className="flex items-start justify-between gap-3">
-            <p className="text-sm font-medium text-ink-500">Total weight</p>
-            <Badge tone={weightReadiness.tone}>{weightReadiness.label}</Badge>
-          </div>
-          <p className="mt-2 text-3xl font-semibold text-ink-900">
-            {gradeSummary.totalWeight}%
-          </p>
-          <p className="mt-1 text-sm text-ink-500">Target total is 100%</p>
-        </Card>
-        <Card className="p-5">
-          <p className="text-sm font-medium text-ink-500">Remaining weight</p>
-          <p className="mt-2 text-3xl font-semibold text-ink-900">
-            {gradeSummary.remainingWeight}%
-          </p>
-          <p className="mt-1 text-sm text-ink-500">Still missing from 100%</p>
-        </Card>
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+        {[
+          ["Credits", Number(course.credit_hours), "Course workload"],
+          [
+            "Current grade",
+            formatPercent(gradeSummary.currentGrade),
+            `${gradeSummary.completedWeight}% completed`
+          ],
+          ["Letter grade", currentLetterGrade, "Based on scored work"],
+          ["Weight completed", `${gradeSummary.completedWeight}%`, "Scored so far"],
+          ["Remaining weight", `${gradeSummary.unscoredWeight}%`, "Unscored work"]
+        ].map(([label, value, helper]) => (
+          <Card className="p-4" key={label}>
+            <p className="text-sm font-medium text-ink-500">{label}</p>
+            <p className="mt-2 text-2xl font-semibold text-ink-900">
+              {value}
+            </p>
+            <p className="mt-1 text-xs text-ink-500">{helper}</p>
+          </Card>
+        ))}
       </section>
 
-      <Card className="p-5">
-        <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
-          <div>
-            <div className="flex flex-wrap items-center gap-2">
-              <Badge tone="teal">{course.code || "Course code"}</Badge>
-              <Badge tone="ink">{Number(course.credit_hours)} credits</Badge>
-              {semester ? <Badge tone="gold">{semester.name}</Badge> : null}
-            </div>
-            <h2 className="mt-4 text-xl font-semibold text-ink-900">
-              Grade Summary
-            </h2>
-            <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-              Your current grade is based on completed work. Missing scores
-              count as 0 only in the projected final grade.
-            </p>
-          </div>
-          <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-            <p className="text-sm font-medium text-ink-500">
-              Projected final grade
-            </p>
-            <p className="mt-2 text-3xl font-semibold text-ink-900">
-              {formatPercent(gradeSummary.finalProjectedGrade)}
-            </p>
-            <p className="mt-1 text-sm text-ink-500">
-              Missing scores count as 0 for now
-            </p>
-          </div>
+      <Card className="p-2">
+        <div className="flex gap-1 overflow-x-auto">
+          {detailTabs.map((tab) => {
+            const Icon = tab.icon;
+            const isActive = activeTab === tab.id;
+
+            return (
+              <button
+                className={`flex min-w-fit items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                  isActive
+                    ? "bg-teal-600 text-white shadow-sm"
+                    : "text-ink-500 hover:bg-ink-100 hover:text-ink-900"
+                }`}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                type="button"
+              >
+                <Icon aria-hidden="true" className="h-4 w-4" />
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
       </Card>
 
-      {[
-        course.instructor,
-        course.instructor_email,
-        course.term,
-        course.schedule,
-        course.classroom,
-        course.office_hours,
-        course.prerequisites,
-        course.description
-      ].some(Boolean) || Array.isArray(course.textbooks) ? (
-        <Card className="p-5">
-          <details>
-            <summary className="cursor-pointer text-lg font-semibold text-ink-900">
-              Course details
-            </summary>
-            <div className="mt-4 grid gap-3 md:grid-cols-2">
-              {[
-                ["Instructor", course.instructor],
-                ["Email", course.instructor_email],
-                ["Semester", course.term],
-                ["Schedule", course.schedule],
-                ["Classroom", course.classroom],
-                ["Office hours", course.office_hours],
-                ["Prerequisites", course.prerequisites]
-              ].map(([label, value]) =>
-                value ? (
-                  <div className="rounded-lg bg-ink-100/70 p-3 text-sm" key={label}>
-                    <p className="text-ink-500">{label}</p>
-                    <p className="mt-1 font-medium text-ink-900">{value}</p>
-                  </div>
-                ) : null
-              )}
-            </div>
-            {Array.isArray(course.textbooks) && course.textbooks.length > 0 ? (
-              <div className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm">
-                <p className="text-ink-500">Textbooks</p>
-                <ul className="mt-2 list-disc space-y-1 pl-5">
-                  {course.textbooks.map((textbook) => (
-                    <li key={String(textbook)}>{String(textbook)}</li>
-                  ))}
-                </ul>
+      {activeTab === "assessments" ? (
+        <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_23rem]">
+          <Card className="overflow-hidden">
+            <div className="flex flex-col gap-3 border-b border-ink-200 p-5 sm:flex-row sm:items-start sm:justify-between">
+              <div>
+                <h2 className="text-lg font-semibold text-ink-900">
+                  Assessments
+                </h2>
+                <p className="mt-1 text-sm text-ink-500">
+                  Scores and weights stay in one focused list.
+                </p>
               </div>
-            ) : null}
-            {course.description ? (
-              <p className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
-                {course.description}
+              <Badge tone={weightReadiness.tone}>
+                {gradeSummary.totalWeight}% total
+              </Badge>
+            </div>
+
+            {sortedAssessments.length === 0 ? (
+              <div className="p-5">
+                <EmptyState
+                  action={
+                    <div className="flex flex-wrap justify-center gap-2">
+                      <Button onClick={() => resetAssessmentForm()} variant="secondary">
+                        <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                        Add manually
+                      </Button>
+                      <Button onClick={() => setActiveTab("extractor")}>
+                        <Wand2 aria-hidden="true" className="h-4 w-4" />
+                        Scan syllabus
+                      </Button>
+                    </div>
+                  }
+                  description="Add one manually or scan your syllabus to unlock predictions."
+                  icon={<Layers3 aria-hidden="true" className="h-5 w-5" />}
+                  title="No assessments yet"
+                />
+              </div>
+            ) : (
+              <div className="overflow-x-auto">
+                <table className="w-full min-w-[820px] text-left text-sm">
+                  <thead className="border-b border-ink-200 bg-ink-50 text-xs text-ink-500">
+                    <tr>
+                      <th className="px-5 py-3 font-semibold">Assessment</th>
+                      <th className="px-5 py-3 font-semibold">Status</th>
+                      <th className="px-5 py-3 font-semibold">Weight</th>
+                      <th className="px-5 py-3 font-semibold">Score</th>
+                      <th className="px-5 py-3 font-semibold">Contribution</th>
+                      <th className="px-5 py-3 text-right font-semibold">Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-ink-100">
+                    {sortedAssessments.map((assessment) => {
+                      const status = getAssessmentStatus(assessment);
+                      const contribution = getWeightedContribution(assessment);
+                      const maxScore = getAssessmentMaxScore(assessment);
+
+                      return (
+                        <tr className="hover:bg-ink-50/60" key={assessment.id}>
+                          <td className="px-5 py-4">
+                            <div className="font-medium text-ink-900">
+                              {getAssessmentName(assessment)}
+                            </div>
+                          </td>
+                          <td className="px-5 py-4">
+                            <Badge tone={getStatusTone(status)}>
+                              {getFriendlyStatus(status)}
+                            </Badge>
+                          </td>
+                          <td className="px-5 py-4 text-ink-700">
+                            {getAssessmentWeight(assessment)}%
+                          </td>
+                          <td className="px-5 py-4 text-ink-700">
+                            {assessment.score == null || maxScore == null
+                              ? "Not scored"
+                              : `${Number(assessment.score)} / ${Number(maxScore)}`}
+                          </td>
+                          <td className="px-5 py-4 font-medium text-ink-900">
+                            {formatPercent(contribution)}
+                          </td>
+                          <td className="px-5 py-4">
+                            <div className="flex justify-end gap-2">
+                              <Button
+                                aria-label={`Edit ${getAssessmentName(assessment)}`}
+                                onClick={() => startEditing(assessment)}
+                                size="icon"
+                                variant="secondary"
+                              >
+                                <Edit3 aria-hidden="true" className="h-4 w-4" />
+                              </Button>
+                              <Button
+                                aria-label={`Delete ${getAssessmentName(assessment)}`}
+                                onClick={() => void deleteAssessment(assessment.id)}
+                                size="icon"
+                                variant="danger"
+                              >
+                                <Trash2 aria-hidden="true" className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </Card>
+
+          <Card className="p-5" id="add-assessment">
+            <div className="flex items-start justify-between gap-3">
+              <div>
+                <h2 className="text-lg font-semibold text-ink-900">
+                  {editingAssessmentId ? "Edit assessment" : "Add assessment"}
+                </h2>
+                <p className="mt-1 text-sm text-ink-500">
+                  Keep it quick: name, weight, score.
+                </p>
+              </div>
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                {editingAssessmentId ? (
+                  <Save aria-hidden="true" className="h-5 w-5" />
+                ) : (
+                  <PlusCircle aria-hidden="true" className="h-5 w-5" />
+                )}
+              </span>
+            </div>
+
+            <form className="mt-5 space-y-4" onSubmit={saveAssessment}>
+              <label className="block">
+                <span className="text-sm font-medium text-ink-700">Name</span>
+                <input
+                  className={inputStyles}
+                  list="course-assessment-names"
+                  onChange={(event) =>
+                    updateAssessmentForm("name", event.target.value)
+                  }
+                  placeholder="Midterm"
+                  required
+                  value={assessmentForm.name}
+                />
+                <datalist id="course-assessment-names">
+                  {assessmentNames.map((name) => (
+                    <option key={name} value={name}>
+                      {name}
+                    </option>
+                  ))}
+                </datalist>
+              </label>
+
+              <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">
+                    Weight percentage
+                  </span>
+                  <input
+                    className={inputStyles}
+                    min="0"
+                    onChange={(event) =>
+                      updateAssessmentForm("weightPercentage", event.target.value)
+                    }
+                    placeholder="25"
+                    required
+                    step="0.01"
+                    type="number"
+                    value={assessmentForm.weightPercentage}
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">Status</span>
+                  <select
+                    className={inputStyles}
+                    onChange={(event) =>
+                      updateAssessmentForm("category", event.target.value)
+                    }
+                    value={assessmentForm.category}
+                  >
+                    {assessmentStatuses.map((status) => (
+                      <option key={status} value={status}>
+                        {status}
+                      </option>
+                    ))}
+                  </select>
+                </label>
+              </div>
+
+              <div className="grid gap-3 sm:grid-cols-2">
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">Score</span>
+                  <input
+                    className={inputStyles}
+                    min="0"
+                    onChange={(event) =>
+                      updateAssessmentForm("score", event.target.value)
+                    }
+                    placeholder="88"
+                    step="0.01"
+                    type="number"
+                    value={assessmentForm.score}
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">
+                    Max score
+                  </span>
+                  <input
+                    className={inputStyles}
+                    min="0"
+                    onChange={(event) =>
+                      updateAssessmentForm("maxScore", event.target.value)
+                    }
+                    placeholder="100"
+                    step="0.01"
+                    type="number"
+                    value={assessmentForm.maxScore}
+                  />
+                </label>
+              </div>
+
+              <div className="rounded-xl bg-ink-50 p-3 text-sm text-ink-600">
+                <div className="flex items-center gap-2 font-medium text-ink-900">
+                  <Percent aria-hidden="true" className="h-4 w-4 text-teal-700" />
+                  Grade contribution
+                </div>
+                <p className="mt-1">
+                  {assessmentForm.score && assessmentForm.maxScore
+                    ? `${formatPercent(
+                        (Number(assessmentForm.score) /
+                          Number(assessmentForm.maxScore)) *
+                          (Number(assessmentForm.weightPercentage) || 0)
+                      )} toward the final grade`
+                    : "Enter score and max score to preview the contribution."}
+                </p>
+              </div>
+
+              <div className="flex flex-col gap-2 sm:flex-row">
+                <Button className="w-full" disabled={isSaving} type="submit">
+                  {editingAssessmentId ? (
+                    <Save aria-hidden="true" className="h-4 w-4" />
+                  ) : (
+                    <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                  )}
+                  {isSaving
+                    ? "Saving..."
+                    : editingAssessmentId
+                      ? "Save changes"
+                      : "Add assessment"}
+                </Button>
+                {editingAssessmentId ? (
+                  <Button
+                    className="w-full sm:w-auto"
+                    onClick={resetAssessmentForm}
+                    variant="secondary"
+                  >
+                    Cancel
+                  </Button>
+                ) : null}
+              </div>
+            </form>
+          </Card>
+        </section>
+      ) : null}
+
+      {activeTab === "planner" ? (
+        <Card className="p-5">
+          {sortedAssessments.length === 0 ? (
+            <EmptyState
+              action={
+                <div className="flex flex-wrap justify-center gap-2">
+                  <Button onClick={() => setActiveTab("assessments")} variant="secondary">
+                    Add assessments
+                  </Button>
+                  <Button onClick={() => setActiveTab("extractor")}>
+                    Scan syllabus
+                  </Button>
+                </div>
+              }
+              description="Add assessments or scan your syllabus to unlock predictions."
+              icon={<Target aria-hidden="true" className="h-5 w-5" />}
+              title="Planner is waiting for coursework"
+            />
+          ) : (
+            <>
+              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
+                <div>
+                  <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+                    <Target aria-hidden="true" className="h-4 w-4" />
+                    Target grade planner
+                  </div>
+                  <h2 className="mt-2 text-xl font-semibold text-ink-900">
+                    What do I need?
+                  </h2>
+                  <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
+                    Pick any grade target, then check one assessment or your
+                    overall remaining average.
+                  </p>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  <Badge tone={predictorStatus.tone}>{predictorStatus.label}</Badge>
+                  <Badge tone={remainingAssessments.length > 0 ? "teal" : "ink"}>
+                    {remainingAssessments.length} remaining
+                  </Badge>
+                </div>
+              </div>
+
+              <div className="mt-5 flex flex-wrap gap-2">
+                {targetGradeOptions.map((target) => {
+                  const value = String(target.value);
+
+                  return (
+                    <Button
+                      key={target.label}
+                      onClick={() => setTargetGrade(value)}
+                      size="sm"
+                      variant={targetGrade === value ? "primary" : "secondary"}
+                    >
+                      {target.label} {target.value}%
+                    </Button>
+                  );
+                })}
+              </div>
+
+              <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)_18rem] lg:items-end">
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">
+                    Custom target
+                  </span>
+                  <input
+                    className={inputStyles}
+                    min="0"
+                    onChange={(event) => setTargetGrade(event.target.value)}
+                    step="0.1"
+                    type="number"
+                    value={targetGrade}
+                  />
+                </label>
+                <label className="block">
+                  <span className="text-sm font-medium text-ink-700">
+                    Remaining assessment
+                  </span>
+                  <select
+                    className={inputStyles}
+                    disabled={remainingAssessments.length === 0}
+                    onChange={(event) =>
+                      setSelectedNeedAssessmentId(event.target.value)
+                    }
+                    value={selectedNeedAssessment?.id ?? ""}
+                  >
+                    {remainingAssessments.length === 0 ? (
+                      <option value="">No remaining weighted assessments</option>
+                    ) : null}
+                    {remainingAssessments.map((assessment) => (
+                      <option key={assessment.id} value={assessment.id}>
+                        {getAssessmentName(assessment)} -{" "}
+                        {getAssessmentWeight(assessment)}%
+                      </option>
+                    ))}
+                  </select>
+                </label>
+
+                <div className="rounded-xl border border-ink-200 bg-ink-50 p-4">
+                  <p className="text-sm font-medium text-ink-500">Needed score</p>
+                  {selectedNeedAssessment && needCalculator ? (
+                    <>
+                      <p className="mt-2 text-3xl font-semibold text-ink-900">
+                        {needCalculator.neededPercent <= 0
+                          ? "0.0%"
+                          : `${needCalculator.neededPercent.toFixed(1)}%`}
+                      </p>
+                      <p className="mt-1 text-sm text-ink-500">
+                        {needCalculator.neededPercent <= 0
+                          ? "Already secured."
+                          : needCalculator.neededPercent > 100
+                            ? "Not possible on this assessment alone."
+                            : `${needCalculator.neededScore.toFixed(1)} / ${
+                                needCalculator.maxScore
+                              }`}
+                      </p>
+                    </>
+                  ) : (
+                    <p className="mt-2 text-sm text-ink-500">
+                      Add a weighted, unscored assessment.
+                    </p>
+                  )}
+                </div>
+              </div>
+
+              <div className="mt-4 grid gap-3 md:grid-cols-4">
+                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                  <p className="text-ink-500">Current grade so far</p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    {formatPercent(gradeSummary.currentGrade)}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                  <p className="text-ink-500">Needed average remaining</p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    {neededRemainingAverage === null
+                      ? "No remaining work"
+                      : formatPercent(neededRemainingAverage)}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                  <p className="text-ink-500">Best possible final grade</p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    {formatPercent(bestPossibleGrade)}
+                  </p>
+                </div>
+                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                  <p className="text-ink-500">Projected if zeros</p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    {formatPercent(gradeSummary.finalProjectedGrade)}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-4 rounded-xl bg-ink-100/60 p-3 text-sm text-ink-600">
+                {neededRemainingAverage === null
+                  ? "No remaining assessments are available for predictions."
+                  : targetNumeric <= gradeSummary.completedContribution
+                    ? "You've already secured this target based on completed work."
+                    : neededRemainingAverage > 100
+                      ? `To reach ${targetGrade}%, you would need ${neededRemainingAverage.toFixed(
+                          1
+                        )}% average on remaining work.`
+                      : `You need an average of ${neededRemainingAverage.toFixed(
+                          1
+                        )}% across the remaining work to finish with ${targetGrade}%.`}
               </p>
-            ) : null}
-          </details>
+            </>
+          )}
         </Card>
       ) : null}
 
-      <Card className="p-5">
-        <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-          <div>
-            <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
-              <Target aria-hidden="true" className="h-4 w-4" />
-            What do I need?
-          </div>
-          <h2 className="mt-2 text-xl font-semibold text-ink-900">
-              What do I need?
-          </h2>
-          <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-              Pick a target grade and GradeMate will calculate the score you
-              need.
-          </p>
-        </div>
-          <div className="flex flex-wrap gap-2">
-            <Badge tone={predictorStatus.tone}>{predictorStatus.label}</Badge>
-            <Badge tone={remainingAssessments.length > 0 ? "teal" : "ink"}>
-              {remainingAssessments.length} remaining
-            </Badge>
-          </div>
-      </div>
+      {activeTab === "extractor" ? (
+        <SmartSyllabusExtractor
+          assessments={assessments}
+          course={course}
+          isGuest={isGuest}
+          onCourseUpdated={setCourse}
+          onSaved={handleExtractedAssessmentsSaved}
+        />
+      ) : null}
 
-        <div className="mt-5 flex flex-wrap gap-2">
-          {[
-            ["A", "90"],
-            ["B+", "87"],
-            ["B", "83"],
-            ["C+", "77"],
-            ["C", "73"],
-            ["Pass", "60"]
-          ].map(([label, value]) => (
-            <Button
-              key={label}
-              onClick={() => setTargetGrade(value)}
-              size="sm"
-              variant={targetGrade === value ? "primary" : "secondary"}
-            >
-              {label} {value}%
-            </Button>
-          ))}
-        </div>
-
-        <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)_18rem] lg:items-end">
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              Target grade
-            </span>
-            <input
-              className={inputStyles}
-              min="0"
-              onChange={(event) => setTargetGrade(event.target.value)}
-              step="0.1"
-              type="number"
-              value={targetGrade}
-            />
-          </label>
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              Remaining assessment
-            </span>
-            <select
-              className={inputStyles}
-              disabled={remainingAssessments.length === 0}
-              onChange={(event) =>
-                setSelectedNeedAssessmentId(event.target.value)
-              }
-              value={selectedNeedAssessment?.id ?? ""}
-            >
-              {remainingAssessments.length === 0 ? (
-                <option value="">No remaining weighted assessments</option>
+      {activeTab === "details" ? (
+        <Card className="p-5">
+          {hasCourseDetails ? (
+            <>
+              <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
+                <CalendarDays aria-hidden="true" className="h-4 w-4" />
+                Course details
+              </div>
+              <div className="mt-4 grid gap-3 md:grid-cols-2">
+                {[
+                  ["Instructor", course.instructor],
+                  ["Email", course.instructor_email],
+                  ["Semester", course.term],
+                  ["Schedule", course.schedule],
+                  ["Classroom", course.classroom],
+                  ["Office hours", course.office_hours],
+                  ["Prerequisites", course.prerequisites]
+                ].map(([label, value]) =>
+                  value ? (
+                    <div className="rounded-xl bg-ink-100/70 p-3 text-sm" key={label}>
+                      <p className="text-ink-500">{label}</p>
+                      <p className="mt-1 font-medium text-ink-900">{value}</p>
+                    </div>
+                  ) : null
+                )}
+              </div>
+              {Array.isArray(course.textbooks) && course.textbooks.length > 0 ? (
+                <div className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm">
+                  <p className="text-ink-500">Textbooks</p>
+                  <ul className="mt-2 list-disc space-y-1 pl-5">
+                    {course.textbooks.map((textbook) => (
+                      <li key={String(textbook)}>{String(textbook)}</li>
+                    ))}
+                  </ul>
+                </div>
               ) : null}
-              {remainingAssessments.map((assessment) => (
-                <option key={assessment.id} value={assessment.id}>
-                  {getAssessmentName(assessment)} -{" "}
-                  {getAssessmentWeight(assessment)}%
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-            <p className="text-sm font-medium text-ink-500">Needed score</p>
-            {selectedNeedAssessment && needCalculator ? (
-              <>
-                <p className="mt-2 text-3xl font-semibold text-ink-900">
-                  {needCalculator.neededPercent <= 0
-                    ? "0.0%"
-                    : `${needCalculator.neededPercent.toFixed(1)}%`}
+              {course.description ? (
+                <p className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
+                  {course.description}
                 </p>
-                <p className="mt-1 text-sm text-ink-500">
-                  {needCalculator.neededPercent <= 0
-                    ? "You've already secured this target based on completed work."
-                    : needCalculator.neededPercent > 100
-                      ? "This target is not possible with this assessment alone."
-                      : `${needCalculator.neededScore.toFixed(1)} / ${
-                          needCalculator.maxScore
-                        }`}
-                </p>
-              </>
-            ) : (
-              <>
-                <p className="mt-2 text-3xl font-semibold text-ink-900">N/A</p>
-                <p className="mt-1 text-sm text-ink-500">
-                  Add a weighted, unscored assessment.
-                </p>
-              </>
-            )}
-          </div>
-        </div>
-        <div className="mt-4 grid gap-3 md:grid-cols-3">
-          <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-            <p className="text-ink-500">Current grade so far</p>
-            <p className="mt-1 font-semibold text-ink-900">
-              {formatPercent(gradeSummary.currentGrade)}
-            </p>
-          </div>
-          <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-            <p className="text-ink-500">Best possible final grade</p>
-            <p className="mt-1 font-semibold text-ink-900">
-              {formatPercent(bestPossibleGrade)}
-            </p>
-          </div>
-          <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-            <p className="text-ink-500">Needed average remaining</p>
-            <p className="mt-1 font-semibold text-ink-900">
-              {neededRemainingAverage === null
-                ? "No remaining work"
-                : formatPercent(neededRemainingAverage)}
-            </p>
-          </div>
-        </div>
-        <p className="mt-4 rounded-lg bg-ink-100/60 p-3 text-sm text-ink-600">
-          {neededRemainingAverage === null
-            ? "No remaining assessments are available for predictions."
-            : targetNumeric <= gradeSummary.completedContribution
-              ? "You've already secured this target based on completed work."
-              : neededRemainingAverage > 100
-                ? `To reach ${targetGrade}%, you would need ${neededRemainingAverage.toFixed(
-                    1
-                  )}% average on remaining work, so this target is not possible with the current weights.`
-                : `You need an average of ${neededRemainingAverage.toFixed(
-                    1
-                  )}% across your remaining assessments to finish with ${targetGrade}%.`}
-        </p>
-      </Card>
-
-      <section className="grid gap-6 xl:grid-cols-[minmax(0,1fr)_24rem]">
-        <div className="space-y-6">
-          <SmartSyllabusExtractor
-            assessments={assessments}
-            course={course}
-            isGuest={isGuest}
-            onCourseUpdated={setCourse}
-            onSaved={handleExtractedAssessmentsSaved}
-          />
-
-          <Card className="overflow-hidden">
-          <div className="border-b border-ink-200 p-5">
-            <h2 className="text-lg font-semibold text-ink-900">
-              Assessments
-            </h2>
-            <p className="mt-1 text-sm text-ink-500">
-              Add grading items, scores, and weights as the course unfolds.
-            </p>
-          </div>
-
-          {sortedAssessments.length === 0 ? (
-            <div className="p-5">
-              <EmptyState
-                description="Add your first assessment to start calculating this course grade."
-                icon={<Layers3 aria-hidden="true" className="h-5 w-5" />}
-                title="No assessments yet"
-              />
-            </div>
+              ) : null}
+            </>
           ) : (
-            <div className="overflow-x-auto">
-              <table className="w-full min-w-[860px] text-left text-sm">
-                <thead className="border-b border-ink-200 bg-ink-50 text-xs uppercase text-ink-500">
-                  <tr>
-                    <th className="px-5 py-3 font-semibold">Assessment</th>
-                    <th className="px-5 py-3 font-semibold">Status</th>
-                    <th className="px-5 py-3 font-semibold">Weight</th>
-                    <th className="px-5 py-3 font-semibold">Score</th>
-                    <th className="px-5 py-3 font-semibold">Max score</th>
-                    <th className="px-5 py-3 font-semibold">
-                      Grade contribution
-                    </th>
-                    <th className="px-5 py-3 text-right font-semibold">
-                      Actions
-                    </th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-ink-100">
-                  {sortedAssessments.map((assessment) => {
-                    const status = getAssessmentStatus(assessment);
-                    const contribution = getWeightedContribution(assessment);
-                    const maxScore = getAssessmentMaxScore(assessment);
-
-                    return (
-                      <tr key={assessment.id}>
-                        <td className="px-5 py-4">
-                          <div className="font-medium text-ink-900">
-                            {getAssessmentName(assessment)}
-                          </div>
-                        </td>
-                        <td className="px-5 py-4">
-                          <Badge tone={getStatusTone(status)}>
-                            {getFriendlyStatus(status)}
-                          </Badge>
-                        </td>
-                        <td className="px-5 py-4 text-ink-700">
-                          {getAssessmentWeight(assessment)}%
-                        </td>
-                        <td className="px-5 py-4 text-ink-700">
-                          {assessment.score === null ||
-                          assessment.score === undefined
-                            ? "Not scored"
-                            : Number(assessment.score)}
-                        </td>
-                        <td className="px-5 py-4 text-ink-700">
-                          {maxScore === null ? "Not set" : Number(maxScore)}
-                        </td>
-                        <td className="px-5 py-4 font-medium text-ink-900">
-                          {formatPercent(contribution)}
-                        </td>
-                        <td className="px-5 py-4">
-                          <div className="flex justify-end gap-2">
-                            <Button
-                              aria-label={`Edit ${getAssessmentName(assessment)}`}
-                              onClick={() => startEditing(assessment)}
-                              size="icon"
-                              variant="secondary"
-                            >
-                              <Edit3 aria-hidden="true" className="h-4 w-4" />
-                            </Button>
-                            <Button
-                              aria-label={`Delete ${getAssessmentName(assessment)}`}
-                              onClick={() => void deleteAssessment(assessment.id)}
-                              size="icon"
-                              variant="danger"
-                            >
-                              <Trash2 aria-hidden="true" className="h-4 w-4" />
-                            </Button>
-                          </div>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
-            </div>
+            <EmptyState
+              description="Scan a syllabus to auto-fill instructor, schedule, office hours, textbooks, and description."
+              icon={<Info aria-hidden="true" className="h-5 w-5" />}
+              title="No extra course details yet"
+            />
           )}
         </Card>
-        </div>
-
-        <Card className="p-5" id="add-assessment">
-          <div className="flex items-start justify-between gap-3">
-            <div>
-              <h2 className="text-lg font-semibold text-ink-900">
-                {editingAssessmentId ? "Edit assessment" : "Add assessment"}
-              </h2>
-              <p className="mt-1 text-sm text-ink-500">
-                Track weights and scores as the course unfolds.
-              </p>
-            </div>
-            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
-              {editingAssessmentId ? (
-                <Save aria-hidden="true" className="h-5 w-5" />
-              ) : (
-                <PlusCircle aria-hidden="true" className="h-5 w-5" />
-              )}
-            </span>
-          </div>
-
-          <form className="mt-5 space-y-4" onSubmit={saveAssessment}>
-            <label className="block">
-              <span className="text-sm font-medium text-ink-700">Name</span>
-              <input
-                className={inputStyles}
-                list="course-assessment-names"
-                onChange={(event) =>
-                  updateAssessmentForm("name", event.target.value)
-                }
-                placeholder="Midterm"
-                required
-                value={assessmentForm.name}
-              />
-              <datalist id="course-assessment-names">
-                {assessmentNames.map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </datalist>
-            </label>
-
-            <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-1">
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">
-                  Weight percentage
-                </span>
-                <input
-                  className={inputStyles}
-                  min="0"
-                  onChange={(event) =>
-                    updateAssessmentForm("weightPercentage", event.target.value)
-                  }
-                  placeholder="25"
-                  required
-                  step="0.01"
-                  type="number"
-                  value={assessmentForm.weightPercentage}
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">Status</span>
-                <select
-                  className={inputStyles}
-                  onChange={(event) =>
-                    updateAssessmentForm("category", event.target.value)
-                  }
-                  value={assessmentForm.category}
-                >
-                  {assessmentStatuses.map((status) => (
-                    <option key={status} value={status}>
-                      {status}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-
-            <div className="grid gap-3 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">Score</span>
-                <input
-                  className={inputStyles}
-                  min="0"
-                  onChange={(event) =>
-                    updateAssessmentForm("score", event.target.value)
-                  }
-                  placeholder="88"
-                  step="0.01"
-                  type="number"
-                  value={assessmentForm.score}
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">
-                  Max score
-                </span>
-                <input
-                  className={inputStyles}
-                  min="0"
-                  onChange={(event) =>
-                    updateAssessmentForm("maxScore", event.target.value)
-                  }
-                  placeholder="100"
-                  step="0.01"
-                  type="number"
-                  value={assessmentForm.maxScore}
-                />
-              </label>
-            </div>
-
-            <div className="rounded-lg bg-ink-50 p-3 text-sm text-ink-600">
-              <div className="flex items-center gap-2 font-medium text-ink-900">
-                <Percent aria-hidden="true" className="h-4 w-4 text-teal-700" />
-                Grade contribution
-              </div>
-              <p className="mt-1">
-                {assessmentForm.score && assessmentForm.maxScore
-                  ? `${formatPercent(
-                      (Number(assessmentForm.score) /
-                        Number(assessmentForm.maxScore)) *
-                        (Number(assessmentForm.weightPercentage) || 0)
-                    )} toward the final grade`
-                  : "Enter score and max score to preview the grade contribution."}
-              </p>
-            </div>
-
-            <div className="flex flex-col gap-2 sm:flex-row">
-              <Button className="w-full" disabled={isSaving} type="submit">
-                {editingAssessmentId ? (
-                  <Save aria-hidden="true" className="h-4 w-4" />
-                ) : (
-                  <PlusCircle aria-hidden="true" className="h-4 w-4" />
-                )}
-                {isSaving
-                  ? "Saving..."
-                  : editingAssessmentId
-                    ? "Save changes"
-                    : "Add assessment"}
-              </Button>
-              {editingAssessmentId ? (
-                <Button
-                  className="w-full sm:w-auto"
-                  onClick={resetAssessmentForm}
-                  variant="secondary"
-                >
-                  Cancel
-                </Button>
-              ) : null}
-            </div>
-          </form>
-        </Card>
-      </section>
+      ) : null}
     </div>
   );
 }
