@@ -17,7 +17,7 @@
 <body>
   <main>
     <h1>GradeMate Smoke Report</h1>
-    <p>10 passed, 0 warnings, 0 failures.</p>
+    <p>26 passed, 0 warnings, 0 failures.</p>
     <table><tbody>
       <tr class="pass">
         <td>Build</td>
@@ -51,6 +51,12 @@
       </tr>
       <tr class="pass">
         <td>Routes</td>
+        <td>/auth/callback</td>
+        <td>pass</td>
+        <td>out/auth/callback/index.html</td>
+      </tr>
+      <tr class="pass">
+        <td>Routes</td>
         <td>/dashboard</td>
         <td>pass</td>
         <td>out/dashboard/index.html</td>
@@ -78,6 +84,96 @@
         <td>Production lab is hidden by default</td>
         <td>pass</td>
         <td>Extractor Lab should be dev-only unless NEXT_PUBLIC_ENABLE_EXTRACTOR_LAB=true.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Callback route renders in static export</td>
+        <td>pass</td>
+        <td>out/auth/callback/index.html should exist and render the client callback shell.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Sign-in link failure has friendly recovery copy</td>
+        <td>pass</td>
+        <td>Callback should hide raw Supabase errors and offer login, guest mode, and resend recovery.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>No raw Supabase PKCE message in callback UI</td>
+        <td>pass</td>
+        <td>Users should never see the raw Supabase verifier-storage error.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Login uses password flow</td>
+        <td>pass</td>
+        <td>Normal login should use email/password, not passwordless email links.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Signup uses email/password flow</td>
+        <td>pass</td>
+        <td>Signup should create an email/password account and support resend if confirmation is enabled.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Resend verification uses Supabase signup resend</td>
+        <td>pass</td>
+        <td>Resend should use Supabase signup verification email, not passwordless login.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Email and password fields render</td>
+        <td>pass</td>
+        <td>Login and signup pages should render normal email/password inputs.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Guest mode remains visible</td>
+        <td>pass</td>
+        <td>Auth should never block guest usage.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Google login hidden</td>
+        <td>pass</td>
+        <td>Google auth is paused and should not appear in the launch UI.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Simple PDF extraction has no storage upload</td>
+        <td>pass</td>
+        <td>Simple Mode should read PDFs locally and never upload them during normal extraction.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Workspace PDF extraction has no storage upload</td>
+        <td>pass</td>
+        <td>Workspace extraction should read PDFs locally and never upload them during normal extraction.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Confirm save clears PDF state</td>
+        <td>pass</td>
+        <td>Saving reviewed PDF extraction should discard file state and show the privacy confirmation.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Verified feedback saves JSON/hash by default</td>
+        <td>pass</td>
+        <td>Raw extracted text should be stored only when the user checks the opt-in box.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Contribute syllabus is the only PDF storage exception</td>
+        <td>pass</td>
+        <td>Only contribution review flow may ask to store syllabus source files.</td>
+      </tr>
+      <tr class="pass">
+        <td>Privacy</td>
+        <td>Storage cleanup dry-run exists</td>
+        <td>pass</td>
+        <td>storage:cleanup-syllabi should default to dry-run and require --confirm to delete files.</td>
       </tr></tbody></table>
   </main>
 </body>

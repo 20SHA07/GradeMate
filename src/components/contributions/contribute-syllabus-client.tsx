@@ -192,6 +192,7 @@ export function ContributeSyllabusClient() {
   const [sourceType, setSourceType] = useState<SourceType>("pasted_text");
   const [syllabusText, setSyllabusText] = useState("");
   const [sourceFileName, setSourceFileName] = useState("");
+  const [allowAdminReviewStorage, setAllowAdminReviewStorage] = useState(false);
   const [extractedText, setExtractedText] = useState("");
   const [isExtracting, setIsExtracting] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -317,6 +318,16 @@ export function ContributeSyllabusClient() {
   }
 
   async function submitContribution() {
+    const isPdfContribution =
+      sourceType === "pdf" || sourceFileName.toLowerCase().endsWith(".pdf");
+
+    if (isPdfContribution && !allowAdminReviewStorage) {
+      setError(
+        "Please confirm that this syllabus may be stored privately for admin review before submitting."
+      );
+      return;
+    }
+
     const confirmedJson = buildConfirmedJson(info, rows);
     const sourceText = extractedText || syllabusText;
     const payload = {
@@ -435,7 +446,10 @@ export function ContributeSyllabusClient() {
       <Card className="p-5">
         <div className="flex flex-wrap gap-2">
           <Button
-            onClick={() => setSourceType("pasted_text")}
+            onClick={() => {
+              setSourceType("pasted_text");
+              setAllowAdminReviewStorage(false);
+            }}
             variant={sourceType === "pasted_text" ? "primary" : "secondary"}
           >
             Paste text
@@ -488,6 +502,28 @@ export function ContributeSyllabusClient() {
             <p className="mt-2 text-sm text-ink-500">
               PDF text is extracted in your browser first. You will review everything before submitting.
             </p>
+            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+              <p className="font-medium">
+                Contribution uploads may be stored privately for admin review.
+              </p>
+              <p className="mt-1 text-amber-800">
+                This is different from normal GradeMate extraction, where PDFs are not stored.
+                Only admins can review contribution source files.
+              </p>
+              <label className="mt-3 flex items-start gap-2 text-sm">
+                <input
+                  checked={allowAdminReviewStorage}
+                  className="mt-1 h-4 w-4 rounded border-amber-300 text-teal-700"
+                  onChange={(event) =>
+                    setAllowAdminReviewStorage(event.target.checked)
+                  }
+                  type="checkbox"
+                />
+                <span>
+                  I understand this syllabus may be stored privately for admin review.
+                </span>
+              </label>
+            </div>
           </div>
         )}
 

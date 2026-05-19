@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-05-19T19:56:56.449Z",
+  "dryRun": true,
+  "backup": {
+    "timestamp": "2026-05-19T18-06-32-923Z",
+    "templatesPath": "training-data\\course-library-backups\\course_templates_2026-05-19T18-06-32-923Z.json",
+    "assessmentsPath": "training-data\\course-library-backups\\course_template_assessments_2026-05-19T18-06-32-923Z.json",
+    "materialsPath": "training-data\\course-library-backups\\course_template_materials_2026-05-19T18-06-32-923Z.json"
+  },
+  "protectedUserTablesTouched": false,
+  "sharedTablesRestored": [
+    "course_templates",
+    "course_template_assessments",
+    "course_template_materials"
+  ],
+  "counts": {
+    "templates": 92,
+    "assessments": 230,
+    "materials": 2512
+  }
+}

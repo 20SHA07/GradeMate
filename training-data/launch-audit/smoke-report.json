@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-19T18:36:50.625Z",
+  "generatedAt": "2026-05-19T20:31:02.576Z",
   "summary": {
-    "passed": 10,
+    "passed": 26,
     "warnings": 0,
     "failures": 0
   },
@@ -38,6 +38,12 @@
     },
     {
       "area": "Routes",
+      "name": "/auth/callback",
+      "status": "pass",
+      "detail": "out/auth/callback/index.html"
+    },
+    {
+      "area": "Routes",
       "name": "/dashboard",
       "status": "pass",
       "detail": "out/dashboard/index.html"
@@ -65,6 +71,96 @@
       "name": "Production lab is hidden by default",
       "status": "pass",
       "detail": "Extractor Lab should be dev-only unless NEXT_PUBLIC_ENABLE_EXTRACTOR_LAB=true."
+    },
+    {
+      "area": "Auth",
+      "name": "Callback route renders in static export",
+      "status": "pass",
+      "detail": "out/auth/callback/index.html should exist and render the client callback shell."
+    },
+    {
+      "area": "Auth",
+      "name": "Sign-in link failure has friendly recovery copy",
+      "status": "pass",
+      "detail": "Callback should hide raw Supabase errors and offer login, guest mode, and resend recovery."
+    },
+    {
+      "area": "Auth",
+      "name": "No raw Supabase PKCE message in callback UI",
+      "status": "pass",
+      "detail": "Users should never see the raw Supabase verifier-storage error."
+    },
+    {
+      "area": "Auth",
+      "name": "Login uses password flow",
+      "status": "pass",
+      "detail": "Normal login should use email/password, not passwordless email links."
+    },
+    {
+      "area": "Auth",
+      "name": "Signup uses email/password flow",
+      "status": "pass",
+      "detail": "Signup should create an email/password account and support resend if confirmation is enabled."
+    },
+    {
+      "area": "Auth",
+      "name": "Resend verification uses Supabase signup resend",
+      "status": "pass",
+      "detail": "Resend should use Supabase signup verification email, not passwordless login."
+    },
+    {
+      "area": "Auth",
+      "name": "Email and password fields render",
+      "status": "pass",
+      "detail": "Login and signup pages should render normal email/password inputs."
+    },
+    {
+      "area": "Auth",
+      "name": "Guest mode remains visible",
+      "status": "pass",
+      "detail": "Auth should never block guest usage."
+    },
+    {
+      "area": "Auth",
+      "name": "Google login hidden",
+      "status": "pass",
+      "detail": "Google auth is paused and should not appear in the launch UI."
+    },
+    {
+      "area": "Privacy",
+      "name": "Simple PDF extraction has no storage upload",
+      "status": "pass",
+      "detail": "Simple Mode should read PDFs locally and never upload them during normal extraction."
+    },
+    {
+      "area": "Privacy",
+      "name": "Workspace PDF extraction has no storage upload",
+      "status": "pass",
+      "detail": "Workspace extraction should read PDFs locally and never upload them during normal extraction."
+    },
+    {
+      "area": "Privacy",
+      "name": "Confirm save clears PDF state",
+      "status": "pass",
+      "detail": "Saving reviewed PDF extraction should discard file state and show the privacy confirmation."
+    },
+    {
+      "area": "Privacy",
+      "name": "Verified feedback saves JSON/hash by default",
+      "status": "pass",
+      "detail": "Raw extracted text should be stored only when the user checks the opt-in box."
+    },
+    {
+      "area": "Privacy",
+      "name": "Contribute syllabus is the only PDF storage exception",
+      "status": "pass",
+      "detail": "Only contribution review flow may ask to store syllabus source files."
+    },
+    {
+      "area": "Privacy",
+      "name": "Storage cleanup dry-run exists",
+      "status": "pass",
+      "detail": "storage:cleanup-syllabi should default to dry-run and require --confirm to delete files."
     }
   ]
 }

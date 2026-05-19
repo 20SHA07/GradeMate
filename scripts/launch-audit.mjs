@@ -15,8 +15,11 @@ await checkRoutes();
 await checkHomepage();
 await checkNoProductionAiWording();
 await checkSupabaseEnvAndSecrets();
+await checkAuthFriendTestReadiness();
 await checkCourseLibraryReports();
 await checkDatabaseSql();
+await checkDatabaseSafetyReports();
+await checkSyllabusPrivacy();
 await writeReports();
 
 const failed = checks.filter((check) => check.status === "fail").length;
@@ -41,9 +44,18 @@ async function checkPackageScripts() {
     "test:dataset",
     "library:rebuild",
     "library:review",
+    "library:import-rebuilt:dry",
+    "library:import-rebuilt",
+    "library:restore-backup",
+    "library:restore-backup:dry",
     "library:verify-production",
+    "storage:cleanup-syllabi",
+    "storage:cleanup-syllabi:dry",
     "launch:audit",
+    "db:safety-check",
+    "db:lint-sql",
     "db:check-rls",
+    "user-data:backup-counts",
     "smoke:local"
   ];
 
@@ -180,6 +192,64 @@ async function checkSupabaseEnvAndSecrets() {
   });
 }
 
+async function checkAuthFriendTestReadiness() {
+  const formSource = await readText("src/components/auth/auth-form.tsx");
+  const callbackSource = await readText("src/components/auth/auth-callback-client.tsx");
+
+  addCheck({
+    area: "Auth",
+    name: "Password login enabled",
+    status:
+      formSource.includes("signInWithPassword") && !formSource.includes("signInWithOtp")
+        ? "pass"
+        : "fail",
+    detail: "Login should use Supabase email/password auth, not passwordless email links."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Signup uses email/password redirect",
+    status:
+      formSource.includes("signUp") &&
+      formSource.includes("password") &&
+      formSource.includes("emailRedirectTo: getAuthRedirectUrl()")
+        ? "pass"
+        : "fail",
+    detail: "Signup should use email/password with the static GitHub Pages callback URL."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Guest mode enabled",
+    status:
+      formSource.includes("Continue as guest") &&
+      callbackSource.includes("Continue as guest")
+        ? "pass"
+        : "fail",
+    detail: "Auth failures should never block local guest mode."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Google login hidden",
+    status:
+      !formSource.includes("Continue with Google") &&
+      !formSource.includes("Sign up with Google") &&
+      !formSource.includes("signInWithGoogle")
+        ? "pass"
+        : "fail",
+    detail: "Google auth is paused for friend testing."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Auth callback errors are friendly",
+    status:
+      callbackSource.includes(
+        "This sign-in link expired or was opened in a different browser. Please log in again."
+      ) && !callbackSource.includes("PKCE code verifier not found in storage")
+        ? "pass"
+        : "fail",
+    detail: "Callback should hide raw Supabase PKCE/session storage errors."
+  });
+}
+
 async function checkCourseLibraryReports() {
   const review = await readJson("training-data/course-library-rebuild/review-report.json");
   const verify = await readJson(
@@ -230,6 +300,145 @@ async function checkDatabaseSql() {
       detail: filePath
     });
   }
+}
+
+async function checkDatabaseSafetyReports() {
+  const safety = await readJson("training-data/launch-audit/db-safety-report.json");
+  const lint = await readJson("training-data/launch-audit/sql-lint-report.json");
+  const rls = await readJson("training-data/launch-audit/rls-report.json");
+  const userCounts = await readJson("training-data/launch-audit/user-data-counts.json");
+  const latestBackup = await findLatestCourseLibraryBackup();
+
+  addCheck({
+    area: "Database Safety",
+    name: "db:safety-check report",
+    status:
+      safety?.summary?.failures === 0
+        ? safety.summary.warnings > 0
+          ? "warn"
+          : "pass"
+        : "warn",
+    detail: safety?.summary
+      ? `${safety.summary.passed} passed, ${safety.summary.warnings} warnings, ${safety.summary.failures} failures`
+      : "Run npm run db:safety-check."
+  });
+  addCheck({
+    area: "Database Safety",
+    name: "db:lint-sql report",
+    status:
+      lint?.summary?.failures === 0
+        ? lint.summary.warnings > 0
+          ? "warn"
+          : "pass"
+        : "warn",
+    detail: lint?.summary
+      ? `${lint.summary.failures} failures, ${lint.summary.warnings} warnings`
+      : "Run npm run db:lint-sql."
+  });
+  addCheck({
+    area: "Database Safety",
+    name: "db:check-rls report",
+    status: rls?.summary?.failed === 0 ? "pass" : "warn",
+    detail: rls?.summary
+      ? `${rls.summary.passed} passed, ${rls.summary.failed} failed`
+      : "Run npm run db:check-rls."
+  });
+  addCheck({
+    area: "Database Safety",
+    name: "Course Library backup exists",
+    status: latestBackup ? "pass" : "fail",
+    detail: latestBackup
+      ? `${latestBackup.timestamp}; templates ${latestBackup.templates}, assessments ${latestBackup.assessments}, materials ${latestBackup.materials}`
+      : "Run npm run library:export-current before real imports."
+  });
+  addCheck({
+    area: "Database Safety",
+    name: "User data count snapshot",
+    status: userCounts?.status === "ok" || userCounts?.status === "skipped" ? "pass" : "warn",
+    detail: userCounts
+      ? `${userCounts.status}: ${userCounts.privacy}`
+      : "Run npm run user-data:backup-counts when service-role env is available."
+  });
+}
+
+async function checkSyllabusPrivacy() {
+  const normalExtractionFiles = [
+    "src/components/simple/simple-gpa-calculator.tsx",
+    "src/components/courses/course-detail-client.tsx"
+  ];
+  const storagePatterns = [/storage\s*\.\s*from/i, /\.upload\s*\(/i, /course-syllabi/i];
+  const storageMatches = [];
+
+  for (const filePath of normalExtractionFiles) {
+    const content = await readText(filePath);
+    if (storagePatterns.some((pattern) => pattern.test(content))) {
+      storageMatches.push(filePath);
+    }
+  }
+
+  addCheck({
+    area: "Privacy",
+    name: "Normal PDF extraction does not upload files",
+    status: storageMatches.length === 0 ? "pass" : "fail",
+    detail:
+      storageMatches.length === 0
+        ? "Simple and Workspace extraction components have no Supabase Storage upload calls."
+        : `Review storage references in: ${storageMatches.join(", ")}`
+  });
+
+  const simpleSource = await readText("src/components/simple/simple-gpa-calculator.tsx");
+  const workspaceSource = await readText("src/components/courses/course-detail-client.tsx");
+
+  addCheck({
+    area: "Privacy",
+    name: "Normal extraction clears PDF state after save",
+    status:
+      simpleSource.includes("setPdfFileByCourse") &&
+      simpleSource.includes("Saved. The PDF was not stored.") &&
+      workspaceSource.includes("setFile(null)") &&
+      workspaceSource.includes("Saved. The PDF was not stored.")
+        ? "pass"
+        : "fail",
+    detail: "Confirm-save paths should clear the selected PDF File object and show privacy confirmation."
+  });
+
+  const verifiedSource = await readText("src/lib/syllabus/verified-extractions.ts");
+  addCheck({
+    area: "Privacy",
+    name: "Verified feedback stores raw text only by opt-in",
+    status:
+      verifiedSource.includes("includeExtractedText === true") &&
+      verifiedSource.includes("source_text_hash")
+        ? "pass"
+        : "fail",
+    detail: "Verified examples should save JSON/hash by default and store extracted text only with explicit opt-in."
+  });
+
+  const contributionSource = await readText(
+    "src/components/contributions/contribute-syllabus-client.tsx"
+  );
+  addCheck({
+    area: "Privacy",
+    name: "Contribution flow asks before private review storage",
+    status:
+      contributionSource.includes(
+        "Contribution uploads may be stored privately for admin review."
+      ) && contributionSource.includes("allowAdminReviewStorage")
+        ? "pass"
+        : "fail",
+    detail: "Contribution PDF flow should clearly distinguish admin review storage from normal extraction."
+  });
+
+  addCheck({
+    area: "Privacy",
+    name: "Syllabus storage cleanup script",
+    status:
+      fsSync.existsSync(path.resolve("scripts/storage-cleanup-syllabi.mjs")) &&
+      (await readText("package.json")).includes("storage:cleanup-syllabi:dry")
+        ? "pass"
+        : "fail",
+    detail: "Cleanup script should dry-run by default and require --confirm for deletion."
+  });
 }
 
 async function writeReports() {
@@ -284,6 +493,56 @@ async function walkFiles(rootDir) {
   }
 
   return files;
+}
+
+async function findLatestCourseLibraryBackup() {
+  const courseLibraryBackupDir = path.resolve("training-data", "course-library-backups");
+
+  if (!fsSync.existsSync(courseLibraryBackupDir)) {
+    return null;
+  }
+
+  const entries = await fs.readdir(courseLibraryBackupDir);
+  const templateFiles = entries
+    .filter((entry) => /^course_templates_.*\.json$/i.test(entry))
+    .sort()
+    .reverse();
+
+  for (const templateFile of templateFiles) {
+    const timestamp = templateFile
+      .replace(/^course_templates_/i, "")
+      .replace(/\.json$/i, "");
+    const assessmentsPath = path.join(
+      courseLibraryBackupDir,
+      `course_template_assessments_${timestamp}.json`
+    );
+    const materialsPath = path.join(
+      courseLibraryBackupDir,
+      `course_template_materials_${timestamp}.json`
+    );
+
+    if (!fsSync.existsSync(assessmentsPath)) {
+      continue;
+    }
+
+    return {
+      timestamp,
+      templates: await countJsonArray(path.join(courseLibraryBackupDir, templateFile)),
+      assessments: await countJsonArray(assessmentsPath),
+      materials: fsSync.existsSync(materialsPath) ? await countJsonArray(materialsPath) : 0
+    };
+  }
+
+  return null;
+}
+
+async function countJsonArray(filePath) {
+  try {
+    const value = JSON.parse(await fs.readFile(filePath, "utf8"));
+    return Array.isArray(value) ? value.length : 0;
+  } catch {
+    return 0;
+  }
 }
 
 function buildHtml(report) {

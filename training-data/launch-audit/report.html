@@ -23,10 +23,10 @@
 <body>
   <main>
     <h1>GradeMate Launch Audit</h1>
-    <p>Generated 2026-05-19T18:36:50.302Z</p>
+    <p>Generated 2026-05-19T20:25:50.739Z</p>
     <section class="cards">
-      <div class="card"><span>Ready</span><strong>31</strong></div>
-      <div class="card"><span>Warnings</span><strong>0</strong></div>
+      <div class="card"><span>Ready</span><strong>54</strong></div>
+      <div class="card"><span>Warnings</span><strong>2</strong></div>
       <div class="card"><span>Failures</span><strong>0</strong></div>
     </section>
     <table>
@@ -70,9 +70,45 @@
         </tr>
         <tr class="pass">
           <td>Scripts</td>
+          <td>npm run library:import-rebuilt:dry</td>
+          <td>pass</td>
+          <td>node scripts/library-import-rebuilt.mjs --dry-run</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:import-rebuilt</td>
+          <td>pass</td>
+          <td>node scripts/library-import-rebuilt.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:restore-backup</td>
+          <td>pass</td>
+          <td>node scripts/library-restore-backup.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run library:restore-backup:dry</td>
+          <td>pass</td>
+          <td>node scripts/library-restore-backup.mjs --dry-run</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
           <td>npm run library:verify-production</td>
           <td>pass</td>
           <td>node scripts/library-verify-production.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run storage:cleanup-syllabi</td>
+          <td>pass</td>
+          <td>node scripts/storage-cleanup-syllabi.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run storage:cleanup-syllabi:dry</td>
+          <td>pass</td>
+          <td>node scripts/storage-cleanup-syllabi.mjs --dry-run</td>
         </tr>
         <tr class="pass">
           <td>Scripts</td>
@@ -82,9 +118,27 @@
         </tr>
         <tr class="pass">
           <td>Scripts</td>
+          <td>npm run db:safety-check</td>
+          <td>pass</td>
+          <td>node scripts/db-safety-check.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run db:lint-sql</td>
+          <td>pass</td>
+          <td>node scripts/db-lint-sql.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
           <td>npm run db:check-rls</td>
           <td>pass</td>
           <td>node scripts/db-check-rls.mjs</td>
+        </tr>
+        <tr class="pass">
+          <td>Scripts</td>
+          <td>npm run user-data:backup-counts</td>
+          <td>pass</td>
+          <td>node scripts/user-data-backup-counts.mjs</td>
         </tr>
         <tr class="pass">
           <td>Scripts</td>
@@ -97,6 +151,12 @@
           <td>Landing</td>
           <td>pass</td>
           <td>src/app/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
+          <td>Auth Callback</td>
+          <td>pass</td>
+          <td>src/app/(auth)/auth/callback/page.tsx</td>
         </tr>
         <tr class="pass">
           <td>Routes</td>
@@ -177,6 +237,36 @@
           <td>Frontend reads only public Supabase URL and publishable/anon key.</td>
         </tr>
         <tr class="pass">
+          <td>Auth</td>
+          <td>Password login enabled</td>
+          <td>pass</td>
+          <td>Login should use Supabase email/password auth, not passwordless email links.</td>
+        </tr>
+        <tr class="pass">
+          <td>Auth</td>
+          <td>Signup uses email/password redirect</td>
+          <td>pass</td>
+          <td>Signup should use email/password with the static GitHub Pages callback URL.</td>
+        </tr>
+        <tr class="pass">
+          <td>Auth</td>
+          <td>Guest mode enabled</td>
+          <td>pass</td>
+          <td>Auth failures should never block local guest mode.</td>
+        </tr>
+        <tr class="pass">
+          <td>Auth</td>
+          <td>Google login hidden</td>
+          <td>pass</td>
+          <td>Google auth is paused for friend testing.</td>
+        </tr>
+        <tr class="pass">
+          <td>Auth</td>
+          <td>Auth callback errors are friendly</td>
+          <td>pass</td>
+          <td>Callback should hide raw Supabase PKCE/session storage errors.</td>
+        </tr>
+        <tr class="pass">
           <td>Course Library</td>
           <td>Rebuild canonical ready templates</td>
           <td>pass</td>
@@ -217,6 +307,66 @@
           <td>verified-extractions.sql</td>
           <td>pass</td>
           <td>supabase/verified-extractions.sql</td>
+        </tr>
+        <tr class="warn">
+          <td>Database Safety</td>
+          <td>db:safety-check report</td>
+          <td>warn</td>
+          <td>24 passed, 2 warnings, 0 failures</td>
+        </tr>
+        <tr class="warn">
+          <td>Database Safety</td>
+          <td>db:lint-sql report</td>
+          <td>warn</td>
+          <td>0 failures, 49 warnings</td>
+        </tr>
+        <tr class="pass">
+          <td>Database Safety</td>
+          <td>db:check-rls report</td>
+          <td>pass</td>
+          <td>30 passed, 0 failed</td>
+        </tr>
+        <tr class="pass">
+          <td>Database Safety</td>
+          <td>Course Library backup exists</td>
+          <td>pass</td>
+          <td>2026-05-19T18-06-32-923Z; templates 92, assessments 230, materials 2512</td>
+        </tr>
+        <tr class="pass">
+          <td>Database Safety</td>
+          <td>User data count snapshot</td>
+          <td>pass</td>
+          <td>skipped: No private rows were exported. This report contains counts only.</td>
+        </tr>
+        <tr class="pass">
+          <td>Privacy</td>
+          <td>Normal PDF extraction does not upload files</td>
+          <td>pass</td>
+          <td>Simple and Workspace extraction components have no Supabase Storage upload calls.</td>
+        </tr>
+        <tr class="pass">
+          <td>Privacy</td>
+          <td>Normal extraction clears PDF state after save</td>
+          <td>pass</td>
+          <td>Confirm-save paths should clear the selected PDF File object and show privacy confirmation.</td>
+        </tr>
+        <tr class="pass">
+          <td>Privacy</td>
+          <td>Verified feedback stores raw text only by opt-in</td>
+          <td>pass</td>
+          <td>Verified examples should save JSON/hash by default and store extracted text only with explicit opt-in.</td>
+        </tr>
+        <tr class="pass">
+          <td>Privacy</td>
+          <td>Contribution flow asks before private review storage</td>
+          <td>pass</td>
+          <td>Contribution PDF flow should clearly distinguish admin review storage from normal extraction.</td>
+        </tr>
+        <tr class="pass">
+          <td>Privacy</td>
+          <td>Syllabus storage cleanup script</td>
+          <td>pass</td>
+          <td>Cleanup script should dry-run by default and require --confirm for deletion.</td>
         </tr></tbody>
     </table>
   </main>

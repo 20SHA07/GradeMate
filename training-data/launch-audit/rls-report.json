@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-19T18:36:50.030Z",
+  "generatedAt": "2026-05-19T20:25:48.906Z",
   "summary": {
-    "passed": 12,
+    "passed": 30,
     "failed": 0
   },
   "checks": [
@@ -14,6 +14,76 @@
       "name": "Admin role helper exists",
       "status": "pass",
       "detail": "/function public\\.is_admin/i"
+    },
+    {
+      "name": "semesters table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+semesters\\b/i"
+    },
+    {
+      "name": "semesters RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+semesters\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "courses table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+courses\\b/i"
+    },
+    {
+      "name": "courses RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+courses\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "assessments table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+assessments\\b/i"
+    },
+    {
+      "name": "assessments RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+assessments\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "verified_extractions table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+verified_extractions\\b/i"
+    },
+    {
+      "name": "verified_extractions RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+verified_extractions\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "syllabus_contributions table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+syllabus_contributions\\b/i"
+    },
+    {
+      "name": "syllabus_contributions RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+syllabus_contributions\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "contribution_assessments table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+contribution_assessments\\b/i"
+    },
+    {
+      "name": "contribution_assessments RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+contribution_assessments\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "profiles table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+profiles\\b/i"
+    },
+    {
+      "name": "profiles RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+profiles\\s+enable\\s+row\\s+level\\s+security/i"
     },
     {
       "name": "Private semesters use owner RLS",
@@ -41,6 +111,16 @@
       "detail": "/course_template_assessments for select[\\s\\S]*course_templates[\\s\\S]*template_status[\\s\\S]*ready/i"
     },
     {
+      "name": "Public template materials require ready parent",
+      "status": "pass",
+      "detail": "/course_template_materials for select[\\s\\S]*course_templates[\\s\\S]*template_status[\\s\\S]*ready/i"
+    },
+    {
+      "name": "Anon users cannot modify course templates",
+      "status": "pass",
+      "detail": "custom static SQL check"
+    },
+    {
       "name": "Users can create own syllabus contributions",
       "status": "pass",
       "detail": "/syllabus_contributions for insert[\\s\\S]*auth\\.uid\\(\\) = submitted_by_user_id/i"
@@ -64,6 +144,16 @@
       "name": "Service import uniqueness uses unique_key",
       "status": "pass",
       "detail": "/course_templates_unique_key_unique|unique_key text/i"
+    },
+    {
+      "name": "Admin can create shared course templates",
+      "status": "pass",
+      "detail": "/Admins can create course templates[\\s\\S]*public\\.is_admin\\(\\)/i"
+    },
+    {
+      "name": "Admin can update shared course templates",
+      "status": "pass",
+      "detail": "/Admins can update course templates[\\s\\S]*public\\.is_admin\\(\\)/i"
     }
   ]
 }

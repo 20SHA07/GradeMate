@@ -1,8 +1,8 @@
 {
   "summary": {
-    "generatedAt": "2026-05-19T18:36:50.302Z",
-    "ready": 31,
-    "warnings": 0,
+    "generatedAt": "2026-05-19T20:25:50.739Z",
+    "ready": 54,
+    "warnings": 2,
     "failures": 0
   },
   "checks": [
@@ -44,9 +44,45 @@
     },
     {
       "area": "Scripts",
+      "name": "npm run library:import-rebuilt:dry",
+      "status": "pass",
+      "detail": "node scripts/library-import-rebuilt.mjs --dry-run"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:import-rebuilt",
+      "status": "pass",
+      "detail": "node scripts/library-import-rebuilt.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:restore-backup",
+      "status": "pass",
+      "detail": "node scripts/library-restore-backup.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run library:restore-backup:dry",
+      "status": "pass",
+      "detail": "node scripts/library-restore-backup.mjs --dry-run"
+    },
+    {
+      "area": "Scripts",
       "name": "npm run library:verify-production",
       "status": "pass",
       "detail": "node scripts/library-verify-production.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run storage:cleanup-syllabi",
+      "status": "pass",
+      "detail": "node scripts/storage-cleanup-syllabi.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run storage:cleanup-syllabi:dry",
+      "status": "pass",
+      "detail": "node scripts/storage-cleanup-syllabi.mjs --dry-run"
     },
     {
       "area": "Scripts",
@@ -56,9 +92,27 @@
     },
     {
       "area": "Scripts",
+      "name": "npm run db:safety-check",
+      "status": "pass",
+      "detail": "node scripts/db-safety-check.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run db:lint-sql",
+      "status": "pass",
+      "detail": "node scripts/db-lint-sql.mjs"
+    },
+    {
+      "area": "Scripts",
       "name": "npm run db:check-rls",
       "status": "pass",
       "detail": "node scripts/db-check-rls.mjs"
+    },
+    {
+      "area": "Scripts",
+      "name": "npm run user-data:backup-counts",
+      "status": "pass",
+      "detail": "node scripts/user-data-backup-counts.mjs"
     },
     {
       "area": "Scripts",
@@ -71,6 +125,12 @@
       "name": "Landing",
       "status": "pass",
       "detail": "src/app/page.tsx"
+    },
+    {
+      "area": "Routes",
+      "name": "Auth Callback",
+      "status": "pass",
+      "detail": "src/app/(auth)/auth/callback/page.tsx"
     },
     {
       "area": "Routes",
@@ -151,6 +211,36 @@
       "detail": "Frontend reads only public Supabase URL and publishable/anon key."
     },
     {
+      "area": "Auth",
+      "name": "Password login enabled",
+      "status": "pass",
+      "detail": "Login should use Supabase email/password auth, not passwordless email links."
+    },
+    {
+      "area": "Auth",
+      "name": "Signup uses email/password redirect",
+      "status": "pass",
+      "detail": "Signup should use email/password with the static GitHub Pages callback URL."
+    },
+    {
+      "area": "Auth",
+      "name": "Guest mode enabled",
+      "status": "pass",
+      "detail": "Auth failures should never block local guest mode."
+    },
+    {
+      "area": "Auth",
+      "name": "Google login hidden",
+      "status": "pass",
+      "detail": "Google auth is paused for friend testing."
+    },
+    {
+      "area": "Auth",
+      "name": "Auth callback errors are friendly",
+      "status": "pass",
+      "detail": "Callback should hide raw Supabase PKCE/session storage errors."
+    },
+    {
       "area": "Course Library",
       "name": "Rebuild canonical ready templates",
       "status": "pass",
@@ -191,8 +281,81 @@
       "name": "verified-extractions.sql",
       "status": "pass",
       "detail": "supabase/verified-extractions.sql"
+    },
+    {
+      "area": "Database Safety",
+      "name": "db:safety-check report",
+      "status": "warn",
+      "detail": "24 passed, 2 warnings, 0 failures"
+    },
+    {
+      "area": "Database Safety",
+      "name": "db:lint-sql report",
+      "status": "warn",
+      "detail": "0 failures, 49 warnings"
+    },
+    {
+      "area": "Database Safety",
+      "name": "db:check-rls report",
+      "status": "pass",
+      "detail": "30 passed, 0 failed"
+    },
+    {
+      "area": "Database Safety",
+      "name": "Course Library backup exists",
+      "status": "pass",
+      "detail": "2026-05-19T18-06-32-923Z; templates 92, assessments 230, materials 2512"
+    },
+    {
+      "area": "Database Safety",
+      "name": "User data count snapshot",
+      "status": "pass",
+      "detail": "skipped: No private rows were exported. This report contains counts only."
+    },
+    {
+      "area": "Privacy",
+      "name": "Normal PDF extraction does not upload files",
+      "status": "pass",
+      "detail": "Simple and Workspace extraction components have no Supabase Storage upload calls."
+    },
+    {
+      "area": "Privacy",
+      "name": "Normal extraction clears PDF state after save",
+      "status": "pass",
+      "detail": "Confirm-save paths should clear the selected PDF File object and show privacy confirmation."
+    },
+    {
+      "area": "Privacy",
+      "name": "Verified feedback stores raw text only by opt-in",
+      "status": "pass",
+      "detail": "Verified examples should save JSON/hash by default and store extracted text only with explicit opt-in."
+    },
+    {
+      "area": "Privacy",
+      "name": "Contribution flow asks before private review storage",
+      "status": "pass",
+      "detail": "Contribution PDF flow should clearly distinguish admin review storage from normal extraction."
+    },
+    {
+      "area": "Privacy",
+      "name": "Syllabus storage cleanup script",
+      "status": "pass",
+      "detail": "Cleanup script should dry-run by default and require --confirm for deletion."
     }
   ],
   "needsActionBeforeSharing": [],
-  "optionalReview": []
+  "optionalReview": [
+    {
+      "area": "Database Safety",
+      "name": "db:safety-check report",
+      "status": "warn",
+      "detail": "24 passed, 2 warnings, 0 failures"
+    },
+    {
+      "area": "Database Safety",
+      "name": "db:lint-sql report",
+      "status": "warn",
+      "detail": "0 failures, 49 warnings"
+    }
+  ]
 }

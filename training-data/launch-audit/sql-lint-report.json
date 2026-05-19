@@ -1,0 +1,412 @@
+{
+  "generatedAt": "2026-05-19T19:56:40.492Z",
+  "protectedTables": [
+    "semesters",
+    "courses",
+    "assessments",
+    "verified_extractions",
+    "syllabus_contributions",
+    "contribution_assessments",
+    "profiles"
+  ],
+  "summary": {
+    "filesScanned": 5,
+    "failures": 0,
+    "warnings": 49,
+    "passed": false
+  },
+  "findings": [
+    {
+      "file": "supabase\\assessment-detail-fields.sql",
+      "line": 43,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\assessment-detail-fields.sql",
+      "line": 44,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\assessment-detail-fields.sql",
+      "line": 45,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\assessment-detail-fields.sql",
+      "line": 46,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\fix-assessment-rls.sql",
+      "line": 55,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\fix-assessment-rls.sql",
+      "line": 56,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\fix-assessment-rls.sql",
+      "line": 57,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\fix-assessment-rls.sql",
+      "line": 58,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 318,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 319,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can insert their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 320,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 321,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own profile email\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 322,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all profiles\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 323,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can update profiles\" on profiles;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 352,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own semesters\" on semesters;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 353,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own semesters\" on semesters;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 354,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own semesters\" on semesters;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 355,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete their own semesters\" on semesters;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 378,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own courses\" on courses;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 379,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own courses\" on courses;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 380,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own courses\" on courses;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 381,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete their own courses\" on courses;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 420,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 421,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 422,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 423,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete their own assessments\" on assessments;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 616,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own verified extractions\" on verified_extractions;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 617,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own verified extractions\" on verified_extractions;"
+    },
+    {
+      "file": "supabase\\schema.sql",
+      "line": 618,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all verified extractions\" on verified_extractions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 94,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 95,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can insert their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 96,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update their own profile\" on profiles;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 97,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all profiles\" on profiles;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 98,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can update profiles\" on profiles;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 122,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own contributions\" on syllabus_contributions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 123,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own contributions\" on syllabus_contributions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 124,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update editable own contributions\" on syllabus_contributions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 125,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all contributions\" on syllabus_contributions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 126,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can update contribution reviews\" on syllabus_contributions;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 156,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create assessments for own contributions\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 157,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view assessments for own contributions\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 158,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can update assessments for editable own contributions\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 159,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can delete assessments for editable own contributions\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 160,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all contribution assessments\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 161,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can update contribution assessments\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\syllabus-contributions.sql",
+      "line": 162,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can delete contribution assessments\" on contribution_assessments;"
+    },
+    {
+      "file": "supabase\\verified-extractions.sql",
+      "line": 55,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can view their own verified extractions\" on verified_extractions;"
+    },
+    {
+      "file": "supabase\\verified-extractions.sql",
+      "line": 56,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Users can create their own verified extractions\" on verified_extractions;"
+    },
+    {
+      "file": "supabase\\verified-extractions.sql",
+      "line": 57,
+      "severity": "warn",
+      "safeOverride": false,
+      "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
+      "statement": "drop policy if exists \"Admins can view all verified extractions\" on verified_extractions;"
+    }
+  ]
+}

@@ -1,0 +1,43 @@
+{
+  "generatedAt": "2026-05-19T19:56:41.060Z",
+  "status": "skipped",
+  "message": "Missing Supabase environment variable(s): SUPABASE_SERVICE_ROLE_KEY",
+  "privacy": "No private rows were exported. This report contains counts only.",
+  "tables": [
+    {
+      "table": "profiles",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "semesters",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "courses",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "assessments",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "verified_extractions",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "syllabus_contributions",
+      "count": null,
+      "status": "skipped"
+    },
+    {
+      "table": "contribution_assessments",
+      "count": null,
+      "status": "skipped"
+    }
+  ]
+}

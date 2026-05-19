@@ -13,10 +13,29 @@ const sql = await loadSql([
   "supabase/syllabus-contributions.sql",
   "supabase/verified-extractions.sql"
 ]);
+const protectedUserTables = [
+  "semesters",
+  "courses",
+  "assessments",
+  "verified_extractions",
+  "syllabus_contributions",
+  "contribution_assessments",
+  "profiles"
+];
 
 const checks = [
   check("Profiles table exists", /create table if not exists profiles/i),
   check("Admin role helper exists", /function public\.is_admin/i),
+  ...protectedUserTables.flatMap((table) => [
+    check(
+      `${table} table exists`,
+      new RegExp(`create\\s+table\\s+if\\s+not\\s+exists\\s+${table}\\b`, "i")
+    ),
+    check(
+      `${table} RLS enabled`,
+      new RegExp(`alter\\s+table\\s+${table}\\s+enable\\s+row\\s+level\\s+security`, "i")
+    )
+  ]),
   check("Private semesters use owner RLS", /semesters for select[\s\S]*auth\.uid\(\) = user_id/i),
   check("Private courses use owner RLS", /courses for select[\s\S]*auth\.uid\(\) = user_id/i),
   check("Private assessments use owner RLS", /assessments for select[\s\S]*auth\.uid\(\) = user_id/i),
@@ -27,6 +46,14 @@ const checks = [
   check(
     "Public template assessments require ready parent",
     /course_template_assessments for select[\s\S]*course_templates[\s\S]*template_status[\s\S]*ready/i
+  ),
+  check(
+    "Public template materials require ready parent",
+    /course_template_materials for select[\s\S]*course_templates[\s\S]*template_status[\s\S]*ready/i
+  ),
+  check(
+    "Anon users cannot modify course templates",
+    negativePattern(/course_templates for (insert|update|delete)[\s\S]*to\s+anon/i)
   ),
   check(
     "Users can create own syllabus contributions",
@@ -47,6 +74,14 @@ const checks = [
   check(
     "Service import uniqueness uses unique_key",
     /course_templates_unique_key_unique|unique_key text/i
+  ),
+  check(
+    "Admin can create shared course templates",
+    /Admins can create course templates[\s\S]*public\.is_admin\(\)/i
+  ),
+  check(
+    "Admin can update shared course templates",
+    /Admins can update course templates[\s\S]*public\.is_admin\(\)/i
   )
 ];
 
@@ -86,11 +121,23 @@ async function loadSql(files) {
 }
 
 function check(name, pattern) {
+  if (typeof pattern === "function") {
+    return {
+      name,
+      status: pattern(sql) ? "pass" : "fail",
+      detail: "custom static SQL check"
+    };
+  }
+
   return {
     name,
     status: pattern.test(sql) ? "pass" : "fail",
     detail: pattern.toString()
   };
+}
+
+function negativePattern(pattern) {
+  return (value) => !pattern.test(value);
 }
 
 function buildHtml(report) {

@@ -12,6 +12,8 @@ export type VerifiedExtractionInput = {
   sourceType: VerifiedExtractionSource;
   sourceFileName?: string | null;
   extractedText?: string | null;
+  sourceTextForHash?: string | null;
+  includeExtractedText?: boolean;
   confirmedExtraction: ExtractedSyllabus;
   originalExtraction?: ExtractedSyllabus | null;
   userFeedback: VerifiedExtractionFeedback;
@@ -119,10 +121,16 @@ function toConfirmedJson(extraction: ExtractedSyllabus) {
 }
 
 export async function saveVerifiedExtraction(input: VerifiedExtractionInput) {
-  const sourceText = input.extractedText ?? JSON.stringify(toConfirmedJson(input.confirmedExtraction));
-  const sourceTextHash = await hashText(sourceText);
+  const confirmedJsonText = JSON.stringify(toConfirmedJson(input.confirmedExtraction));
+  const sourceTextForHash =
+    input.sourceTextForHash ?? input.extractedText ?? confirmedJsonText;
+  const sourceTextForStorage =
+    input.extractedText ?? input.sourceTextForHash ?? "";
+  const sourceTextHash = await hashText(sourceTextForHash);
   const shouldStoreText =
-    input.sourceType !== "pdf" && sourceText.length > 0 && sourceText.length <= 20000;
+    input.includeExtractedText === true &&
+    sourceTextForStorage.length > 0 &&
+    sourceTextForStorage.length <= 20000;
   const payload = {
     ai_provider: input.aiProvider ?? "none",
     confidence: input.confirmedExtraction.confidence,
@@ -131,7 +139,7 @@ export async function saveVerifiedExtraction(input: VerifiedExtractionInput) {
     course_name: input.confirmedExtraction.courseName,
     created_at: new Date().toISOString(),
     credit_hours: input.confirmedExtraction.creditHours,
-    extracted_text: shouldStoreText ? sourceText : null,
+    extracted_text: shouldStoreText ? sourceTextForStorage : null,
     extractor_version: extractorVersion,
     instructor: input.confirmedExtraction.instructor,
     original_extraction_json: input.originalExtraction

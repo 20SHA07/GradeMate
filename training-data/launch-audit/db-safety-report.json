@@ -1,0 +1,180 @@
+{
+  "generatedAt": "2026-05-19T19:56:56.343Z",
+  "protectedUserTables": [
+    "semesters",
+    "courses",
+    "assessments",
+    "verified_extractions",
+    "syllabus_contributions",
+    "contribution_assessments",
+    "profiles"
+  ],
+  "sharedTemplateTables": [
+    "course_templates",
+    "course_template_assessments",
+    "course_template_materials"
+  ],
+  "summary": {
+    "passed": 24,
+    "warnings": 2,
+    "failures": 0
+  },
+  "checks": [
+    {
+      "area": "Secrets",
+      "name": "Service role key is not referenced in frontend source",
+      "status": "pass",
+      "detail": "No service-role references found under src/."
+    },
+    {
+      "area": "Secrets",
+      "name": "Service role key is local/server-only",
+      "status": "warn",
+      "detail": "SUPABASE_SERVICE_ROLE_KEY is not set. Write/import/verify scripts will refuse or skip live checks."
+    },
+    {
+      "area": "Import Safety",
+      "name": "Course Library write scripts only target shared template tables",
+      "status": "pass",
+      "detail": "Detected table references: scripts/library-import-rebuilt.mjs:course_templates, scripts/library-import-rebuilt.mjs:course_template_assessments, scripts/library-import-rebuilt.mjs:course_template_materials, scripts/library-restore-backup.mjs:course_template_materials, scripts/library-restore-backup.mjs:course_template_assessments, scripts/library-restore-backup.mjs:course_templates, scripts/library-backup-utils.mjs:course_templates, scripts/library-backup-utils.mjs:course_template_assessments, scripts/library-backup-utils.mjs:course_template_materials"
+    },
+    {
+      "area": "RLS",
+      "name": "semesters exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS semesters."
+    },
+    {
+      "area": "RLS",
+      "name": "semesters RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE semesters ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "courses exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS courses."
+    },
+    {
+      "area": "RLS",
+      "name": "courses RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE courses ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "assessments exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS assessments."
+    },
+    {
+      "area": "RLS",
+      "name": "assessments RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE assessments ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "verified_extractions exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS verified_extractions."
+    },
+    {
+      "area": "RLS",
+      "name": "verified_extractions RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE verified_extractions ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "syllabus_contributions exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS syllabus_contributions."
+    },
+    {
+      "area": "RLS",
+      "name": "syllabus_contributions RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE syllabus_contributions ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "contribution_assessments exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS contribution_assessments."
+    },
+    {
+      "area": "RLS",
+      "name": "contribution_assessments RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE contribution_assessments ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "profiles exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS profiles."
+    },
+    {
+      "area": "RLS",
+      "name": "profiles RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE profiles ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
+      "name": "Course templates are public-read ready-only",
+      "status": "pass",
+      "detail": "Public users should only read ready templates."
+    },
+    {
+      "area": "RLS",
+      "name": "Normal users have no Course Library write policy",
+      "status": "pass",
+      "detail": "Course Library writes should be admin/service role only."
+    },
+    {
+      "area": "RLS",
+      "name": "Admin can review/import shared templates",
+      "status": "pass",
+      "detail": "Admin policies are expected for contribution approval workflows."
+    },
+    {
+      "area": "Backups",
+      "name": "Course Library backup folder exists",
+      "status": "pass",
+      "detail": "C:\\Users\\shaha\\OneDrive - ku.ac.ae\\Documents\\Sites\\GradeMate\\training-data\\course-library-backups"
+    },
+    {
+      "area": "Backups",
+      "name": "Latest backup includes templates and assessments",
+      "status": "pass",
+      "detail": "2026-05-19T18-06-32-923Z; templates 92, assessments 230, materials 2512"
+    },
+    {
+      "area": "Backups",
+      "name": "Course Library backup is recent",
+      "status": "pass",
+      "detail": "Latest complete backup is 1.8 hours old."
+    },
+    {
+      "area": "Verification",
+      "name": "Production Course Library verify report",
+      "status": "pass",
+      "detail": "matched 74/74, public read passed"
+    },
+    {
+      "area": "Verification",
+      "name": "SQL lint report",
+      "status": "warn",
+      "detail": "0 failures, 49 warnings"
+    },
+    {
+      "area": "Verification",
+      "name": "RLS report",
+      "status": "pass",
+      "detail": "30 passed, 0 failed"
+    }
+  ]
+}

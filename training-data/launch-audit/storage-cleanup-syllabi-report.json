@@ -1,0 +1,21 @@
+{
+  "bucket": "course-syllabi",
+  "cutoff": "2026-04-19T20:20:32.939Z",
+  "days": 30,
+  "deletedPaths": [],
+  "dryRun": true,
+  "errors": [],
+  "generatedAt": "2026-05-19T20:20:32.941Z",
+  "candidates": [],
+  "skipped": [],
+  "warnings": [
+    "Missing Supabase environment variable(s): SUPABASE_SERVICE_ROLE_KEY. Dry-run report was created, but live storage candidates could not be queried."
+  ],
+  "summary": {
+    "candidates": 0,
+    "deleted": 0,
+    "dryRun": true,
+    "skipped": 0,
+    "updatedContributionRows": 0
+  }
+}

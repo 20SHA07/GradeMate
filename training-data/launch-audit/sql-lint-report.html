@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GradeMate SQL Lint</title>
+  <style>
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 18px; }
+    table { width: 100%; border-collapse: collapse; background: #111827; border-radius: 14px; overflow: hidden; }
+    td, th { padding: 11px 12px; border-bottom: 1px solid #334155; text-align: left; vertical-align: top; }
+    tr.fail td:first-child { color: #fda4af; font-weight: 700; }
+    tr.warn td:first-child { color: #facc15; font-weight: 700; }
+    code { color: #bae6fd; white-space: pre-wrap; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GradeMate SQL Lint</h1>
+    <p>0 failures, 49 warnings.</p>
+    <table>
+      <thead><tr><th>Severity</th><th>Location</th><th>Finding</th><th>Statement</th></tr></thead>
+      <tbody><tr class="warn">
+          <td>warn</td>
+          <td>supabase\assessment-detail-fields.sql:43</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\assessment-detail-fields.sql:44</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\assessment-detail-fields.sql:45</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\assessment-detail-fields.sql:46</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\fix-assessment-rls.sql:55</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\fix-assessment-rls.sql:56</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\fix-assessment-rls.sql:57</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\fix-assessment-rls.sql:58</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:318</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:319</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can insert their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:320</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:321</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own profile email&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:322</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all profiles&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:323</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can update profiles&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:352</td>
+          <td>DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own semesters&quot; on semesters;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:353</td>
+          <td>DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own semesters&quot; on semesters;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:354</td>
+          <td>DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own semesters&quot; on semesters;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:355</td>
+          <td>DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete their own semesters&quot; on semesters;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:378</td>
+          <td>DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own courses&quot; on courses;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:379</td>
+          <td>DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own courses&quot; on courses;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:380</td>
+          <td>DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own courses&quot; on courses;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:381</td>
+          <td>DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete their own courses&quot; on courses;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:420</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:421</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:422</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:423</td>
+          <td>DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete their own assessments&quot; on assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:616</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own verified extractions&quot; on verified_extractions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:617</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own verified extractions&quot; on verified_extractions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\schema.sql:618</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all verified extractions&quot; on verified_extractions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:94</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:95</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can insert their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:96</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update their own profile&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:97</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all profiles&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:98</td>
+          <td>DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can update profiles&quot; on profiles;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:122</td>
+          <td>DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own contributions&quot; on syllabus_contributions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:123</td>
+          <td>DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own contributions&quot; on syllabus_contributions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:124</td>
+          <td>DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update editable own contributions&quot; on syllabus_contributions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:125</td>
+          <td>DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all contributions&quot; on syllabus_contributions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:126</td>
+          <td>DROP POLICY on protected table syllabus_contributions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can update contribution reviews&quot; on syllabus_contributions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:156</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create assessments for own contributions&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:157</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view assessments for own contributions&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:158</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can update assessments for editable own contributions&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:159</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can delete assessments for editable own contributions&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:160</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all contribution assessments&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:161</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can update contribution assessments&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\syllabus-contributions.sql:162</td>
+          <td>DROP POLICY on protected table contribution_assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can delete contribution assessments&quot; on contribution_assessments;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\verified-extractions.sql:55</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can view their own verified extractions&quot; on verified_extractions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\verified-extractions.sql:56</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Users can create their own verified extractions&quot; on verified_extractions;</code></td>
+        </tr>
+<tr class="warn">
+          <td>warn</td>
+          <td>supabase\verified-extractions.sql:57</td>
+          <td>DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional</td>
+          <td><code>drop policy if exists &quot;Admins can view all verified extractions&quot; on verified_extractions;</code></td>
+        </tr></tbody>
+    </table>
+  </main>
+</body>
+</html>

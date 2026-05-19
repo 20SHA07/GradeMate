@@ -1339,6 +1339,7 @@ export function SimpleGpaCalculator() {
     });
 
     const savedCount = newAssessments.length;
+    const wasPdfSource = review.source === "pdf";
     const confirmedExtraction = buildConfirmedExtraction(
       review.extraction,
       validRows,
@@ -1371,6 +1372,17 @@ export function SimpleGpaCalculator() {
     }));
 
     setReview(null);
+    if (wasPdfSource) {
+      setPdfFileByCourse((current) => ({
+        ...current,
+        [review.courseId]: null
+      }));
+      setPdfPreviewByCourse((current) => {
+        const next = { ...current };
+        delete next[review.courseId];
+        return next;
+      });
+    }
     setPendingFeedback({
       courseName: confirmedExtraction.courseName ?? "this course",
       confirmedExtraction,
@@ -1381,11 +1393,14 @@ export function SimpleGpaCalculator() {
       sourceText: review.sourceText
     });
     setError("");
+    const savedMessage =
+      savedCount === 1
+        ? "Saved 1 assessment."
+        : `Saved ${savedCount} assessments.`;
     setMessage(
       [
-      savedCount === 1
-          ? "Saved 1 assessment."
-          : `Saved ${savedCount} assessments.`,
+        wasPdfSource ? "Saved. The PDF was not stored." : "",
+        savedMessage,
         skippedNames.length > 0
           ? `Skipped duplicates: ${Array.from(new Set(skippedNames)).join(", ")}.`
           : ""
@@ -1428,8 +1443,10 @@ export function SimpleGpaCalculator() {
         extractedText: pendingFeedback.includeExtractedText
           ? pendingFeedback.sourceText ?? null
           : null,
+        includeExtractedText: pendingFeedback.includeExtractedText,
         originalExtraction: pendingFeedback.originalExtraction,
         sourceFileName: pendingFeedback.sourceFileName,
+        sourceTextForHash: pendingFeedback.sourceText ?? null,
         sourceType: getVerifiedSource(pendingFeedback.source),
         userFeedback: feedback
       });
@@ -2747,7 +2764,7 @@ function ExtractionModalContent({
                 type="file"
               />
               <p className="mt-2 text-xs text-ink-500">
-                PDF text is read locally in your browser. If it fails, paste the grading section instead.
+                PDFs are read locally in your browser and are not stored. If it fails, paste the grading section instead.
               </p>
               <Button
                 className="mt-3"

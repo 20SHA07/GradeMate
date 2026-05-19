@@ -42,9 +42,10 @@ Copy `.env.example` to `.env.local` when wiring Supabase.
 ## Supabase Setup
 
 Run [supabase/schema.sql](supabase/schema.sql) in your Supabase SQL editor. It
-creates `semesters`, `courses`, `assessments`, `syllabus_uploads`, the private
-`course-syllabi` storage bucket, row-level security, and policies so users can only
-access their own records and files.
+creates `semesters`, `courses`, `assessments`, Course Library tables, row-level
+security, and policies so users can only access their own private workspace
+records. The private `course-syllabi` storage bucket is only for explicit
+syllabus contributions that require admin review, not normal extraction.
 
 If assessment inserts fail with a row-level security error, run
 [supabase/fix-assessment-rls.sql](supabase/fix-assessment-rls.sql) in the SQL
@@ -78,9 +79,31 @@ assessment suggestions, then requires review before saving. Public GitHub Pages
 extraction does not depend on Gemini, Ollama, OpenAI, or Supabase Edge
 Functions.
 
+### Privacy-first syllabus handling
+
+Normal Simple Mode and Workspace extraction never permanently stores syllabus
+PDFs. The browser reads the selected PDF locally, GradeMate saves only reviewed
+structured course data, assessment rows, confidence/warnings, extractor version,
+and a `source_text_hash`, then clears the PDF file from component state after
+save. Verified extraction feedback stores confirmed JSON plus a hash by default;
+raw extracted text is saved only when the user explicitly checks “Include
+extracted syllabus text to help improve detection.”
+
+The only exception is `/contribute-syllabus`: contribution uploads may be stored
+privately for admin review after the user confirms that behavior. Normal users
+cannot see another user’s uploaded syllabus source. To clean old pending or
+rejected contribution PDFs from Supabase Storage without touching user course
+data, use:
+
+```bash
+npm run storage:cleanup-syllabi:dry
+npm run storage:cleanup-syllabi -- --days 30 --confirm
+```
+
 If you already ran the older schema, run
 [supabase/syllabus-storage.sql](supabase/syllabus-storage.sql) in the SQL editor
-to add the `course-syllabi` bucket, upload table, and storage policies.
+to add the private contribution-only `course-syllabi` bucket and storage
+policies.
 
 To store extracted course metadata, run
 [supabase/course-metadata.sql](supabase/course-metadata.sql) or rerun the full
@@ -220,6 +243,19 @@ Back up the current Course Library before importing:
 npm run library:export-current
 ```
 
+The real rebuilt import also creates a pre-import backup automatically and
+aborts before writing if that backup fails. Restore plans are dry-run by default:
+
+```bash
+npm run library:restore-backup:dry -- --backup latest
+npm run library:restore-backup -- --backup latest --confirm
+```
+
+Restore affects only shared Course Library tables:
+`course_templates`, `course_template_assessments`, and
+`course_template_materials`. It never restores or modifies private user
+workspace tables.
+
 Before the first rebuilt import, run
 [supabase/course-template-unique-key.sql](supabase/course-template-unique-key.sql)
 in the Supabase SQL editor. This preserves existing templates, adds
@@ -259,6 +295,40 @@ This checks that every selected ready canonical template exists in Supabase, has
 assessment rows, and totals 99.5-100.5%. It writes
 `training-data/course-library-rebuild/production-verify-report.html`.
 
+### Database safety workflow
+
+Protected user tables are `semesters`, `courses`, `assessments`,
+`verified_extractions`, `syllabus_contributions`, `contribution_assessments`,
+and `profiles`. Course Library maintenance scripts may only write shared
+template tables. See [docs/database-safety.md](docs/database-safety.md) for the
+full rules.
+
+Before any Course Library update:
+
+```bash
+npm run test:dataset
+npm run library:rebuild
+npm run library:review
+npm run library:export-current
+npm run library:import-rebuilt:dry
+# Inspect training-data/course-library-rebuild/supabase-import-plan.html
+npm run db:safety-check
+npm run library:import-rebuilt -- --confirm
+npm run library:verify-production
+npm run db:check-rls
+```
+
+Before any schema update:
+
+```bash
+# Read the SQL migration first.
+npm run db:lint-sql
+npm run user-data:backup-counts
+# Apply SQL in Supabase, then:
+npm run db:check-rls
+npm run launch:audit
+```
+
 ## Launch Readiness Checks
 
 Before sharing GradeMate with friends, run the local launch checks. These do not
@@ -272,6 +342,8 @@ npm run library:review
 npm run build
 npm run typecheck
 npm run launch:audit
+npm run db:lint-sql
+npm run db:safety-check
 npm run db:check-rls
 npm run smoke:local
 ```
@@ -279,6 +351,8 @@ npm run smoke:local
 Outputs are written to:
 
 - `training-data/launch-audit/report.html`
+- `training-data/launch-audit/db-safety-report.html`
+- `training-data/launch-audit/sql-lint-report.html`
 - `training-data/launch-audit/rls-report.html`
 - `training-data/launch-audit/smoke-report.html`
 
@@ -403,24 +477,35 @@ http://localhost:3001/workspace
 The frontend computes `emailRedirectTo` with the deployed base path, so
 production links return to `/GradeMate/auth/callback` and local development
 links return to `/auth/callback`. If a confirmation link is opened in a
-different browser or after its PKCE session expires, GradeMate shows recovery
-steps, a login link, guest mode, and a resend-confirmation option when the email
-address is known. See [Email delivery checklist](docs/email-delivery-checklist.md)
+different browser or after it expires, GradeMate shows a friendly recovery
+message, a login link, guest mode, and a resend-confirmation option when the
+email address is known. See [Email delivery checklist](docs/email-delivery-checklist.md)
 if verification emails do not arrive.
 
-For production, configure a custom SMTP provider in Supabase. Supabase built-in
-email is useful for early testing but may not reliably deliver friend-launch
-emails. Reasonable free or low-cost options include Resend, Brevo, SendGrid, and
-Postmark.
+### Friend testing auth setup
 
-For small private friend testing only, you can temporarily disable email
-confirmation in **Authentication > Providers > Email**. Signup will create usable
-accounts immediately. Turn confirmation back on before any broader public launch.
+For small private friend testing, use normal email/password accounts without
+email verification:
 
-To enable Google login, open **Authentication > Providers > Google** in Supabase,
-turn it on, add your Google OAuth client ID/secret, and make sure the same
-redirect URLs above are allowed. GradeMate uses the normal Supabase redirect
-flow and returns users to `/auth/callback`, then `/workspace`.
+1. Open Supabase.
+2. Go to **Authentication > Providers > Email**.
+3. Turn **Confirm email** off.
+4. Friends can sign up and GradeMate will send them directly to Workspace.
+
+Keep Google login disabled/hidden for now. GradeMate's launch UI only exposes
+email/password auth and guest mode.
+
+### Public launch auth setup
+
+Before broader public launch:
+
+1. Turn **Confirm email** on in **Authentication > Providers > Email**.
+2. Configure custom SMTP in Supabase. Recommended providers: Resend or Brevo.
+3. Keep this redirect URL allow-listed:
+   `https://20sha07.github.io/GradeMate/auth/callback`.
+
+Supabase built-in email is useful for early testing but may not reliably deliver
+public launch verification emails.
 
 ## GitHub Pages
 

@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>GradeMate Database Safety</title>
+  <style>
+    body { margin: 0; font-family: Inter, ui-sans-serif, system-ui, sans-serif; background: #0f172a; color: #e2e8f0; }
+    main { max-width: 1120px; margin: 0 auto; padding: 32px 18px; }
+    .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 24px 0; }
+    .card { border: 1px solid #334155; border-radius: 14px; padding: 16px; background: #111827; }
+    .card strong { display: block; font-size: 28px; color: #5eead4; }
+    table { width: 100%; border-collapse: collapse; background: #111827; border-radius: 14px; overflow: hidden; }
+    th, td { padding: 11px 12px; border-bottom: 1px solid #334155; text-align: left; vertical-align: top; }
+    tr.fail td:nth-child(3) { color: #fda4af; font-weight: 700; }
+    tr.warn td:nth-child(3) { color: #facc15; font-weight: 700; }
+    tr.pass td:nth-child(3) { color: #86efac; font-weight: 700; }
+    @media (max-width: 720px) { .cards { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>GradeMate Database Safety</h1>
+    <p>Generated 2026-05-19T19:56:56.343Z</p>
+    <section class="cards">
+      <div class="card"><span>Passed</span><strong>24</strong></div>
+      <div class="card"><span>Warnings</span><strong>2</strong></div>
+      <div class="card"><span>Failures</span><strong>0</strong></div>
+    </section>
+    <table>
+      <thead><tr><th>Area</th><th>Check</th><th>Status</th><th>Detail</th></tr></thead>
+      <tbody><tr class="pass">
+        <td>Secrets</td>
+        <td>Service role key is not referenced in frontend source</td>
+        <td>pass</td>
+        <td>No service-role references found under src/.</td>
+      </tr>
+<tr class="warn">
+        <td>Secrets</td>
+        <td>Service role key is local/server-only</td>
+        <td>warn</td>
+        <td>SUPABASE_SERVICE_ROLE_KEY is not set. Write/import/verify scripts will refuse or skip live checks.</td>
+      </tr>
+<tr class="pass">
+        <td>Import Safety</td>
+        <td>Course Library write scripts only target shared template tables</td>
+        <td>pass</td>
+        <td>Detected table references: scripts/library-import-rebuilt.mjs:course_templates, scripts/library-import-rebuilt.mjs:course_template_assessments, scripts/library-import-rebuilt.mjs:course_template_materials, scripts/library-restore-backup.mjs:course_template_materials, scripts/library-restore-backup.mjs:course_template_assessments, scripts/library-restore-backup.mjs:course_templates, scripts/library-backup-utils.mjs:course_templates, scripts/library-backup-utils.mjs:course_template_assessments, scripts/library-backup-utils.mjs:course_template_materials</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>semesters exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS semesters.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>semesters RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE semesters ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>courses exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS courses.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>courses RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE courses ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>assessments exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS assessments.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>assessments RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE assessments ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>verified_extractions exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS verified_extractions.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>verified_extractions RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE verified_extractions ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>syllabus_contributions exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS syllabus_contributions.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>syllabus_contributions RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE syllabus_contributions ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>contribution_assessments exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS contribution_assessments.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>contribution_assessments RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE contribution_assessments ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>profiles exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS profiles.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>profiles RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE profiles ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>Course templates are public-read ready-only</td>
+        <td>pass</td>
+        <td>Public users should only read ready templates.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>Normal users have no Course Library write policy</td>
+        <td>pass</td>
+        <td>Course Library writes should be admin/service role only.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>Admin can review/import shared templates</td>
+        <td>pass</td>
+        <td>Admin policies are expected for contribution approval workflows.</td>
+      </tr>
+<tr class="pass">
+        <td>Backups</td>
+        <td>Course Library backup folder exists</td>
+        <td>pass</td>
+        <td>C:\Users\shaha\OneDrive - ku.ac.ae\Documents\Sites\GradeMate\training-data\course-library-backups</td>
+      </tr>
+<tr class="pass">
+        <td>Backups</td>
+        <td>Latest backup includes templates and assessments</td>
+        <td>pass</td>
+        <td>2026-05-19T18-06-32-923Z; templates 92, assessments 230, materials 2512</td>
+      </tr>
+<tr class="pass">
+        <td>Backups</td>
+        <td>Course Library backup is recent</td>
+        <td>pass</td>
+        <td>Latest complete backup is 1.8 hours old.</td>
+      </tr>
+<tr class="pass">
+        <td>Verification</td>
+        <td>Production Course Library verify report</td>
+        <td>pass</td>
+        <td>matched 74/74, public read passed</td>
+      </tr>
+<tr class="warn">
+        <td>Verification</td>
+        <td>SQL lint report</td>
+        <td>warn</td>
+        <td>0 failures, 49 warnings</td>
+      </tr>
+<tr class="pass">
+        <td>Verification</td>
+        <td>RLS report</td>
+        <td>pass</td>
+        <td>30 passed, 0 failed</td>
+      </tr></tbody>
+    </table>
+  </main>
+</body>
+</html>

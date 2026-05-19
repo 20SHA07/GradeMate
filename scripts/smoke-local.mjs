@@ -15,6 +15,7 @@ await checkLandingOutput();
 await checkExtractorLabProductionOutput();
 await checkAuthCallbackUx();
 await checkPasswordAuthUx();
+await checkSyllabusPrivacyUx();
 await writeReports();
 
 console.log("GradeMate local smoke check complete");
@@ -96,20 +97,20 @@ async function checkAuthCallbackUx() {
   addCheck({
     area: "Auth",
     name: "Callback route renders in static export",
-    status: builtHtml.includes("Verifying your account") ? "pass" : "fail",
+    status: builtHtml.includes("Signing you in") ? "pass" : "fail",
     detail: "out/auth/callback/index.html should exist and render the client callback shell."
   });
   addCheck({
     area: "Auth",
-    name: "PKCE failure has friendly recovery copy",
+    name: "Sign-in link failure has friendly recovery copy",
     status:
-      source.includes("This verification link expired or was opened in a different browser") &&
+      source.includes("This sign-in link expired or was opened in a different browser") &&
       source.includes("Continue as guest") &&
       source.includes("Resend verification email")
         ? "pass"
         : "fail",
     detail:
-      "Callback should hide raw PKCE errors and offer login, guest mode, and resend recovery."
+      "Callback should hide raw Supabase errors and offer login, guest mode, and resend recovery."
   });
   addCheck({
     area: "Auth",
@@ -134,18 +135,18 @@ async function checkPasswordAuthUx() {
       !source.includes("signInWithOtp")
         ? "pass"
         : "fail",
-    detail: "Normal login should use email/password, not passwordless magic links."
+    detail: "Normal login should use email/password, not passwordless email links."
   });
   addCheck({
     area: "Auth",
-    name: "Signup uses verification email flow",
+    name: "Signup uses email/password flow",
     status:
       source.includes("signUp") &&
       source.includes("emailRedirectTo: getAuthRedirectUrl()") &&
       source.includes("Resend verification email")
         ? "pass"
         : "fail",
-    detail: "Signup should request email verification and support resend."
+    detail: "Signup should create an email/password account and support resend if confirmation is enabled."
   });
   addCheck({
     area: "Auth",
@@ -155,7 +156,7 @@ async function checkPasswordAuthUx() {
       source.includes('type: "signup"')
         ? "pass"
         : "fail",
-    detail: "Resend should use Supabase signup verification email, not magic-link login."
+    detail: "Resend should use Supabase signup verification email, not passwordless login."
   });
   addCheck({
     area: "Auth",
@@ -188,6 +189,81 @@ async function checkPasswordAuthUx() {
         ? "pass"
         : "fail",
     detail: "Google auth is paused and should not appear in the launch UI."
+  });
+}
+
+async function checkSyllabusPrivacyUx() {
+  const simpleSource = await readText("src/components/simple/simple-gpa-calculator.tsx");
+  const workspaceSource = await readText("src/components/courses/course-detail-client.tsx");
+  const verifiedSource = await readText("src/lib/syllabus/verified-extractions.ts");
+  const contributionSource = await readText(
+    "src/components/contributions/contribute-syllabus-client.tsx"
+  );
+  const cleanupScript = await readText("scripts/storage-cleanup-syllabi.mjs");
+
+  addCheck({
+    area: "Privacy",
+    name: "Simple PDF extraction has no storage upload",
+    status:
+      !/storage\s*\.\s*from|\.upload\s*\(|course-syllabi/i.test(simpleSource)
+        ? "pass"
+        : "fail",
+    detail: "Simple Mode should read PDFs locally and never upload them during normal extraction."
+  });
+  addCheck({
+    area: "Privacy",
+    name: "Workspace PDF extraction has no storage upload",
+    status:
+      !/storage\s*\.\s*from|\.upload\s*\(|course-syllabi/i.test(workspaceSource)
+        ? "pass"
+        : "fail",
+    detail: "Workspace extraction should read PDFs locally and never upload them during normal extraction."
+  });
+  addCheck({
+    area: "Privacy",
+    name: "Confirm save clears PDF state",
+    status:
+      simpleSource.includes("setPdfFileByCourse") &&
+      simpleSource.includes("Saved. The PDF was not stored.") &&
+      workspaceSource.includes("setFile(null)") &&
+      workspaceSource.includes("Saved. The PDF was not stored.")
+        ? "pass"
+        : "fail",
+    detail: "Saving reviewed PDF extraction should discard file state and show the privacy confirmation."
+  });
+  addCheck({
+    area: "Privacy",
+    name: "Verified feedback saves JSON/hash by default",
+    status:
+      verifiedSource.includes("includeExtractedText === true") &&
+      verifiedSource.includes("sourceTextForHash")
+        ? "pass"
+        : "fail",
+    detail: "Raw extracted text should be stored only when the user checks the opt-in box."
+  });
+  addCheck({
+    area: "Privacy",
+    name: "Contribute syllabus is the only PDF storage exception",
+    status:
+      contributionSource.includes(
+        "Contribution uploads may be stored privately for admin review."
+      ) &&
+      contributionSource.includes("allowAdminReviewStorage") &&
+      !/storage\s*\.\s*from|\.upload\s*\(/i.test(simpleSource + workspaceSource)
+        ? "pass"
+        : "fail",
+    detail: "Only contribution review flow may ask to store syllabus source files."
+  });
+  addCheck({
+    area: "Privacy",
+    name: "Storage cleanup dry-run exists",
+    status:
+      cleanupScript.includes("const dryRun = !confirmed") &&
+      cleanupScript.includes("syllabus_contributions") &&
+      cleanupScript.includes("course-syllabi")
+        ? "pass"
+        : "fail",
+    detail: "storage:cleanup-syllabi should default to dry-run and require --confirm to delete files."
   });
 }
 

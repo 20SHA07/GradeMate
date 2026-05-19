@@ -108,7 +108,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
     setCanResendConfirmation(true);
     setMessage(
-      `Check your email to verify your account. We sent a verification link to ${email.trim()}. Open it in the same browser if possible.`
+      `Check your email to verify your account. We sent a verification link to ${email.trim()}.`
     );
   }
 
@@ -159,7 +159,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         </h1>
         <p className="mt-2 text-sm leading-6 text-ink-500">
           {isSignup
-            ? "Create your GradeMate workspace with a normal email and password."
+            ? "Create your GradeMate workspace with email and password. When email confirmation is off, you will go straight to Workspace."
             : "Log in to manage your semesters, courses, and GPA plan."}
         </p>
       </div>
@@ -278,7 +278,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       </div>
 
       <p className="mt-3 text-center text-xs leading-5 text-ink-500">
-        Guest work is saved on this device. Sign up anytime to sync across devices.
+        Guest work is saved on this device. Sign up anytime to keep your workspace in your account.
       </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">

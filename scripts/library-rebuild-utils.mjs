@@ -284,8 +284,10 @@ export async function loadLatestBackup() {
       .replace(/^course_templates_/i, "")
       .replace(/\.json$/i, "");
     const assessmentsFile = `course_template_assessments_${timestamp}.json`;
+    const materialsFile = `course_template_materials_${timestamp}.json`;
     const templatePath = path.join(backupDir, templateFile);
     const assessmentsPath = path.join(backupDir, assessmentsFile);
+    const materialsPath = path.join(backupDir, materialsFile);
 
     if (!fsSync.existsSync(assessmentsPath)) {
       continue;
@@ -295,8 +297,12 @@ export async function loadLatestBackup() {
       timestamp,
       templates: JSON.parse(await fs.readFile(templatePath, "utf8")),
       assessments: JSON.parse(await fs.readFile(assessmentsPath, "utf8")),
+      materials: fsSync.existsSync(materialsPath)
+        ? JSON.parse(await fs.readFile(materialsPath, "utf8"))
+        : [],
       templatePath,
-      assessmentsPath
+      assessmentsPath,
+      materialsPath: fsSync.existsSync(materialsPath) ? materialsPath : null
     };
   }
 

@@ -1,5 +1,10 @@
 import fs from "node:fs/promises";
+import path from "node:path";
 import { createClient } from "@supabase/supabase-js";
+import {
+  createCourseLibraryBackup,
+  printBackupSummary
+} from "./library-backup-utils.mjs";
 import {
   buildSupabasePayload,
   computeCourseTemplateUniqueKey,
@@ -11,6 +16,7 @@ import {
   importPlanJsonPath,
   loadLatestBackup,
   readRebuiltTemplates,
+  rebuildRootDir,
   stripOptionalAssessmentColumns
 } from "./library-rebuild-utils.mjs";
 
@@ -61,7 +67,23 @@ try {
     auth: { persistSession: false }
   });
   await assertSupabaseSchemaReady(supabase, plan);
-  const result = await executeImport(supabase, plan);
+  const backup = await createCourseLibraryBackup({ reason: "pre-import safety backup" });
+  printBackupSummary(backup);
+  let result;
+
+  try {
+    result = await executeImport(supabase, plan);
+    await writeImportLog({ backup, plan, result, status: "complete" });
+  } catch (importError) {
+    await writeImportLog({
+      backup,
+      error: importError instanceof Error ? importError.message : String(importError),
+      plan,
+      result,
+      status: "failed"
+    });
+    throw importError;
+  }
 
   console.log("Course Library import complete");
   console.log(`Inserted: ${result.inserted}`);
@@ -498,6 +520,44 @@ async function executeImport(supabase, plan) {
     assessmentsInserted,
     materialsInserted
   };
+}
+
+async function writeImportLog({ backup, error = null, plan, result = null, status }) {
+  const log = {
+    generatedAt: new Date().toISOString(),
+    status,
+    error,
+    backup: {
+      timestamp: backup.timestamp,
+      manifestPath: path.relative(process.cwd(), backup.manifestPath),
+      templatesPath: path.relative(process.cwd(), backup.templatesPath),
+      assessmentsPath: path.relative(process.cwd(), backup.assessmentsPath),
+      materialsPath: path.relative(process.cwd(), backup.materialsPath),
+      counts: backup.counts
+    },
+    protectedUserTablesTouched: false,
+    sharedTablesWritten: [
+      "course_templates",
+      "course_template_assessments",
+      "course_template_materials"
+    ],
+    summary: plan.summary,
+    result,
+    actions: plan.actions.map((action) => ({
+      action: action.action,
+      uniqueKey: action.uniqueKey,
+      courseCode: action.courseCode,
+      courseName: action.courseName,
+      semester: action.semester,
+      sourceFileName: action.sourceFileName,
+      assessmentCount: action.assessmentCount,
+      totalWeight: action.totalWeight
+    }))
+  };
+  const logPath = path.join(rebuildRootDir, `import-log-${backup.timestamp}.json`);
+
+  await fs.writeFile(logPath, `${JSON.stringify(log, null, 2)}\n`, "utf8");
+  console.log(`Import log: ${logPath}`);
 }
 
 async function assertSupabaseSchemaReady(supabase, plan) {

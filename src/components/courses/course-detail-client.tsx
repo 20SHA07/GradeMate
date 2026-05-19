@@ -628,6 +628,7 @@ function SmartSyllabusExtractor({
     setExtractionSourceText(null);
     setCourseInfoRows([]);
     setReviewRows([]);
+    setFile(null);
     setPdfPreview(null);
     setMessage("");
     setError("");
@@ -837,6 +838,24 @@ function SmartSyllabusExtractor({
       validRows,
       courseInfoRows
     );
+    const savedExtractionSource = extractionSource ?? "rule";
+    const savedSourceFileName = extractionSourceFileName;
+    const savedSourceText = extractionSourceText;
+    const buildPrivacyAwareSaveMessage = (
+      count: number,
+      skippedNames: string[]
+    ) => {
+      const saveMessage = buildSaveMessage(count, skippedNames);
+      return savedExtractionSource === "pdf"
+        ? `Saved. The PDF was not stored. ${saveMessage}`
+        : saveMessage;
+    };
+    const discardSavedPdf = () => {
+      if (savedExtractionSource === "pdf") {
+        setFile(null);
+        setPdfPreview(null);
+      }
+    };
 
     if (isGuest) {
       const guestData = readGuestData();
@@ -854,7 +873,8 @@ function SmartSyllabusExtractor({
       if (rowsToSave.length === 0) {
         onSaved([], mode);
         clearReviewOnly();
-        setMessage(buildSaveMessage(0, skippedNames));
+        discardSavedPdf();
+        setMessage(buildPrivacyAwareSaveMessage(0, skippedNames));
         setIsSavingExtraction(false);
         return;
       }
@@ -897,11 +917,12 @@ function SmartSyllabusExtractor({
         confirmedExtraction,
         includeExtractedText: false,
         originalExtraction: extraction,
-        source: extractionSource ?? "rule",
-        sourceFileName: extractionSourceFileName,
-        sourceText: extractionSourceText
+        source: savedExtractionSource,
+        sourceFileName: savedSourceFileName,
+        sourceText: savedSourceText
       });
-      setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
+      discardSavedPdf();
+      setMessage(buildPrivacyAwareSaveMessage(savedAssessments.length, skippedNames));
       setIsSavingExtraction(false);
       return;
     }
@@ -940,7 +961,8 @@ function SmartSyllabusExtractor({
     if (rowsToSave.length === 0) {
       onSaved([], mode);
       clearReviewOnly();
-      setMessage(buildSaveMessage(0, skippedNames));
+      discardSavedPdf();
+      setMessage(buildPrivacyAwareSaveMessage(0, skippedNames));
       setIsSavingExtraction(false);
       return;
     }
@@ -1022,11 +1044,12 @@ function SmartSyllabusExtractor({
       confirmedExtraction,
       includeExtractedText: false,
       originalExtraction: extraction,
-      source: extractionSource ?? "rule",
-      sourceFileName: extractionSourceFileName,
-      sourceText: extractionSourceText
+      source: savedExtractionSource,
+      sourceFileName: savedSourceFileName,
+      sourceText: savedSourceText
     });
-    setMessage(buildSaveMessage(savedAssessments.length, skippedNames));
+    discardSavedPdf();
+    setMessage(buildPrivacyAwareSaveMessage(savedAssessments.length, skippedNames));
     setIsSavingExtraction(false);
   }
 
@@ -1042,8 +1065,10 @@ function SmartSyllabusExtractor({
         extractedText: pendingFeedback.includeExtractedText
           ? pendingFeedback.sourceText ?? null
           : null,
+        includeExtractedText: pendingFeedback.includeExtractedText,
         originalExtraction: pendingFeedback.originalExtraction,
         sourceFileName: pendingFeedback.sourceFileName,
+        sourceTextForHash: pendingFeedback.sourceText ?? null,
         sourceType: getVerifiedSource(pendingFeedback.source),
         supabase: isGuest ? null : supabase,
         userFeedback: feedback,
@@ -1177,8 +1202,8 @@ function SmartSyllabusExtractor({
                 type="file"
               />
               <span className="mt-2 block text-xs text-ink-500">
-                PDF text is read locally in your browser. It is not saved until
-                you confirm the extracted assessments.
+                PDFs are read locally in your browser and are not stored. Only
+                reviewed course data is saved.
               </span>
             </label>
             <Button

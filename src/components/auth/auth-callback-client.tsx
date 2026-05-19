@@ -19,7 +19,7 @@ import {
 } from "@/lib/supabase/config";
 
 const expiredSignInLinkMessage =
-  "This verification link expired or was opened in a different browser. Please log in again or request a new verification email.";
+  "This sign-in link expired or was opened in a different browser. Please log in again.";
 
 function isPkceVerifierError(error: unknown) {
   const message =
@@ -83,10 +83,10 @@ export function AuthCallbackClient() {
       if (callbackError) {
         setError(
           callbackError === "access_denied"
-            ? "Google login was canceled. You can try again or continue as a guest."
+            ? "Sign-in was canceled. You can try again or continue as a guest."
             : isPkceVerifierError(callbackErrorDescription)
               ? expiredSignInLinkMessage
-              : "We could not complete this verification link. Please try logging in again."
+              : "We could not complete this sign-in link. Please try logging in again."
         );
         return;
       }
@@ -99,7 +99,7 @@ export function AuthCallbackClient() {
           setError(
             isPkceVerifierError(exchangeError)
               ? expiredSignInLinkMessage
-              : "We could not complete this verification link. Please try logging in again."
+              : "We could not complete this sign-in link. Please try logging in again."
           );
           return;
         }
@@ -168,12 +168,12 @@ export function AuthCallbackClient() {
   return (
     <Card className="w-full max-w-md p-6 text-center">
       <h1 className="text-2xl font-semibold text-ink-900">
-        {error ? "Verification link needs a reset" : "Verifying your account"}
+        {error ? "Sign-in link needs a reset" : "Signing you in"}
       </h1>
       <p className="mt-2 text-sm leading-6 text-ink-500">
         {error
           ? "Try logging in again from the same browser you used to create the account."
-          : "Hang tight while GradeMate verifies your email."}
+          : "Hang tight while GradeMate finishes signing you in."}
       </p>
       {error ? (
         <>
@@ -209,7 +209,7 @@ export function AuthCallbackClient() {
           </div>
           <p className="mt-4 text-xs leading-5 text-ink-500">
             If you requested a verification email on another device, open the new email
-            on that same device or request a fresh link here.
+            on that same device, or log in again from this browser.
           </p>
         </>
       ) : null}

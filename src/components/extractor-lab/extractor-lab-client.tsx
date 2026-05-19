@@ -158,8 +158,10 @@ export function ExtractorLabClient() {
         aiProvider: "rule_based",
         confirmedExtraction: result,
         extractedText: includeExtractedText ? sourceText : null,
+        includeExtractedText,
         originalExtraction: result,
         sourceFileName: fileName || null,
+        sourceTextForHash: sourceText || null,
         sourceType: fileName ? "pdf" : "pasted_text",
         userFeedback: "correct"
       });
@@ -198,7 +200,9 @@ export function ExtractorLabClient() {
                 type="file"
               />
               <p className="mt-3 text-xs text-ink-500">
-                Text is extracted locally in the browser from PDF pages or DOCX text.
+                Text is extracted locally in the browser from PDF pages or DOCX
+                text. Files are not stored unless you explicitly save a verified
+                example with extracted text.
               </p>
             </Card>
 
