@@ -23,67 +23,74 @@
   "assessments": [
     {
       "name": "Quiz 1",
-      "weight_percentage": 1,
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz # 1 Week 3: Quiz 1: chapter 1"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
     },
     {
       "name": "Quiz 2",
-      "weight_percentage": 2,
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Quiz # 2 Week 6: Quiz 2: chapter 2"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
     },
     {
       "name": "Quiz 3",
-      "weight_percentage": 3.8,
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Quiz # 3 Week 10: Quiz 3: Ch 3.3-3.8"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
     },
     {
       "name": "Quiz 4",
-      "weight_percentage": 5.1,
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Quiz # 4 Week 15: Quiz 4: Ch 4.1-5.1"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
     },
     {
-      "name": "Hw Connect Continuously",
+      "name": "HW",
       "weight_percentage": 7,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "HW Connect continuously 7%"
     },
     {
-      "name": "Tutorial",
+      "name": "Remedial Tutorial Classes",
       "weight_percentage": 8,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Remedial Tutorial Classes 8%"
+    },
+    {
+      "name": "Pebble Peer Mentors",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Pebble Peer Mentors 5%"
     },
     {
       "name": "Midterm Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Midterm Examination 25%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Final Examination: FINAL EXAM: (TBC) 35%"
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 86.9,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (86.9%)",
+    "Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.9,
+  "confidence": 0.91,
   "needsHumanReview": true
 }

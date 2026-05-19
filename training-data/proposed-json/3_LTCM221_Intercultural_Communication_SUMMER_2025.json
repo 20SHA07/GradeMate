@@ -4,7 +4,7 @@
   "sourceRelativePath": "HUMA\\HUMA 221 Intercultural Communication\\3_LTCM221 Intercultural Communication SUMMER 2025.docx",
   "sourceTextFileName": "3_LTCM221_Intercultural_Communication_SUMMER_2025.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
-  "courseCode": "LTCM 221",
+  "courseCode": "HUMA 221",
   "courseName": "Intercultural Communication",
   "creditHours": 3,
   "semester": "Summer 2025",
@@ -24,35 +24,36 @@
       "name": "Coursework",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Coursework 40%"
     },
     {
       "name": "Seminar participation",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Seminar participation 10%"
     },
     {
       "name": "Mid-term assessment",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Mid-term assessment 20%"
     },
     {
-      "name": "Final project",
+      "name": "Final Project",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Final project 30%"
     }
   ],
   "totalWeight": 100,
   "warnings": [
+    "Using summary table because detailed assessment methodology is ambiguous.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.89,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

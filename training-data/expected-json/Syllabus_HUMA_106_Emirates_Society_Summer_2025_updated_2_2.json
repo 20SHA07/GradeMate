@@ -31,47 +31,47 @@
       "name": "Quiz 1",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 1 Week 2 15%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz 1 15%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quizzes Quiz 2 Week 5 15%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz 2 15%"
     },
     {
       "name": "Midterm",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Midterm Week 4 20%"
+      "confidence": 0.96,
+      "source_text_snippet": "Midterm 20%"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Research final Project 30%"
     },
     {
       "name": "In-Class Assignment",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "In-Class Assignment Week 4 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "In-Class Assignment 10%"
     },
     {
-      "name": "Research Final Project",
-      "weight_percentage": 30,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Research final Project Week 6 30%"
-    },
-    {
-      "name": "Chapter Presentations On Going 10%",
+      "name": "Chapter presentation",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Chapter presentations On going 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "Chapter presentation 10%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.93,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

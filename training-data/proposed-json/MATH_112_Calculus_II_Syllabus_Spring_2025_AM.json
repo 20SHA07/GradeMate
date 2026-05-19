@@ -4,7 +4,7 @@
   "sourceRelativePath": "MATH\\MATH 112 Calculus II\\MATH 112 Calculus II_Syllabus_Spring_2025_AM.pdf",
   "sourceTextFileName": "MATH_112_Calculus_II_Syllabus_Spring_2025_AM.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
-  "courseCode": "MATH 111",
+  "courseCode": "MATH 112",
   "courseName": "Calculus II",
   "creditHours": 4,
   "semester": "Spring 2025",
@@ -22,36 +22,59 @@
   "courseDescription": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
   "assessments": [
     {
-      "name": "Coursework",
-      "weight_percentage": 30,
+      "name": "Quiz 1",
+      "weight_percentage": 7,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework (Quizzes and assignments) 30%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
+    },
+    {
+      "name": "HW",
+      "weight_percentage": 9,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "HW 9%"
     },
     {
       "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Project 10%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Split quiz group weight 21% evenly across Quiz 1-Quiz 3. Please confirm."
+  ],
+  "confidence": 0.94,
   "needsHumanReview": false
 }

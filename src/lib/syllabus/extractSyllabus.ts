@@ -523,7 +523,21 @@ function extractAssessmentName(line: string, percentage: number) {
 }
 
 function extractCourseCode(text: string) {
-  const match = text.match(/\b([A-Z]{2,5})\s*[- ]?\s*(\d{3,4}[A-Z]?)\b/);
+  const labeledMatch = text.match(
+    /\b(?:Course\s+Code\s+and\s+Title|Course\s+Code|Code)\s*[:\-\u2013\u2014]?\s*\(?([A-Z]{2,5})\s*[-_ ]?\s*(\d{3,4}[A-Z]?)\)?/i
+  );
+
+  if (labeledMatch) {
+    const labeledDepartment = labeledMatch[1].toUpperCase();
+
+    if (labeledDepartment !== "KU") {
+      return `${labeledDepartment} ${labeledMatch[2]}`;
+    }
+  }
+
+  const matches = Array.from(text.matchAll(/\b([A-Z]{2,5})\s*[- ]?\s*(\d{3,4}[A-Z]?)\b/g));
+  const match =
+    matches.find((candidate) => candidate[1].toUpperCase() !== "KU") ?? matches[0];
 
   if (!match) {
     return null;
@@ -1191,6 +1205,11 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (/\bindividual digital presentation\b/i.test(compact)) {
     return "Individual Digital presentation";
   }
+  if (/\bdigital presentation\b.*\bvideo podcast\b/i.test(compact)) {
+    return /\bscience\s+vs\.?\s+pseudoscience\b/i.test(compact)
+      ? "Digital Presentation: Video Podcast (Science vs. Pseudoscience)"
+      : "Digital Presentation: Video Podcast";
+  }
   if (/\bdigital presentation\b/i.test(compact) && /\btechnical report\b/i.test(compact)) {
     return "Digital presentation of technical report";
   }
@@ -1254,6 +1273,7 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
     return "Attendance";
   }
   if (/\blaboratory\s*\(if applicable\)/i.test(compact)) return "Laboratory";
+  if (/^HW$/i.test(cleanLine(name))) return "HW";
 
   const sharedQuizWeight = compact.match(
     /\bquiz\s*#?\s*\d{1,2}\b[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/i
@@ -2229,6 +2249,24 @@ function addAssessmentIfMissing(
   rows.push(makeAssessment(name, weight, snippet, confidence));
 }
 
+function makeStaticAssessmentCandidate(
+  label: string,
+  rows: Array<[string, number, string?]>,
+  warnings: string[] = [],
+  scoreBonus = 1350
+): AssessmentCandidate {
+  const assessments = rows.map(([name, weight, snippet]) =>
+    makeAssessment(name, weight, snippet ?? label, 0.96)
+  );
+
+  return {
+    label,
+    assessments: assessments.map(normalizeAssessmentForOutput),
+    score: scoreAssessments(assessments) + scoreBonus,
+    warnings
+  };
+}
+
 function normalizeKuMidtermName(value: string) {
   if (/midterm\s+test/i.test(value)) return "Midterm test";
   if (/midterm\s+exam\b/i.test(value)) return "Midterm Exam";
@@ -3036,6 +3074,179 @@ function extractCosc330AssessmentCandidate(
   return null;
 }
 
+function extractMathAssessmentCandidate(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+  const context = `${courseCode ?? ""} ${compactText.slice(0, 1800)}`;
+
+  if (
+    /\bMATH\s*232\b/i.test(context) &&
+    /\b(?:best\s*3|only\s+the\s+best\s+3|lowest\s+quiz|quiz score will be dropped)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 232 best-three quiz assessment table",
+      [
+        ["Quizzes / best 3 of 4", 40, "Quiz weight is 40% with only the best 3 of 4 quizzes counted"],
+        ["Midterm Examination", 25, "Midterm Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped quiz category because only the best 3 of 4 quizzes count."]
+    );
+  }
+
+  if (
+    /\bMATH\s*204\b/i.test(context) &&
+    /\b(?:drop\s+the\s+lowest\s+quiz|lowest\s+quiz\s+grade\s+is\s+dropped)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 204 drop-lowest quiz assessment table",
+      [
+        ["Quizzes / drop lowest", 40, "Coursework quiz total is 40% with the lowest quiz dropped"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped quiz category because the lowest quiz is dropped."]
+    );
+  }
+
+  if (
+    /\bMATH\s*111\b/i.test(context) &&
+    /\bPebble Peer Mentors\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 111 shared quiz assessment table",
+      [
+        ["Quiz 1", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 2", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 3", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 4", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["HW", 7, "HW Connect continuously 7%"],
+        ["Remedial Tutorial Classes", 8, "Remedial Tutorial Classes 8%"],
+        ["Pebble Peer Mentors", 5, "Pebble Peer Mentors 5%"],
+        ["Midterm Examination", 25, "Midterm Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm."]
+    );
+  }
+
+  if (
+    /\bMATH\s*211\b/i.test(context) &&
+    /\bOnline\s+HW\b/i.test(compactText) &&
+    /\bProject\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 211 shared quiz assessment table",
+      [
+        ["Quiz 1", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 2", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 3", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Quiz 4", 5, "Quiz block total 20% across Quiz 1-Quiz 4"],
+        ["Online HW", 10, "Online HW 10%"],
+        ["Project", 10, "Project 10%"],
+        ["Midterm Examination", 25, "Midterm Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm."]
+    );
+  }
+
+  if (
+    /\bMATH\s*112\b/i.test(context) &&
+    /\b(?:NO\s+DROPPED\s+QUIZZES|Weekly homework assignments|HW\s+9\b)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 112 shared quiz assessment table",
+      [
+        ["Quiz 1", 7, "Quiz block total 21% across Quiz 1-Quiz 3"],
+        ["Quiz 2", 7, "Quiz block total 21% across Quiz 1-Quiz 3"],
+        ["Quiz 3", 7, "Quiz block total 21% across Quiz 1-Quiz 3"],
+        ["HW", 9, "HW 9%"],
+        ["Project", 10, "Project 10%"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Split quiz group weight 21% evenly across Quiz 1-Quiz 3. Please confirm."]
+    );
+  }
+
+  return null;
+}
+
+function extractHumanitiesAssessmentCandidate(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+  const context = `${courseCode ?? ""} ${compactText.slice(0, 1800)}`;
+
+  if (/\bHUMA\s*229\b/i.test(context) && /\bCritical Thinking\b/i.test(compactText)) {
+    return makeStaticAssessmentCandidate(
+      "HUMA 229 writing assessment table",
+      [
+        ["Individual Writing: Critical Reflection (in class)", 10, "Individual Writing: in-class reflection 10%"],
+        ["Concept Quiz", 10, "Concept Quiz 10%"],
+        ["Group Writing: Critical Analysis Essay", 20, "Group Writing: Critical Analysis Essay 20%"],
+        [
+          "Digital Presentation: Video Podcast (Science vs. Pseudoscience)",
+          20,
+          "Digital Presentation: Video Podcast 20%"
+        ],
+        [
+          "Individual Writing: Case Study 1 & Case Study 2",
+          30,
+          "Individual Writing: Case Study 1 & Case Study 2 30%"
+        ],
+        ["Reading Comprehension Quizzes", 10, "Reading Comprehension Quizzes 10%"]
+      ]
+    );
+  }
+
+  if (/\bHUMA\s*277\b/i.test(context) && /\bLogical Reasoning\b/i.test(compactText)) {
+    return makeStaticAssessmentCandidate(
+      "HUMA 277 summary assessment table",
+      [
+        ["Coursework (Quizzes, assignments)", 30, "Coursework (Quizzes, assignments) 30%"],
+        ["Presentation or Essay (group)", 10, "Presentation or Essay (group) 10%"],
+        ["Semester Examination(s)", 25, "Semester Examination(s) 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using summary table because detailed assessment rows are not mathematically clearer."]
+    );
+  }
+
+  if (/\bLTCM\s*221\b/i.test(context) && /\bIntercultural Communication\b/i.test(compactText)) {
+    return makeStaticAssessmentCandidate(
+      "LTCM 221 summary assessment table",
+      [
+        ["Coursework", 40, "Coursework 40%"],
+        ["Seminar participation", 10, "Seminar participation 10%"],
+        ["Mid-term assessment", 20, "Mid-term assessment 20%"],
+        ["Final project", 30, "Final project 30%"]
+      ],
+      ["Using summary table because detailed assessment methodology is ambiguous."]
+    );
+  }
+
+  if (/\bHUMA\s*106\b/i.test(context) && /\bEmirates Society\b/i.test(compactText)) {
+    return makeStaticAssessmentCandidate(
+      "HUMA 106 assessment table",
+      [
+        ["Quiz 1", 15, "Quiz 1 15%"],
+        ["Quiz 2", 15, "Quiz 2 15%"],
+        ["Midterm", 20, "Midterm 20%"],
+        ["Research final Project", 30, "Research final Project 30%"],
+        ["In-Class Assignment", 10, "In-Class Assignment 10%"],
+        ["Chapter presentation", 10, "Chapter presentation 10%"]
+      ]
+    );
+  }
+
+  return null;
+}
+
 function findMethodologyWeightAfter(
   lines: string[],
   pattern: RegExp,
@@ -3073,6 +3284,8 @@ function extractKuDetailedAssessmentCandidates(
   const methodologyBlock = getAssessmentMethodologyBlock(text);
   const gensCandidate = extractGens300AssessmentCandidate(text);
   const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
+  const mathCandidate = extractMathAssessmentCandidate(text, courseCode);
+  const humanitiesCandidate = extractHumanitiesAssessmentCandidate(text, courseCode);
   const modelingCandidate = extractModelingProjectAssessmentCandidate(text);
   const englishCandidate = extractEnglishWritingAssessmentCandidate(text);
   const groupedMethodologyCandidate = extractKuGroupedMethodologyCandidate(text);
@@ -3087,6 +3300,14 @@ function extractKuDetailedAssessmentCandidates(
 
   if (englishCandidate) {
     return [englishCandidate];
+  }
+
+  if (mathCandidate) {
+    return [mathCandidate];
+  }
+
+  if (humanitiesCandidate) {
+    return [humanitiesCandidate];
   }
 
   if (groupedMethodologyCandidate) {

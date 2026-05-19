@@ -21,60 +21,52 @@
   "courseDescription": null,
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 2.5,
-      "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Quiz 1 (2.5%)"
-    },
-    {
-      "name": "Quiz 2",
-      "weight_percentage": 2.5,
-      "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Quiz 2 (2.5%)"
-    },
-    {
-      "name": "Quiz 3",
+      "name": "Individual Writing: Critical Reflection (in class)",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Concept Quiz 3 (10%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Individual Writing: in-class reflection 10%"
     },
     {
-      "name": "Essay",
+      "name": "Concept Quiz",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Concept Quiz 10%"
+    },
+    {
+      "name": "Group Writing: Critical Analysis Essay",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Critical Analysis Essay (20%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Group Writing: Critical Analysis Essay 20%"
     },
     {
-      "name": "Quiz 4",
-      "weight_percentage": 2.5,
-      "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Quiz 4 (2.5%)"
-    },
-    {
-      "name": "Digital presentation",
+      "name": "Digital Presentation: Video Podcast (Science vs. Pseudoscience)",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Group Digital Presentation: Video Podcast (20%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Digital Presentation: Video Podcast 20%"
     },
     {
-      "name": "Case Study",
-      "weight_percentage": 15,
+      "name": "Individual Writing: Case Study 1 & Case Study 2",
+      "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.84,
-      "source_text_snippet": "Individual Writing: Case Study 1 (15%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Individual Writing: Case Study 1 & Case Study 2 30%"
+    },
+    {
+      "name": "Reading Comprehension Quizzes",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Reading Comprehension Quizzes 10%"
     }
   ],
-  "totalWeight": 72.5,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (72.5%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.84,
-  "needsHumanReview": true
+  "confidence": 0.94,
+  "needsHumanReview": false
 }

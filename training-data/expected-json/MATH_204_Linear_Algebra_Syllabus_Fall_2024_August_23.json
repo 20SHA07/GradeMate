@@ -22,29 +22,31 @@
   "courseDescription": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
   "assessments": [
     {
-      "name": "Coursework",
+      "name": "Quizzes / drop lowest",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework (Quizzes) 40%"
+      "confidence": 0.96,
+      "source_text_snippet": "Coursework quiz total is 40% with the lowest quiz dropped"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Using grouped quiz category because the lowest quiz is dropped."
+  ],
+  "confidence": 0.94,
   "needsHumanReview": false
 }

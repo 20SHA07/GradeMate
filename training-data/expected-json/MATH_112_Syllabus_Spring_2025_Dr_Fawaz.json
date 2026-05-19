@@ -1,30 +1,80 @@
 {
   "sourceFileName": "MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
-  "courseCode": "MATH 111",
+  "sourcePath": "MATH\\MATH 112 Calculus II\\MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
+  "sourceRelativePath": "MATH\\MATH 112 Calculus II\\MATH 112 Syllabus - Spring 2025 - Dr. Fawaz.pdf",
+  "sourceTextFileName": "MATH_112_Syllabus_Spring_2025_Dr_Fawaz.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "MATH 112",
   "courseName": "Calculus II",
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Dr Fawaz Hjouj",
+  "instructorEmail": "fawaz.hjouj@ku.ac.ae",
+  "schedule": "7 Feb 24 Midterm Exam: Wednesday, Feb 26, 2025 @7:30. TBC",
+  "classroom": null,
+  "officeRoom": "SAN 1008C",
+  "officeHours": "MW 11:00-12:00, AND, 2:00-4:00 PM",
+  "prerequisites": "MATH 111 (C grade or higher)",
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad",
+    "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
+  ],
+  "courseDescription": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
   "assessments": [
     {
-      "name": "Coursework",
-      "weight_percentage": 30,
-      "max_score": 100
+      "name": "Quiz 1",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
     },
     {
-      "name": "Project 10",
+      "name": "Quiz 2",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 7,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 21% across Quiz 1-Quiz 3"
+    },
+    {
+      "name": "HW",
+      "weight_percentage": 9,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "HW 9%"
+    },
+    {
+      "name": "Project",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Project 10%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Split quiz group weight 21% evenly across Quiz 1-Quiz 3. Please confirm."
+  ],
+  "confidence": 0.94,
+  "needsHumanReview": false
 }

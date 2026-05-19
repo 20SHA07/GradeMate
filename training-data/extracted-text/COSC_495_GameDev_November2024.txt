@@ -1,0 +1,181 @@
+--- Page 1 ---
+COSC 495 Introduction to Game Development and XR
+(3 Lecture – 3 Credit s)
+Prerequisite: COSC 230
+Course Catalog Description:
+This course provides students with the fundamentals of video game development and extended reality
+(XR) technologies, focusing on building interactive 2D and 3D games and XR applications. The
+course covers the game development process from concept to prototype.
+Textbook:
+Introduction to Game Design, Prototyping, and Development: From Concept to Playable Game with
+Unity and C#, by Jeremy Gibson Bond, Third Edition, Addison-Wesley Professional, 2022
+ISBN-13: 978-0321933164
+https://www.amazon.com/Introduction-Game-Design-Prototyping-Development-dp-
+0136619940/dp/0136619940/ref=dp_ob_image_bk
+Reference Materials:
+Unity Official Documentation and Tutorials: https://learn.unity.com/
+Course Topics:
+1. Introduction to Game Development
+a. Game design principles, genres, and development pipelines, History of video games
+and the evolution of game development, Introduction to game theory and its application
+in game design (1 lecture)
+2. Unity Basics and Scripting
+a. Unity interface, tools, and basic C# scripting (2 lectures)
+b. Game asset creation and management (2 lectures)
+c. Lighting and shading, and audio design and implementation (2 lectures)
+d. Advanced Scripting, code optimization, and version control (2 lectures)
+e. 2D and 3D game development (2 lectures)
+3. Extended Reality (XR) Technologies
+a. XR concepts, technologies, and hardware (1 lecture)
+b. XR design principles: immersion, presence, and interaction paradigms. (1 lecture)
+c. Design and prototyping intuitive and immersive XR applications (1 lecture)
+d. Unity XR toolkit and SDKs (AR Foundation, VR frameworks (Halolen)) (1 lecture)
+e. Case studies of successful XR applications (2 lectures)
+4. Game Mechanics and Interaction Design
+a. Fundamental game mechanics and interaction design (2 lectures)
+b. Game balance and player engagement (2 lectures)
+c. Advanced Unity features (Asset Store, third-party tools) (2 lectures)
+d. Game testing and user feedback analysis (2 lectures)
+e. Project management in game development (1 lecture)
+5. AI in Game Development
+a. Basic concepts of AI in gaming (1 lecture)
+b. Designing AI-Driven Non-Player Characters (NPCs) with realistic behaviors (1
+lecture)
+c. Leveraging AI to create dynamic game levels, quests, and world elements (1 lecture)
+d. AI-driven interaction in XR (1 lecture)
+
+--- Page 2 ---
+Structure and Learning Methodologies:
+Lectures are conducted in the lab for 2 x 75 minutes per week.
+Computer Resources:
+The course requires access to computers with Unity Engine installed. We recommend Windows computers with
+a reasonably capable graphics card. The project is one of the main assessments of this course. The students
+are asked to develop a game and evaluate according to the gameplay mechanics and technical
+performance. The group project consists of two main tasks. The first task must be submitted and
+evaluated prior to the add-drop period. A final demonstration of the project is scheduled for the last
+week of the term. Additionally, the course's final exam is practical and to be completed during the
+final week of study.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Assignments) 40%
+Mid -project 15%
+Final Examination (Hands-on Exam) 30%
+Final Project 15%
+Contribution to Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+M H - L M
+H – High M – Medium L – Low
+Course Learning Outcomes & PLOs:
+Course Learning Outcomes PLOs
+1 Develop interactive 2D and 3D games using Unity. 2
+2 Design an XR experience (VR, AR) using Unity and related SDKs. 2
+3 Apply game design principles to create immersive and interactive 6, 5
+experiences.
+4 Implement AI-driven game elements. 1, 6
+
+--- Page 3 ---
+Syllabus Supplement
+Course Code and Title COSC 4XX: Introduction to Game Development and XR
+Semester: Spring 2025
+Instructor Name Jamal Zemerly / Lamees Alqassem
+Contact Email/ Office Ext.
+jamal.zemerly@ku.ac.ae 3559, lamees.alqassem@ku.ac.ae
+No.
+Office Room No. C040401
+Office Hours MW 2-3
+Assessment Methodology
+Tentative Dates Weight
+Assignments Assignment-1 Due on week 4 10%
+Assignment-2 Due on week 6 15%
+Assignment-3 Due on week 10 15%
+Mid-Project Due on week 9 15%
+Final project Week 15 15%
+Final Examination TBA 30%
+Instructor Policy on late submission of assignments:
+No late submission is accepted.
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+
+--- Page 4 ---
+TEACHING PLAN (Lecture):
+Teaching
+Plan Introduction to game development
+Fundamentals of game theory in video games
+Week 1
+Unity basics and scripting: Unity interface, tools & basic C# scripting, and Game
+Week 2
+asset creation and management
+Unity basics and scripting: 2D game development
+Week 3
+Unity basics and scripting: 3D game development
+Week 4
+Assignmnet#1
+Project: team creation and topic selection
+Unity basics and scripting: Advanced Scripting, code optimization, and version
+Week 5
+control
+Project Proposal Submission
+Unity basics and scripting: Lighting and shading
+Week 6
+Assignment#2
+Unity basics and scripting: Audio design and implementation
+Week 7
+Mid-Project Submission
+Introduction to XR
+Week 8
+AR Development in Unity
+VR Development in Unity
+Week 9
+Mid-project (Progress presentation)
+Game mechanics and interaction design: Fundamental concepts, and Game
+Week 10
+balance & player engagement
+Assignment#3
+Game mechanics and interaction design: Visual and interactive user interface
+Week 11
+Advanced Unity features (Asset Store, third-party tools)
+Game testing and user feedback analysis
+Week 12
+Project Management in Game Development
+AI in game development: Basic concepts and AI-Driven Non-Player Characters
+Week 13
+(NPCs) with realistic behaviors
+AI-driven interaction in XR
+Week 14
+Project Discussion and support
+Week 15 Project Demo & Final Exam
+
+--- Page 5 ---
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter
+grades with pluses and minuses. Passing grades range from A to D; F is failing. Each letter
+grade is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for KU
+courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%

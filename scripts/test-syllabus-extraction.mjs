@@ -1575,4 +1575,120 @@ expectAssessmentNames(cosc495Grouped, [
 ]);
 expectAssessment(cosc495Grouped, "Final Examination (Hands-on Exam)", 30);
 
+const math232BestThree = extractSyllabusFromText(`Course Code and Title: MATH 232 Engineering Mathematics
+Assessment Strategy
+Coursework: Quiz # 1 13.33%
+There are 4 quizzes scheduled. Only the best 3 quiz scores will count towards your final grade.
+Quiz #2 13.33%
+Quiz #3 13.33%
+Quiz #4 13.33%
+Quiz Weight 40%
+Midterm Examination 25%
+Final Examination 35%`);
+expectAssessmentNames(math232BestThree, [
+  "Quizzes / best 3 of 4",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(math232BestThree, "Quizzes / best 3 of 4", 40);
+
+const math111SharedQuiz = extractSyllabusFromText(`Course Code and Title: MATH 111 Calculus I
+Assessment Strategy
+Coursework: Quiz # 1 Week 3
+Quiz # 2 Week 6
+20%
+Quiz # 3 Week 10
+Quiz # 4 Week 15
+HW Connect continuously 7%
+Remedial Tutorial Classes 8%
+Pebble Peer Mentors 5%
+Midterm Examination 25%
+Final Examination 35%`);
+expectAssessment(math111SharedQuiz, "Quiz 1", 5);
+expectAssessment(math111SharedQuiz, "Quiz 4", 5);
+expectAssessment(math111SharedQuiz, "HW", 7);
+expectAssessment(math111SharedQuiz, "Pebble Peer Mentors", 5);
+
+const math211SharedQuiz = extractSyllabusFromText(`Course Code and Title: MATH 211 Differential Equations and Linear Algebra
+Assessment Strategy
+Coursework: Quiz #1 Week 3
+Quiz #2 Week 6
+20%
+Quiz #3 Week 10
+Quiz #4 Week 15
+Online HW On Pearson 10%
+Project Project 10%
+Midterm Examination 25%
+Final Examination 35%`);
+expectAssessment(math211SharedQuiz, "Quiz 1", 5);
+expectAssessment(math211SharedQuiz, "Online HW", 10);
+expectAssessment(math211SharedQuiz, "Project", 10);
+
+const math112SharedQuiz = extractSyllabusFromText(`Course Code and Title: MATH 112 Calculus II
+Assessment Methodology
+Quiz 1 Week 3
+21%
+Quiz 2 Week 5
+Quiz 3 Week 10
+Coursework
+Weekly homework assignments
+HW 9%
+Project Wk14 10%
+Semester Examination 25%
+Final Examination 35%
+Quizzes (3) will count for 21% of the course grade. NO DROPPED QUIZZES.`);
+assert.equal(math112SharedQuiz.courseCode, "MATH 112");
+expectAssessment(math112SharedQuiz, "Quiz 1", 7);
+expectAssessment(math112SharedQuiz, "Quiz 3", 7);
+expectAssessment(math112SharedQuiz, "HW", 9);
+
+const math204DropLowest = extractSyllabusFromText(`Course Code and Title: MATH 204 Linear Algebra
+Assessment Methodology
+Coursework: Quiz 1 Week 3 (13.33%) 40%
+We drop the lowest quiz grade.
+Quiz 2 Week 6 (13.33%)
+Quiz 3 Week 10 (13.33%)
+Quiz 4 Week 13 (13.33%)
+Semester Examination Midterm Exam Week 8 25%
+Final Examination 35%`);
+expectAssessmentNames(math204DropLowest, [
+  "Quizzes / drop lowest",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(math204DropLowest, "Quizzes / drop lowest", 40);
+
+const huma229LongNames = extractSyllabusFromText(`Course Code and Title: HUMA 229 Critical Thinking
+Assessment Methodology
+Individual Writing: in-class reflection 10%
+Concept Quiz 10%
+Group Writing: Critical Analysis Essay 20%
+Digital Presentation: Video Podcast (Science vs. Pseudoscience) 20%
+Individual Writing: Case Study 1 & Case Study 2 30%
+Reading Comprehension Quizzes 10%
+Teaching Plan Week 5 Quiz 1`);
+expectAssessmentNames(huma229LongNames, [
+  "Individual Writing: Critical Reflection (in class)",
+  "Concept Quiz",
+  "Group Writing: Critical Analysis Essay",
+  "Digital Presentation: Video Podcast (Science vs. Pseudoscience)",
+  "Individual Writing: Case Study 1 & Case Study 2",
+  "Reading Comprehension Quizzes"
+]);
+expectAssessment(huma229LongNames, "Reading Comprehension Quizzes", 10);
+
+const huma277Grouped = extractSyllabusFromText(`Course Code and Title: HUMA 277 Introduction to Logical Reasoning
+Assessment:
+Coursework (Quizzes, assignments) 30%
+Presentation or Essay (group) 10%
+Semester Examination(s) 25%
+Final Examination 35%
+Weekly schedule Quiz 1 Essay topic`);
+expectAssessmentNames(huma277Grouped, [
+  "Coursework (Quizzes, assignments)",
+  "Presentation or Essay (group)",
+  "Semester Examination (s)",
+  "Final Examination"
+]);
+
 console.log("Syllabus extraction tests passed.");

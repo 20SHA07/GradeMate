@@ -21,52 +21,39 @@
   "courseDescription": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 10,
+      "name": "Coursework (Quizzes, assignments)",
+      "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 1 Week 2 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "Coursework (Quizzes, assignments) 30%"
     },
     {
-      "name": "Quiz 2",
+      "name": "Presentation or Essay (group)",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 2 Week 4 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "Presentation or Essay (group) 10%"
     },
     {
-      "name": "Homework",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Assignments (homework) Week 5 10%"
-    },
-    {
-      "name": "Presentation Or Essay",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Presentation or Essay Week 6 10%"
-    },
-    {
-      "name": "Semester Exam",
+      "name": "Semester Examination (s)",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Semester Exam Week 3 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination(s) 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final Exam 35%"
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
   "warnings": [
+    "Using summary table because detailed assessment rows are not mathematically clearer.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.93,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

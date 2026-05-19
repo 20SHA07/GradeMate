@@ -22,46 +22,68 @@
   "courseDescription": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
   "assessments": [
     {
-      "name": "Quizzes",
-      "weight_percentage": 20,
+      "name": "Quiz 1",
+      "weight_percentage": 5,
       "max_score": 100,
-      "confidence": 0.9,
-      "source_text_snippet": "Quiz # 2 Week 6: Quiz 2: chapter 3 20%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
     },
     {
       "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz block total 20% across Quiz 1-Quiz 4"
+    },
+    {
+      "name": "Online HW",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.9,
-      "source_text_snippet": "Quiz # 4 Week 15: Quiz 4: Ch 7,10 Online HW On Pearson 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "Online HW 10%"
     },
     {
       "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.9,
-      "source_text_snippet": "Project Project 10%"
+      "confidence": 0.96,
+      "source_text_snippet": "Project 10%"
     },
     {
-      "name": "Midterm Examination: MIDTERM: Friday, February From :‐:30am",
+      "name": "Midterm Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.9,
-      "source_text_snippet": "Midterm Examination: MIDTERM: Friday, February 28 from 9:00‐10:30am 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Midterm Examination 25%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.9,
-      "source_text_snippet": "Final Examination: FINAL EXAM: (TBC) 35%"
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
   "warnings": [
+    "Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.86,
+  "confidence": 0.91,
   "needsHumanReview": true
 }
