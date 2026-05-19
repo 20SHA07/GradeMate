@@ -1,0 +1,109 @@
+{
+  "id": "MATH112_MATH_112_Syllabus_Spring_2025_Dr_Fawaz",
+  "sourceFileName": "MATH112_MATH_112_Syllabus_-_Spring_2025_-_Dr._Fawaz.pdf",
+  "sourcePath": "MATH112_MATH_112_Syllabus_-_Spring_2025_-_Dr._Fawaz.pdf",
+  "sourceRelativePath": "MATH112_MATH_112_Syllabus_-_Spring_2025_-_Dr._Fawaz.pdf",
+  "sourceHash": "82c936683a7c538eea3689f146379b41c79a7cb9e9d9a35348fe2054eeda777e",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 112",
+  "courseName": "Calculus II",
+  "department": "MATH",
+  "creditHours": 4,
+  "semester": "Spring 2025",
+  "instructor": "Dr Fawaz Hjouj",
+  "instructorEmail": "fawaz.hjouj@ku.ac.ae",
+  "schedule": "7 Feb 24 Midterm Exam: Wednesday, Feb 26, 2025 @7:30. TBC",
+  "classroom": null,
+  "officeRoom": "SAN 1008C",
+  "officeHours": "MW 11:00-12:00, AND, 2:00-4:00 PM",
+  "prerequisites": "MATH 111 (C grade or higher)",
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad",
+    "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
+  ],
+  "courseDescription": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 7,
+      "maxScore": 100,
+      "source": "Quiz block total 21% across Quiz 1-Quiz 3",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 7,
+      "maxScore": 100,
+      "source": "Quiz block total 21% across Quiz 1-Quiz 3",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 7,
+      "maxScore": 100,
+      "source": "Quiz block total 21% across Quiz 1-Quiz 3",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "HW",
+      "weightPercentage": 9,
+      "maxScore": 100,
+      "source": "HW 9%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Project 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Split quiz group weight 21% evenly across Quiz 1-Quiz 3. Please confirm."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 112|calculus ii|spring 2025",
+  "duplicateStatus": "duplicate",
+  "canonical": false,
+  "canonicalReason": "duplicate of MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,76 @@
+{
+  "id": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025",
+  "sourceFileName": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf",
+  "sourcePath": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf",
+  "sourceRelativePath": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf",
+  "sourceHash": "a23a19908ae2e0519ee65c7d2b4194419c89da9ee918e1007db70b47cfe2c044",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BUSS 322",
+  "courseName": "Fundamentals of Innovation & Entrepreneurship",
+  "department": "BUSS",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Ms Melanie Bowman",
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "BUSS322 Monday & Wednesday 1330-1430. Tuesday & Thursday 1200-1300",
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Technology Ventures: From Idea to Enterprise by Tom Byers, Dorf, and Nelson, Publisher: McGraw Hill Education, 4th Edition,",
+    "2015, International Student Edition, ISBN: 9781259875991"
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (an accumulation of homework tasks and reflections throughout the course) 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project 1",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project #1: Design Thinking in Practice 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project 2",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project #2: Opportunity Analysis 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Project: Personal Business Plan 40%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.95,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "buss 322|fundamentals of innovation & entrepreneurship|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

@@ -1,0 +1,73 @@
+{
+  "id": "MATH234_MATH234_Syllabus_Summer_2024",
+  "sourceFileName": "MATH234_MATH234_Syllabus_Summer_2024.pdf",
+  "sourcePath": "MATH234_MATH234_Syllabus_Summer_2024.pdf",
+  "sourceRelativePath": "MATH234_MATH234_Syllabus_Summer_2024.pdf",
+  "sourceHash": "20c58154ad387d398f05f4be34348a1126ff614855e828d4c5edbdb461b03b11",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 234",
+  "courseName": "Discrete Mathematics",
+  "department": "MATH",
+  "creditHours": 3,
+  "semester": "Summer 2024",
+  "instructor": "Meryem Rhadbane",
+  "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
+  "schedule": "MTWR 9:00 - 10:40",
+  "classroom": null,
+  "officeRoom": "Building 1 office 021B San",
+  "officeHours": "3:00 p.m. – 4:00 p.m.",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Discrete Mathematics and its Applications, Global Edition by K.H. Rosen, Publisher: McGraw Hill, 7",
+    "Edition, 2012. ISBN: 9780071315012."
+  ],
+  "courseDescription": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
+  "assessments": [
+    {
+      "name": "Quizzes / best 3 of 4",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Quiz weight is 40% with best 3 of 4 quizzes counted",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Using grouped quiz category because only the best 3 of 4 quizzes count."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 234|discrete mathematics|summer 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

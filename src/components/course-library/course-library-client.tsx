@@ -162,6 +162,22 @@ function templateSourceName(template: CourseTemplateRecord) {
   );
 }
 
+function templateTermLabel(template: CourseTemplateRecord) {
+  return template.semester ?? template.term ?? null;
+}
+
+function templateWarnings(template: CourseTemplateRecord) {
+  return Array.isArray(template.extraction_warnings)
+    ? template.extraction_warnings.filter(Boolean)
+    : [];
+}
+
+function isPublicReadyTemplate(template: CourseTemplateRecord) {
+  return !["needs_review", "archived"].includes(
+    String(template.template_status ?? "ready").toLowerCase()
+  );
+}
+
 function findDuplicateCourse(
   courses: CourseRecord[],
   semesterId: string,
@@ -302,8 +318,9 @@ export function CourseLibraryClient() {
         return;
       }
 
-      const templateRows =
-        (templatesResponse.data ?? []) as CourseTemplateRecord[];
+      const templateRows = (
+        (templatesResponse.data ?? []) as CourseTemplateRecord[]
+      ).filter(isPublicReadyTemplate);
       const assessmentRows =
         (assessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
       const materialRows =
@@ -891,6 +908,15 @@ export function CourseLibraryClient() {
                       <Badge tone={weightTone(totalWeight)}>
                         {weightLabel(totalWeight)}
                       </Badge>
+                      {template.template_status ? (
+                        <Badge tone="ink">{template.template_status}</Badge>
+                      ) : null}
+                      {templateWarnings(template).length > 0 ? (
+                        <Badge tone="gold">
+                          {templateWarnings(template).length} warning
+                          {templateWarnings(template).length === 1 ? "" : "s"}
+                        </Badge>
+                      ) : null}
                     </div>
                     <h2 className="mt-3 text-lg font-semibold text-ink-900">
                       {template.course_name}
@@ -921,7 +947,9 @@ export function CourseLibraryClient() {
 
                 <p className="mt-3 text-xs text-ink-500">
                   {template.instructor ?? "Instructor not detected"}
-                  {template.term ? ` - ${template.term}` : ""}
+                  {templateTermLabel(template)
+                    ? ` - ${templateTermLabel(template)}`
+                    : ""}
                 </p>
 
                 {template.assessments.length === 0 ? (
@@ -1043,9 +1071,14 @@ export function CourseLibraryClient() {
                     />
                     <DetailStat
                       label="Term"
-                      value={detailTemplate.term ?? "Not detected"}
+                      value={templateTermLabel(detailTemplate) ?? "Not detected"}
                     />
                   </div>
+                  {templateWarnings(detailTemplate).length > 0 ? (
+                    <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                      {templateWarnings(detailTemplate).join("; ")}
+                    </div>
+                  ) : null}
 
                   <div className="overflow-hidden rounded-lg border border-ink-200">
                     <div className="flex items-center justify-between gap-3 border-b border-ink-200 bg-ink-50 px-4 py-3">

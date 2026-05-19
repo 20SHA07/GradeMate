@@ -1,0 +1,107 @@
+{
+  "id": "CHEG350_Material_Science_Syllabus",
+  "sourceFileName": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourcePath": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourceRelativePath": "CHEG350_Material_Science_Syllabus.pdf",
+  "sourceHash": "c1e06be9c3dbea52ca250a1167815d9791eaae46f8b5c2a02eebb27ab6661d24",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 350",
+  "courseName": "Materials Science & Engineering",
+  "department": "CHEG",
+  "creditHours": 3,
+  "semester": "Spring 2024",
+  "instructor": "Akram Alfantazi",
+  "instructorEmail": "akram.alfantazi@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Arzanah 311",
+  "officeHours": "Tuesday and Thursday 11:00- 12:45",
+  "prerequisites": "CHEM 116, PHYS 122",
+  "textbooks": [
+    "Materials Science and Engineering: An Introduction by William D. Callister, Publisher: Wiley,",
+    "9 Intl Edition, 2014, ISBN-13: 9781118319222"
+  ],
+  "courseDescription": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Coursework: Homework 1 Week 3 5%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Quiz 1 Week 4 10%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Homework 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Homework 2 Week 8 5%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 10 10%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 13 10%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mid Term Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm Exam Week of March 17th 25%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination Week 16 35%",
+      "confidence": 0.84,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.84,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 350|materials science & engineering|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

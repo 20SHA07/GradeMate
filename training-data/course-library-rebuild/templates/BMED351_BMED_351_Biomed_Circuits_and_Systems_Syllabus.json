@@ -1,0 +1,79 @@
+{
+  "id": "BMED351_BMED_351_Biomed_Circuits_and_Systems_Syllabus",
+  "sourceFileName": "BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf",
+  "sourcePath": "BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf",
+  "sourceRelativePath": "BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf",
+  "sourceHash": "4d91024b57760e4f85ca8133c570467c8b744307d9c547c6c999f54a8ee0282a",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 351",
+  "courseName": "Biomedical Circuits and Systems",
+  "department": "BMED",
+  "creditHours": 4,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "PHYS 122, BMED 212",
+  "textbooks": [
+    "Fundamentals of Electric Circuits by C. K. Alexander & M. N.O. Sadiku, Publisher: McGraw-Hill, 6",
+    "International edition, 2016, ISBN: 9781259251320"
+  ],
+  "courseDescription": "The primary objective of this course is to study analogue, digital electronic circuits and their application\nto biomedical instrumentation and physiological measurements. The course will focus strongly on\nelectronic hardware and software design issues required to produce medical instruments, which satisfy\nInternational standards for safety, performance and quality control. Students will be equipped with the\nfundamental knowledge required to design Biosignal processing system.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework, projects) 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Laboratory 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination(s) 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Final Examination 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "bmed 351|biomedical circuits and systems|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

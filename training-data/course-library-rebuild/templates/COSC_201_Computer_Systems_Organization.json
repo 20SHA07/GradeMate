@@ -1,0 +1,88 @@
+{
+  "id": "COSC_201_Computer_Systems_Organization",
+  "sourceFileName": "COSC 201 Computer Systems Organization.pdf",
+  "sourcePath": "COSC 201 Computer Systems Organization.pdf",
+  "sourceRelativePath": "COSC 201 Computer Systems Organization.pdf",
+  "sourceHash": "0d31d22e2446ffd0f7b5607abf448d980c7846370a83444e7e133b837c127337",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 201",
+  "courseName": "Computer Systems Organization",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "COSC 101",
+  "textbooks": [
+    " Randal E. Bryant and David R. O’Hallaron, Computer Systems: A Programmer’s",
+    "Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
+  ],
+  "courseDescription": "This course provides a basic understanding of the fundamental logical organization of a\ncomputer (its parts and their relationship) and how it actually works; exposure to a central\nprocessor's native language, and to basic computer components and basic architectures for high\nperformance design. Topics include: Von Neumann architecture, C programming (low-level\naspects), data representation, computer arithmetic, assembly language programming, digital\nlogic design, registers, instruction counter, processor architecture, pipelining, memory\nhierarchies, caching, virtual memory, interrupts, input and output, buses.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Coursework (quizzes, homework) 15%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Work",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Lab Work 15%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination 30%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 201|computer systems organization|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

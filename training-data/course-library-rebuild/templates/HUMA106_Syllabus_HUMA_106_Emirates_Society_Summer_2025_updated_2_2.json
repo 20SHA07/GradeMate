@@ -1,0 +1,104 @@
+{
+  "id": "HUMA106_Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2",
+  "sourceFileName": "HUMA106_Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.pdf",
+  "sourcePath": "HUMA106_Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.pdf",
+  "sourceRelativePath": "HUMA106_Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.pdf",
+  "sourceHash": "4cc08b8ea19cde40a00f0ac7d9466c55de44ce21076271d6b9ec78d0e784fa4d",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "HUMA 106",
+  "courseName": "Emirates Society",
+  "department": "HUMA",
+  "creditHours": 3,
+  "semester": "Summer 2024",
+  "instructor": "Enaam Hunaini",
+  "instructorEmail": "Enaam.subhi@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN- Zarkuh / R:1023B",
+  "officeHours": "Tuesdays and Thursdays 11:00- 12:00",
+  "prerequisites": null,
+  "textbooks": [
+    "Title Publisher Author ISBN Year",
+    "دراسات اماراتية الطبعة حترير: دعقيل اكظم ود. عيل",
+    "978-9948-",
+    "رة الرتبية والتعلمي أبوظيب ا وز 2016",
+    "الرابعة الغفيل 22- 512- 6",
+    "Links and/or material will be posted on Blackboard.",
+    "Pedagogy – Learning Process:",
+    "The course will be delivered through the following methodologies: lectures, class"
+  ],
+  "courseDescription": "The course acquaints students with the geographical, cultural, demographical, economic and\nsocial aspects of UAE society. It highlights the evolution of the country from a traditional to a\nmodern society. Topics such as UAE political system, family, population, migration, youth, and\nthe development of civil society are addressed.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Quiz 1 15%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Quiz 2 15%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Midterm 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Research final Project 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "In-Class Assignment",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "In-Class Assignment 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Chapter presentation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Chapter presentation 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "huma 106|emirates society|summer 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "generatedAt": "2026-05-19T12:02:44.815Z",
+  "sourceDir": "training-data\\collected-syllabi\\files",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "filesScanned": 89,
+  "templatesGenerated": 89,
+  "ready": 82,
+  "canonicalReady": 74,
+  "needsReview": 7,
+  "regressions": 0,
+  "parseErrors": []
+}

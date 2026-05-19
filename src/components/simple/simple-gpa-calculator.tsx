@@ -730,6 +730,12 @@ export function SimpleGpaCalculator() {
         const assessmentRows =
           (assessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
         const templates = ((templatesResponse.data ?? []) as CourseTemplateRecord[])
+          .filter(
+            (template) =>
+              !["needs_review", "archived"].includes(
+                String(template.template_status ?? "ready").toLowerCase()
+              )
+          )
           .map((template) => ({
             ...template,
             assessments: assessmentRows.filter(

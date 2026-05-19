@@ -1,0 +1,89 @@
+{
+  "id": "MATH101_MATH_101_Syllabus_Fall_2024_Dr_Ahmed",
+  "sourceFileName": "MATH101_MATH_101_Syllabus_-_Fall_2024_-_Dr._Ahmed.pdf",
+  "sourcePath": "MATH101_MATH_101_Syllabus_-_Fall_2024_-_Dr._Ahmed.pdf",
+  "sourceRelativePath": "MATH101_MATH_101_Syllabus_-_Fall_2024_-_Dr._Ahmed.pdf",
+  "sourceHash": "7dbddce80309a5b76e3f08f02d0b24a61ceb693431fe0ba8490b2a6cdbaa2e74",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 101",
+  "courseName": "Fundamentals of Mathematical Reasoning",
+  "department": "MATH",
+  "creditHours": 3,
+  "semester": "Fall 2024",
+  "instructor": "Ahmed Ameur",
+  "instructorEmail": "Ahmed.ameur@ku.ac.ae",
+  "schedule": "MW 14:00-15:15",
+  "classroom": null,
+  "officeRoom": "SAN Campus Building 1 Office 019A",
+  "officeHours": "MW 10:00-11:50",
+  "prerequisites": "None",
+  "textbooks": [
+    "Mathematical Reasoning Writing and Proof by Ted Sundstrom, Open Textbook Initiative, American",
+    "Institute of Mathematics, Version 2.1, 2021"
+  ],
+  "courseDescription": "This course provides a foundation in logical and mathematical reasoning. It develops first year university\nstudents’ structured logical thinking and mathematical rigor. The course introduces methods of proof,\nbasic concepts and properties of real numbers, relations and functions. The course also presents an\nintroduction to combinatorics, set theory and number theory.",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes and assignments)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes and assignments) 20%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Project 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Presentation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Presentation 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 101|fundamentals of mathematical reasoning|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

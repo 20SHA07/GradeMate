@@ -1,0 +1,131 @@
+{
+  "id": "GENS_300_Revised_Syllabus_Jan_2025",
+  "sourceFileName": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourcePath": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourceRelativePath": "GENS 300 Revised Syllabus Jan 2025.pdf",
+  "sourceHash": "242478aef48c3e32774622abcbd9fc10e921dd254779860e11759665989f590a",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "department": "GENS",
+  "creditHours": 1,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "- GENS 100, Sophomore Standing",
+  "textbooks": [
+    "Materials",
+    "K. Brooks, What Color Is Your Parachute? for College. New York, NY, USA: Ten Speed Press, 2021, ISBN: 978-1-9848-",
+    "Course Structure & Learning Methodology",
+    "Studio sessions are 1 x 100 minutes per week. Sessions involve interactive activities in a blended learning"
+  ],
+  "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and labor market\nspecialist. This activity-based course is focused on field exploration, CV and digital profile development, and\nprofessional communication. Course delivery is a blend of in-person and asynchronous online learning experiences.",
+  "assessments": [
+    {
+      "name": "Initial CV submission",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Initial submission weighted (5%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final CV version",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Final CV version weighed (10%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Career development plan",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Career development plan (10%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Complete two experiences and submit valid evidence",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Complete two experiences and submit valid evidence in Week 13 (20%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "LinkedIn courses completion",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "LinkedIn courses completion (5%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Weekly online quizzes",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Weekly online quizzes (5%)",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mock Interview",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Mock Interview 12-14 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Attendance of Professional Development workshops (5 workshops)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Attendance of Professional Development workshops (5 workshops) 1-14 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Quiz",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Final Quiz 14 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.87,
+  "warnings": [
+    "Using detailed assessment methodology instead of summary table.",
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "gens 300|career preparation|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

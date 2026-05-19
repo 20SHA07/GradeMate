@@ -1,0 +1,69 @@
+{
+  "id": "MATH_232_Engineering_Mathematics_Syllabus_2",
+  "sourceFileName": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourcePath": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourceRelativePath": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
+  "sourceHash": "111cdd205bcc8519d9705ad2edbecc9b5e97acdda0edf792961ee6b7ccf33a4c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "department": "MATH",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Mohammad Al-Khaleel",
+  "instructorEmail": "mohammad.alkhaleel@ku.ac.ae",
+  "schedule": "Tuesday and Thursday from 13:30 to 14:45",
+  "classroom": null,
+  "officeRoom": "SAN - 1212",
+  "officeHours": "Mondays and Wednesdays from 12:30 to 13:30; or by appointment",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:",
+    "9781305266728.",
+    "Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:",
+    "9780470458365."
+  ],
+  "courseDescription": "This course introduces students to selected topics from mathematical analysis with engineering\napplications. The first part is a calculus part which covers the definition of functions of several variables\nand their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient\nvectors, and multiple integrals for functions of several variables. The second part of the course deals\nwith Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier\ntransforms.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination Week 7: Date, time, and venue to be determined 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination Week 15 or 16: RO 35%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.93,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 232|engineering mathematics|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

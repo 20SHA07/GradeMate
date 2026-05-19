@@ -1,0 +1,79 @@
+{
+  "id": "COSC_310_Data_Structures_June_2020",
+  "sourceFileName": "COSC 310 Data Structures June 2020.pdf",
+  "sourcePath": "COSC 310 Data Structures June 2020.pdf",
+  "sourceRelativePath": "COSC 310 Data Structures June 2020.pdf",
+  "sourceHash": "677083db8d252c273e43670bf1c4d7bf9f1eac6b9c9250547f441e6a87e05d7f",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "ECCE 230, MATH 234",
+  "textbooks": [
+    " Michael Goodrich, Roberto Tamassia, and Michael Goldwasser Data Structures and",
+    "Algorithms in Java, Wiley, 6th Edition, 2014, ISBN: 978-1118771334."
+  ],
+  "courseDescription": "Review of object-oriented design. Analysis of algorithm complexity. Fundamental data\nstructures: Concept of Abstract Data Types (ADTs), Queues, Stacks, Lists, Trees; Java\nCollections Framework. Fundamental computing algorithms: binary search trees, hash tables,\nheaps, balanced trees, sorting algorithms, searching algorithms.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework) 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Laboratory Assignments 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 310|data structures|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

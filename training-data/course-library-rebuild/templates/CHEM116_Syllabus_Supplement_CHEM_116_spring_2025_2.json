@@ -1,0 +1,81 @@
+{
+  "id": "CHEM116_Syllabus_Supplement_CHEM_116_spring_2025_2",
+  "sourceFileName": "CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
+  "sourcePath": "CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
+  "sourceRelativePath": "CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
+  "sourceHash": "5f9c54a33a821f025699b0aa8dad5cf300d0d0087fa1217496f06263ca645037",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEM 116",
+  "courseName": "General Chemistry II",
+  "department": "CHEM",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Gisha Elizabeth Luckachan",
+  "instructorEmail": "gisha.luckachan@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus, Bu Hasa 20001",
+  "officeHours": "Tuesday: 11:00 am-1:00 pm; Thursday: 11:00 am-1:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
+  "assessments": [
+    {
+      "name": "Coursework / Quizzes",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Coursework:",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Laboratory (if applicable)",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Exam",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "chem 116|general chemistry ii|spring 2025",
+  "duplicateStatus": "duplicate",
+  "canonical": true,
+  "canonicalReason": "highest-confidence duplicate",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

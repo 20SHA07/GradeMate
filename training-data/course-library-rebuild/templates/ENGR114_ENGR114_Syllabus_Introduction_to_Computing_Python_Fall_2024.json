@@ -1,0 +1,80 @@
+{
+  "id": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_Python_Fall_2024",
+  "sourceFileName": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourcePath": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourceRelativePath": "ENGR114_ENGR114_Syllabus_Introduction_to_Computing_-_Python_Fall_2024.pdf",
+  "sourceHash": "a5036fac01ecaff9e8ea848cecd9eebb8530567d28377904a710c9620b9c180a",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 114",
+  "courseName": "Introduction to Computing - Python",
+  "department": "COSC",
+  "creditHours": 4,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Yousuf Alsalami",
+  "instructorEmail": "yousuf.alsalami@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C03-017",
+  "officeHours": "Tue Thu 3:15 pm - 4:15 pm",
+  "prerequisites": "None",
+  "textbooks": [
+    "Python Programming: Using Problem-Solving Approach by R. Thareja, Publisher: Oxford University",
+    "Press, 2017, ISBN: 978-0-19-948017-3"
+  ],
+  "courseDescription": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes, homework, lab work)",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework, lab work) 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Lab",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Final Lab 15%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination 20%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination 30%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 114|introduction to computing - python|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

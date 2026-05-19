@@ -1,0 +1,125 @@
+{
+  "id": "COSC301_COSC301_Syllabus_Supplement_for_Students_Fall_2022",
+  "sourceFileName": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf",
+  "sourcePath": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf",
+  "sourceRelativePath": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf",
+  "sourceHash": "58ad820b9d3b72e0d97262cd7675f0191a45532bea5dbe00a26f732b4721c666",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 301",
+  "courseName": "Automata, Computability, and Complexity",
+  "department": "COSC",
+  "creditHours": null,
+  "semester": "Fall 2022",
+  "instructor": "Dr Deepak Puthal",
+  "instructorEmail": "deepak.puthal@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C04014 (Main Campus)",
+  "officeHours": "Tuesday & Thursday: 14:30 hrs – 15:30 hrs.",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework 1",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework: Homework 1 Week 3 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Homework 2",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Homework 2 Week 6 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Homework 3",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Homework 3 Week 10 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 1 Week 4 05%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 6 05%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 10 05%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 13 05%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm Week 8 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination Final Examination TBC by the Registrar’s Office 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 301|automata, computability, and complexity|fall 2022",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,138 @@
+{
+  "id": "CHEG324_Mass_Syllabus",
+  "sourceFileName": "CHEG324_Mass_Syllabus.pdf",
+  "sourcePath": "CHEG324_Mass_Syllabus.pdf",
+  "sourceRelativePath": "CHEG324_Mass_Syllabus.pdf",
+  "sourceHash": "c539c10b511b2df68d467361145a8f5c227a95535f0fb7e71d35e5b0610c8f8c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 324",
+  "courseName": "Mass Transfer",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Maryam Khaleel",
+  "instructorEmail": "maryam.khaleel@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "8309 Arzanah",
+  "officeHours": "Monday 11 am-12 pm; Wednesday 10-11:30 am",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Coursework: Quiz 1 Week 3 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 5 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 9 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 12 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 5",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 5 Week 14 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 6",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz 6 Week 15 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Project Week 16 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Test 1",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Test 1 Week 7 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Test 2",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Test 2 Week 13 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination Final Exam May 2025 30%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 105,
+  "confidence": 0.87,
+  "warnings": [
+    "Total weight is above 100 (105%)",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [
+    "total weight 105 is not 100",
+    "Total weight is above 100 (105%)"
+  ],
+  "ready": false,
+  "needsReview": true,
+  "duplicateGroupKey": "cheg 324|mass transfer|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": false,
+  "canonicalReason": "needs review",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,118 @@
+{
+  "id": "Syllabus_Fall_2026_02",
+  "sourceFileName": "Syllabus-Fall 2026-02.docx",
+  "sourcePath": "Syllabus-Fall 2026-02.docx",
+  "sourceRelativePath": "Syllabus-Fall 2026-02.docx",
+  "sourceHash": "e18dff81783efef3b6f814e3b931487f425af074b4071bf3ecc4ac9dbc66bb46",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "PHYS 121",
+  "courseName": "University Physics I",
+  "department": "PHYS",
+  "creditHours": null,
+  "semester": "Fall 2026",
+  "instructor": "Mr. Nabee Hasheem",
+  "instructorEmail": "nabee.hasheem@ku.ac.ae",
+  "schedule": "CRN 20228: MW 11:00-12:40",
+  "classroom": null,
+  "officeRoom": "SAN 3109",
+  "officeHours": "TR 10:00 AM-12:00",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\n4.00\n92.5%-100%\nExcellent\nA-\n3.70\n89.5% to < 92.5%\nVery Good",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 6,
+      "maxScore": 100,
+      "source": "Quiz + WAs = 24% + 6% = 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 6,
+      "maxScore": 100,
+      "source": "Quiz + WAs = 24% + 6% = 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 6,
+      "maxScore": 100,
+      "source": "Quiz + WAs = 24% + 6% = 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 6,
+      "maxScore": 100,
+      "source": "Quiz + WAs = 24% + 6% = 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Web assign",
+      "weightPercentage": 6,
+      "maxScore": 100,
+      "source": "Quiz + WAs = 24% + 6% = 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory 1-lab report per each experiment During lab time 20%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm test",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm test Oct 24, 2025 20%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final test",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final test TBA (registrar office) 30%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Split quiz total 24% evenly across 4 quizzes. Please confirm.",
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "phys 121|university physics i|fall 2026",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

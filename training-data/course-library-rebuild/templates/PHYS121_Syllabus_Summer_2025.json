@@ -1,0 +1,120 @@
+{
+  "id": "PHYS121_Syllabus_Summer_2025",
+  "sourceFileName": "PHYS121_Syllabus_-_Summer_2025.pdf",
+  "sourcePath": "PHYS121_Syllabus_-_Summer_2025.pdf",
+  "sourceRelativePath": "PHYS121_Syllabus_-_Summer_2025.pdf",
+  "sourceHash": "790562d2f29dc05ec1b725f4bfaa9353c6cdc656fead01862d3ff74e403ef7f2",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "PHYS 121",
+  "courseName": "University Physics I",
+  "department": "PHYS",
+  "creditHours": 4,
+  "semester": "Summer 2025",
+  "instructor": "Dr. Dalaver H. Anjum",
+  "instructorEmail": "Dalaver.anjum@ku.ac.ae",
+  "schedule": "MTWR 12:00 pm – 2:30 pm (SAN 2126)",
+  "classroom": null,
+  "officeRoom": "SAN 2220",
+  "officeHours": "Wednesday: 3 pm – 4 pm",
+  "prerequisites": "MATH 111",
+  "textbooks": [
+    "Physics for Scientists and Engineers",
+    "Volume 1 by Raymond A. Serway and John W Jewett,",
+    "Publisher: Brooks Cole, 9th International Edition, 2014. ISBN-13: 9781285070438 (ISBN-",
+    "10:1285070437)."
+  ],
+  "courseDescription": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz block total 25% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz block total 25% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz block total 25% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz block total 25% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Homework / WebAssign",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Homework WebAssign 5%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm test",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Midterm test 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final test",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final test 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Split quiz group weight 25% evenly across Quiz 1-Quiz 4. Please confirm."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "phys 121|university physics i|summer 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

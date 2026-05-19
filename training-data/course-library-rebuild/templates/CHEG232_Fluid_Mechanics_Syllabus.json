@@ -1,0 +1,134 @@
+{
+  "id": "CHEG232_Fluid_Mechanics_Syllabus",
+  "sourceFileName": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourcePath": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourceRelativePath": "CHEG232_Fluid_Mechanics_Syllabus.pdf",
+  "sourceHash": "06eeef2bf477e3fc3844ca76e8c996c70f31a09b98e64e6b0d4542b825f8b46c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 232",
+  "courseName": "Fluid Mechanics For Chemical Engineering",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Dr. Emad Alhseinat",
+  "instructorEmail": "Emad.alhseinat@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "255 Arzanah",
+  "officeHours": "Monday _10:30-11:30; or ask for appointment through email.",
+  "prerequisites": null,
+  "textbooks": [
+    "Week 2 Fluid Statics: Fundamentals of Fluid Statics: (Chapter 2 textbook)",
+    "Week 3 The Balance Equation: Mass Balance",
+    "(Chapter 3 textbook)",
+    "Week 4 The Balance Equation: Energy Balance",
+    "(Chapter 4 textbook)",
+    "Week 5 Bernoulli’s Equation",
+    "Chapter 5 (textbook)",
+    "Week 6 Examples on Bernoulli’s Equation"
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 4,
+      "maxScore": 100,
+      "source": "Quiz 1 Week 4 (8 Feb) 4%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 4,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 6 (22 Feb) 4%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 4,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 10 (21 March) 4%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 4,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 13 (11 April) 4%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 5",
+      "weightPercentage": 4,
+      "maxScore": 100,
+      "source": "Quiz 5 Week 15 (25 April) 4%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory (if applicable) 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Week 8 (05 March) 25%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Attendance",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Attendance 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination 30%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.87,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 232|fluid mechanics for chemical engineering|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

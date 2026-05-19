@@ -1,0 +1,80 @@
+{
+  "id": "ENGL102_Syllabus",
+  "sourceFileName": "ENGL102_Syllabus.pdf",
+  "sourcePath": "ENGL102_Syllabus.pdf",
+  "sourceRelativePath": "ENGL102_Syllabus.pdf",
+  "sourceHash": "14444111dbdc57de4a4bfd1cd94afc978920a8bd9cdcc98756be756d8b576e11",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "department": "ENGL",
+  "creditHours": 3,
+  "semester": "Fall 2022",
+  "instructor": "Dr. Nader Ayish",
+  "instructorEmail": "nader.ayish@ku.ac.ae",
+  "schedule": "8 am-9:15 am Tuesday and Thursday",
+  "classroom": null,
+  "officeRoom": "Umm Shaif, Building 4, room 4003",
+  "officeHours": "Tuesday and Thursday, 9:15 am-10:15 am; 12:15 pm-1:15 pm; and by",
+  "prerequisites": "ENGL 101",
+  "textbooks": [
+    "Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,",
+    "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
+  ],
+  "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
+  "assessments": [
+    {
+      "name": "Individual Writing: Technical report",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Individual Writing: Technical report 40%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Digital presentation of technical report",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Digital presentation of technical report 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group proposal in response to a Request for Funding Proposal (RFP)",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Group (</= 3 students) proposal in response to a Request for Funding Proposal (RFP) 30%",
+      "confidence": 0.96,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Oral presentation of group proposal",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Oral presentation of group proposal 10%",
+      "confidence": 0.96,
+      "inferred": true,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "engl 102|academic english ii|fall 2022",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

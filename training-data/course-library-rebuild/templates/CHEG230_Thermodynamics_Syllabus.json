@@ -1,0 +1,67 @@
+{
+  "id": "CHEG230_Thermodynamics_Syllabus",
+  "sourceFileName": "CHEG230_Thermodynamics_Syllabus.pdf",
+  "sourcePath": "CHEG230_Thermodynamics_Syllabus.pdf",
+  "sourceRelativePath": "CHEG230_Thermodynamics_Syllabus.pdf",
+  "sourceHash": "75bbe782d794bc754c1eaa3df8a03d2bead237eb8b9f6107d03ad3f3ba6bab50",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 230",
+  "courseName": "Chemical Engineering Thermodynamics I",
+  "department": "CHEG",
+  "creditHours": 3,
+  "semester": "Spring 2024",
+  "instructor": "Ricardo Nogueira",
+  "instructorEmail": "Ricardo.Nogueira@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus: Building 4, Ground level, Room 4-017",
+  "officeHours": "M 11:00 am -12:00 pm W 11:00 am -12:00 pm",
+  "prerequisites": "CHEG 205",
+  "textbooks": [
+    "Introduction to Chemical Engineering Thermodynamics, J. M. Smith, H. C. Van Ness, and M. M.",
+    "Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6."
+  ],
+  "courseDescription": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
+  "assessments": [
+    {
+      "name": "Pre-Assigned Quizzes",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Pre-Assigned Quizzes 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination Written examination (Closed Book) Assigned by Registrar 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.93,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 230|chemical engineering thermodynamics i|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

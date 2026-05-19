@@ -1,0 +1,125 @@
+{
+  "id": "COSC310_Syllabus_Supplement_for_Students_FALL_2025",
+  "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourcePath": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourceRelativePath": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourceHash": "c208f831f6cf4457a683bc6228592efd18e09c47bb16624c0b889ae0d22e467c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "department": "COSC",
+  "creditHours": null,
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "khaled.elbassioni@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04200",
+  "officeHours": "TUE-THU: 15:00 PM-16:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 3.33,
+      "maxScore": 100,
+      "source": "Coursework: Quiz 1 Week 5 3.33%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 3.33,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 8 3.33%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 3.34,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 13 3.34%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project/Assignment",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Projects / Assignment Project/Assignment Week 10 – Week 14 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Assignments",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Laboratory Lab Assignments Weekly (W2 – W13) 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Quizzes",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Lab Quizzes Consult with Lab TA 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Test (or a Quiz)",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Lab Test (or a Quiz) Week 14 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination (on-campus) Week 9 (Mar 13) 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination (on-campus) Week 16 (May 5-15) 35%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 310|data structures|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

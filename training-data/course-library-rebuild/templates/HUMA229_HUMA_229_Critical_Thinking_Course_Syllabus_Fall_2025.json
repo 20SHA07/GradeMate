@@ -1,0 +1,99 @@
+{
+  "id": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025",
+  "sourceFileName": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourcePath": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourceRelativePath": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
+  "sourceHash": "4ac2ed159262e142ab80c4139fe76c86eb2c356440c61ebcbfa8bf880320988b",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "HUMA 229",
+  "courseName": "Critical Thinking",
+  "department": "HUMA",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Lisa Kassem",
+  "instructorEmail": "Lisa.kassem@ku.ac.ae",
+  "schedule": "Tuesdays & Thursdays from 10:30 to 11:45",
+  "classroom": null,
+  "officeRoom": "Bu Hasa 2104 (SAN Campus)",
+  "officeHours": "Mondays & Wednesdays: 1:30 to 3:00 in Bu Hasa room 2104 (SAN campus); Tuesdays & Thursdays: 12:00 to 1:30 CTL (The Hive), Main Campus",
+  "prerequisites": "ENGL 102",
+  "textbooks": [
+    "R. Paul and L. Elder, Critical Thinking: Tools for Taking Charge of Your Professional and Personal Life. Upper Saddle River, NJ: Financial Times Prentice Hall, 2002. ISBN: 0-13-064760-8."
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Individual Writing: Critical Reflection (in class)",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Individual Writing: in-class reflection 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Concept Quiz",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Concept Quiz 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group Writing: Critical Analysis Essay",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Group Writing: Critical Analysis Essay 20%",
+      "confidence": 0.96,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Digital Presentation: Video Podcast (Science vs. Pseudoscience)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Digital Presentation: Video Podcast 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Individual Writing: Case Study 1 & Case Study 2",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Individual Writing: Case Study 1 & Case Study 2 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Reading Comprehension Quizzes",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Reading Comprehension Quizzes 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "huma 229|critical thinking|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

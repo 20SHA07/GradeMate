@@ -1,0 +1,83 @@
+{
+  "id": "Proposed_Spring2026_CCEN_210_Digital_Logic_Design",
+  "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourcePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourceRelativePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourceHash": "f644277ff03ac80280fb47d75dc01b4f4bbde88d82a6051cbcc5998904b16ff9",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CCEN 210",
+  "courseName": "Digital Logic Design",
+  "department": "CCEN",
+  "creditHours": 4,
+  "semester": "Spring 2026",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Office Hours",
+  "officeHours": null,
+  "prerequisites": "- COSC 114 Introduction to Computing- Python",
+  "textbooks": [
+    "S. Brown and Z. Vranesic, Fundamentals of Digital Logic with Verilog Design, 4th ed. New York, NY, USA:",
+    "McGraw-Hill, 2025, ISBN: 978-1-265-12041-2."
+  ],
+  "courseDescription": "This course covers the principles of digital logic design, including data representation in digital systems, Boolean\nalgebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided\ndesign (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic\ncircuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments\nprovide hands-on experience with simulating, implementing, and testing digital circuits.",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes, homework)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework) 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination 40%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [
+    "Using grouped summary table because detailed rows are not separate course-grade weights.",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "ccen 210|digital logic design|spring 2026",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

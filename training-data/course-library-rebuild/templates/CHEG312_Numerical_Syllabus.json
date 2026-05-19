@@ -1,0 +1,94 @@
+{
+  "id": "CHEG312_Numerical_Syllabus",
+  "sourceFileName": "CHEG312_Numerical_Syllabus.pdf",
+  "sourcePath": "CHEG312_Numerical_Syllabus.pdf",
+  "sourceRelativePath": "CHEG312_Numerical_Syllabus.pdf",
+  "sourceHash": "8395c1d5a0f1cc7816ac4eff5b5ac413eccd1a52750688e7159f2e51cd0be885",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Ahmed Eissa AlHajaj",
+  "instructorEmail": "Ahmed.Alhajaj@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Arzanah, Room # 8-339",
+  "officeHours": "Tuesday and Thursday: 12:30-2:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework: Homework Weekly 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Faculty Discretion, attendance, participation",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Faculty Discretion, attendance, - 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project Presentation and Report",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Projects Project Presentation and report Week 15: May 1, 2025 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm 1",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm 1 Week 7: Feb 25, 2025 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm 2",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Midterm 2 Week 12: Apr 17, 2025 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination Final Exam TBA 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 312|numerical methods for chemical engineers|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

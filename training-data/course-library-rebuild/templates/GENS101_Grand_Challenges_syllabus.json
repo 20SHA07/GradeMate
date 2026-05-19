@@ -1,0 +1,88 @@
+{
+  "id": "GENS101_Grand_Challenges_syllabus",
+  "sourceFileName": "GENS101_Grand_Challenges_syllabus.pdf",
+  "sourcePath": "GENS101_Grand_Challenges_syllabus.pdf",
+  "sourceRelativePath": "GENS101_Grand_Challenges_syllabus.pdf",
+  "sourceHash": "b6ef1d84a43332af5e633bf538d1aebff6db2e5a8fd458d8e217c2fb00a6bcf5",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "GENS 101",
+  "courseName": "Grand Challenges",
+  "department": "GENS",
+  "creditHours": 5,
+  "semester": "Fall 2022",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
+  "assessments": [
+    {
+      "name": "Coursework (Homework, portfolio assignments)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (Homework, portfolio assignments) 20%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Tutorials",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Tutorials 15%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Studio Activities",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Studio Activities 15%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Grand Challenge Milestones",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Grand Challenge Milestones 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Grand Challenge Solution (report and presentation)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Grand Challenge Solution (report and presentation) 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.86,
+  "warnings": [
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "gens 101|grand challenges|fall 2022",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

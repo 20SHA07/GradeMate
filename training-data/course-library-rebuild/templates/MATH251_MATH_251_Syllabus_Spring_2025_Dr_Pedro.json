@@ -1,0 +1,118 @@
+{
+  "id": "MATH251_MATH_251_Syllabus_Spring_2025_Dr_Pedro",
+  "sourceFileName": "MATH251_MATH_251_Syllabus_-_Spring_2025_-_Dr._Pedro.pdf",
+  "sourcePath": "MATH251_MATH_251_Syllabus_-_Spring_2025_-_Dr._Pedro.pdf",
+  "sourceRelativePath": "MATH251_MATH_251_Syllabus_-_Spring_2025_-_Dr._Pedro.pdf",
+  "sourceHash": "83ddb3e04674e366755584ce588aedb67a768bb78b463c0610246914e74f2b11",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 251",
+  "courseName": "Operations Research I",
+  "department": "MATH",
+  "creditHours": 4,
+  "semester": "Spring 2023",
+  "instructor": "Dr. Pedro Rochedo",
+  "instructorEmail": "pedro.rochedo@ku.ac.ae",
+  "schedule": "M&W 08:00-09:40 Classroom: G01029",
+  "classroom": null,
+  "officeRoom": "MAIN Campus - B04209",
+  "officeHours": "M&W 1:00PM to 3:00PM (or by appointment)",
+  "prerequisites": "MATH 204 or MATH 211",
+  "textbooks": [
+    "Introduction to Operations Research by Hillier, F.S. and Lieberman, G.J, Publisher: McGraw",
+    "Hill, 11 edition, 2022, ISBN: 9781307810240."
+  ],
+  "courseDescription": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 3.75,
+      "maxScore": 100,
+      "source": "Quiz block total 15% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 3.75,
+      "maxScore": 100,
+      "source": "Quiz block total 15% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 3.75,
+      "maxScore": 100,
+      "source": "Quiz block total 15% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 3.75,
+      "maxScore": 100,
+      "source": "Quiz block total 15% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Homework",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Homework 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 251|operations research i|spring 2023",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

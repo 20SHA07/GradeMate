@@ -1,0 +1,73 @@
+{
+  "id": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23",
+  "sourceFileName": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourcePath": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourceRelativePath": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
+  "sourceHash": "de01fc7631b0a58547511f1f2f8739cacc2b0f9d6c295f7c269dde4bea199581",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 204",
+  "courseName": "Linear Algebra",
+  "department": "MATH",
+  "creditHours": 4,
+  "semester": "Fall 2024",
+  "instructor": "Elias Zikkos",
+  "instructorEmail": "elias.zikkos@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "San Campus, Building 1, Room 218",
+  "officeHours": "Monday and Wednesday 9am to 11am, Monday 2pm to 4pm, at the HIVE",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Elementary Linear Algebra by Howard Anton, Publisher: Wiley, 12th Edition, 2019 ISBN:",
+    "9781119268048."
+  ],
+  "courseDescription": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
+  "assessments": [
+    {
+      "name": "Quizzes / drop lowest",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework quiz total is 40% with the lowest quiz dropped",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Using grouped quiz category because the lowest quiz is dropped."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 204|linear algebra|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

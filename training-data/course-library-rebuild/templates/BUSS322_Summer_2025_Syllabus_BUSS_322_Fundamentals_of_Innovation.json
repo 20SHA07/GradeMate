@@ -1,0 +1,78 @@
+{
+  "id": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation",
+  "sourceFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourcePath": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourceRelativePath": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
+  "sourceHash": "b29115daf5cf2ad232a7531249ae95de48b7034c5911c93765df80a0cb20c627",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BUSS 322",
+  "courseName": "Fundamentals of Innovation & Entrepreneurship",
+  "department": "BUSS",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": null,
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "MS Teams is normally be used for office hours or informally after/before class",
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Entrepreneurship and Small Business by Paul Burns, Publisher: Red Globe Press, 5th Edition, 2021, ISBN:",
+    "978-1352012491"
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework) 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project 1",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project #1: Design Thinking in Practice 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project 2",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Project #2: Opportunity Analysis 20%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Project: Personal Business Plan 40%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.92,
+  "warnings": [
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "buss 322|fundamentals of innovation & entrepreneurship|summer 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

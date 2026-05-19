@@ -1,0 +1,89 @@
+{
+  "id": "GENS300_GENS_300_Syllabus_43c33d94_2",
+  "sourceFileName": "GENS300_GENS_300_Syllabus_43c33d94_2.pdf",
+  "sourcePath": "GENS300_GENS_300_Syllabus_43c33d94_2.pdf",
+  "sourceRelativePath": "GENS300_GENS_300_Syllabus_43c33d94_2.pdf",
+  "sourceHash": "43c33d942cf1d5a53284caf8b98da756fafc8f47622e1e1b094ae29de8f26100",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "GENS 300",
+  "courseName": "Career Preparation",
+  "department": "GENS",
+  "creditHours": 1,
+  "semester": "Fall 2024",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "March 2023 2",
+  "prerequisites": "GENS 100, Sophomore Standing",
+  "textbooks": [],
+  "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
+  "assessments": [
+    {
+      "name": "CV Submission",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "GENS 300 summary assessment table",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Documented evidence of career planning and industry exploration",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "GENS 300 summary assessment table",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mock Interview",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "GENS 300 summary assessment table",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group project - Reading groups",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "GENS 300 summary assessment table",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Quiz",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "GENS 300 summary assessment table",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.86,
+  "warnings": [
+    "Detailed assessment methodology did not cleanly map to the summary table, so the summary table was used.",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "gens 300|career preparation|fall 2024",
+  "duplicateStatus": "duplicate",
+  "canonical": false,
+  "canonicalReason": "duplicate of GENS300_GENS_300_Syllabus.pdf",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

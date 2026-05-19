@@ -1,0 +1,84 @@
+{
+  "id": "LTCM_221_SYLLABUS_SPRING_2026_1",
+  "sourceFileName": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourcePath": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourceRelativePath": "LTCM 221 SYLLABUS SPRING 2026_1.pdf",
+  "sourceHash": "6945ba0e3a51b2fdd02a4e21701ec8c34f2cef9e64883b4f3abec2df4a187d87",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "LTCM 221",
+  "courseName": "Intercultural Communication",
+  "department": "LTCM",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": "DR GLENDA EL GAMAL",
+  "instructorEmail": "glenda.elgamal@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "022-A Building 1, SAN Campus MAIN TBA",
+  "officeHours": null,
+  "prerequisites": "ENGL 102 or ENGL 112",
+  "textbooks": [
+    "Jandt, F. (2016). An introduction to intercultural communication: Identities in a global community. 8th edition. SAGE Publications, ISBN: 9781506305271"
+  ],
+  "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework 40%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Seminar participation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Seminar participation 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mid-term assessment",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Mid-term assessment 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final project 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [
+    "Using summary table because detailed assessment methodology is ambiguous.",
+    "Semester missing"
+  ],
+  "reasons": [
+    "Using summary table because detailed assessment methodology is ambiguous."
+  ],
+  "ready": false,
+  "needsReview": true,
+  "duplicateGroupKey": "ltcm 221|intercultural communication|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": false,
+  "canonicalReason": "needs review",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

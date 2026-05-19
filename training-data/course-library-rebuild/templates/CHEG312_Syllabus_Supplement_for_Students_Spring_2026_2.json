@@ -1,0 +1,143 @@
+{
+  "id": "CHEG312_Syllabus_Supplement_for_Students_Spring_2026_2",
+  "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourcePath": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourceRelativePath": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
+  "sourceHash": "06275a4ed470c339e2e5ad034d8ba9fc57e4a259bd20cde4c78631ceb35fb5f0",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 312",
+  "courseName": "Numerical Methods for Chemical Engineers",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2026",
+  "instructor": "Dr. Khalid Al Ali",
+  "instructorEmail": "khalid.alali@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Arzanah Bldg. 2F, Room # 8-271",
+  "officeHours": "Monday 11:00 AM - 01:00 PM; Wednesday 11:00 AM - 01:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework: Homework Weekly 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Faculty Discretion, attendance, participation",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Faculty Discretion, attendance, - 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 1 (Solving system of linear equations) Week 4 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 2 (Solving non-linear equations) Week 6 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 3 (Polynomial Interpolation) Week 5 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 4 (Numerical Integration + Differentiation) Week 6 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 5",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 5 (ODE-IVP & ODE-BVP) Week 9 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project Presentation and Report",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Projects Project Presentation and Report Week 16: April 28, 2026 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm 1",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Semester Midterm 1 Week 7: Feb 26, 2026 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm 2",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Midterm 2 Week 13: April 16, 2026 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination Final Exam TBA 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 312|numerical methods for chemical engineers|spring 2026",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

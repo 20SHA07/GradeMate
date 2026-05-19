@@ -1,0 +1,82 @@
+{
+  "id": "HUMA277_HUMA_277_Intro_to_Logical_Summer_25",
+  "sourceFileName": "HUMA277_HUMA_277_Intro_to_Logical_Summer_25.docx",
+  "sourcePath": "HUMA277_HUMA_277_Intro_to_Logical_Summer_25.docx",
+  "sourceRelativePath": "HUMA277_HUMA_277_Intro_to_Logical_Summer_25.docx",
+  "sourceHash": "6a73665daebfc9b141813ad61ffe1bde5d43975eeed7930b80669cd7f541ea03",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "HUMA 277",
+  "courseName": "Introduction to Logical Reasoning",
+  "department": "HUMA",
+  "creditHours": 3,
+  "semester": "Summer 2023",
+  "instructor": "Dr. Mustapha Tajdin",
+  "instructorEmail": "mustapha.tajdin@ku.ac.ae",
+  "schedule": "CRN 30131, Class Location: R01007, Class Time: MTWT 9:00-10:40.",
+  "classroom": null,
+  "officeRoom": "SAN Campus Building 4 Office no: 4125 or",
+  "officeHours": "Monday and Thursday 1:00-2:30 or through MS Teams",
+  "prerequisites": "ENGL 102",
+  "textbooks": [
+    "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
+  ],
+  "courseDescription": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes, assignments)",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, assignments) 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Presentation or Essay (group)",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Presentation or Essay (group) 10%",
+      "confidence": 0.96,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination(s) 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Using summary table because detailed assessment rows are not mathematically clearer.",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "huma 277|introduction to logical reasoning|summer 2023",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

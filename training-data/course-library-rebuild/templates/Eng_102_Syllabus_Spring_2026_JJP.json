@@ -1,0 +1,91 @@
+{
+  "id": "Eng_102_Syllabus_Spring_2026_JJP",
+  "sourceFileName": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourcePath": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourceRelativePath": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
+  "sourceHash": "e9e3b1539e12c3263ee6e8315ea4af6c130720ab5ca08a9aa7e2335e1b7452b4",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "ENGL 102",
+  "courseName": "Academic English II",
+  "department": "ENGL",
+  "creditHours": 3,
+  "semester": "Spring 2026",
+  "instructor": "Joud Jabri-Pickett",
+  "instructorEmail": "joud.pickett@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Building 1, Room 1023A",
+  "officeHours": "Mon./Wed. 9-12 (By appointment: In-office or MS Teams)",
+  "prerequisites": "ENGL 101",
+  "textbooks": [
+    "Writing Science: How to Write Papers That Get Cited and Proposals That Get Funded by Joshua Schimel,",
+    "Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244"
+  ],
+  "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation.",
+  "assessments": [
+    {
+      "name": "Individual Writing: Technical report Part 1",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Individual Writing: Technical report Part 1 Week 3 (Jan. 26-30 in class) 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Individual Writing: Technical report Part 2",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Individual Writing: Technical report Part 2 Week 6 (Feb.16-20) 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Individual Digital presentation",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Individual Digital presentation Week 7 (Mar. 9-12) 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group Oral Presentation of Proposal",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Group Oral Presentation of Proposal Week 13 & 14 (in class) 10%",
+      "confidence": 0.95,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Group proposal in response to a Request for Proposals (RFP)",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Group (</= 3 students) proposal in response to a Request for Proposals (RFP) Week 14 (Apr. 27-May 1) 30%",
+      "confidence": 0.95,
+      "inferred": true,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.93,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "engl 102|academic english ii|spring 2026",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

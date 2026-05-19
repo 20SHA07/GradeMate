@@ -1,0 +1,67 @@
+{
+  "id": "BMED321_Fall_2024_BMED321_Syllabus_Supplement_for_Students",
+  "sourceFileName": "BMED321_Fall_2024_-_BMED321_Syllabus_Supplement_for_Students.pdf",
+  "sourcePath": "BMED321_Fall_2024_-_BMED321_Syllabus_Supplement_for_Students.pdf",
+  "sourceRelativePath": "BMED321_Fall_2024_-_BMED321_Syllabus_Supplement_for_Students.pdf",
+  "sourceHash": "690f5418b58c1c85714891dac6c33d9588ae2a370ccf345c285104e5ad1c4143",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 321",
+  "courseName": "Mechanics for Biomedical Engineers",
+  "department": "BMED",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Dr. Maria de Fatima Domingues, Dr. Michael Hughes, and Dr. Syed Imaduddin",
+  "instructorEmail": "maria.domingues@ku.ac.ae; michael.hughes@ku.ac.ae; syedmuhammad.imaduddin@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B2043 (Office 31)",
+  "officeHours": "M, W 11:30:12:30 or by appointment",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Group project",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Group project Start at Week 12; Final Presentations: Week 15 30%",
+      "confidence": 0.95,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Midterm Examination Week 7 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination Week 16 or 17 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "bmed 321|mechanics for biomedical engineers|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

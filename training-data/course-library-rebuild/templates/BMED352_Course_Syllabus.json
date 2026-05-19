@@ -1,0 +1,79 @@
+{
+  "id": "BMED352_Course_Syllabus",
+  "sourceFileName": "BMED352_Course_Syllabus.pdf",
+  "sourcePath": "BMED352_Course_Syllabus.pdf",
+  "sourceRelativePath": "BMED352_Course_Syllabus.pdf",
+  "sourceHash": "dc601ba562d878f7b6a0ab47977b7eaf86dfc20ebcf5162a2117ea4a1c78ae5c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 352",
+  "courseName": "Fundamentals of Biomedical Signal Processing",
+  "department": "BMED",
+  "creditHours": 4,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "BMED 351",
+  "textbooks": [
+    "Discrete-Time Signal Processing by Alan V. Oppenheim, Ronald W. Schafer, Publisher: Prentice",
+    "Hall, ISBN: 9781292025728, Pearson New International Edition, 2013."
+  ],
+  "courseDescription": "The primary objective of this course is to study analogue and digital signal processing techniques\nand microcomputer system, and their application to biomedical instrumentation and physiological\nmeasurements. This course is designed for students who are expected to have prior knowledge in\ncircuits and physiological system modelling. The main focus is on the technical aspects of\nbiosignal processing and its hardware implementation in medical instruments.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, homework,) 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Laboratory 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Final Examination 25%",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "bmed 352|fundamentals of biomedical signal processing|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

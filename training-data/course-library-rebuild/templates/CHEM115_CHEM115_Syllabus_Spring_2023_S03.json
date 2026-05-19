@@ -1,0 +1,89 @@
+{
+  "id": "CHEM115_CHEM115_Syllabus_Spring_2023_S03",
+  "sourceFileName": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourcePath": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourceRelativePath": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
+  "sourceHash": "ab71a34680fa4c9cbd3d5db662ddd144fa6752785fe5d0dabd5b721e8b7b6af7",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEM 115",
+  "courseName": "General Chemistry I",
+  "department": "CHEM",
+  "creditHours": null,
+  "semester": "Spring 2023",
+  "instructor": "Dr. Emilia Oueis",
+  "instructorEmail": "Emilia.oueis@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "2010",
+  "officeHours": "Mondays and Wednesdays from 10:00 to 12:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quizzes",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Quiz # 2 27 Feb – 03 Mar 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Aleks Objectives",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Aleks Objectives 10%",
+      "confidence": 0.68,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Reports and Lab Assignments",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Laboratory: Lab Reports and Lab Assignments 15%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination: Midterm Exam 06 Mar – 10 Mar 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination: TBC by the Registrar’s Office 35%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.84,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "chem 115|general chemistry i|spring 2023",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

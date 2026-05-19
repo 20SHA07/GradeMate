@@ -1,0 +1,112 @@
+{
+  "id": "BMED352_Syllabus_Supplement_Spring_2025",
+  "sourceFileName": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourcePath": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourceRelativePath": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
+  "sourceHash": "a072e0c93db3f663938c74d04418a2824976df800b15fb2579bae7efd1a218a0",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 352",
+  "courseName": "Fundamental of Biomedical Signal Processing",
+  "department": "BMED",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr Mohamed Seghier / Ms Sarah Bawazir",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae; sarah.bawazir@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B02042",
+  "officeHours": "Monday: 2:30pm - 4:00 pm; Wednesday: 2:30pm - 4:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Coursework: Quiz 1 Week 4 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 7 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 12 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 14 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Projects",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Projects Weekly 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Laboratory Weekly 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Week 10 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Final Examination Starting May 6 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "bmed 352|fundamental of biomedical signal processing|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

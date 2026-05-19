@@ -1,0 +1,98 @@
+{
+  "id": "S26_CHEG230_Syllabus_Supplement_for_Students",
+  "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourcePath": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourceRelativePath": "S26_CHEG230_Syllabus Supplement for Students.pdf",
+  "sourceHash": "7600879db44a085202d9696cd6ef91bc93e19302d8a695ac242f198b3bd815da",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 230",
+  "courseName": "Chemical Engineering Thermodynamics I",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2026",
+  "instructor": "Dr. Hanifa Taher AlBlooshi",
+  "instructorEmail": "hanifa.alblooshi@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus: Arzanah (Building 8), 2 level, Room 277",
+  "officeHours": "Tuesdays and Thursday from 2:00 to 3:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Homework",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework: Homework 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Pre-Assigned Quizzes",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Pre-Assigned Quizzes 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mini-Design Project",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Projects (if applicable) Mini-Design Project 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination Written examination (Closed Book) Assigned by Registrar 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Participation",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Participation Contact based 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 230|chemical engineering thermodynamics i|spring 2026",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

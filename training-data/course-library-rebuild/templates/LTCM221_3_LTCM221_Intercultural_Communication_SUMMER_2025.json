@@ -1,0 +1,84 @@
+{
+  "id": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025",
+  "sourceFileName": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
+  "sourcePath": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
+  "sourceRelativePath": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
+  "sourceHash": "2c2163a1680ff275f12ab4d888b8cafa986153586ed5726da1b580eb5e4d7540",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "HUMA 221",
+  "courseName": "Intercultural Communication",
+  "department": "HUMA",
+  "creditHours": 3,
+  "semester": "Summer 2025",
+  "instructor": "DR GLENDA EL GAMAL",
+  "instructorEmail": "glenda.elgamal@ku.ac.ae",
+  "schedule": "MON - THURSDAY",
+  "classroom": null,
+  "officeRoom": "SAN Building 1, 022A",
+  "officeHours": "TBC (Summer term I teach on Main Campus)",
+  "prerequisites": "ENGL 102 or ENGL 112",
+  "textbooks": [
+    "Jandt, F. (2016). An introduction to intercultural communication: Identities in a global community. 8th edition. SAGE Publications, ISBN: 9781506305271"
+  ],
+  "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework 40%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Seminar participation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Seminar participation 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mid-term assessment",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Mid-term assessment 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final project 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Using summary table because detailed assessment methodology is ambiguous.",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [
+    "Using summary table because detailed assessment methodology is ambiguous."
+  ],
+  "ready": false,
+  "needsReview": true,
+  "duplicateGroupKey": "huma 221|intercultural communication|summer 2025",
+  "duplicateStatus": "unique",
+  "canonical": false,
+  "canonicalReason": "needs review",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,82 @@
+{
+  "id": "HUMA_221_Intercultural_Communication_final_2025_2",
+  "sourceFileName": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourcePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourceRelativePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourceHash": "02fd97c3bb1ccabcd395346c6290afd2337c4d3e7b54ed9b97a628f20a21e265",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "HUMA 221",
+  "courseName": "Intercultural Communication",
+  "department": "HUMA",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "ENGL 102",
+  "textbooks": [
+    "An introduction to intercultural communication: Identities in a global community. F. Jandt, (2025). 8th edition. SAGE Publications, ISBN: 9781071887110"
+  ],
+  "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework 40%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Seminar participation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Seminar participation 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester examination 20%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Project",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final project 30%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.83,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "huma 221|intercultural communication|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

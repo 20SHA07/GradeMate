@@ -1,0 +1,120 @@
+{
+  "id": "MATH211_Math_211_Syllabus_Supplement_Spring_25_updated",
+  "sourceFileName": "MATH211_Math_211_Syllabus_Supplement_Spring_25-updated.pdf",
+  "sourcePath": "MATH211_Math_211_Syllabus_Supplement_Spring_25-updated.pdf",
+  "sourceRelativePath": "MATH211_Math_211_Syllabus_Supplement_Spring_25-updated.pdf",
+  "sourceHash": "9fd0a959b683e63dc0ae3d4a4cd44db6d77c97ec6483689b9ac3403a32d8c5ff",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 211",
+  "courseName": "Differential Equations and Linear Algebra",
+  "department": "MATH",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Nadia Nwayhed",
+  "instructorEmail": "nadia.nwayhed@ku.ac.ae",
+  "schedule": "Midterm Examination: MIDTERM: Friday, February 28 from 9:00‐10:30am 25%",
+  "classroom": null,
+  "officeRoom": "SAN campus room 1006C",
+  "officeHours": "TR: 8‐8:50 am in Room R02002 in the Main campus; or 12:50 – 1:30 by appt; MW: 12:50‐1:30 pm in my office 1006C in the SAN campus",
+  "prerequisites": null,
+  "textbooks": [
+    "Differential Equations and Linear Algebra by C. Edwards, D. Penney and David Calvis, Publisher:",
+    "Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181."
+  ],
+  "courseDescription": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Online HW",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Online HW 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Project 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [
+    "Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 211|differential equations and linear algebra|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "id": "CHEG380_CHEG380_Syllabus",
+  "sourceFileName": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourcePath": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourceRelativePath": "CHEG380_CHEG380_Syllabus.pdf",
+  "sourceHash": "0365ca4351c64c631b55e2e8c71b511109b2ae59286e4f3184a8d84042944a41",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 380",
+  "courseName": "Introduction to Polymer Science and Technology",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2024",
+  "instructor": "Saeed Alhassan",
+  "instructorEmail": "Saeed.alkhazraji@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus Arzanah 315",
+  "officeHours": "Monday 2 PM – 3 PM; Tuesday 11 AM-12 PM",
+  "prerequisites": null,
+  "textbooks": [
+    "Fundamental principles of polymeric materials by Stephen L",
+    "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
+  ],
+  "courseDescription": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
+  "assessments": [
+    {
+      "name": "Quizzes (6, drop 2 lowest)",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Coursework Quizzes (6, drop 2 lowest) See schedule 15",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Project",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Project Will be assigned 2 week 15",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Exams (2)",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Exams (2) Week 7 and Week 15 40",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Exam Finals week 30",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 380|introduction to polymer science and technology|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

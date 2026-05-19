@@ -1,0 +1,80 @@
+{
+  "id": "CHEM116_CHEM116_Syllabus_SP25",
+  "sourceFileName": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourcePath": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourceRelativePath": "CHEM116_CHEM116_Syllabus_SP25.pdf",
+  "sourceHash": "a551cbec5c506282b87510c85d90578ef4cf2e7df120d9139bf4bce5938076d4",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEM 116",
+  "courseName": "General Chemistry II",
+  "department": "CHEM",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Gisha Elizabeth Luckachan",
+  "instructorEmail": "gisha.luckachan@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus, Bu Hasa 20 001",
+  "officeHours": "Tuesday: 11:00 am-1:00 pm; Thursday: 11:00 am-1:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework / Quizzes",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Coursework: Quiz # 1 Week 3",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Laboratory (if applicable) Lab Reports See Lab Schedule 15%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm Exam See Teaching Plan 25%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination TBC by the Registrar’s Office End of Term 35%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "chem 116|general chemistry ii|spring 2025",
+  "duplicateStatus": "duplicate",
+  "canonical": false,
+  "canonicalReason": "duplicate of CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

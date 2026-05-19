@@ -1,0 +1,129 @@
+{
+  "id": "MATH111_MATH_111_Syllabus_Spring_2025_Dr_Imad",
+  "sourceFileName": "MATH111_MATH_111_Syllabus_-_Spring_2025_-_Dr._Imad.pdf",
+  "sourcePath": "MATH111_MATH_111_Syllabus_-_Spring_2025_-_Dr._Imad.pdf",
+  "sourceRelativePath": "MATH111_MATH_111_Syllabus_-_Spring_2025_-_Dr._Imad.pdf",
+  "sourceHash": "e311948a8f68409a1f88b706e90d9dd62013ab2b16e125ebc840e33ad11ce41f",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 111",
+  "courseName": "CALCULUS I",
+  "department": "MATH",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Imad Elayna",
+  "instructorEmail": "Imad.elayna@ku.ac.ae",
+  "schedule": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%",
+  "classroom": null,
+  "officeRoom": "San 1215",
+  "officeHours": "MW 1 -3 pm & TR 11:30am-1pm",
+  "prerequisites": null,
+  "textbooks": [
+    "Calculus: Early Transcendental Functions by Robert T. Smith, Roland B. Minton and Ziad A. T. Rafhi,",
+    "McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472."
+  ],
+  "courseDescription": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Quiz block total 20% across Quiz 1-Quiz 4",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "HW",
+      "weightPercentage": 7,
+      "maxScore": 100,
+      "source": "HW Connect continuously 7%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Remedial Tutorial Classes",
+      "weightPercentage": 8,
+      "maxScore": 100,
+      "source": "Remedial Tutorial Classes 8%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Pebble Peer Mentors",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Pebble Peer Mentors 5%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [
+    "Split quiz group weight 20% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 111|calculus i|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

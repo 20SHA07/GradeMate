@@ -1,0 +1,76 @@
+{
+  "id": "COSC_312_Design_and_Analysis_of_Algorithms_S26",
+  "sourceFileName": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourcePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourceRelativePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourceHash": "859c44d5b9365fa796853f696f466e85a67bfb2488b10265e218290aa9fdec3f",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 312",
+  "courseName": "Design and Analysis of Algorithms",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Khaled Elbassioni",
+  "instructorEmail": "Khaled.elbassioni@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04200",
+  "officeHours": "Wed. 14:30-15:30, Thurs. 13:30-14:30",
+  "prerequisites": "COSC 301, COSC 310",
+  "textbooks": [
+    "Thomas Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, Introduction",
+    "to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305."
+  ],
+  "courseDescription": "This course covers the most important algorithm strategies and solution techniques,\nindependent of programming language or computer hardware. Topics include: Big-O notation;\nworst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,\nsearching, and selection; algorithm design techniques: divide-and-conquer, dynamic\nprogramming, greedy algorithms, randomization; algorithms for fundamental graph problems;\nstring algorithms; and numerical methods.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Coursework: Every 2-3 weeks 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Projects",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Projects Every 3-4 weeks 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination Week 8 20",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Final Examination Week 16 30",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.93,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 312|design and analysis of algorithms|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

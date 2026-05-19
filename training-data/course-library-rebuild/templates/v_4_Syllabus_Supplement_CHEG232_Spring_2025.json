@@ -1,0 +1,125 @@
+{
+  "id": "v_4_Syllabus_Supplement_CHEG232_Spring_2025",
+  "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourcePath": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourceRelativePath": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
+  "sourceHash": "8e9a1806fd6c60c5f4ad9232f16dcc49280135bf439d6c280782d8018139b13c",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 232",
+  "courseName": "Fluid Mechanics",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Haitem Hassan-Beck",
+  "instructorEmail": "haitem.hassanbeck@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "8-289 – Arzanah building",
+  "officeHours": "Tuesday: 12:00-13:30 AM My office; Thursday: 12:00-13:30 AM My office",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Coursework: Quiz 1 Week 3 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 5 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 9 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 11 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 5",
+      "weightPercentage": 2,
+      "maxScore": 100,
+      "source": "Quiz 5 Week 15 2%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Assignments, project & field trip",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Assignments, project & field trip Week 12 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm Week 7 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory - - 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination TBA 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 232|fluid mechanics|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

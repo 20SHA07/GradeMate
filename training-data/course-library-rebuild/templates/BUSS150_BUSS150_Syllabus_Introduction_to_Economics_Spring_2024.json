@@ -1,0 +1,77 @@
+{
+  "id": "BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024",
+  "sourceFileName": "BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.docx",
+  "sourcePath": "BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.docx",
+  "sourceRelativePath": "BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.docx",
+  "sourceHash": "21a9347daab0302c66fa6acaaee40cf5d4d07b491fb427bd451753c3ab7639ac",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BUSS 150",
+  "courseName": "Introduction to Economics",
+  "department": "BUSS",
+  "creditHours": 3,
+  "semester": "Spring 2024",
+  "instructor": "Dr Yama Temouri",
+  "instructorEmail": "yama.temouri@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Tel Ex:",
+  "officeHours": "Arrange via email",
+  "prerequisites": "ENGL 112, ENGL 102",
+  "textbooks": [
+    "Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552"
+  ],
+  "courseDescription": "This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed.",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes, tests)",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, tests) 30%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Bloomberg Market Concept Certification",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Bloomberg Market Concept Certification 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination(s) 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "buss 150|introduction to economics|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

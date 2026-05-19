@@ -1,0 +1,103 @@
+{
+  "id": "COSC_301_Automata_Computability_and_Complexity_Fall2025",
+  "sourceFileName": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourcePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourceRelativePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourceHash": "4e7fa31752ad5ea89e40b276ac02d865bc6351bd493b78c8488daa1a93293d4b",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 301",
+  "courseName": "Automata, Computability, and Complexity",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "Khaled.elbassioni@ku.ac.ae",
+  "schedule": "MW 11:00-11:50",
+  "classroom": "C02004",
+  "officeRoom": "D04200",
+  "officeHours": "MW 15:00-16:00",
+  "prerequisites": "COSC 101, MATH 234",
+  "textbooks": [
+    "Introduction to the Theory of Computation By Michael Sipser. Publisher: Cengage",
+    "Learning, 3rd Edition, 2012, ISBN: 978-1133187790."
+  ],
+  "courseDescription": "This course is about fundamental ideas in the theory of computation, including formal\nlanguages, computability and complexity. In this course, students gain proficiency in the\nconcepts of automata, formal languages, grammar, algorithms, computability, decidability, and\ncomplexity.",
+  "assessments": [
+    {
+      "name": "HW 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Coursework: HW 1 Week 3 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 7.5,
+      "maxScore": 100,
+      "source": "Quiz 1 Week 5 7.5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "HW 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "HW 2 Week 9 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 7.5,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 11 7.5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "HW 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "HW 3 Week 12 5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mid Term Exam",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Mid Term Exam Week 8 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Exam Week 16 40%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.93,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 301|automata, computability, and complexity|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

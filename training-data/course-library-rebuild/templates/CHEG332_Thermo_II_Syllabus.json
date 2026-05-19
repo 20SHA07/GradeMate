@@ -1,0 +1,89 @@
+{
+  "id": "CHEG332_Thermo_II_Syllabus",
+  "sourceFileName": "CHEG332_Thermo_II_Syllabus.pdf",
+  "sourcePath": "CHEG332_Thermo_II_Syllabus.pdf",
+  "sourceRelativePath": "CHEG332_Thermo_II_Syllabus.pdf",
+  "sourceHash": "53f617af6cb7cd4714f663c40adecdf26ef6a643fbed0da27396b90c69d9ed37",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "CHEG 332",
+  "courseName": "Chemical Engineering Thermodynamics II",
+  "department": "CHEG",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Giovanni Palmisano",
+  "instructorEmail": "giovanni.palmisano@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus: Building 8 (Arzanah), 2 level, Room 8-265",
+  "officeHours": "M,W: 2:00-3:00 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": ", report, and calculations will be given with the assignment.",
+  "assessments": [
+    {
+      "name": "3 Quizzes",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Quizzes 3 Quizzes TBA 15%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory Reports, Quizzes, Presentation",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory Reports, Quizzes, Presentation Biweekly 20%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Exam",
+      "weightPercentage": 24,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Midterm exam Week 8 24%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final exam",
+      "weightPercentage": 32,
+      "maxScore": 100,
+      "source": "Final Examination Final exam TBA 32%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "3 Assignments",
+      "weightPercentage": 9,
+      "maxScore": 100,
+      "source": "Assignments 3 Assignments - 9%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cheg 332|chemical engineering thermodynamics ii|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

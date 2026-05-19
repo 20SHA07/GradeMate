@@ -1,0 +1,112 @@
+{
+  "id": "BMED351_Syllabus_Supplement_BMED_351_Fall2024",
+  "sourceFileName": "BMED351_Syllabus_Supplement_BMED_351_Fall2024.pdf",
+  "sourcePath": "BMED351_Syllabus_Supplement_BMED_351_Fall2024.pdf",
+  "sourceRelativePath": "BMED351_Syllabus_Supplement_BMED_351_Fall2024.pdf",
+  "sourceHash": "e07e4992ddc0d0db165053fe0c0ef09aaf1377bf1f78c4bdfab511774e70bebe",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 351",
+  "courseName": "Biomedical Circuits and Signals",
+  "department": "BMED",
+  "creditHours": null,
+  "semester": "Fall 2024",
+  "instructor": "Dr Mohamed Seghier and Dr Mohamed Elgendi",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae; mohamed.elgendi@ku.ac.ae; sarah.bawazir@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B02186D",
+  "officeHours": "M__2-4 pm; W__2-4 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Coursework: Quiz 1 Week 4 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 2 Week 7 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 3 Week 12 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 6.25,
+      "maxScore": 100,
+      "source": "Quiz 4 Week 14 6.25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Projects",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Projects Weekly 10%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "Laboratory Weekly 15%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination (s) Week 10 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Final Examination Starting December 13 25%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.9,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "bmed 351|biomedical circuits and signals|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

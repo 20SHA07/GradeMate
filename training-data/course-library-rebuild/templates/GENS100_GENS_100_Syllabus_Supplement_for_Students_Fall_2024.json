@@ -1,0 +1,80 @@
+{
+  "id": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024",
+  "sourceFileName": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourcePath": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourceRelativePath": "GENS100_GENS_100_Syllabus_Supplement_for_Students_Fall_2024.docx",
+  "sourceHash": "d7b617e73255f033305bc92036672f0e9c6b0f6de801a690c2d65eca8b677f16",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "GENS 100",
+  "courseName": "Academic Development and Success",
+  "department": "GENS",
+  "creditHours": 1,
+  "semester": "Fall 2024",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": "Classroom:",
+  "classroom": null,
+  "officeRoom": "SAN****, MAIN *****",
+  "officeHours": null,
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
+  "assessments": [
+    {
+      "name": "4 In-class Assessments",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "4 In-class Assessments 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "In-class activities and Homework",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "In-class activities and Homework 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Case Study",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Case Study 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Documented evidence of engagement (Mid-term & Final Assessments)",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Documented evidence of engagement (Mid-term & Final Assessments) 40%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.86,
+  "warnings": [
+    "Instructor missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "gens 100|academic development and success|fall 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

@@ -1,0 +1,71 @@
+{
+  "id": "MATH224_MATH224_Syllabus_Spring_2025_Prof_Khamsi",
+  "sourceFileName": "MATH224_MATH224_Syllabus_-_Spring_2025_-_Prof._Khamsi.pdf",
+  "sourcePath": "MATH224_MATH224_Syllabus_-_Spring_2025_-_Prof._Khamsi.pdf",
+  "sourceRelativePath": "MATH224_MATH224_Syllabus_-_Spring_2025_-_Prof._Khamsi.pdf",
+  "sourceHash": "ec459ce9d2a522013de762bd2f7a83e80a0268b3b0ece70d66a9d1ba09b37053",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 224",
+  "courseName": "Real Analysis I",
+  "department": "MATH",
+  "creditHours": 4,
+  "semester": "Spring 2025",
+  "instructor": "Mohamed Amine Khamsi",
+  "instructorEmail": "Mohamed.khamsi@ku.ac.ae",
+  "schedule": "M-W 11 to 12:40 (G01029)",
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": "M-W 12:50 to 13:50",
+  "prerequisites": "MATH 101 and MATH 112",
+  "textbooks": [
+    "Analysis with an Introduction to Proof by Steven R. Lay, Publisher: Pearson, 5 Edition, 2012,",
+    "ISBN: 9780321892539."
+  ],
+  "courseDescription": "This course gives students a thorough understanding of essential concepts in analysis such as real numbers,\nlimits, continuity, and convergence of sequences and series. The course also covers a rigorous definition\nof derivative and construction of the Riemann integral and their properties including the Fundamental\nTheorem of Calculus. Students are required to read and write proofs using a precise knowledge of\ndefinitions and theorems.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework 40%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 224|real analysis i|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

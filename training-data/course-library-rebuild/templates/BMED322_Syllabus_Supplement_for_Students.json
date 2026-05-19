@@ -1,0 +1,88 @@
+{
+  "id": "BMED322_Syllabus_Supplement_for_Students",
+  "sourceFileName": "BMED322_Syllabus_Supplement_for_Students.pdf",
+  "sourcePath": "BMED322_Syllabus_Supplement_for_Students.pdf",
+  "sourceRelativePath": "BMED322_Syllabus_Supplement_for_Students.pdf",
+  "sourceHash": "3a5de38221578de93a98dda3aa150e4790a4438113f57009362f249aa0d79c6e",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BMED 322",
+  "courseName": null,
+  "department": "BMED",
+  "creditHours": null,
+  "semester": "Spring 2023",
+  "instructor": "Maria de Fatima Domingues",
+  "instructorEmail": "maria.domingues@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B2043",
+  "officeHours": "Wednesdays 10:00-12:00",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 7.5,
+      "maxScore": 100,
+      "source": "Coursework: Quizzes 1 Week 3 7.5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 7.5,
+      "maxScore": 100,
+      "source": "Quizzes 2 Week 5 7.5%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Projects / Assignements",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Projects /Assignements Week 9 to15 20%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Midterm Examination Week 7 30%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination End of course 35%",
+      "confidence": 0.95,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.87,
+  "warnings": [
+    "Course info missing",
+    "Course name missing",
+    "Credit hours missing"
+  ],
+  "reasons": [
+    "missing course name"
+  ],
+  "ready": false,
+  "needsReview": true,
+  "duplicateGroupKey": "unknown",
+  "duplicateStatus": "unique",
+  "canonical": false,
+  "canonicalReason": "needs review",
+  "regression": null
+}

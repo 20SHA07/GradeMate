@@ -1,0 +1,89 @@
+{
+  "id": "ENGL101_ENGL101_Academic_English_I_Fall_2021_Syllabus",
+  "sourceFileName": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourcePath": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourceRelativePath": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
+  "sourceHash": "baeecdaae9d6c403e33ab308d701dcd18a4fe5eda44ed5eff0427a9467f275d1",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "ENGL 101",
+  "courseName": "Academic English I",
+  "department": "ENGL",
+  "creditHours": 3,
+  "semester": "Spring 2022",
+  "instructor": "David F Dalton",
+  "instructorEmail": "david.dalton@ku.ac.ae",
+  "schedule": "#1",
+  "classroom": null,
+  "officeRoom": "NA",
+  "officeHours": null,
+  "prerequisites": "TOEFL iBT 79, EmSAT 1400, or IELTS 6.0",
+  "textbooks": [
+    "Storytelling with Data: A Data Visualization Guide for Business Professional by Cole Nussbaum",
+    "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
+  ],
+  "courseDescription": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
+  "assessments": [
+    {
+      "name": "Individual short writing assignments",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Individual short writing assignments 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group short writing assignment",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Group short writing assignment 10%",
+      "confidence": 0.96,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Individual Writing: Supporting or refuting a claim",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Individual Writing: Supporting or refuting a claim 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Individual Writing: Focused essay",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Individual Writing: Focused essay 30%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Digital presentation",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Digital presentation 10%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "engl 101|academic english i|spring 2022",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

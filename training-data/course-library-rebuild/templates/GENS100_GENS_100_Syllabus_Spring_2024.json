@@ -1,0 +1,77 @@
+{
+  "id": "GENS100_GENS_100_Syllabus_Spring_2024",
+  "sourceFileName": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourcePath": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourceRelativePath": "GENS100_GENS_100_Syllabus_Spring_2024.pdf",
+  "sourceHash": "31aae9c4177499369e4a5c92011479b54b7aca2fc7aa4d3b20662b008f7f0f22",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "GENS 100",
+  "courseName": "Academic Development and Success",
+  "department": "GENS",
+  "creditHours": 1,
+  "semester": "Spring 2024",
+  "instructor": "Dr. Nooreya Al Obeidli",
+  "instructorEmail": "Nooreya.alobeidli@ku.ac.ae",
+  "schedule": "Monday 11 am – 11:50 am Classroom: SAN 1110",
+  "classroom": null,
+  "officeRoom": "SAN: building 2, 2 floor, student success, office 2228E",
+  "officeHours": "Monday 12 pm – 3 pm",
+  "prerequisites": "None",
+  "textbooks": [],
+  "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
+  "assessments": [
+    {
+      "name": "Assignments (Homework and In Class Activities)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Assignments (Homework and In Class Activities) 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quizzes (In class and take home)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Quizzes (In class and take home) 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Case Study",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Case Study 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Documented evidence of engagement (midterm and final assessments)",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Documented evidence of engagement (midterm and final assessments) 40%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.89,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "gens 100|academic development and success|spring 2024",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

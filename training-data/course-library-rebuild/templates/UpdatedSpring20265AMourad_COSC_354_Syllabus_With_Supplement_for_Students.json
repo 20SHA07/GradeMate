@@ -1,0 +1,83 @@
+{
+  "id": "UpdatedSpring20265AMourad_COSC_354_Syllabus_With_Supplement_for_Students",
+  "sourceFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourcePath": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourceRelativePath": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourceHash": "826fa0595ffd18dcd9183ecffa0580910b5c56c9749ac2a47eecae42499ec224",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 354",
+  "courseName": "Operating Systems",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Azzam Mourad",
+  "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04209",
+  "officeHours": "Tuesday-Thursday: 12PM-1PM and 2PM-3PM; Monday-Wednesday: By appointment",
+  "prerequisites": "COSC 201",
+  "textbooks": [
+    "1. Operating Systems Concepts, by A. Silberschatz and P. B. Galvin. Publisher: Addison Wesley, 10 edition, 2021,",
+    "ISBN: 1118063333.",
+    "2. KU ECCE354 Laboratory Manual."
+  ],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework (quizzes, assignments)",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Coursework (quizzes, assignments) 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Laboratory 20%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Semester Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.94,
+  "warnings": [
+    "Using grouped summary table because detailed quiz/assignment weights are not explicit."
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 354|operating systems|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

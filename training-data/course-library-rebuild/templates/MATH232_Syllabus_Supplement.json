@@ -1,0 +1,72 @@
+{
+  "id": "MATH232_Syllabus_Supplement",
+  "sourceFileName": "MATH232_Syllabus_Supplement.pdf",
+  "sourcePath": "MATH232_Syllabus_Supplement.pdf",
+  "sourceRelativePath": "MATH232_Syllabus_Supplement.pdf",
+  "sourceHash": "8fd983117802a1dc42feed504ee4c2b8bad6c701b1ff955f42a13760c77d4f1b",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "department": "MATH",
+  "creditHours": null,
+  "semester": "Fall 2021",
+  "instructor": "Dr. Ameena Al-Sumaiti",
+  "instructorEmail": "ameena.alsumaiti@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Office Hours After the class or By appointment",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quizzes / best 3 of 4",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Quiz weight is 40% with only the best 3 of 4 quizzes counted",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination 25%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.96,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [
+    "Using grouped quiz category because only the best 3 of 4 quizzes count.",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 232|engineering mathematics|fall 2021",
+  "duplicateStatus": "duplicate",
+  "canonical": false,
+  "canonicalReason": "duplicate of MATH232_Syllabus_Supplement_e40ca893_2.pdf",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

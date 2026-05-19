@@ -1,0 +1,89 @@
+{
+  "id": "Syllabus_COSC_336_Introduction_to_Software_Engineering_August_2025",
+  "sourceFileName": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourcePath": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourceRelativePath": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourceHash": "c9d9f85452a490212d9a42a90eaf08bed0ca21a3820a4af5a1a218487e11be3f",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 336",
+  "courseName": "Introduction to Software Engineering",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Jamal Bentahar",
+  "instructorEmail": "Jamal.bentahar@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04 206",
+  "officeHours": null,
+  "prerequisites": "COSC 230",
+  "textbooks": [
+    "Software Engineering: A Practitioner’s Approach by Roger Pressman. Publisher: McGraw-Hill, 9",
+    "Edition, 2019. ISBN: 978-1259872976"
+  ],
+  "courseDescription": "The course introduces software engineering concepts and best practices. It discusses software\nprocesses and project management concepts. The course elaborates on software requirements,\nmodeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams\nand emerging software development methods.",
+  "assessments": [
+    {
+      "name": "Quizzes",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes – 10%, Assignments – 10%) 20%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Assignments",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes – 10%, Assignments – 10%) 20%",
+      "confidence": 0.94,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Group project",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Group project 20%",
+      "confidence": 0.92,
+      "inferred": true,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination",
+      "weightPercentage": 20,
+      "maxScore": 100,
+      "source": "Semester Examination 20%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Final Examination 40%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.91,
+  "warnings": [],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 336|introduction to software engineering|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

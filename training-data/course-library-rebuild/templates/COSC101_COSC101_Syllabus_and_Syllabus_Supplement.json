@@ -1,0 +1,118 @@
+{
+  "id": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement",
+  "sourceFileName": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourcePath": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourceRelativePath": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
+  "sourceHash": "2748a127607b45ec2c6c44414d61077eb5e5bf4e0d63d373179ef17f77ebbe09",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "COSC 101",
+  "courseName": "Foundations of Computer Science",
+  "department": "COSC",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Menatalla Abououf",
+  "instructorEmail": "menatalla.abououf@ku.ac.ae",
+  "schedule": "Mondays and Wednesday: 14:00 - 14:50",
+  "classroom": "C04050",
+  "officeRoom": "D04207",
+  "officeHours": "Mondays & Wednesdays: 12:00 - 2:00",
+  "prerequisites": "COSC 114",
+  "textbooks": [
+    "Foundations of Computer Science by Behrouz Forouzan",
+    "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
+  ],
+  "courseDescription": "Extracted from the Course Catalog Description section",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 2",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 3",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Quiz 4",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Mid Term Exam",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Exam",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Laboratory",
+      "weightPercentage": 15,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Lab Final Exam",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "COSC 101 detailed assessment breakdown from syllabus supplement",
+      "confidence": 0.98,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.95,
+  "warnings": [
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "cosc 101|foundations of computer science|fall 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}

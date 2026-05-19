@@ -1,0 +1,77 @@
+{
+  "id": "BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1",
+  "sourceFileName": "BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.docx",
+  "sourcePath": "BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.docx",
+  "sourceRelativePath": "BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.docx",
+  "sourceHash": "ef6da1bf21924b5d94237c3043ffae3f474588bf5d4fb3d5a06c5340b7f049c2",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "BUSS 150",
+  "courseName": "Introduction to Economics",
+  "department": "BUSS",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Dr. Saed T. Amer",
+  "instructorEmail": "saed.amer@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C02062B",
+  "officeHours": "Mon – Thursday 10:00 AM -12:00 PM - Or by appointment",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
+  "assessments": [
+    {
+      "name": "Test 1",
+      "weightPercentage": 30,
+      "maxScore": 100,
+      "source": "Test 1 30%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Bloomberg Market Certification",
+      "weightPercentage": 10,
+      "maxScore": 100,
+      "source": "Bloomberg Market Certification 10%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Midterm Examination:",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Midterm Examination: 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination: 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.86,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "buss 150|introduction to economics|spring 2025",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": null
+}

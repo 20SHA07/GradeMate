@@ -1,0 +1,56 @@
+{
+  "id": "MATH211_MATH211_Project_Phase_1",
+  "sourceFileName": "MATH211_MATH211_Project_Phase_1.pdf",
+  "sourcePath": "MATH211_MATH211_Project_Phase_1.pdf",
+  "sourceRelativePath": "MATH211_MATH211_Project_Phase_1.pdf",
+  "sourceHash": "ba8d0a42d59991ca1b95cb904932ee64ff58a996908ca1ded801552138ccf122",
+  "sourceType": "not_syllabus_project_handout",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 211",
+  "courseName": "DifferenƟal EquaƟons and Linear Algebra",
+  "department": "MATH",
+  "creditHours": null,
+  "semester": "Spring 2025",
+  "instructor": "Nadia Nwayhed",
+  "instructorEmail": "nadia.nwayhed@ku.ac.ae; 100065171@ku.ac.ae; 100060967@ku.ac.ae; 100065179@ku.ac.ae; 100066486@ku.ac.ae",
+  "schedule": "Week 5 Randhy Tuesday 14:00-16:00",
+  "classroom": "HIVE Main Campus",
+  "officeRoom": null,
+  "officeHours": "Wendy Tuesday 11:00-12:00; Randhy Tuesday 15:00-16:00",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Coursework Assessment Project Phase 1",
+      "weightPercentage": 5,
+      "maxScore": 100,
+      "source": "Coursework Assessment Project Phase 1 worth 5%",
+      "confidence": 0.92,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 5,
+  "confidence": 0.87,
+  "warnings": [
+    "Total weight is below 100 (5%)",
+    "Course info missing",
+    "Credit hours missing",
+    "Source marked not_syllabus_project_handout"
+  ],
+  "reasons": [
+    "total weight 5 is not 100",
+    "not_syllabus_project_handout",
+    "Total weight is below 100 (5%)",
+    "duplicate conflict with different assessment rows"
+  ],
+  "ready": false,
+  "needsReview": true,
+  "duplicateGroupKey": "math 211|differenɵal equaɵons and linear algebra|spring 2025",
+  "duplicateStatus": "conflict",
+  "canonical": false,
+  "canonicalReason": "duplicate conflict requires review",
+  "regression": null
+}

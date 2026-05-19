@@ -1,0 +1,76 @@
+{
+  "id": "MATH232_Syllabus232_M",
+  "sourceFileName": "MATH232_Syllabus232_M.pdf",
+  "sourcePath": "MATH232_Syllabus232_M.pdf",
+  "sourceRelativePath": "MATH232_Syllabus232_M.pdf",
+  "sourceHash": "e706f6cdd986a06af9d29fd3564b3f6218f3baa7855165d71bddfa8e814905f5",
+  "sourceType": "syllabus",
+  "extractorVersion": "deterministic-ku-2026-05-19",
+  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "courseCode": "MATH 232",
+  "courseName": "Engineering Mathematics",
+  "department": "MATH",
+  "creditHours": 1,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Calculus by James Stewart, Publisher: CENGAGE Learning, 8 Edition (Metric Version), 2016. ISBN:",
+    "9781305266728.",
+    "Advanced Engineering Mathematics by Erwin Kreyszig, Publisher: Wiley, 10 Edition, 2011. ISBN:",
+    "9780470458365."
+  ],
+  "courseDescription": "This course covers selected topics from mathematical analysis with engineering applications, including\ncomplex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.",
+  "assessments": [
+    {
+      "name": "Coursework (Quizzes, Homework, Projects)",
+      "weightPercentage": 40,
+      "maxScore": 100,
+      "source": "Coursework (Quizzes, Homework, Projects) 40%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weightPercentage": 25,
+      "maxScore": 100,
+      "source": "Laboratory Semester Examination(s) 25%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    },
+    {
+      "name": "Final Examination",
+      "weightPercentage": 35,
+      "maxScore": 100,
+      "source": "Final Examination 35%",
+      "confidence": 0.9,
+      "inferred": false,
+      "warning": null
+    }
+  ],
+  "totalWeight": 100,
+  "confidence": 0.83,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "reasons": [],
+  "ready": true,
+  "needsReview": false,
+  "duplicateGroupKey": "math 232|engineering mathematics|unknown-term",
+  "duplicateStatus": "unique",
+  "canonical": true,
+  "canonicalReason": "unique ready template",
+  "regression": {
+    "passed": true,
+    "issues": [],
+    "summary": ""
+  }
+}
