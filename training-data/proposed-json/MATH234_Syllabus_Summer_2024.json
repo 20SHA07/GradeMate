@@ -22,52 +22,31 @@
   "courseDescription": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 10,
+      "name": "Quizzes / best 3 of 4",
+      "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz weight is 40% with best 3 of 4 quizzes counted"
     },
     {
-      "name": "Quiz 2",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
-    },
-    {
-      "name": "Quiz 3",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
-    },
-    {
-      "name": "Quiz 4",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
-    },
-    {
-      "name": "Midterm Examination(s)",
+      "name": "Midterm Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.94,
-      "source_text_snippet": "Midterm Examination: Thursday, 27 June 2024 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Midterm Examination 25%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.94,
-      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
   "warnings": [
-    "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
+    "Using grouped quiz category because only the best 3 of 4 quizzes count."
   ],
-  "confidence": 0.92,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

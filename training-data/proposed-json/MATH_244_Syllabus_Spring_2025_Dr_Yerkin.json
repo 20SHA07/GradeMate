@@ -22,29 +22,31 @@
   "courseDescription": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
   "assessments": [
     {
-      "name": "Coursework",
+      "name": "Quizzes / best 3 of 4",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework (Quizzes and assignments) 40%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz weight is 40% with best 3 of 4 quizzes counted"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Using grouped quiz category because only the best 3 of 4 quizzes count."
+  ],
+  "confidence": 0.94,
   "needsHumanReview": false
 }

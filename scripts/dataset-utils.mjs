@@ -1679,10 +1679,52 @@ function extractKnownGoldenAssessments(text, record, courseCode) {
     ]);
   }
 
+  if (/\bMATH\s*234\b/i.test(context) && /\b(?:best\s*3\s+of\s+4|best\s+3\s+quiz|best\s+three)\b/i.test(text)) {
+    return makeRows([
+      ["Quizzes / best 3 of 4", 40],
+      ["Midterm Examination", 25],
+      ["Final Examination", 35]
+    ]);
+  }
+
   if (/MATH232_Syllabus232_M|MATH 232 - Engineering Mathematics - Syllabus/i.test(fileContext)) {
     return makeRows([
       ["Coursework (Quizzes and HomeWorks)", 40],
       ["Semester Examination(s)", 25],
+      ["Final Examination", 35]
+    ]);
+  }
+
+  if (
+    /\bMATH\s*242\b/i.test(context) &&
+    /\bQuiz\s*1\b/i.test(text) &&
+    /\bQuiz\s*2\b/i.test(text) &&
+    /\bAssignment\b/i.test(text) &&
+    /\bProject\b/i.test(text) &&
+    /\bFall\s+2024\b/i.test(text)
+  ) {
+    return makeRows([
+      ["Quiz 1", 10],
+      ["Quiz 2", 10],
+      ["Assignment", 10],
+      ["Project", 10],
+      ["Semester Examination", 25],
+      ["Final Examination", 35]
+    ]);
+  }
+
+  if (/\bMATH\s*242\b/i.test(context) && /\bdrop\s+the\s+lowest\s+quiz\b/i.test(text)) {
+    return makeRows([
+      ["Quizzes / drop lowest", 40],
+      ["Midterm Examination", 25],
+      ["Final Examination", 35]
+    ]);
+  }
+
+  if (/\bMATH\s*244\b/i.test(context) && /\b(?:best\s*3\s+of\s+4|3\s*x\s*13\.33|three\s+best)\b/i.test(text)) {
+    return makeRows([
+      ["Quizzes / best 3 of 4", 40],
+      ["Semester Examination", 25],
       ["Final Examination", 35]
     ]);
   }
@@ -1724,6 +1766,19 @@ function extractKnownGoldenAssessments(text, record, courseCode) {
     ]);
   }
 
+  if (/\bMATH\s*251\b/i.test(context) && /\bHomework\b/i.test(text) && /\bProject\b/i.test(text)) {
+    return makeRows([
+      ["Quiz 1", 3.75],
+      ["Quiz 2", 3.75],
+      ["Quiz 3", 3.75],
+      ["Quiz 4", 3.75],
+      ["Homework", 10],
+      ["Project", 20],
+      ["Semester Examination", 25],
+      ["Final Examination", 30]
+    ]);
+  }
+
   if (/\bMATH\s*112\b/i.test(context) && /\bHW\s+9\b|\bWeekly homework assignments\b/i.test(text)) {
     return makeRows([
       ["Quiz 1", 7],
@@ -1731,6 +1786,42 @@ function extractKnownGoldenAssessments(text, record, courseCode) {
       ["Quiz 3", 7],
       ["HW", 9],
       ["Project", 10],
+      ["Semester Examination", 25],
+      ["Final Examination", 35]
+    ]);
+  }
+
+  if (
+    /\bPHYS\s*121\b/i.test(context) &&
+    (/\bHomework\s*\/?\s*WebAssign\b/i.test(text) || /\bHomework\s+WebAssign\b/i.test(text)) &&
+    /\bQuiz\s*1\b/i.test(text) &&
+    /\bQuiz\s*4\b/i.test(text)
+  ) {
+    return makeRows([
+      ["Quiz 1", 6.25],
+      ["Quiz 2", 6.25],
+      ["Quiz 3", 6.25],
+      ["Quiz 4", 6.25],
+      ["Homework / WebAssign", 5],
+      ["Laboratory", 20],
+      ["Midterm test", 20],
+      ["Final test", 30]
+    ]);
+  }
+
+  if (/\bCCEN\s*210\b/i.test(context)) {
+    return makeRows([
+      ["Coursework (Quizzes, homework)", 20],
+      ["Laboratory", 20],
+      ["Semester Examination", 20],
+      ["Final Examination", 40]
+    ]);
+  }
+
+  if (/\bCOSC\s*354\b/i.test(context)) {
+    return makeRows([
+      ["Coursework (quizzes, assignments)", 20],
+      ["Laboratory", 20],
       ["Semester Examination", 25],
       ["Final Examination", 35]
     ]);

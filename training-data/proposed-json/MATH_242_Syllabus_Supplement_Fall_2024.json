@@ -22,72 +22,50 @@
       "name": "Quiz 1",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "Coursework: Quiz 1 Week 6 (10%) 40%"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz 1 10%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "We drop the lowest quiz Quiz 2 Week 11 (10%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz 2 10%"
     },
     {
-      "name": "Grade. Assignment",
+      "name": "Assignment",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "grade. Assignment Week 8 (10%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Assignment 10%"
     },
     {
       "name": "Project",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "Project Week 15 (10%)"
+      "confidence": 0.96,
+      "source_text_snippet": "Project 10%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "Semester Examination: Week 8: Midterm 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination 25%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
-    },
-    {
-      "name": "2 Quizzes",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "There are 2 quizzes scheduled in this course. Each quiz will therefore count for 10% of your"
-    },
-    {
-      "name": "The Report Is Submitted Late The Project Grade Will Be Decreased By For Each Day Of Delay.",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "the report is submitted late, the project grade will be decreased by 10% for each day of delay."
-    },
-    {
-      "name": "Report Is Submitted Late The Project Grade Will Be Decreased By For Each Day Of Delay.",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.92,
-      "source_text_snippet": "report is submitted late, the project grade will be decreased by 10% for each day of delay."
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 130,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is above 100 (130%)",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.87,
+  "confidence": 0.91,
   "needsHumanReview": true
 }

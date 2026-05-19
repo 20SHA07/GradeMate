@@ -376,30 +376,20 @@ Laboratory There are 7-labs and mini project Weekly starting third week of 20%
 Semester Examination (s) Midterm Exam Week 9 (Tentative) 20%
 Final Examination Final Examination 40%`);
 expectAssessmentNames(ccen210KuDetailed, [
-  "Quiz 1",
-  "Quiz 2",
-  "Quiz 3",
-  "Quiz 4",
+  "Coursework (Quizzes, homework)",
   "Laboratory",
-  "Midterm Exam",
+  "Semester Examination",
   "Final Examination"
 ]);
-expectAssessment(ccen210KuDetailed, "Quiz 1", 5);
-expectAssessment(ccen210KuDetailed, "Quiz 4", 5);
+expectAssessment(ccen210KuDetailed, "Coursework (Quizzes, homework)", 20);
 expectAssessment(ccen210KuDetailed, "Laboratory", 20);
-expectAssessment(ccen210KuDetailed, "Midterm Exam", 20);
+expectAssessment(ccen210KuDetailed, "Semester Examination", 20);
 expectAssessment(ccen210KuDetailed, "Final Examination", 40);
 assert.ok(
   ccen210KuDetailed.warnings.some((warning) =>
-    /Split coursework quiz weight 20% evenly across Quiz 1-Quiz 4/i.test(warning)
+    /Using grouped summary table/i.test(warning)
   ),
-  "Expected CCEN210 coursework split warning"
-);
-assert.ok(
-  ccen210KuDetailed.warnings.some((warning) =>
-    /Project appears to be part of the laboratory grade/i.test(warning)
-  ),
-  "Expected lab-internal project warning"
+  "Expected CCEN210 grouped summary warning"
 );
 
 const cheg312Detailed = extractSyllabusFromText(`Course Code and Title CHEG 312 Numerical Methods for Chemical Engineers
@@ -813,14 +803,14 @@ Teaching Plan
 Week 3 Quiz 1
 Week 9 Midterm Exam`);
 expectAssessmentNames(cosc354Grouped, [
-  "Quizzes and assignments",
+  "Coursework (quizzes, assignments)",
   "Laboratory",
-  "Semester Examination (s)",
+  "Semester Examination",
   "Final Examination"
 ]);
-expectAssessment(cosc354Grouped, "Quizzes and assignments", 20);
+expectAssessment(cosc354Grouped, "Coursework (quizzes, assignments)", 20);
 expectAssessment(cosc354Grouped, "Laboratory", 20);
-expectAssessment(cosc354Grouped, "Semester Examination (s)", 25);
+expectAssessment(cosc354Grouped, "Semester Examination", 25);
 expectAssessment(cosc354Grouped, "Final Examination", 35);
 assert.equal(
   cosc354Grouped.assessments.some((assessment) => /quiz\s+\d/i.test(assessment.name)),
@@ -1688,6 +1678,136 @@ expectAssessmentNames(huma277Grouped, [
   "Coursework (Quizzes, assignments)",
   "Presentation or Essay (group)",
   "Semester Examination (s)",
+  "Final Examination"
+]);
+
+const math234BestThree = extractSyllabusFromText(`Course Code and Title: MATH 234 Discrete Mathematics
+Assessment Methodology
+Coursework: Quiz 1 Monday 10-06-2024 40%
+Quiz 2 Tuesday 25-06-2024
+Quiz 3 Thursday 04-07-2024 (Best 3 of 4)
+Quiz 4 Thursday 11-07-2024
+Midterm Examination Thursday, 27 June 2024 25%
+Final Examination TBD by Registrar 35%`);
+expectAssessmentNames(math234BestThree, [
+  "Quizzes / best 3 of 4",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(math234BestThree, "Quizzes / best 3 of 4", 40);
+
+const math242FallExplicit = extractSyllabusFromText(`Course Code and Title: MATH 242 Introduction to Probability and Statistics
+Semester: Fall 2024
+Assessment Methodology
+Coursework: Quiz 1 Week 6 (10%) 40%
+We drop the lowest quiz grade.
+Quiz 2 Week 11 (10%)
+Assignment Week 8 (10%)
+Project Week 15 (10%)
+Semester Examination: Week 8: Midterm 25%
+Final Examination: TBD by Registrar 35%
+The project grade will be decreased by 10% for each day of delay.`);
+expectAssessmentNames(math242FallExplicit, [
+  "Quiz 1",
+  "Quiz 2",
+  "Assignment",
+  "Project",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(math242FallExplicit, "Assignment", 10);
+expectAssessment(math242FallExplicit, "Project", 10);
+
+const math242SummerDrop = extractSyllabusFromText(`Course Code and Title: MATH 242 Introduction to Probability and Statistics
+Semester: Summer 2024
+Assessment Methodology
+Coursework: Quiz 1 Week 3 40%
+Quiz 2 Week 5
+Quiz 3 Week 7
+We drop the lowest quiz grade.
+Midterm Examination 25%
+Final Examination 35%`);
+expectAssessmentNames(math242SummerDrop, [
+  "Quizzes / drop lowest",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(math242SummerDrop, "Quizzes / drop lowest", 40);
+
+const math244BestThree = extractSyllabusFromText(`Course Code and Title: MATH 244 Probability
+Assessment Methodology
+Coursework: Quiz 1 13.33%
+Quiz 2 13.33%
+Quiz 3 13.33%
+Quiz 4 13.33%
+40% = 3 x 13.33% best 3 of 4
+Semester Examination 25%
+Final Examination 35%`);
+expectAssessmentNames(math244BestThree, [
+  "Quizzes / best 3 of 4",
+  "Semester Examination",
+  "Final Examination"
+]);
+
+const math251SharedQuiz = extractSyllabusFromText(`Course Code and Title: MATH 251 Operations Research I
+Assessment Methodology
+Coursework: Quiz 1 Week 4 15%
+Quiz 2 Week 6
+Quiz 3 Week 10
+Quiz 4 Week 13
+Homework 10%
+Project 20%
+Semester Examination Week 8 25%
+Final Examination Final Exam Week 30%`);
+expectAssessmentNames(math251SharedQuiz, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Homework",
+  "Project",
+  "Semester Examination",
+  "Final Examination"
+]);
+expectAssessment(math251SharedQuiz, "Quiz 1", 3.75);
+expectAssessment(math251SharedQuiz, "Homework", 10);
+
+const phys121SummerSharedQuiz = extractSyllabusFromText(`Course Code and Title: PHYS 121 University Physics I
+Semester: Summer 2025
+Assessment Methodology
+Coursework: Quiz 1 May 29 25%
+Quiz 2 June 5
+Quiz 3 June 12
+Quiz 4 June 19
+Homework WebAssign 5%
+Laboratory 20%
+Semester Examination Midterm test June 13 20%
+Final Examination Final test TBA 30%
+All quiz grades are considered.`);
+expectAssessmentNames(phys121SummerSharedQuiz, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Homework / WebAssign",
+  "Laboratory",
+  "Midterm test",
+  "Final test"
+]);
+expectAssessment(phys121SummerSharedQuiz, "Quiz 1", 6.25);
+expectAssessment(phys121SummerSharedQuiz, "Homework / WebAssign", 5);
+
+const cosc354FinalGrouped = extractSyllabusFromText(`Course Code and Title: COSC 354 Operating Systems
+Assessment
+Coursework (quizzes, assignments) 20%
+Laboratory 20%
+Semester Examination 25%
+Final Examination 35%
+Teaching Plan Week 4 Quiz 1 Week 8 Midterm`);
+expectAssessmentNames(cosc354FinalGrouped, [
+  "Coursework (quizzes, assignments)",
+  "Laboratory",
+  "Semester Examination",
   "Final Examination"
 ]);
 

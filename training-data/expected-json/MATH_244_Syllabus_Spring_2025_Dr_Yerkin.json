@@ -1,25 +1,52 @@
 {
   "sourceFileName": "MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+  "sourcePath": "MATH\\MATH 244 Probability\\MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+  "sourceRelativePath": "MATH\\MATH 244 Probability\\MATH 244 Syllabus- Spring 2025 - Dr. Yerkin.pdf",
+  "sourceTextFileName": "MATH_244_Syllabus_Spring_2025_Dr_Yerkin.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 244",
   "courseName": "Probability",
   "creditHours": 3,
   "semester": "Spring 2025",
   "instructor": "Dr. Yerkin Kitapbayev",
+  "instructorEmail": "Yerkin.kitapbayev@ku.ac.ae",
+  "schedule": "Tue/Thur 12:00-13:15, Room R02006",
+  "classroom": null,
+  "officeRoom": "SAN 1204",
+  "officeHours": "By appointment",
+  "prerequisites": "MATH 101, MATH 112",
+  "textbooks": [
+    "Statistical Inference by G. Casella, R.L. Berger, Publisher: Cengage Learning, 2 Edition, (e-book) 2021, ISBN:",
+    "9780357753125"
+  ],
+  "courseDescription": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
   "assessments": [
     {
-      "name": "Coursework",
+      "name": "Quizzes / best 3 of 4",
       "weight_percentage": 40,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Quiz weight is 40% with best 3 of 4 quizzes counted"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Using grouped quiz category because only the best 3 of 4 quizzes count."
+  ],
+  "confidence": 0.94,
+  "needsHumanReview": false
 }

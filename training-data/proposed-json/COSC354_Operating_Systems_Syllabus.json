@@ -1,31 +1,60 @@
 {
   "sourceFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourcePath": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourceRelativePath": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
+  "sourceTextFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus_With_Supplement_for_Students.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "COSC 354",
   "courseName": "Operating Systems",
+  "creditHours": 3,
   "semester": "Fall 2025",
   "instructor": "Azzam Mourad",
   "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04209",
+  "officeHours": "Tuesday-Thursday: 12PM-1PM and 2PM-3PM; Monday-Wednesday: By appointment",
+  "prerequisites": "COSC 201",
+  "textbooks": [
+    "1. Operating Systems Concepts, by A. Silberschatz and P. B. Galvin. Publisher: Addison Wesley, 10 edition, 2021,",
+    "ISBN: 1118063333.",
+    "2. KU ECCE354 Laboratory Manual."
+  ],
+  "courseDescription": null,
   "assessments": [
     {
-      "name": "Quizzes and assignments",
+      "name": "Coursework (quizzes, assignments)",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Coursework (quizzes, assignments) 20%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Laboratory 20%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination 25%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 100
+  "totalWeight": 100,
+  "warnings": [
+    "Using grouped summary table because detailed quiz/assignment weights are not explicit."
+  ],
+  "confidence": 0.94,
+  "needsHumanReview": false
 }

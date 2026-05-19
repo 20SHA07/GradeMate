@@ -23,36 +23,38 @@
   "courseDescription": null,
   "assessments": [
     {
-      "name": "Assignment 2",
+      "name": "Coursework (quizzes, assignments)",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Quizzes and assignments 2-3 quizzes + Assignments 20%"
+      "confidence": 0.96,
+      "source_text_snippet": "Coursework (quizzes, assignments) 20%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Laboratory Weekly Tasks 20%"
+      "confidence": 0.96,
+      "source_text_snippet": "Laboratory 20%"
     },
     {
-      "name": "Semester Examination (s)",
+      "name": "Semester Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Semester Examination (s) Week 8 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Semester Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Final Examination Week 16 35%"
+      "confidence": 0.96,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Using grouped summary table because detailed quiz/assignment weights are not explicit."
+  ],
+  "confidence": 0.94,
   "needsHumanReview": false
 }

@@ -22,29 +22,31 @@
   "courseDescription": "This course introduces students to basic probability models and statistical methods for data analysis.\nThe course will cover introductory probability theory, discrete and continuous probability\ndistributions, elements of descriptive statistics, and different statistical inference methods such as\nestimation for the mean and the variance, hypothesis testing for the mean and the variance.",
   "assessments": [
     {
-      "name": "Coursework",
+      "name": "Quizzes / drop lowest",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework (Quizzes and assigments) 40%"
+      "confidence": 0.96,
+      "source_text_snippet": "Coursework quiz total is 40% with the lowest quiz dropped"
     },
     {
-      "name": "Semester Examination (s)",
+      "name": "Midterm Examination",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Semester Examination(s) 25%"
+      "confidence": 0.96,
+      "source_text_snippet": "Midterm Examination 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.96,
       "source_text_snippet": "Final Examination 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Using grouped quiz category because the lowest quiz is dropped."
+  ],
+  "confidence": 0.94,
   "needsHumanReview": false
 }

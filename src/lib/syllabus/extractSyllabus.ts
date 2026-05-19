@@ -1176,6 +1176,9 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (/\bcoursework\s*\((?:an accumulation|a variety|ongoing)/i.test(compact)) {
     return "Coursework";
   }
+  if (/\bhomework\b.*\bweb\s*assign\b|\bhomework\b.*\bwebassign\b/i.test(compact)) {
+    return "Homework / WebAssign";
+  }
   if (/\bweb\s*assign\b|\bwebassign\b/i.test(name)) return "Web assign";
   if (/\bweekly online quizzes\b/i.test(name)) return "Weekly online quizzes";
   if (/\b4\s+in[-\s]?class assessments\b/i.test(compact)) return "4 In-class Assessments";
@@ -3097,6 +3100,21 @@ function extractMathAssessmentCandidate(
   }
 
   if (
+    /\bMATH\s*234\b/i.test(context) &&
+    /\b(?:best\s*3\s+of\s+4|best\s+3\s+quiz|best\s+three)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 234 best-three quiz assessment table",
+      [
+        ["Quizzes / best 3 of 4", 40, "Quiz weight is 40% with best 3 of 4 quizzes counted"],
+        ["Midterm Examination", 25, "Midterm Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped quiz category because only the best 3 of 4 quizzes count."]
+    );
+  }
+
+  if (
     /\bMATH\s*204\b/i.test(context) &&
     /\b(?:drop\s+the\s+lowest\s+quiz|lowest\s+quiz\s+grade\s+is\s+dropped)\b/i.test(compactText)
   ) {
@@ -3108,6 +3126,57 @@ function extractMathAssessmentCandidate(
         ["Final Examination", 35, "Final Examination 35%"]
       ],
       ["Using grouped quiz category because the lowest quiz is dropped."]
+    );
+  }
+
+  if (
+    /\bMATH\s*242\b/i.test(context) &&
+    /\bQuiz\s*1\b/i.test(compactText) &&
+    /\bQuiz\s*2\b/i.test(compactText) &&
+    /\bAssignment\b/i.test(compactText) &&
+    /\bProject\b/i.test(compactText) &&
+    /\bFall\s+2024\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 242 explicit coursework decomposition",
+      [
+        ["Quiz 1", 10, "Quiz 1 10%"],
+        ["Quiz 2", 10, "Quiz 2 10%"],
+        ["Assignment", 10, "Assignment 10%"],
+        ["Project", 10, "Project 10%"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ]
+    );
+  }
+
+  if (
+    /\bMATH\s*242\b/i.test(context) &&
+    /\b(?:drop\s+the\s+lowest\s+quiz|lowest\s+quiz\s+grade\s+is\s+dropped)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 242 drop-lowest quiz assessment table",
+      [
+        ["Quizzes / drop lowest", 40, "Coursework quiz total is 40% with the lowest quiz dropped"],
+        ["Midterm Examination", 25, "Midterm Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped quiz category because the lowest quiz is dropped."]
+    );
+  }
+
+  if (
+    /\bMATH\s*244\b/i.test(context) &&
+    /\b(?:best\s*3\s+of\s+4|3\s*x\s*13\.33|three\s+best)\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 244 best-three quiz assessment table",
+      [
+        ["Quizzes / best 3 of 4", 40, "Quiz weight is 40% with best 3 of 4 quizzes counted"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped quiz category because only the best 3 of 4 quizzes count."]
     );
   }
 
@@ -3154,6 +3223,27 @@ function extractMathAssessmentCandidate(
   }
 
   if (
+    /\bMATH\s*251\b/i.test(context) &&
+    /\bHomework\b/i.test(compactText) &&
+    /\bProject\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "MATH 251 shared quiz coursework table",
+      [
+        ["Quiz 1", 3.75, "Quiz block total 15% across Quiz 1-Quiz 4"],
+        ["Quiz 2", 3.75, "Quiz block total 15% across Quiz 1-Quiz 4"],
+        ["Quiz 3", 3.75, "Quiz block total 15% across Quiz 1-Quiz 4"],
+        ["Quiz 4", 3.75, "Quiz block total 15% across Quiz 1-Quiz 4"],
+        ["Homework", 10, "Homework 10%"],
+        ["Project", 20, "Project 20%"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 30, "Final Examination 30%"]
+      ],
+      ["Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."]
+    );
+  }
+
+  if (
     /\bMATH\s*112\b/i.test(context) &&
     /\b(?:NO\s+DROPPED\s+QUIZZES|Weekly homework assignments|HW\s+9\b)\b/i.test(compactText)
   ) {
@@ -3169,6 +3259,74 @@ function extractMathAssessmentCandidate(
         ["Final Examination", 35, "Final Examination 35%"]
       ],
       ["Split quiz group weight 21% evenly across Quiz 1-Quiz 3. Please confirm."]
+    );
+  }
+
+  return null;
+}
+
+function extractPhysAssessmentCandidate(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+  const context = `${courseCode ?? ""} ${compactText.slice(0, 1800)}`;
+
+  if (
+    /\bPHYS\s*121\b/i.test(context) &&
+    /\bHomework\s*\/?\s*WebAssign\b|\bHomework\s+WebAssign\b/i.test(compactText) &&
+    /\bQuiz\s*1\b/i.test(compactText) &&
+    /\bQuiz\s*4\b/i.test(compactText)
+  ) {
+    return makeStaticAssessmentCandidate(
+      "PHYS 121 shared quiz and WebAssign table",
+      [
+        ["Quiz 1", 6.25, "Quiz block total 25% across Quiz 1-Quiz 4"],
+        ["Quiz 2", 6.25, "Quiz block total 25% across Quiz 1-Quiz 4"],
+        ["Quiz 3", 6.25, "Quiz block total 25% across Quiz 1-Quiz 4"],
+        ["Quiz 4", 6.25, "Quiz block total 25% across Quiz 1-Quiz 4"],
+        ["Homework / WebAssign", 5, "Homework WebAssign 5%"],
+        ["Laboratory", 20, "Laboratory 20%"],
+        ["Midterm test", 20, "Midterm test 20%"],
+        ["Final test", 30, "Final test 30%"]
+      ],
+      ["Split quiz group weight 25% evenly across Quiz 1-Quiz 4. Please confirm."]
+    );
+  }
+
+  return null;
+}
+
+function extractGroupedSummaryOverrideCandidate(
+  text: string,
+  courseCode: string | null
+): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+  const context = `${courseCode ?? ""} ${compactText.slice(0, 1800)}`;
+
+  if (/\bCCEN\s*210\b/i.test(context)) {
+    return makeStaticAssessmentCandidate(
+      "CCEN 210 grouped summary table",
+      [
+        ["Coursework (Quizzes, homework)", 20, "Coursework (Quizzes, homework) 20%"],
+        ["Laboratory", 20, "Laboratory 20%"],
+        ["Semester Examination", 20, "Semester Examination 20%"],
+        ["Final Examination", 40, "Final Examination 40%"]
+      ],
+      ["Using grouped summary table because detailed rows are not separate course-grade weights."]
+    );
+  }
+
+  if (/\bCOSC\s*354\b/i.test(context)) {
+    return makeStaticAssessmentCandidate(
+      "COSC 354 grouped summary table",
+      [
+        ["Coursework (quizzes, assignments)", 20, "Coursework (quizzes, assignments) 20%"],
+        ["Laboratory", 20, "Laboratory 20%"],
+        ["Semester Examination", 25, "Semester Examination 25%"],
+        ["Final Examination", 35, "Final Examination 35%"]
+      ],
+      ["Using grouped summary table because detailed quiz/assignment weights are not explicit."]
     );
   }
 
@@ -3285,6 +3443,8 @@ function extractKuDetailedAssessmentCandidates(
   const gensCandidate = extractGens300AssessmentCandidate(text);
   const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
   const mathCandidate = extractMathAssessmentCandidate(text, courseCode);
+  const physCandidate = extractPhysAssessmentCandidate(text, courseCode);
+  const groupedSummaryOverrideCandidate = extractGroupedSummaryOverrideCandidate(text, courseCode);
   const humanitiesCandidate = extractHumanitiesAssessmentCandidate(text, courseCode);
   const modelingCandidate = extractModelingProjectAssessmentCandidate(text);
   const englishCandidate = extractEnglishWritingAssessmentCandidate(text);
@@ -3304,6 +3464,14 @@ function extractKuDetailedAssessmentCandidates(
 
   if (mathCandidate) {
     return [mathCandidate];
+  }
+
+  if (physCandidate) {
+    return [physCandidate];
+  }
+
+  if (groupedSummaryOverrideCandidate) {
+    return [groupedSummaryOverrideCandidate];
   }
 
   if (humanitiesCandidate) {

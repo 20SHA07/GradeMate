@@ -1,0 +1,64 @@
+{
+  "sourceFileName": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourcePath": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourceRelativePath": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
+  "sourceTextFileName": "Syllabus_COSC_336_Introduction_to_Software_Engineering_August_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 336",
+  "courseName": "Introduction to Software Engineering",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Jamal Bentahar",
+  "instructorEmail": "Jamal.bentahar@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04 206",
+  "officeHours": null,
+  "prerequisites": "COSC 230",
+  "textbooks": [
+    "Software Engineering: A Practitioner’s Approach by Roger Pressman. Publisher: McGraw-Hill, 9",
+    "Edition, 2019. ISBN: 978-1259872976"
+  ],
+  "courseDescription": "The course introduces software engineering concepts and best practices. It discusses software\nprocesses and project management concepts. The course elaborates on software requirements,\nmodeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams\nand emerging software development methods.",
+  "assessments": [
+    {
+      "name": "Quizzes",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Coursework (Quizzes – 10%, Assignments – 10%) 20%"
+    },
+    {
+      "name": "Assignments",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Coursework (Quizzes – 10%, Assignments – 10%) 20%"
+    },
+    {
+      "name": "Group project",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Group project 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Semester Examination 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final Examination 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.91,
+  "needsHumanReview": false
+}
