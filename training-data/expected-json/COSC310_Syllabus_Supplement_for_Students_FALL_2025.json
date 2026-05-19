@@ -1,0 +1,92 @@
+{
+  "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourcePath": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourceRelativePath": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
+  "sourceTextFileName": "COSC310_Syllabus_Supplement_for_Students_FALL_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 310",
+  "courseName": "Data Structures",
+  "creditHours": null,
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "khaled.elbassioni@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04200",
+  "officeHours": "TUE-THU: 15:00 PM-16:00 PM",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 3.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 Week 5 3.33%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 3.33,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 8 3.33%"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3.34,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 13 3.34%"
+    },
+    {
+      "name": "Project/Assignment",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects / Assignment Project/Assignment Week 10 – Week 14 10%"
+    },
+    {
+      "name": "Lab Assignments",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory Lab Assignments Weekly (W2 – W13) 10%"
+    },
+    {
+      "name": "Lab Quizzes",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Lab Quizzes Consult with Lab TA 10%"
+    },
+    {
+      "name": "Lab Test (or a Quiz)",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Lab Test (or a Quiz) Week 14 5%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (on-campus) Week 9 (Mar 13) 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination (on-campus) Week 16 (May 5-15) 35%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
+}

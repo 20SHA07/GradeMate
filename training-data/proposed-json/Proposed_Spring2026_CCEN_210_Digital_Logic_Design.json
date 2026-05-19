@@ -1,0 +1,83 @@
+{
+  "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourcePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourceRelativePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+  "sourceTextFileName": "Proposed_Spring2026_CCEN_210_Digital_Logic_Design.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "CCEN 210",
+  "courseName": "Digital Logic Design",
+  "creditHours": 4,
+  "semester": "Spring 2026",
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "Office Hours",
+  "officeHours": null,
+  "prerequisites": "- COSC 114 Introduction to Computing- Python",
+  "textbooks": [
+    "S. Brown and Z. Vranesic, Fundamentals of Digital Logic with Verilog Design, 4th ed. New York, NY, USA:",
+    "McGraw-Hill, 2025, ISBN: 978-1-265-12041-2."
+  ],
+  "courseDescription": "This course covers the principles of digital logic design, including data representation in digital systems, Boolean\nalgebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided\ndesign (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic\ncircuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments\nprovide hands-on experience with simulating, implementing, and testing digital circuits.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Around week 3 (Tentative) 20% Quiz 2 Around week 5 (Tentative) Quiz 3 Around week 11 (Tentative) Quiz 4 Around week 13 (Tentative) Project Project is part of the lab with 20% Last week of semester of the lab grade "
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Around week 3 (Tentative) 20% Quiz 2 Around week 5 (Tentative) Quiz 3 Around week 11 (Tentative) Quiz 4 Around week 13 (Tentative) Project Project is part of the lab with 20% Last week of semester of the lab grade "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Around week 3 (Tentative) 20% Quiz 2 Around week 5 (Tentative) Quiz 3 Around week 11 (Tentative) Quiz 4 Around week 13 (Tentative) Project Project is part of the lab with 20% Last week of semester of the lab grade "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Around week 3 (Tentative) 20% Quiz 2 Around week 5 (Tentative) Quiz 3 Around week 11 (Tentative) Quiz 4 Around week 13 (Tentative) Project Project is part of the lab with 20% Last week of semester of the lab grade "
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory There are 7-labs and mini project Weekly starting third week of 20%"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam Week 9 (Tentative) 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination Final Examination 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Split coursework quiz weight 20% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Project appears to be part of the laboratory grade, so it was not added as a separate course-grade item.",
+    "Using detailed assessment methodology instead of summary table.",
+    "Instructor missing"
+  ],
+  "confidence": 0.89,
+  "needsHumanReview": true
+}

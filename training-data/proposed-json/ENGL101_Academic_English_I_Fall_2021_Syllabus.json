@@ -22,43 +22,43 @@
   "courseDescription": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
   "assessments": [
     {
-      "name": "Individual Short Writing Assignments %",
+      "name": "Individual short writing assignments",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Individual short writing assignments 20%"
     },
     {
-      "name": "Group Short Writing Assignment %",
+      "name": "Group short writing assignment",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Group short writing assignment 10%"
     },
     {
-      "name": "Individual Writing: Supporting Or Refuting A Claim %",
+      "name": "Individual Writing: Supporting or refuting a claim",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Individual Writing: Supporting or refuting a claim 30%"
     },
     {
-      "name": "Individual Writing: Focused Essay %",
+      "name": "Individual Writing: Focused essay",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Individual Writing: Focused essay 30%"
     },
     {
-      "name": "Digital Presentation %",
+      "name": "Digital presentation",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.9,
+      "confidence": 0.96,
       "source_text_snippet": "Digital presentation 10%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.89,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

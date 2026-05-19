@@ -1,0 +1,67 @@
+{
+  "sourceFileName": "COSC 201 Computer Systems Organization.pdf",
+  "sourcePath": "COSC 201 Computer Systems Organization.pdf",
+  "sourceRelativePath": "COSC 201 Computer Systems Organization.pdf",
+  "sourceTextFileName": "COSC_201_Computer_Systems_Organization.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 201",
+  "courseName": "Computer Systems Organization",
+  "creditHours": 3,
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "COSC 101",
+  "textbooks": [
+    " Randal E. Bryant and David R. O’Hallaron, Computer Systems: A Programmer’s",
+    "Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
+  ],
+  "courseDescription": "This course provides a basic understanding of the fundamental logical organization of a\ncomputer (its parts and their relationship) and how it actually works; exposure to a central\nprocessor's native language, and to basic computer components and basic architectures for high\nperformance design. Topics include: Von Neumann architecture, C programming (low-level\naspects), data representation, computer arithmetic, assembly language programming, digital\nlogic design, registers, instruction counter, processor architecture, pipelining, memory\nhierarchies, caching, virtual memory, interrupts, input and output, buses.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (quizzes, homework) 15%"
+    },
+    {
+      "name": "Lab Work",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Lab Work 15%"
+    },
+    {
+      "name": "Project",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination 20%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 30%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Semester missing",
+    "Instructor missing"
+  ],
+  "confidence": 0.89,
+  "needsHumanReview": true
+}

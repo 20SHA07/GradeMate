@@ -1,0 +1,60 @@
+{
+  "sourceFileName": "COSC495_COSC_495-GameDev-November2024.pdf",
+  "sourcePath": "COSC495_COSC_495-GameDev-November2024.pdf",
+  "sourceRelativePath": "COSC495_COSC_495-GameDev-November2024.pdf",
+  "sourceTextFileName": "COSC495_COSC_495_GameDev_November2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 495",
+  "courseName": "COSC 4XX: Introduction to Game Development and XR",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Jamal Zemerly / Lamees Alqassem",
+  "instructorEmail": "jamal.zemerly@ku.ac.ae; lamees.alqassem@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C040401",
+  "officeHours": null,
+  "prerequisites": "COSC 230",
+  "textbooks": [
+    "Introduction to Game Design, Prototyping, and Development: From Concept to Playable Game with",
+    "Unity and C#, by Jeremy Gibson Bond, Third Edition, Addison-Wesley Professional, 2022",
+    "ISBN-13: 978-0321933164",
+    "https://www.amazon.com/Introduction-Game-Design-Prototyping-Development-dp-",
+    "0136619940/dp/0136619940/ref=dp_ob_image_bk"
+  ],
+  "courseDescription": "This course provides students with the fundamentals of video game development and extended reality\n(XR) technologies, focusing on building interactive 2D and 3D games and XR applications. The\ncourse covers the game development process from concept to prototype.",
+  "assessments": [
+    {
+      "name": "Coursework (Assignments)",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (Assignments) 40%"
+    },
+    {
+      "name": "Mid-project",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Mid -project 15%"
+    },
+    {
+      "name": "Final Examination (Hands-on Exam)",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination (Hands-on Exam) 30%"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Project 15%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.89,
+  "needsHumanReview": false
+}

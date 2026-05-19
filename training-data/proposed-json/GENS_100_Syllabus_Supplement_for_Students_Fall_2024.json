@@ -19,26 +19,39 @@
   "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
   "assessments": [
     {
-      "name": "Quiz 5",
-      "weight_percentage": 5,
+      "name": "4 In-class Assessments",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Week 1 (KU Resources Quiz- 5%)"
+      "confidence": 0.9,
+      "source_text_snippet": "4 In-class Assessments 25%"
+    },
+    {
+      "name": "In-class activities and Homework",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "In-class activities and Homework 25%"
     },
     {
       "name": "Case Study",
-      "weight_percentage": 4,
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Case study Week 4"
+      "confidence": 0.9,
+      "source_text_snippet": "Case Study 10%"
+    },
+    {
+      "name": "Documented evidence of engagement (Mid-term & Final Assessments)",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Documented evidence of engagement (Mid-term & Final Assessments) 40%"
     }
   ],
-  "totalWeight": 9,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (9%)",
     "Instructor missing",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.9,
+  "confidence": 0.86,
   "needsHumanReview": true
 }

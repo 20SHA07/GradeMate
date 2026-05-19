@@ -19,21 +19,40 @@
   "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
   "assessments": [
     {
-      "name": "Assessment",
+      "name": "Test 1",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.68,
-      "source_text_snippet": "30%"
+      "confidence": 0.9,
+      "source_text_snippet": "Test 1 30%"
+    },
+    {
+      "name": "Bloomberg Market Certification",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Bloomberg Market Certification 10%"
+    },
+    {
+      "name": "Midterm Examination:",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Midterm Examination: 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination: 35%"
     }
   ],
-  "totalWeight": 30,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (30%)",
-    "Low confidence extraction",
     "Course info missing",
     "Credit hours missing",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.68,
+  "confidence": 0.86,
   "needsHumanReview": true
 }

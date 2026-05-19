@@ -22,64 +22,36 @@
   "courseDescription": "Introduction to computer systems: computer hardware components, operating system, compiling,\ndebugging, libraries, linking. Programming based problem solving that includes program development\nlifecycle. Imperative programming: data types, conditional expressions and statements, repetitive\nstructures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),\nfile I/O.",
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 5,
+      "name": "Coursework (Quizzes, homework, lab work)",
+      "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Coursework: Quiz 1 Week 5 5%"
-    },
-    {
-      "name": "Quiz 2",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 2 Week 9 5%"
-    },
-    {
-      "name": "Quiz 3",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 3 Week 11 5%"
-    },
-    {
-      "name": "Quiz 4",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 4 Week 13 5%"
-    },
-    {
-      "name": "Laboratory",
-      "weight_percentage": 15,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Laboratory (if applicable) Lab Assignments Weekly (W2– W14) 15%"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (Quizzes, homework, lab work) 35%"
     },
     {
       "name": "Final Lab",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final Lab Week 15 15%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Lab 15%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Semester Examination (on campus) Week 7 20%"
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination 20%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final Examination (on campus) TBD 30%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 30%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.93,
+  "confidence": 0.89,
   "needsHumanReview": false
 }

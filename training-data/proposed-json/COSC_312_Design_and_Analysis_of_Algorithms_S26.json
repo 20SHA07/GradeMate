@@ -1,0 +1,57 @@
+{
+  "sourceFileName": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourcePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourceRelativePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+  "sourceTextFileName": "COSC_312_Design_and_Analysis_of_Algorithms_S26.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 312",
+  "courseName": "Design and Analysis of Algorithms",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Khaled Elbassioni",
+  "instructorEmail": "Khaled.elbassioni@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04200",
+  "officeHours": "Wed. 14:30-15:30, Thurs. 13:30-14:30",
+  "prerequisites": "COSC 301, COSC 310",
+  "textbooks": [
+    "Thomas Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, Introduction",
+    "to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305."
+  ],
+  "courseDescription": "This course covers the most important algorithm strategies and solution techniques,\nindependent of programming language or computer hardware. Topics include: Big-O notation;\nworst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,\nsearching, and selection; algorithm design techniques: divide-and-conquer, dynamic\nprogramming, greedy algorithms, randomization; algorithms for fundamental graph problems;\nstring algorithms; and numerical methods.",
+  "assessments": [
+    {
+      "name": "Coursework",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Every 2-3 weeks 30%"
+    },
+    {
+      "name": "Projects",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects Every 3-4 weeks 20%"
+    },
+    {
+      "name": "Semester Examination",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination Week 8 20"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Week 16 30"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

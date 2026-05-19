@@ -44,6 +44,14 @@ if (summary.errorReasonCounts.length > 0) {
   });
 }
 
+if (summary.duplicateGroups.length > 0) {
+  console.log("\nPotential duplicate/near-duplicate syllabus outputs:");
+  summary.duplicateGroups.slice(0, 10).forEach((group, index) => {
+    console.log(`${index + 1}. ${group.count} files`);
+    group.files.forEach((file) => console.log(`   - ${file}`));
+  });
+}
+
 await printExamples(
   "Example failed files",
   summary.analyses.filter((file) => file.analysis.status === "failed").slice(0, 10)

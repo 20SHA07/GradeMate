@@ -1,0 +1,78 @@
+{
+  "sourceFileName": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourcePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourceRelativePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+  "sourceTextFileName": "COSC_301_Automata_Computability_and_Complexity_Fall2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 301",
+  "courseName": "Automata, Computability, and Complexity",
+  "creditHours": 3,
+  "semester": "Fall 2025",
+  "instructor": "Dr. Khaled Elbassioni",
+  "instructorEmail": "Khaled.elbassioni@ku.ac.ae",
+  "schedule": "MW 11:00-11:50",
+  "classroom": "C02004",
+  "officeRoom": "D04200",
+  "officeHours": "MW 15:00-16:00",
+  "prerequisites": "COSC 101, MATH 234",
+  "textbooks": [
+    "Introduction to the Theory of Computation By Michael Sipser. Publisher: Cengage",
+    "Learning, 3rd Edition, 2012, ISBN: 978-1133187790."
+  ],
+  "courseDescription": "This course is about fundamental ideas in the theory of computation, including formal\nlanguages, computability and complexity. In this course, students gain proficiency in the\nconcepts of automata, formal languages, grammar, algorithms, computability, decidability, and\ncomplexity.",
+  "assessments": [
+    {
+      "name": "HW 1",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: HW 1 Week 3 5%"
+    },
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 Week 5 7.5%"
+    },
+    {
+      "name": "HW 2",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "HW 2 Week 9 5%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 11 7.5%"
+    },
+    {
+      "name": "HW 3",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "HW 3 Week 12 5%"
+    },
+    {
+      "name": "Mid Term Exam",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Mid Term Exam Week 8 30%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Exam Week 16 40%"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
+}

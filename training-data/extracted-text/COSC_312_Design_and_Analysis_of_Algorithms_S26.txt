@@ -1,0 +1,158 @@
+--- Page 1 ---
+COSC 312 Design and Analysis of Algorithms
+(2 Lecture, 2 Tutorial – 3 Credits)
+Prerequisite: COSC 301, COSC 310
+Course Catalog Description:
+This course covers the most important algorithm strategies and solution techniques,
+independent of programming language or computer hardware. Topics include: Big-O notation;
+worst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,
+searching, and selection; algorithm design techniques: divide-and-conquer, dynamic
+programming, greedy algorithms, randomization; algorithms for fundamental graph problems;
+string algorithms; and numerical methods.
+Textbook:
+• Thomas Cormen, Charles E. Leiserson, Ronald L. Rivest, and Clifford Stein, Introduction
+to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305.
+Reference Material:
+• Jon Kleinberg and Éva Tardos, Algorithm Design, Pearson, 2005. ISBN: 978-0321295354.
+• Magnus Lie Hetland, Python Algorithms: Mastering Basic Algorithms in the Python
+Language (Expert's Voice in Open Source), Apress, 1st Edition, 2010. ISBN: 978-
+1430232377.
+• Uri M. Ascher, and Chen Greif, A First Course in Numerical Methods, SIAM
+Computational Science and Engineering, 2011. ISBN: 978-0898719970.
+Course Structure:
+The course is delivered in form of classroom lectures and problem solving sessions. The
+lectures will be 2 × 50-min lectures. Tutorial sessions will also be 2 × 50-min per week.
+Individual assignments and quizzes are held throughout the semester to reinforce knowledge
+of the material.
+Course Topics:
+1. Introduction: searching and sorting, analyzing algorithms, designing algorithms. (2
+lectures, week 1)
+2. Algorithm analysis: algorithm correctness, inductive proofs and loop invariants, asymptotic
+notation, worst case analysis, recurrences, the substitution method, recursion tree, the
+Master theorem. (4 lectures, weeks 2, 3)
+3. Divide-and-conquer: the maximum- subarray problem, Strassen’s matrix multiplication
+algorithm. (4 lectures, weeks 4, 5)
+4. Sorting in linear time: lower bounds for sorting, counting sort, radix sort, bucket sort (2
+lectures, week 6)
+5. Randomized algorithms: quicksort, median finding. (2 lectures, week 7)
+6. Algorithmic strategies for optimization: brute-force, greedy, branch-and-bound, dynamic
+programming. (4 lectures, weeks 8, 9)
+7. Graph algorithms: spanning trees, shortest paths, network flows. (6 lectures, weeks 10-12)
+8. String algorithms: Pattern matching and string algorithms, regular expressions, finite state
+machines. (4 lectures, weeks 13, 14)
+9. Numerical Algorithms: Bisection method, Newton's method, one-dimensional
+optimization. (2 lectures, week 15)
+
+--- Page 2 ---
+Computing Resources:
+There will be no formal labs. But a standard computer science lab with personal computers
+and Open-Source software (Python, Java, C) is required to enable the students to carry out
+their homework and course projects.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (quizzes, homework) 30%
+Project(s) 20%
+Semester Examination 20%
+Final Examination 30%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+H H L --- L H
+H – High M – Medium L – Low
+Course Learning Outcomes (CLO) and Program Learning Outcomes (PLOs):
+No. Course Learning Outcomes CS PLO
+1 Demonstrate the understanding of the basic algorithm design techniques 1
+such as divide-and-conquer, greedy, and dynamic programming.
+2 Argue about the correctness of algorithms using inductive proofs and loop 1
+invariants.
+3 Analyze worst-case and average-case running times and space 1, 2
+requirements of algorithms using asymptotic analysis; compare the
+asymptotic behaviors of functions obtained by elementary composition of
+polynomials, exponentials, and logarithmic functions
+4 Formulate solutions to problems using the major algorithm techniques. 1, 2, 6
+5 Synthesize efficient algorithms in common engineering and scientific 2, 3, 5, 6
+applications.
+Syllabus Supplement for Students
+Course Code and Title COSC 312 Design and Analysis of Algorithms
+Spring 2025
+Semester:
+Instructor Name Khaled Elbassioni
+Contact Email/ Office Khaled.elbassioni@ku.ac.ae
+Ext.
+No.
+Office Room No. D04200
+Office Hours Wed. 14:30-15:30, Thurs. 13:30-14:30
+
+--- Page 3 ---
+Assessment Methodology
+Tentative Dates Weight (%)
+Coursework: Every 2-3 weeks 30%
+Projects Every 3-4 weeks 20%
+Semester Examination Week 8 20
+Final Examination Week 16 30
+Instructor Policy on late submission of assignments:
+No late submission will be accepted
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in
+academic work and will behave according to university rules and UAE societal norms and
+expectations."
+TEACHING PLAN (Lecture):
+Week 1 Introduction: searching and sorting, analyzing algorithms, designing
+algorithms
+Week 2 Algorithm analysis: algorithm correctness, inductive proofs and loop
+invariants
+Week 3 Algorithm analysis: asymptotic notation, worst case analysis,
+recurrences, the substitution method, recursion tree, the Master
+theorem
+Week 4 Divide-and-conquer: the maximum-subarray problem
+Week 5 Divide-and- conquer: Strassen’s matrix multiplication algorithm
+Week 6 Sorting in linear time: lower bounds for sorting, counting sort, radix
+sort, bucket sort
+Week 7 Randomized algorithms: quicksort, median finding
+Week 8 Algorithmic strategies for optimization: brute-force, greedy, branch-
+andbound
+Week 9 Algorithmic strategies for optimization: dynamic programming
+
+--- Page 4 ---
+Week 10 Graph algorithms: spanning trees
+Week 11 Graph algorithms: shortest paths
+Week 12 Graph algorithms: network flows
+Week 13 String algorithms: Pattern matching and string algorithms
+Week 14 String algorithms: regular expressions, finite state machines
+Week 15 Numerical Algorithms: Bisection method, Newton's method,
+onedimensional optimization
+Week 16 Final Examination
+This is a tentative schedule and may be adjusted as required.
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades
+with pluses and minuses. Passing grades range from A to D; F is failing. Each letter grade is
+assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for the College of
+Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+
+--- Page 5 ---
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%

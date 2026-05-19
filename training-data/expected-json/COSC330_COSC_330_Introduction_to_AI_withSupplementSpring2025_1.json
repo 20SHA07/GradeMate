@@ -1,0 +1,88 @@
+{
+  "sourceFileName": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx",
+  "sourcePath": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx",
+  "sourceRelativePath": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx",
+  "sourceTextFileName": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
+  "courseCode": "COSC 330",
+  "courseName": "Introduction to Artificial Intelligence",
+  "creditHours": 3,
+  "semester": "Spring 2025",
+  "instructor": "Andreas Henschel",
+  "instructorEmail": "Andreas.henschel@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04203",
+  "officeHours": "Mo, Tue, We, Thu 3-4pm",
+  "prerequisites": "COSC 202, MATH 204 or Math 211, COSC 230",
+  "textbooks": [
+    "Artificial Intelligence: A Modern Approach by Peter Norvig and Stuart Russell. 4th Edition, 2021,ISBN-10 – 1292401133",
+    "978-1292401133"
+  ],
+  "courseDescription": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 1.875,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz-1 Week-3 7.5"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 1.875,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz-1 Week-3 7.5"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 1.875,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz-1 Week-3 7.5"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 1.875,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Quiz-1 Week-3 7.5"
+    },
+    {
+      "name": "Labs",
+      "weight_percentage": 7.5,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Labs TBA 7.5"
+    },
+    {
+      "name": "Mini-project",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Mini-project TBA 15"
+    },
+    {
+      "name": "Semester examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Semester examination WEEK-8 30"
+    },
+    {
+      "name": "Final examination",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.92,
+      "source_text_snippet": "Final examination TBA 40"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Golden source is not a PDF; DOCX extraction was used"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": false
+}

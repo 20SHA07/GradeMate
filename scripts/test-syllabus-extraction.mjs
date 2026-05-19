@@ -1079,10 +1079,10 @@ expectAssessmentNames(huma221Fallback, [
   "Coursework",
   "Seminar participation",
   "Semester Examination",
-  "Final project"
+  "Final Project"
 ]);
 expectAssessment(huma221Fallback, "Coursework", 40);
-expectAssessment(huma221Fallback, "Final project", 30);
+expectAssessment(huma221Fallback, "Final Project", 30);
 
 const ltcm221Fallback = extractSyllabusFromText(`LTCM 221 Intercultural Communication
 Assessment:
@@ -1117,7 +1117,7 @@ expectAssessmentNames(ltcm221Fallback, [
   "Coursework",
   "Seminar participation",
   "Mid-term assessment",
-  "Final project"
+  "Final Project"
 ]);
 expectAssessment(ltcm221Fallback, "Mid-term assessment", 20);
 
@@ -1471,5 +1471,108 @@ const cosc101 = extractSyllabusFromText(cosc101Text);
 ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4"].forEach((name) =>
   expectAssessment(cosc101, name, 5)
 );
+
+const engl102DetailedWriting = extractSyllabusFromText(`ENGL 102 Academic English II
+Assessment Methodology
+Tentative Dates Weight
+Coursework:
+Individual Writing: Technical report Part 1 Week 3 15%
+Individual Writing: Technical report Part 2 Week 6 25%
+Individual Digital presentation Week 7 20%
+Group Oral Presentation of Proposal Week 13 10%
+Group proposal in response to a Request for Proposals (RFP) Week 14 30%`);
+expectAssessmentNames(engl102DetailedWriting, [
+  "Individual Writing: Technical report Part 1",
+  "Individual Writing: Technical report Part 2",
+  "Individual Digital presentation",
+  "Group Oral Presentation of Proposal",
+  "Group proposal in response to a Request for Proposals (RFP)"
+]);
+expectAssessment(engl102DetailedWriting, "Individual Writing: Technical report Part 2", 25);
+
+const gens100GroupedSummary = extractSyllabusFromText(`GENS 100 Academic Development and Success
+Assessment:
+Assignments (Homework and In Class Activities) 25%
+Quizzes (In class and take home) 25%
+Case Study 10%
+Documented evidence of engagement (midterm and final assessments) 40%
+GELO table
+1A 1B 2A 2B`);
+expectAssessmentNames(gens100GroupedSummary, [
+  "Assignments (Homework and In Class Activities)",
+  "Quizzes (In class and take home)",
+  "Case Study",
+  "Documented evidence of engagement (midterm and final assessments)"
+]);
+expectAssessment(gens100GroupedSummary, "Documented evidence of engagement (midterm and final assessments)", 40);
+
+const gens101GroupedSummary = extractSyllabusFromText(`GENS 101 Grand Challenges
+Assessment:
+Coursework (Homework, portfolio assignments) 20%
+Tutorials 15%
+Studio Activities 15%
+Grand Challenge Milestones 25%
+Grand Challenge Solution (report and presentation) 25%
+Course Learning Outcomes
+GELO/PLO map`);
+expectAssessmentNames(gens101GroupedSummary, [
+  "Coursework (Homework, portfolio assignments)",
+  "Tutorials",
+  "Studio Activities",
+  "Grand Challenge Milestones",
+  "Grand Challenge Solution (report and presentation)"
+]);
+
+const gens300LegacyGrouped = extractSyllabusFromText(`GENS 300 Career Preparation
+Assessment:
+CV submission 30%
+Mock Interview 20%
+Group project - Reading groups 20%
+Documented evidence of career planning and industry exploration 20%
+Final quiz 10%
+Detailed assessment methodology
+Examples include LinkedIn courses and career planning documents without separate weights.`);
+expectAssessmentNames(gens300LegacyGrouped, [
+  "CV Submission",
+  "Documented evidence of career planning and industry exploration",
+  "Mock Interview",
+  "Group project - Reading groups",
+  "Final Quiz"
+]);
+expectAssessment(gens300LegacyGrouped, "CV Submission", 30);
+
+const engr114Grouped = extractSyllabusFromText(`ENGR 114 Introduction to Computing - Python
+Assessment:
+Coursework (Quizzes, homework, lab work) 35%
+Final Lab 15%
+Semester Examination 20%
+Final Examination 30%
+Teaching Plan
+Week 3 Quiz 1
+Week 6 Lab topic`);
+expectAssessmentNames(engr114Grouped, [
+  "Coursework (Quizzes, homework, lab work)",
+  "Final Lab",
+  "Semester Examination",
+  "Final Examination"
+]);
+
+const cosc495Grouped = extractSyllabusFromText(`COSC 495 Introduction to Game Development and XR
+Assessment:
+Coursework (Assignments) 40%
+Mid -project 15%
+Final Examination (Hands-on Exam) 30%
+Final Project 15%
+Assessment Methodology
+Mid-Project Due on week 9 15%
+Final project Week 15 15%
+Final Examination TBA 30%`);
+expectAssessmentNames(cosc495Grouped, [
+  "Coursework (Assignments)",
+  "Mid-project",
+  "Final Examination (Hands-on Exam)",
+  "Final Project"
+]);
+expectAssessment(cosc495Grouped, "Final Examination (Hands-on Exam)", 30);
 
 console.log("Syllabus extraction tests passed.");

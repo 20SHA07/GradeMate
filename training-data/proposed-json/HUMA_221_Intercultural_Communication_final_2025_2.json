@@ -1,22 +1,22 @@
 {
-  "sourceFileName": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
-  "sourcePath": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
-  "sourceRelativePath": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.docx",
-  "sourceTextFileName": "LTCM221_3_LTCM221_Intercultural_Communication_SUMMER_2025.txt",
+  "sourceFileName": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourcePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourceRelativePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+  "sourceTextFileName": "HUMA_221_Intercultural_Communication_final_2025_2.txt",
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
-  "courseCode": "LTCM 221",
+  "courseCode": "HUMA 221",
   "courseName": "Intercultural Communication",
   "creditHours": 3,
-  "semester": "Summer 2025",
-  "instructor": "DR GLENDA EL GAMAL",
-  "instructorEmail": "glenda.elgamal@ku.ac.ae",
-  "schedule": "MON - THURSDAY",
+  "semester": null,
+  "instructor": null,
+  "instructorEmail": null,
+  "schedule": null,
   "classroom": null,
-  "officeRoom": "SAN Building 1, 022A",
-  "officeHours": "TBC (Summer term I teach on Main Campus)",
-  "prerequisites": "ENGL 102 or ENGL 112",
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "ENGL 102",
   "textbooks": [
-    "Jandt, F. (2016). An introduction to intercultural communication: Identities in a global community. 8th edition. SAGE Publications, ISBN: 9781506305271"
+    "An introduction to intercultural communication: Identities in a global community. F. Jandt, (2025). 8th edition. SAGE Publications, ISBN: 9781071887110"
   ],
   "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
   "assessments": [
@@ -35,11 +35,11 @@
       "source_text_snippet": "Seminar participation 10%"
     },
     {
-      "name": "Mid-term assessment",
+      "name": "Semester Examination",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.9,
-      "source_text_snippet": "Mid-term assessment 20%"
+      "source_text_snippet": "Semester examination 20%"
     },
     {
       "name": "Final Project",
@@ -51,8 +51,9 @@
   ],
   "totalWeight": 100,
   "warnings": [
-    "Golden source is not a PDF; DOCX extraction was used"
+    "Semester missing",
+    "Instructor missing"
   ],
-  "confidence": 0.89,
-  "needsHumanReview": false
+  "confidence": 0.83,
+  "needsHumanReview": true
 }

@@ -20,27 +20,27 @@
   "assessments": [
     {
       "name": "CV Submission",
-      "weight_percentage": 15,
+      "weight_percentage": 30,
       "max_score": 100,
       "confidence": 0.9,
       "source_text_snippet": "GENS 300 summary assessment table"
     },
     {
       "name": "Documented evidence of career planning and industry exploration",
-      "weight_percentage": 40,
+      "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.9,
       "source_text_snippet": "GENS 300 summary assessment table"
     },
     {
       "name": "Mock Interview",
-      "weight_percentage": 15,
+      "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.9,
       "source_text_snippet": "GENS 300 summary assessment table"
     },
     {
-      "name": "Attendance of Professional Development workshops (5)",
+      "name": "Group project - Reading groups",
       "weight_percentage": 20,
       "max_score": 100,
       "confidence": 0.9,

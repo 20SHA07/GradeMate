@@ -19,46 +19,45 @@
   "courseDescription": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
   "assessments": [
     {
-      "name": "Assignments (reflections blog)",
-      "weight_percentage": 10,
+      "name": "Coursework (Homework, portfolio assignments)",
+      "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Portfolio assignments (reflections blog) Weekly 10%"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (Homework, portfolio assignments) 20%"
     },
     {
-      "name": "Tutorials Tutorials Selected From Available Topics Finish By Week",
-      "weight_percentage": 14,
+      "name": "Tutorials",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Tutorials 6 tutorials selected from available topics (2 Finish by week 14"
+      "confidence": 0.9,
+      "source_text_snippet": "Tutorials 15%"
     },
     {
-      "name": "Presentation",
-      "weight_percentage": 5,
+      "name": "Studio Activities",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Proposal update – oral presentation Week 10 5%"
+      "confidence": 0.9,
+      "source_text_snippet": "Studio Activities 15%"
     },
     {
-      "name": "Report",
-      "weight_percentage": 7,
+      "name": "Grand Challenge Milestones",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Progress report Week 10 7%"
+      "confidence": 0.9,
+      "source_text_snippet": "Grand Challenge Milestones 25%"
     },
     {
-      "name": "Final Exam",
-      "weight_percentage": 10,
+      "name": "Grand Challenge Solution (report and presentation)",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Grand Challenge Final oral presentation Week 15 10%"
+      "confidence": 0.9,
+      "source_text_snippet": "Grand Challenge Solution (report and presentation) 25%"
     }
   ],
-  "totalWeight": 46,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (46%)",
     "Instructor missing"
   ],
-  "confidence": 0.92,
+  "confidence": 0.86,
   "needsHumanReview": true
 }

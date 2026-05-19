@@ -70,6 +70,10 @@ const assessmentKeywords = [
   "coursework",
   "course work",
   "continuous assessment",
+  "assessment",
+  "assessments",
+  "in-class assessment",
+  "in-class assessments",
   "faculty discretion",
   "quiz",
   "quizzes",
@@ -108,6 +112,11 @@ const assessmentKeywords = [
   "practical",
   "test",
   "case study",
+  "documented evidence",
+  "evidence",
+  "studio activities",
+  "milestones",
+  "solution",
   "viva",
   "oral",
   "in-class activity",
@@ -1148,12 +1157,44 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
       ? nameForNumbering
       : removeWeightTokensForNumbering(compact);
 
+  if (/\blaboratory work\b/i.test(compact)) return "Laboratory Work";
   if (/\b(?:quiz\s+)?2\s+quizzes\b/i.test(compact)) return "2 Quizzes";
   if (/\bcoursework\s*\((?:an accumulation|a variety|ongoing)/i.test(compact)) {
     return "Coursework";
   }
   if (/\bweb\s*assign\b|\bwebassign\b/i.test(name)) return "Web assign";
   if (/\bweekly online quizzes\b/i.test(name)) return "Weekly online quizzes";
+  if (/\b4\s+in[-\s]?class assessments\b/i.test(compact)) return "4 In-class Assessments";
+  if (/\bmid\s*-\s*project\b/i.test(compact)) return "Mid-project";
+  if (/\bfinal\s+examination\s*\(\s*hands[-\s]?on\s+exam\s*\)/i.test(compact)) {
+    return "Final Examination (Hands-on Exam)";
+  }
+  if (/\bfinal\s+project\b/i.test(compact)) return "Final Project";
+  if (/\bindividual short writing assignments?\b/i.test(compact)) {
+    return "Individual short writing assignments";
+  }
+  if (/\bgroup short writing assignment\b/i.test(compact)) {
+    return "Group short writing assignment";
+  }
+  if (/\bindividual writing\b.*\bsupporting or refuting a claim\b/i.test(compact)) {
+    return "Individual Writing: Supporting or refuting a claim";
+  }
+  if (/\bindividual writing\b.*\bfocused essay\b/i.test(compact)) {
+    return "Individual Writing: Focused essay";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b.*\bpart\s*1\b/i.test(compact)) {
+    return "Individual Writing: Technical report Part 1";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b.*\bpart\s*2\b/i.test(compact)) {
+    return "Individual Writing: Technical report Part 2";
+  }
+  if (/\bindividual digital presentation\b/i.test(compact)) {
+    return "Individual Digital presentation";
+  }
+  if (/\bdigital presentation\b/i.test(compact) && /\btechnical report\b/i.test(compact)) {
+    return "Digital presentation of technical report";
+  }
+  if (/\bdigital presentation\b/i.test(compact)) return "Digital presentation";
   if (/\battendance of professional development workshops\s*\(5 workshops\)/i.test(name)) {
     return "Attendance of Professional Development workshops (5 workshops)";
   }
@@ -1186,6 +1227,21 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (/\bworking model due\b/i.test(compact)) return "Working Model Due";
   if (/\bcomplete model white paper\b/i.test(compact)) {
     return "Complete Model White Paper and Presentations";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b/i.test(compact)) {
+    return "Individual Writing: Technical report";
+  }
+  if (/\bgroup\b.*\bproposal\b.*\brequest for funding proposal\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Funding Proposal (RFP)";
+  }
+  if (/\bgroup\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Proposals (RFP)";
+  }
+  if (/\boral presentation of group proposal\b/i.test(compact)) {
+    return "Oral presentation of group proposal";
+  }
+  if (/\bgroup project\s*[-–—]\s*reading groups\b/i.test(compact)) {
+    return "Group project - Reading groups";
   }
   if (/\bgroup project\b/i.test(compact)) return "Group project";
   if (/\bprojects?\s*\/\s*assignements\b/i.test(compact)) {
@@ -1230,6 +1286,7 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
     .replace(/\b(?:week|weeks|around week)\s+\d{1,2}\b.*$/i, "")
     .replace(/\b(?:weekly|final week|tba|assigned by registrar|during lab time|contact based)\b.*$/i, "")
     .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\b/gi, "")
+    .replace(/\s*%\s*$/i, "")
     .replace(/\s+/g, " ")
     .trim();
 }
@@ -1530,6 +1587,7 @@ function canonicalAssessmentName(rawName: string, fullLine: string) {
   if (/\bfinal\b/.test(value)) return "Final Exam";
   if (/\bcontinuous assessment\b/.test(value)) return "Continuous Assessment";
   if (/\bcourse\s*work\b|\bcoursework\b/.test(value)) return "Coursework";
+  if (/\blaboratory work\b/.test(value)) return "Laboratory Work";
   if (/\blab\s*work\b/.test(value)) return "Lab Work";
   if (/\blaborator(y|ies)\b|\blabs?\b/.test(value)) return "Laboratory";
   if (/\bquiz(?:zes)?\b/.test(value)) return "Quizzes";
@@ -1987,8 +2045,18 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
     [/\bindividual writing\b.*\btechnical report\b.*\bpart\s*2\b/i, "Individual Writing: Technical report Part 2"],
     [/\bindividual digital presentation\b/i, "Individual Digital presentation"],
     [/\bgroup oral presentation of proposal\b/i, "Group Oral Presentation of Proposal"],
+    [/\bteam oral presentation of proposal\b/i, "Team Oral Presentation of Proposal"],
+    [/\boral presentation of group proposal\b/i, "Oral presentation of group proposal"],
+    [/\bindividual short writing assignments?\b/i, "Individual short writing assignments"],
+    [/\bgroup short writing assignment\b/i, "Group short writing assignment"],
+    [/\bindividual writing\b.*\bsupporting or refuting a claim\b/i, "Individual Writing: Supporting or refuting a claim"],
+    [/\bindividual writing\b.*\bfocused essay\b/i, "Individual Writing: Focused essay"],
+    [/\bdigital presentation of technical report\b/i, "Digital presentation of technical report"],
+    [/\bindividual writing\b.*\btechnical report\b/i, "Individual Writing: Technical report"],
+    [/\bteam\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i, "Group proposal in response to a Request for Proposals (RFP)"],
     [/\bgroup\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i, "Group proposal in response to a Request for Proposals (RFP)"],
     [/\bquizzes\s+and\s+assignments\b/i, "Quizzes and assignments"],
+    [/\bprojects?\s*\/\s*assignment\s+assignment\b/i, "Assignment"],
     [/\bproject\s*\/\s*assignment\b/i, "Project/Assignment"],
     [/\blab assignments\b/i, "Lab Assignments"],
     [/\blab quizzes\b/i, "Lab Quizzes"],
@@ -2007,6 +2075,8 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
     [/\blinkedin courses completion\b/i, "LinkedIn courses completion"],
     [/\bweekly online quizzes\b/i, "Weekly online quizzes"],
     [/\battendance of professional development workshops\s*\(5 workshops\)/i, "Attendance of Professional Development workshops (5 workshops)"],
+    [/\b4\s+in[-\s]?class assessments\b/i, "4 In-class Assessments"],
+    [/\bgroup project\s*[-–—]\s*reading groups\b/i, "Group project - Reading groups"],
     [/\bcv submission\b/i, "CV Submission"],
     [/\bdocumented evidence of career planning and industry exploration\b/i, "Documented evidence of career planning and industry exploration"],
     [/\bmock interview\b/i, "Mock Interview"],
@@ -2031,6 +2101,9 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   const testNumber = withoutWeights.match(/\btest\s*#?\s*(\d{1,2})\b/i);
   if (testNumber) return `Test ${Number(testNumber[1])}`;
   if (/^coursework:\s*homework\b|\bhomework\b/i.test(compact)) return "Homework";
+  if (/^coursework:\s*team\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Proposals (RFP)";
+  }
   if (/^coursework\b/i.test(firstLine)) return "Coursework";
   if (/^project\b/i.test(firstLine)) return "Project";
   if (/^projects\b/i.test(firstLine)) return "Projects";
@@ -2051,6 +2124,11 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   }
   if (/\bsemester examination\b/i.test(compact)) return "Semester Examination";
 
+  if (/\bmid\s*-\s*project\b/i.test(compact)) return "Mid-project";
+  if (/\bfinal\s+examination\s*\(\s*hands[-\s]?on\s+exam\s*\)/i.test(compact)) {
+    return "Final Examination (Hands-on Exam)";
+  }
+  if (/\bfinal\s+project\b/i.test(compact)) return "Final Project";
   if (/\bfinal\s+test\b/i.test(compact)) return "Final test";
   if (/\bfinal\s+exam\b/i.test(compact)) return "Final Exam";
   if (/\bfinal\s+examination\b/i.test(compact)) return "Final Examination";
@@ -2371,24 +2449,58 @@ function makeGens300SummaryCandidate(compactText: string): AssessmentCandidate |
   }
 
   const rows: ExtractedAssessment[] = [];
+  const getWeight = (pattern: RegExp, fallback: number) => {
+    const match = compactText.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+    return weight ?? fallback;
+  };
+  const cvWeight = getWeight(/\bcv submission\s+(\d{1,3}(?:\.\d+)?)\s*%/i, 15);
+  const mockWeight = getWeight(/\bmock interview\s+(\d{1,3}(?:\.\d+)?)\s*%/i, 15);
+  const groupReadingWeight = getWeight(
+    /\bgroup project\s*[-–—]\s*reading groups?\s+(\d{1,3}(?:\.\d+)?)\s*%/i,
+    0
+  );
+  const evidenceWeight = getWeight(
+    /\bdocumented evidence of career planning and industry exploration\b.{0,180}?(\d{1,3}(?:\.\d+)?)\s*%/i,
+    40
+  );
+  const workshopsWeight = getWeight(
+    /\battendance of professional development workshops\s*(?:\([^)]*\))?\s+(\d{1,3}(?:\.\d+)?)\s*%/i,
+    groupReadingWeight > 0 ? 0 : 20
+  );
+  const finalQuizWeight = getWeight(/\bfinal quiz\s+(\d{1,3}(?:\.\d+)?)\s*%/i, 10);
 
-  addAssessmentIfMissing(rows, "CV Submission", 15, "GENS 300 summary assessment table", 0.9);
+  addAssessmentIfMissing(rows, "CV Submission", cvWeight, "GENS 300 summary assessment table", 0.9);
   addAssessmentIfMissing(
     rows,
     "Documented evidence of career planning and industry exploration",
-    40,
+    evidenceWeight,
     "GENS 300 summary assessment table",
     0.9
   );
-  addAssessmentIfMissing(rows, "Mock Interview", 15, "GENS 300 summary assessment table", 0.9);
-  addAssessmentIfMissing(
-    rows,
-    "Attendance of Professional Development workshops (5)",
-    20,
-    "GENS 300 summary assessment table",
-    0.9
-  );
-  addAssessmentIfMissing(rows, "Final Quiz", 10, "GENS 300 summary assessment table", 0.9);
+  addAssessmentIfMissing(rows, "Mock Interview", mockWeight, "GENS 300 summary assessment table", 0.9);
+
+  if (groupReadingWeight > 0) {
+    addAssessmentIfMissing(
+      rows,
+      "Group project - Reading groups",
+      groupReadingWeight,
+      "GENS 300 summary assessment table",
+      0.9
+    );
+  }
+
+  if (workshopsWeight > 0) {
+    addAssessmentIfMissing(
+      rows,
+      "Attendance of Professional Development workshops (5)",
+      workshopsWeight,
+      "GENS 300 summary assessment table",
+      0.9
+    );
+  }
+
+  addAssessmentIfMissing(rows, "Final Quiz", finalQuizWeight, "GENS 300 summary assessment table", 0.9);
 
   return {
     label: "GENS 300 summary assessment table",
@@ -2443,6 +2555,95 @@ function extractModelingProjectAssessmentCandidate(text: string): AssessmentCand
   };
 }
 
+function extractEnglishWritingAssessmentCandidate(text: string): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+
+  if (!/\bENGL\s*10[12]\b/i.test(compactText)) {
+    return null;
+  }
+
+  const rows: ExtractedAssessment[] = [];
+  const add = (name: string, pattern: RegExp) => {
+    const match = compactText.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+
+    if (match && weight !== null) {
+      addAssessmentIfMissing(rows, name, weight, match[0], 0.96);
+    }
+  };
+
+  if (/\bTechnical report Part 1\b/i.test(compactText)) {
+    add(
+      "Individual Writing: Technical report Part 1",
+      /\bIndividual Writing:\s*Technical report Part 1\b[^%]{0,100}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Individual Writing: Technical report Part 2",
+      /\bIndividual Writing:\s*Technical report Part 2\b[^%]{0,100}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Individual Digital presentation",
+      /\bIndividual Digital presentation\b[^%]{0,100}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Group Oral Presentation of Proposal",
+      /\bGroup Oral Presentation of Proposal\b[^%]{0,100}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Group proposal in response to a Request for Proposals (RFP)",
+      /\bGroup proposal in response to a Request for Proposals\s*\(RFP\)[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+  } else if (/\bIndividual short writing assignments\b/i.test(compactText)) {
+    add(
+      "Individual short writing assignments",
+      /\bIndividual short writing assignments\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Group short writing assignment",
+      /\bGroup short writing assignment\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Individual Writing: Supporting or refuting a claim",
+      /\bIndividual Writing:\s*Supporting or refuting a claim\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Individual Writing: Focused essay",
+      /\bIndividual Writing:\s*Focused essay\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Digital presentation",
+      /\bDigital presentation\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+  } else if (/\bIndividual Writing:\s*Technical report\b/i.test(compactText)) {
+    add(
+      "Individual Writing: Technical report",
+      /\bIndividual Writing:\s*Technical report\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Digital presentation of technical report",
+      /\bDigital presentation of technical report\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Group proposal in response to a Request for Funding Proposal (RFP)",
+      /\bGroup\s*\([^)]*\)\s*proposal in response to a Request for Funding Proposal\s*\(RFP\)[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+    add(
+      "Oral presentation of group proposal",
+      /\bOral presentation of group proposal\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i
+    );
+  }
+
+  if (rows.length >= 4 && Math.abs(sumAssessmentWeights(rows) - 100) <= 0.5) {
+    return {
+      label: "English writing assessment table",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 1350
+    };
+  }
+
+  return null;
+}
+
 function normalizeSummaryAssessmentName(line: string) {
   const cleaned = line
     .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)?\b/gi, "")
@@ -2464,12 +2665,43 @@ function normalizeSummaryAssessmentName(line: string) {
   if (/^coursework\b/i.test(cleaned)) {
     return cleaned.replace(/^Coursework/i, "Coursework");
   }
+  if (/^assignments\s*\(homework and in class activities\)/i.test(cleaned)) {
+    return "Assignments (Homework and In Class Activities)";
+  }
+  if (/^quizzes\s*\(in class and take home\)/i.test(cleaned)) {
+    return "Quizzes (In class and take home)";
+  }
+  if (/^4\s+in[-\s]?class assessments\b/i.test(cleaned)) return "4 In-class Assessments";
+  if (/^in[-\s]?class activities and homework\b/i.test(cleaned)) {
+    return "In-class activities and Homework";
+  }
+  if (/^documented evidence of engagement/i.test(cleaned)) {
+    const details = cleaned.match(/\(([^)]{3,120})\)/)?.[1];
+    return details
+      ? `Documented evidence of engagement (${details})`
+      : "Documented evidence of engagement";
+  }
+  if (/^cv submission\b/i.test(cleaned)) return "CV submission";
+  if (/^mock interview\b/i.test(cleaned)) return "Mock Interview";
+  if (/^group project\s*[-–—]\s*reading groups\b/i.test(cleaned)) {
+    return "Group project - Reading groups";
+  }
+  if (/^documented evidence of career planning/i.test(cleaned)) {
+    return "Documented evidence of career planning and industry exploration";
+  }
+  if (/^final quiz\b/i.test(cleaned)) return "Final quiz";
+  if (/^tutorials\b/i.test(cleaned)) return "Tutorials";
+  if (/^studio activities\b/i.test(cleaned)) return "Studio Activities";
+  if (/^grand challenge milestones\b/i.test(cleaned)) return "Grand Challenge Milestones";
+  if (/^grand challenge solution\b/i.test(cleaned)) {
+    return "Grand Challenge Solution (report and presentation)";
+  }
   if (/^seminar participation\b/i.test(cleaned)) return "Seminar participation";
   if (/^mid[-\s]?term assessment\b/i.test(cleaned)) return "Mid-term assessment";
   if (/^semester examination/i.test(cleaned)) {
     return /\(s\)/i.test(cleaned) ? "Semester Examination(s)" : "Semester Examination";
   }
-  if (/^final project\b/i.test(cleaned)) return "Final project";
+  if (/^final project\b/i.test(cleaned)) return "Final Project";
   if (/^final examination\b/i.test(cleaned)) return "Final Examination";
   if (/^group project\b/i.test(cleaned)) return "Group project";
   if (/^lab work\b/i.test(cleaned)) return "Lab Work";
@@ -2488,7 +2720,7 @@ function extractSeparatedSummaryAssessmentCandidates(text: string): AssessmentCa
   const candidates: AssessmentCandidate[] = [];
 
   for (let startIndex = 0; startIndex < lines.length; startIndex += 1) {
-    if (!/^assessment\s*:?\s*$/i.test(lines[startIndex])) {
+    if (!/^assessment\b/i.test(lines[startIndex])) {
       continue;
     }
 
@@ -2842,6 +3074,7 @@ function extractKuDetailedAssessmentCandidates(
   const gensCandidate = extractGens300AssessmentCandidate(text);
   const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
   const modelingCandidate = extractModelingProjectAssessmentCandidate(text);
+  const englishCandidate = extractEnglishWritingAssessmentCandidate(text);
   const groupedMethodologyCandidate = extractKuGroupedMethodologyCandidate(text);
 
   if (gensCandidate) {
@@ -2850,6 +3083,10 @@ function extractKuDetailedAssessmentCandidates(
 
   if (modelingCandidate) {
     return [modelingCandidate];
+  }
+
+  if (englishCandidate) {
+    return [englishCandidate];
   }
 
   if (groupedMethodologyCandidate) {
@@ -2875,6 +3112,8 @@ function extractKuDetailedAssessmentCandidates(
   const shouldPreferSafeSummary =
     (explicitRows.length <= 4 &&
       explicitRows.some((row) => isLooseDetailedRowName(row.name))) ||
+    /\b(?:COSC|ENGR)\s*114\b/i.test(`${courseCode ?? ""} ${text.slice(0, 800)}`) ||
+    /\bCOSC\s*495\b/i.test(`${courseCode ?? ""} ${text.slice(0, 800)}`) ||
     /\bquizzes\s+quizzes\b/i.test(methodologyBlock) ||
     Boolean(
       baselineBlock &&

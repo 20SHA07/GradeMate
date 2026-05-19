@@ -22,36 +22,36 @@
   "courseDescription": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
   "assessments": [
     {
-      "name": "Coursework",
-      "weight_percentage": 30,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Coursework: Team (</= 3 students) proposal in Week 9 30%"
-    },
-    {
-      "name": "Team Oral Presentation Of Proposal",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Team Oral Presentation of Proposal Week 11 10%"
-    },
-    {
-      "name": "Individual Writing: Technical Report",
+      "name": "Individual Writing: Technical report",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Individual Writing: Technical report Week 15 40%"
+      "confidence": 0.96,
+      "source_text_snippet": "Individual Writing: Technical report 40%"
     },
     {
-      "name": "Digital Presentation Of Technical Report",
+      "name": "Digital presentation of technical report",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Digital presentation of technical report Week 15 20%"
+      "confidence": 0.96,
+      "source_text_snippet": "Digital presentation of technical report 20%"
+    },
+    {
+      "name": "Group proposal in response to a Request for Funding Proposal (RFP)",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Group (</= 3 students) proposal in response to a Request for Funding Proposal (RFP) 30%"
+    },
+    {
+      "name": "Oral presentation of group proposal",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.96,
+      "source_text_snippet": "Oral presentation of group proposal 10%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.93,
+  "confidence": 0.94,
   "needsHumanReview": false
 }

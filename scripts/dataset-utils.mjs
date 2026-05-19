@@ -96,6 +96,10 @@ const assessmentKeywords = [
   "coursework",
   "course work",
   "continuous assessment",
+  "assessment",
+  "assessments",
+  "in-class assessment",
+  "in-class assessments",
   "quiz",
   "quizzes",
   "exam",
@@ -128,6 +132,11 @@ const assessmentKeywords = [
   "practical",
   "test",
   "case study",
+  "documented evidence",
+  "evidence",
+  "studio activities",
+  "milestones",
+  "solution",
   "viva",
   "oral",
   "in-class activity"
@@ -185,7 +194,10 @@ export async function scanDatasetSource(sourceDir, options = {}) {
       pattern.test(sourceFileName)
     );
     const shouldTryTextDetection =
-      !nameLooksPositive && !nameLooksMaterial && extension === ".docx";
+      !nameLooksPositive &&
+      !nameLooksMaterial &&
+      (extension === ".docx" ||
+        (extension === ".pdf" && /[A-Z]{3,4}\s*[-_ ]?\d{3}/i.test(sourceFileName)));
 
     if (!nameLooksPositive && !shouldTryTextDetection) {
       skippedMaterialFiles += 1;
@@ -512,6 +524,7 @@ export function buildDatasetSummary(proposalFiles, datasetIndex = null) {
     analysis: getDatasetItemAnalysis(file.value)
   }));
   const errorReasonCounts = new Map();
+  const duplicateGroups = findNearDuplicateProposalGroups(analyses);
 
   analyses.forEach((file) => {
     file.analysis.reasons.forEach((reason) => {
@@ -534,6 +547,7 @@ export function buildDatasetSummary(proposalFiles, datasetIndex = null) {
     analyses,
     cosc101,
     cosc101Ready,
+    duplicateGroups,
     errorReasonCounts: Array.from(errorReasonCounts.entries())
       .map(([reason, count]) => ({ reason, count }))
       .sort((first, second) => second.count - first.count || first.reason.localeCompare(second.reason)),
@@ -560,6 +574,46 @@ export function buildDatasetSummary(proposalFiles, datasetIndex = null) {
     totalWeightExactly100: analyses.filter((file) => file.analysis.isExactly100)
       .length
   };
+}
+
+function findNearDuplicateProposalGroups(analyses) {
+  const groups = new Map();
+
+  analyses.forEach((file) => {
+    const value = file.value ?? {};
+    const assessmentKey = (value.assessments ?? [])
+      .map((assessment) =>
+        `${normalizeAssessmentName(assessment.name)}:${Number(assessment.weight_percentage ?? 0)}`
+      )
+      .sort()
+      .join("|");
+    const key = [
+      normalizeScalarForDuplicate(value.courseCode),
+      normalizeScalarForDuplicate(value.courseName),
+      normalizeScalarForDuplicate(value.semester),
+      assessmentKey
+    ].join("||");
+
+    if (!assessmentKey || !normalizeScalarForDuplicate(value.courseCode)) {
+      return;
+    }
+
+    const existing = groups.get(key) ?? [];
+    existing.push(file.fileName);
+    groups.set(key, existing);
+  });
+
+  return Array.from(groups.values())
+    .filter((files) => files.length > 1)
+    .map((files) => ({ count: files.length, files }))
+    .sort((first, second) => second.count - first.count || first.files[0].localeCompare(second.files[0]));
+}
+
+function normalizeScalarForDuplicate(value) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export function normalizeAssessmentName(value) {
@@ -1095,6 +1149,14 @@ function cleanInstructor(value) {
 }
 
 function extractDetailedAssessments(text, record, courseCode) {
+  if (/\b(?:COSC|ENGR)\s*114\b/i.test(`${courseCode ?? ""} ${record.sourceFileName} ${text.slice(0, 800)}`)) {
+    return [];
+  }
+
+  if (/\bCOSC\s*495\b/i.test(`${courseCode ?? ""} ${record.sourceFileName} ${text.slice(0, 800)}`)) {
+    return [];
+  }
+
   const lines = getCleanLines(text);
   const sections = [];
   let currentSection = null;
@@ -1429,11 +1491,61 @@ function canonicalAssessmentName(rawName, fullLine) {
   if (/\blab reports? and lab assignments\b/i.test(compact)) {
     return "Lab Reports and Lab Assignments";
   }
+  if (/\bindividual short writing assignments?\b/i.test(compact)) {
+    return "Individual short writing assignments";
+  }
+  if (/\bgroup short writing assignment\b/i.test(compact)) {
+    return "Group short writing assignment";
+  }
+  if (/\bindividual writing\b.*\bsupporting or refuting a claim\b/i.test(compact)) {
+    return "Individual Writing: Supporting or refuting a claim";
+  }
+  if (/\bindividual writing\b.*\bfocused essay\b/i.test(compact)) {
+    return "Individual Writing: Focused essay";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b.*\bpart\s*1\b/i.test(compact)) {
+    return "Individual Writing: Technical report Part 1";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b.*\bpart\s*2\b/i.test(compact)) {
+    return "Individual Writing: Technical report Part 2";
+  }
+  if (/\bindividual digital presentation\b/i.test(compact)) {
+    return "Individual Digital presentation";
+  }
+  if (/\bindividual writing\b.*\btechnical report\b/i.test(compact)) {
+    return "Individual Writing: Technical report";
+  }
+  if (/\bdigital presentation\b/i.test(compact) && /\btechnical report\b/i.test(compact)) {
+    return "Digital presentation of technical report";
+  }
+  if (/\bdigital presentation\b/i.test(compact)) return "Digital presentation";
+  if (/\bteam oral presentation of proposal\b/i.test(compact)) {
+    return "Team Oral Presentation of Proposal";
+  }
+  if (/\boral presentation of group proposal\b/i.test(compact)) {
+    return "Oral presentation of group proposal";
+  }
+  if (/\bteam\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Proposals (RFP)";
+  }
+  if (/\bgroup\b.*\bproposal\b.*\brequest for funding proposal\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Funding Proposal (RFP)";
+  }
+  if (/\bgroup\b.*\bproposal\b.*\brequest for proposals?\s*\(RFP\)/i.test(compact)) {
+    return "Group proposal in response to a Request for Proposals (RFP)";
+  }
+  if (/\b4\s+in[-\s]?class assessments\b/i.test(compact)) return "4 In-class Assessments";
+  if (/\bgroup project\s*[-–—]\s*reading groups\b/i.test(compact)) {
+    return "Group project - Reading groups";
+  }
   if (/\bgroup project\b/i.test(compact)) return "Group project";
   if (/\bprojects?\s*\/\s*assignements\b/i.test(compact)) {
     return "Projects / Assignements";
   }
   if (/\bprojects?\s*\(if applicable\)\s*assignment\b/i.test(compact)) {
+    return "Assignment";
+  }
+  if (/\bprojects?\s*\/\s*assignment\s+assignment\b/i.test(compact)) {
     return "Assignment";
   }
   if (/\bbloomberg market (?:concept )?certification\b/i.test(compact)) {
@@ -1470,10 +1582,15 @@ function canonicalAssessmentName(rawName, fullLine) {
   if (/\bsemester examination\b|\bsemester exam\b/.test(value)) return "Semester Examination";
   if (/\bminor exam\b|\bminor\b/.test(value)) return "Minor Exam";
   if (/\bmajor exam\b|\bmajor\b/.test(value)) return "Major Exam";
+  if (/\bmid\s*-\s*project\b/.test(value)) return "Mid-project";
+  if (/\bfinal\s+examination\s*\(\s*hands[-\s]?on\s+exam\s*\)/.test(value)) {
+    return "Final Examination (Hands-on Exam)";
+  }
   if (/\bfinal project\b/.test(value)) return "Final Project";
   if (/\bfinal\b/.test(value)) return "Final Exam";
   if (/\bcontinuous assessment\b/.test(value)) return "Continuous Assessment";
   if (/\bcourse\s*work\b|\bcoursework\b/.test(value)) return "Coursework";
+  if (/\blaboratory work\b/.test(value)) return "Laboratory Work";
   if (/\blab\s*work\b/.test(value)) return "Lab Work";
   if (/\blaborator(y|ies)\b|\blabs?\b/.test(value)) return "Laboratory";
   if (/\bquiz(?:zes)?\b/.test(value)) return "Quizzes";

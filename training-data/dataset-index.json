@@ -1,11 +1,11 @@
 {
-  "generatedAt": "2026-05-19T10:26:15.815Z",
+  "generatedAt": "2026-05-19T10:59:57.491Z",
   "sourceDir": "files",
   "totalFilesScanned": 89,
   "supportedFilesScanned": 88,
-  "syllabusFilesFound": 78,
-  "skippedMaterialFiles": 10,
-  "possibleSyllabusFiles": 4,
+  "syllabusFilesFound": 85,
+  "skippedMaterialFiles": 3,
+  "possibleSyllabusFiles": 11,
   "parseErrors": [],
   "records": [
     {
@@ -414,6 +414,62 @@
       ]
     },
     {
+      "id": "COSC_201_Computer_Systems_Organization",
+      "sourceFileName": "COSC 201 Computer Systems Organization.pdf",
+      "sourcePath": "COSC 201 Computer Systems Organization.pdf",
+      "relativePath": "COSC 201 Computer Systems Organization.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC_201_Computer_Systems_Organization.txt",
+      "textPath": "training-data\\extracted-text\\COSC_201_Computer_Systems_Organization.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_301_Automata_Computability_and_Complexity_Fall2025",
+      "sourceFileName": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+      "sourcePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+      "relativePath": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC_301_Automata_Computability_and_Complexity_Fall2025.txt",
+      "textPath": "training-data\\extracted-text\\COSC_301_Automata_Computability_and_Complexity_Fall2025.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_310_Data_Structures_June_2020",
+      "sourceFileName": "COSC 310 Data Structures June 2020.pdf",
+      "sourcePath": "COSC 310 Data Structures June 2020.pdf",
+      "relativePath": "COSC 310 Data Structures June 2020.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC_310_Data_Structures_June_2020.txt",
+      "textPath": "training-data\\extracted-text\\COSC_310_Data_Structures_June_2020.txt",
+      "pageCount": 2,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC_312_Design_and_Analysis_of_Algorithms_S26",
+      "sourceFileName": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+      "sourcePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+      "relativePath": "COSC 312 Design and Analysis of Algorithms-S26.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC_312_Design_and_Analysis_of_Algorithms_S26.txt",
+      "textPath": "training-data\\extracted-text\\COSC_312_Design_and_Analysis_of_Algorithms_S26.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
       "id": "COSC_330_Introduction_to_AI_withSupplementFalll2025",
       "sourceFileName": "COSC 330 Introduction to AI_withSupplementFalll2025.docx",
       "sourcePath": "COSC 330 Introduction to AI_withSupplementFalll2025.docx",
@@ -529,6 +585,20 @@
       "syllabusConfidence": "medium",
       "detectionReasons": [
         "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "COSC495_COSC_495_GameDev_November2024",
+      "sourceFileName": "COSC495_COSC_495-GameDev-November2024.pdf",
+      "sourcePath": "COSC495_COSC_495-GameDev-November2024.pdf",
+      "relativePath": "COSC495_COSC_495-GameDev-November2024.pdf",
+      "extension": ".pdf",
+      "textFileName": "COSC495_COSC_495_GameDev_November2024.txt",
+      "textPath": "training-data\\extracted-text\\COSC495_COSC_495_GameDev_November2024.txt",
+      "pageCount": 5,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 2 syllabus indicators"
       ]
     },
     {
@@ -738,6 +808,20 @@
       "syllabusConfidence": "high",
       "detectionReasons": [
         "filename matches syllabus wording",
+        "text has 3 syllabus indicators"
+      ]
+    },
+    {
+      "id": "HUMA_221_Intercultural_Communication_final_2025_2",
+      "sourceFileName": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+      "sourcePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+      "relativePath": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
+      "extension": ".pdf",
+      "textFileName": "HUMA_221_Intercultural_Communication_final_2025_2.txt",
+      "textPath": "training-data\\extracted-text\\HUMA_221_Intercultural_Communication_final_2025_2.txt",
+      "pageCount": null,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
         "text has 3 syllabus indicators"
       ]
     },
@@ -1097,6 +1181,20 @@
       "detectionReasons": [
         "filename matches syllabus wording",
         "text has 4 syllabus indicators"
+      ]
+    },
+    {
+      "id": "Proposed_Spring2026_CCEN_210_Digital_Logic_Design",
+      "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+      "sourcePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+      "relativePath": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
+      "extension": ".pdf",
+      "textFileName": "Proposed_Spring2026_CCEN_210_Digital_Logic_Design.txt",
+      "textPath": "training-data\\extracted-text\\Proposed_Spring2026_CCEN_210_Digital_Logic_Design.txt",
+      "pageCount": 7,
+      "syllabusConfidence": "medium",
+      "detectionReasons": [
+        "text has 2 syllabus indicators"
       ]
     },
     {

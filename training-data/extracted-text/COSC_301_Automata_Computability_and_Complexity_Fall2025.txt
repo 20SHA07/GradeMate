@@ -1,0 +1,153 @@
+--- Page 1 ---
+COSC 301 Automata, Computability, and Complexity
+(2 Lecture, 2 Tutorial/Problem-solving – 3 Credits)
+Prerequisite: COSC 101, MATH 234
+Course Catalog Description:
+This course is about fundamental ideas in the theory of computation, including formal
+languages, computability and complexity. In this course, students gain proficiency in the
+concepts of automata, formal languages, grammar, algorithms, computability, decidability, and
+complexity.
+Textbook:
+• Introduction to the Theory of Computation By Michael Sipser. Publisher: Cengage
+Learning, 3rd Edition, 2012, ISBN: 978-1133187790.
+Reference Materials:
+1. Introduction to Automata Theory, Languages, and Computation By John E. Hopcroft,
+Rajeev Motwani and Jeffrey D. Ullman. Publisher: Pearson,, 3rd Edition, 2006, ISBN:
+978-0321455369.
+2. Languages and Machines: An Introduction to the Theory of Computer Science By Thomas
+A. Sudkamp. Publisher: Addison-Wesley Educational Publishers Inc., 2nd Edition, 2005,
+ISBN: 978-0321322210.
+Course Topics:
+1. Finite automata: examples; definitions; designing finite automata (2 lectures)
+2. Nondeterministic finite automata (2 lectures)
+3. Regular expression; Pumping lemma (2 lectures)
+4. Context free grammars; Pushdown automata (2 lectures)
+5. Turing machines (Sec 3.1) (2 lectures)
+6. Variants of Turing machines and algorithms (2 lectures)
+7. Decidable languages (2 lectures)
+8. Revision (1 lecture) and Midterm exam
+9. Undecidability – the halting problem (2 lectures)
+10. Reducibility: Undecidable Problems from Language Theory, Reductions via computation
+histories (2 lectures)
+11. Mapping reducibility; computable functions (2 lectures)
+12. Measuring complexity; the class P (2 lectures)
+13. The class NP; NP-completeness (2 lectures)
+14. Additional NP-complete problems (2 lectures)
+15. Revision (2 lectures)
+Structure and Learning Methodologies:
+The course is delivered in the form of classroom lectures and problem-solving sessions.
+Lectures are 2 × 50-min per week. Tutorial sessions are 2 × 50-min per week. Individual
+assignments and quizzes are held throughout the semester to reinforce knowledge of the
+material.
+Computing Resources:
+
+--- Page 2 ---
+There will be no formal labs. But a standard computer science lab with personal computers and
+Open-Source software (Python, Java, C) is required to enable the students to carry out practical
+work portions of their homework.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (quizzes, homework) 30%
+Semester Examination 30%
+Final Examination 40%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLOs):
+1 2 3 4 5 6
+H H M --- --- ---
+H – High M – Medium L – Low
+Course Learning Outcomes (CLOs) and Program Learning Outcomes (PLO):
+No. Course Learning Outcomes CS PLOs
+1 Demonstrate the understanding of the basic concepts of regular and 1, 2
+context-free languages
+2 Construct Turing Machines and its variants 1, 2, 3
+3 Evaluate the computability of problems (decidability, undecidability, 1, 3
+and reducibility among problems)
+4 Assess the difficulty of problems based on their complexity classes 1, 3
+
+--- Page 3 ---
+Syllabus Supplement for Students
+Organizational Details
+Course Code and
+(COSC 301) Automata, Computability, and Complexity
+Title:
+Fall 2025
+Semester:
+MW 11:00-11:50
+Schedule:
+C02004
+Classroom:
+Instructor: Dr. Khaled Elbassioni
+Contact Email: Khaled.elbassioni@ku.ac.ae
+Contact
+Office Room Number: D04200
+Number:
+Office Hours:
+MW 15:00-16:00
+Assessment Methodology
+Tentative Weight
+Dates
+Coursework: HW 1 Week 3 5%
+Quiz 1 Week 5 7.5%
+HW 2 Week 9 5%
+Quiz 2 Week 11 7.5%
+HW 3 Week 12 5%
+Mid Term Exam Week 8 30%
+Final Exam Week 16 40%
+Instructor Policy on Late Submission of Homework:
+Any late submission will incur a penalty of 10% of the assignment’s weight per day after the deadline.
+
+--- Page 4 ---
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work
+and will behave according to university rules and UAE societal norms and expectations."
+Teaching Plan (Lectures):
+Week 1 Finite automata: examples; definitions; designing finite automata
+Week 2 Nondeterministic finite automata
+Week 3 Regular expression; Pumping lemma
+Week 4 Context free grammars; Pushdown automata
+Week 5 Turing machines
+Week 6 Variants of Turing machines and algorithms
+Week 7 Decidable languages
+Week 8 Revision and Midterm exam
+Week 9 Undecidability – the halting problem
+Week 10 Reducibility: Undecidable Problems from Language Theory, Reductions via
+computation histories
+Week 11 Mapping reducibility; computable functions
+Week 12 Measuring complexity; the class P
+Week 13 The class NP; NP-completeness
+Week 14 Additional NP-complete problems
+Week 15 Revision
+Week 16 Final exam
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter
+grades with pluses and minuses. Passing grades range from A to D; F is failing. Each
+letter grade is assigned a grade point on a four-point scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+
+--- Page 5 ---
+D 1.00 Poor
+F 0.00 Fail
+The following is indicative of typical ranges associated with letter grades for the
+College of Engineering Undergraduate courses.
+Letter Grade Percentage Grade Range
+(rounded)
+A 93%-100%
+A- 90%-92%
+B+ 87%-89%
+B 83%-86%
+B- 80%-82%
+C+ 77%-79%
+C 73%-76%
+C- 70%-72%
+D 60%-69%
+F < 60%

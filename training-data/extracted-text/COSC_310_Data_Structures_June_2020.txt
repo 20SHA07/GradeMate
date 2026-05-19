@@ -1,0 +1,89 @@
+--- Page 1 ---
+COSC 310 Data Structures
+(2 Lectures, 3 Laboratories – 3 Credits)
+Prerequisite: ECCE 230, MATH 234
+Course Catalog Description:
+Review of object-oriented design. Analysis of algorithm complexity. Fundamental data
+structures: Concept of Abstract Data Types (ADTs), Queues, Stacks, Lists, Trees; Java
+Collections Framework. Fundamental computing algorithms: binary search trees, hash tables,
+heaps, balanced trees, sorting algorithms, searching algorithms.
+Textbook:
+ Michael Goodrich, Roberto Tamassia, and Michael Goldwasser Data Structures and
+Algorithms in Java, Wiley, 6th Edition, 2014, ISBN: 978-1118771334.
+Reference Materials:
+ Mark A. Weiss, Data Structures and Algorithm Analysis in Java, Addison-Wesley, 3rd
+Edition, 2012. ISBN: 978-0132576277.
+ Duncan A. Buell, Data Structures Using Java, Jones & Bartlett Publishers, 2012. ISBN:
+978-1449628079.
+Course Topics:
+1. Review of object-oriented design and dynamic arrays (ArrayList and Vector) in Java (2
+lectures)
+2. Algorithm Complexity: Performance of algorithms, time and space tradeoff. Worst case
+and average case performance, The big-Oh notation, example calculations of complexity.
+(4 lectures)
+3. Fundamental Data Structures: Java Collections Framework; Concept of Abstract Data
+Types (ADTs); ADT specification, Lists, Stacks, Queues (array and linked structure
+implementation); Binary Search Trees, Balanced Binary Search Trees. (10 lectures)
+4. Advanced Data Structures: Priority Queues, Heaps; Graphs and Sets. (6 lectures)
+5. Sorting and Searching Algorithms: Sorting: Behavior of sorting algorithms, Selection Sort,
+Bubblesort, Heapsort, Mergesort, Quicksort, Radix sort; Hashing. (8 lectures)
+6. Data Compression: Prefix Codes, Huffman Codes, Tries. (2 Lectures)
+Course Structure:
+Lectures will either be 2 x 50 minutes per week. The Laboratory sessions will be 1 x 150
+minutes per week.The course material will be presented using power point slides that are
+available to the students through Moodle. Every newly taught topic will be followed by a
+problem solving session, which encourages student’s participation. Also, the course involves
+an individual assignment to involve students in a self-learning environment. Labs follow the
+lectures to provide hands-on experience for the studied theoretical subjects.
+Computer Resources:
+Access to computers with Eclipse with Java support and jGrasp.
+Laboratory Experiments:
+1. Object oriented Design and Dynamic Arrays in Java
+
+--- Page 2 ---
+2. Analysis of algorithm complexity (Part 1): Test different algorithms and measure the time
+complexity effect in practice.
+3. Analysis of algorithm complexity (Part 2): Link the Algorithm complexity concepts from
+theory to practice.
+4. Manipulating Unsorted Lists: use linear lists to model real life data as well as to learn how
+to write client code that uses unsorted list class-interface.
+5. Manipulating Sorted Lists: use dynamic lists to model real life data as well as to learn how
+to write client code that uses Sorted list class-interface.
+6. Manipulating Stacks: use stacks to model real life data as well as to learn how to write
+client code that uses stack class-interface.
+7. Manipulating Queues: use queues to model real life data as well as to learn how to write
+client code that uses queue class-interface.
+8. Manipulating Binary Search Tree (BST): use BST to model real life data as well as to learn
+how to write client code that uses BST class-interface.
+9. Manipulating Red Black Binary Search Tree (Red Black BST): learn how to implement
+client code that uses RedBlackBST class-interface.
+10. Priority Queue: Experimenting with the use of priority queue ADT.
+11. Experiments with Sorting Algorithms performance.
+12. Experiments with Hashing: Learn how to build and use dictionaries and hash tables
+13. Experiments with Huffman Codes
+Assessment:
+All course learning outcomes are assessed using the following assessment tools.
+Coursework (Quizzes, homework) 20%
+Laboratory Assignments 25%
+Semester Examination 20%
+Final Examination 35%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLO):
+a b c d e f
+H H --- --- --- H
+H – High M – Medium L – Low
+Course Learning Outcomes (CLO) and Program Learning Outcomes:
+Course Learning Outcomes CS PLO
+1. Identify and implement the appropriate data structure from the Java a, b
+Collection Framework for a particular programming application
+2. Analyze iterative and recursive computer programs and algorithms and a, b
+identify their order of computational time and space complexity.
+3. Analyze & compare data structures for computational time and space a, b
+complexity.
+4. Formulate problems and to select the most appropriate data structure for a, b
+their solutions.
+5. Design, implement & manipulate data structures based on standard b, f
+abstract data types, object oriented data abstraction and encapsulation, in
+a variety of applications.
+6. Compare & apply standard sorting & search algorithms using iterative b, f
+and recursive algorithms in a variety of applications.
+*This syllabus is augmented by a Syllabus Supplement for Students.

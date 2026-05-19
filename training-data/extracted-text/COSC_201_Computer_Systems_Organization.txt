@@ -1,0 +1,87 @@
+--- Page 1 ---
+COSC 201 Computer Systems Organization
+(2 Lectures, 3 Labs – 3 Credits)
+Prerequisite: COSC 101
+Course Catalog Description:
+This course provides a basic understanding of the fundamental logical organization of a
+computer (its parts and their relationship) and how it actually works; exposure to a central
+processor's native language, and to basic computer components and basic architectures for high
+performance design. Topics include: Von Neumann architecture, C programming (low-level
+aspects), data representation, computer arithmetic, assembly language programming, digital
+logic design, registers, instruction counter, processor architecture, pipelining, memory
+hierarchies, caching, virtual memory, interrupts, input and output, buses.
+Textbook:
+ Randal E. Bryant and David R. O’Hallaron, Computer Systems: A Programmer’s
+Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669.
+Reference Materials:
+ Igor Zhirkov, Low-Level Programming: C, Assembly, and Program Execution on Intel®
+64 Architecture, Apress; 1st Edition, 2017. ISBN: 978-1484224021.
+Course Structure:
+Lectures will be 2 x 50-minutes; Laboratory sessions will be 1 x 150 min per week. The course
+is delivered in form of classroom lectures, problem solving sessions, and laboratories work
+done individually. Individual assignments and quizzes are held throughout the semester to
+reinforce knowledge of the material.
+Course Topics (15 weeks):
+1. Overview: Bit representation of information, program translation, compilation systems. (1
+week)
+2. Overview: Hardware organization, processors, instructions, memory hierarchies. (1 week)
+3. Assembly programming: Introduction and program structure. (1 week)
+4. Low-level C programming: Pointers and arrays, functions, dynamic memory management.
+(1 week)
+5. Representation and manipulation of information: information storage, integer
+representations, integer arithmetic, Floating point, arithmetic and logical operations. (2
+weeks)
+6. Machine-level representation of programs: Assembly addresses and memory allocation. (2
+weeks)
+7. Processor architecture: Digital logic design. (2 weeks)
+8. Processor architecture: Instruction set architecture, sequential and pipelined
+implementations. (2 weeks)
+9. Memory hierarchy: Storage technologies, locality, cache levels, I/O and disks. (2 weeks)
+10. Optimizing program performance: Eliminating loop inefficiencies, reducing procedure
+calls, eliminating unneeded memory references, loop unrolling, Enhancing parallelism. (1
+week)
+
+--- Page 2 ---
+Laboratory Experiments:
+1. Assembly programming: Introduction and program structure.
+2. Low-level C programming: Pointers and arrays, functions, dynamic memory
+management.
+3. Representation and manipulation of information: information storage, integer
+representations, integer arithmetic
+4. Representation and manipulation of information: Floating point arithmetic
+5. Machine-level representation of programs: Assembly addresses and memory, flow
+control, stack frames.
+6. Machine-level representation of programs: Instructions, array allocation and access.
+7. Processor architecture: Instruction set architecture.
+8. Processor architecture: sequential and pipelined implementations.
+9. Memory hierarchy: Storage technologies, locality, cache levels.
+10. Memory hierarchy: writing cache-friendly code, I/O and disks.
+11. Optimizing program performance: Eliminating loop inefficiencies, reducing procedure
+calls, eliminating unneeded memory references, loop unrolling.
+12. Optimizing program performance: Enhancing parallelism, understanding memory
+performance, identifying and eliminating performance bottlenecks.
+Computing Resources:
+A standard computer science lab with personal computers; C compiler and Assembler; systems
+diagnosis and performance monitoring tools.
+Assessment:
+All course learning outcomes are assessed using the following assessment tools:
+Coursework (quizzes, homework) 15%
+Lab Work 15%
+Project 20%
+Semester Examination 20%
+Final Examination 30%
+Contribution to B.Sc. in Computer Science Program Learning Outcomes (PLO):
+a b c d e f
+H L --- --- L M
+H – High M – Medium L – Low
+Course Learning Outcomes (CLO) and Program Learning Outcomes (PLO):
+No. Course Learning Outcomes CS PLO
+1 Describe basic concepts of computer organization, such as data a, b, f
+representation, computer arithmetic, digital logic, processor architecture,
+pipelining, and memory hierarchies.
+2 Describe fundamental components of a digital computer and their a, b
+interconnections.
+3 Evaluate computer system performance. a, b, e, f
+4 Design and implement Assembly language programs and low-level C a, b, e, f
+programs.
+*This syllabus is augmented by a Syllabus Supplement for Students.

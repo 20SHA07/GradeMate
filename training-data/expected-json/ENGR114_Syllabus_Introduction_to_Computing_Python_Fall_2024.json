@@ -13,7 +13,7 @@
   "schedule": null,
   "classroom": null,
   "officeRoom": "C03-017",
-  "officeHours": null,
+  "officeHours": "Tue Thu 3:15 pm - 4:15 pm",
   "prerequisites": "None",
   "textbooks": [
     "Python Programming: Using Problem-Solving Approach by R. Thareja, Publisher: Oxford University",
@@ -22,66 +22,36 @@
   "courseDescription": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
   "assessments": [
     {
-      "name": "Quiz 1",
-      "weight_percentage": 5,
+      "name": "Coursework (Quizzes, homework, lab work)",
+      "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Coursework Quiz 1 Sept 26 5%"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (Quizzes, homework, lab work) 35%"
     },
     {
-      "name": "Quiz 2",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 2 Oct 24 5%"
-    },
-    {
-      "name": "Quiz 3",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 3 Nov 7 5%"
-    },
-    {
-      "name": "Quiz 4",
-      "weight_percentage": 5,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Quiz 4 Nov 21 5%"
-    },
-    {
-      "name": "Laboratory",
+      "name": "Final Lab",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Laboratory (if applicable) Lab In Lab 15%"
-    },
-    {
-      "name": "Final LabTest",
-      "weight_percentage": 15,
-      "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final LabTest Week 14 15%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Lab 15%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Semester Examination (on campus) Oct 11 at 20%"
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination 20%"
     },
     {
       "name": "Final Examination",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.95,
-      "source_text_snippet": "Final Examination (on campus) TBA 30%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 30%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [
-    "Using detailed assessment methodology instead of summary table."
-  ],
-  "confidence": 0.93,
+  "warnings": [],
+  "confidence": 0.89,
   "needsHumanReview": false
 }

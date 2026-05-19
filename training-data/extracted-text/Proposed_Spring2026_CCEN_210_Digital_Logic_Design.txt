@@ -1,0 +1,252 @@
+--- Page 1 ---
+CCEN 210: Digital Logic Design
+(3 Lecture hours, 3 Laboratory/Studio hours, 4 Credits)
+Prerequisites
+• COSC 114 Introduction to Computing- Python
+Course Catalog Description
+This course covers the principles of digital logic design, including data representation in digital systems, Boolean
+algebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided
+design (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic
+circuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments
+provide hands-on experience with simulating, implementing, and testing digital circuits.
+Textbook
+• S. Brown and Z. Vranesic, Fundamentals of Digital Logic with Verilog Design, 4th ed. New York, NY, USA:
+McGraw-Hill, 2025, ISBN: 978-1-265-12041-2.
+Reference Materials
+th
+• R. Tocci, N. Widmer, and G. Moss, Digital Systems: Principles and Applications, Prentice Hall, 12 edition,
+2016, ISBN: 978-0-137-52472-3.
+• H. Ren and J. Hu, Machine Learning Applications in Electronic Design Automation, 1st ed. Cham,
+Switzerland: Springer Nature, 2023, ISBN: 978-3-031-13074-8.
+Course Structure & Learning Methodology
+Lectures will be 2 x 75-minutes per week; Laboratory sessions will be 1 x 150 minutes per week. The course involves
+a group homework/assignment to involve students in a self-learning environment
+Course Topics
+Week # Topics
+01 Numbering Systems: Introduction to digital logic, numbering systems (decimal, binary, hexadecimal,
+octal), and conversion between these systems. Basic mathematical operations in the binary system.
+02 Boolean Algebra: Introduction to Boolean algebra, logic operations and their mapping to logic gates
+(e.g., AND, OR, INV, XOR).
+03 Introduce truth tables and describe their functionality. Synthesize Boolean functions. Construct truth
+tables and derive Boolean functions using Product of Sum (POS) and Sum of Products (SOP).
+04 Logic Minimization: Apply Boolean algebra to minimize logic.
+05 Perform minimization using Karnaugh maps with emphasis on sustainability through area, power, and
+latency optimization. Use NAND and NOR gates to synthesize logic expressions.
+06 Introduction to Computer-Aided Design (CAD) tools, background of hardware description languages
+(HDLs), and basic concepts of Verilog, including gate-level primitives, modules, ports, structural and
+behavioral descriptions, continuous assignments, and procedural statements.
+07 Arithmetic Logic: Design circuits for arithmetic operations (e.g., half adders, full adders, subtractors),
+analyze performance issues in large circuits, and use Verilog to specify arithmetic circuits.
+08 Introduce other combinational components such as multipliers, encoders, decoders, and multiplexers,
+and demonstrate how to implement them using Verilog.
+09 Sequential Logic Design: asynchronous vs. synchronous operations, latch and flip-flops (FFs), edge-
+triggered vs. level sensitive FF. (state diagram, state table, state assignment and circuit synthesis)
+10 Explain logic circuit blocks that store information, understand the design and operation of various flip-
+flops, and analyze the major timing parameters that affect flip-flop operation.
+11 Registers and counters. Verilog for sequential elements and timing, and an introduction to synchronous
+sequential state machines.
+12 Design finite state machines (FSMs) using Moore and Mealy models, analyze the impact of state
+Page 1 of 7
+
+--- Page 2 ---
+assignment on implementation, and write Verilog code for FSMs.
+13 Programmable logic devices: Programmable Array Logic (PAL), Programmable Logic Array (PLA), Field
+Programmable Logic Array (FPGA), and applications of programmable logic devices.
+14 Applications of AI in digital design: circuit generation (e.g., Verilog), automated test bench creation, and
+design optimization.
+15 Introduction to memoryorganization, hierarchy, and technologies.
+Laboratories
+Week # Topics
+01 No Lab
+02 Lab Orientation
+03 Introduction to Digital Logic Design Using FPGA (OR gate).
+04 arity Generation and Error Detection
+05 One-Bit Comparator and Full Adder Design
+06 Arithmetic Logic Unit Design Using FPGAs + Lab Quiz 1
+07 Binary Data Encoding and Decoding
+08 *** Course Midterm ***
+09 D Flip Flop and Time Multiplexer Design Using FPGAs
+10 Synchronous Counter Circuit Design – Stop Watch Timer
+11 Synchronous Sequential Logic Design – FSM
+12 Digital Logic Design project spec and introduction.
+The students are expected to utilize AI tools for design and testing.
+13 Project
+14 Project
+Laboratory Resources
+Each workstation has PC with digital simulation and synthesis tools, circuit prototyping board, digital multimeter,
+oscilloscope and boards for programmable logic designs.
+Course Learning Outcomes (CLO) and Contributions to Bachelor of Computer Engineering Program Learning
+Outcomes (PLO):
+#
+No. CLOs PLOs Emphasis Level
+1 Design combinational and sequential circuits. 1, 2 M
+2 Employ AI techniques to design and optimize digital circuits, emphasizing
+sustainability through efficient resource management. 2, 7 M
+3 Collaborate to design and implement digital logic circuits. 5 M
+4 Utilize component datasheets to design digital circuits that meet target
+specifications. 7 M
+*
+PLOs can be found in the academic catalog
+#
+Emphasis level: H: High; M: Medium; L: Low; N: Nothing specific
+Assessment
+All course learning outcomes are assessed using the following assessment tools.
+Assessment Instruments Contribution to Course Grade (%) Week # CLO(s)
+Coursework (Quizzes, homework) 20% 1, 2, 4
+Laboratory 20% 1, 2, 3, 4
+Semester Examination 20% 1, 4
+Final Examination 40% 1, 2, 4
+Page 2 of 7
+
+--- Page 3 ---
+Grading Scheme
+The official Khalifa University grading system uses letter grades with pluses and minuses. Passing grades range from
+A to D; F is failing. Each letter grade is assigned a grade point on a four-point scale as per the guidelines below:
+For undergraduate programs:
+Letter Grade Grade Point Grade Range Description
+A 4.00 From 92.5% to 100% Excellent
+A- 3.70 From 89.5% to less than 92.5%
+Very Good
+B+ 3.30 From 86.5% to less than 89.5%
+B 3.00 From 82.5% to less than 86.5%
+Good
+B- 2.70 From 79.5% to less than 82.5%
+C+ 2.30 From 76.5% to less than 79.5%
+Satisfactory
+C 2.00 From 72.5% to less than 76.5%
+C- 1.70 From 69.5% to less than 72.5% Less than Satisfactory
+D 1.00 From 59.5% to less than 69.5% Poor
+F 0.00 Less than 59.5% Fail
+Academic Integrity Statement
+“As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will behave
+according to university rules and UAE societal norms and expectations. ” Refer to ACA 3500 Academic Integrity Policy
+for more details.
+Copyright and Plagiarism
+All students must adhere to the university’s policies on copyright and plagiarism, including the ethical use of
+generative AI tools. Any use of AI-generated content must be properly attributed and must not violate academic
+integrity standards.
+This syllabus must be augmented by a syllabus supplement for students
+Page 3 of 7
+
+--- Page 4 ---
+Syllabus Supplement for Students
+Course Code and Title CCEN 210 Digital Logic Design
+Semester: Spring 2026
+Instructor Name
+Contact Email/ Office Ext. No.
+Office Room No.
+Office Hours
+Assessment Methodology
+Tentative Dates Weight
+Coursework: Quiz 1 Around week 3 (Tentative) 20%
+Quiz 2 Around week 5 (Tentative)
+Quiz 3 Around week 11 (Tentative)
+Quiz 4 Around week 13 (Tentative)
+Project Project is part of the lab with 20% Last week of semester
+of the lab grade
+Laboratory There are 7-labs and mini project Weekly starting third week of 20%
+in the lab. See lab manual for semester
+marks breakdown
+Semester Examination (s) Midterm Exam Week 9 (Tentative) 20%
+Final Examination Final Examination 40%
+Instructor Policy on late submission of assignments:
+Only lab has assignment and they will be no late assignments accepted
+Honor Code Academic Pledge:
+"As a Khalifa University student, I will not lie, cheat, steal, or use any unfair means in academic work and will
+behave according to university rules and UAE societal norms and expectations."
+Page 4 of 7
+
+--- Page 5 ---
+TEACHING PLAN (Lecture):
+Week No Contents
+Week 1 Introduction digital logic. Numbering Systems (decimal, binary, hex, octal) and conversion
+between the systems. Basic mathematical operation in the binary system.
+Week 2 Introduction to Boolean Algebra, logic operations and mapping to logic gates (AND, OR, INV,
+XOR). Introduce truth table and describe its functionality. Synthesis Boolean function
+Week 3 Set-up the truth table and derive the Boolean function of a logic circuit using Product of Sum
+(POS) and Sum of Products (SOP). Use NAND and NOR gates to synthesis logic expressions.
+Week 4 Use Boolean Algebra to minimize logic. Obtain the minimum SOP or POS. Use don’t care
+condition.
+Week 5 Use K-map for 3-6 variables. Given a problem statement or function Build correct K-map and
+synthesis logic from K-map.
+Week 6 Introduced to Computer Aided Design (CAD) Tools. Get familiar with background of HDLs, Basic
+concepts of Verilog languages, Gate level primitives, Module, Ports, Structural and behavioral
+descriptions,
+Continuous assignment and procedural statements
+Week 7 Arithmetic Logic. Design circuits used to perform arithmetic
+operations, Understand performance issues in large circuits, Use Verilog to specify arithmetic
+circuits
+Week 8 Mux and decode logic. Define Mux and decode logic stand alone and to build any function.
+Week 9 Introducing Sequential element (latch, flip-flop). Explain the difference between combinational
+and sequential logic circuits
+Week 10 Explain the operation and design of registers, counters.
+Introduce the key timing parameters that affect flip-flop performance.
+Week 11 Verilog for sequential elements and timing
+Introducing synchronous sequential state machine
+Week 12 Design FSM using Moore and Mealy. Impact of state assignment on implementation. Write
+Verilog for FSM
+Week 13 Introduce programmable logic devices, including Programmable Array Logic (PAL),
+Programmable Logic Array (PLA), and Field Programmable Gate Arrays (FPGA), and explain their
+applications in digital system design.
+Week 14 Introduce applications of AI in digital design, including circuit optimization, circuit generation
+(e.g., Verilog), and automated test bench creation.
+Page 5 of 7
+
+--- Page 6 ---
+Week 15 Introduce memory by demonstrating a basic understanding of memory technologies and cell
+schematics, highlighting its importance in digital systems, explaining memory organization and
+hierarchy, and covering the design, analysis, and read/write operations of main memory blocks.
+Final
+LABORATORY SCHEDULE:
+Teaching Plan
+Week 3 Introduction to Digital Logic Design Using FPGA
+Week 4 Parity Generation and Error Detection
+Week 5 One-Bit Comparator and Full Adder Design
+Week 6 Arithmetic Logic Unit Design Using FPGAs + Lab Quiz 1
+Week 7 Binary Data Encoding and Decoding
+Week 8 *** Course Midterm ***
+Week 9 D Flip Flop and Time Multiplexer Design Using FPGAs
+Week 10 Synchronous Counter Circuit Design – Stop Watch Timer
+Week 11 Synchronous Sequential Logic Design – FSM
+Week 12 Project spec and introduction
+Week 13
+Project
+Week 14
+Any additional information:
+Please see blackboard class for detail timing and class material
+Grading Scheme
+The official Khalifa University of Science and Technology grading system uses letter grades with pluses and
+minuses. Passing grades range from A to D; F is failing. Each letter grade is assigned a grade point on a four-point
+scale as set out below:
+Letter Grade Grade Point Description
+A 4.00 Excellent
+Page 6 of 7
+
+--- Page 7 ---
+A- 3.70
+Very Good
+B+ 3.30
+B 3.00
+Good
+B- 2.70
+C+ 2.30
+Satisfactory
+C 2.00
+C- 1.70 Less Than Satisfactory
+D 1.00 Poor
+F 0.00 Fail
+WF 0.00 Withdrew Failing
+The following is an indicative of typical ranges associated with letter grades for the College of Engineering
+Undergraduate courses.
+Letter Grade Percentage Grade Range
+A From 92.5% to 100%
+A- From 89.5% to less than 92.5%
+B+ From 86.5% to less than 89.5%
+B From 82.5% to less than 86.5%
+B- From 79.5% to less than 82.5%
+C+ From 76.5% to less than 79.5%
+C From 72.5% to less than 76.5%
+C- From 69.5% to less than 72.5%
+D From 59.5% to less than 69.5%
+F Less than 59.5%
+Page 7 of 7
