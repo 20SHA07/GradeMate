@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-19T12:03:03.916Z",
+    "generatedAt": "2026-05-19T17:33:39.455Z",
     "extractorVersion": "deterministic-ku-2026-05-19",
     "totalTemplates": 89,
     "ready": 82,
@@ -2807,7 +2807,7 @@
       "instructor": "Menatalla Abououf",
       "assessmentCount": 8,
       "totalWeight": 100,
-      "confidence": 0.92,
+      "confidence": 0.91,
       "ready": true,
       "needsReview": false,
       "canonical": true,
@@ -2828,37 +2828,37 @@
           "name": "Quiz 1",
           "weightPercentage": 3.75,
           "maxScore": 100,
-          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-          "confidence": 0.93,
-          "inferred": false,
-          "warning": null
+          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+          "confidence": 0.92,
+          "inferred": true,
+          "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 2",
           "weightPercentage": 3.75,
           "maxScore": 100,
-          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-          "confidence": 0.93,
-          "inferred": false,
-          "warning": null
+          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+          "confidence": 0.92,
+          "inferred": true,
+          "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 3",
           "weightPercentage": 3.75,
           "maxScore": 100,
-          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-          "confidence": 0.93,
-          "inferred": false,
-          "warning": null
+          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+          "confidence": 0.92,
+          "inferred": true,
+          "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 4",
           "weightPercentage": 3.75,
           "maxScore": 100,
-          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-          "confidence": 0.93,
-          "inferred": false,
-          "warning": null
+          "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+          "confidence": 0.92,
+          "inferred": true,
+          "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Project (demo)",
@@ -3434,7 +3434,7 @@
       "duplicateStatus": "unique",
       "reasons": [],
       "warnings": [
-        "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+        "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
         "Golden source is not a PDF; DOCX extraction was used"
       ],
       "regression": null,
@@ -3445,8 +3445,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 2",
@@ -3454,8 +3454,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 3",
@@ -3463,8 +3463,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 4",
@@ -3472,8 +3472,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Labs",
@@ -3530,7 +3530,7 @@
       "duplicateStatus": "unique",
       "reasons": [],
       "warnings": [
-        "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+        "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
         "Golden source is not a PDF; DOCX extraction was used"
       ],
       "regression": {
@@ -3545,8 +3545,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 2",
@@ -3554,8 +3554,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 3",
@@ -3563,8 +3563,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Quiz 4",
@@ -3572,8 +3572,8 @@
           "maxScore": 100,
           "source": "Quiz-1 Week-3 7.5",
           "confidence": 0.92,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
         },
         {
           "name": "Labs",
@@ -5764,7 +5764,7 @@
       "regression": null,
       "assessments": [
         {
-          "name": "Coursework Assessment Project Phase 1",
+          "name": "Project Phase 1",
           "weightPercentage": 5,
           "maxScore": 100,
           "source": "Coursework Assessment Project Phase 1 worth 5%",
@@ -5804,7 +5804,7 @@
       "regression": null,
       "assessments": [
         {
-          "name": "Coursework Assessment Project Phase 2",
+          "name": "Project Phase 2",
           "weightPercentage": 5,
           "maxScore": 100,
           "source": "Coursework Assessment Project Phase 2 worth 5%",
@@ -6610,8 +6610,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 2",
@@ -6619,8 +6619,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 3",
@@ -6628,8 +6628,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 4",
@@ -6637,8 +6637,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Web assign",
@@ -6811,8 +6811,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 2",
@@ -6820,8 +6820,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 3",
@@ -6829,8 +6829,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Quiz 4",
@@ -6838,8 +6838,8 @@
           "maxScore": 100,
           "source": "Quiz + WAs = 24% + 6% = 30%",
           "confidence": 0.94,
-          "inferred": false,
-          "warning": null
+          "inferred": true,
+          "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
         },
         {
           "name": "Web assign",

@@ -574,7 +574,7 @@ function buildTemplateFromProposal({
 }) {
   const assessments = (proposal.assessments ?? []).map((assessment) => {
     const source = assessment.source_text_snippet ?? "";
-    const warning = inferAssessmentWarning(assessment, proposal.warnings);
+    const warning = assessment.warning ?? inferAssessmentWarning(assessment, proposal.warnings);
 
     return {
       name: assessment.name,
@@ -582,7 +582,7 @@ function buildTemplateFromProposal({
       maxScore: Number(assessment.max_score ?? 100),
       source,
       confidence: Number(assessment.confidence ?? proposal.confidence ?? 0),
-      inferred: /split|shared|evenly|inferred|group/i.test(`${source} ${warning ?? ""}`),
+      inferred: Boolean(assessment.inferred) || /split|shared|evenly|inferred|group/i.test(`${source} ${warning ?? ""}`),
       warning
     };
   });

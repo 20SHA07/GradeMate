@@ -259,6 +259,148 @@ assert.ok(
   "Expected grouped quiz split warning"
 );
 
+const sharedQuizCategory = extractSyllabusFromText(`Coursework:
+Quiz 1
+Quiz 2
+Quiz 3
+Quiz 4
+Weight 20%`);
+expectAssessmentNames(sharedQuizCategory, ["Quiz 1", "Quiz 2", "Quiz 3", "Quiz 4"]);
+expectAssessment(sharedQuizCategory, "Quiz 1", 5);
+expectAssessment(sharedQuizCategory, "Quiz 4", 5);
+assert.ok(
+  sharedQuizCategory.warnings.some((warning) =>
+    /Split quiz group weight 20% evenly across Quiz 1-Quiz 4/i.test(warning)
+  ),
+  "Expected shared quiz category split warning"
+);
+assert.ok(
+  sharedQuizCategory.assessments.every((assessment) => assessment.inferred),
+  "Expected shared quiz split rows to be marked inferred"
+);
+
+const sharedLabQuizCategory = extractSyllabusFromText(`Lab Quizzes:
+Lab Quiz 1
+Lab Quiz 2
+Lab Quiz 3
+Weight 9%`);
+expectAssessmentNames(sharedLabQuizCategory, ["Lab Quiz 1", "Lab Quiz 2", "Lab Quiz 3"]);
+expectAssessment(sharedLabQuizCategory, "Lab Quiz 1", 3);
+expectAssessment(sharedLabQuizCategory, "Lab Quiz 3", 3);
+assert.ok(
+  sharedLabQuizCategory.warnings.some((warning) =>
+    /Split lab quiz group weight 9% evenly across Lab Quiz 1-Lab Quiz 3/i.test(warning)
+  ),
+  "Expected lab quiz split warning"
+);
+
+const sharedAssignmentCategory = extractSyllabusFromText(`Assignments:
+Assignment 1
+Assignment 2
+Assignment 3
+Assignment 4
+Total 20%`);
+expectAssessment(sharedAssignmentCategory, "Assignment 1", 5);
+expectAssessment(sharedAssignmentCategory, "Assignment 4", 5);
+
+const sharedHomeworkCategory = extractSyllabusFromText(`Homework 1
+Homework 2
+Homework 3
+Homework total 15%`);
+expectAssessmentNames(sharedHomeworkCategory, ["Homework 1", "Homework 2", "Homework 3"]);
+expectAssessment(sharedHomeworkCategory, "Homework 1", 5);
+expectAssessment(sharedHomeworkCategory, "Homework 3", 5);
+
+const sharedProjectPhaseCategory = extractSyllabusFromText(`Project Phase 1
+Project Phase 2
+Project total 10%`);
+expectAssessmentNames(sharedProjectPhaseCategory, ["Project Phase 1", "Project Phase 2"]);
+expectAssessment(sharedProjectPhaseCategory, "Project Phase 1", 5);
+expectAssessment(sharedProjectPhaseCategory, "Project Phase 2", 5);
+
+const sharedTestsCategory = extractSyllabusFromText("Tests 1 and 2: 40%");
+expectAssessmentNames(sharedTestsCategory, ["Test 1", "Test 2"]);
+expectAssessment(sharedTestsCategory, "Test 1", 20);
+expectAssessment(sharedTestsCategory, "Test 2", 20);
+assert.ok(
+  sharedTestsCategory.warnings.some((warning) =>
+    /Split test group weight 40% evenly across Test 1-Test 2/i.test(warning)
+  ),
+  "Expected test split warning"
+);
+
+const formulaCategorySplit = extractSyllabusFromText(`Assessment Methodology
+Quiz 1
+Quiz 2
+Quiz 3
+Quiz 4
+Quiz + WAs = 24% + 6% = 30%`);
+expectAssessmentNames(formulaCategorySplit, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Web assign"
+]);
+expectAssessment(formulaCategorySplit, "Quiz 1", 6);
+expectAssessment(formulaCategorySplit, "Quiz 4", 6);
+expectAssessment(formulaCategorySplit, "Web assign", 6);
+
+const preAssignedGrouped = extractSyllabusFromText(`Assessment Methodology
+Pre-Assigned Quizzes 30%
+Midterm Examination 30%
+Final Examination 40%`);
+expectAssessmentNames(preAssignedGrouped, [
+  "Pre-Assigned Quizzes",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(preAssignedGrouped, "Pre-Assigned Quizzes", 30);
+
+const vagueQuizzesGrouped = extractSyllabusFromText(`Assessment Methodology
+Quizzes 20%
+Assignments 20%
+Midterm 20%
+Final 40%`);
+expectAssessment(vagueQuizzesGrouped, "Quizzes", 20);
+assert.ok(
+  !vagueQuizzesGrouped.assessments.some((assessment) => /^Quiz \d+/i.test(assessment.name)),
+  "Vague quizzes row should stay grouped"
+);
+
+const dropLowestGrouped = extractSyllabusFromText(`Assessment Methodology
+Quizzes (6, drop 2 lowest) 15%
+Project 15%
+Exams (2) 40%
+Final Exam 30%`);
+expectAssessment(dropLowestGrouped, "Quizzes (6, drop 2 lowest)", 15);
+assert.ok(
+  !dropLowestGrouped.assessments.some((assessment) => /^Quiz \d+/i.test(assessment.name)),
+  "Drop-lowest quizzes should stay grouped"
+);
+
+const bestThreeGrouped = extractSyllabusFromText(`Assessment Methodology
+Best 3 of 4 quizzes 40%
+Midterm Examination 25%
+Final Examination 35%`);
+expectAssessment(bestThreeGrouped, "Quizzes / best 3 of 4", 40);
+assert.ok(
+  !bestThreeGrouped.assessments.some((assessment) => /^Quiz \d+/i.test(assessment.name)),
+  "Best-N quizzes should stay grouped"
+);
+
+const labInternalProject = extractSyllabusFromText(`Assessment Methodology
+Project is part of the lab with 20% of the lab grade
+Laboratory 20%
+Midterm Examination 30%
+Final Examination 50%`);
+expectAssessmentNames(labInternalProject, [
+  "Laboratory",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(labInternalProject, "Laboratory", 20);
+
 const cosc202KuDetailed = extractSyllabusFromText(`COSC 202 Data Science and Artificial Intelligence
 (2 Lecture 3 Laboratory - 3 Credits)
 Assessment
@@ -1014,7 +1156,7 @@ expectAssessment(cosc330DocxStyle, "Quiz 4", 1.875);
 expectAssessment(cosc330DocxStyle, "Labs", 7.5);
 assert.ok(
   cosc330DocxStyle.warnings.some((warning) =>
-    /Split quiz weight 7.5% evenly across Quiz 1-Quiz 4/i.test(warning)
+    /Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4/i.test(warning)
   ),
   "Expected COSC330 quiz split warning"
 );

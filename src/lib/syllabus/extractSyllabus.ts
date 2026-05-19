@@ -4,6 +4,8 @@ export type ExtractedAssessment = {
   max_score: number;
   confidence: number;
   source_text_snippet: string;
+  inferred?: boolean;
+  warning?: string | null;
 };
 
 export type ExtractedSyllabus = {
@@ -64,6 +66,22 @@ type AssessmentCandidate = {
   assessments: ExtractedAssessment[];
   score: number;
   warnings?: string[];
+};
+
+export type CategorySplitInput = {
+  categoryName: string;
+  totalWeight: number;
+  childNames: string[];
+  sourceText: string;
+  hasDropLowestPolicy?: boolean;
+  hasBestNPolicy?: boolean;
+  childWeightsExplicit?: boolean;
+};
+
+export type CategorySplitResult = {
+  rows: ExtractedAssessment[];
+  warning: string | null;
+  splitApplied: boolean;
 };
 
 const assessmentKeywords = [
@@ -1157,7 +1175,9 @@ function normalizeAssessmentForOutput(
       Math.round(Number(assessment.weight_percentage || 0) * 1000) / 1000,
     max_score: Number(assessment.max_score) || 100,
     confidence: Math.round(Number(assessment.confidence ?? 0.7) * 100) / 100,
-    source_text_snippet: snippet
+    source_text_snippet: snippet,
+    ...(assessment.inferred ? { inferred: true } : {}),
+    ...(assessment.warning ? { warning: assessment.warning } : {})
   };
 }
 
@@ -1165,7 +1185,7 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   const compact = cleanLine(`${snippet} ${name}`);
   const nameForNumbering = removeWeightTokensForNumbering(cleanLine(name));
   const compactForNumbering =
-    /\b(?:quiz(?:zes)?|midterm|homework|hw)\s*[-#]?\s*\d{1,2}\b/i.test(
+    /\b(?:lab\s+quiz(?:zes)?|lab\s+reports?|project\s+phase|quiz(?:zes)?|midterm|homework|hw|assignments?|projects?|labs?|tests?|exams?)\s*[-#]?\s*\d{1,2}\b/i.test(
       nameForNumbering
     )
       ? nameForNumbering
@@ -1198,6 +1218,9 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   }
   if (/\bindividual writing\b.*\bfocused essay\b/i.test(compact)) {
     return "Individual Writing: Focused essay";
+  }
+  if (/\bindividual writing\b.*\bcase study\s*1\b.*\bcase study\s*2\b/i.test(compact)) {
+    return "Individual Writing: Case Study 1 & Case Study 2";
   }
   if (/\bindividual writing\b.*\btechnical report\b.*\bpart\s*1\b/i.test(compact)) {
     return "Individual Writing: Technical report Part 1";
@@ -1250,6 +1273,8 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   if (/\bcomplete model white paper\b/i.test(compact)) {
     return "Complete Model White Paper and Presentations";
   }
+  if (/\bmini-design project\b/i.test(compact)) return "Mini-Design Project";
+  if (/\bmini-project\b/i.test(compact)) return "Mini-project";
   if (/\bindividual writing\b.*\btechnical report\b/i.test(compact)) {
     return "Individual Writing: Technical report";
   }
@@ -1277,12 +1302,20 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
   }
   if (/\blaboratory\s*\(if applicable\)/i.test(compact)) return "Laboratory";
   if (/^HW$/i.test(cleanLine(name))) return "HW";
+  if (/\bbest\s*3\s+of\s+4\s+quizzes?\b/i.test(compact)) {
+    return "Quizzes / best 3 of 4";
+  }
 
   const sharedQuizWeight = compact.match(
     /\bquiz\s*#?\s*\d{1,2}\b[^%]{0,80}?(\d{1,3}(?:\.\d+)?)\s*%/i
   );
   if (sharedQuizWeight && Number(sharedQuizWeight[1]) >= 15 && !/^Quiz\s+\d{1,2}$/i.test(cleanLine(name))) {
     return "Quizzes";
+  }
+
+  const labQuizNumber = compactForNumbering.match(/\blab\s+quiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (labQuizNumber && Number(labQuizNumber[1]) <= 12) {
+    return `Lab Quiz ${Number(labQuizNumber[1])}`;
   }
 
   const quizNumber = compactForNumbering.match(/\bquiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/i);
@@ -1305,10 +1338,36 @@ function normalizeAssessmentOutputName(name: string, snippet: string) {
       : `Homework ${Number(homeworkNumber[1])}`;
   }
 
+  const assignmentNumber = compactForNumbering.match(/\bassignments?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (assignmentNumber && Number(assignmentNumber[1]) <= 30) {
+    return `Assignment ${Number(assignmentNumber[1])}`;
+  }
+
+  const projectPhaseNumber = compactForNumbering.match(/\bproject\s+phase\s*[-#]?\s*(\d{1,2})\b/i);
+  if (projectPhaseNumber && Number(projectPhaseNumber[1]) <= 30) {
+    return `Project Phase ${Number(projectPhaseNumber[1])}`;
+  }
+
+  const labReportNumber = compactForNumbering.match(/\blab\s+reports?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (labReportNumber && Number(labReportNumber[1]) <= 30) {
+    return `Lab Report ${Number(labReportNumber[1])}`;
+  }
+
+  const labNumber = compactForNumbering.match(/\blabs?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (labNumber && Number(labNumber[1]) <= 30) {
+    return `Lab ${Number(labNumber[1])}`;
+  }
+
+  const projectNumber = compactForNumbering.match(/\bprojects?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (projectNumber && Number(projectNumber[1]) <= 30) {
+    return `Project ${Number(projectNumber[1])}`;
+  }
+
   return name
     .replace(/\b(?:week|weeks|around week)\s+\d{1,2}\b.*$/i, "")
     .replace(/\b(?:weekly|final week|tba|assigned by registrar|during lab time|contact based)\b.*$/i, "")
     .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\b/gi, "")
+    .replace(/\s+\d{1,3}(?:\.\d+)?$/i, "")
     .replace(/\s*%\s*$/i, "")
     .replace(/\s+/g, " ")
     .trim();
@@ -2221,14 +2280,164 @@ function makeAssessment(
   name: string,
   weight: number,
   snippet: string,
-  confidence = 0.94
+  confidence = 0.94,
+  options: Pick<ExtractedAssessment, "inferred" | "warning"> = {}
 ): ExtractedAssessment {
   return {
     name,
     weight_percentage: Math.round(weight * 1000) / 1000,
     max_score: 100,
     confidence,
-    source_text_snippet: snippet.slice(0, 240)
+    source_text_snippet: snippet.slice(0, 240),
+    ...(options.inferred ? { inferred: true } : {}),
+    ...(options.warning ? { warning: options.warning } : {})
+  };
+}
+
+function roundAssessmentWeight(value: number) {
+  return Math.round(value * 1000) / 1000;
+}
+
+function hasDropOrBestPolicy(text: string) {
+  return /\b(?:drop(?:s|ped|ping)?\s+(?:the\s+)?(?:\d+\s+)?lowest|lowest\s+\w+\s+(?:grade\s+)?(?:is\s+)?dropped|best\s+\d+\s+(?:of|out\s+of)\s+\d+|only\s+the\s+best\s+\d+)\b/i.test(
+    text
+  );
+}
+
+function splitWarningCategory(categoryName: string, childNames: string[]) {
+  const compact = normalizeName(`${categoryName} ${childNames.join(" ")}`);
+
+  if (/\blab quiz\b/.test(compact)) return "lab quiz group weight";
+  if (/\bquiz\b/.test(compact)) return "quiz group weight";
+  if (/\bassignment\b/.test(compact)) return "assignment group weight";
+  if (/\bhomework\b|\bhw\b/.test(compact)) return "homework group weight";
+  if (/\blab report\b/.test(compact)) return "lab report group weight";
+  if (/\blab\b|\blaboratory\b/.test(compact)) return "lab group weight";
+  if (/\bproject\b/.test(compact)) return "project group weight";
+  if (/\btest\b/.test(compact)) return "test group weight";
+  if (/\bexam\b|\bexamination\b/.test(compact)) return "exam group weight";
+  if (/\bpresentation\b/.test(compact)) return "presentation group weight";
+  if (/\breflection\b/.test(compact)) return "reflection group weight";
+  if (/\bcase study\b/.test(compact)) return "case study group weight";
+  if (/\bweb assign\b|\bwebassign\b|\baleks\b|\bonline homework\b|\bonline hw\b/.test(compact)) {
+    return "online homework group weight";
+  }
+
+  return `${categoryName.trim() || "category"} weight`;
+}
+
+function childRangeLabel(childNames: string[]) {
+  const parsed = childNames
+    .map((name) => {
+      const match = name.match(/^(.+?)\s+(\d{1,2})$/);
+      return match
+        ? { base: match[1], number: Number(match[2]), original: name }
+        : null;
+    })
+    .filter((value): value is { base: string; number: number; original: string } =>
+      Boolean(value)
+    );
+
+  if (
+    parsed.length === childNames.length &&
+    parsed.length >= 2 &&
+    parsed.every((item) => item.base === parsed[0].base)
+  ) {
+    const sorted = [...parsed].sort((first, second) => first.number - second.number);
+    const isSequential = sorted.every(
+      (item, index) => index === 0 || item.number === sorted[index - 1].number + 1
+    );
+
+    if (isSequential) {
+      return `${sorted[0].base} ${sorted[0].number}-${sorted[sorted.length - 1].base} ${
+        sorted[sorted.length - 1].number
+      }`;
+    }
+  }
+
+  return childNames.join(", ");
+}
+
+function hasSpecificChildNames(childNames: string[]) {
+  return childNames.every((name) =>
+    /\b(?:quiz|assignment|homework|hw|lab|laboratory|report|project|phase|test|exam|presentation|reflection|case study|web assign|webassign|aleks)\b/i.test(
+      name
+    )
+  );
+}
+
+function hasExplicitChildWeight(sourceText: string, childNames: string[]) {
+  return childNames.some((childName) => {
+    const escaped = childName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+    const match = sourceText.match(
+      new RegExp(
+        `\\b${escaped}\\b([^\\n%]{0,45})\\b\\d{1,3}(?:\\.\\d+)?\\s*(?:%|percent\\b|percentage\\b|marks?\\b)`,
+        "i"
+      )
+    );
+
+    if (!match) {
+      return false;
+    }
+
+    return !/\b(?:total|weight|week|weeks|tba|around week|final week|assigned by registrar|during lab time)\b/i.test(
+      match[1] ?? ""
+    );
+  });
+}
+
+export function splitCategoryWeightAcrossChildren(
+  category: CategorySplitInput
+): CategorySplitResult {
+  const childNames = Array.from(
+    new Map(
+      category.childNames
+        .map((name) => cleanLine(name))
+        .filter(Boolean)
+        .map((name) => [normalizeName(name), name])
+    ).values()
+  );
+  const sourceText = cleanLine(category.sourceText);
+  const hasBlockedPolicy =
+    Boolean(category.hasDropLowestPolicy || category.hasBestNPolicy) ||
+    hasDropOrBestPolicy(sourceText);
+  const childWeightsExplicit =
+    Boolean(category.childWeightsExplicit) ||
+    hasExplicitChildWeight(sourceText, childNames);
+
+  if (
+    !Number.isFinite(category.totalWeight) ||
+    category.totalWeight <= 0 ||
+    childNames.length < 2 ||
+    hasBlockedPolicy ||
+    childWeightsExplicit ||
+    !hasSpecificChildNames(childNames)
+  ) {
+    return {
+      rows: [],
+      warning: null,
+      splitApplied: false
+    };
+  }
+
+  const splitWeight = roundAssessmentWeight(category.totalWeight / childNames.length);
+  const warning = `Split ${splitWarningCategory(
+    category.categoryName,
+    childNames
+  )} ${formatWeight(category.totalWeight)}% evenly across ${childRangeLabel(
+    childNames
+  )}. Please confirm.`;
+  const rows = childNames.map((name) =>
+    makeAssessment(name, splitWeight, sourceText, 0.92, {
+      inferred: true,
+      warning
+    })
+  );
+
+  return {
+    rows,
+    warning,
+    splitApplied: true
   };
 }
 
@@ -2927,6 +3136,402 @@ function extractParentheticalSplitCandidates(text: string): AssessmentCandidate[
   return candidates;
 }
 
+function singularCategoryChildName(value: string) {
+  const normalized = normalizeName(value);
+
+  if (/lab quiz/.test(normalized)) return "Lab Quiz";
+  if (/lab report/.test(normalized)) return "Lab Report";
+  if (/project phase/.test(normalized)) return "Project Phase";
+  if (/case stud/.test(normalized)) return "Case Study";
+  if (/online (?:hw|homework)/.test(normalized)) return "Online Homework";
+  if (/web assign|webassign|was?\b/.test(normalized)) return "Web assign";
+  if (/aleks/.test(normalized)) return "ALEKS";
+  if (/quiz/.test(normalized)) return "Quiz";
+  if (/assignment/.test(normalized)) return "Assignment";
+  if (/homework|^hw$/.test(normalized)) return "Homework";
+  if (/laboratory|^lab$|labs/.test(normalized)) return "Lab";
+  if (/project/.test(normalized)) return "Project";
+  if (/test/.test(normalized)) return "Test";
+  if (/exam|examination/.test(normalized)) return "Exam";
+  if (/presentation/.test(normalized)) return "Presentation";
+  if (/reflection/.test(normalized)) return "Reflection";
+
+  return titleCaseWords(value);
+}
+
+function expandNumberExpression(value: string) {
+  const normalized = value.replace(/#/g, "").replace(/\s+/g, " ").trim();
+  const range = normalized.match(/\b(\d{1,2})\s*(?:-|to|through)\s*(\d{1,2})\b/i);
+
+  if (range) {
+    const start = Number(range[1]);
+    const end = Number(range[2]);
+
+    if (
+      Number.isInteger(start) &&
+      Number.isInteger(end) &&
+      start > 0 &&
+      end >= start &&
+      end - start <= 20
+    ) {
+      return Array.from({ length: end - start + 1 }, (_, index) => start + index);
+    }
+  }
+
+  return Array.from(normalized.matchAll(/\b\d{1,2}\b/g))
+    .map((match) => Number(match[0]))
+    .filter((number, index, numbers) =>
+      Number.isInteger(number) &&
+      number > 0 &&
+      number <= 30 &&
+      numbers.indexOf(number) === index
+    );
+}
+
+function addNumberedChildrenFromMatches(
+  names: Map<string, string>,
+  text: string,
+  regex: RegExp,
+  baseName: string,
+  skip?: (match: RegExpMatchArray) => boolean
+) {
+  Array.from(text.matchAll(regex)).forEach((match) => {
+    if (skip?.(match)) {
+      return;
+    }
+
+    const number = Number(match[1]);
+
+    if (!Number.isInteger(number) || number <= 0 || number > 30) {
+      return;
+    }
+
+    const name = `${baseName} ${number}`;
+    names.set(normalizeName(name), name);
+  });
+}
+
+function extractNumberedChildNames(sourceText: string) {
+  const text = cleanLine(sourceText);
+  const names = new Map<string, string>();
+
+  addNumberedChildrenFromMatches(names, text, /\bLab\s+Quiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/gi, "Lab Quiz");
+  addNumberedChildrenFromMatches(names, text, /\bLab\s+Reports?\s*[-#]?\s*(\d{1,2})\b/gi, "Lab Report");
+  addNumberedChildrenFromMatches(names, text, /\bProject\s+Phase\s*[-#]?\s*(\d{1,2})\b/gi, "Project Phase");
+  addNumberedChildrenFromMatches(names, text, /\bCase\s+Stud(?:y|ies)\s*[-#]?\s*(\d{1,2})\b/gi, "Case Study");
+  addNumberedChildrenFromMatches(names, text, /\bHomework\s*[-#]?\s*(\d{1,2})\b/gi, "Homework");
+  addNumberedChildrenFromMatches(names, text, /\bHW\s*[-#]?\s*(\d{1,2})\b/gi, "Homework");
+  addNumberedChildrenFromMatches(names, text, /\bAssignments?\s*[-#]?\s*(\d{1,2})\b/gi, "Assignment");
+  addNumberedChildrenFromMatches(
+    names,
+    text,
+    /\bQuiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/gi,
+    "Quiz",
+    (match) => /\bLab\s+$|Web\s*Assign\s+$/i.test(text.slice(Math.max(0, (match.index ?? 0) - 16), match.index))
+  );
+  addNumberedChildrenFromMatches(names, text, /\bTests?\s*[-#]?\s*(\d{1,2})\b/gi, "Test");
+  addNumberedChildrenFromMatches(names, text, /\bExams?\s*[-#]?\s*(\d{1,2})\b/gi, "Exam");
+  addNumberedChildrenFromMatches(names, text, /\bPresentations?\s*[-#]?\s*(\d{1,2})\b/gi, "Presentation");
+  addNumberedChildrenFromMatches(names, text, /\bReflections?\s*[-#]?\s*(\d{1,2})\b/gi, "Reflection");
+  addNumberedChildrenFromMatches(
+    names,
+    text,
+    /\bLabs?\s*[-#]?\s*(\d{1,2})\b/gi,
+    "Lab",
+    (match) => /\b(?:Quiz|Report)\s+$/i.test(text.slice(Math.max(0, (match.index ?? 0) - 16), match.index))
+  );
+  addNumberedChildrenFromMatches(
+    names,
+    text,
+    /\bProjects?\s*[-#]?\s*(\d{1,2})\b/gi,
+    "Project",
+    (match) => /\bPhase\s+$/i.test(text.slice(Math.max(0, (match.index ?? 0) - 16), match.index))
+  );
+
+  const listPattern =
+    /\b(Lab\s+Quizzes?|Lab\s+Reports?|Project\s+Phases?|Case\s+Stud(?:y|ies)|Quizzes?|Assignments?|Homework|HW|Labs?|Projects?|Tests?|Exams?|Presentations?|Reflections?)\s+((?:#?\d{1,2}\s*(?:,|and|&|-|to|through)?\s*){2,})/gi;
+
+  Array.from(text.matchAll(listPattern)).forEach((match) => {
+    const baseName = singularCategoryChildName(match[1]);
+    const numbers = expandNumberExpression(match[2]);
+
+    if (numbers.length < 2) {
+      return;
+    }
+
+    numbers.forEach((number) => {
+      const name = `${baseName} ${number}`;
+      names.set(normalizeName(name), name);
+    });
+  });
+
+  return Array.from(names.values()).sort((first, second) => {
+    const firstNumber = Number(first.match(/\b(\d{1,2})$/)?.[1] ?? 0);
+    const secondNumber = Number(second.match(/\b(\d{1,2})$/)?.[1] ?? 0);
+    const firstBase = first.replace(/\s+\d{1,2}$/, "");
+    const secondBase = second.replace(/\s+\d{1,2}$/, "");
+
+    return firstBase.localeCompare(secondBase) || firstNumber - secondNumber;
+  });
+}
+
+function categoryNameForChildList(childNames: string[], fallback: string) {
+  if (childNames.length === 0) {
+    return fallback;
+  }
+
+  const firstBase = childNames[0].replace(/\s+\d{1,2}$/, "");
+
+  return childNames.every((name) => name.replace(/\s+\d{1,2}$/, "") === firstBase)
+    ? firstBase
+    : fallback;
+}
+
+function findCategoryTotalWeight(sourceText: string, categoryName: string) {
+  const text = cleanLine(sourceText);
+  const explicitTotal =
+    text.match(/\b(?:weight|total|category total|course grade|contribution)\s*[:=\-]?\s*(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/i) ??
+    text.match(/\b(?:quiz|quizzes|lab quizzes|assignments?|homework|hw|projects?|project phases?|tests?|exams?|presentations?|reflections?|case studies?|labs?|lab reports?)\s+(?:weight|total)\s*[:=\-]?\s*(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/i);
+
+  if (explicitTotal) {
+    return cleanWeightValue(explicitTotal[1]);
+  }
+
+  const escaped = categoryName.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+  const categoryTotal = text.match(
+    new RegExp(
+      `\\b${escaped}s?\\b[^%]{0,80}?\\b(?:total|weight)\\b[^%]{0,30}?(\\d{1,3}(?:\\.\\d+)?)\\s*(?:%|percent\\b|percentage\\b)`,
+      "i"
+    )
+  );
+
+  if (categoryTotal) {
+    return cleanWeightValue(categoryTotal[1]);
+  }
+
+  const allWeights = Array.from(
+    text.matchAll(/\b(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)/gi)
+  )
+    .map((match) => cleanWeightValue(match[1]))
+    .filter((weight): weight is number => weight !== null);
+
+  return allWeights.length === 1 ? allWeights[0] : null;
+}
+
+function extractCountBasedCategorySplits(text: string): AssessmentCandidate[] {
+  const compactText = cleanLine(text);
+  const candidates: AssessmentCandidate[] = [];
+  const countPattern =
+    /\b(\d{1,2})\s+(quizzes|lab quizzes|assignments|homeworks|homework|labs|lab reports|projects|project phases|tests|exams|presentations|reflections|case studies)\s+(?:worth|total|weigh|weight|weighted at|accounts for)\s+(\d{1,3}(?:\.\d+)?)\s*(?:%|percent\b|percentage\b)(?:\s+each)?/gi;
+
+  Array.from(compactText.matchAll(countPattern)).forEach((match) => {
+    const count = Number(match[1]);
+    const categoryName = singularCategoryChildName(match[2]);
+    const totalWeight = cleanWeightValue(match[3]);
+
+    if (!Number.isInteger(count) || count < 2 || count > 20 || totalWeight === null) {
+      return;
+    }
+
+    const isEach = /\beach\b/i.test(match[0]);
+    const childNames = Array.from({ length: count }, (_, index) => `${categoryName} ${index + 1}`);
+    const splitResult = splitCategoryWeightAcrossChildren({
+      categoryName,
+      childNames,
+      totalWeight: isEach ? totalWeight * count : totalWeight,
+      sourceText: match[0],
+      hasDropLowestPolicy: hasDropOrBestPolicy(match[0])
+    });
+
+    if (!splitResult.splitApplied) {
+      return;
+    }
+
+    const rows = isEach
+      ? childNames.map((name) =>
+          makeAssessment(name, totalWeight, match[0], 0.93, {
+            inferred: true,
+            warning: splitResult.warning
+          })
+        )
+      : splitResult.rows;
+    const warning = isEach ? null : splitResult.warning;
+
+    candidates.push({
+      label: "count-based category split",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 760,
+      warnings: warning ? [warning] : []
+    });
+  });
+
+  return candidates;
+}
+
+function extractFormulaCategorySplitCandidates(text: string): AssessmentCandidate[] {
+  const compactText = cleanLine(text);
+  const formulaWeights = extractKuFormulaQuizWeights(compactText);
+  const quizNumbers = getUniqueQuizNumbers(compactText);
+
+  if (!formulaWeights || quizNumbers.length < 2) {
+    return [];
+  }
+
+  const splitResult = splitCategoryWeightAcrossChildren({
+    categoryName: "Quiz",
+    childNames: quizNumbers.map((number) => `Quiz ${number}`),
+    totalWeight: formulaWeights.quizTotal,
+    sourceText: formulaWeights.snippet
+  });
+
+  if (!splitResult.splitApplied) {
+    return [];
+  }
+
+  const rows = [
+    ...splitResult.rows,
+    makeAssessment("Web assign", formulaWeights.webAssignWeight, formulaWeights.snippet, 0.94)
+  ];
+
+  return [
+    {
+      label: "formula category split",
+      assessments: rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(rows) + 780,
+      warnings: splitResult.warning ? [splitResult.warning] : []
+    }
+  ];
+}
+
+function extractGeneralCategorySplitCandidates(text: string): AssessmentCandidate[] {
+  const lines = text
+    .split(/\r?\n/)
+    .map(cleanLine)
+    .filter(Boolean);
+  const compactText = cleanLine(text);
+  const candidates: AssessmentCandidate[] = [
+    ...extractFormulaCategorySplitCandidates(text),
+    ...extractCountBasedCategorySplits(text)
+  ];
+  const categoryHeadingPattern =
+    /^(course\s*work|coursework|quizzes?|lab quizzes?|assignments?|homeworks?|homework|hw|labs?|lab reports?|laboratory reports?|projects?|project phases?|tests?|exams?|presentations?|reflections?|case studies?|online homework|online hw|webassign|web assign|aleks)\s*:?\s*$/i;
+
+  for (let startIndex = 0; startIndex < lines.length; startIndex += 1) {
+    const line = lines[startIndex];
+    const headingMatch = line.match(categoryHeadingPattern);
+    const hasInlineChildren = extractNumberedChildNames(line).length >= 2;
+
+    if (!headingMatch && !hasInlineChildren) {
+      continue;
+    }
+
+    const blockLines = [line];
+
+    for (
+      let index = startIndex + 1;
+      index <= Math.min(lines.length - 1, startIndex + 12);
+      index += 1
+    ) {
+      const current = lines[index];
+
+      if (
+        index > startIndex + 1 &&
+        (/^(teaching plan|grading scheme|official khalifa university grading system|course learning outcomes?|program learning outcomes?|instructor policy)\b/i.test(
+          current
+        ) ||
+          isAssessmentSectionHeading(current))
+      ) {
+        break;
+      }
+
+      blockLines.push(current);
+
+      if (/\b(?:weight|total)\b.*\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\b/i.test(current)) {
+        break;
+      }
+    }
+
+    const sourceText = blockLines.join(" ");
+    const childNames = extractNumberedChildNames(sourceText);
+
+    if (childNames.length < 2) {
+      continue;
+    }
+
+    const categoryName = headingMatch
+      ? singularCategoryChildName(headingMatch[1])
+      : categoryNameForChildList(childNames, childNames[0].replace(/\s+\d{1,2}$/, ""));
+    const totalWeight = findCategoryTotalWeight(sourceText, categoryName);
+
+    if (totalWeight === null) {
+      continue;
+    }
+
+    const splitResult = splitCategoryWeightAcrossChildren({
+      categoryName,
+      childNames,
+      totalWeight,
+      sourceText,
+      hasDropLowestPolicy: hasDropOrBestPolicy(sourceText)
+    });
+
+    if (!splitResult.splitApplied) {
+      continue;
+    }
+
+    candidates.push({
+      label: "general category split",
+      assessments: splitResult.rows.map(normalizeAssessmentForOutput),
+      score: scoreAssessments(splitResult.rows) + 760,
+      warnings: splitResult.warning ? [splitResult.warning] : []
+    });
+  }
+
+  const compactChildren = extractNumberedChildNames(compactText);
+
+  if (compactChildren.length >= 2) {
+    const categoryName = categoryNameForChildList(
+      compactChildren,
+      compactChildren[0].replace(/\s+\d{1,2}$/, "")
+    );
+    const totalWeight = findCategoryTotalWeight(compactText, categoryName);
+    const splitResult =
+      totalWeight === null
+        ? null
+        : splitCategoryWeightAcrossChildren({
+            categoryName,
+            childNames: compactChildren,
+            totalWeight,
+            sourceText: compactText,
+            hasDropLowestPolicy: hasDropOrBestPolicy(compactText)
+          });
+
+    if (splitResult?.splitApplied) {
+      candidates.push({
+        label: "general compact category split",
+        assessments: splitResult.rows.map(normalizeAssessmentForOutput),
+        score: scoreAssessments(splitResult.rows) + 730,
+        warnings: splitResult.warning ? [splitResult.warning] : []
+      });
+    }
+  }
+
+  const uniqueCandidates = new Map<string, AssessmentCandidate>();
+
+  candidates.forEach((candidate) => {
+    const key = candidate.assessments
+      .map((assessment) => `${normalizeName(assessment.name)}:${assessment.weight_percentage}`)
+      .join("|");
+    const existing = uniqueCandidates.get(key);
+
+    if (!existing || candidate.score > existing.score) {
+      uniqueCandidates.set(key, candidate);
+    }
+  });
+
+  return Array.from(uniqueCandidates.values());
+}
+
 function extractDescriptionAssessmentCandidates(text: string): AssessmentCandidate[] {
   const compact = cleanLine(text);
   const heading = compact.match(/\bDescription of the Assessments\b/i);
@@ -2998,14 +3603,15 @@ function extractCosc330AssessmentCandidate(
   const warnings: string[] = [];
 
   if (quizNumbers.length >= 4 && sharedQuizWeight !== null) {
-    const splitWeight = Math.round((sharedQuizWeight / quizNumbers.length) * 1000) / 1000;
-
-    quizNumbers.forEach((quizNumber) => {
-      rows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, "COSC 330 shared quiz weight", 0.94));
+    const splitResult = splitCategoryWeightAcrossChildren({
+      categoryName: "Quiz",
+      totalWeight: sharedQuizWeight,
+      childNames: quizNumbers.map((quizNumber) => `Quiz ${quizNumber}`),
+      sourceText: "COSC 330 shared quiz weight"
     });
-    warnings.push(
-      `Split quiz weight ${formatWeight(sharedQuizWeight)}% evenly across Quiz ${quizNumbers[0]}-Quiz ${quizNumbers[quizNumbers.length - 1]}. Please confirm.`
-    );
+
+    rows.push(...splitResult.rows);
+    if (splitResult.warning) warnings.push(splitResult.warning);
   }
 
   const addFromLines = (name: string, pattern: RegExp) => {
@@ -3040,15 +3646,16 @@ function extractCosc330AssessmentCandidate(
   const looseWarnings: string[] = [];
 
   if (looseQuizNumbers.length >= 4 && looseQuizWeight !== null) {
-    const splitWeight = Math.round((looseQuizWeight / looseQuizNumbers.length) * 1000) / 1000;
     const looseQuizSnippet = looseQuizMatch?.[0] ?? "shared quiz weight";
-
-    looseQuizNumbers.forEach((quizNumber) => {
-      looseRows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, looseQuizSnippet, 0.92));
+    const splitResult = splitCategoryWeightAcrossChildren({
+      categoryName: "Quiz",
+      totalWeight: looseQuizWeight,
+      childNames: looseQuizNumbers.map((quizNumber) => `Quiz ${quizNumber}`),
+      sourceText: looseQuizSnippet
     });
-    looseWarnings.push(
-      `Split quiz weight ${formatWeight(looseQuizWeight)}% evenly across Quiz ${looseQuizNumbers[0]}-Quiz ${looseQuizNumbers[looseQuizNumbers.length - 1]}. Please confirm.`
-    );
+
+    looseRows.push(...splitResult.rows);
+    if (splitResult.warning) looseWarnings.push(splitResult.warning);
   }
 
   const addLoose = (name: string, pattern: RegExp) => {
@@ -3540,42 +4147,41 @@ function extractKuDetailedAssessmentCandidates(
   if (quizNumbers.length >= 2 && formulaWeights) {
     const splitWeight =
       Math.round((formulaWeights.quizTotal / quizNumbers.length) * 100) / 100;
+    const splitWarning = `Split quiz total ${formatWeight(
+      formulaWeights.quizTotal
+    )}% evenly across ${quizNumbers.length} quizzes. Please confirm.`;
 
     quizNumbers.forEach((quizNumber) => {
       rows.push(
-        makeAssessment(`Quiz ${quizNumber}`, splitWeight, formulaWeights.snippet, 0.94)
+        makeAssessment(`Quiz ${quizNumber}`, splitWeight, formulaWeights.snippet, 0.94, {
+          inferred: true,
+          warning: splitWarning
+        })
       );
     });
     rows.push(
       makeAssessment("Web assign", formulaWeights.webAssignWeight, formulaWeights.snippet, 0.94)
     );
-    warnings.push(
-      `Split quiz total ${formatWeight(
-        formulaWeights.quizTotal
-      )}% evenly across ${quizNumbers.length} quizzes. Please confirm.`
-    );
+    warnings.push(splitWarning);
   } else if (quizNumbers.length >= 2 && !/\b(?:best\s+\d+\s+out\s+of\s+\d+|drop\s+\d*\s*lowest|drop-lowest)\b/i.test(methodologyBlock)) {
     const quizSegment = getQuizCourseworkSegment(methodologyBlock);
     const quizTotal = getFirstWeight(quizSegment);
 
     if (quizTotal !== null) {
-      const splitWeight = Math.round((quizTotal / quizNumbers.length) * 100) / 100;
       const warningLabel = /CCEN\s*210/i.test(`${courseCode ?? ""} ${text.slice(0, 600)}`)
         ? "coursework quiz weight"
         : /course\s*work|coursework/i.test(quizSegment)
           ? "quiz group weight"
           : "quiz total";
-
-      quizNumbers.forEach((quizNumber) => {
-        rows.push(makeAssessment(`Quiz ${quizNumber}`, splitWeight, quizSegment, 0.93));
+      const splitResult = splitCategoryWeightAcrossChildren({
+        categoryName: warningLabel,
+        totalWeight: quizTotal,
+        childNames: quizNumbers.map((quizNumber) => `Quiz ${quizNumber}`),
+        sourceText: quizSegment
       });
-      warnings.push(
-        `Split ${warningLabel} ${formatWeight(
-          quizTotal
-        )}% evenly across Quiz ${quizNumbers[0]}-Quiz ${
-          quizNumbers[quizNumbers.length - 1]
-        }. Please confirm.`
-      );
+
+      rows.push(...splitResult.rows);
+      if (splitResult.warning) warnings.push(splitResult.warning);
     }
   }
 
@@ -3710,25 +4316,15 @@ function extractParentChildAssessmentCandidates(
       .filter((weight): weight is number => weight !== null);
 
     if (quizWeights.length === 1) {
-      const splitWeight =
-        Math.round((quizWeights[0] / quizMatches.length) * 100) / 100;
-
-      quizMatches.forEach((match) => {
-        rows.push({
-          name: `Quiz ${Number(match[1])}`,
-          weight_percentage: splitWeight,
-          max_score: 100,
-          confidence: 0.9,
-          source_text_snippet: quizSegment.slice(0, 240)
-        });
+      const splitResult = splitCategoryWeightAcrossChildren({
+        categoryName: "Coursework quiz",
+        totalWeight: quizWeights[0],
+        childNames: quizMatches.map((match) => `Quiz ${Number(match[1])}`),
+        sourceText: quizSegment
       });
-      warnings.push(
-        `Split Coursework quiz weight ${formatWeight(
-          quizWeights[0]
-        )}% evenly across Quiz ${Number(quizMatches[0][1])}-Quiz ${Number(
-          quizMatches[quizMatches.length - 1][1]
-        )}. Please confirm.`
-      );
+
+      rows.push(...splitResult.rows);
+      if (splitResult.warning) warnings.push(splitResult.warning);
     }
   }
 
@@ -3891,6 +4487,7 @@ function extractDetailedAssessmentCandidates(
 
   const candidates: AssessmentCandidate[] = [
     ...extractKuDetailedAssessmentCandidates(text, courseCode),
+    ...extractGeneralCategorySplitCandidates(text),
     ...extractParentChildAssessmentCandidates(text),
     ...extractParentheticalSplitCandidates(text),
     ...extractDescriptionAssessmentCandidates(text),

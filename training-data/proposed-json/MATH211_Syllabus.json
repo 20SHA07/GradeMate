@@ -24,29 +24,37 @@
       "name": "Quiz 1",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+      "confidence": 0.92,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13",
+      "inferred": true,
+      "warning": "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+      "confidence": 0.92,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13",
+      "inferred": true,
+      "warning": "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+      "confidence": 0.92,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13",
+      "inferred": true,
+      "warning": "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 4",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.93,
-      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+      "confidence": 0.92,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13",
+      "inferred": true,
+      "warning": "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Midterm Examination(s)",
@@ -68,6 +76,6 @@
     "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.92,
+  "confidence": 0.91,
   "needsHumanReview": false
 }

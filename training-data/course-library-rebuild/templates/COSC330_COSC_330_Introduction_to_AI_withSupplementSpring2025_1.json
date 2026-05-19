@@ -6,7 +6,7 @@
   "sourceHash": "15366f491050aab69320c2398db76dda1a29ca5d855d47ee2056d76fded9c7ad",
   "sourceType": "syllabus",
   "extractorVersion": "deterministic-ku-2026-05-19",
-  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "extractedAt": "2026-05-19T17:33:19.470Z",
   "courseCode": "COSC 330",
   "courseName": "Introduction to Artificial Intelligence",
   "department": "COSC",
@@ -31,8 +31,8 @@
       "maxScore": 100,
       "source": "Quiz-1 Week-3 7.5",
       "confidence": 0.92,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 2",
@@ -40,8 +40,8 @@
       "maxScore": 100,
       "source": "Quiz-1 Week-3 7.5",
       "confidence": 0.92,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 3",
@@ -49,8 +49,8 @@
       "maxScore": 100,
       "source": "Quiz-1 Week-3 7.5",
       "confidence": 0.92,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 4",
@@ -58,8 +58,8 @@
       "maxScore": 100,
       "source": "Quiz-1 Week-3 7.5",
       "confidence": 0.92,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Labs",
@@ -101,7 +101,7 @@
   "totalWeight": 100,
   "confidence": 0.9,
   "warnings": [
-    "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
   "reasons": [],

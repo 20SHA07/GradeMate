@@ -1,17 +1,17 @@
 {
-  "generatedAt": "2026-05-19T12:03:04.042Z",
-  "currentSource": "none (Missing Supabase environment variable(s): SUPABASE_SERVICE_ROLE_KEY)",
+  "generatedAt": "2026-05-19T17:37:55.725Z",
+  "currentSource": "backup 2026-05-19T17-21-13-420Z",
   "summary": {
     "importableTemplates": 74,
-    "inserts": 74,
-    "updates": 0,
-    "assessmentChanges": 74,
-    "skippedExistingTemplates": 0
+    "inserts": 10,
+    "updates": 64,
+    "assessmentChanges": 64,
+    "skippedExistingTemplates": 37
   },
   "actions": [
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "40590d0b-88a0-4882-bbc2-bc03c06fb303",
       "key": "BMED 221 | Anatomy and Physiological Modeling for Engineers | Spring 2024",
       "sourceFileName": "BMED221_BMED_221_Syllabus_Supplement_Spring_2024.pdf",
       "courseCode": "BMED 221",
@@ -20,8 +20,15 @@
       "totalWeight": 100,
       "assessmentCount": 6,
       "confidence": 0.91,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "40590d0b-88a0-4882-bbc2-bc03c06fb303",
+        "courseCode": "BMED 221",
+        "courseName": "Anatomy and Physiological Modeling for Engineers",
+        "semester": "Spring 2024",
+        "totalWeight": 100,
+        "assessmentCount": 6
+      },
       "payload": {
         "template": {
           "course_code": "BMED 221",
@@ -51,7 +58,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.039Z"
+          "updated_at": "2026-05-19T17:37:55.721Z"
         },
         "assessments": [
           {
@@ -124,8 +131,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "30e3d35b-c947-4a2d-8234-65e31fc2ed5e",
       "key": "BMED 321 | Mechanics for Biomedical Engineers | Fall 2024",
       "sourceFileName": "BMED321_Fall_2024_-_BMED321_Syllabus_Supplement_for_Students.pdf",
       "courseCode": "BMED 321",
@@ -134,8 +141,15 @@
       "totalWeight": 100,
       "assessmentCount": 3,
       "confidence": 0.9,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "30e3d35b-c947-4a2d-8234-65e31fc2ed5e",
+        "courseCode": "BMED 321",
+        "courseName": "Mechanics for Biomedical Engineers",
+        "semester": "Fall 2024",
+        "totalWeight": 100,
+        "assessmentCount": 3
+      },
       "payload": {
         "template": {
           "course_code": "BMED 321",
@@ -165,7 +179,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.040Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -208,8 +222,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "12596aa2-9937-4923-b406-5099e2fce5de",
       "key": "BMED 342 | Molecular Genetics, Technologies and Tools | Spring 2025",
       "sourceFileName": "BMED342_BMED_342_Supplementary_Course_Form_2025.pdf",
       "courseCode": "BMED 342",
@@ -218,8 +232,15 @@
       "totalWeight": 100,
       "assessmentCount": 8,
       "confidence": 0.9,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "12596aa2-9937-4923-b406-5099e2fce5de",
+        "courseCode": "BMED 342",
+        "courseName": "Molecular Genetics, Technologies and Tools",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "course_code": "BMED 342",
@@ -249,7 +270,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.040Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -342,8 +363,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "844b1cdc-c57e-44d6-9dfb-c2016869e7ad",
       "key": "BMED 351 | Biomedical Circuits and Signals | Fall 2024",
       "sourceFileName": "BMED351_Syllabus_Supplement_BMED_351_Fall2024.pdf",
       "courseCode": "BMED 351",
@@ -352,8 +373,15 @@
       "totalWeight": 100,
       "assessmentCount": 8,
       "confidence": 0.9,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "844b1cdc-c57e-44d6-9dfb-c2016869e7ad",
+        "courseCode": "BMED 351",
+        "courseName": "Biomedical Circuits and Signals",
+        "semester": "Fall 2024",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "course_code": "BMED 351",
@@ -383,7 +411,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.040Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -476,8 +504,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "2dda3647-0537-414e-ae42-a30b6a7297f3",
       "key": "BMED 351 | Biomedical Circuits and Systems | ",
       "sourceFileName": "BMED351_BMED_351_Biomed_Circuits_and_Systems_-_Syllabus.pdf",
       "courseCode": "BMED 351",
@@ -486,8 +514,15 @@
       "totalWeight": 100,
       "assessmentCount": 4,
       "confidence": 0.89,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "2dda3647-0537-414e-ae42-a30b6a7297f3",
+        "courseCode": "BMED 351",
+        "courseName": "Biomedical Circuits and Systems",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BMED 351",
@@ -520,7 +555,7 @@
             "International edition, 2016, ISBN: 9781259251320"
           ],
           "course_description": "The primary objective of this course is to study analogue, digital electronic circuits and their application\nto biomedical instrumentation and physiological measurements. The course will focus strongly on\nelectronic hardware and software design issues required to produce medical instruments, which satisfy\nInternational standards for safety, performance and quality control. Students will be equipped with the\nfundamental knowledge required to design Biosignal processing system.",
-          "updated_at": "2026-05-19T12:03:04.040Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -573,8 +608,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "21de3138-a91c-4b85-8ddd-77be68d95fd0",
       "key": "BMED 352 | Fundamental of Biomedical Signal Processing | Spring 2025",
       "sourceFileName": "BMED352_Syllabus_Supplement_-_Spring_2025.pdf",
       "courseCode": "BMED 352",
@@ -583,8 +618,15 @@
       "totalWeight": 100,
       "assessmentCount": 8,
       "confidence": 0.9,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "21de3138-a91c-4b85-8ddd-77be68d95fd0",
+        "courseCode": "BMED 352",
+        "courseName": "Fundamental of Biomedical Signal Processing",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 8
+      },
       "payload": {
         "template": {
           "course_code": "BMED 352",
@@ -614,7 +656,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -707,8 +749,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a1f12755-6e04-4487-bd42-a989713e0ae9",
       "key": "BMED 352 | Fundamentals of Biomedical Signal Processing | ",
       "sourceFileName": "BMED352_Course_Syllabus.pdf",
       "courseCode": "BMED 352",
@@ -717,8 +759,15 @@
       "totalWeight": 100,
       "assessmentCount": 4,
       "confidence": 0.89,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "a1f12755-6e04-4487-bd42-a989713e0ae9",
+        "courseCode": "BMED 352",
+        "courseName": "Fundamentals of Biomedical Signal Processing",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BMED 352",
@@ -751,7 +800,7 @@
             "Hall, ISBN: 9781292025728, Pearson New International Edition, 2013."
           ],
           "course_description": "The primary objective of this course is to study analogue and digital signal processing techniques\nand microcomputer system, and their application to biomedical instrumentation and physiological\nmeasurements. This course is designed for students who are expected to have prior knowledge in\ncircuits and physiological system modelling. The main focus is on the technical aspects of\nbiosignal processing and its hardware implementation in medical instruments.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.722Z"
         },
         "assessments": [
           {
@@ -804,8 +853,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "40261ce2-698c-4479-a904-b4a22b4472c7",
       "key": "BUSS 150 | Introduction to Economics | Spring 2024",
       "sourceFileName": "BUSS150_BUSS150_Syllabus_Introduction_to_Economics_Spring_2024.docx",
       "courseCode": "BUSS 150",
@@ -815,7 +864,14 @@
       "assessmentCount": 4,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "40261ce2-698c-4479-a904-b4a22b4472c7",
+        "courseCode": "BUSS 150",
+        "courseName": "Introduction to Economics",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BUSS 150",
@@ -846,7 +902,7 @@
             "Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552"
           ],
           "course_description": "This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -899,8 +955,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "40261ce2-698c-4479-a904-b4a22b4472c7",
       "key": "BUSS 150 | Introduction to Economics | Spring 2025",
       "sourceFileName": "BUSS150_Syllabus_Supplement_for_Students_BUSS_150_Spring2025_1.docx",
       "courseCode": "BUSS 150",
@@ -909,8 +965,15 @@
       "totalWeight": 100,
       "assessmentCount": 4,
       "confidence": 0.86,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "40261ce2-698c-4479-a904-b4a22b4472c7",
+        "courseCode": "BUSS 150",
+        "courseName": "Introduction to Economics",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BUSS 150",
@@ -941,7 +1004,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -994,8 +1057,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "20ea9e33-4ce2-4039-90fb-be6758a71008",
       "key": "BUSS 322 | Fundamentals of Innovation & Entrepreneurship | Spring 2025",
       "sourceFileName": "BUSS322_BUSS322_Syllabus_Bowman_Spring_2025.pdf",
       "courseCode": "BUSS 322",
@@ -1004,8 +1067,15 @@
       "totalWeight": 100,
       "assessmentCount": 4,
       "confidence": 0.95,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
+        "courseCode": "BUSS 322",
+        "courseName": "Fundamentals of Innovation & Entrepreneurship",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BUSS 322",
@@ -1035,7 +1105,7 @@
             "2015, International Student Edition, ISBN: 9781259875991"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1088,8 +1158,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "20ea9e33-4ce2-4039-90fb-be6758a71008",
       "key": "BUSS 322 | Fundamentals of Innovation & Entrepreneurship | Summer 2025",
       "sourceFileName": "BUSS322_Summer_2025_Syllabus_BUSS_322_Fundamentals_of_Innovation.pdf",
       "courseCode": "BUSS 322",
@@ -1098,8 +1168,15 @@
       "totalWeight": 100,
       "assessmentCount": 4,
       "confidence": 0.92,
-      "assessmentChange": true,
-      "existing": null,
+      "assessmentChange": false,
+      "existing": {
+        "id": "20ea9e33-4ce2-4039-90fb-be6758a71008",
+        "courseCode": "BUSS 322",
+        "courseName": "Fundamentals of Innovation & Entrepreneurship",
+        "semester": "Spring 2025",
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "BUSS 322",
@@ -1131,7 +1208,7 @@
             "978-1352012491"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1184,8 +1261,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
       "key": "CCEN 210 | Digital Logic Design | Spring 2026",
       "sourceFileName": "Proposed Spring2026_CCEN 210 Digital Logic Design.pdf",
       "courseCode": "CCEN 210",
@@ -1195,7 +1272,14 @@
       "assessmentCount": 4,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "fdd08040-c9a5-4ac8-acad-2897cf6eb72f",
+        "courseCode": "CCEN 210",
+        "courseName": "Digital Logic Design",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CCEN 210",
@@ -1228,7 +1312,7 @@
             "McGraw-Hill, 2025, ISBN: 978-1-265-12041-2."
           ],
           "course_description": "This course covers the principles of digital logic design, including data representation in digital systems, Boolean\nalgebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided\ndesign (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic\ncircuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments\nprovide hands-on experience with simulating, implementing, and testing digital circuits.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1281,8 +1365,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "3379a222-e574-4912-aa2e-7a01e605b5c0",
       "key": "CHEG 205 | Principles of Chemical Engineering | Fall 2023",
       "sourceFileName": "CHEG205_CHEG_205_-_Syllabus.pdf",
       "courseCode": "CHEG 205",
@@ -1292,7 +1376,14 @@
       "assessmentCount": 15,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "3379a222-e574-4912-aa2e-7a01e605b5c0",
+        "courseCode": "CHEG 205",
+        "courseName": "Principles of Chemical Engineering",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 205",
@@ -1322,7 +1413,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1485,8 +1576,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
       "key": "CHEG 230 | Chemical Engineering Thermodynamics I | Spring 2024",
       "sourceFileName": "CHEG230_Thermodynamics_Syllabus.pdf",
       "courseCode": "CHEG 230",
@@ -1496,7 +1587,14 @@
       "assessmentCount": 3,
       "confidence": 0.93,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
+        "courseCode": "CHEG 230",
+        "courseName": "Chemical Engineering Thermodynamics I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 230",
@@ -1526,7 +1624,7 @@
             "Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6."
           ],
           "course_description": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1569,8 +1667,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
       "key": "CHEG 230 | Chemical Engineering Thermodynamics I | Spring 2026",
       "sourceFileName": "S26_CHEG230_Syllabus Supplement for Students.pdf",
       "courseCode": "CHEG 230",
@@ -1580,7 +1678,14 @@
       "assessmentCount": 6,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "bc767a7b-12d4-4b1c-89d8-683eeeedbf46",
+        "courseCode": "CHEG 230",
+        "courseName": "Chemical Engineering Thermodynamics I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 230",
@@ -1610,7 +1715,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1733,7 +1838,7 @@
             "Week 6 Examples on Bernoulli’s Equation"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1836,8 +1941,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "598057f6-a625-40d8-a226-4a07edaad45d",
       "key": "CHEG 232 | Fluid Mechanics | Spring 2025",
       "sourceFileName": "v(4) Syllabus Supplement-CHEG232-Spring 2025.pdf",
       "courseCode": "CHEG 232",
@@ -1847,7 +1952,14 @@
       "assessmentCount": 9,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "598057f6-a625-40d8-a226-4a07edaad45d",
+        "courseCode": "CHEG 232",
+        "courseName": "Fluid Mechanics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 232",
@@ -1877,7 +1989,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -1980,8 +2092,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "96939388-563b-4eb4-a266-b27aa59d4201",
       "key": "CHEG 312 | Numerical Methods for Chemical Engineers | Spring 2025",
       "sourceFileName": "CHEG312_Numerical_Syllabus.pdf",
       "courseCode": "CHEG 312",
@@ -1991,7 +2103,14 @@
       "assessmentCount": 6,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "96939388-563b-4eb4-a266-b27aa59d4201",
+        "courseCode": "CHEG 312",
+        "courseName": "Numerical Methods for Chemical Engineers",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 312",
@@ -2021,7 +2140,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2094,8 +2213,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "96939388-563b-4eb4-a266-b27aa59d4201",
       "key": "CHEG 312 | Numerical Methods for Chemical Engineers | Spring 2026",
       "sourceFileName": "CHEG312-Syllabus Supplement for Students-Spring 2026 2.pdf",
       "courseCode": "CHEG 312",
@@ -2105,7 +2224,14 @@
       "assessmentCount": 11,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "96939388-563b-4eb4-a266-b27aa59d4201",
+        "courseCode": "CHEG 312",
+        "courseName": "Numerical Methods for Chemical Engineers",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 312",
@@ -2135,7 +2261,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2258,8 +2384,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
       "key": "CHEG 332 | Chemical Engineering Thermodynamics II | Spring 2025",
       "sourceFileName": "CHEG332_Thermo_II_Syllabus.pdf",
       "courseCode": "CHEG 332",
@@ -2269,7 +2395,14 @@
       "assessmentCount": 5,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "84b35e26-edfe-4806-9f70-d2f77ce6e08d",
+        "courseCode": "CHEG 332",
+        "courseName": "Chemical Engineering Thermodynamics II",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 332",
@@ -2299,7 +2432,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": ", report, and calculations will be given with the assignment.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2362,8 +2495,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b136416c-2388-40df-97ff-3de157f5ce13",
       "key": "CHEG 350 | Materials Science & Engineering | Spring 2024",
       "sourceFileName": "CHEG350_Material_Science_Syllabus.pdf",
       "courseCode": "CHEG 350",
@@ -2373,7 +2506,14 @@
       "assessmentCount": 7,
       "confidence": 0.84,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "b136416c-2388-40df-97ff-3de157f5ce13",
+        "courseCode": "CHEG 350",
+        "courseName": "Materials Science & Engineering",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEG 350",
@@ -2403,7 +2543,7 @@
             "9 Intl Edition, 2014, ISBN-13: 9781118319222"
           ],
           "course_description": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2530,7 +2670,7 @@
             "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
           ],
           "course_description": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2583,8 +2723,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "1efd995b-da6e-4987-b079-6626205e22ef",
       "key": "CHEM 115 | General Chemistry I | Spring 2023",
       "sourceFileName": "CHEM115_CHEM115-Syllabus_Spring_2023_S03.pdf",
       "courseCode": "CHEM 115",
@@ -2594,7 +2734,14 @@
       "assessmentCount": 5,
       "confidence": 0.84,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "1efd995b-da6e-4987-b079-6626205e22ef",
+        "courseCode": "CHEM 115",
+        "courseName": "General Chemistry I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "CHEM 115",
@@ -2624,7 +2771,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2687,8 +2834,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "68083853-6e62-4918-b985-aa5464e94d11",
       "key": "CHEM 116 | General Chemistry II | Spring 2025",
       "sourceFileName": "CHEM116_Syllabus_Supplement_-_CHEM_116_spring_2025_2.docx",
       "courseCode": "CHEM 116",
@@ -2698,7 +2845,14 @@
       "assessmentCount": 4,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "68083853-6e62-4918-b985-aa5464e94d11",
+        "courseCode": "CHEM 116",
+        "courseName": "General Chemistry II",
+        "semester": null,
+        "totalWeight": 65,
+        "assessmentCount": 3
+      },
       "payload": {
         "template": {
           "course_code": "CHEM 116",
@@ -2729,7 +2883,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2782,8 +2936,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
       "key": "CHEM 211 | Fundamentals of Organic Chemistry | Spring 2024",
       "sourceFileName": "CHEM211_CHEM_211_Spring_2024-Syllabus_Supplement.docx",
       "courseCode": "CHEM 211",
@@ -2793,7 +2947,14 @@
       "assessmentCount": 4,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
+        "courseCode": "CHEM 211",
+        "courseName": "Fundamentals of Organic Chemistry",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "CHEM 211",
@@ -2824,7 +2985,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2877,8 +3038,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
       "key": "CHEM 211 | Fundamentals of Organic Chemistry | Spring 2025",
       "sourceFileName": "CHEM211_CHEM_211_Spring_2025-Syllabus_Supplement.docx",
       "courseCode": "CHEM 211",
@@ -2888,7 +3049,14 @@
       "assessmentCount": 4,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "6179d8f5-6f80-4c81-9950-d2ecece526aa",
+        "courseCode": "CHEM 211",
+        "courseName": "Fundamentals of Organic Chemistry",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "CHEM 211",
@@ -2919,7 +3087,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -2972,8 +3140,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "497d5678-164d-4309-b999-51571aeba9f3",
       "key": "COSC 101 | Foundations of Computer Science | Fall 2025",
       "sourceFileName": "COSC101_COSC101_Syllabus_and_Syllabus_Supplement.docx",
       "courseCode": "COSC 101",
@@ -2983,7 +3151,14 @@
       "assessmentCount": 8,
       "confidence": 0.95,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "497d5678-164d-4309-b999-51571aeba9f3",
+        "courseCode": "COSC 101",
+        "courseName": "Foundations of Computer Science",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 5
+      },
       "payload": {
         "template": {
           "course_code": "COSC 101",
@@ -3015,7 +3190,7 @@
             "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
           ],
           "course_description": "Extracted from the Course Catalog Description section",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3149,7 +3324,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3202,8 +3377,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
       "key": "COSC 201 | Computer Systems Organization | ",
       "sourceFileName": "COSC 201 Computer Systems Organization.pdf",
       "courseCode": "COSC 201",
@@ -3213,7 +3388,14 @@
       "assessmentCount": 5,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
+        "courseCode": "COSC 201",
+        "courseName": "Computer Systems Organization",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 201",
@@ -3246,7 +3428,7 @@
             "Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course provides a basic understanding of the fundamental logical organization of a\ncomputer (its parts and their relationship) and how it actually works; exposure to a central\nprocessor's native language, and to basic computer components and basic architectures for high\nperformance design. Topics include: Von Neumann architecture, C programming (low-level\naspects), data representation, computer arithmetic, assembly language programming, digital\nlogic design, registers, instruction counter, processor architecture, pipelining, memory\nhierarchies, caching, virtual memory, interrupts, input and output, buses.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3309,8 +3491,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
       "key": "COSC 201 | Computer Systems Organization | Spring 2025",
       "sourceFileName": "COSC201_COSC_201_Syllabus_Supplement_Spring_2025_-_Dr._Azzam_Mourad.pdf",
       "courseCode": "COSC 201",
@@ -3320,7 +3502,14 @@
       "assessmentCount": 5,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "a02389f0-bdfb-43bd-9296-04e192c4ccf2",
+        "courseCode": "COSC 201",
+        "courseName": "Computer Systems Organization",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 201",
@@ -3350,7 +3539,7 @@
             "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3413,8 +3602,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
       "key": "COSC 202 | Data Science and Artificial Intelligence | Spring 2026",
       "sourceFileName": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
       "courseCode": "COSC 202",
@@ -3422,9 +3611,16 @@
       "semester": "Spring 2026",
       "totalWeight": 100,
       "assessmentCount": 8,
-      "confidence": 0.92,
+      "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "ef1d36a8-25b7-4d6e-9c4f-4b4f2aa98fe4",
+        "courseCode": "COSC 202",
+        "courseName": "Data Science and Artificial Intelligence",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 4
+      },
       "payload": {
         "template": {
           "course_code": "COSC 202",
@@ -3438,7 +3634,7 @@
           "source_folder_path": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
           "source_syllabus_file_name": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
           "source_syllabus_path": "COSC202_Data_Science_^0_AI_Syllabus.pdf",
-          "extraction_confidence": 0.92,
+          "extraction_confidence": 0.91,
           "source_hash": "1a189111b5b895d0450998f6543e5c4dde769aa6d12a15c1b179d12e9b20292d",
           "extractor_version": "deterministic-ku-2026-05-19",
           "extraction_warnings": [
@@ -3457,48 +3653,48 @@
             "Géron. Publisher: O’reilly, 3 Edition, 2022. ISBN-13: 9781098125974."
           ],
           "course_description": "The course provides a comprehensive introduction to data science and Artificial Intelligence\n(AI), emphasizing practical applications and hands-on implementation. Students are introduced\nto fundamental concepts spanning the data science and AI pipeline, from data preprocessing to\nmachine learning techniques. Students gain hands-on experience with real-world datasets and\nlearn to develop, evaluate, and select machine learning models. The course includes critical\ndiscussions on ethical and privacy considerations and information security measures, including\ndata security, privacy, opacity, bias, and machine ethics.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
             "name": "Quiz 1",
             "weight_percentage": 3.75,
             "max_score": 100,
-            "confidence": 0.93,
-            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "inferred": false,
-            "warning": null
+            "confidence": 0.92,
+            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "inferred": true,
+            "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 2",
             "weight_percentage": 3.75,
             "max_score": 100,
-            "confidence": 0.93,
-            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "inferred": false,
-            "warning": null
+            "confidence": 0.92,
+            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "inferred": true,
+            "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 3",
             "weight_percentage": 3.75,
             "max_score": 100,
-            "confidence": 0.93,
-            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "inferred": false,
-            "warning": null
+            "confidence": 0.92,
+            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "inferred": true,
+            "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 4",
             "weight_percentage": 3.75,
             "max_score": 100,
-            "confidence": 0.93,
-            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-            "inferred": false,
-            "warning": null
+            "confidence": 0.92,
+            "source_text_snippet": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+            "inferred": true,
+            "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Project (demo)",
@@ -3550,8 +3746,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "9752128d-1522-4742-95ad-63ac7ef566af",
       "key": "COSC 301 | Automata, Computability, and Complexity | Fall 2025",
       "sourceFileName": "COSC 301 Automata, Computability, and Complexity_Fall2025.pdf",
       "courseCode": "COSC 301",
@@ -3561,7 +3757,14 @@
       "assessmentCount": 7,
       "confidence": 0.93,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "9752128d-1522-4742-95ad-63ac7ef566af",
+        "courseCode": "COSC 301",
+        "courseName": "Automata, Computability, and Complexity",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 301",
@@ -3591,7 +3794,7 @@
             "Learning, 3rd Edition, 2012, ISBN: 978-1133187790."
           ],
           "course_description": "This course is about fundamental ideas in the theory of computation, including formal\nlanguages, computability and complexity. In this course, students gain proficiency in the\nconcepts of automata, formal languages, grammar, algorithms, computability, decidability, and\ncomplexity.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3674,8 +3877,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "9752128d-1522-4742-95ad-63ac7ef566af",
       "key": "COSC 301 | Automata, Computability, and Complexity | Fall 2022",
       "sourceFileName": "COSC301_COSC301_-_Syllabus_Supplement_for_Students_Fall_2022.pdf",
       "courseCode": "COSC 301",
@@ -3685,7 +3888,14 @@
       "assessmentCount": 9,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "9752128d-1522-4742-95ad-63ac7ef566af",
+        "courseCode": "COSC 301",
+        "courseName": "Automata, Computability, and Complexity",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 301",
@@ -3715,7 +3925,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3818,8 +4028,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
       "key": "COSC 310 | Data Structures | ",
       "sourceFileName": "COSC 310 Data Structures June 2020.pdf",
       "courseCode": "COSC 310",
@@ -3829,7 +4039,14 @@
       "assessmentCount": 4,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
+        "courseCode": "COSC 310",
+        "courseName": "Data Structures",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 310",
@@ -3862,7 +4079,7 @@
             "Algorithms in Java, Wiley, 6th Edition, 2014, ISBN: 978-1118771334."
           ],
           "course_description": "Review of object-oriented design. Analysis of algorithm complexity. Fundamental data\nstructures: Concept of Abstract Data Types (ADTs), Queues, Stacks, Lists, Trees; Java\nCollections Framework. Fundamental computing algorithms: binary search trees, hash tables,\nheaps, balanced trees, sorting algorithms, searching algorithms.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -3915,8 +4132,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
       "key": "COSC 310 | Data Structures | Fall 2025",
       "sourceFileName": "COSC310 - Syllabus Supplement for Students FALL 2025.pdf",
       "courseCode": "COSC 310",
@@ -3926,7 +4143,14 @@
       "assessmentCount": 9,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
+        "courseCode": "COSC 310",
+        "courseName": "Data Structures",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 310",
@@ -3956,7 +4180,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.723Z"
         },
         "assessments": [
           {
@@ -4059,8 +4283,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
       "key": "COSC 310 | Data Structures | Fall 2024",
       "sourceFileName": "COSC310_COSC310_-_Syllabus_Supplement_for_Students_FALL_2024_Majid_Khonji.pdf",
       "courseCode": "COSC 310",
@@ -4070,7 +4294,14 @@
       "assessmentCount": 8,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "35b7c27b-0549-4f33-89e4-4b1c0256d964",
+        "courseCode": "COSC 310",
+        "courseName": "Data Structures",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 310",
@@ -4100,7 +4331,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4234,7 +4465,7 @@
             "to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305."
           ],
           "course_description": "This course covers the most important algorithm strategies and solution techniques,\nindependent of programming language or computer hardware. Topics include: Big-O notation;\nworst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,\nsearching, and selection; algorithm design techniques: divide-and-conquer, dynamic\nprogramming, greedy algorithms, randomization; algorithms for fundamental graph problems;\nstring algorithms; and numerical methods.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4287,8 +4518,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
       "key": "COSC 330 | Introduction to Artificial Intelligence | Fall 2025",
       "sourceFileName": "COSC 330 Introduction to AI_withSupplementFalll2025.docx",
       "courseCode": "COSC 330",
@@ -4298,7 +4529,14 @@
       "assessmentCount": 8,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
+        "courseCode": "COSC 330",
+        "courseName": "Introduction to Artificial Intelligence",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 330",
@@ -4316,7 +4554,7 @@
           "source_hash": "7fb75f0b01d78516f3ec947c6070e1dc06b8c3bc60a2cbe3200ef5ee969c8928",
           "extractor_version": "deterministic-ku-2026-05-19",
           "extraction_warnings": [
-            "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+            "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
             "Golden source is not a PDF; DOCX extraction was used"
           ],
           "template_status": "ready",
@@ -4331,7 +4569,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4341,8 +4579,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 2",
@@ -4351,8 +4589,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 3",
@@ -4361,8 +4599,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 4",
@@ -4371,8 +4609,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Labs",
@@ -4424,8 +4662,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
       "key": "COSC 330 | Introduction to Artificial Intelligence | Spring 2025",
       "sourceFileName": "COSC330_COSC_330_Introduction_to_AI_withSupplementSpring2025_1.docx",
       "courseCode": "COSC 330",
@@ -4435,7 +4673,14 @@
       "assessmentCount": 8,
       "confidence": 0.9,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "e7b1bd0c-e1e9-4dfe-8df5-1f491359b5a2",
+        "courseCode": "COSC 330",
+        "courseName": "Introduction to Artificial Intelligence",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 330",
@@ -4453,7 +4698,7 @@
           "source_hash": "15366f491050aab69320c2398db76dda1a29ca5d855d47ee2056d76fded9c7ad",
           "extractor_version": "deterministic-ku-2026-05-19",
           "extraction_warnings": [
-            "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+            "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
             "Golden source is not a PDF; DOCX extraction was used"
           ],
           "template_status": "ready",
@@ -4468,7 +4713,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4478,8 +4723,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 2",
@@ -4488,8 +4733,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 3",
@@ -4498,8 +4743,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Quiz 4",
@@ -4508,8 +4753,8 @@
             "confidence": 0.92,
             "source_text_snippet": "Quiz-1 Week-3 7.5",
             "source": "Quiz-1 Week-3 7.5",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
           },
           {
             "name": "Labs",
@@ -4561,8 +4806,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "db2ea26a-8112-4603-855e-d78914e006be",
       "key": "COSC 336 | Introduction to Software Engineering | Fall 2025",
       "sourceFileName": "Syllabus COSC 336 Introduction to Software Engineering - August 2025.pdf",
       "courseCode": "COSC 336",
@@ -4572,7 +4817,14 @@
       "assessmentCount": 5,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "db2ea26a-8112-4603-855e-d78914e006be",
+        "courseCode": "COSC 336",
+        "courseName": "Introduction to Software Engineering",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 336",
@@ -4602,7 +4854,7 @@
             "Edition, 2019. ISBN: 978-1259872976"
           ],
           "course_description": "The course introduces software engineering concepts and best practices. It discusses software\nprocesses and project management concepts. The course elaborates on software requirements,\nmodeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams\nand emerging software development methods.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4665,8 +4917,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
       "key": "COSC 354 | Operating Systems | Fall 2025",
       "sourceFileName": "UpdatedSpring20265AMourad_COSC_354_Syllabus With Supplement for Students.pdf",
       "courseCode": "COSC 354",
@@ -4676,7 +4928,14 @@
       "assessmentCount": 4,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "37b08ae4-505b-4c00-aad8-302ad0dda12e",
+        "courseCode": "COSC 354",
+        "courseName": "Operating Systems",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "COSC 354",
@@ -4709,7 +4968,7 @@
             "2. KU ECCE354 Laboratory Manual."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4806,7 +5065,7 @@
             "0136619940/dp/0136619940/ref=dp_ob_image_bk"
           ],
           "course_description": "This course provides students with the fundamentals of video game development and extended reality\n(XR) technologies, focusing on building interactive 2D and 3D games and XR applications. The\ncourse covers the game development process from concept to prototype.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4859,8 +5118,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
       "key": "ENGL 101 | Academic English I | Spring 2022",
       "sourceFileName": "ENGL101_ENGL101_Academic_English_I_-_Fall_2021_Syllabus.pdf",
       "courseCode": "ENGL 101",
@@ -4870,7 +5129,14 @@
       "assessmentCount": 5,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "0759360b-356c-4e4e-9f42-867a3cfe2d6a",
+        "courseCode": "ENGL 101",
+        "courseName": "Academic English I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "ENGL 101",
@@ -4900,7 +5166,7 @@
             "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
           ],
           "course_description": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -4963,8 +5229,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b353497b-8a3a-4922-890a-2bb766e4deb4",
       "key": "ENGL 102 | Academic English II | Spring 2026",
       "sourceFileName": "Eng 102 - Syllabus Spring 2026 (JJP).docx",
       "courseCode": "ENGL 102",
@@ -4974,7 +5240,14 @@
       "assessmentCount": 5,
       "confidence": 0.93,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
+        "courseCode": "ENGL 102",
+        "courseName": "Academic English II",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "ENGL 102",
@@ -5006,7 +5279,7 @@
             "Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5069,8 +5342,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b353497b-8a3a-4922-890a-2bb766e4deb4",
       "key": "ENGL 102 | Academic English II | Fall 2022",
       "sourceFileName": "ENGL102_Syllabus.pdf",
       "courseCode": "ENGL 102",
@@ -5080,7 +5353,14 @@
       "assessmentCount": 4,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "b353497b-8a3a-4922-890a-2bb766e4deb4",
+        "courseCode": "ENGL 102",
+        "courseName": "Academic English II",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "ENGL 102",
@@ -5110,7 +5390,7 @@
             "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5204,7 +5484,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "Introduction to computer systems: computer hardware components, operating system, compiling,\ndebugging, libraries, linking. Programming based problem solving that includes program development\nlifecycle. Imperative programming: data types, conditional expressions and statements, repetitive\nstructures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),\nfile I/O.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5298,7 +5578,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5399,7 +5679,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5493,7 +5773,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5546,8 +5826,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "80d4db25-a05d-44c4-aad8-9b89400aab96",
       "key": "GENS 101 | Grand Challenges | Fall 2022",
       "sourceFileName": "GENS101_Grand_Challenges_syllabus.pdf",
       "courseCode": "GENS 101",
@@ -5557,7 +5837,14 @@
       "assessmentCount": 5,
       "confidence": 0.86,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "80d4db25-a05d-44c4-aad8-9b89400aab96",
+        "courseCode": "GENS 101",
+        "courseName": "Grand Challenges",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "GENS 101",
@@ -5586,7 +5873,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5649,8 +5936,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "05e905d1-37a6-4201-8aba-cd4efbfab703",
       "key": "GENS 300 | Career Preparation | ",
       "sourceFileName": "GENS 300 Revised Syllabus Jan 2025.pdf",
       "courseCode": "GENS 300",
@@ -5660,7 +5947,14 @@
       "assessmentCount": 9,
       "confidence": 0.87,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "05e905d1-37a6-4201-8aba-cd4efbfab703",
+        "courseCode": "GENS 300",
+        "courseName": "Career Preparation",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "GENS 300",
@@ -5696,7 +5990,7 @@
             "Studio sessions are 1 x 100 minutes per week. Sessions involve interactive activities in a blended learning"
           ],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and labor market\nspecialist. This activity-based course is focused on field exploration, CV and digital profile development, and\nprofessional communication. Course delivery is a blend of in-person and asynchronous online learning experiences.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5799,8 +6093,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "05e905d1-37a6-4201-8aba-cd4efbfab703",
       "key": "GENS 300 | Career Preparation | Fall 2024",
       "sourceFileName": "GENS300_GENS_300_Syllabus.pdf",
       "courseCode": "GENS 300",
@@ -5810,7 +6104,14 @@
       "assessmentCount": 5,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "05e905d1-37a6-4201-8aba-cd4efbfab703",
+        "courseCode": "GENS 300",
+        "courseName": "Career Preparation",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "GENS 300",
@@ -5839,7 +6140,7 @@
           "prerequisites": "GENS 100, Sophomore Standing",
           "textbooks": [],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -5949,7 +6250,7 @@
             "The course will be delivered through the following methodologies: lectures, class"
           ],
           "course_description": "The course acquaints students with the geographical, cultural, demographical, economic and\nsocial aspects of UAE society. It highlights the evolution of the country from a traditional to a\nmodern society. Topics such as UAE political system, family, population, migration, youth, and\nthe development of civil society are addressed.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6022,8 +6323,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "e3b94235-4b0a-4a46-ae51-e10100b36b84",
       "key": "HUMA 140 | Introduction to Psychology | Summer 2025",
       "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
       "courseCode": "HUMA 140",
@@ -6033,7 +6334,14 @@
       "assessmentCount": 6,
       "confidence": 0.92,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "e3b94235-4b0a-4a46-ae51-e10100b36b84",
+        "courseCode": "HUMA 140",
+        "courseName": "Introduction to Psychology",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "HUMA 140",
@@ -6065,7 +6373,7 @@
             "Edition, 2019, ISBN: 9781319133726"
           ],
           "course_description": "This course examines historical and current topics related to the mind and behavior with research methods\nand the scientific method as a foundation. Areas covered in this course include biology, development,\nmemory, learning, social psychology, personality, psychological disorders, health psychology, and\npositive psychology.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6138,8 +6446,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "69fc89d5-4dff-4b23-afd8-a3cab32e7e42",
       "key": "HUMA 221 | Intercultural Communication | ",
       "sourceFileName": "HUMA 221 Intercultural Communication final 2025 (2).pdf",
       "courseCode": "HUMA 221",
@@ -6149,7 +6457,14 @@
       "assessmentCount": 4,
       "confidence": 0.83,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "69fc89d5-4dff-4b23-afd8-a3cab32e7e42",
+        "courseCode": "HUMA 221",
+        "courseName": "Intercultural Communication",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "HUMA 221",
@@ -6181,7 +6496,7 @@
             "An introduction to intercultural communication: Identities in a global community. F. Jandt, (2025). 8th edition. SAGE Publications, ISBN: 9781071887110"
           ],
           "course_description": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6234,8 +6549,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "5403ecf4-0bcc-42f1-a719-488f625f2efb",
       "key": "HUMA 229 | Critical Thinking | Fall 2025",
       "sourceFileName": "HUMA229_HUMA_229_Critical_Thinking_Course_Syllabus_Fall_2025.docx",
       "courseCode": "HUMA 229",
@@ -6245,7 +6560,14 @@
       "assessmentCount": 6,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "5403ecf4-0bcc-42f1-a719-488f625f2efb",
+        "courseCode": "HUMA 229",
+        "courseName": "Critical Thinking",
+        "semester": null,
+        "totalWeight": 50,
+        "assessmentCount": 3
+      },
       "payload": {
         "template": {
           "course_code": "HUMA 229",
@@ -6276,7 +6598,7 @@
             "R. Paul and L. Elder, Critical Thinking: Tools for Taking Charge of Your Professional and Personal Life. Upper Saddle River, NJ: Financial Times Prentice Hall, 2002. ISBN: 0-13-064760-8."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6349,8 +6671,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "b1ff108f-7720-4599-9de3-8aa2bdacac5c",
       "key": "HUMA 277 | Introduction to Logical Reasoning | Summer 2023",
       "sourceFileName": "HUMA277_HUMA_277_Intro_to_Logical_Summer_25.docx",
       "courseCode": "HUMA 277",
@@ -6360,7 +6682,14 @@
       "assessmentCount": 4,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "b1ff108f-7720-4599-9de3-8aa2bdacac5c",
+        "courseCode": "HUMA 277",
+        "courseName": "Introduction to Logical Reasoning",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "HUMA 277",
@@ -6392,7 +6721,7 @@
             "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
           ],
           "course_description": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6445,8 +6774,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "e3f89b8a-6cb8-4f29-9e2d-79f68af21612",
       "key": "MATH 101 | Fundamentals of Mathematical Reasoning | Fall 2024",
       "sourceFileName": "MATH101_MATH_101_Syllabus_-_Fall_2024_-_Dr._Ahmed.pdf",
       "courseCode": "MATH 101",
@@ -6456,7 +6785,14 @@
       "assessmentCount": 5,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "e3f89b8a-6cb8-4f29-9e2d-79f68af21612",
+        "courseCode": "MATH 101",
+        "courseName": "Fundamentals of Mathematical Reasoning",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 101",
@@ -6486,7 +6822,7 @@
             "Institute of Mathematics, Version 2.1, 2021"
           ],
           "course_description": "This course provides a foundation in logical and mathematical reasoning. It develops first year university\nstudents’ structured logical thinking and mathematical rigor. The course introduces methods of proof,\nbasic concepts and properties of real numbers, relations and functions. The course also presents an\nintroduction to combinatorics, set theory and number theory.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6549,8 +6885,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "369b55e4-e1af-443a-8bac-20321f223dde",
       "key": "MATH 111 | CALCULUS I | Spring 2025",
       "sourceFileName": "MATH111_MATH_111_Syllabus_-_Spring_2025_-_Dr._Imad.pdf",
       "courseCode": "MATH 111",
@@ -6560,7 +6896,14 @@
       "assessmentCount": 9,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "369b55e4-e1af-443a-8bac-20321f223dde",
+        "courseCode": "MATH 111",
+        "courseName": "Calculus I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 111",
@@ -6594,7 +6937,7 @@
             "McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472."
           ],
           "course_description": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6697,8 +7040,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "0182ce3b-fe22-40d2-b745-c2d74ebb4981",
       "key": "MATH 112 | Calculus II | Spring 2025",
       "sourceFileName": "MATH112_MATH_112_Calculus_II_Syllabus_Spring_2025_AM.pdf",
       "courseCode": "MATH 112",
@@ -6708,7 +7051,14 @@
       "assessmentCount": 7,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "0182ce3b-fe22-40d2-b745-c2d74ebb4981",
+        "courseCode": "MATH 112",
+        "courseName": "Calculus II",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 112",
@@ -6740,7 +7090,7 @@
             "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
           ],
           "course_description": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6823,8 +7173,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "25476997-18b0-42aa-85fe-b29cb12478a7",
       "key": "MATH 204 | Linear Algebra | Fall 2024",
       "sourceFileName": "MATH204_MATH_204_Linear_Algebra_Syllabus_Fall_2024_August_23.pdf",
       "courseCode": "MATH 204",
@@ -6834,7 +7184,14 @@
       "assessmentCount": 3,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "25476997-18b0-42aa-85fe-b29cb12478a7",
+        "courseCode": "MATH 204",
+        "courseName": "Linear Algebra",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 204",
@@ -6866,7 +7223,7 @@
             "9781119268048."
           ],
           "course_description": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -6909,8 +7266,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "7ee7e58f-bf00-46ff-96e6-e27b2db5a551",
       "key": "MATH 211 | Differential Equations and Linear Algebra | Spring 2025",
       "sourceFileName": "MATH211_Math_211_Syllabus_Supplement_Spring_25-updated.pdf",
       "courseCode": "MATH 211",
@@ -6920,7 +7277,14 @@
       "assessmentCount": 8,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "7ee7e58f-bf00-46ff-96e6-e27b2db5a551",
+        "courseCode": "MATH 211",
+        "courseName": "Differential Equations and Linear Algebra",
+        "semester": null,
+        "totalWeight": 100,
+        "assessmentCount": 3
+      },
       "payload": {
         "template": {
           "course_code": "MATH 211",
@@ -6954,7 +7318,7 @@
             "Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181."
           ],
           "course_description": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -7047,8 +7411,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "44117c46-ee12-45ea-99ee-523822cd5a5c",
       "key": "MATH 224 | Real Analysis I | Spring 2025",
       "sourceFileName": "MATH224_MATH224_Syllabus_-_Spring_2025_-_Prof._Khamsi.pdf",
       "courseCode": "MATH 224",
@@ -7058,7 +7422,14 @@
       "assessmentCount": 3,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "44117c46-ee12-45ea-99ee-523822cd5a5c",
+        "courseCode": "MATH 224",
+        "courseName": "Real Analysis I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 224",
@@ -7088,7 +7459,7 @@
             "ISBN: 9780321892539."
           ],
           "course_description": "This course gives students a thorough understanding of essential concepts in analysis such as real numbers,\nlimits, continuity, and convergence of sequences and series. The course also covers a rigorous definition\nof derivative and construction of the Riemann integral and their properties including the Fundamental\nTheorem of Calculus. Students are required to read and write proofs using a precise knowledge of\ndefinitions and theorems.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -7131,8 +7502,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
       "key": "MATH 232 | Engineering Mathematics | Fall 2025",
       "sourceFileName": "MATH 232 - Engineering Mathematics - Syllabus(2).pdf",
       "courseCode": "MATH 232",
@@ -7142,7 +7513,14 @@
       "assessmentCount": 3,
       "confidence": 0.93,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
+        "courseCode": "MATH 232",
+        "courseName": "Engineering Mathematics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 232",
@@ -7174,7 +7552,7 @@
             "9780470458365."
           ],
           "course_description": "This course introduces students to selected topics from mathematical analysis with engineering\napplications. The first part is a calculus part which covers the definition of functions of several variables\nand their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient\nvectors, and multiple integrals for functions of several variables. The second part of the course deals\nwith Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier\ntransforms.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.724Z"
         },
         "assessments": [
           {
@@ -7217,8 +7595,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
       "key": "MATH 232 | Engineering Mathematics | Fall 2021",
       "sourceFileName": "MATH232_Syllabus_Supplement_e40ca893_2.pdf",
       "courseCode": "MATH 232",
@@ -7228,7 +7606,14 @@
       "assessmentCount": 3,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
+        "courseCode": "MATH 232",
+        "courseName": "Engineering Mathematics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 232",
@@ -7259,7 +7644,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7302,8 +7687,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
       "key": "MATH 232 | Engineering Mathematics | ",
       "sourceFileName": "MATH232_Syllabus232_M.pdf",
       "courseCode": "MATH 232",
@@ -7313,7 +7698,14 @@
       "assessmentCount": 3,
       "confidence": 0.83,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "ebb3c593-dd5e-477a-9deb-b89a77acd394",
+        "courseCode": "MATH 232",
+        "courseName": "Engineering Mathematics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 232",
@@ -7348,7 +7740,7 @@
             "9780470458365."
           ],
           "course_description": "This course covers selected topics from mathematical analysis with engineering applications, including\ncomplex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7391,8 +7783,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "3fbc4a6a-a5aa-4a6c-801c-656a584cefc3",
       "key": "MATH 234 | Discrete Mathematics | Summer 2024",
       "sourceFileName": "MATH234_MATH234_Syllabus_Summer_2024.pdf",
       "courseCode": "MATH 234",
@@ -7402,7 +7794,14 @@
       "assessmentCount": 3,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "3fbc4a6a-a5aa-4a6c-801c-656a584cefc3",
+        "courseCode": "MATH 234",
+        "courseName": "Discrete Mathematics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 234",
@@ -7434,7 +7833,7 @@
             "Edition, 2012. ISBN: 9780071315012."
           ],
           "course_description": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7477,8 +7876,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a70f6611-04f6-4593-9857-efc0d0d61b12",
       "key": "MATH 242 | Introduction to Probability and Statistics | Fall 2024",
       "sourceFileName": "MATH242_MATH_242_-_Syllabus_Supplement_Fall_2024.pdf",
       "courseCode": "MATH 242",
@@ -7488,7 +7887,14 @@
       "assessmentCount": 6,
       "confidence": 0.91,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "a70f6611-04f6-4593-9857-efc0d0d61b12",
+        "courseCode": "MATH 242",
+        "courseName": "Introduction to Probability and Statistics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 242",
@@ -7518,7 +7924,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7591,8 +7997,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "a70f6611-04f6-4593-9857-efc0d0d61b12",
       "key": "MATH 242 | Introduction to Probability and Statistics | Summer 2024",
       "sourceFileName": "MATH242_Summer_2024_Syllabus.pdf",
       "courseCode": "MATH 242",
@@ -7602,7 +8008,14 @@
       "assessmentCount": 3,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "a70f6611-04f6-4593-9857-efc0d0d61b12",
+        "courseCode": "MATH 242",
+        "courseName": "Introduction to Probability and Statistics",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 242",
@@ -7634,7 +8047,7 @@
             "Wiley, 7 Edition (online edition), 2018, ISBN: 978EEGRP45491."
           ],
           "course_description": "This course introduces students to basic probability models and statistical methods for data analysis.\nThe course will cover introductory probability theory, discrete and continuous probability\ndistributions, elements of descriptive statistics, and different statistical inference methods such as\nestimation for the mean and the variance, hypothesis testing for the mean and the variance.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7677,8 +8090,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "eb898e23-9787-484d-aed9-6386460aae57",
       "key": "MATH 244 | Probability | Spring 2025",
       "sourceFileName": "MATH244_MATH_244_Syllabus-_Spring_2025_-_Dr._Yerkin.pdf",
       "courseCode": "MATH 244",
@@ -7688,7 +8101,14 @@
       "assessmentCount": 3,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "eb898e23-9787-484d-aed9-6386460aae57",
+        "courseCode": "MATH 244",
+        "courseName": "Probability",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 244",
@@ -7720,7 +8140,7 @@
             "9780357753125"
           ],
           "course_description": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7763,8 +8183,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "c29763da-defc-4653-a162-636286c8edde",
       "key": "MATH 251 | Operations Research I | Spring 2023",
       "sourceFileName": "MATH251_MATH_251_Syllabus_-_Spring_2025_-_Dr._Pedro.pdf",
       "courseCode": "MATH 251",
@@ -7774,7 +8194,14 @@
       "assessmentCount": 8,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "c29763da-defc-4653-a162-636286c8edde",
+        "courseCode": "MATH 251",
+        "courseName": "Operations Research I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "MATH 251",
@@ -7806,7 +8233,7 @@
             "Hill, 11 edition, 2022, ISBN: 9781307810240."
           ],
           "course_description": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7899,8 +8326,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
       "key": "PHYS 121 | University Physics I | Spring 2026",
       "sourceFileName": "DOC-20260518-WA0022..pdf",
       "courseCode": "PHYS 121",
@@ -7910,7 +8337,14 @@
       "assessmentCount": 8,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
+        "courseCode": "PHYS 121",
+        "courseName": "University Physics I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "PHYS 121",
@@ -7941,7 +8375,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T12:03:04.041Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -7951,8 +8385,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
             "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 2",
@@ -7961,8 +8395,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
             "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 3",
@@ -7971,8 +8405,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
             "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 4",
@@ -7981,8 +8415,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
             "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Web assign",
@@ -8034,8 +8468,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
       "key": "PHYS 121 | University Physics I | Summer 2025",
       "sourceFileName": "PHYS121_Syllabus_-_Summer_2025.pdf",
       "courseCode": "PHYS 121",
@@ -8045,7 +8479,14 @@
       "assessmentCount": 8,
       "confidence": 0.94,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
+        "courseCode": "PHYS 121",
+        "courseName": "University Physics I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "PHYS 121",
@@ -8079,7 +8520,7 @@
             "10:1285070437)."
           ],
           "course_description": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
-          "updated_at": "2026-05-19T12:03:04.042Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -8172,8 +8613,8 @@
       }
     },
     {
-      "action": "insert",
-      "templateId": null,
+      "action": "update",
+      "templateId": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
       "key": "PHYS 121 | University Physics I | Fall 2026",
       "sourceFileName": "Syllabus-Fall 2026-02.docx",
       "courseCode": "PHYS 121",
@@ -8183,7 +8624,14 @@
       "assessmentCount": 8,
       "confidence": 0.89,
       "assessmentChange": true,
-      "existing": null,
+      "existing": {
+        "id": "78bff2a9-4d29-4fdb-b049-9d6eb146f46d",
+        "courseCode": "PHYS 121",
+        "courseName": "University Physics I",
+        "semester": null,
+        "totalWeight": 0,
+        "assessmentCount": 0
+      },
       "payload": {
         "template": {
           "course_code": "PHYS 121",
@@ -8215,7 +8663,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\n92.5%-100%\nExcellent\nA-\n3.70\n89.5% to < 92.5%\nVery Good",
-          "updated_at": "2026-05-19T12:03:04.042Z"
+          "updated_at": "2026-05-19T17:37:55.725Z"
         },
         "assessments": [
           {
@@ -8225,8 +8673,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 24% + 6% = 30%",
             "source": "Quiz + WAs = 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 2",
@@ -8235,8 +8683,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 24% + 6% = 30%",
             "source": "Quiz + WAs = 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 3",
@@ -8245,8 +8693,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 24% + 6% = 30%",
             "source": "Quiz + WAs = 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Quiz 4",
@@ -8255,8 +8703,8 @@
             "confidence": 0.94,
             "source_text_snippet": "Quiz + WAs = 24% + 6% = 30%",
             "source": "Quiz + WAs = 24% + 6% = 30%",
-            "inferred": false,
-            "warning": null
+            "inferred": true,
+            "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
           },
           {
             "name": "Web assign",
@@ -8308,5 +8756,228 @@
       }
     }
   ],
-  "skipped": []
+  "skipped": [
+    {
+      "id": "b24c4761-6eee-45dc-bf56-2d4da30339f1",
+      "courseCode": "AERO 200",
+      "courseName": "Statics",
+      "semester": null
+    },
+    {
+      "id": "6005caeb-fa5b-49fe-a7b5-a216adcdcfeb",
+      "courseCode": "AERO 201",
+      "courseName": "Engineering Dynamics",
+      "semester": null
+    },
+    {
+      "id": "511a18fc-a867-4722-ad68-b9eff4ae323f",
+      "courseCode": "BIOL 111",
+      "courseName": "General Biology I",
+      "semester": null
+    },
+    {
+      "id": "daf05d7f-928c-443d-bb20-942539ddb22c",
+      "courseCode": "BMED 202",
+      "courseName": "Biomedical Engineering Fundamentals",
+      "semester": null
+    },
+    {
+      "id": "8346852d-3df1-4348-b515-1a04fa10e2c2",
+      "courseCode": "BMED 221",
+      "courseName": "Human Anatomy and Physiological Modeling for Engineers",
+      "semester": null
+    },
+    {
+      "id": "41e231cd-7f78-4ed8-bc3c-e0fe52c52f61",
+      "courseCode": "BMED 322",
+      "courseName": "Functional Biomechanics",
+      "semester": null
+    },
+    {
+      "id": "3a1de688-8a2c-40fe-b636-95cc312a0c3f",
+      "courseCode": "BMED 341",
+      "courseName": "Molecular Cell Biology for Engineers",
+      "semester": null
+    },
+    {
+      "id": "0a6ba547-f348-474b-9b6f-92b326cd6ea8",
+      "courseCode": "BUSS 322",
+      "courseName": "Fundamentals of Innovation and Entrepreneurship",
+      "semester": null
+    },
+    {
+      "id": "6fc7f9e4-ee7a-4f75-9aa8-7f4a29b5f494",
+      "courseCode": "CCEN 302",
+      "courseName": "Signals and Communication Systems",
+      "semester": null
+    },
+    {
+      "id": "14b23300-ff8f-4b1b-ae28-6a66cbb0ba9a",
+      "courseCode": "CCEN 316",
+      "courseName": "Microprocessor Systems",
+      "semester": null
+    },
+    {
+      "id": "56980acf-2bc8-4a52-b434-0c4f290cbbe3",
+      "courseCode": "CCEN 350",
+      "courseName": "Computer Architecture and Organization",
+      "semester": null
+    },
+    {
+      "id": "52689bcc-e41b-4259-872f-88fbfdf493a8",
+      "courseCode": "CCEN 356",
+      "courseName": "Computer Networks",
+      "semester": null
+    },
+    {
+      "id": "f6a0e827-665d-459e-a62e-7e8849046c84",
+      "courseCode": "CCEN 450",
+      "courseName": "Embedded Systems",
+      "semester": null
+    },
+    {
+      "id": "bc76fe55-bc33-49a8-bd14-3cd0c0019684",
+      "courseCode": "CHEG 324",
+      "courseName": "Mass Transfer",
+      "semester": null
+    },
+    {
+      "id": "80914ca9-7388-44fb-9f92-8dee189bc02e",
+      "courseCode": "CHEG 380",
+      "courseName": "Introduction To Polymer Science and Engineering",
+      "semester": null
+    },
+    {
+      "id": "48716095-33b7-4365-a274-108790cc2a8e",
+      "courseCode": "CIVE 200",
+      "courseName": "Statics",
+      "semester": null
+    },
+    {
+      "id": "174bb864-2f97-4505-bb94-abf265970fb8",
+      "courseCode": "CIVE 201",
+      "courseName": "Engineering Dynamics",
+      "semester": null
+    },
+    {
+      "id": "24b5064d-7797-476d-b6fc-372790809281",
+      "courseCode": "COSC 114",
+      "courseName": "Introduction to Computing Python",
+      "semester": null
+    },
+    {
+      "id": "eefd7518-6d06-45ef-a839-73d221d16eec",
+      "courseCode": "COSC 230",
+      "courseName": "Object Oriented Programming",
+      "semester": null
+    },
+    {
+      "id": "fd898cec-d1f7-4029-8f0b-aa6333c48ed5",
+      "courseCode": "COSC 444",
+      "courseName": "Database Systems",
+      "semester": null
+    },
+    {
+      "id": "40149697-47b0-4461-8d84-6d5052b0e0ac",
+      "courseCode": "COSC 489",
+      "courseName": "Introduction to Game Development and XR",
+      "semester": null
+    },
+    {
+      "id": "89a119b5-16c8-473f-816b-c1e6339ffaa6",
+      "courseCode": "ELEN 221",
+      "courseName": "Electric Circuits I",
+      "semester": null
+    },
+    {
+      "id": "fb270911-4e7b-49f4-a19b-6e180f4b94aa",
+      "courseCode": "ELEN 312",
+      "courseName": "Electronic Circuits & Devices",
+      "semester": null
+    },
+    {
+      "id": "2e10df4a-945e-44e3-a8b9-991a9539b28e",
+      "courseCode": "ESMA 200",
+      "courseName": "Engineering Economic Analysis",
+      "semester": null
+    },
+    {
+      "id": "4fb38097-e949-4c74-a735-d71687569ae0",
+      "courseCode": "GENS 100",
+      "courseName": "Academic Development & Success",
+      "semester": null
+    },
+    {
+      "id": "5614788c-c5ca-4b43-9b26-6303b75b96cc",
+      "courseCode": "HUMA 102",
+      "courseName": "Islamic Culture",
+      "semester": null
+    },
+    {
+      "id": "617f144b-f941-4b15-a03f-91ac5b6e2d33",
+      "courseCode": "HUMA 105",
+      "courseName": "Emirates Society in English",
+      "semester": null
+    },
+    {
+      "id": "79d44356-a28a-4c54-8cc9-e7a201e4c709",
+      "courseCode": "HUMA 156",
+      "courseName": "Human Behavior and Well Being",
+      "semester": null
+    },
+    {
+      "id": "b05ba61c-2c06-4c9b-a3df-91e16c2d14de",
+      "courseCode": "HUMA 231",
+      "courseName": "Introduction to Linguistics",
+      "semester": null
+    },
+    {
+      "id": "dc8bbee3-8b00-4d86-a50c-feca2b93e21f",
+      "courseCode": "KORA 101",
+      "courseName": "Elementary Korean I",
+      "semester": null
+    },
+    {
+      "id": "7cb424c7-f4e3-4527-88d2-0fe105346993",
+      "courseCode": "MATH 206",
+      "courseName": "Differential Equations",
+      "semester": null
+    },
+    {
+      "id": "ed805d30-b3f2-4c30-8e34-a26ae536a4ce",
+      "courseCode": "MATH 231",
+      "courseName": "Calculus III",
+      "semester": null
+    },
+    {
+      "id": "ee7dff0e-5860-424f-9c78-05292fb2e6e6",
+      "courseCode": "MATH 243",
+      "courseName": "Probability and Statistical Inference",
+      "semester": null
+    },
+    {
+      "id": "3d78bff9-3578-47df-9f91-55ec92d2a0c1",
+      "courseCode": "MEEN 200",
+      "courseName": "Statics",
+      "semester": null
+    },
+    {
+      "id": "e6030b4e-81d6-4560-90ab-8e78020f3ba6",
+      "courseCode": "MEEN 201",
+      "courseName": "Engineering Dynamics",
+      "semester": null
+    },
+    {
+      "id": "259de1f0-9c2c-4444-9f36-4bb509c04506",
+      "courseCode": "PHYS 122",
+      "courseName": "University Physics II",
+      "semester": null
+    },
+    {
+      "id": "622e73e1-1bb1-4c63-8d98-694c1cbeb804",
+      "courseCode": "SPAN 101",
+      "courseName": "Elementary Spanish I",
+      "semester": null
+    }
+  ]
 }

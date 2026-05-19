@@ -1922,7 +1922,9 @@ function chooseBestAssessments(ruleAssessments = [], detailedAssessments = []) {
     weight_percentage: Math.round(Number(assessment.weight_percentage) * 1000) / 1000,
     max_score: Number(assessment.max_score) || 100,
     confidence: Math.round(Number(assessment.confidence ?? 0.7) * 100) / 100,
-    source_text_snippet: assessment.source_text_snippet ?? ""
+    source_text_snippet: assessment.source_text_snippet ?? "",
+    ...(assessment.inferred ? { inferred: true } : {}),
+    ...(assessment.warning ? { warning: assessment.warning } : {})
   }));
 }
 

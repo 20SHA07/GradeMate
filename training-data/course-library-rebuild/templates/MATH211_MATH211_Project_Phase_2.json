@@ -6,7 +6,7 @@
   "sourceHash": "9251ef0b11f66fb1b062862245278a2279db2e770352aa6fd84d1a861dbbbded",
   "sourceType": "not_syllabus_project_handout",
   "extractorVersion": "deterministic-ku-2026-05-19",
-  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "extractedAt": "2026-05-19T17:33:19.470Z",
   "courseCode": "MATH 211",
   "courseName": "DifferenƟal EquaƟons and Linear Algebra",
   "department": "MATH",
@@ -23,7 +23,7 @@
   "courseDescription": null,
   "assessments": [
     {
-      "name": "Coursework Assessment Project Phase 2",
+      "name": "Project Phase 2",
       "weightPercentage": 5,
       "maxScore": 100,
       "source": "Coursework Assessment Project Phase 2 worth 5%",

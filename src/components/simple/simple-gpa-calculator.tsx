@@ -508,9 +508,11 @@ function buildConfirmedExtraction(
     semester: selectedInfo.semester ?? extraction.semester,
     assessments: rows.map((row) => ({
       confidence: Number(row.confidence) || 0.7,
+      inferred: row.inferred,
       max_score: Number(row.max_score) || 100,
       name: row.name.trim(),
       source_text_snippet: row.source_text_snippet,
+      warning: row.warning,
       weight_percentage: Number(row.weight_percentage) || 0
     }))
   };
@@ -3165,10 +3167,12 @@ function ExtractionReview({
                       />
                     </td>
                     <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
+                      <div className="flex flex-wrap items-center gap-2">
                         <Badge tone={confidenceInfo.tone}>
                           {confidenceInfo.label}
                         </Badge>
+                        {row.inferred ? <Badge tone="gold">Inferred</Badge> : null}
+                        {row.warning ? <Badge tone="gold">Warning</Badge> : null}
                         <span className="text-xs text-ink-500">
                           {Math.round(row.confidence * 100)}%
                         </span>
@@ -3183,6 +3187,11 @@ function ExtractionReview({
                           {row.source_text_snippet ||
                             "No source snippet available."}
                         </p>
+                        {row.warning ? (
+                          <p className="mt-2 rounded-lg bg-amber-50 p-3 text-xs leading-5 text-amber-800">
+                            {row.warning}
+                          </p>
+                        ) : null}
                       </details>
                     </td>
                     <td className="px-4 py-3 text-right">

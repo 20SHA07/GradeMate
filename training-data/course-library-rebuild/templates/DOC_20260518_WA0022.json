@@ -6,7 +6,7 @@
   "sourceHash": "a7ba60d5fa3045d509dd1b8a8b192a98ea4c08d2089ef90d8cc1eae8ddf11ccc",
   "sourceType": "syllabus",
   "extractorVersion": "deterministic-ku-2026-05-19",
-  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "extractedAt": "2026-05-19T17:33:19.470Z",
   "courseCode": "PHYS 121",
   "courseName": "University Physics I",
   "department": "PHYS",
@@ -28,8 +28,8 @@
       "maxScore": 100,
       "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
       "confidence": 0.94,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
     },
     {
       "name": "Quiz 2",
@@ -37,8 +37,8 @@
       "maxScore": 100,
       "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
       "confidence": 0.94,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
     },
     {
       "name": "Quiz 3",
@@ -46,8 +46,8 @@
       "maxScore": 100,
       "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
       "confidence": 0.94,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
     },
     {
       "name": "Quiz 4",
@@ -55,8 +55,8 @@
       "maxScore": 100,
       "source": "Quiz + WAs = 4 descriptive questions /30 Quiz 2 24% + 6% = 30%",
       "confidence": 0.94,
-      "inferred": false,
-      "warning": null
+      "inferred": true,
+      "warning": "Split quiz total 24% evenly across 4 quizzes. Please confirm."
     },
     {
       "name": "Web assign",

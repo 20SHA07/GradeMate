@@ -26,28 +26,36 @@
       "weight_percentage": 1.875,
       "max_score": 100,
       "confidence": 0.92,
-      "source_text_snippet": "Quiz-1 Week-3 7.5"
+      "source_text_snippet": "Quiz-1 Week-3 7.5",
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 1.875,
       "max_score": 100,
       "confidence": 0.92,
-      "source_text_snippet": "Quiz-1 Week-3 7.5"
+      "source_text_snippet": "Quiz-1 Week-3 7.5",
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 1.875,
       "max_score": 100,
       "confidence": 0.92,
-      "source_text_snippet": "Quiz-1 Week-3 7.5"
+      "source_text_snippet": "Quiz-1 Week-3 7.5",
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 4",
       "weight_percentage": 1.875,
       "max_score": 100,
       "confidence": 0.92,
-      "source_text_snippet": "Quiz-1 Week-3 7.5"
+      "source_text_snippet": "Quiz-1 Week-3 7.5",
+      "inferred": true,
+      "warning": "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Labs",
@@ -80,7 +88,7 @@
   ],
   "totalWeight": 100,
   "warnings": [
-    "Split quiz weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
+    "Split quiz group weight 7.5% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
   "confidence": 0.9,

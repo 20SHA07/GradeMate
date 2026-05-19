@@ -6,7 +6,7 @@
   "sourceHash": "1a189111b5b895d0450998f6543e5c4dde769aa6d12a15c1b179d12e9b20292d",
   "sourceType": "syllabus",
   "extractorVersion": "deterministic-ku-2026-05-19",
-  "extractedAt": "2026-05-19T12:02:44.815Z",
+  "extractedAt": "2026-05-19T17:33:19.470Z",
   "courseCode": "COSC 202",
   "courseName": "Data Science and Artificial Intelligence",
   "department": "COSC",
@@ -29,37 +29,37 @@
       "name": "Quiz 1",
       "weightPercentage": 3.75,
       "maxScore": 100,
-      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-      "confidence": 0.93,
-      "inferred": false,
-      "warning": null
+      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+      "confidence": 0.92,
+      "inferred": true,
+      "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 2",
       "weightPercentage": 3.75,
       "maxScore": 100,
-      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-      "confidence": 0.93,
-      "inferred": false,
-      "warning": null
+      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+      "confidence": 0.92,
+      "inferred": true,
+      "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 3",
       "weightPercentage": 3.75,
       "maxScore": 100,
-      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-      "confidence": 0.93,
-      "inferred": false,
-      "warning": null
+      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+      "confidence": 0.92,
+      "inferred": true,
+      "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Quiz 4",
       "weightPercentage": 3.75,
       "maxScore": 100,
-      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10% ",
-      "confidence": 0.93,
-      "inferred": false,
-      "warning": null
+      "source": "Quiz 1 Week 5 Quiz 2 Week 10 15% Coursework (quizzes, homework/project) Quiz 3 Week 12 Quiz 4 Week 14 Project (demo) Week 14 10%",
+      "confidence": 0.92,
+      "inferred": true,
+      "warning": "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm."
     },
     {
       "name": "Project (demo)",
@@ -99,7 +99,7 @@
     }
   ],
   "totalWeight": 100,
-  "confidence": 0.92,
+  "confidence": 0.91,
   "warnings": [
     "Split quiz group weight 15% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Using detailed assessment methodology instead of summary table."
