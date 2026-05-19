@@ -1,8 +1,26 @@
 const repositoryBasePath = "/GradeMate";
 
+function getConfiguredBasePath() {
+  const configuredBasePath = process.env.NEXT_PUBLIC_BASE_PATH?.trim();
+
+  if (!configuredBasePath) {
+    return "";
+  }
+
+  return configuredBasePath.startsWith("/")
+    ? configuredBasePath.replace(/\/$/, "")
+    : `/${configuredBasePath.replace(/\/$/, "")}`;
+}
+
 export function getAppBasePath() {
   if (typeof window === "undefined") {
-    return "";
+    return getConfiguredBasePath();
+  }
+
+  const configuredBasePath = getConfiguredBasePath();
+
+  if (configuredBasePath && window.location.pathname.startsWith(configuredBasePath)) {
+    return configuredBasePath;
   }
 
   return window.location.hostname.endsWith("github.io") &&

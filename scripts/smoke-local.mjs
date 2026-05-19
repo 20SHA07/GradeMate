@@ -13,6 +13,7 @@ await checkStaticExport();
 await checkBuiltRoutes();
 await checkLandingOutput();
 await checkExtractorLabProductionOutput();
+await checkAuthCallbackUx();
 await writeReports();
 
 console.log("GradeMate local smoke check complete");
@@ -40,6 +41,7 @@ async function checkBuiltRoutes() {
     ["/simple", "out/simple/index.html"],
     ["/course-library", "out/course-library/index.html"],
     ["/workspace", "out/workspace/index.html"],
+    ["/auth/callback", "out/auth/callback/index.html"],
     ["/dashboard", "out/dashboard/index.html"],
     ["/admin", "out/admin/index.html"],
     ["/admin/contributions", "out/admin/contributions/index.html"]
@@ -83,6 +85,38 @@ async function checkExtractorLabProductionOutput() {
         : "warn",
     detail:
       "Extractor Lab should be dev-only unless NEXT_PUBLIC_ENABLE_EXTRACTOR_LAB=true."
+  });
+}
+
+async function checkAuthCallbackUx() {
+  const source = await readText("src/components/auth/auth-callback-client.tsx");
+  const builtHtml = await readText("out/auth/callback/index.html");
+
+  addCheck({
+    area: "Auth",
+    name: "Callback route renders in static export",
+    status: builtHtml.includes("Confirming your account") ? "pass" : "fail",
+    detail: "out/auth/callback/index.html should exist and render the client callback shell."
+  });
+  addCheck({
+    area: "Auth",
+    name: "PKCE failure has friendly recovery copy",
+    status:
+      source.includes("We could not complete this sign-in link") &&
+      source.includes("Continue as guest") &&
+      source.includes("Resend confirmation email")
+        ? "pass"
+        : "fail",
+    detail:
+      "Callback should hide raw PKCE errors and offer login, guest mode, and resend recovery."
+  });
+  addCheck({
+    area: "Auth",
+    name: "No raw Supabase PKCE message in callback UI",
+    status: source.includes("PKCE code verifier not found in storage")
+      ? "fail"
+      : "pass",
+    detail: "Users should never see the raw Supabase verifier-storage error."
   });
 }
 

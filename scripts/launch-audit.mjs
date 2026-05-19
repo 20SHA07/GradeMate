@@ -60,6 +60,7 @@ async function checkPackageScripts() {
 async function checkRoutes() {
   const routes = [
     ["Landing", "src/app/page.tsx"],
+    ["Auth Callback", "src/app/(auth)/auth/callback/page.tsx"],
     ["Simple Mode", "src/app/simple/page.tsx"],
     ["Workspace", "src/app/(app)/workspace/page.tsx"],
     ["Dashboard", "src/app/(app)/dashboard/page.tsx"],

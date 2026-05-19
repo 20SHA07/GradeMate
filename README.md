@@ -380,14 +380,32 @@ The improvement loop is:
 5. Run `dataset:propose`, `test:dataset`, and `test:extraction`.
 6. Improve parser rules when the benchmark shows a regression or new pattern.
 
-In Supabase Auth URL Configuration, use:
+### Supabase Auth URLs for GitHub Pages
+
+GradeMate is a static GitHub Pages app, so Supabase Auth must return directly to
+the exported client route. In **Authentication > URL Configuration**, use these
+exact URLs:
 
 ```text
 Site URL: https://20sha07.github.io/GradeMate
+
 Redirect URLs:
-http://localhost:3000/**
-https://20sha07.github.io/GradeMate/**
+https://20sha07.github.io/GradeMate/auth/callback
+https://20sha07.github.io/GradeMate/dashboard
+https://20sha07.github.io/GradeMate/workspace
+https://20sha07.github.io/GradeMate/simple
+http://localhost:3000/auth/callback
+http://localhost:3001/auth/callback
+http://localhost:3000/dashboard
+http://localhost:3001/dashboard
 ```
+
+The frontend computes `emailRedirectTo` with the deployed base path, so
+production links return to `/GradeMate/auth/callback` and local development
+links return to `/auth/callback`. If a confirmation link is opened in a
+different browser or after its PKCE session expires, GradeMate shows recovery
+steps, a login link, guest mode, and a resend-confirmation option when the email
+address is known.
 
 To enable Google login, open **Authentication > Providers > Google** in Supabase,
 turn it on, add your Google OAuth client ID/secret, and make sure the same
