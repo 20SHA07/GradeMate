@@ -9,9 +9,10 @@
   "creditHours": 4,
   "semester": "Spring 2025",
   "instructor": "Dr Fawaz Hjouj",
-  "instructorEmail": null,
+  "instructorEmail": "fawaz.hjouj@ku.ac.ae",
   "schedule": "7 Feb 24 Midterm Exam: Wednesday, Feb 26, 2025 @7:30. TBC",
   "classroom": null,
+  "officeRoom": "SAN 1008C",
   "officeHours": "MW 11:00-12:00, AND, 2:00-4:00 PM",
   "prerequisites": "MATH 111 (C grade or higher)",
   "textbooks": [

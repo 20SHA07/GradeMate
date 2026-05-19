@@ -8,34 +8,57 @@
   "courseName": "Career Preparation",
   "creditHours": 1,
   "semester": "Fall 2024",
-  "instructor": "Contact",
+  "instructor": null,
   "instructorEmail": null,
   "schedule": "Classroom:",
   "classroom": null,
+  "officeRoom": null,
   "officeHours": "March 2023 2",
   "prerequisites": "GENS 100, Sophomore Standing",
   "textbooks": [],
   "courseDescription": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
   "assessments": [
     {
-      "name": "Project",
-      "weight_percentage": 20,
+      "name": "CV Submission",
+      "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Group project - Reading groups 20%"
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
     },
     {
-      "name": "Final Exam",
+      "name": "Documented evidence of career planning and industry exploration",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Mock Interview",
+      "weight_percentage": 15,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Attendance of Professional Development workshops (5)",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
+    },
+    {
+      "name": "Final Quiz",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Final quiz 10%"
+      "confidence": 0.9,
+      "source_text_snippet": "GENS 300 summary assessment table"
     }
   ],
-  "totalWeight": 30,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (30%)"
+    "Detailed assessment methodology did not cleanly map to the summary table, so the summary table was used.",
+    "Instructor missing"
   ],
-  "confidence": 0.95,
+  "confidence": 0.86,
   "needsHumanReview": true
 }

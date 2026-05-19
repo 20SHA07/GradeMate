@@ -1,50 +1,85 @@
 {
   "sourceFileName": "ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+  "sourcePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+  "sourceRelativePath": "COSC\\COSC 114 Introduction to Computing Python\\ENGR114 Syllabus Introduction to Computing - Python Spring 2024.pdf",
+  "sourceTextFileName": "ENGR114_Syllabus_Introduction_to_Computing_Python_Spring_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "ENGR 114",
-  "courseName": "Introduction to Computing - Python",
+  "courseName": "Introduction to Computing using Python",
   "creditHours": 4,
   "semester": "Spring 2024",
-  "instructor": "Contact",
+  "instructor": "Dr. Jamal Zemerly",
+  "instructorEmail": "jamal.zemerly@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "C04041",
+  "officeHours": "MW: 12:15 - 5:00 PM in San Campus",
+  "prerequisites": "None",
+  "textbooks": [
+    "Python Programming: Using Problem Solving approach by R. Thareja, Publisher: Oxford University",
+    "Press, 2017, ISBN: 978-0-19-948017-3"
+  ],
+  "courseDescription": "Introduction to computer systems: computer hardware components, operating system, compiling,\ndebugging, libraries, linking. Programming based problem solving that includes program development\nlifecycle. Imperative programming: data types, conditional expressions and statements, repetitive\nstructures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),\nfile I/O.",
   "assessments": [
     {
       "name": "Quiz 1",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 Week 5 5%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 9 5%"
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 11 5%"
     },
     {
       "name": "Quiz 4",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Week 13 5%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory (if applicable) Lab Assignments Weekly (W2– W14) 15%"
     },
     {
       "name": "Final Lab",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Lab Week 15 15%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (on campus) Week 7 20%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination (on campus) TBD 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
 }

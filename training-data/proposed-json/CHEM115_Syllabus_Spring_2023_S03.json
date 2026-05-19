@@ -10,8 +10,9 @@
   "semester": "Spring 2023",
   "instructor": "Dr. Emilia Oueis",
   "instructorEmail": "Emilia.oueis@ku.ac.ae",
-  "schedule": "Office Hours: Mondays and Wednesdays from 10:00 to 12:00 pm",
+  "schedule": null,
   "classroom": null,
+  "officeRoom": "2010",
   "officeHours": "Mondays and Wednesdays from 10:00 to 12:00 pm",
   "prerequisites": null,
   "textbooks": [],
@@ -21,37 +22,57 @@
       "name": "Quiz 2",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.92,
       "source_text_snippet": "Quiz # 2 27 Feb – 03 Mar 20%"
     },
     {
-      "name": "Laboratory",
+      "name": "Aleks Objectives",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "Aleks Objectives 10%"
+    },
+    {
+      "name": "Laboratory Lab Reports And Lab Assignments",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.92,
       "source_text_snippet": "Laboratory: Lab Reports and Lab Assignments 15%"
     },
     {
-      "name": "Exam 6",
+      "name": "Semester Examination",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.92,
       "source_text_snippet": "Semester Examination: Midterm Exam 06 Mar – 10 Mar 20%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.92,
       "source_text_snippet": "Final Examination: TBC by the Registrar’s Office 35%"
+    },
+    {
+      "name": "F .00 Fail",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "F 0.00 Fail"
+    },
+    {
+      "name": "WF .00 Withdrew Failing",
+      "weight_percentage": 0,
+      "max_score": 100,
+      "confidence": 0.68,
+      "source_text_snippet": "WF 0.00 Withdrew Failing"
     }
   ],
-  "totalWeight": 90,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (90%)",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.92,
+  "confidence": 0.79,
   "needsHumanReview": true
 }

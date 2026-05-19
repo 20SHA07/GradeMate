@@ -8,10 +8,11 @@
   "courseName": "Fundamentals of Innovation & Entrepreneurship",
   "creditHours": 3,
   "semester": "Summer 2025",
-  "instructor": "Contact",
+  "instructor": null,
   "instructorEmail": "Melanie.bowman@ku.ac.ae",
   "schedule": null,
   "classroom": null,
+  "officeRoom": null,
   "officeHours": "MS Teams is normally be used for office hours or informally after/before class",
   "prerequisites": "Junior Standing",
   "textbooks": [
@@ -50,7 +51,9 @@
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
-  "needsHumanReview": false
+  "warnings": [
+    "Instructor missing"
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": true
 }

@@ -114,6 +114,7 @@ const assessmentKeywords = [
   "cv",
   "career development",
   "career planning",
+  "certification",
   "workshop",
   "workshops",
   "web assign",
@@ -523,6 +524,28 @@ function extractCourseCode(text: string) {
 }
 
 function extractCourseName(lines: string[], courseCode: string | null) {
+  const cleanCourseNameCandidate = (value: string | null | undefined) => {
+    const cleaned = cleanLine(value ?? "")
+      .replace(/^course\s+code\s+and\s+title\b\s*[:\-\u2013\u2014]?\s*/i, "")
+      .replace(/\(?[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\)?/i, "")
+      .replace(/^[/\\|:_\-\s\u2013\u2014)]+/, "")
+      .replace(/\bCourse Code and Title\b/gi, "")
+      .replace(/\b(Fall|Spring|Summer|Winter)\s+\d{4}$/i, "")
+      .replace(/\s+/g, " ")
+      .trim();
+
+    if (
+      !cleaned ||
+      hasGradingContext(cleaned) ||
+      /\bsyllabus\b|\bsupplement\b/i.test(cleaned) ||
+      /^(outline|semester|schedule|course code and title|for students|instructor|instructor name|contact email|office|office room|office hours)\b/i.test(cleaned) ||
+      /^(Fall|Spring|Summer|Winter)\s+\d{4}$/i.test(cleaned)
+    ) {
+      return null;
+    }
+
+    return cleaned;
+  };
   const codeAndTitleLine = lines.find((line) =>
     /^course\s+code\s+and\s+title\s*[:\-\u2013\u2014]?/i.test(line)
   );
@@ -531,25 +554,39 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     const value = codeAndTitleLine
       .replace(/^course\s+code\s+and\s+title\s*[:\-\u2013\u2014]?\s*/i, "")
       .trim();
-    const withoutCode = value
-      .replace(/\(?[A-Z]{2,5}\s*[- ]?\s*\d{3,4}[A-Z]?\)?/i, "")
-      .replace(/^[-:_\s\u2013\u2014]+/, "")
-      .trim();
+    const withoutCode = cleanCourseNameCandidate(value);
 
     if (withoutCode) {
       return withoutCode;
     }
 
     const labelIndex = lines.indexOf(codeAndTitleLine);
-    const nearbyCodeLine = lines
-      .slice(labelIndex + 1, labelIndex + 4)
-      .find((line) => /\b[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\b/i.test(line));
+    const nearbyWindow = lines.slice(Math.max(0, labelIndex - 2), labelIndex + 5);
+    const nearbyCodeLine =
+      nearbyWindow.find(
+        (line) =>
+          /\b[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\b/i.test(line) &&
+          !/\bsyllabus\b|\bsupplement\b/i.test(line)
+      ) ??
+      nearbyWindow.find((line) =>
+        /\b[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\b/i.test(line)
+    );
 
     if (nearbyCodeLine) {
-      const nearbyWithoutCode = nearbyCodeLine
-        .replace(/\(?[A-Z]{2,5}\s*[-_ ]?\s*\d{3,4}[A-Z]?\)?/i, "")
-        .replace(/^[-:_\s\u2013\u2014]+/, "")
-        .trim();
+      const codeLineTitle = cleanCourseNameCandidate(nearbyCodeLine);
+      const needsContinuation = /\b(?:and|for|of|to|the)$/i.test(codeLineTitle ?? "");
+      const nearbyWithoutCode =
+        (codeLineTitle && !needsContinuation ? codeLineTitle : null) ??
+        cleanCourseNameCandidate(
+          [
+            nearbyCodeLine,
+            nearbyWindow
+              .slice(nearbyWindow.indexOf(nearbyCodeLine) + 1)
+              .find((line) => cleanCourseNameCandidate(line))
+          ]
+            .filter(Boolean)
+            .join(" ")
+        );
 
       if (nearbyWithoutCode) {
         return nearbyWithoutCode;
@@ -591,14 +628,10 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     );
 
     if (joinedMatch) {
-      const value = joinedMatch[1]
-        .replace(/^[_:\-\s\u2013\u2014)]+/, "")
-        .trim();
+      const value = cleanCourseNameCandidate(joinedMatch[1]);
 
       if (
-        value &&
-        !hasGradingContext(value) &&
-        !/syllabus|outline|semester\b|schedule\b/i.test(value)
+        value
       ) {
         return value;
       }
@@ -609,36 +642,32 @@ function extractCourseName(lines: string[], courseCode: string | null) {
     );
 
     if (codeLine) {
-      const afterCode = codeLine
+      const afterCode = cleanCourseNameCandidate(codeLine
         .replace(new RegExp(`.*?\\b${compactCode}\\b\\s*[:\\-\\u2013\\u2014]?\\s*`, "i"), "")
-        .replace(/^[_:\-\s\u2013\u2014]+/, "")
-        .trim();
+      );
 
       if (
-        afterCode &&
-        !hasGradingContext(afterCode) &&
-        !/syllabus|outline/i.test(afterCode)
+        afterCode
       ) {
         return afterCode;
       }
     }
 
     for (let index = 0; index < lines.length - 1; index += 1) {
-      const windowText = `${lines[index]} ${lines[index + 1]} ${lines[index + 2] ?? ""}`;
+      const windowText = [lines[index], lines[index + 1], lines[index + 2] ?? ""]
+        .filter((line) => !/^course\s+code\s+and\s+title\b/i.test(line))
+        .join(" ");
 
       if (!new RegExp(`\\b${compactCode}\\b`, "i").test(windowText)) {
         continue;
       }
 
-      const afterCode = windowText
+      const afterCode = cleanCourseNameCandidate(windowText
         .replace(new RegExp(`.*?\\b${compactCode}\\b\\)?\\s*[:\\-\\u2013\\u2014]?\\s*`, "i"), "")
-        .replace(/^[_:\-\s\u2013\u2014)]+/, "")
-        .trim();
+      );
 
       if (
-        afterCode &&
-        !hasGradingContext(afterCode) &&
-        !/syllabus|outline|semester\b|schedule\b/i.test(afterCode)
+        afterCode
       ) {
         return afterCode;
       }
@@ -669,14 +698,42 @@ function extractInstructor(lines: string[]) {
     /^(name|policy|associate\s+professor|assistant\s+professor|professor|lecturer|faculty|department|chemical engineering|contact\s+email|office|office\s+room|office\s+hours|room|semester|assessment)\b/i.test(
       value
     );
+  const repairBrokenNameLetters = (value: string) =>
+    Array.from({ length: 3 }).reduce<string>(
+      (current) =>
+        current
+          .replace(/\b([A-Z])\s+([a-z])\s+([a-z]{2,})\b/g, "$1$2$3")
+          .replace(/\b([A-Za-z]{2,})\s+([a-z])\b/g, "$1$2")
+          .replace(/\b([A-Z])\s+([a-z]{2,})\b/g, "$1$2")
+          .replace(/\s+/g, " ")
+          .trim(),
+      value
+    );
+  const looksLikeInstructorName = (value: string | undefined) => {
+    const cleaned = repairBrokenNameLetters(value ?? "")
+      .replace(/\bContact Email\b.*$/i, "")
+      .trim();
+
+    if (
+      !cleaned ||
+      isInvalidInstructorValue(cleaned) ||
+      /@|office|room|hours?|tel|ext\.?|assessment|semester|course code|communicat|crn|subject line|^[A-Z]{2,5}\s*\d{3,4}\b/i.test(cleaned)
+    ) {
+      return null;
+    }
+
+    return /(?:\bDr\.?\b|\bPhD\b|,| and |\/|[A-Z][a-z]+ [A-Z][a-z]+)/.test(cleaned)
+      ? cleaned
+      : null;
+  };
   const personLine = (value: string | undefined) => {
-    const cleaned = value?.trim() ?? "";
+    const cleaned = repairBrokenNameLetters(value?.trim() ?? "");
 
     if (!cleaned || isInvalidInstructorValue(cleaned)) {
       return null;
     }
 
-    return /^(?:Dr\.?\s+)?[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)+$/.test(
+    return /^(?:(?:Dr|Mr|Ms|Mrs|Prof)\.?\s+)?[A-Z][A-Za-z.'-]+(?:\s+[A-Z][A-Za-z.'-]+)+$/.test(
       cleaned
     )
       ? cleaned
@@ -690,11 +747,21 @@ function extractInstructor(lines: string[]) {
     const sameLineValue = lines[labelIndex]
       .replace(/^instructor\s+name\b\s*[:\-]?\s*/i, "")
       .trim();
+    const nearbyPeople = [
+      looksLikeInstructorName(sameLineValue),
+      looksLikeInstructorName(lines[labelIndex - 2]),
+      looksLikeInstructorName(lines[labelIndex - 1]),
+      looksLikeInstructorName(lines[labelIndex + 1]),
+      looksLikeInstructorName(lines[labelIndex + 2])
+    ].filter(Boolean) as string[];
     const sameLinePerson = personLine(sameLineValue);
     const previousLinePerson = personLine(lines[labelIndex - 1]);
     const nextLinePerson = personLine(lines[labelIndex + 1]);
 
     if (sameLinePerson) return sameLinePerson;
+    if (nearbyPeople.length > 1) {
+      return nearbyPeople.join(nearbyPeople.some((item) => /\band$/i.test(item)) ? " " : "; ");
+    }
     if (nextLinePerson) return nextLinePerson;
     if (previousLinePerson) return previousLinePerson;
   }
@@ -752,12 +819,14 @@ function extractInstructorEmail(text: string) {
   const normalized = text
     .replace(/\s*@\s*/g, "@")
     .replace(/(?<=[A-Z0-9._%+-])\.\s+(?=[A-Z0-9._%+-]+@)/gi, ".");
-
-  return (
-    normalized
-      .match(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/i)?.[0]
-      ?.replace(/^(?:No|Ext)\./i, "") ?? null
+  const emails = Array.from(
+    new Set(
+      Array.from(normalized.matchAll(/\b[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}\b/gi))
+        .map((match) => match[0].replace(/^(?:No|Ext)\./i, ""))
+    )
   );
+
+  return emails.length > 0 ? emails.join("; ") : null;
 }
 
 function extractSemester(text: string, lines: string[]) {
@@ -841,9 +910,8 @@ function extractSchedule(lines: string[]) {
       "class schedule"
     ]) ??
     lines.find((line) =>
-      /\b(Mondays?|Tuesdays?|Wednesdays?|Thursdays?|Fridays?|Saturdays?|Sundays?)\b.*\b\d{1,2}:\d{2}\b/i.test(
-        line
-      )
+      !/office hours?/i.test(line) &&
+      /\b(Mondays?|Tuesdays?|Wednesdays?|Thursdays?|Fridays?|Saturdays?|Sundays?)\b.*\b\d{1,2}:\d{2}\b/i.test(line)
     ) ??
     null
   );
@@ -879,7 +947,13 @@ function extractOfficeRoom(lines: string[]) {
   );
 
   if (labelIndex >= 0) {
-    return lines[labelIndex + 1]?.trim() || null;
+    const previous = lines[labelIndex - 1]?.trim();
+    const next = lines[labelIndex + 1]?.trim();
+    const roomLike = [previous, next].find((line) =>
+      /\b(?:room|bldg|building|campus|[A-Z]\d{4,5}[A-Z]?|[A-Z]\d{2,4}|#\s*\d)/i.test(line ?? "")
+    );
+
+    return roomLike || next || null;
   }
 
   return extractLabelValue(lines, [
@@ -891,6 +965,22 @@ function extractOfficeRoom(lines: string[]) {
 }
 
 function extractOfficeHours(lines: string[]) {
+  const labelIndex = lines.findIndex((line) => /^office hours\s*[:\-]?\s*$/i.test(line));
+
+  if (labelIndex >= 0) {
+    const nearby = [lines[labelIndex - 1], lines[labelIndex + 1]]
+      .filter(Boolean)
+      .find((line) =>
+        /\b(?:monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|am|pm|\d{1,2}:\d{2})\b/i.test(
+          line
+        )
+      );
+
+    if (nearby) {
+      return nearby;
+    }
+  }
+
   return extractLabelValue(lines, ["office hours", "consultation hours"]);
 }
 
@@ -998,14 +1088,85 @@ function buildFieldConfidence(input: {
 function normalizeAssessmentForOutput(
   assessment: ExtractedAssessment
 ): ExtractedAssessment {
+  const snippet = assessment.source_text_snippet ?? "";
+
   return {
-    name: assessment.name,
+    name: normalizeAssessmentOutputName(assessment.name, snippet),
     weight_percentage:
       Math.round(Number(assessment.weight_percentage || 0) * 1000) / 1000,
     max_score: Number(assessment.max_score) || 100,
     confidence: Math.round(Number(assessment.confidence ?? 0.7) * 100) / 100,
-    source_text_snippet: assessment.source_text_snippet ?? ""
+    source_text_snippet: snippet
   };
+}
+
+function normalizeAssessmentOutputName(name: string, snippet: string) {
+  const compact = cleanLine(`${snippet} ${name}`);
+  const nameForNumbering = removeWeightTokensForNumbering(cleanLine(name));
+  const compactForNumbering =
+    /\b(?:quiz(?:zes)?|midterm|homework|hw)\s*[-#]?\s*\d{1,2}\b/i.test(
+      nameForNumbering
+    )
+      ? nameForNumbering
+      : removeWeightTokensForNumbering(compact);
+
+  if (/\b(?:quiz\s+)?2\s+quizzes\b/i.test(compact)) return "2 Quizzes";
+  if (/\bcoursework\s*\((?:an accumulation|a variety|ongoing)/i.test(compact)) {
+    return "Coursework";
+  }
+  if (/\bweb\s*assign\b|\bwebassign\b/i.test(name)) return "Web assign";
+  if (/\bweekly online quizzes\b/i.test(name)) return "Weekly online quizzes";
+  if (/\battendance of professional development workshops\s*\(5 workshops\)/i.test(name)) {
+    return "Attendance of Professional Development workshops (5 workshops)";
+  }
+  if (/\battendance of professional development workshops\s*\(5\)/i.test(name)) {
+    return "Attendance of Professional Development workshops (5)";
+  }
+  if (/^midterm$/i.test(name)) return "Midterm";
+  if (/\bmidterm\s+test\b/i.test(name)) return "Midterm test";
+  if (/\bmidterm\s+exam\b/i.test(name)) return "Midterm Exam";
+  if (/\bfinal\s+test\b/i.test(name)) return "Final test";
+  if (/\bproblem sets?\s+homework\b/i.test(compact)) return "Problem Sets Homework";
+  if (/\bmodeling topic proposal\b/i.test(compact)) return "Modeling Topic Proposal";
+  if (/\bworking model due\b/i.test(compact)) return "Working Model Due";
+  if (/\bcomplete model white paper\b/i.test(compact)) {
+    return "Complete Model White Paper and Presentations";
+  }
+  if (/\bgroup project\b/i.test(compact)) return "Group project";
+  if (/\bprojects?\s*\/\s*assignements\b/i.test(compact)) {
+    return "Projects / Assignements";
+  }
+  if (/\bprojects?\s*\(if applicable\)\s*assignment\b/i.test(compact)) {
+    return "Assignment";
+  }
+  if (/\battendance\b/i.test(compact) && /^attendance\b/i.test(cleanLine(name))) {
+    return "Attendance";
+  }
+  if (/\blaboratory\s*\(if applicable\)/i.test(compact)) return "Laboratory";
+
+  const quizNumber = compactForNumbering.match(/\bquiz(?:zes)?\s*[-#]?\s*(\d{1,2})\b/i);
+  if (quizNumber && Number(quizNumber[1]) <= 12) return `Quiz ${Number(quizNumber[1])}`;
+
+  const midtermNumber = compactForNumbering.match(/\bmidterm\s*[-#]?\s*(\d{1,2})\b/i);
+  if (midtermNumber && Number(midtermNumber[1]) <= 12) {
+    return `Midterm ${Number(midtermNumber[1])}`;
+  }
+
+  if (/\bsemester examination\s*\(s\)/i.test(compact)) return "Semester Examination (s)";
+
+  const homeworkNumber = compactForNumbering.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/i);
+  if (homeworkNumber && !/\bproblem sets?\s+homework\b/i.test(compact)) {
+    return /^hw\b/i.test(homeworkNumber[0])
+      ? `HW ${Number(homeworkNumber[1])}`
+      : `Homework ${Number(homeworkNumber[1])}`;
+  }
+
+  return name
+    .replace(/\b(?:week|weeks|around week)\s+\d{1,2}\b.*$/i, "")
+    .replace(/\b(?:weekly|final week|tba|assigned by registrar|during lab time|contact based)\b.*$/i, "")
+    .replace(/\b\d{1,3}(?:\.\d+)?\s*(?:%|percent|percentage)\b/gi, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 function parseAssessments(lines: string[]) {
@@ -1571,7 +1732,7 @@ function isKuAssessmentMethodologyBoundary(line: string) {
 
 function isKuMethodologyHelperLine(line: string) {
   return (
-    /^(tentative dates?|weight|coursework:?|projects?|semester examination\s*\(?s?\)?|laboratory \(if applicable\))$/i.test(
+    /^(tentative dates?|weight|coursework:?|student modeling project|projects?|semester examination\s*\(?s?\)?|laboratory \(if applicable\))$/i.test(
       line
     ) ||
     /^-+$/.test(line) ||
@@ -1642,7 +1803,7 @@ function isKuDateLine(line: string) {
 function hasKuExplicitAssessmentSignal(line: string) {
   return (
     hasAssessmentKeyword(line) ||
-    /\b(midterm|final|faculty discretion|pre-assigned|mini-design|term project)\b/i.test(
+    /\b(midterm|final|faculty discretion|pre-assigned|mini-design|term project|modeling topic|working model|white paper|certification)\b/i.test(
       line
     )
   );
@@ -1700,7 +1861,7 @@ function getKuExplicitWeight(
         !getKuLineWeight(nextLine) &&
         !isKuDateLine(nextLine) &&
         !isKuMethodologyHelperLine(nextLine) &&
-        !hasKuExplicitAssessmentSignal(nextLine) &&
+        (!hasKuExplicitAssessmentSignal(nextLine) || /^and presentations?$/i.test(nextLine)) &&
         !isKuAssessmentMethodologyBoundary(nextLine)
       ) {
         endIndex = lookahead + 1;
@@ -1731,6 +1892,15 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   }
 
   const exactPatterns: Array<[RegExp, string]> = [
+    [/\b(?:quiz\s+)?2\s+quizzes\b/i, "2 Quizzes"],
+    [/\bproblem sets?\s+homework\b/i, "Problem Sets Homework"],
+    [/\bmodeling topic proposal\b/i, "Modeling Topic Proposal"],
+    [/\bworking model due\b/i, "Working Model Due"],
+    [/\bcomplete model white paper\b/i, "Complete Model White Paper and Presentations"],
+    [/\bgroup project\b/i, "Group project"],
+    [/\bprojects?\s*\/\s*assignements\b/i, "Projects / Assignements"],
+    [/\bprojects?\s*\(if applicable\)\s*assignment\b/i, "Assignment"],
+    [/\bbloomberg market (?:concept )?certification\b/i, "Bloomberg Market Concept Certification"],
     [/\bindividual writing\b.*\btechnical report\b.*\bpart\s*1\b/i, "Individual Writing: Technical report Part 1"],
     [/\bindividual writing\b.*\btechnical report\b.*\bpart\s*2\b/i, "Individual Writing: Technical report Part 2"],
     [/\bindividual digital presentation\b/i, "Individual Digital presentation"],
@@ -1801,6 +1971,7 @@ function normalizeKuExplicitAssessmentName(line: string, snippet: string) {
   if (/\bfinal\s+examination\b/i.test(compact)) return "Final Examination";
   if (/\blaboratory work\b/i.test(compact)) return "Laboratory Work";
   if (/\blaboratory\b/i.test(compact)) return "Laboratory";
+  if (/\battendance\b/i.test(compact)) return "Attendance";
   if (/\bparticipation\b/i.test(compact)) return "Participation";
 
   const candidate = firstLine
@@ -2061,6 +2232,49 @@ function makeGens300SummaryCandidate(compactText: string): AssessmentCandidate |
     warnings: [
       "Detailed assessment methodology did not cleanly map to the summary table, so the summary table was used."
     ]
+  };
+}
+
+function extractModelingProjectAssessmentCandidate(text: string): AssessmentCandidate | null {
+  const compactText = cleanLine(text);
+
+  if (
+    !/\bmodeling topic proposal\b/i.test(compactText) ||
+    !/\bcomplete model white paper\b/i.test(compactText)
+  ) {
+    return null;
+  }
+
+  const rows: ExtractedAssessment[] = [];
+  const add = (name: string, pattern: RegExp) => {
+    const match = compactText.match(pattern);
+    const weight = match ? cleanWeightValue(match[1]) : null;
+
+    if (match && weight !== null) {
+      addAssessmentIfMissing(rows, name, weight, match[0], 0.96);
+    }
+  };
+
+  add("2 Quizzes", /\b(?:quiz\s+)?2\s+quizzes\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+  add("Problem Sets Homework", /\bproblem sets?\s+homework\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+  add("Modeling Topic Proposal", /\bmodeling topic proposal\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+  add("Working Model Due", /\bworking model due\b[^%]{0,120}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+  add(
+    "Complete Model White Paper and Presentations",
+    /\bcomplete model white paper\b[^%]{0,180}?(\d{1,3}(?:\.\d+)?)\s*%[^.]{0,120}?\band presentations\b/i
+  );
+  add("Final Examination", /\bfinal examination\b[^%]{0,160}?(\d{1,3}(?:\.\d+)?)\s*%/i);
+
+  const total = sumAssessmentWeights(rows);
+
+  if (rows.length < 5 || Math.abs(total - 100) > 0.5) {
+    return null;
+  }
+
+  return {
+    label: "modeling project assessment methodology",
+    assessments: rows.map(normalizeAssessmentForOutput),
+    score: scoreAssessments(rows) + 1180
   };
 }
 
@@ -2458,9 +2672,14 @@ function extractKuDetailedAssessmentCandidates(
   const methodologyBlock = getAssessmentMethodologyBlock(text);
   const gensCandidate = extractGens300AssessmentCandidate(text);
   const cosc330Candidate = extractCosc330AssessmentCandidate(text, courseCode);
+  const modelingCandidate = extractModelingProjectAssessmentCandidate(text);
 
   if (gensCandidate) {
     return [gensCandidate];
+  }
+
+  if (modelingCandidate) {
+    return [modelingCandidate];
   }
 
   if (cosc330Candidate) {
@@ -2478,16 +2697,21 @@ function extractKuDetailedAssessmentCandidates(
   const explicitQuizRowCount = explicitRows.filter((row) =>
     /^Quiz\s+\d{1,2}$/i.test(row.name)
   ).length;
+  const baselineBlock = getBaselineAssessmentBlock(text);
+  const shouldPreferSafeSummary =
+    explicitRows.length <= 4 &&
+    explicitRows.some((row) => isLooseDetailedRowName(row.name));
   const preservesListedQuizRows =
     quizNumbers.length < 2 || explicitQuizRowCount === quizNumbers.length;
 
   if (
     !formulaWeights &&
+    !shouldPreferSafeSummary &&
     preservesListedQuizRows &&
     explicitRows.length >= 3 &&
     Math.abs(explicitTotalWeight - 100) <= 0.5
   ) {
-    const explicitWarnings = getBaselineAssessmentBlock(text)
+    const explicitWarnings = baselineBlock
       ? ["Using detailed assessment methodology instead of summary table."]
       : [];
 
@@ -2894,6 +3118,13 @@ function extractDetailedAssessmentCandidates(
   }
 
   return candidates;
+}
+
+function isLooseDetailedRowName(name: string) {
+  return (
+    /\/|prototype|\b20%\b|\btaking an entrepreneurial approach\b/i.test(name) ||
+    name.length > 48
+  );
 }
 
 function chooseBestAssessmentCandidate(candidates: AssessmentCandidate[]) {

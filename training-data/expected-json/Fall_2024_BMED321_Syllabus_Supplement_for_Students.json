@@ -1,25 +1,50 @@
 {
   "sourceFileName": "Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+  "sourcePath": "BMED\\BMED 321 Mechanics for Biomedical Engineers\\Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+  "sourceRelativePath": "BMED\\BMED 321 Mechanics for Biomedical Engineers\\Fall 2024 - BMED321_Syllabus Supplement for Students.pdf",
+  "sourceTextFileName": "Fall_2024_BMED321_Syllabus_Supplement_for_Students.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "BMED 321",
   "courseName": "Mechanics for Biomedical Engineers",
   "creditHours": null,
   "semester": "Fall 2024",
-  "instructor": "Dr. S yed Imaduddin",
+  "instructor": "Dr. Maria de Fatima Domingues, Dr. Michael Hughes, and Dr. Syed Imaduddin",
+  "instructorEmail": "maria.domingues@ku.ac.ae; michael.hughes@ku.ac.ae; syedmuhammad.imaduddin@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B2043 (Office 31)",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
-      "name": "Group Project Start At Week 12 Final Presentations Week 15",
+      "name": "Group project",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Group project Start at Week 12; Final Presentations: Week 15 30%"
     },
     {
-      "name": "Midterm Examination Week 7",
+      "name": "Midterm Examination",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Examination Week 7 30%"
     },
     {
-      "name": "Final Examination Week 16 Or 17",
+      "name": "Final Examination",
       "weight_percentage": 40,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Week 16 or 17 40%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
 }

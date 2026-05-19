@@ -12,6 +12,7 @@
   "instructorEmail": "glenda.elgamal@ku.ac.ae",
   "schedule": "MON - THURSDAY",
   "classroom": null,
+  "officeRoom": "SAN Building 1, 022A",
   "officeHours": "TBC (Summer term I teach on Main Campus)",
   "prerequisites": "ENGL 102 or ENGL 112",
   "textbooks": [
@@ -20,18 +21,38 @@
   "courseDescription": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
   "assessments": [
     {
-      "name": "Assignments",
+      "name": "Coursework",
+      "weight_percentage": 40,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework 40%"
+    },
+    {
+      "name": "Seminar participation",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "All assignments are due on the date stated by the instructor on this syllabus. Late assignments will be penalized 10% per day (one full letter grade) until submitted. Assignments submitted after the last day of the course will not be accept"
+      "confidence": 0.9,
+      "source_text_snippet": "Seminar participation 10%"
+    },
+    {
+      "name": "Mid-term assessment",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Mid-term assessment 20%"
+    },
+    {
+      "name": "Final project",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final project 30%"
     }
   ],
-  "totalWeight": 10,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (10%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.95,
-  "needsHumanReview": true
+  "confidence": 0.89,
+  "needsHumanReview": false
 }

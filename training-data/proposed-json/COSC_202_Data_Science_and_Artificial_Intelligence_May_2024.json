@@ -12,6 +12,7 @@
   "instructorEmail": null,
   "schedule": null,
   "classroom": null,
+  "officeRoom": "Main Campus Bldg. C",
   "officeHours": "TBD",
   "prerequisites": "COSC 114",
   "textbooks": [

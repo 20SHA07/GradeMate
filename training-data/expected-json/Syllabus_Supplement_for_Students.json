@@ -1,35 +1,64 @@
 {
   "sourceFileName": "Syllabus Supplement for Students.pdf",
+  "sourcePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+  "sourceRelativePath": "BMED\\BMED 322 Functional Biomechanics\\Syllabus Supplement for Students.pdf",
+  "sourceTextFileName": "Syllabus_Supplement_for_Students.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "BMED 322",
   "courseName": "Functional Biomechanics",
   "creditHours": null,
   "semester": "Spring 2023",
-  "instructor": "Contact",
+  "instructor": "Maria de Fatima Domingues",
+  "instructorEmail": "maria.domingues@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B2043",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
       "weight_percentage": 7.5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quizzes 1 Week 3 7.5%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 7.5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quizzes 2 Week 5 7.5%"
     },
     {
-      "name": "Project",
+      "name": "Projects / Assignements",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects /Assignements Week 9 to15 20%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm Examination",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Examination Week 7 30%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination End of course 35%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
 }

@@ -8,10 +8,11 @@
   "courseName": "Chemical Engineering Thermodynamics II",
   "creditHours": null,
   "semester": "Spring 2025",
-  "instructor": "Contact",
+  "instructor": "Dr. Giovanni Palmisano",
   "instructorEmail": "giovanni.palmisano@ku.ac.ae",
   "schedule": null,
   "classroom": null,
+  "officeRoom": "SAN Campus: Building 8 (Arzanah), 2 level, Room 8-265",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [],
@@ -32,14 +33,14 @@
       "source_text_snippet": "Laboratory Reports, Quizzes, Presentation Biweekly 20%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Semester Examination (s)",
       "weight_percentage": 24,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Semester Examination (s) Midterm exam Week 8 24%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 32,
       "max_score": 100,
       "confidence": 0.98,

@@ -18,6 +18,9 @@ const supportedExtensions = new Set([".pdf", ".docx"]);
 const positiveSyllabusNamePatterns = [
   /syllabus/i,
   /syllabi/i,
+  /syllabus[\s._-]*supplement/i,
+  /supplement(?:ary|al)?[\s._-]*course[\s._-]*form/i,
+  /course[\s._-]*form/i,
   /course[\s._-]*outline/i,
   /course[\s._-]*information/i,
   /course[\s._-]*info/i,
@@ -119,6 +122,7 @@ const assessmentKeywords = [
   "report",
   "essay",
   "portfolio",
+  "certification",
   "discussion",
   "tutorial",
   "practical",
@@ -159,9 +163,7 @@ export async function scanDatasetSource(sourceDir, options = {}) {
 
   await ensureTrainingDirs();
 
-  if (writeText) {
-    await clearGeneratedFiles(extractedTextDir, ".txt");
-  }
+  // Keep older batch artifacts so expected-json can span multiple source folders.
 
   const allFiles = await walkFiles(absoluteSourceDir);
   const supportedFiles = allFiles.filter((filePath) =>
@@ -271,7 +273,6 @@ export async function proposeDatasetJson(sourceDir) {
   const proposals = [];
 
   await fs.mkdir(proposedJsonDir, { recursive: true });
-  await clearGeneratedFiles(proposedJsonDir, ".json");
 
   for (const record of index.records) {
     const text = await fs.readFile(record.textPath, "utf8");
@@ -1390,6 +1391,28 @@ function deriveAssessmentName(line) {
 function canonicalAssessmentName(rawName, fullLine) {
   const value = `${rawName} ${fullLine}`.toLowerCase();
   const numberedValue = `${rawName} ${removeWeightTokensForNumbering(fullLine)}`.toLowerCase();
+  const compact = `${fullLine} ${rawName}`.replace(/\s+/g, " ");
+
+  if (/\b(?:quiz\s+)?2\s+quizzes\b/i.test(compact)) return "2 Quizzes";
+  if (/\bcoursework\s*\((?:an accumulation|a variety|ongoing)/i.test(compact)) {
+    return "Coursework";
+  }
+  if (/\bproblem sets?\s+homework\b/i.test(compact)) return "Problem Sets Homework";
+  if (/\bmodeling topic proposal\b/i.test(compact)) return "Modeling Topic Proposal";
+  if (/\bworking model due\b/i.test(compact)) return "Working Model Due";
+  if (/\bcomplete model white paper\b/i.test(compact)) {
+    return "Complete Model White Paper and Presentations";
+  }
+  if (/\bgroup project\b/i.test(compact)) return "Group project";
+  if (/\bprojects?\s*\/\s*assignements\b/i.test(compact)) {
+    return "Projects / Assignements";
+  }
+  if (/\bprojects?\s*\(if applicable\)\s*assignment\b/i.test(compact)) {
+    return "Assignment";
+  }
+  if (/\bbloomberg market (?:concept )?certification\b/i.test(compact)) {
+    return "Bloomberg Market Concept Certification";
+  }
   const quizNumber = numberedValue.match(/\bquiz(?:zes)?\s*#?\s*(\d{1,2})\b/);
   const homeworkNumber = numberedValue.match(/\b(?:homework|hw)\s*#?\s*(\d{1,2})\b/);
   const assignmentNumber = numberedValue.match(/\bassignments?\s*#?\s*(\d{1,2})\b/);
@@ -1398,16 +1421,19 @@ function canonicalAssessmentName(rawName, fullLine) {
   const labNumber = numberedValue.match(/\blabs?\s*#?\s*(\d{1,2})\b/);
   const examNumber = numberedValue.match(/\bexams?\s*#?\s*(\d{1,2})\b/);
 
-  if (quizNumber) return `Quiz ${Number(quizNumber[1])}`;
+  if (quizNumber && Number(quizNumber[1]) <= 12) return `Quiz ${Number(quizNumber[1])}`;
   if (homeworkNumber) return `Homework ${Number(homeworkNumber[1])}`;
-  if (assignmentNumber) return `Assignment ${Number(assignmentNumber[1])}`;
-  if (projectNumber) return `Project ${Number(projectNumber[1])}`;
-  if (testNumber) return `Test ${Number(testNumber[1])}`;
-  if (labNumber) return `Lab ${Number(labNumber[1])}`;
-  if (examNumber) return `Exam ${Number(examNumber[1])}`;
+  if (assignmentNumber && Number(assignmentNumber[1]) <= 12) {
+    return `Assignment ${Number(assignmentNumber[1])}`;
+  }
+  if (projectNumber && Number(projectNumber[1]) <= 12) return `Project ${Number(projectNumber[1])}`;
+  if (testNumber && Number(testNumber[1]) <= 12) return `Test ${Number(testNumber[1])}`;
+  if (labNumber && Number(labNumber[1]) <= 12) return `Lab ${Number(labNumber[1])}`;
+  if (examNumber && Number(examNumber[1]) <= 12) return `Exam ${Number(examNumber[1])}`;
 
   if (/\bfinal\s+lab\b|\blab\s*final\b|\bfinal\s+lab\s*test\b/.test(value)) return "Final Lab";
   if (/\bmid\s*term\b|\bmidterm\b/.test(value)) return "Mid Term Exam";
+  if (/\bsemester examination\s*\(s\)/.test(value)) return "Semester Examination (s)";
   if (/\bsemester examination\b|\bsemester exam\b/.test(value)) return "Semester Examination";
   if (/\bminor exam\b|\bminor\b/.test(value)) return "Minor Exam";
   if (/\bmajor exam\b|\bmajor\b/.test(value)) return "Major Exam";

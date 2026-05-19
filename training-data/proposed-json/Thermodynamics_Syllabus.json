@@ -8,11 +8,12 @@
   "courseName": "Chemical Engineering Thermodynamics I",
   "creditHours": 3,
   "semester": "Spring 2024",
-  "instructor": "Contact",
+  "instructor": "Ricardo Nogueira",
   "instructorEmail": "Ricardo.Nogueira@ku.ac.ae",
   "schedule": null,
   "classroom": null,
-  "officeHours": null,
+  "officeRoom": "SAN Campus: Building 4, Ground level, Room 4-017",
+  "officeHours": "M 11:00 am -12:00 pm W 11:00 am -12:00 pm",
   "prerequisites": "CHEG 205",
   "textbooks": [
     "Introduction to Chemical Engineering Thermodynamics, J. M. Smith, H. C. Van Ness, and M. M.",
@@ -21,29 +22,29 @@
   "courseDescription": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
   "assessments": [
     {
-      "name": "Quizzes",
+      "name": "Pre-Assigned Quizzes",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Pre-Assigned Quizzes 30%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm Examination",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Midterm Examination (s) Written examination (Closed Book) 8 Week of the semester 30%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Final Examination Written examination (Closed Book) Assigned by Registrar 40%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.95,
+  "confidence": 0.93,
   "needsHumanReview": false
 }

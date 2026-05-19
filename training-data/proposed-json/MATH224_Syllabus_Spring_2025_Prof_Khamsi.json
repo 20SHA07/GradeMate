@@ -12,6 +12,7 @@
   "instructorEmail": "Mohamed.khamsi@ku.ac.ae",
   "schedule": "M-W 11 to 12:40 (G01029)",
   "classroom": null,
+  "officeRoom": null,
   "officeHours": "M-W 12:50 to 13:50",
   "prerequisites": "MATH 101 and MATH 112",
   "textbooks": [
@@ -24,42 +25,26 @@
       "name": "Coursework",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework: Homework Week 4 (10%) 40%"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework 40%"
     },
     {
-      "name": "Quiz 1",
-      "weight_percentage": 10,
+      "name": "Midterm Examination %",
+      "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "lowest homework Quiz 1 Week 6 (10%)"
+      "confidence": 0.9,
+      "source_text_snippet": "Midterm Examination 25%"
     },
     {
-      "name": "Homework",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "grade. Homework Week 9 (10%)"
-    },
-    {
-      "name": "Quiz 2",
-      "weight_percentage": 10,
-      "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Quiz 2 Week 11 (10%)"
-    },
-    {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Final TBD by the Registrar’s office 35%"
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 105,
-  "warnings": [
-    "Total weight is above 100 (105%)"
-  ],
-  "confidence": 0.95,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.89,
+  "needsHumanReview": false
 }

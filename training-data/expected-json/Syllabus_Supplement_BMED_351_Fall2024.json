@@ -1,50 +1,85 @@
 {
   "sourceFileName": "Syllabus_Supplement_BMED 351_Fall2024.pdf",
+  "sourcePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\Syllabus_Supplement_BMED 351_Fall2024.pdf",
+  "sourceRelativePath": "BMED\\BMED 351 Biomedical Circuits and Signals\\Syllabus\\Syllabus_Supplement_BMED 351_Fall2024.pdf",
+  "sourceTextFileName": "Syllabus_Supplement_BMED_351_Fall2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "BMED 351",
   "courseName": "Biomedical Circuits and Signals",
   "creditHours": null,
   "semester": "Fall 2024",
-  "instructor": "mohamed.seghier@ku.ac.ae / 5041 (main instructor)",
+  "instructor": "Dr Mohamed Seghier and Dr Mohamed Elgendi",
+  "instructorEmail": "mohamed.seghier@ku.ac.ae; mohamed.elgendi@ku.ac.ae; sarah.bawazir@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "B02186D",
+  "officeHours": "M__2-4 pm",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Quiz 1",
       "weight_percentage": 6.25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Quiz 1 Week 4 6.25%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 6.25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 7 6.25%"
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 6.25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 12 6.25%"
     },
     {
       "name": "Quiz 4",
       "weight_percentage": 6.25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Week 14 6.25%"
     },
     {
-      "name": "Project",
+      "name": "Projects",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Projects Weekly 10%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory Weekly 15%"
     },
     {
-      "name": "Semester Examination",
+      "name": "Semester Examination (s)",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) Week 10 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Starting December 13 25%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
 }

@@ -8,10 +8,11 @@
   "courseName": "Materials Science & Engineering",
   "creditHours": 3,
   "semester": "Spring 2024",
-  "instructor": "Contact",
+  "instructor": "Akram Alfantazi",
   "instructorEmail": "akram.alfantazi@ku.ac.ae",
-  "schedule": "Office Hours Tuesday and Thursday 11:00- 12:45",
+  "schedule": null,
   "classroom": null,
+  "officeRoom": "Arzanah 311",
   "officeHours": null,
   "prerequisites": "CHEM 116, PHYS 122",
   "textbooks": [

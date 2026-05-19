@@ -8,10 +8,11 @@
   "courseName": "CALCULUS I",
   "creditHours": null,
   "semester": "Spring 2025",
-  "instructor": "Contact",
+  "instructor": "Imad Elayna",
   "instructorEmail": "Imad.elayna@ku.ac.ae",
   "schedule": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%",
   "classroom": null,
+  "officeRoom": "San 1215",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [
@@ -20,6 +21,34 @@
   ],
   "courseDescription": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
   "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 1,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz # 1 Week 3: Quiz 1: chapter 1"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz # 2 Week 6: Quiz 2: chapter 2"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3.8,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz # 3 Week 10: Quiz 3: Ch 3.3-3.8"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 5.1,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Quiz # 4 Week 15: Quiz 4: Ch 4.1-5.1"
+    },
     {
       "name": "Hw Connect Continuously",
       "weight_percentage": 7,
@@ -35,26 +64,26 @@
       "source_text_snippet": "Remedial Tutorial Classes 8%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm Examination",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Midterm Examination: MIDTERM: Friday, Mar 7 on 1.2 – 3.2 @ 9:30-11:00 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Final Examination: FINAL EXAM: (TBC) 35%"
     }
   ],
-  "totalWeight": 75,
+  "totalWeight": 86.9,
   "warnings": [
-    "Total weight is below 100 (75%)",
+    "Total weight is below 100 (86.9%)",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.92,
+  "confidence": 0.9,
   "needsHumanReview": true
 }

@@ -1,55 +1,92 @@
 {
   "sourceFileName": "COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+  "sourcePath": "COSC\\COSC 301 Automata, Computability, and Complexity\\Syllabus\\COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+  "sourceRelativePath": "COSC\\COSC 301 Automata, Computability, and Complexity\\Syllabus\\COSC301 - Syllabus Supplement for Students Fall 2022.pdf",
+  "sourceTextFileName": "COSC301_Syllabus_Supplement_for_Students_Fall_2022.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "COSC 301",
   "courseName": "Automata, Computability, and Complexity",
   "creditHours": null,
   "semester": "Fall 2022",
-  "instructor": "Contact",
+  "instructor": "Dr Deepak Puthal",
+  "instructorEmail": "deepak.puthal@ku.ac.ae",
+  "schedule": "Tuesday & Thursday: 14:30 hrs – 15:30 hrs.",
+  "classroom": null,
+  "officeRoom": "C04014 (Main Campus)",
+  "officeHours": "Tuesday & Thursday: 14:30 hrs – 15:30 hrs.",
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Homework 1",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Coursework: Homework 1 Week 3 10%"
     },
     {
       "name": "Homework 2",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 2 Week 6 10%"
     },
     {
       "name": "Homework 3",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Homework 3 Week 10 10%"
     },
     {
       "name": "Quiz 1",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 Week 4 05%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 6 05%"
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 3 Week 10 05%"
     },
     {
       "name": "Quiz 4",
       "weight_percentage": 5,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 4 Week 13 05%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) Midterm Week 8 20%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination Final Examination TBC by the Registrar’s Office 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.9,
+  "needsHumanReview": true
 }

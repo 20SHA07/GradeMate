@@ -12,6 +12,7 @@
   "instructorEmail": "david.dalton@ku.ac.ae",
   "schedule": "#1",
   "classroom": null,
+  "officeRoom": "NA",
   "officeHours": null,
   "prerequisites": "TOEFL iBT 79, EmSAT 1400, or IELTS 6.0",
   "textbooks": [
@@ -21,31 +22,43 @@
   "courseDescription": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
   "assessments": [
     {
-      "name": "Assignments",
+      "name": "Individual Short Writing Assignments %",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.9,
       "source_text_snippet": "Individual short writing assignments 20%"
     },
     {
-      "name": "Essay",
+      "name": "Group Short Writing Assignment %",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Group short writing assignment 10%"
+    },
+    {
+      "name": "Individual Writing: Supporting Or Refuting A Claim %",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.9,
+      "source_text_snippet": "Individual Writing: Supporting or refuting a claim 30%"
+    },
+    {
+      "name": "Individual Writing: Focused Essay %",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.9,
       "source_text_snippet": "Individual Writing: Focused essay 30%"
     },
     {
-      "name": "Presentation",
+      "name": "Digital Presentation %",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.9,
       "source_text_snippet": "Digital presentation 10%"
     }
   ],
-  "totalWeight": 60,
-  "warnings": [
-    "Total weight is below 100 (60%)"
-  ],
-  "confidence": 0.95,
-  "needsHumanReview": true
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.89,
+  "needsHumanReview": false
 }

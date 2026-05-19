@@ -1,35 +1,64 @@
 {
   "sourceFileName": "COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourcePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourceRelativePath": "COSC\\COSC 201 Computer Systems Organization\\Syllabus\\COSC 201 Syllabus Supplement (Spring 2025) - Dr. Azzam Mourad.pdf",
+  "sourceTextFileName": "COSC_201_Syllabus_Supplement_Spring_2025_Dr_Azzam_Mourad.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "COSC 201",
   "courseName": "Computer Systems Organization",
   "creditHours": 3,
   "semester": "Spring 2025",
-  "instructor": "Contact",
+  "instructor": "Azzam Mourad",
+  "instructorEmail": "azzam.mourad@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "D04209",
+  "officeHours": null,
+  "prerequisites": "COSC 101",
+  "textbooks": [
+    "Computer Systems: A Programmer’s Perspective by Randal E. Bryant and David R.",
+    "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
+  ],
+  "courseDescription": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
   "assessments": [
     {
-      "name": "Quiz 15",
+      "name": "Quizzes Quizzes 15%",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quizzes Quizzes 15%"
     },
     {
-      "name": "Project",
+      "name": "Projects",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Project Week 13 20%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Laboratory Lab reports/progress 15%"
     },
     {
-      "name": "Semester Examination",
+      "name": "Semester Examination (s)",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Examination (s) 3 -7 March, 2025 20%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Examination After May 2, 2025 30%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
 }

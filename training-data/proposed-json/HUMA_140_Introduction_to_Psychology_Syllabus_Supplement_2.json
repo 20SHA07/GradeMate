@@ -1,17 +1,73 @@
 {
   "sourceFileName": "HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourcePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourceRelativePath": "HUMA\\HUMA 140 Introduction to Psychology\\HUMA 140 Introduction to Psychology Syllabus & Supplement(2).pdf",
+  "sourceTextFileName": "HUMA_140_Introduction_to_Psychology_Syllabus_Supplement_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "HUMA 140",
   "courseName": "Introduction to Psychology",
   "creditHours": 3,
   "semester": "Summer 2025",
   "instructor": "Dr. Michael Babula",
   "instructorEmail": "michael.babula@ku.ac.ae",
+  "schedule": "Sec 2 – M T W R 12:00 – 1:40 PM (G03009)",
+  "classroom": "Sec 1 – M T W R 2:00 – 3:40 PM (G03009)",
+  "officeRoom": "Contact Number: Office Ext: 4458",
+  "officeHours": "Monday: 4:00pm-5:00pm, Tuesday: 4:00pm-5:00pm",
+  "prerequisites": "ENGL 101 or ENGL 111",
+  "textbooks": [
+    "Psychology in Everyday Life by David G. Myers and C. Nathan Dewall, Publisher: Worth Publishers, 5",
+    "Edition, 2019, ISBN: 9781319133726"
+  ],
+  "courseDescription": "This course examines historical and current topics related to the mind and behavior with research methods\nand the scientific method as a foundation. Areas covered in this course include biology, development,\nmemory, learning, social psychology, personality, psychological disorders, health psychology, and\npositive psychology.",
   "assessments": [
-    { "name": "Quiz 1", "weight_percentage": 10, "max_score": 100 },
-    { "name": "Research Assignment", "weight_percentage": 10, "max_score": 100 },
-    { "name": "Quiz 2", "weight_percentage": 10, "max_score": 100 },
-    { "name": "Quiz 3", "weight_percentage": 10, "max_score": 100 },
-    { "name": "Midterm Examination", "weight_percentage": 30, "max_score": 100 },
-    { "name": "Final Project", "weight_percentage": 30, "max_score": 100 }
-  ]
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Three quizzes worth 10% each"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Three quizzes worth 10% each"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Three quizzes worth 10% each"
+    },
+    {
+      "name": "Research Assignment",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Research Assignment (10%)"
+    },
+    {
+      "name": "Midterm Examination",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Exam (30%)"
+    },
+    {
+      "name": "Final Project",
+      "weight_percentage": 30,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Project (30%)"
+    }
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Using detailed assessment description instead of summary table."
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": false
 }

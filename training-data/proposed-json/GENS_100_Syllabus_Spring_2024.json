@@ -12,20 +12,21 @@
   "instructorEmail": "Nooreya.alobeidli@ku.ac.ae",
   "schedule": "Monday 11 am – 11:50 am Classroom: SAN 1110",
   "classroom": null,
+  "officeRoom": "SAN: building 2, 2 floor, student success, office 2228E",
   "officeHours": "Monday 12 pm – 3 pm",
   "prerequisites": "None",
   "textbooks": [],
   "courseDescription": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
   "assessments": [
     {
-      "name": "Assignments",
+      "name": "Assignments (Homework and In Class Activities)",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,
       "source_text_snippet": "Assignments (Homework and In Class Activities) 25%"
     },
     {
-      "name": "Quizzes",
+      "name": "Quizzes (In class and take home)",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,

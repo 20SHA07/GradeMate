@@ -8,34 +8,35 @@
   "courseName": "Mechanics for Biomedical Engineers",
   "creditHours": null,
   "semester": "Fall 2024",
-  "instructor": "Dr. S yed Imaduddin",
-  "instructorEmail": "maria.domingues@ku.ac.ae",
+  "instructor": "Dr. Maria de Fatima Domingues, Dr. Michael Hughes, and Dr. Syed Imaduddin",
+  "instructorEmail": "maria.domingues@ku.ac.ae; michael.hughes@ku.ac.ae; syedmuhammad.imaduddin@ku.ac.ae",
   "schedule": null,
   "classroom": null,
+  "officeRoom": "B2043 (Office 31)",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [],
   "courseDescription": null,
   "assessments": [
     {
-      "name": "Group Project Start At Week 12 Final Presentations Week 15",
+      "name": "Group project",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.92,
+      "confidence": 0.95,
       "source_text_snippet": "Group project Start at Week 12; Final Presentations: Week 15 30%"
     },
     {
-      "name": "Midterm Examination Week 7",
+      "name": "Midterm Examination",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.92,
+      "confidence": 0.95,
       "source_text_snippet": "Midterm Examination Week 7 30%"
     },
     {
-      "name": "Final Examination Week 16 Or 17",
+      "name": "Final Examination",
       "weight_percentage": 40,
       "max_score": 100,
-      "confidence": 0.92,
+      "confidence": 0.95,
       "source_text_snippet": "Final Examination Week 16 or 17 40%"
     }
   ],
@@ -44,6 +45,6 @@
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.87,
+  "confidence": 0.9,
   "needsHumanReview": true
 }

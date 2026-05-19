@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-05-18T15:11:08.887Z",
+  "generatedAt": "2026-05-19T09:48:40.064Z",
   "sourceDir": "drive-download-20260516T203409Z-3-002",
   "totalFilesScanned": 4123,
   "supportedFilesScanned": 3429,
-  "syllabusFilesFound": 63,
-  "skippedMaterialFiles": 3366,
+  "syllabusFilesFound": 64,
+  "skippedMaterialFiles": 3365,
   "possibleSyllabusFiles": 5,
   "parseErrors": [],
   "records": [
@@ -51,6 +51,21 @@
       "detectionReasons": [
         "filename matches syllabus wording",
         "text has 2 syllabus indicators"
+      ]
+    },
+    {
+      "id": "BMED_342_Supplementary_Course_Form_2025",
+      "sourceFileName": "BMED 342 Supplementary Course Form 2025.pdf",
+      "sourcePath": "BMED\\BMED 342 Molecular Genetics, Technologies and Tools\\Syllabus\\BMED 342 Supplementary Course Form 2025.pdf",
+      "relativePath": "BMED\\BMED 342 Molecular Genetics, Technologies and Tools\\Syllabus\\BMED 342 Supplementary Course Form 2025.pdf",
+      "extension": ".pdf",
+      "textFileName": "BMED_342_Supplementary_Course_Form_2025.txt",
+      "textPath": "training-data\\extracted-text\\BMED_342_Supplementary_Course_Form_2025.txt",
+      "pageCount": 3,
+      "syllabusConfidence": "high",
+      "detectionReasons": [
+        "filename matches syllabus wording",
+        "text has 1 syllabus indicators"
       ]
     },
     {

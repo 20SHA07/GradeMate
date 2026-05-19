@@ -6,12 +6,13 @@
   "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 232",
   "courseName": "Engineering Mathematics",
-  "creditHours": 3,
+  "creditHours": 1,
   "semester": null,
   "instructor": null,
   "instructorEmail": null,
   "schedule": null,
   "classroom": null,
+  "officeRoom": null,
   "officeHours": null,
   "prerequisites": "MATH 112",
   "textbooks": [
@@ -30,7 +31,7 @@
       "source_text_snippet": "Coursework (Quizzes, Homework, Projects) 40%"
     },
     {
-      "name": "Semester Examination",
+      "name": "Semester Examination (s)",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,

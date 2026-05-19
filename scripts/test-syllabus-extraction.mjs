@@ -815,12 +815,12 @@ Week 9 Midterm Exam`);
 expectAssessmentNames(cosc354Grouped, [
   "Quizzes and assignments",
   "Laboratory",
-  "Semester Examination",
+  "Semester Examination (s)",
   "Final Examination"
 ]);
 expectAssessment(cosc354Grouped, "Quizzes and assignments", 20);
 expectAssessment(cosc354Grouped, "Laboratory", 20);
-expectAssessment(cosc354Grouped, "Semester Examination", 25);
+expectAssessment(cosc354Grouped, "Semester Examination (s)", 25);
 expectAssessment(cosc354Grouped, "Final Examination", 35);
 assert.equal(
   cosc354Grouped.assessments.some((assessment) => /quiz\s+\d/i.test(assessment.name)),
@@ -1171,6 +1171,137 @@ Week 3 Motion in 2D Quiz 1
 Week 6 Energy Quiz 2
 Week 10 Momentum Quiz 3`);
 assert.equal(teachingPlanOnly.assessments.length, 0);
+
+const bmed221ModelingProject = extractSyllabusFromText(`Course Code and Title BMED 221 Anatomy and Physiological Modeling for Engineers
+Instructor Name Ali A. Khraibi and Okobi Ekpo
+Assessment Methodology
+2 Quizzes Week 4 20%
+Problem Sets Homework Week 7 10%
+Student Modeling Project
+Modeling Topic Proposal 5%
+Working Model Due 5%
+Complete Model White Paper 20%
+And Presentations
+Final Examination Week 16 40%`);
+expectAssessmentNames(bmed221ModelingProject, [
+  "2 Quizzes",
+  "Problem Sets Homework",
+  "Modeling Topic Proposal",
+  "Working Model Due",
+  "Complete Model White Paper and Presentations",
+  "Final Examination"
+]);
+expectAssessment(bmed221ModelingProject, "2 Quizzes", 20);
+assert.equal(
+  bmed221ModelingProject.assessments.some((assessment) => /^Quiz\s+\d/i.test(assessment.name)),
+  false,
+  "Grouped 2 Quizzes should not be split without explicit equal weights"
+);
+
+const bmed322ExplicitRows = extractSyllabusFromText(`Assessment Methodology
+Tentative Dates Weight
+Coursework: Quizzes 1 Week 3 7.5%
+Quizzes 2 Week 5 7.5%
+Projects /Assignements Week 9 to15 20%
+Laboratory (if applicable)
+Midterm Examination Week 7 30%
+Final Examination End of course 35%`);
+expectAssessmentNames(bmed322ExplicitRows, [
+  "Quiz 1",
+  "Quiz 2",
+  "Projects / Assignements",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(bmed322ExplicitRows, "Quiz 1", 7.5);
+expectAssessment(bmed322ExplicitRows, "Projects / Assignements", 20);
+assert.equal(
+  bmed322ExplicitRows.assessments.some((assessment) => /laboratory/i.test(assessment.name)),
+  false,
+  "Laboratory without a weight should be ignored"
+);
+
+const cheg230GroupedQuizzes = extractSyllabusFromText(`Assessment Methodology
+Pre-Assigned Quizzes 30%
+Projects (if applicable) NA
+Laboratory (if applicable) NA
+Midterm Examination (s) Written examination 30%
+Final Examination Written examination 40%
+Instructor Policy
+Five quizzes will be given and the best four count.`);
+expectAssessmentNames(cheg230GroupedQuizzes, [
+  "Pre-Assigned Quizzes",
+  "Midterm Examination",
+  "Final Examination"
+]);
+expectAssessment(cheg230GroupedQuizzes, "Pre-Assigned Quizzes", 30);
+
+const cheg232ExplicitRows = extractSyllabusFromText(`Assessment Methodology
+Coursework:
+Quiz 1 Week 8 Feb 4%
+Quiz 2 Week 6 22 Feb 4%
+Quiz 3 Week 10 21 March 4%
+Quiz 4 Week 13 11 April 4%
+Quiz 5 Week 15 25 April 4%
+Laboratory (if applicable) 20%
+Midterm
+Semester Examination (s) Week 8 05 March 25%
+Attendance 5%
+Final Examination 30%`);
+expectAssessmentNames(cheg232ExplicitRows, [
+  "Quiz 1",
+  "Quiz 2",
+  "Quiz 3",
+  "Quiz 4",
+  "Quiz 5",
+  "Laboratory",
+  "Semester Examination (s)",
+  "Attendance",
+  "Final Examination"
+]);
+expectAssessment(cheg232ExplicitRows, "Quiz 5", 4);
+expectAssessment(cheg232ExplicitRows, "Attendance", 5);
+
+const cheg205DecimalRows = extractSyllabusFromText(`Assessment Methodology
+Homework 1 3.6%
+Homework 2 3.6%
+Homework 3 3.6%
+Homework 4 3.6%
+Homework 5 3.6%
+Homework 6 3.6%
+Homework 7 3.6%
+Quiz 1 4%
+Quiz 2 4%
+Quiz 3 4%
+Quiz 4 4%
+Quiz 5 4%
+Midterm Examination 20%
+Final Examination 30%
+Attendance 5%`);
+expectAssessment(cheg205DecimalRows, "Homework 1", 3.6);
+expectAssessment(cheg205DecimalRows, "Quiz 5", 4);
+assert.equal(
+  Math.round(
+    cheg205DecimalRows.assessments.reduce(
+      (sum, assessment) => sum + assessment.weight_percentage,
+      0
+    ) * 10
+  ) / 10,
+  100.2
+);
+
+const policyParagraphPercentages = extractSyllabusFromText(`Assessment Methodology
+Pre-Assigned Quizzes 30%
+Midterm Examination 30%
+Final Examination 40%
+Instructor Policy
+Late penalty 10% per day.
+Attendance absence 7% policy.`);
+expectAssessmentNames(policyParagraphPercentages, [
+  "Pre-Assigned Quizzes",
+  "Midterm Examination",
+  "Final Examination"
+]);
 
 const metadata = extractSyllabusFromText(`Course Code and Title: (COSC 101) Foundations of Computer Science
 Credit Hours: 3 Credits

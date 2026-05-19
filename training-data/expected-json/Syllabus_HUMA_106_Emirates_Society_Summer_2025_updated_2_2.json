@@ -1,40 +1,77 @@
 {
   "sourceFileName": "Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+  "sourcePath": "HUMA\\HUMA 105 Emirates Society in English\\Syllabus\\Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+  "sourceRelativePath": "HUMA\\HUMA 105 Emirates Society in English\\Syllabus\\Syllabus HUMA 106 Emirates Society Summer 2025 (updated)2 (2).pdf",
+  "sourceTextFileName": "Syllabus_HUMA_106_Emirates_Society_Summer_2025_updated_2_2.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "HUMA 106",
   "courseName": "Emirates Society",
   "creditHours": 3,
   "semester": "Summer 2025",
-  "instructor": "HUMA 106 Emirates Society - Lectures are to be delivered",
+  "instructor": "Enaam Hunaini",
+  "instructorEmail": "Enaam.subhi@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN- Zarkuh / R:1023B",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [
+    "Title Publisher Author ISBN Year",
+    "دراسات اماراتية الطبعة حترير: دعقيل اكظم ود. عيل",
+    "978-9948-",
+    "رة الرتبية والتعلمي أبوظيب ا وز 2016",
+    "الرابعة الغفيل 22- 512- 6",
+    "Links and/or material will be posted on Blackboard.",
+    "Pedagogy – Learning Process:",
+    "The course will be delivered through the following methodologies: lectures, class"
+  ],
+  "courseDescription": "The course acquaints students with the geographical, cultural, demographical, economic and\nsocial aspects of UAE society. It highlights the evolution of the country from a traditional to a\nmodern society. Topics such as UAE political system, family, population, migration, youth, and\nthe development of civil society are addressed.",
   "assessments": [
     {
       "name": "Quiz 1",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 Week 2 15%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quizzes Quiz 2 Week 5 15%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Midterm Week 4 20%"
     },
     {
-      "name": "Assignments",
+      "name": "In-Class Assignment",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "In-Class Assignment Week 4 10%"
     },
     {
-      "name": "Final Project",
+      "name": "Research Final Project",
       "weight_percentage": 30,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Research final Project Week 6 30%"
     },
     {
-      "name": "Presentation",
+      "name": "Chapter Presentations On Going 10%",
       "weight_percentage": 10,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Chapter presentations On going 10%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.93,
+  "needsHumanReview": false
 }

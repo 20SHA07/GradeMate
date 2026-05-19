@@ -12,6 +12,7 @@
   "instructorEmail": "khaled.dib@ku.ac.ae",
   "schedule": "TTh 2:00-3:40",
   "classroom": "L01007",
+  "officeRoom": "SAN****, MAIN *****",
   "officeHours": "XXXXXXX",
   "prerequisites": "MATH 112",
   "textbooks": [
@@ -20,18 +21,53 @@
   "courseDescription": "This course introduces ordinary differential equations with linear algebra. The course covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector spaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first-order differential equations, higher-order linear equations with constant coefficients, linear and almost linear systems of differential equations, and Laplace transforms.",
   "assessments": [
     {
-      "name": "Final Exam",
-      "weight_percentage": 13.33,
+      "name": "Quiz 1",
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "There are 4 quizzes scheduled in this course. Only the best 3 quiz scores will count towards your final grade, i.e. the lowest quiz score will be dropped. Each quiz will therefore count for 13.33% of your final grade for the course."
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Week 3 40% Quiz 2 Week 5 Quiz 3 Week 10 Quiz 4 Week 13 "
+    },
+    {
+      "name": "Midterm Examination(s)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Examination: Week 8: 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
     }
   ],
-  "totalWeight": 13.33,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (13.3%)",
+    "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm.",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.95,
-  "needsHumanReview": true
+  "confidence": 0.92,
+  "needsHumanReview": false
 }

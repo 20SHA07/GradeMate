@@ -12,6 +12,7 @@
   "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
   "schedule": "MTWR 9:00 - 10:40",
   "classroom": null,
+  "officeRoom": "Building 1 office 021B San",
   "officeHours": "3:00 p.m. – 4:00 p.m.",
   "prerequisites": "MATH 112",
   "textbooks": [
@@ -22,28 +23,51 @@
   "assessments": [
     {
       "name": "Quiz 1",
-      "weight_percentage": 40,
+      "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40%"
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Midterm Examination(s)",
       "weight_percentage": 25,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Midterm Examination: Thursday, 27 June 2024 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.94,
       "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
     }
   ],
   "totalWeight": 100,
-  "warnings": [],
-  "confidence": 0.95,
+  "warnings": [
+    "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
+  ],
+  "confidence": 0.92,
   "needsHumanReview": false
 }

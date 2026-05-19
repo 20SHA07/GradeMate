@@ -12,6 +12,7 @@
   "instructorEmail": null,
   "schedule": null,
   "classroom": null,
+  "officeRoom": null,
   "officeHours": null,
   "prerequisites": "BMED 351",
   "textbooks": [

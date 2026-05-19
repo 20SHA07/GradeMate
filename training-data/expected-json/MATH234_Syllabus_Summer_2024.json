@@ -1,25 +1,73 @@
 {
   "sourceFileName": "MATH234 Syllabus (Summer 2024).pdf",
+  "sourcePath": "MATH\\MATH 234 Discrete Mathematics\\MATH234 Syllabus (Summer 2024).pdf",
+  "sourceRelativePath": "MATH\\MATH 234 Discrete Mathematics\\MATH234 Syllabus (Summer 2024).pdf",
+  "sourceTextFileName": "MATH234_Syllabus_Summer_2024.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 234",
   "courseName": "Discrete Mathematics",
   "creditHours": 3,
   "semester": "Summer 2024",
   "instructor": "Meryem Rhadbane",
+  "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
+  "schedule": "MTWR 9:00 - 10:40",
+  "classroom": null,
+  "officeRoom": "Building 1 office 021B San",
+  "officeHours": "3:00 p.m. – 4:00 p.m.",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Discrete Mathematics and its Applications, Global Edition by K.H. Rosen, Publisher: McGraw Hill, 7",
+    "Edition, 2012. ISBN: 9780071315012."
+  ],
+  "courseDescription": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
   "assessments": [
     {
       "name": "Quiz 1",
-      "weight_percentage": 40,
-      "max_score": 100
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework: Quiz 1 Monday 10-06-2024 40% Quiz 2 Tuesday 25-06-2024 Quiz 3 Thursday 04-07-2024 (Best 3 of 4) Quiz 4 Thursday 11-07-2024 "
+    },
+    {
+      "name": "Midterm Examination(s)",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Midterm Examination: Thursday, 27 June 2024 25%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination: TBD by the Registrar’s Office 35%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Split quiz group weight 40% evenly across Quiz 1-Quiz 4. Please confirm."
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": false
 }

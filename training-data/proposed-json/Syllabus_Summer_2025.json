@@ -12,7 +12,8 @@
   "instructorEmail": "Dalaver.anjum@ku.ac.ae",
   "schedule": "MTWR 12:00 pm – 2:30 pm (SAN 2126)",
   "classroom": null,
-  "officeHours": "Make sure to take an appointment via email:",
+  "officeRoom": "SAN 2220",
+  "officeHours": "Wednesday: 3 pm – 4 pm",
   "prerequisites": "MATH 111",
   "textbooks": [
     "Physics for Scientists and Engineers",

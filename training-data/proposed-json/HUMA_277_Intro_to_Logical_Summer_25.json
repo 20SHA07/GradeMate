@@ -12,18 +12,61 @@
   "instructorEmail": "mustapha.tajdin@ku.ac.ae",
   "schedule": "CRN 30131, Class Location: R01007, Class Time: MTWT 9:00-10:40.",
   "classroom": null,
+  "officeRoom": "SAN Campus Building 4 Office no: 4125 or",
   "officeHours": "Monday and Thursday 1:00-2:30 or through MS Teams",
   "prerequisites": "ENGL 102",
   "textbooks": [
     "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
   ],
   "courseDescription": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 1 Week 2 10%"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Quiz 2 Week 4 10%"
+    },
+    {
+      "name": "Homework",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Assignments (homework) Week 5 10%"
+    },
+    {
+      "name": "Presentation Or Essay",
+      "weight_percentage": 10,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Presentation or Essay Week 6 10%"
+    },
+    {
+      "name": "Semester Exam",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Semester Exam Week 3 25%"
+    },
+    {
+      "name": "Final Exam",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Final Exam 35%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
-    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.15,
-  "needsHumanReview": true
+  "confidence": 0.93,
+  "needsHumanReview": false
 }

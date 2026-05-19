@@ -8,22 +8,80 @@
   "courseName": "01 Fundamentals of Organic Chemistry",
   "creditHours": null,
   "semester": "Spring 2025",
-  "instructor": "Dr. Manzar Abbas",
+  "instructor": "Tuesday, Thursday (12:00 – 1:15 pm) at PMA 3016; Dr. Manzar Abbas",
   "instructorEmail": "manzar.abbas@ku.ac.ae",
   "schedule": "Tuesday, Thursday (12:00 – 1:15 pm) at PMA 3016",
   "classroom": null,
+  "officeRoom": "Buhasa 2012A",
   "officeHours": "(Tuesday, Thursday) 02.00 PM - 03.30 PM",
   "prerequisites": null,
   "textbooks": [],
   "courseDescription": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-  "assessments": [],
-  "totalWeight": 0,
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade) Quiz 1 Week 3 20% Quiz 2 Week 6 Quiz 3 Week 11 Quiz 4 Week 13 Quiz 5 (Homework based) Week 15 "
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade) Quiz 1 Week 3 20% Quiz 2 Week 6 Quiz 3 Week 11 Quiz 4 Week 13 Quiz 5 (Homework based) Week 15 "
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade) Quiz 1 Week 3 20% Quiz 2 Week 6 Quiz 3 Week 11 Quiz 4 Week 13 Quiz 5 (Homework based) Week 15 "
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade) Quiz 1 Week 3 20% Quiz 2 Week 6 Quiz 3 Week 11 Quiz 4 Week 13 Quiz 5 (Homework based) Week 15 "
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Coursework (Best 4 out of 5 will count towards the grade) Quiz 1 Week 3 20% Quiz 2 Week 6 Quiz 3 Week 11 Quiz 4 Week 13 Quiz 5 (Homework based) Week 15 "
+    },
+    {
+      "name": "Laboratory",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Laboratory Communicated through lab instructor 25%"
+    },
+    {
+      "name": "Midterm Exam",
+      "weight_percentage": 20,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Semester Examination (s) Midterm Exam Week 9 20%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.94,
+      "source_text_snippet": "Final Examination (TBA) 35%"
+    }
+  ],
+  "totalWeight": 100,
   "warnings": [
+    "Split quiz group weight 20% evenly across Quiz 1-Quiz 5. Please confirm.",
     "Course info missing",
     "Credit hours missing",
-    "No assessments found",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.12,
+  "confidence": 0.89,
   "needsHumanReview": true
 }

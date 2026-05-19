@@ -1,25 +1,50 @@
 {
   "sourceFileName": "Summer 2024 Syllabus.pdf",
+  "sourcePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\Summer 2024 Syllabus.pdf",
+  "sourceRelativePath": "MATH\\MATH 242 Introduction to Probability and Statistics\\Summer 2024 Syllabus.pdf",
+  "sourceTextFileName": "Summer_2024_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "MATH 242",
   "courseName": "Introduction to Probability and Statistics",
   "creditHours": 3,
   "semester": "Summer 2024",
   "instructor": "Dr. Berihu Gebrehiwot",
+  "instructorEmail": "berihu.gebrehiwot@ku.ac.ae",
+  "schedule": "As in Banner",
+  "classroom": null,
+  "officeRoom": "San Campus Building 1, Room No. 1211",
+  "officeHours": "After 2pm-please email me in advance for office location",
+  "prerequisites": "MATH 112",
+  "textbooks": [
+    "Applied Statistics and Probability for Engineers by D. C. Montgomery and G.C. Runger, Publisher:",
+    "Wiley, 7 Edition (online edition), 2018, ISBN: 978EEGRP45491."
+  ],
+  "courseDescription": "This course introduces students to basic probability models and statistical methods for data analysis.\nThe course will cover introductory probability theory, discrete and continuous probability\ndistributions, elements of descriptive statistics, and different statistical inference methods such as\nestimation for the mean and the variance, hypothesis testing for the mean and the variance.",
   "assessments": [
     {
       "name": "Coursework",
       "weight_percentage": 40,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (Quizzes and assigments) 40%"
     },
     {
-      "name": "Semester Examination",
+      "name": "Semester Examination (s)",
       "weight_percentage": 25,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination(s) 25%"
     },
     {
       "name": "Final Exam",
       "weight_percentage": 35,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination 35%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }

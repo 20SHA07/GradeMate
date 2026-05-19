@@ -12,6 +12,7 @@
   "instructorEmail": "Meryem.rhadbane@ku.ac.ae",
   "schedule": "As in Banner",
   "classroom": null,
+  "officeRoom": "San Campus Building 1, Room No. 021-B",
   "officeHours": "Monday & Thursday from 4:30 – 5:30 pm, please email me in advance for office location",
   "prerequisites": "MATH 112",
   "textbooks": [
@@ -20,25 +21,38 @@
   "courseDescription": "This course introduces students to basic probability models and statistical methods for data analysis. The course will cover introductory probability theory, discrete and continuous probability distributions, elements of descriptive statistics, and different statistical inference methods such as estimation for the mean and the variance, hypothesis testing for the mean and the variance.",
   "assessments": [
     {
-      "name": "Mid Term Exam",
-      "weight_percentage": 10,
+      "name": "Coursework (Quizzes, assignments )",
+      "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "In the week 3 of the semester, students will be provided an assignment in groups and they will have to submit the week before the Midterm. Each group will be composed of 3 or 4 students and will have a different data set. The assignment mus"
+      "confidence": 0.9,
+      "source_text_snippet": "Coursework (Quizzes, assignments ) 30%"
     },
     {
-      "name": "Final Exam",
+      "name": "Project (After Midterm)",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
-      "source_text_snippet": "In the week 11 of the semester, students will be assigned a project regarding data analysis using a statistical software. Each group will be composed of 3 or 4 students and will have a different data set. A final report on the data analysis"
+      "confidence": 0.9,
+      "source_text_snippet": "Project (After Midterm) 10%"
+    },
+    {
+      "name": "Semester Examination (s)",
+      "weight_percentage": 25,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Semester Examination(s) 25%"
+    },
+    {
+      "name": "Final Examination",
+      "weight_percentage": 35,
+      "max_score": 100,
+      "confidence": 0.9,
+      "source_text_snippet": "Final Examination 35%"
     }
   ],
-  "totalWeight": 20,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (20%)",
     "Golden source is not a PDF; DOCX extraction was used"
   ],
-  "confidence": 0.95,
-  "needsHumanReview": true
+  "confidence": 0.89,
+  "needsHumanReview": false
 }

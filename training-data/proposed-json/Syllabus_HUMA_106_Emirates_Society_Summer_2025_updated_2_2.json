@@ -8,10 +8,11 @@
   "courseName": "Emirates Society",
   "creditHours": 3,
   "semester": "Summer 2025",
-  "instructor": "HUMA 106 Emirates Society - Lectures are to be delivered",
+  "instructor": "Enaam Hunaini",
   "instructorEmail": "Enaam.subhi@ku.ac.ae",
-  "schedule": "Office Hours Tuesdays and Thursdays 11:00- 12:00",
+  "schedule": null,
   "classroom": null,
+  "officeRoom": "SAN- Zarkuh / R:1023B",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [
@@ -30,47 +31,47 @@
       "name": "Quiz 1",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Quiz 1 Week 2 15%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 15,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Quizzes Quiz 2 Week 5 15%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Midterm",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Midterm Week 4 20%"
     },
     {
-      "name": "Assignments",
+      "name": "In-Class Assignment",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "In-Class Assignment Week 4 10%"
     },
     {
-      "name": "Final Project",
+      "name": "Research Final Project",
       "weight_percentage": 30,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Research final Project Week 6 30%"
     },
     {
-      "name": "Presentation",
+      "name": "Chapter Presentations On Going 10%",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Chapter presentations On going 10%"
     }
   ],
   "totalWeight": 100,
   "warnings": [],
-  "confidence": 0.95,
+  "confidence": 0.93,
   "needsHumanReview": false
 }

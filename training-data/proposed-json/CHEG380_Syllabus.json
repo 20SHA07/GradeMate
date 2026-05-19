@@ -8,10 +8,11 @@
   "courseName": "Introduction to Polymer Science and Technology",
   "creditHours": null,
   "semester": "Spring 2024",
-  "instructor": "Contact",
+  "instructor": "Saeed Alhassan",
   "instructorEmail": "Saeed.alkhazraji@ku.ac.ae",
   "schedule": null,
   "classroom": null,
+  "officeRoom": "SAN Campus Arzanah 315",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [
@@ -19,14 +20,70 @@
     "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
   ],
   "courseDescription": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
-  "assessments": [],
-  "totalWeight": 0,
-  "warnings": [
-    "Low confidence extraction",
-    "Course info missing",
-    "Credit hours missing",
-    "No assessments found"
+  "assessments": [
+    {
+      "name": "Quiz 1",
+      "weight_percentage": 1,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 3: Starting Ch.9. Addition Polymerization Quiz #1"
+    },
+    {
+      "name": "Quiz 2",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 4: Starting Ch.10-11. Advanced Polymerization Techniques Quiz #2"
+    },
+    {
+      "name": "Quiz 3",
+      "weight_percentage": 3,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 5: Starting Ch.12. Polymerization Practice Quiz #3"
+    },
+    {
+      "name": "Exam 1",
+      "weight_percentage": 1,
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Week 7: Starting Ch.5. Characterization of Molecular Weight Exam #1"
+    },
+    {
+      "name": "Quiz 4",
+      "weight_percentage": 4,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 9: Starting Ch.7. Polymer Solubility and Solutions Quiz #4"
+    },
+    {
+      "name": "Quiz 5",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 10: Starting Ch.13. Rubber Elasticity Quiz #5"
+    },
+    {
+      "name": "Quiz 6",
+      "weight_percentage": 6,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 14: Starting Ch.15. Linear Viscoelasticity Quiz #6"
+    },
+    {
+      "name": "Exam 2",
+      "weight_percentage": 2,
+      "max_score": 100,
+      "confidence": 0.93,
+      "source_text_snippet": "Week 15: Starting Ch.16. Mechanical Properties Exam #2"
+    }
   ],
-  "confidence": 0.12,
+  "totalWeight": 24,
+  "warnings": [
+    "Total weight is below 100 (24%)",
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.89,
   "needsHumanReview": true
 }

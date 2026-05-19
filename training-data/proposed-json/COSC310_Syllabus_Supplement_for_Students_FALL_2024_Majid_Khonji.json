@@ -8,10 +8,11 @@
   "courseName": "Data Structures",
   "creditHours": null,
   "semester": "Fall 2024",
-  "instructor": "Contact",
-  "instructorEmail": null,
+  "instructor": "Dr. Majid Khonji",
+  "instructorEmail": "majid.khonji@ku.ac.ae",
   "schedule": null,
   "classroom": null,
+  "officeRoom": "C02033",
   "officeHours": null,
   "prerequisites": null,
   "textbooks": [],
@@ -21,58 +22,64 @@
       "name": "Quiz 1",
       "weight_percentage": 3.33,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Coursework: Quiz 1 26 Sept 3.33%"
     },
     {
       "name": "Quiz 2",
       "weight_percentage": 3.33,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Quiz 2 17 Oct 3.33%"
     },
     {
       "name": "Quiz 3",
       "weight_percentage": 3.34,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Quiz 3 21 Nov 3.34%"
     },
     {
-      "name": "Assignments",
+      "name": "Projects",
       "weight_percentage": 10,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Projects / Assignment Assignment 31 Oct – 25 Nov 10%"
     },
     {
-      "name": "Laboratory",
+      "name": "Lab Assignments",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Laboratory Lab Assignments Weekly (W2 – W13) 20%"
+    },
+    {
+      "name": "Lab Test (Last Lab)",
+      "weight_percentage": 5,
+      "max_score": 100,
+      "confidence": 0.95,
+      "source_text_snippet": "Lab Test (Last Lab) Week 14 5%"
     },
     {
       "name": "Semester Examination",
       "weight_percentage": 20,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Semester Examination (on-campus) Week 9 (Oct 24) 20%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 35,
       "max_score": 100,
-      "confidence": 0.98,
+      "confidence": 0.95,
       "source_text_snippet": "Final Examination (on-campus) Week 16 starting Dec 9 35%"
     }
   ],
-  "totalWeight": 95,
+  "totalWeight": 100,
   "warnings": [
-    "Total weight is below 100 (95%)",
     "Course info missing",
     "Credit hours missing"
   ],
-  "confidence": 0.92,
+  "confidence": 0.9,
   "needsHumanReview": true
 }

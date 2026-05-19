@@ -12,6 +12,7 @@
   "instructorEmail": "berihu.gebrehiwot@ku.ac.ae",
   "schedule": "As in Banner",
   "classroom": null,
+  "officeRoom": "San Campus Building 1, Room No. 1211",
   "officeHours": "After 2pm-please email me in advance for office location",
   "prerequisites": "MATH 112",
   "textbooks": [
@@ -28,7 +29,7 @@
       "source_text_snippet": "Coursework (Quizzes and assigments) 40%"
     },
     {
-      "name": "Semester Examination",
+      "name": "Semester Examination (s)",
       "weight_percentage": 25,
       "max_score": 100,
       "confidence": 0.98,

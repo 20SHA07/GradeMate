@@ -1,35 +1,64 @@
 {
   "sourceFileName": "Thermo II Syllabus .pdf",
+  "sourcePath": "CHEG\\CHEG 332 Chemical Engineering Thermodynamics II\\Thermo II Syllabus .pdf",
+  "sourceRelativePath": "CHEG\\CHEG 332 Chemical Engineering Thermodynamics II\\Thermo II Syllabus .pdf",
+  "sourceTextFileName": "Thermo_II_Syllabus.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "CHEG 332",
   "courseName": "Chemical Engineering Thermodynamics II",
   "creditHours": null,
   "semester": "Spring 2025",
-  "instructor": "Contact",
+  "instructor": "Dr. Giovanni Palmisano",
+  "instructorEmail": "giovanni.palmisano@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": "SAN Campus: Building 8 (Arzanah), 2 level, Room 8-265",
+  "officeHours": null,
+  "prerequisites": null,
+  "textbooks": [],
+  "courseDescription": ", report, and calculations will be given with the assignment.",
   "assessments": [
     {
       "name": "Quiz 3",
       "weight_percentage": 15,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Quizzes 3 Quizzes TBA 15%"
     },
     {
       "name": "Laboratory",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Laboratory Reports, Quizzes, Presentation Biweekly 20%"
     },
     {
-      "name": "Mid Term Exam",
+      "name": "Semester Examination (s)",
       "weight_percentage": 24,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Semester Examination (s) Midterm exam Week 8 24%"
     },
     {
-      "name": "Final Exam",
+      "name": "Final Examination",
       "weight_percentage": 32,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Examination Final exam TBA 32%"
     },
     {
       "name": "Assignment 3",
       "weight_percentage": 9,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Assignments 3 Assignments - 9%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [
+    "Course info missing",
+    "Credit hours missing"
+  ],
+  "confidence": 0.92,
+  "needsHumanReview": true
 }

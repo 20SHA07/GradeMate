@@ -1,30 +1,57 @@
 {
   "sourceFileName": "BUSS322 Syllabus Bowman Spring 2025.pdf",
+  "sourcePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\BUSS322 Syllabus Bowman Spring 2025.pdf",
+  "sourceRelativePath": "BUSS\\BUSS 322 Fundamentals of Innovation and Entrepreneurship\\BUSS322 Syllabus Bowman Spring 2025.pdf",
+  "sourceTextFileName": "BUSS322_Syllabus_Bowman_Spring_2025.txt",
+  "sourcePageOrSection": "Detected grading/evaluation sections where available",
   "courseCode": "BUSS 322",
   "courseName": "Fundamentals of Innovation & Entrepreneurship",
   "creditHours": 3,
   "semester": "Spring 2025",
-  "instructor": "Contact",
+  "instructor": "Ms Melanie Bowman",
+  "instructorEmail": "Melanie.bowman@ku.ac.ae",
+  "schedule": null,
+  "classroom": null,
+  "officeRoom": null,
+  "officeHours": null,
+  "prerequisites": "Junior Standing",
+  "textbooks": [
+    "Technology Ventures: From Idea to Enterprise by Tom Byers, Dorf, and Nelson, Publisher: McGraw Hill Education, 4th Edition,",
+    "2015, International Student Edition, ISBN: 9781259875991"
+  ],
+  "courseDescription": null,
   "assessments": [
     {
       "name": "Coursework",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Coursework (an accumulation of homework tasks and reflections throughout the course) 20%"
     },
     {
       "name": "Project 1",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #1: Design Thinking in Practice 20%"
     },
     {
       "name": "Project 2",
       "weight_percentage": 20,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Project #2: Opportunity Analysis 20%"
     },
     {
       "name": "Final Project",
       "weight_percentage": 40,
-      "max_score": 100
+      "max_score": 100,
+      "confidence": 0.98,
+      "source_text_snippet": "Final Project: Personal Business Plan 40%"
     }
-  ]
+  ],
+  "totalWeight": 100,
+  "warnings": [],
+  "confidence": 0.95,
+  "needsHumanReview": false
 }
