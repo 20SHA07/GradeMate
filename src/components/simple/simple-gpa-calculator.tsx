@@ -162,20 +162,6 @@ const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
 const inputStyles = "gm-input";
 const textareaStyles = "gm-textarea";
-const termOptions = [
-  "Spring 2024",
-  "Summer 2024",
-  "Fall 2024",
-  "Spring 2025",
-  "Summer 2025",
-  "Fall 2025",
-  "Spring 2026",
-  "Summer 2026",
-  "Fall 2026",
-  "Spring 2027",
-  "Summer 2027",
-  "Fall 2027"
-];
 
 const defaultCourse: Omit<SimpleCourse, "id"> = {
   assessments: [],
@@ -1609,23 +1595,14 @@ export function SimpleGpaCalculator() {
             </p>
             <label className="mt-2 block">
               <span className="sr-only">Current term</span>
-              <select
+              <input
                 className="gm-input h-8 px-2.5 text-base font-semibold"
                 onChange={(event) =>
                   updateData({ currentTerm: event.target.value })
                 }
+                placeholder="e.g. Fall 2026"
                 value={data.currentTerm}
-              >
-                <option value="">Choose term</option>
-                {data.currentTerm && !termOptions.includes(data.currentTerm) ? (
-                  <option value={data.currentTerm}>{data.currentTerm}</option>
-                ) : null}
-                {termOptions.map((term) => (
-                  <option key={term} value={term}>
-                    {term}
-                  </option>
-                ))}
-              </select>
+              />
             </label>
             <p className="mt-1 text-xs text-ink-500">
               {data.courses.length} course{data.courses.length === 1 ? "" : "s"}
