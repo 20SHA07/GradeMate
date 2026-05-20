@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import {
   ArrowLeft,
   BookOpen,
@@ -60,6 +60,7 @@ import {
   getCoreAssessmentPayloads,
   isMissingAssessmentOptionalColumnError
 } from "@/lib/supabase/assessment-write";
+import { deleteCourse as storeDeleteCourse } from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -1711,6 +1712,7 @@ export function CourseDetailClient({
   courseIdOverride?: string;
 } = {}) {
   const params = useParams();
+  const router = useRouter();
   const routeCourseId = Array.isArray(params.courseId)
     ? params.courseId[0]
     : params.courseId;
@@ -1733,6 +1735,7 @@ export function CourseDetailClient({
   const [isAssessmentFormOpen, setIsAssessmentFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [isDeletingCourse, setIsDeletingCourse] = useState(false);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -2056,6 +2059,38 @@ export function CourseDetailClient({
     );
   }
 
+  async function handleDeleteCourse() {
+    if (!course) {
+      return;
+    }
+
+    const shouldDelete = window.confirm(
+      `Remove ${course.name}? This also removes its saved assessments.`
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    setError("");
+    setIsDeletingCourse(true);
+
+    try {
+      await storeDeleteCourse(
+        { isGuest, supabase, userId: user.id },
+        course.id
+      );
+      router.push("/courses");
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not remove course."
+      );
+      setIsDeletingCourse(false);
+    }
+  }
+
   if (isLoading) {
     return <Card className="p-5 text-sm text-ink-500">Loading course...</Card>;
   }
@@ -2109,6 +2144,14 @@ export function CourseDetailClient({
             <Button onClick={() => setActiveTab("extractor")} variant="secondary">
               <Wand2 aria-hidden="true" className="h-4 w-4" />
               Scan syllabus
+            </Button>
+            <Button
+              disabled={isDeletingCourse}
+              onClick={() => void handleDeleteCourse()}
+              variant="danger"
+            >
+              <Trash2 aria-hidden="true" className="h-4 w-4" />
+              {isDeletingCourse ? "Removing..." : "Remove course"}
             </Button>
           </div>
         }

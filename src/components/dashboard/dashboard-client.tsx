@@ -27,6 +27,7 @@ import { getGradeInfo } from "@/lib/grading";
 import { getCourseDetailHref } from "@/lib/routes";
 import {
   defaultDegreePlanSettings,
+  deleteCourse as storeDeleteCourse,
   getDegreePlanSettings,
   getWorkspaceSnapshot,
   resetDegreePlanSettings,
@@ -148,6 +149,7 @@ export function DashboardClient() {
   const [isDegreeSettingsOpen, setIsDegreeSettingsOpen] = useState(false);
   const [degreeSettingsError, setDegreeSettingsError] = useState("");
   const [degreeSettingsMessage, setDegreeSettingsMessage] = useState("");
+  const [deletingCourseId, setDeletingCourseId] = useState("");
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState("");
 
@@ -336,6 +338,44 @@ export function DashboardClient() {
           : "Could not save degree settings."
       );
       return false;
+    }
+  }
+
+  async function handleDeleteCourse(course: CourseRecord) {
+    const shouldDelete = window.confirm(
+      `Remove ${course.name}? This also removes its saved assessments.`
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    setError("");
+    setDeletingCourseId(course.id);
+
+    try {
+      await storeDeleteCourse(
+        {
+          isGuest,
+          supabase,
+          userId: user.id
+        },
+        course.id
+      );
+      setCourses((current) =>
+        current.filter((currentCourse) => currentCourse.id !== course.id)
+      );
+      setAssessments((current) =>
+        current.filter((assessment) => assessment.course_id !== course.id)
+      );
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not remove course."
+      );
+    } finally {
+      setDeletingCourseId("");
     }
   }
 
@@ -597,11 +637,9 @@ export function DashboardClient() {
             <div className="grid gap-px bg-ink-200 md:grid-cols-2 xl:grid-cols-3">
               {courseSummaries.map(({ course, summary }) => {
                 return (
-                  <Link
+                  <div
                     className="min-w-0 bg-white/90 p-4 transition-colors hover:bg-ink-100/80"
-                    href={getCourseDetailHref(course.id)}
                     key={course.id}
-                    prefetch={false}
                   >
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
@@ -617,21 +655,38 @@ export function DashboardClient() {
                           {Number(course.credit_hours || 0)} credits
                         </p>
                       </div>
-                      <p className="text-right text-sm font-semibold text-ink-900">
-                        {formatPercent(summary.currentGrade)}
-                      </p>
+                      <div className="text-right">
+                        <p className="text-sm font-semibold text-ink-900">
+                          {formatPercent(summary.currentGrade)}
+                        </p>
+                        <button
+                          className="mt-2 inline-flex items-center gap-1 text-[11px] font-semibold text-rose-700 transition hover:text-rose-800"
+                          disabled={deletingCourseId === course.id}
+                          onClick={() => void handleDeleteCourse(course)}
+                          type="button"
+                        >
+                          <Trash2 aria-hidden="true" className="h-3.5 w-3.5" />
+                          {deletingCourseId === course.id ? "Removing" : "Remove"}
+                        </button>
+                      </div>
                     </div>
 
                     <div className="mt-4 flex items-center justify-between gap-3 text-xs text-ink-500">
                       <span>{summary.completedWeight}% completed</span>
-                      <span className="font-semibold text-teal-300">Open</span>
+                      <Link
+                        className="font-semibold text-teal-300 hover:text-teal-200"
+                        href={getCourseDetailHref(course.id)}
+                        prefetch={false}
+                      >
+                        Open
+                      </Link>
                     </div>
                     <Progress
                       className="mt-2"
                       value={Math.min(summary.totalWeight, 100)}
                       tone={summary.totalWeight === 100 ? "green" : "gold"}
                     />
-                  </Link>
+                  </div>
                 );
               })}
             </div>

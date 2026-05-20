@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, PlusCircle } from "lucide-react";
+import { ArrowRight, BookOpen, PlusCircle, Trash2 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
-import { buttonStyles } from "@/components/ui/button";
+import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
@@ -16,7 +16,10 @@ import {
   getLetterGrade
 } from "@/lib/grades";
 import { getCourseDetailHref } from "@/lib/routes";
-import { getWorkspaceSnapshot } from "@/lib/workspace-store";
+import {
+  deleteCourse as storeDeleteCourse,
+  getWorkspaceSnapshot
+} from "@/lib/workspace-store";
 import type {
   AssessmentRecord,
   CourseRecord,
@@ -29,6 +32,7 @@ export function CoursesClient() {
   const [courses, setCourses] = useState<CourseRecord[]>([]);
   const [assessments, setAssessments] = useState<AssessmentRecord[]>([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [deletingCourseId, setDeletingCourseId] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -64,6 +68,40 @@ export function CoursesClient() {
 
   function assessmentsForCourse(courseId: string) {
     return assessments.filter((assessment) => assessment.course_id === courseId);
+  }
+
+  async function deleteCourse(course: CourseRecord) {
+    const shouldDelete = window.confirm(
+      `Remove ${course.name}? This also removes its saved assessments.`
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    setError("");
+    setDeletingCourseId(course.id);
+
+    try {
+      await storeDeleteCourse(
+        { isGuest, supabase, userId: user.id },
+        course.id
+      );
+      setCourses((current) =>
+        current.filter((currentCourse) => currentCourse.id !== course.id)
+      );
+      setAssessments((current) =>
+        current.filter((assessment) => assessment.course_id !== course.id)
+      );
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not remove course."
+      );
+    } finally {
+      setDeletingCourseId("");
+    }
   }
 
   return (
@@ -179,6 +217,15 @@ export function CoursesClient() {
                   Open course
                   <ArrowRight aria-hidden="true" className="h-4 w-4" />
                 </Link>
+                <Button
+                  className="mt-2 w-full"
+                  disabled={deletingCourseId === course.id}
+                  onClick={() => void deleteCourse(course)}
+                  variant="danger"
+                >
+                  <Trash2 aria-hidden="true" className="h-4 w-4" />
+                  {deletingCourseId === course.id ? "Removing..." : "Remove course"}
+                </Button>
               </Card>
             );
           })}

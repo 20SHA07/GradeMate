@@ -1,7 +1,14 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, BookOpen, CalendarDays, PlusCircle, X } from "lucide-react";
+import {
+  ArrowRight,
+  BookOpen,
+  CalendarDays,
+  PlusCircle,
+  Trash2,
+  X
+} from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
@@ -21,6 +28,7 @@ import {
   createAssessment as storeCreateAssessment,
   createCourse as storeCreateCourse,
   createSemester as storeCreateSemester,
+  deleteCourse as storeDeleteCourse,
   getWorkspaceSnapshot
 } from "@/lib/workspace-store";
 import { getCourseDetailHref } from "@/lib/routes";
@@ -80,6 +88,7 @@ export function SemestersManager() {
   const [isCourseModalOpen, setIsCourseModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
+  const [deletingCourseId, setDeletingCourseId] = useState("");
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -260,6 +269,40 @@ export function SemestersManager() {
           ? createError.message
           : "Could not add default assessments."
       );
+    }
+  }
+
+  async function deleteCourse(course: CourseRecord) {
+    const shouldDelete = window.confirm(
+      `Remove ${course.name}? This also removes its saved assessments.`
+    );
+
+    if (!shouldDelete) {
+      return;
+    }
+
+    setError("");
+    setDeletingCourseId(course.id);
+
+    try {
+      await storeDeleteCourse(
+        { isGuest, supabase, userId: user.id },
+        course.id
+      );
+      setCourses((current) =>
+        current.filter((currentCourse) => currentCourse.id !== course.id)
+      );
+      setAssessments((current) =>
+        current.filter((assessment) => assessment.course_id !== course.id)
+      );
+    } catch (deleteError) {
+      setError(
+        deleteError instanceof Error
+          ? deleteError.message
+          : "Could not remove course."
+      );
+    } finally {
+      setDeletingCourseId("");
     }
   }
 
@@ -475,6 +518,17 @@ export function SemestersManager() {
                           Add common grading items
                         </Button>
                       ) : null}
+                      <Button
+                        disabled={deletingCourseId === course.id}
+                        onClick={() => void deleteCourse(course)}
+                        size="sm"
+                        variant="danger"
+                      >
+                        <Trash2 aria-hidden="true" className="h-4 w-4" />
+                        {deletingCourseId === course.id
+                          ? "Removing..."
+                          : "Remove course"}
+                      </Button>
                     </div>
                   </div>
                 );
