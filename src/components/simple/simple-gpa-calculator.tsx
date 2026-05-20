@@ -47,7 +47,6 @@ import {
   type VerifiedExtractionSource
 } from "@/lib/syllabus/verified-extractions";
 import {
-  getGradeInfo,
   getGradePoint,
   getLetterGrade,
   gradeScale,
@@ -655,6 +654,7 @@ function readStoredData(): SimpleGpaData {
 export function SimpleGpaCalculator() {
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const courseNameInputRefs = useRef<Record<string, HTMLInputElement | null>>({});
+  const studentInfoRef = useRef<HTMLDetailsElement | null>(null);
   const [data, setData] = useState<SimpleGpaData>(() => getDefaultData());
   const [isLoaded, setIsLoaded] = useState(false);
   const [importText, setImportText] = useState("");
@@ -688,6 +688,7 @@ export function SimpleGpaCalculator() {
   const [libraryError, setLibraryError] = useState("");
   const [isFindCourseOpen, setIsFindCourseOpen] = useState(false);
   const [isImportOpen, setIsImportOpen] = useState(false);
+  const [isStudentInfoOpen, setIsStudentInfoOpen] = useState(false);
   const [activeExtractionCourseId, setActiveExtractionCourseId] = useState<
     string | null
   >(null);
@@ -869,6 +870,10 @@ export function SimpleGpaCalculator() {
     data.courses.find((course) => course.id === activeExtractionCourseId) ?? null;
   const activePredictorCourse =
     data.courses.find((course) => course.id === activePredictorCourseId) ?? null;
+  const termGpaPercent =
+    summary.semesterGpa === null
+      ? 0
+      : Math.min(100, Math.max(0, (summary.semesterGpa / 4) * 100));
 
   function resetNotices() {
     setMessage("");
@@ -1494,7 +1499,7 @@ export function SimpleGpaCalculator() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900">
-      <div className="grid min-h-screen lg:grid-cols-[15rem_minmax(0,1fr)]">
+      <div className="grid min-h-screen lg:grid-cols-[14rem_minmax(0,1fr)]">
         <aside className="hidden border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
           <div className="px-4 py-5">
             <Link className="block font-semibold text-teal-300" href="/">
@@ -1541,7 +1546,7 @@ export function SimpleGpaCalculator() {
           </div>
         </aside>
 
-        <div className="min-w-0 space-y-4 px-4 py-5 sm:px-6 lg:px-8 lg:py-8 xl:px-10">
+        <div className="min-w-0 space-y-5 px-4 py-5 sm:px-6 lg:px-9 lg:py-8 xl:px-12">
         <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-[26px] font-bold leading-tight text-ink-900">GPA Calculator</h1>
@@ -1549,91 +1554,113 @@ export function SimpleGpaCalculator() {
               Add courses and see your GPA.
             </p>
           </div>
-          <div className="flex flex-wrap items-center gap-2">
-            <Button onClick={exportData} variant="secondary">
+          <div className="flex flex-wrap items-center gap-1 rounded-[3px] border border-ink-200 bg-white/80 p-1">
+            <Button onClick={() => setIsImportOpen(true)} size="sm" variant="ghost">
+              <FileUp aria-hidden="true" className="h-4 w-4" />
+              Import
+            </Button>
+            <Button onClick={exportData} size="sm" variant="ghost">
               <Download aria-hidden="true" className="h-4 w-4" />
               Save
             </Button>
-            <Button onClick={() => setIsImportOpen(true)} variant="ghost">
-              <FileUp aria-hidden="true" className="h-4 w-4" />
-              Import
+            <Button
+              onClick={() => {
+                setIsStudentInfoOpen(true);
+                window.requestAnimationFrame(() =>
+                  studentInfoRef.current?.scrollIntoView({
+                    behavior: "smooth",
+                    block: "center"
+                  })
+                );
+              }}
+              size="sm"
+              variant="secondary"
+            >
+              <Calculator aria-hidden="true" className="h-4 w-4" />
+              What-if
             </Button>
           </div>
         </header>
 
-        <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_13rem]">
-          <Card className="grid gap-4 p-4 sm:grid-cols-3">
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
-                Current term
-              </p>
-              <p className="mt-2 text-base font-semibold text-ink-900">
-                Fall 2024
-              </p>
+        <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+          <Card className="p-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
+              Current term
+            </p>
+            <p className="mt-2 text-base font-semibold text-ink-900">
+              Fall 2024
+            </p>
+            <p className="mt-1 text-xs text-ink-500">
+              {data.courses.length} course{data.courses.length === 1 ? "" : "s"}
+            </p>
+          </Card>
+
+          <Card className="p-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+              Total credits
+            </p>
+            <p className="mt-2 text-base font-semibold text-ink-900">
+              {Number(summary.semesterHours).toFixed(1)}
+            </p>
+            <p className="mt-1 text-xs text-ink-500">This semester</p>
+          </Card>
+
+          <Card className="p-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+              Quality points
+            </p>
+            <p className="mt-2 text-base font-semibold text-ink-900">
+              {summary.semesterQualityPoints.toFixed(1)}
+            </p>
+            <p className="mt-1 text-xs text-ink-500">Credits x grade points</p>
+          </Card>
+
+          <Card className="p-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
+              Estimated term GPA
+            </p>
+            <p className="mt-2 text-[30px] font-bold leading-none text-ink-900">
+              {formatGpa(summary.semesterGpa)}
+            </p>
+            <div className="mt-3 h-1 rounded-full bg-ink-200">
+              <div
+                className="h-full rounded-full bg-teal-300"
+                style={{ width: `${termGpaPercent}%` }}
+              />
             </div>
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
-                Total credits
-              </p>
-              <p className="mt-2 text-base font-semibold text-ink-900">
-                {Number(summary.semesterHours).toFixed(1)}
-              </p>
-            </div>
-            <div>
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
-                Quality points
-              </p>
-              <p className="mt-2 text-base font-semibold text-ink-900">
-                {summary.semesterQualityPoints.toFixed(1)}
-              </p>
+            <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-700">
+              <span>0.0</span>
+              <span>4.0</span>
             </div>
           </Card>
 
-          <div className="grid gap-3">
-            <Card className="p-4 text-center">
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
-                Estimated term GPA
-              </p>
-              <p className="mt-3 text-[38px] font-bold leading-none text-ink-900">
-                {formatGpa(summary.semesterGpa)}
-              </p>
-              <p className="mt-2 text-xs text-ink-700">
-                Based on {summary.semesterHours} credits
-              </p>
-              <div className="mt-4 h-0.5 bg-teal-300" />
-              <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-800">
-                <span>0.0</span>
-                <span>4.0</span>
-              </div>
-            </Card>
-            <Card className="p-4">
-              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
-                Cumulative impact
-              </p>
-              <div className="mt-4 flex items-end justify-between gap-3">
-                <div>
-                  <p className="text-xs font-semibold text-ink-900">Current CGPA</p>
-                  <p className="text-[10px] text-ink-700">
-                    {summary.cumulativeHours} credits
-                  </p>
-                </div>
-                <p className="text-sm font-semibold text-ink-900">
-                  {data.existingCgpa || formatGpa(summary.cumulativeGpa)}
+          <Card className="p-4">
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+              Cumulative impact
+            </p>
+            <div className="mt-3 flex items-end justify-between gap-3">
+              <div>
+                <p className="text-xs font-semibold text-ink-900">Current CGPA</p>
+                <p className="text-[10px] text-ink-700">
+                  {summary.cumulativeHours} credits
                 </p>
               </div>
-              <div className="mt-4 flex items-end justify-between gap-3 text-teal-300">
-                <div>
-                  <p className="text-xs font-semibold">New projected CGPA</p>
-                  <p className="text-[10px]">
-                    {summary.cumulativeHours} credits total
-                  </p>
-                </div>
-                <p className="text-sm font-semibold">
-                  {formatGpa(summary.cumulativeGpa)}
+              <p className="text-sm font-semibold text-ink-900">
+                {data.existingCgpa || formatGpa(summary.cumulativeGpa)}
+              </p>
+            </div>
+            <div className="mt-4 flex items-end justify-between gap-3 text-teal-300">
+              <div>
+                <p className="text-xs font-semibold">Projected</p>
+                <p className="text-[10px]">
+                  {summary.cumulativeHours} credits total
                 </p>
               </div>
-            </Card>
-          </div>
+              <p className="text-sm font-semibold">
+                {formatGpa(summary.cumulativeGpa)}
+              </p>
+            </div>
+          </Card>
         </section>
 
         {(message || error) && (
@@ -1938,16 +1965,11 @@ export function SimpleGpaCalculator() {
             <div className="divide-y divide-ink-200">
               {data.courses.map((course, index) => {
                 const stats = getCourseGradeStats(course);
-                const effectiveLetter = getEffectiveLetterGrade(course);
                 const qualityPoints = getCourseQualityPoints(course);
-                const calculatedInfo =
-                  stats.currentGrade === null
-                    ? null
-                    : getGradeInfo(stats.currentGrade);
 
                 return (
                   <div className="space-y-3 px-4 py-3" key={course.id}>
-                    <div className="grid gap-3 xl:grid-cols-[7rem_minmax(10rem,1fr)_4.75rem_8rem_7rem_auto] xl:items-end">
+                    <div className="grid gap-3 xl:grid-cols-[7rem_minmax(10rem,1fr)_4.75rem_8rem_7rem_5.5rem_auto] xl:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course code
@@ -2042,7 +2064,20 @@ export function SimpleGpaCalculator() {
                             </option>
                           ))}
                         </select>
+                        <span className="mt-1 block text-[11px] text-ink-500">
+                          {course.gradeSource === "calculated"
+                            ? formatPercent(stats.currentGrade)
+                            : "Manual"}
+                        </span>
                       </label>
+                      <div>
+                        <p className="text-sm font-medium text-ink-700">
+                          Quality pts
+                        </p>
+                        <p className="mt-1 rounded-[3px] border border-ink-200 bg-ink-50 px-3 py-2 text-sm font-semibold text-ink-900">
+                          {qualityPoints.toFixed(1)}
+                        </p>
+                      </div>
                       <Button
                         aria-label={`Remove ${course.name || `course ${index + 1}`}`}
                         className="justify-self-start xl:justify-self-end"
@@ -2052,27 +2087,6 @@ export function SimpleGpaCalculator() {
                       >
                         <Trash2 aria-hidden="true" className="h-4 w-4" />
                       </Button>
-                    </div>
-
-                    <div className="grid gap-2 rounded-md border border-ink-200 bg-ink-50 px-3 py-2 text-sm sm:grid-cols-3">
-                      <div>
-                        <p className="text-xs text-ink-500">Grade</p>
-                        <p className="mt-1 font-semibold text-ink-900">
-                          {formatPercent(stats.currentGrade)}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-ink-500">Letter</p>
-                        <p className="mt-1 font-semibold text-ink-900">
-                          {calculatedInfo?.letter ?? effectiveLetter}
-                        </p>
-                      </div>
-                      <div>
-                        <p className="text-xs text-ink-500">Quality points</p>
-                        <p className="mt-1 font-semibold text-ink-900">
-                          {qualityPoints.toFixed(1)}
-                        </p>
-                      </div>
                     </div>
 
                     <details className="rounded-lg border border-ink-200 bg-white/70 px-4 py-3 text-sm">
@@ -2099,7 +2113,12 @@ export function SimpleGpaCalculator() {
           </Card>
         </section>
 
-        <details className="border border-ink-200 bg-white/80 px-4 py-3">
+        <details
+          className="border border-ink-200 bg-white/80 px-4 py-3"
+          onToggle={(event) => setIsStudentInfoOpen(event.currentTarget.open)}
+          open={isStudentInfoOpen}
+          ref={studentInfoRef}
+        >
           <summary className="cursor-pointer text-sm font-semibold text-ink-900">
             Student information
           </summary>
