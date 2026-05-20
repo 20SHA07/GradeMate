@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-20T17:52:11.117Z",
+    "generatedAt": "2026-05-20T18:00:43.298Z",
     "ready": 54,
     "warnings": 2,
     "failures": 0
@@ -304,7 +304,7 @@
       "area": "Database Safety",
       "name": "Course Library backup exists",
       "status": "pass",
-      "detail": "2026-05-19T18-06-32-923Z; templates 92, assessments 230, materials 2512"
+      "detail": "2026-05-20T18-00-27-498Z; templates 134, assessments 454, materials 2553"
     },
     {
       "area": "Database Safety",

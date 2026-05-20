@@ -351,9 +351,10 @@ async function checkSidebarLayoutUx() {
     area: "Navigation",
     name: "Desktop sidebar stays fixed to viewport",
     status:
-      appShellSource.includes("lg:grid lg:grid-cols-[14rem_minmax(0,1fr)]") &&
+      appShellSource.includes("lg:block") &&
       appShellSource.includes("h-dvh w-56 shrink-0 overflow-hidden") &&
-      appShellSource.includes("lg:sticky lg:top-0") &&
+      appShellSource.includes("lg:fixed lg:inset-y-0 lg:left-0") &&
+      appShellSource.includes("lg:ml-56") &&
       appShellSource.includes("min-h-0 flex-1 space-y-1 overflow-y-auto") &&
       appShellSource.includes("max-h-[48dvh] shrink-0 space-y-3 overflow-y-auto")
         ? "pass"
@@ -376,9 +377,10 @@ async function checkSidebarLayoutUx() {
     area: "Navigation",
     name: "Simple calculator sidebar uses same viewport shell",
     status:
-      simpleSource.includes("grid min-h-dvh lg:grid-cols-[14rem_minmax(0,1fr)]") &&
-      simpleSource.includes("hidden h-dvh overflow-hidden border-r") &&
-      simpleSource.includes("lg:sticky lg:top-0") &&
+      simpleSource.includes("min-h-dvh lg:block") &&
+      simpleSource.includes("hidden h-dvh w-56 overflow-hidden border-r") &&
+      simpleSource.includes("lg:fixed lg:inset-y-0 lg:left-0") &&
+      simpleSource.includes("lg:ml-56") &&
       simpleSource.includes("min-h-0 flex-1 content-start gap-1 overflow-y-auto") &&
       simpleSource.includes("max-h-[48dvh] shrink-0 overflow-y-auto")
         ? "pass"

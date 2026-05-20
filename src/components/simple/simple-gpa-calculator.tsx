@@ -1521,8 +1521,8 @@ export function SimpleGpaCalculator() {
 
   return (
     <main className="min-h-dvh overflow-x-hidden bg-ink-50 text-ink-900">
-      <div className="grid min-h-dvh lg:grid-cols-[14rem_minmax(0,1fr)]">
-        <aside className="hidden h-dvh overflow-hidden border-r border-ink-200 bg-ink-100 lg:sticky lg:top-0 lg:flex lg:flex-col">
+      <div className="min-h-dvh lg:block">
+        <aside className="hidden h-dvh w-56 overflow-hidden border-r border-ink-200 bg-ink-100 lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:flex-col">
           <div className="shrink-0 px-4 py-5">
             <Link className="block font-semibold text-teal-300" href="/">
               <span className="block text-[21px] font-bold leading-5">
@@ -1568,7 +1568,7 @@ export function SimpleGpaCalculator() {
           </div>
         </aside>
 
-        <div className="min-w-0 space-y-5 px-4 py-5 sm:px-6 lg:px-9 lg:py-8 xl:px-12">
+        <div className="min-w-0 space-y-5 px-4 py-5 sm:px-6 lg:ml-56 lg:px-9 lg:py-8 xl:px-12">
         <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-[26px] font-bold leading-tight text-ink-900">GPA Calculator</h1>

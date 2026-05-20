@@ -98,8 +98,8 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-dvh overflow-x-hidden bg-ink-50 text-ink-900 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)]">
-      <aside className="hidden h-dvh w-56 shrink-0 overflow-hidden border-r border-ink-200 bg-ink-100 lg:sticky lg:top-0 lg:flex lg:flex-col">
+    <div className="min-h-dvh overflow-x-hidden bg-ink-50 text-ink-900 lg:block">
+      <aside className="hidden h-dvh w-56 shrink-0 overflow-hidden border-r border-ink-200 bg-ink-100 lg:fixed lg:inset-y-0 lg:left-0 lg:z-30 lg:flex lg:flex-col">
         <div className="shrink-0 px-4 py-5">
           <Link className="block font-semibold text-teal-300" href="/">
             <span className="block text-[21px] font-bold leading-5">GradeMate</span>
@@ -212,7 +212,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         </div>
       </aside>
 
-      <div className="flex min-w-0 flex-1 flex-col">
+      <div className="flex min-w-0 flex-1 flex-col lg:ml-56">
         <header className="sticky top-0 z-20 border-b border-ink-200 bg-ink-50/95 lg:hidden">
           <div className="flex min-h-14 items-center justify-between gap-3 px-4 sm:px-6 lg:px-7">
             <Link className="flex items-center gap-2 font-semibold text-ink-900 lg:hidden" href="/">
