@@ -127,7 +127,7 @@ export default function LandingPage() {
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-5 text-ink-500">
-          Made by a Khalifa University student for KU students. Always verify
+          Made by a KU student for KU students. Always verify
           course details with your official syllabus.
         </p>
 

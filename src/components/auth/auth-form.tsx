@@ -282,7 +282,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       </p>
 
       <p className="mt-3 text-center text-[11px] leading-5 text-ink-400">
-        Made by a Khalifa University student for KU students.
+        Made by a KU student for KU students.
       </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">

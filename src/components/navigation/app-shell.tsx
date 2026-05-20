@@ -205,7 +205,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <p className="border-t border-ink-200 pt-3 text-[10px] leading-4 text-ink-500">
-            Made by a Khalifa University student for KU students.
+            Made by a KU student for KU students.
           </p>
         </div>
       </aside>
@@ -347,7 +347,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <p className="mt-2 text-[10px] leading-4 text-ink-500">
-            Made by a Khalifa University student for KU students.
+            Made by a KU student for KU students.
           </p>
         </div>
       </div>

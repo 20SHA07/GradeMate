@@ -13,7 +13,7 @@ editable for now.
 
 ## Unofficial Disclaimer
 
-GradeMate is an independent student-made tool and is not officially affiliated with, endorsed by, or operated by Khalifa University. Course information and templates should always be verified against official university materials and your course syllabus.
+GradeMate is an independent student-made tool built for KU students. It is not an official university product. Course information and templates should always be verified against official university materials and your course syllabus.
 
 ## Stack
 

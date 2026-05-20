@@ -1561,7 +1561,7 @@ export function SimpleGpaCalculator() {
               Built for KU students
             </p>
             <p className="mt-3 text-[10px] font-normal leading-4 tracking-normal text-ink-500">
-              Made by a Khalifa University student for KU students.
+              Made by a KU student for KU students.
             </p>
           </div>
         </aside>
@@ -2197,7 +2197,7 @@ export function SimpleGpaCalculator() {
         </details>
 
         <p className="text-center text-[11px] leading-5 text-ink-500">
-          Made by a Khalifa University student for KU students.
+          Made by a KU student for KU students.
         </p>
 
         {isFindCourseOpen ? (
