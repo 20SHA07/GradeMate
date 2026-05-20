@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Calculator, Library, LogIn } from "lucide-react";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { buttonStyles } from "@/components/ui/button";
 
 export function MarketingNav() {
@@ -24,6 +25,7 @@ export function MarketingNav() {
           </Link>
         </nav>
         <nav className="flex min-w-0 shrink-0 items-center gap-2">
+          <ThemeToggle />
           <Link
             className={buttonStyles({ className: "max-[360px]:hidden", variant: "ghost", size: "sm" })}
             href="/login"

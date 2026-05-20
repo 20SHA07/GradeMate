@@ -16,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { useAuth } from "@/components/auth/protected-session-provider";
+import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -167,6 +168,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           )}
           <div className="grid gap-1">
+            <ThemeToggle className="justify-start" showLabel />
             <Link
               className={buttonStyles({
                 className: "justify-start",
@@ -229,6 +231,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
 
             <div className="flex items-center gap-2">
+              <ThemeToggle />
               {isGuest ? (
                 <div className="hidden items-center gap-2 md:flex">
                   <Link
@@ -331,6 +334,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 {isGuest ? "Saved on this device" : user.email}
               </p>
             </div>
+            <ThemeToggle />
             {isGuest ? (
               <Button onClick={openSaveProgress} size="sm">
                 Save progress

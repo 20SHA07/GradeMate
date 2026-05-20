@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
   --font-app: "Plus Jakarta Sans";
   --font-fallback: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --type-body: 0.875rem;
@@ -14,23 +14,23 @@
   --type-hero: 2.875rem;
   --leading-compact: 1.25;
   --leading-copy: 1.55;
-  --ink-50: oklch(8.5% 0.006 238);
-  --ink-100: oklch(12.5% 0.007 238);
-  --ink-200: oklch(19% 0.008 238);
-  --ink-300: oklch(27% 0.01 238);
-  --ink-400: oklch(57% 0.016 238);
-  --ink-500: oklch(75% 0.018 238);
-  --ink-600: oklch(84% 0.014 238);
-  --ink-700: oklch(91% 0.01 238);
-  --ink-800: oklch(95% 0.007 238);
-  --ink-900: oklch(98% 0.005 238);
-  --surface: oklch(11% 0.007 238);
-  --surface-muted: oklch(7.5% 0.006 238);
-  --accent: oklch(72% 0.125 185);
-  --accent-hover: oklch(80% 0.11 185);
+  --ink-50: oklch(97.5% 0.006 238);
+  --ink-100: oklch(94.5% 0.007 238);
+  --ink-200: oklch(88.5% 0.01 238);
+  --ink-300: oklch(78% 0.014 238);
+  --ink-400: oklch(56% 0.018 238);
+  --ink-500: oklch(43% 0.018 238);
+  --ink-600: oklch(34% 0.016 238);
+  --ink-700: oklch(26% 0.014 238);
+  --ink-800: oklch(18% 0.012 238);
+  --ink-900: oklch(12% 0.01 238);
+  --surface: oklch(99% 0.003 238);
+  --surface-muted: oklch(96.5% 0.006 238);
+  --accent: oklch(49% 0.095 185);
+  --accent-hover: oklch(43% 0.105 185);
   --accent-on: oklch(98% 0.005 238);
-  --selection-bg: oklch(48% 0.11 190);
-  --selection-text: oklch(98% 0.005 238);
+  --selection-bg: oklch(82% 0.09 185);
+  --selection-text: oklch(14% 0.012 238);
 }
 
 .dark {
@@ -100,6 +100,42 @@ textarea {
 ::selection {
   background: var(--selection-bg);
   color: var(--selection-text);
+}
+
+.text-teal-300 {
+  color: var(--accent);
+}
+
+.bg-teal-500,
+.bg-teal-600,
+.bg-teal-700 {
+  background-color: var(--accent);
+}
+
+.border-teal-500,
+.border-teal-600,
+.border-teal-700 {
+  border-color: var(--accent);
+}
+
+.hover\:bg-teal-300:hover,
+.hover\:bg-teal-500:hover,
+.hover\:bg-teal-600:hover,
+.hover\:bg-teal-700:hover {
+  background-color: var(--accent-hover);
+}
+
+.hover\:border-teal-300:hover,
+.hover\:border-teal-500:hover,
+.hover\:border-teal-600:hover,
+.hover\:border-teal-700:hover {
+  border-color: var(--accent-hover);
+}
+
+.hover\:text-teal-300:hover,
+.hover\:text-teal-700:hover,
+.hover\:text-teal-800:hover {
+  color: var(--accent-hover);
 }
 
 .dark .bg-white {
