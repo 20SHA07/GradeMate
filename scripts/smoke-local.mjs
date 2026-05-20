@@ -19,6 +19,7 @@ await checkGuestModeConsistency();
 await checkCourseLibraryImportUx();
 await checkCourseLibraryDetailsModalUx();
 await checkSidebarLayoutUx();
+await checkContributionSubmissionUx();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -384,6 +385,87 @@ async function checkSidebarLayoutUx() {
         : "fail",
     detail:
       "The standalone GPA calculator shell should follow the same desktop sidebar behavior."
+  });
+}
+
+async function checkContributionSubmissionUx() {
+  const contributionSource = await readText(
+    "src/components/contributions/contribute-syllabus-client.tsx"
+  );
+  const myContributionsSource = await readText(
+    "src/components/contributions/my-contributions-client.tsx"
+  );
+  const adminContributionsSource = await readText(
+    "src/components/contributions/admin-contributions-client.tsx"
+  );
+
+  addCheck({
+    area: "Contributions",
+    name: "Contribution success confirmation is explicit",
+    status:
+      contributionSource.includes("Submission received") &&
+      contributionSource.includes("Syllabus submitted for review.") &&
+      contributionSource.includes("It will not") &&
+      contributionSource.includes("appear in the Course Library until it is approved") &&
+      contributionSource.includes("View my submissions") &&
+      contributionSource.includes("Submit another syllabus") &&
+      contributionSource.includes("Back to Course Library")
+        ? "pass"
+        : "fail",
+    detail:
+      "After a successful contribution save, users should see a clear pending-review confirmation and next actions."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Contribution submit prevents double clicks",
+    status:
+      contributionSource.includes("submitLockRef") &&
+      contributionSource.includes("submitLockRef.current || isSubmitting") &&
+      contributionSource.includes("submitLockRef.current = true") &&
+      contributionSource.includes("submitLockRef.current = false") &&
+      contributionSource.includes("Submitting...")
+        ? "pass"
+        : "fail",
+    detail:
+      "The submit flow should lock while saving so duplicate clicks cannot create duplicate rows."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Guest contribution path explains local drafts",
+    status:
+      contributionSource.includes("Please sign in to submit a syllabus for review.") &&
+      contributionSource.includes("Continue editing locally") &&
+      contributionSource.includes("Saved as a local draft. Sign in to submit for review.")
+        ? "pass"
+        : "fail",
+    detail:
+      "Guest users should not silently fail; they should see sign-in and local-draft options."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "My Contributions shows pending submissions",
+    status:
+      myContributionsSource.includes("pending_review") &&
+      myContributionsSource.includes("review_notes") &&
+      myContributionsSource.includes("Submitted") &&
+      myContributionsSource.includes("statusLabel")
+        ? "pass"
+        : "fail",
+    detail:
+      "Submitted syllabuses should be visible to the owner with status and reviewer notes."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Admin contribution review can see pending queue",
+    status:
+      adminContributionsSource.includes('useState<StatusFilter>("pending_review")') &&
+      adminContributionsSource.includes('.from("syllabus_contributions")') &&
+      adminContributionsSource.includes("Contribution review") &&
+      adminContributionsSource.includes("pending_review")
+        ? "pass"
+        : "fail",
+    detail:
+      "Pending contributions should remain visible in the protected admin review queue."
   });
 }
 

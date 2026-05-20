@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:49:15.146Z",
+  "generatedAt": "2026-05-20T16:55:48.837Z",
   "summary": {
-    "passed": 39,
+    "passed": 44,
     "warnings": 0,
     "failures": 0
   },
@@ -203,6 +203,36 @@
       "name": "Simple calculator sidebar uses same viewport shell",
       "status": "pass",
       "detail": "The standalone GPA calculator shell should follow the same desktop sidebar behavior."
+    },
+    {
+      "area": "Contributions",
+      "name": "Contribution success confirmation is explicit",
+      "status": "pass",
+      "detail": "After a successful contribution save, users should see a clear pending-review confirmation and next actions."
+    },
+    {
+      "area": "Contributions",
+      "name": "Contribution submit prevents double clicks",
+      "status": "pass",
+      "detail": "The submit flow should lock while saving so duplicate clicks cannot create duplicate rows."
+    },
+    {
+      "area": "Contributions",
+      "name": "Guest contribution path explains local drafts",
+      "status": "pass",
+      "detail": "Guest users should not silently fail; they should see sign-in and local-draft options."
+    },
+    {
+      "area": "Contributions",
+      "name": "My Contributions shows pending submissions",
+      "status": "pass",
+      "detail": "Submitted syllabuses should be visible to the owner with status and reviewer notes."
+    },
+    {
+      "area": "Contributions",
+      "name": "Admin contribution review can see pending queue",
+      "status": "pass",
+      "detail": "Pending contributions should remain visible in the protected admin review queue."
     },
     {
       "area": "Privacy",

@@ -2,24 +2,39 @@
 
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
-import { AlertTriangle, FileText, Plus, Trash2, UploadCloud } from "lucide-react";
+import {
+  AlertTriangle,
+  CheckCircle,
+  FileText,
+  Plus,
+  Trash2,
+  UploadCloud
+} from "lucide-react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { PageHeader } from "@/components/ui/page-header";
-import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import {
   extractGradeBreakdown,
   type ExtractedAssessment,
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
+import type { SyllabusContributionRecord } from "@/types/database";
 
 type SourceType = "pdf" | "pasted_text";
 
 type AssessmentDraft = ExtractedAssessment & {
   id: string;
+};
+
+type SubmissionSuccess = {
+  id: string;
+  courseCode: string | null;
+  courseName: string | null;
+  createdAt: string;
+  status: string;
 };
 
 type CourseInfoKey =
@@ -189,6 +204,7 @@ function saveGuestContributionDraft(payload: Record<string, unknown>) {
 export function ContributeSyllabusClient() {
   const { isGuest, openSaveProgress, supabase, user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
+  const submitLockRef = useRef(false);
   const [sourceType, setSourceType] = useState<SourceType>("pasted_text");
   const [syllabusText, setSyllabusText] = useState("");
   const [sourceFileName, setSourceFileName] = useState("");
@@ -202,6 +218,7 @@ export function ContributeSyllabusClient() {
   const [confidence, setConfidence] = useState(0);
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
+  const [submission, setSubmission] = useState<SubmissionSuccess | null>(null);
 
   const totalWeight = useMemo(() => getTotalWeight(rows), [rows]);
   const weightMessage =
@@ -212,6 +229,7 @@ export function ContributeSyllabusClient() {
         : `Missing ${formatWeight(100 - totalWeight)}%`;
 
   function loadExtraction(extraction: ExtractedSyllabus, source: string) {
+    setSubmission(null);
     setInfo(infoDraftFromExtraction(extraction));
     setRows(assessmentDraftsFromExtraction(extraction));
     setWarnings(extraction.warnings);
@@ -300,6 +318,7 @@ export function ContributeSyllabusClient() {
   }
 
   function addRow() {
+    setSubmission(null);
     setRows((current) => [
       ...current,
       {
@@ -314,12 +333,44 @@ export function ContributeSyllabusClient() {
   }
 
   function deleteRow(rowId: string) {
+    setSubmission(null);
     setRows((current) => current.filter((row) => row.id !== rowId));
   }
 
+  function resetContributionForm() {
+    setSourceType("pasted_text");
+    setSyllabusText("");
+    setSourceFileName("");
+    setAllowAdminReviewStorage(false);
+    setExtractedText("");
+    setIsExtracting(false);
+    setIsSubmitting(false);
+    setInfo(emptyInfoDraft());
+    setRows([]);
+    setWarnings([]);
+    setConfidence(0);
+    setMessage("");
+    setError("");
+    setSubmission(null);
+    submitLockRef.current = false;
+
+    if (fileInputRef.current) {
+      fileInputRef.current.value = "";
+    }
+  }
+
   async function submitContribution() {
+    if (submitLockRef.current || isSubmitting) {
+      return;
+    }
+
     const isPdfContribution =
       sourceType === "pdf" || sourceFileName.toLowerCase().endsWith(".pdf");
+
+    if (rows.length === 0) {
+      setError("Add at least one assessment before submitting.");
+      return;
+    }
 
     if (isPdfContribution && !allowAdminReviewStorage) {
       setError(
@@ -350,6 +401,7 @@ export function ContributeSyllabusClient() {
 
     setError("");
     setMessage("");
+    setSubmission(null);
 
     if (isGuest || !supabase) {
       saveGuestContributionDraft({
@@ -358,10 +410,11 @@ export function ContributeSyllabusClient() {
         source_text_hash: hashText(sourceText),
         status: "draft"
       });
-      setMessage("Saved as a local draft. Sign in to submit it to the shared library.");
+      setMessage("Saved as a local draft. Sign in to submit for review.");
       return;
     }
 
+    submitLockRef.current = true;
     setIsSubmitting(true);
 
     try {
@@ -394,16 +447,21 @@ export function ContributeSyllabusClient() {
         }
       }
 
-      setMessage("Submitted for review. You can track it in My contributions.");
+      const savedContribution = data as SyllabusContributionRecord;
+      setSubmission({
+        courseCode: savedContribution.course_code,
+        courseName: savedContribution.course_name,
+        createdAt: savedContribution.created_at,
+        id: savedContribution.id,
+        status: savedContribution.status ?? "pending_review"
+      });
+      setMessage("Syllabus submitted for review.");
     } catch (submitError) {
-      setError(
-        getSupabaseErrorMessage(
-          submitError,
-          "Could not submit this syllabus right now. Try again later."
-        )
-      );
+      console.error("Syllabus contribution submission failed", submitError);
+      setError("We couldn't submit this right now. Please try again.");
     } finally {
       setIsSubmitting(false);
+      submitLockRef.current = false;
     }
   }
 
@@ -424,17 +482,41 @@ export function ContributeSyllabusClient() {
           <div>
             <p className="font-semibold text-ink-900">Guest draft mode</p>
             <p className="mt-1 text-sm text-ink-500">
-              You can prepare a contribution now. Sign in when you are ready to submit it.
+              Please sign in to submit a syllabus for review. You can keep
+              editing locally and save this as a draft on this device.
             </p>
           </div>
-          <Button onClick={openSaveProgress}>Sign in to submit</Button>
+          <div className="flex flex-wrap gap-2">
+            <Link className={buttonStyles()} href="/login">
+              Sign in
+            </Link>
+            <Button
+              onClick={() => {
+                setError("");
+                setMessage("Keep editing locally. Use Save draft locally when you are ready.");
+              }}
+              variant="secondary"
+            >
+              Continue editing locally
+            </Button>
+          </div>
         </Card>
       ) : null}
 
       {error ? (
-        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-          {error}
-        </p>
+        <div className="flex flex-col gap-3 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700 sm:flex-row sm:items-center sm:justify-between">
+          <p>{error}</p>
+          {!isGuest && rows.length > 0 ? (
+            <Button
+              disabled={isSubmitting}
+              onClick={() => void submitContribution()}
+              size="sm"
+              variant="secondary"
+            >
+              Retry
+            </Button>
+          ) : null}
+        </div>
       ) : null}
 
       {message ? (
@@ -443,7 +525,81 @@ export function ContributeSyllabusClient() {
         </p>
       ) : null}
 
+      {submission ? (
+        <Card className="border-teal-200 bg-teal-50 p-5">
+          <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+            <div className="max-w-2xl">
+              <div className="flex items-center gap-2 text-teal-800">
+                <CheckCircle aria-hidden="true" className="h-5 w-5" />
+                <Badge tone="teal">Pending review</Badge>
+              </div>
+              <h2 className="mt-3 text-xl font-semibold text-ink-900">
+                Submission received
+              </h2>
+              <p className="mt-2 text-sm leading-6 text-ink-700">
+                Thanks &mdash; your syllabus was submitted for review. It will not
+                appear in the Course Library until it is approved.
+              </p>
+              <div className="mt-4 grid gap-3 text-sm sm:grid-cols-2">
+                <div className="rounded-[3px] border border-teal-200 bg-white/70 p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-500">
+                    Course
+                  </p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    {[submission.courseCode, submission.courseName]
+                      .filter(Boolean)
+                      .join(" - ") || "Untitled syllabus"}
+                  </p>
+                </div>
+                <div className="rounded-[3px] border border-teal-200 bg-white/70 p-3">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.06em] text-ink-500">
+                    What happens next
+                  </p>
+                  <p className="mt-1 font-semibold text-ink-900">
+                    I&apos;ll review it before publishing it to the shared Course Library.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className="flex shrink-0 flex-col gap-2 sm:min-w-48">
+              <Link className={buttonStyles()} href="/my-contributions">
+                View my submissions
+              </Link>
+              <Button onClick={resetContributionForm} variant="secondary">
+                Submit another syllabus
+              </Button>
+              <Link
+                className={buttonStyles({ variant: "ghost" })}
+                href="/course-library"
+              >
+                Back to Course Library
+              </Link>
+            </div>
+          </div>
+        </Card>
+      ) : null}
+
+      {!submission ? (
+        <>
       <Card className="p-5">
+          <h2 className="text-lg font-semibold text-ink-900">
+            Before you submit
+          </h2>
+          <div className="mt-3 grid gap-3 text-sm text-ink-600 md:grid-cols-3">
+            <p className="rounded-[3px] border border-ink-200 bg-ink-50 p-3">
+              Review the detected course info and assessment weights.
+            </p>
+            <p className="rounded-[3px] border border-ink-200 bg-ink-50 p-3">
+              Your submission is saved as pending review, not published instantly.
+            </p>
+            <p className="rounded-[3px] border border-ink-200 bg-ink-50 p-3">
+              Normal extraction PDFs are not stored. Contribution PDFs require
+              your review permission.
+            </p>
+          </div>
+        </Card>
+
+        <Card className="p-5">
         <div className="flex flex-wrap gap-2">
           <Button
             onClick={() => {
@@ -537,9 +693,9 @@ export function ContributeSyllabusClient() {
             </pre>
           </details>
         ) : null}
-      </Card>
+        </Card>
 
-      <Card className="p-5">
+        <Card className="p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-ink-900">
@@ -579,9 +735,9 @@ export function ContributeSyllabusClient() {
             </label>
           ))}
         </div>
-      </Card>
+        </Card>
 
-      <Card className="p-5">
+        <Card className="p-5">
         <div className="flex flex-wrap items-center justify-between gap-3">
           <div>
             <h2 className="text-lg font-semibold text-ink-900">
@@ -697,7 +853,9 @@ export function ContributeSyllabusClient() {
                 : "Submit for review"}
           </Button>
         </div>
-      </Card>
+        </Card>
+        </>
+      ) : null}
     </div>
   );
 }
