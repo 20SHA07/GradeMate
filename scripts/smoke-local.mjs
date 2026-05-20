@@ -17,6 +17,7 @@ await checkAuthCallbackUx();
 await checkPasswordAuthUx();
 await checkGuestModeConsistency();
 await checkCourseLibraryImportUx();
+await checkCourseLibraryDetailsModalUx();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -300,6 +301,43 @@ async function checkCourseLibraryImportUx() {
         : "fail",
     detail:
       "User-facing import failures should stay friendly while console keeps debug context."
+  });
+}
+
+async function checkCourseLibraryDetailsModalUx() {
+  const source = await readText(
+    "src/components/course-library/course-library-client.tsx"
+  );
+  const physTemplate = await readText(
+    "training-data/course-library-rebuild/templates/PHYS121_Syllabus_Summer_2025.json"
+  );
+
+  addCheck({
+    area: "Course Library",
+    name: "Details modal is viewport-scrollable",
+    status:
+      source.includes("fixed inset-0 z-50 overflow-y-auto") &&
+      source.includes("max-h-[calc(100dvh-2rem)]") &&
+      source.includes("min-h-0 flex-1 overflow-y-auto") &&
+      source.includes("lg:sticky lg:top-4") &&
+      !source.includes("max-h-[calc(90vh-6rem)]")
+        ? "pass"
+        : "fail",
+    detail:
+      "Course detail modal should scroll inside the viewport and keep the action rail reachable."
+  });
+  addCheck({
+    area: "Course Library",
+    name: "Details modal supports lower assessment rows",
+    status:
+      source.includes("detailTemplate.assessments.map") &&
+      source.includes("closeOnEscape") &&
+      physTemplate.includes("Midterm test") &&
+      physTemplate.includes("Final test")
+        ? "pass"
+        : "fail",
+    detail:
+      "PHYS 121-style templates with many rows should render all mapped assessments, including lower rows."
   });
 }
 

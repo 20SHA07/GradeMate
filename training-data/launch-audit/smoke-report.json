@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:34:33.956Z",
+  "generatedAt": "2026-05-20T16:39:53.709Z",
   "summary": {
-    "passed": 34,
+    "passed": 36,
     "warnings": 0,
     "failures": 0
   },
@@ -173,6 +173,18 @@
       "name": "Import failures keep exact details in console",
       "status": "pass",
       "detail": "User-facing import failures should stay friendly while console keeps debug context."
+    },
+    {
+      "area": "Course Library",
+      "name": "Details modal is viewport-scrollable",
+      "status": "pass",
+      "detail": "Course detail modal should scroll inside the viewport and keep the action rail reachable."
+    },
+    {
+      "area": "Course Library",
+      "name": "Details modal supports lower assessment rows",
+      "status": "pass",
+      "detail": "PHYS 121-style templates with many rows should render all mapped assessments, including lower rows."
     },
     {
       "area": "Privacy",

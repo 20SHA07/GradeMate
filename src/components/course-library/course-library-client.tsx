@@ -470,6 +470,24 @@ export function CourseLibraryClient() {
     setCurrentPage(1);
   }, [completeOnly, confidenceFilter, department, query, sortOption]);
 
+  useEffect(() => {
+    if (!detailTemplate) {
+      return;
+    }
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") {
+        setDetailTemplate(null);
+      }
+    }
+
+    window.addEventListener("keydown", closeOnEscape);
+
+    return () => {
+      window.removeEventListener("keydown", closeOnEscape);
+    };
+  }, [detailTemplate]);
+
   const departments = useMemo(() => {
     return [
       "All",
@@ -1203,181 +1221,187 @@ export function CourseLibraryClient() {
       </Card>
 
       {detailTemplate ? (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 px-4 py-6">
-          <Card className="max-h-[90vh] w-full max-w-5xl overflow-hidden">
-            <div className="flex items-start justify-between gap-4 border-b border-ink-200 p-5">
-              <div>
-                <div className="flex flex-wrap items-center gap-2">
-                  <Badge tone="teal">{detailTemplate.course_code}</Badge>
-                  <Badge tone={confidenceTone(detailTemplate.extraction_confidence)}>
-                    {formatConfidence(detailTemplate.extraction_confidence)}
-                  </Badge>
-                  <Badge
-                    tone={weightTone(totalAssessmentWeight(detailTemplate.assessments))}
-                  >
-                    {weightLabel(totalAssessmentWeight(detailTemplate.assessments))}
-                  </Badge>
-                </div>
-                <h2 className="mt-3 text-[24px] font-bold leading-tight text-ink-900">
-                  {detailTemplate.course_name}
-                </h2>
-                <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-500">
-                  {detailTemplate.description ??
-                    "Template created from a detected syllabus."}
-                </p>
-              </div>
-              <Button
-                aria-label="Close details"
-                onClick={() => setDetailTemplate(null)}
-                size="icon"
-                variant="ghost"
-              >
-                <X aria-hidden="true" className="h-4 w-4" />
-              </Button>
-            </div>
-
-            <div className="max-h-[calc(90vh-6rem)] overflow-y-auto p-5">
-              <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
-                <div className="space-y-5">
-                  <div className="grid gap-3 sm:grid-cols-3">
-                    <DetailStat
-                      label="Credit hours"
-                      value={Number(detailTemplate.credit_hours)}
-                    />
-                    <DetailStat
-                      label="Instructor"
-                      value={detailTemplate.instructor ?? "Not detected"}
-                    />
-                    <DetailStat
-                      label="Term"
-                      value={templateTermLabel(detailTemplate) ?? "Not detected"}
-                    />
+        <div
+          aria-modal="true"
+          className="fixed inset-0 z-50 overflow-y-auto bg-black/60 px-3 py-4 sm:px-4 sm:py-6"
+          role="dialog"
+        >
+          <div className="flex min-h-full items-start justify-center">
+            <Card className="flex max-h-[calc(100dvh-2rem)] w-full max-w-5xl flex-col overflow-hidden sm:max-h-[calc(100dvh-3rem)]">
+              <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-ink-200 bg-white/95 p-5">
+                <div>
+                  <div className="flex flex-wrap items-center gap-2">
+                    <Badge tone="teal">{detailTemplate.course_code}</Badge>
+                    <Badge tone={confidenceTone(detailTemplate.extraction_confidence)}>
+                      {formatConfidence(detailTemplate.extraction_confidence)}
+                    </Badge>
+                    <Badge
+                      tone={weightTone(totalAssessmentWeight(detailTemplate.assessments))}
+                    >
+                      {weightLabel(totalAssessmentWeight(detailTemplate.assessments))}
+                    </Badge>
                   </div>
-                  {templateWarnings(detailTemplate).length > 0 ? (
-                    <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-                      {templateWarnings(detailTemplate).join("; ")}
-                    </div>
-                  ) : null}
+                  <h2 className="mt-3 text-[24px] font-bold leading-tight text-ink-900">
+                    {detailTemplate.course_name}
+                  </h2>
+                  <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-500">
+                    {detailTemplate.description ??
+                      "Template created from a detected syllabus."}
+                  </p>
+                </div>
+                <Button
+                  aria-label="Close details"
+                  onClick={() => setDetailTemplate(null)}
+                  size="icon"
+                  variant="ghost"
+                >
+                  <X aria-hidden="true" className="h-4 w-4" />
+                </Button>
+              </div>
 
-                  <div className="overflow-hidden rounded-lg border border-ink-200">
-                    <div className="flex items-center justify-between gap-3 border-b border-ink-200 bg-ink-50 px-4 py-3">
-                      <div>
-                        <h3 className="font-semibold text-ink-900">
-                          Assessment breakdown
-                        </h3>
-                        <p className="text-sm text-ink-500">
-                          Total weight:{" "}
-                          {formatWeight(
+              <div className="min-h-0 flex-1 overflow-y-auto p-5">
+                <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_18rem]">
+                  <div className="space-y-5">
+                    <div className="grid gap-3 sm:grid-cols-3">
+                      <DetailStat
+                        label="Credit hours"
+                        value={Number(detailTemplate.credit_hours)}
+                      />
+                      <DetailStat
+                        label="Instructor"
+                        value={detailTemplate.instructor ?? "Not detected"}
+                      />
+                      <DetailStat
+                        label="Term"
+                        value={templateTermLabel(detailTemplate) ?? "Not detected"}
+                      />
+                    </div>
+                    {templateWarnings(detailTemplate).length > 0 ? (
+                      <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                        {templateWarnings(detailTemplate).join("; ")}
+                      </div>
+                    ) : null}
+
+                    <div className="rounded-lg border border-ink-200">
+                      <div className="flex items-center justify-between gap-3 border-b border-ink-200 bg-ink-50 px-4 py-3">
+                        <div>
+                          <h3 className="font-semibold text-ink-900">
+                            Assessment breakdown
+                          </h3>
+                          <p className="text-sm text-ink-500">
+                            Total weight:{" "}
+                            {formatWeight(
+                              totalAssessmentWeight(detailTemplate.assessments)
+                            )}
+                            %
+                          </p>
+                        </div>
+                        <Badge
+                          tone={weightTone(
                             totalAssessmentWeight(detailTemplate.assessments)
                           )}
-                          %
+                        >
+                          {weightLabel(
+                            totalAssessmentWeight(detailTemplate.assessments)
+                          )}
+                        </Badge>
+                      </div>
+
+                      {detailTemplate.assessments.length === 0 ? (
+                        <p className="p-4 text-sm text-ink-500">
+                          No assessment weights were detected from this syllabus.
                         </p>
-                      </div>
-                      <Badge
-                        tone={weightTone(
-                          totalAssessmentWeight(detailTemplate.assessments)
-                        )}
-                      >
-                        {weightLabel(
-                          totalAssessmentWeight(detailTemplate.assessments)
-                        )}
-                      </Badge>
-                    </div>
-
-                    {detailTemplate.assessments.length === 0 ? (
-                      <p className="p-4 text-sm text-ink-500">
-                        No assessment weights were detected from this syllabus.
-                      </p>
-                    ) : (
-                      <div className="overflow-x-auto">
-                        <table className="gm-table min-w-[560px]">
-                          <thead className="border-b border-ink-200 bg-ink-50 text-[11px] uppercase tracking-[0.06em] text-ink-500">
-                            <tr>
-                              <th className="px-4 py-3 font-semibold">Name</th>
-                              <th className="px-4 py-3 font-semibold">Weight</th>
-                              <th className="px-4 py-3 font-semibold">
-                                Max score
-                              </th>
-                              <th className="px-4 py-3 font-semibold">
-                                Confidence
-                              </th>
-                            </tr>
-                          </thead>
-                          <tbody className="divide-y divide-ink-100">
-                            {detailTemplate.assessments.map((assessment) => (
-                              <tr key={assessment.id}>
-                                <td className="px-4 py-3 font-medium text-ink-900">
-                                  {assessment.name}
-                                </td>
-                                <td className="px-4 py-3 text-ink-700">
-                                  {formatWeight(
-                                    Number(assessment.weight_percentage)
-                                  )}
-                                  %
-                                </td>
-                                <td className="px-4 py-3 text-ink-700">
-                                  {Number(assessment.max_score)}
-                                </td>
-                                <td className="px-4 py-3 text-ink-700">
-                                  {Math.round(Number(assessment.confidence) * 100)}
-                                  %
-                                </td>
+                      ) : (
+                        <div className="overflow-x-auto">
+                          <table className="gm-table min-w-[560px]">
+                            <thead className="border-b border-ink-200 bg-ink-50 text-[11px] uppercase tracking-[0.06em] text-ink-500">
+                              <tr>
+                                <th className="px-4 py-3 font-semibold">Name</th>
+                                <th className="px-4 py-3 font-semibold">Weight</th>
+                                <th className="px-4 py-3 font-semibold">
+                                  Max score
+                                </th>
+                                <th className="px-4 py-3 font-semibold">
+                                  Confidence
+                                </th>
                               </tr>
-                            ))}
-                          </tbody>
-                        </table>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <aside className="space-y-4">
-                  <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-                    <h3 className="font-semibold text-ink-900">Source</h3>
-                    <p className="mt-2 break-words text-sm text-ink-500">
-                      {templateSourceName(detailTemplate)}
-                    </p>
-                  </div>
-
-                  <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-                    <div className="flex items-center gap-2 font-semibold text-ink-900">
-                      <FolderOpen aria-hidden="true" className="h-4 w-4" />
-                      Materials
+                            </thead>
+                            <tbody className="divide-y divide-ink-100">
+                              {detailTemplate.assessments.map((assessment) => (
+                                <tr key={assessment.id}>
+                                  <td className="px-4 py-3 font-medium text-ink-900">
+                                    {assessment.name}
+                                  </td>
+                                  <td className="px-4 py-3 text-ink-700">
+                                    {formatWeight(
+                                      Number(assessment.weight_percentage)
+                                    )}
+                                    %
+                                  </td>
+                                  <td className="px-4 py-3 text-ink-700">
+                                    {Number(assessment.max_score)}
+                                  </td>
+                                  <td className="px-4 py-3 text-ink-700">
+                                    {Math.round(Number(assessment.confidence) * 100)}
+                                    %
+                                  </td>
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
                     </div>
-                    {detailTemplate.materials.length === 0 ? (
-                      <p className="mt-2 text-sm text-ink-500">
-                        No linked side materials.
-                      </p>
-                    ) : (
-                      <div className="mt-3 max-h-64 space-y-2 overflow-y-auto">
-                        {detailTemplate.materials.slice(0, 80).map((material) => (
-                          <div
-                            className="rounded-lg bg-white px-3 py-2 text-sm"
-                            key={material.id}
-                          >
-                            <p className="truncate font-medium text-ink-800">
-                              {material.file_name}
-                            </p>
-                            <Badge className="mt-2" tone="ink">
-                              {material.material_type ?? "other"}
-                            </Badge>
-                          </div>
-                        ))}
-                      </div>
-                    )}
                   </div>
 
-                  <Button
-                    className="w-full"
-                    onClick={() => openImportModal(detailTemplate)}
-                  >
-                    <Download aria-hidden="true" className="h-4 w-4" />
-                    Import to Semester
-                  </Button>
-                </aside>
+                  <aside className="space-y-4 lg:sticky lg:top-4 lg:self-start">
+                    <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+                      <h3 className="font-semibold text-ink-900">Source</h3>
+                      <p className="mt-2 break-words text-sm text-ink-500">
+                        {templateSourceName(detailTemplate)}
+                      </p>
+                    </div>
+
+                    <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
+                      <div className="flex items-center gap-2 font-semibold text-ink-900">
+                        <FolderOpen aria-hidden="true" className="h-4 w-4" />
+                        Materials
+                      </div>
+                      {detailTemplate.materials.length === 0 ? (
+                        <p className="mt-2 text-sm text-ink-500">
+                          No linked side materials.
+                        </p>
+                      ) : (
+                        <div className="mt-3 max-h-64 space-y-2 overflow-y-auto">
+                          {detailTemplate.materials.slice(0, 80).map((material) => (
+                            <div
+                              className="rounded-lg bg-white px-3 py-2 text-sm"
+                              key={material.id}
+                            >
+                              <p className="truncate font-medium text-ink-800">
+                                {material.file_name}
+                              </p>
+                              <Badge className="mt-2" tone="ink">
+                                {material.material_type ?? "other"}
+                              </Badge>
+                            </div>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+
+                    <Button
+                      className="w-full"
+                      onClick={() => openImportModal(detailTemplate)}
+                    >
+                      <Download aria-hidden="true" className="h-4 w-4" />
+                      Import to Semester
+                    </Button>
+                  </aside>
+                </div>
               </div>
-            </div>
-          </Card>
+            </Card>
+          </div>
         </div>
       ) : null}
 
