@@ -220,7 +220,7 @@ function getDefaultData(): SimpleGpaData {
   return {
     completedHours: "",
     currentTerm: "",
-    courses: [createCourse()],
+    courses: [],
     existingCgpa: ""
   };
 }
@@ -630,7 +630,7 @@ function sanitizeImportedData(value: unknown): SimpleGpaData {
       typeof data.currentTerm === "string" && data.currentTerm.trim()
         ? data.currentTerm
         : "",
-    courses: courses.length > 0 ? courses : [createCourse()],
+    courses,
     existingCgpa: typeof data.existingCgpa === "string" ? data.existingCgpa : ""
   };
 }
@@ -984,11 +984,31 @@ export function SimpleGpaCalculator() {
       const courses = current.courses.filter((course) => course.id !== courseId);
       return {
         ...current,
-        courses: courses.length > 0 ? courses : [createCourse()]
+        courses
       };
     });
     setReview((current) => (current?.courseId === courseId ? null : current));
+    setQuickTextByCourse((current) => {
+      const next = { ...current };
+      delete next[courseId];
+      return next;
+    });
+    setSyllabusTextByCourse((current) => {
+      const next = { ...current };
+      delete next[courseId];
+      return next;
+    });
+    setPdfFileByCourse((current) => {
+      const next = { ...current };
+      delete next[courseId];
+      return next;
+    });
     setPdfPreviewByCourse((current) => {
+      const next = { ...current };
+      delete next[courseId];
+      return next;
+    });
+    setPredictors((current) => {
       const next = { ...current };
       delete next[courseId];
       return next;
@@ -1973,6 +1993,33 @@ export function SimpleGpaCalculator() {
             </div>
 
             <div className="divide-y divide-ink-200">
+              {data.courses.length === 0 ? (
+                <div className="px-4 py-8 text-center">
+                  <div className="mx-auto flex h-11 w-11 items-center justify-center rounded-[3px] border border-ink-200 bg-ink-100 text-teal-300">
+                    <PlusCircle aria-hidden="true" className="h-5 w-5" />
+                  </div>
+                  <h3 className="mt-3 text-base font-semibold text-ink-900">
+                    No courses yet
+                  </h3>
+                  <p className="mx-auto mt-1 max-w-md text-sm leading-5 text-ink-500">
+                    Start from a blank row or import from the library when you
+                    need one.
+                  </p>
+                  <div className="mt-4 flex flex-col justify-center gap-2 sm:flex-row">
+                    <Button onClick={() => addCourse()}>
+                      <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                      Add course
+                    </Button>
+                    <Button
+                      onClick={() => setIsFindCourseOpen(true)}
+                      variant="secondary"
+                    >
+                      <Search aria-hidden="true" className="h-4 w-4" />
+                      Find course
+                    </Button>
+                  </div>
+                </div>
+              ) : null}
               {data.courses.map((course, index) => {
                 const stats = getCourseGradeStats(course);
                 const qualityPoints = getCourseQualityPoints(course);
