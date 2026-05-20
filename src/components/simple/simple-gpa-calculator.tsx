@@ -1520,10 +1520,10 @@ export function SimpleGpaCalculator() {
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900">
-      <div className="grid min-h-screen lg:grid-cols-[14rem_minmax(0,1fr)]">
-        <aside className="hidden border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
-          <div className="px-4 py-5">
+    <main className="min-h-dvh overflow-x-hidden bg-ink-50 text-ink-900">
+      <div className="grid min-h-dvh lg:grid-cols-[14rem_minmax(0,1fr)]">
+        <aside className="hidden h-dvh overflow-hidden border-r border-ink-200 bg-ink-100 lg:sticky lg:top-0 lg:flex lg:flex-col">
+          <div className="shrink-0 px-4 py-5">
             <Link className="block font-semibold text-teal-300" href="/">
               <span className="block text-[21px] font-bold leading-5">
                 GradeMate
@@ -1533,7 +1533,7 @@ export function SimpleGpaCalculator() {
               </span>
             </Link>
           </div>
-          <div className="px-4">
+          <div className="shrink-0 px-4">
             <Button
               className="w-full uppercase tracking-[0.08em]"
               onClick={() => addCourse()}
@@ -1543,7 +1543,7 @@ export function SimpleGpaCalculator() {
               New Course
             </Button>
           </div>
-          <nav className="mt-5 grid gap-1 px-3 text-xs font-semibold">
+          <nav className="mt-5 grid min-h-0 flex-1 content-start gap-1 overflow-y-auto px-3 text-xs font-semibold">
             <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/workspace">
               Dashboard
             </Link>
@@ -1557,7 +1557,7 @@ export function SimpleGpaCalculator() {
               Syllabus Review
             </Link>
           </nav>
-          <div className="mt-auto border-t border-ink-200 p-4">
+          <div className="max-h-[48dvh] shrink-0 overflow-y-auto border-t border-ink-200 p-4">
             <p className="text-xs font-bold text-ink-900">Student Workspace</p>
             <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
               Built for KU students

@@ -18,6 +18,7 @@ await checkPasswordAuthUx();
 await checkGuestModeConsistency();
 await checkCourseLibraryImportUx();
 await checkCourseLibraryDetailsModalUx();
+await checkSidebarLayoutUx();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -338,6 +339,51 @@ async function checkCourseLibraryDetailsModalUx() {
         : "fail",
     detail:
       "PHYS 121-style templates with many rows should render all mapped assessments, including lower rows."
+  });
+}
+
+async function checkSidebarLayoutUx() {
+  const appShellSource = await readText("src/components/navigation/app-shell.tsx");
+  const simpleSource = await readText("src/components/simple/simple-gpa-calculator.tsx");
+
+  addCheck({
+    area: "Navigation",
+    name: "Desktop sidebar stays fixed to viewport",
+    status:
+      appShellSource.includes("lg:grid lg:grid-cols-[14rem_minmax(0,1fr)]") &&
+      appShellSource.includes("h-dvh w-56 shrink-0 overflow-hidden") &&
+      appShellSource.includes("lg:sticky lg:top-0") &&
+      appShellSource.includes("min-h-0 flex-1 space-y-1 overflow-y-auto") &&
+      appShellSource.includes("max-h-[48dvh] shrink-0 space-y-3 overflow-y-auto")
+        ? "pass"
+        : "fail",
+    detail:
+      "Shared app pages such as Course Library should keep the sidebar bottom actions visible while main content scrolls."
+  });
+  addCheck({
+    area: "Navigation",
+    name: "Sidebar account text truncates safely",
+    status:
+      appShellSource.includes("truncate text-sm font-medium") &&
+      appShellSource.includes('<span className="min-w-0 truncate">{item.label}</span>')
+        ? "pass"
+        : "fail",
+    detail:
+      "Long user emails and nav labels should not overflow the sidebar."
+  });
+  addCheck({
+    area: "Navigation",
+    name: "Simple calculator sidebar uses same viewport shell",
+    status:
+      simpleSource.includes("grid min-h-dvh lg:grid-cols-[14rem_minmax(0,1fr)]") &&
+      simpleSource.includes("hidden h-dvh overflow-hidden border-r") &&
+      simpleSource.includes("lg:sticky lg:top-0") &&
+      simpleSource.includes("min-h-0 flex-1 content-start gap-1 overflow-y-auto") &&
+      simpleSource.includes("max-h-[48dvh] shrink-0 overflow-y-auto")
+        ? "pass"
+        : "fail",
+    detail:
+      "The standalone GPA calculator shell should follow the same desktop sidebar behavior."
   });
 }
 

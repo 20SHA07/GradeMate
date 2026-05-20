@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:42:17.687Z",
+  "generatedAt": "2026-05-20T16:49:15.146Z",
   "summary": {
-    "passed": 36,
+    "passed": 39,
     "warnings": 0,
     "failures": 0
   },
@@ -185,6 +185,24 @@
       "name": "Details modal supports lower assessment rows",
       "status": "pass",
       "detail": "PHYS 121-style templates with many rows should render all mapped assessments, including lower rows."
+    },
+    {
+      "area": "Navigation",
+      "name": "Desktop sidebar stays fixed to viewport",
+      "status": "pass",
+      "detail": "Shared app pages such as Course Library should keep the sidebar bottom actions visible while main content scrolls."
+    },
+    {
+      "area": "Navigation",
+      "name": "Sidebar account text truncates safely",
+      "status": "pass",
+      "detail": "Long user emails and nav labels should not overflow the sidebar."
+    },
+    {
+      "area": "Navigation",
+      "name": "Simple calculator sidebar uses same viewport shell",
+      "status": "pass",
+      "detail": "The standalone GPA calculator shell should follow the same desktop sidebar behavior."
     },
     {
       "area": "Privacy",

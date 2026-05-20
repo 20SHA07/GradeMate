@@ -98,9 +98,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900 lg:flex">
-      <aside className="hidden w-56 shrink-0 border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
-        <div className="px-4 py-5">
+    <div className="min-h-dvh overflow-x-hidden bg-ink-50 text-ink-900 lg:grid lg:grid-cols-[14rem_minmax(0,1fr)]">
+      <aside className="hidden h-dvh w-56 shrink-0 overflow-hidden border-r border-ink-200 bg-ink-100 lg:sticky lg:top-0 lg:flex lg:flex-col">
+        <div className="shrink-0 px-4 py-5">
           <Link className="block font-semibold text-teal-300" href="/">
             <span className="block text-[21px] font-bold leading-5">GradeMate</span>
             <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
@@ -109,7 +109,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-4">
+        <nav className="min-h-0 flex-1 space-y-1 overflow-y-auto px-3 py-4">
           {navItems.map((item) => {
             const isActive = isNavItemActive(item.href, normalizedPathname);
             const Icon = item.icon;
@@ -125,14 +125,14 @@ export function AppShell({ children }: { children: React.ReactNode }) {
                 href={item.href}
                 key={item.href}
               >
-                <Icon aria-hidden="true" className="h-4 w-4" />
-                {item.label}
+                <Icon aria-hidden="true" className="h-4 w-4 shrink-0" />
+                <span className="min-w-0 truncate">{item.label}</span>
               </Link>
             );
           })}
         </nav>
 
-        <div className="space-y-3 border-t border-ink-200 p-3.5">
+        <div className="max-h-[48dvh] shrink-0 space-y-3 overflow-y-auto border-t border-ink-200 p-3.5">
           <Link
             className={buttonStyles({
               className: "w-full uppercase tracking-[0.06em]",
