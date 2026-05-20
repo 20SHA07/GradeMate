@@ -41,7 +41,7 @@ type CourseInfoDraft = Record<CourseInfoKey, string>;
 const guestContributionDraftsKey = "grademate_guest_syllabus_contribution_drafts";
 
 const inputStyles =
-  "w-full rounded-xl border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100";
+  "w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100";
 
 const courseInfoFields: Array<{
   key: CourseInfoKey;
@@ -432,13 +432,13 @@ export function ContributeSyllabusClient() {
       ) : null}
 
       {error ? (
-        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
       ) : null}
 
       {message ? (
-        <p className="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
+        <p className="rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
           {message}
         </p>
       ) : null}
@@ -479,7 +479,7 @@ export function ContributeSyllabusClient() {
             </Button>
           </div>
         ) : (
-          <div className="mt-4 rounded-xl border border-dashed border-ink-300 p-5">
+          <div className="mt-4 rounded-lg border border-dashed border-ink-300 p-5">
             <input
               accept="application/pdf"
               className="hidden"
@@ -502,7 +502,7 @@ export function ContributeSyllabusClient() {
             <p className="mt-2 text-sm text-ink-500">
               PDF text is extracted in your browser first. You will review everything before submitting.
             </p>
-            <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
+            <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-900">
               <p className="font-medium">
                 Contribution uploads may be stored privately for admin review.
               </p>
@@ -528,7 +528,7 @@ export function ContributeSyllabusClient() {
         )}
 
         {extractedText ? (
-          <details className="mt-4 rounded-xl bg-ink-100 p-4">
+          <details className="mt-4 rounded-lg bg-ink-100 p-4">
             <summary className="cursor-pointer text-sm font-semibold text-ink-800">
               Extracted text preview
             </summary>
@@ -598,7 +598,7 @@ export function ContributeSyllabusClient() {
         </div>
 
         {warnings.length > 0 ? (
-          <div className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+          <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
             <div className="flex gap-2 font-medium">
               <AlertTriangle aria-hidden="true" className="mt-0.5 h-4 w-4" />
               Review notes
@@ -611,7 +611,7 @@ export function ContributeSyllabusClient() {
           </div>
         ) : null}
 
-        <div className="mt-4 overflow-x-auto rounded-xl border border-ink-200">
+        <div className="mt-4 overflow-x-auto rounded-lg border border-ink-200">
           <table className="w-full min-w-[760px] text-left text-sm">
             <thead className="bg-ink-50 text-xs uppercase text-ink-500">
               <tr>

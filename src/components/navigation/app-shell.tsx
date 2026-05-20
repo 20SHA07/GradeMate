@@ -66,7 +66,7 @@ function getPageActions(pathname: string) {
   ) {
     return [
       { href: "/semesters", label: "Back to semester", icon: ArrowLeft, variant: "secondary" as const },
-      { href: "#assessment-form", label: "Add assessment", icon: PlusCircle }
+      { href: "#add-assessment", label: "Add assessment", icon: PlusCircle }
     ] satisfies PageAction[];
   }
 
@@ -99,10 +99,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900 lg:flex">
-      <aside className="hidden w-60 shrink-0 border-r border-ink-200 bg-white/90 lg:flex lg:flex-col">
+      <aside className="hidden w-56 shrink-0 border-r border-ink-200 bg-white/80 lg:flex lg:flex-col">
         <div className="px-4 py-5">
           <Link className="flex items-center gap-3 font-semibold text-ink-900" href="/">
-            <span className="flex h-10 w-10 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-sm shadow-teal-950/30">
+            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-600 text-white shadow-sm shadow-teal-950/30">
               <GraduationCap aria-hidden="true" className="h-5 w-5" />
             </span>
             <span>
@@ -121,9 +121,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 className={cn(
-                  "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-colors",
+                  "flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors",
                   isActive
-                    ? "bg-teal-50 text-teal-700"
+                    ? "bg-teal-600 text-white shadow-sm shadow-teal-950/20"
                     : "text-ink-500 hover:bg-ink-100 hover:text-ink-900"
                 )}
                 href={item.href}
@@ -138,7 +138,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
         <div className="space-y-3 border-t border-ink-200 p-3">
           {isGuest ? (
-            <div className="rounded-2xl bg-ink-100 p-3">
+            <div className="rounded-lg bg-ink-100 p-3">
               <p className="text-sm font-semibold text-ink-900">
                 Guest workspace
               </p>
@@ -152,7 +152,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </Button>
             </div>
           ) : (
-            <div className="rounded-2xl bg-ink-100 p-3">
+            <div className="rounded-lg bg-ink-100 p-3">
               <p className="text-xs font-medium uppercase tracking-normal text-ink-400">
                 Student workspace
               </p>
@@ -196,7 +196,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
         <header className="sticky top-0 z-20 border-b border-ink-200 bg-white/80 backdrop-blur-xl">
           <div className="flex min-h-14 items-center justify-between gap-3 px-4 sm:px-6 lg:px-7">
             <Link className="flex items-center gap-2 font-semibold text-ink-900 lg:hidden" href="/">
-              <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-teal-600 text-white">
+              <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-600 text-white">
                 <GraduationCap aria-hidden="true" className="h-5 w-5" />
               </span>
               GradeMate
@@ -259,10 +259,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
               return (
                 <Link
-                  className={cn(
-                    "inline-flex h-9 shrink-0 items-center gap-2 rounded-xl px-3 text-sm font-medium",
+                className={cn(
+                    "inline-flex h-9 shrink-0 items-center gap-2 rounded-lg px-3 text-sm font-medium",
                     isActive
-                      ? "bg-teal-50 text-teal-700"
+                      ? "bg-teal-600 text-white"
                       : "text-ink-500 hover:bg-ink-100"
                   )}
                   href={item.href}

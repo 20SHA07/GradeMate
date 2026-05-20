@@ -22,18 +22,18 @@
 
 .dark {
   color-scheme: dark;
-  --ink-50: #07111f;
-  --ink-100: #0f1b2d;
-  --ink-200: #1f2d44;
-  --ink-300: #475569;
-  --ink-400: #64748b;
-  --ink-500: #94a3b8;
-  --ink-600: #cbd5e1;
-  --ink-700: #e2e8f0;
-  --ink-800: #f1f5f9;
+  --ink-50: #0a0c0f;
+  --ink-100: #15171b;
+  --ink-200: #2a2f35;
+  --ink-300: #3d4650;
+  --ink-400: #7f8996;
+  --ink-500: #a6afbb;
+  --ink-600: #cbd2dc;
+  --ink-700: #e0e5ec;
+  --ink-800: #f0f3f7;
   --ink-900: #f8fafc;
-  --surface: #0f1b2d;
-  --surface-muted: #07111f;
+  --surface: #141619;
+  --surface-muted: #0a0c0f;
   --selection-bg: #0f766e;
   --selection-text: #ecfeff;
 }
@@ -64,8 +64,8 @@ body::before {
   pointer-events: none;
   content: "";
   background:
-    radial-gradient(circle at top left, rgb(20 184 166 / 0.1), transparent 28rem),
-    linear-gradient(180deg, rgb(15 23 42 / 0.08), transparent 22rem);
+    radial-gradient(circle at top left, rgb(20 184 166 / 0.08), transparent 28rem),
+    linear-gradient(180deg, rgb(15 23 42 / 0.05), transparent 22rem);
 }
 
 a {
@@ -90,15 +90,19 @@ textarea {
 }
 
 .dark .bg-white\/80 {
-  background-color: rgb(15 27 45 / 0.8);
+  background-color: rgb(20 22 25 / 0.8);
 }
 
 .dark .bg-white\/90 {
-  background-color: rgb(15 27 45 / 0.9);
+  background-color: rgb(20 22 25 / 0.9);
 }
 
 .dark .bg-white\/95 {
-  background-color: rgb(15 27 45 / 0.95);
+  background-color: rgb(20 22 25 / 0.95);
+}
+
+.dark .bg-white\/70 {
+  background-color: rgb(20 22 25 / 0.7);
 }
 
 .dark input,

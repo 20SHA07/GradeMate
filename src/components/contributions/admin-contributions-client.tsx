@@ -469,13 +469,13 @@ export function AdminContributionsClient() {
       />
 
       {error ? (
-        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
       ) : null}
 
       {message ? (
-        <p className="rounded-xl border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
+        <p className="rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
           {message}
         </p>
       ) : null}
@@ -510,7 +510,7 @@ export function AdminContributionsClient() {
           </div>
         </div>
         {verifiedFeedbackMessage ? (
-          <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+          <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
             {verifiedFeedbackMessage}
           </p>
         ) : verifiedFeedback.length === 0 ? (
@@ -634,7 +634,7 @@ export function AdminContributionsClient() {
 
             <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
               <div className="space-y-4">
-                <div className="rounded-xl border border-ink-200 p-4">
+                <div className="rounded-lg border border-ink-200 p-4">
                   <h3 className="font-semibold text-ink-900">Course info</h3>
                   <dl className="mt-3 grid gap-3 sm:grid-cols-2">
                     {[
@@ -658,7 +658,7 @@ export function AdminContributionsClient() {
                   </dl>
                 </div>
 
-                <div className="overflow-x-auto rounded-xl border border-ink-200">
+                <div className="overflow-x-auto rounded-lg border border-ink-200">
                   <table className="w-full min-w-[620px] text-left text-sm">
                     <thead className="bg-ink-50 text-xs uppercase text-ink-500">
                       <tr>
@@ -689,7 +689,7 @@ export function AdminContributionsClient() {
                   </table>
                 </div>
 
-                <details className="rounded-xl bg-ink-100 p-4">
+                <details className="rounded-lg bg-ink-100 p-4">
                   <summary className="cursor-pointer font-semibold text-ink-900">
                     Extracted text preview
                   </summary>
@@ -702,7 +702,7 @@ export function AdminContributionsClient() {
               <aside className="space-y-4">
                 {totalWeight(selected.assessments) < 99 ||
                 totalWeight(selected.assessments) > 101 ? (
-                  <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+                  <div className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
                     <div className="flex gap-2 font-medium">
                       <AlertTriangle
                         aria-hidden="true"
@@ -712,7 +712,7 @@ export function AdminContributionsClient() {
                     </div>
                   </div>
                 ) : (
-                  <div className="rounded-xl border border-lime-200 bg-lime-50 p-3 text-sm text-lime-800">
+                  <div className="rounded-lg border border-lime-200 bg-lime-50 p-3 text-sm text-lime-800">
                     <div className="flex gap-2 font-medium">
                       <CheckCircle2
                         aria-hidden="true"
@@ -728,7 +728,7 @@ export function AdminContributionsClient() {
                     Review notes
                   </span>
                   <textarea
-                    className="mt-1 min-h-32 w-full rounded-xl border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
+                    className="mt-1 min-h-32 w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
                     onChange={(event) => setReviewNotes(event.target.value)}
                     value={reviewNotes}
                   />

@@ -17,7 +17,7 @@ export function StatCard({ label, value, hint, icon: Icon }: StatCardProps) {
           <p className="mt-2 text-3xl font-semibold text-ink-900">{value}</p>
           <p className="mt-1 text-sm text-ink-500">{hint}</p>
         </div>
-        <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+        <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
           <Icon aria-hidden="true" className="h-5 w-5" />
         </span>
       </div>

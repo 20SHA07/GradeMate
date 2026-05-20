@@ -16,7 +16,7 @@ export function EmptyState({
 }: EmptyStateProps) {
   return (
     <Card className="flex min-h-56 flex-col items-center justify-center p-7 text-center">
-      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-700">
+      <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
         {icon}
       </div>
       <h2 className="mt-4 text-lg font-semibold text-ink-900">{title}</h2>

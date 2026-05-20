@@ -285,7 +285,7 @@ export function SemestersManager() {
       />
 
       {error ? (
-        <p className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
       ) : null}
@@ -336,19 +336,19 @@ export function SemestersManager() {
                   </Button>
                 </div>
                 <div className="mt-5 grid grid-cols-3 gap-2">
-                  <div className="rounded-xl bg-white/80 p-3">
+                  <div className="rounded-lg bg-white/80 p-3">
                     <p className="text-xs text-ink-500">Courses</p>
                     <p className="mt-1 font-semibold text-ink-900">
                       {stats.courses.length}
                     </p>
                   </div>
-                  <div className="rounded-xl bg-white/80 p-3">
+                  <div className="rounded-lg bg-white/80 p-3">
                     <p className="text-xs text-ink-500">Credits</p>
                     <p className="mt-1 font-semibold text-ink-900">
                       {stats.credits}
                     </p>
                   </div>
-                  <div className="rounded-xl bg-white/80 p-3">
+                  <div className="rounded-lg bg-white/80 p-3">
                     <p className="text-xs text-ink-500">GPA</p>
                     <p className="mt-1 font-semibold text-ink-900">
                       {stats.gpa === null ? "-" : stats.gpa.toFixed(2)}
@@ -390,8 +390,8 @@ export function SemestersManager() {
           </div>
 
           {selectedCourses.length === 0 ? (
-            <div className="mt-6 rounded-2xl border border-dashed border-ink-200 bg-ink-100 p-8 text-center">
-              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-2xl bg-white/80 text-teal-700">
+            <div className="mt-6 rounded-lg border border-dashed border-ink-200 bg-ink-100 p-8 text-center">
+              <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-lg bg-white/80 text-teal-700">
                 <BookOpen aria-hidden="true" className="h-5 w-5" />
               </div>
               <h3 className="mt-4 text-lg font-semibold text-ink-900">
@@ -423,7 +423,7 @@ export function SemestersManager() {
                 const gradeSummary = getCourseGradeSummary(courseAssessments);
 
                 return (
-                  <div className="rounded-2xl bg-ink-100 p-4" key={course.id}>
+                  <div className="rounded-lg bg-ink-100 p-4" key={course.id}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <p className="text-sm font-medium text-teal-700">
@@ -437,19 +437,19 @@ export function SemestersManager() {
                     </div>
 
                     <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
-                      <div className="rounded-xl bg-white/80 p-3">
+                      <div className="rounded-lg bg-white/80 p-3">
                         <p className="text-xs text-ink-500">Grade</p>
                         <p className="mt-1 font-semibold text-ink-900">
                           {formatPercent(gradeSummary.currentGrade)}
                         </p>
                       </div>
-                      <div className="rounded-xl bg-white/80 p-3">
+                      <div className="rounded-lg bg-white/80 p-3">
                         <p className="text-xs text-ink-500">Letter</p>
                         <p className="mt-1 font-semibold text-ink-900">
                           {getLetterGrade(gradeSummary.currentGrade)}
                         </p>
                       </div>
-                      <div className="rounded-xl bg-white/80 p-3">
+                      <div className="rounded-lg bg-white/80 p-3">
                         <p className="text-xs text-ink-500">Weight</p>
                         <p className="mt-1 font-semibold text-ink-900">
                           {totalWeight}%

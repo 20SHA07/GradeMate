@@ -158,6 +158,25 @@ function normalized(value: string | null | undefined) {
   return value?.trim().toLowerCase() ?? "";
 }
 
+async function withFriendlyTimeout<T>(
+  promise: Promise<T>,
+  message: string,
+  timeoutMs = 15000
+) {
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
+  const timeoutPromise = new Promise<never>((_, reject) => {
+    timeoutId = setTimeout(() => reject(new Error(message)), timeoutMs);
+  });
+
+  try {
+    return await Promise.race([promise, timeoutPromise]);
+  } finally {
+    if (timeoutId) {
+      clearTimeout(timeoutId);
+    }
+  }
+}
+
 function templateSourceName(template: CourseTemplateRecord) {
   return (
     template.source_syllabus_file_name ??
@@ -241,7 +260,7 @@ function DetailStat({
   value: string | number;
 }) {
   return (
-    <div className="min-w-0 rounded-xl bg-ink-100 px-3 py-2 text-sm">
+    <div className="min-w-0 rounded-lg bg-ink-100 px-3 py-2 text-sm">
       <p className="text-ink-500">{label}</p>
       <p className="mt-1 break-words font-semibold text-ink-900">{value}</p>
     </div>
@@ -287,27 +306,44 @@ export function CourseLibraryClient() {
 
       setIsLoading(true);
 
-      const [
-        templatesResponse,
-        assessmentsResponse,
-        materialsResponse
-      ] = await Promise.all([
-        supabase
-          .from("course_templates")
-          .select("*")
-          .or(
-            "source_syllabus_path.not.is.null,source_syllabus_file_name.not.is.null,source_file_name.not.is.null"
-          )
-          .order("course_code", { ascending: true }),
-        supabase
-          .from("course_template_assessments")
-          .select("*")
-          .order("created_at", { ascending: true }),
-        supabase
-          .from("course_template_materials")
-          .select("*")
-          .order("file_name", { ascending: true })
-      ]);
+      let templatesResponse;
+      let assessmentsResponse;
+      let materialsResponse;
+
+      try {
+        [
+          templatesResponse,
+          assessmentsResponse,
+          materialsResponse
+        ] = await withFriendlyTimeout(
+          Promise.all([
+            supabase
+              .from("course_templates")
+              .select("*")
+              .or(
+                "source_syllabus_path.not.is.null,source_syllabus_file_name.not.is.null,source_file_name.not.is.null"
+              )
+              .order("course_code", { ascending: true }),
+            supabase
+              .from("course_template_assessments")
+              .select("*")
+              .order("created_at", { ascending: true }),
+            supabase
+              .from("course_template_materials")
+              .select("*")
+              .order("file_name", { ascending: true })
+          ]),
+          "Course Library is taking longer than expected. Check your connection and try again."
+        );
+      } catch (loadError) {
+        setError(
+          loadError instanceof Error
+            ? loadError.message
+            : "Course Library is unavailable right now. You can still add courses manually."
+        );
+        setIsLoading(false);
+        return;
+      }
 
       if (
         templatesResponse.error ||
@@ -737,7 +773,8 @@ export function CourseLibraryClient() {
   return (
     <div className="space-y-6">
       <PageHeader
-        description="Search syllabus-created templates, preview the grading breakdown, then import a clean copy into your semester."
+        eyebrow="Ready KU templates"
+        description="Search verified syllabus templates, preview the grading breakdown, then import a clean copy into your semester."
         title="Course Library"
       />
 
@@ -825,7 +862,7 @@ export function CourseLibraryClient() {
             </select>
           </label>
         </div>
-        <label className="mt-3 flex items-center gap-3 rounded-xl bg-ink-100 px-3 py-2 text-sm text-ink-700">
+        <label className="mt-3 flex items-center gap-3 rounded-lg bg-ink-100 px-3 py-2 text-sm text-ink-700">
           <input
             checked={completeOnly}
             className="h-4 w-4 rounded border-ink-300 text-teal-700 focus:ring-teal-600"
@@ -836,7 +873,7 @@ export function CourseLibraryClient() {
         </label>
       </Card>
 
-      <div className="flex flex-col gap-3 rounded-2xl bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 rounded-lg border border-ink-200 bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-ink-700">
           {isLoading
             ? "Loading syllabus templates..."
@@ -875,9 +912,13 @@ export function CourseLibraryClient() {
         </Card>
       ) : templates.length === 0 ? (
         <EmptyState
-          description="Run the syllabus importer, then refresh this page."
+          description={
+            error
+              ? "Try refreshing in a moment. You can still add courses manually while the shared library is unavailable."
+              : "Run the syllabus importer, then refresh this page."
+          }
           icon={<BookMarked aria-hidden="true" className="h-5 w-5" />}
-          title="No course templates found"
+          title={error ? "Course Library unavailable" : "No course templates found"}
         />
       ) : filteredTemplates.length === 0 ? (
         <EmptyState
@@ -891,24 +932,16 @@ export function CourseLibraryClient() {
             const totalWeight = totalAssessmentWeight(template.assessments);
 
             return (
-              <Card className="p-4" key={template.id}>
+              <Card
+                className="flex h-full flex-col p-4 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50/20"
+                key={template.id}
+              >
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
                       <Badge tone="teal">{template.course_code}</Badge>
                       {template.department ? (
                         <Badge tone="ink">{template.department}</Badge>
-                      ) : null}
-                      <Badge
-                        tone={confidenceTone(template.extraction_confidence)}
-                      >
-                        {formatConfidence(template.extraction_confidence)}
-                      </Badge>
-                      <Badge tone={weightTone(totalWeight)}>
-                        {weightLabel(totalWeight)}
-                      </Badge>
-                      {template.template_status ? (
-                        <Badge tone="ink">{template.template_status}</Badge>
                       ) : null}
                       {templateWarnings(template).length > 0 ? (
                         <Badge tone="gold">
@@ -917,14 +950,17 @@ export function CourseLibraryClient() {
                         </Badge>
                       ) : null}
                     </div>
-                    <h2 className="mt-3 text-lg font-semibold text-ink-900">
+                    <h2 className="mt-3 text-lg font-semibold leading-tight text-ink-900">
                       {template.course_name}
                     </h2>
-                    <p className="mt-2 truncate text-xs text-ink-400">
-                      Source: {templateSourceName(template)}
+                    <p className="mt-2 text-xs text-ink-500">
+                      {template.instructor ?? "Instructor not detected"}
+                      {templateTermLabel(template)
+                        ? ` - ${templateTermLabel(template)}`
+                        : ""}
                     </p>
                   </div>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
                     <FileText aria-hidden="true" className="h-5 w-5" />
                   </span>
                 </div>
@@ -944,12 +980,12 @@ export function CourseLibraryClient() {
                   />
                 </div>
 
-                <p className="mt-3 text-xs text-ink-500">
-                  {template.instructor ?? "Instructor not detected"}
-                  {templateTermLabel(template)
-                    ? ` - ${templateTermLabel(template)}`
-                    : ""}
-                </p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Badge tone={weightTone(totalWeight)}>{weightLabel(totalWeight)}</Badge>
+                  <Badge tone={confidenceTone(template.extraction_confidence)}>
+                    {formatConfidence(template.extraction_confidence)}
+                  </Badge>
+                </div>
 
                 {template.assessments.length === 0 ? (
                   <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
@@ -976,7 +1012,11 @@ export function CourseLibraryClient() {
                   </div>
                 )}
 
-                <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+                <p className="mt-4 truncate text-xs text-ink-400">
+                  Source: {templateSourceName(template)}
+                </p>
+
+                <div className="mt-auto flex flex-col gap-2 pt-4 sm:flex-row">
                   <Button
                     className="w-full sm:w-auto"
                     onClick={() => setDetailTemplate(template)}

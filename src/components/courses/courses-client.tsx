@@ -135,14 +135,14 @@ export function CoursesClient() {
                   <Badge tone="ink">{Number(course.credit_hours)} credits</Badge>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between rounded-xl bg-ink-100 px-3 py-2 text-sm">
+                <div className="mt-5 flex items-center justify-between rounded-lg bg-ink-100 px-3 py-2 text-sm">
                   <span className="text-ink-500">Assessment weight</span>
                   <span className="font-medium text-ink-900">
                     {gradeSummary.totalWeight}%
                   </span>
                 </div>
 
-                <div className="mt-3 flex items-center justify-between rounded-xl bg-teal-50 px-3 py-2 text-sm">
+                <div className="mt-3 flex items-center justify-between rounded-lg bg-teal-50 px-3 py-2 text-sm">
                   <span className="text-teal-800">Current grade</span>
                   <span className="flex items-center gap-2 font-semibold text-teal-800">
                     {formatPercent(gradeSummary.currentGrade)}
@@ -158,7 +158,7 @@ export function CoursesClient() {
                   ) : (
                     courseAssessments.map((assessment) => (
                       <div
-                        className="flex items-center justify-between gap-3 rounded-xl bg-ink-100 px-3 py-2 text-sm"
+                        className="flex items-center justify-between gap-3 rounded-lg bg-ink-100 px-3 py-2 text-sm"
                         key={assessment.id}
                       >
                         <span className="font-medium text-ink-800">

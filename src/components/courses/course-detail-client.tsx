@@ -1105,7 +1105,7 @@ function SmartSyllabusExtractor({
           <div className="flex flex-wrap items-center gap-2">
             <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
               <FileText aria-hidden="true" className="h-4 w-4" />
-              Smart Syllabus Extractor
+              Syllabus Auto-Fill
             </div>
             <Badge tone="teal">Smart extraction</Badge>
           </div>
@@ -1114,8 +1114,8 @@ function SmartSyllabusExtractor({
           </h2>
           <p className="mt-2 text-sm leading-6 text-ink-500">
             Type a quick message, upload a PDF, or paste syllabus text.
-            GradeMate will detect the grading breakdown, then ask you to review
-            it before saving.
+            GradeMate will detect the grading breakdown locally, then ask you
+            to review it before saving.
           </p>
         </div>
         <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
@@ -1348,6 +1348,19 @@ function SmartSyllabusExtractor({
 
       {extraction ? (
         <div className="mt-5 space-y-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
+          <div className="flex flex-col gap-3 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h3 className="text-lg font-semibold text-ink-900">
+                Review extraction
+              </h3>
+              <p className="mt-1 text-sm text-ink-600">
+                Syllabus processed locally. Review before saving.
+              </p>
+            </div>
+            <p className="text-xs font-medium text-teal-800">
+              PDFs are read locally and not stored.
+            </p>
+          </div>
           <div className="grid gap-3 md:grid-cols-4">
             <div className="rounded-lg bg-white px-3 py-2 text-sm">
               <p className="text-ink-500">Course code</p>
@@ -1620,6 +1633,17 @@ function SmartSyllabusExtractor({
               <PlusCircle aria-hidden="true" className="h-4 w-4" />
               Add row
             </Button>
+            <Button
+              onClick={() => {
+                clearResults();
+                if (extractionSource === "pdf") {
+                  setActiveTab("upload");
+                }
+              }}
+              variant="secondary"
+            >
+              {extractionSource === "pdf" ? "Re-upload PDF" : "Try again"}
+            </Button>
             {reviewRows.length === 0 ? (
               <Button onClick={clearResults} variant="ghost">
                 Cancel
@@ -1649,7 +1673,7 @@ function SmartSyllabusExtractor({
                   disabled={isSavingExtraction}
                   onClick={() => void saveExtractedAssessments("append")}
                 >
-                  Confirm and Save
+                  Confirm & Save
                 </Button>
                 <Button onClick={clearResults} variant="ghost">
                   Cancel
@@ -1689,6 +1713,7 @@ export function CourseDetailClient({
   const [targetGrade, setTargetGrade] = useState("90");
   const [activeTab, setActiveTab] = useState<CourseDetailTab>("assessments");
   const [selectedNeedAssessmentId, setSelectedNeedAssessmentId] = useState("");
+  const [isAssessmentFormOpen, setIsAssessmentFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -1884,6 +1909,7 @@ export function CourseDetailClient({
   function resetAssessmentForm() {
     setAssessmentForm(defaultAssessmentForm);
     setEditingAssessmentId(null);
+    setIsAssessmentFormOpen(false);
   }
 
   async function saveAssessment(event: FormEvent<HTMLFormElement>) {
@@ -1994,16 +2020,17 @@ export function CourseDetailClient({
 
   function startEditing(assessment: AssessmentRecord) {
     setEditingAssessmentId(assessment.id);
-  setAssessmentForm({
-    name: getAssessmentName(assessment),
-    weightPercentage: String(getAssessmentWeight(assessment)),
-    score: toFormValue(assessment.score),
-    maxScore: toFormValue(getAssessmentMaxScore(assessment)),
-    category:
-      getAssessmentStatus(assessment) === "Planned"
-        ? "Remaining"
-        : getAssessmentStatus(assessment)
-  });
+    setIsAssessmentFormOpen(true);
+    setAssessmentForm({
+      name: getAssessmentName(assessment),
+      weightPercentage: String(getAssessmentWeight(assessment)),
+      score: toFormValue(assessment.score),
+      maxScore: toFormValue(getAssessmentMaxScore(assessment)),
+      category:
+        getAssessmentStatus(assessment) === "Planned"
+          ? "Remaining"
+          : getAssessmentStatus(assessment)
+    });
   }
 
   async function deleteAssessment(assessmentId: string) {
@@ -2109,6 +2136,7 @@ export function CourseDetailClient({
               onClick={() => {
                 setActiveTab("assessments");
                 resetAssessmentForm();
+                setIsAssessmentFormOpen(true);
               }}
               variant="secondary"
             >
@@ -2162,7 +2190,7 @@ export function CourseDetailClient({
 
             return (
               <button
-                className={`flex min-w-fit items-center gap-2 rounded-xl px-4 py-2 text-sm font-semibold transition ${
+                className={`flex min-w-fit items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition ${
                   isActive
                     ? "bg-teal-600 text-white shadow-sm"
                     : "text-ink-500 hover:bg-ink-100 hover:text-ink-900"
@@ -2180,7 +2208,13 @@ export function CourseDetailClient({
       </Card>
 
       {activeTab === "assessments" ? (
-        <section className="grid gap-5 xl:grid-cols-[minmax(0,1fr)_23rem]">
+        <section
+          className={`grid gap-5 ${
+            isAssessmentFormOpen || editingAssessmentId
+              ? "xl:grid-cols-[minmax(0,1fr)_23rem]"
+              : ""
+          }`}
+        >
           <Card className="overflow-hidden">
             <div className="flex flex-col gap-3 border-b border-ink-200 p-5 sm:flex-row sm:items-start sm:justify-between">
               <div>
@@ -2191,9 +2225,22 @@ export function CourseDetailClient({
                   Scores and weights stay in one focused list.
                 </p>
               </div>
-              <Badge tone={weightReadiness.tone}>
-                {gradeSummary.totalWeight}% total
-              </Badge>
+              <div className="flex flex-wrap items-center gap-2">
+                <Badge tone={weightReadiness.tone}>
+                  {gradeSummary.totalWeight}% total
+                </Badge>
+                <Button
+                  onClick={() => {
+                    resetAssessmentForm();
+                    setIsAssessmentFormOpen(true);
+                  }}
+                  size="sm"
+                  variant="secondary"
+                >
+                  <PlusCircle aria-hidden="true" className="h-4 w-4" />
+                  Add row
+                </Button>
+              </div>
             </div>
 
             {sortedAssessments.length === 0 ? (
@@ -2201,7 +2248,13 @@ export function CourseDetailClient({
                 <EmptyState
                   action={
                     <div className="flex flex-wrap justify-center gap-2">
-                      <Button onClick={() => resetAssessmentForm()} variant="secondary">
+                      <Button
+                        onClick={() => {
+                          resetAssessmentForm();
+                          setIsAssessmentFormOpen(true);
+                        }}
+                        variant="secondary"
+                      >
                         <PlusCircle aria-hidden="true" className="h-4 w-4" />
                         Add manually
                       </Button>
@@ -2287,6 +2340,7 @@ export function CourseDetailClient({
             )}
           </Card>
 
+          {isAssessmentFormOpen || editingAssessmentId ? (
           <Card className="p-5" id="add-assessment">
             <div className="flex items-start justify-between gap-3">
               <div>
@@ -2297,7 +2351,7 @@ export function CourseDetailClient({
                   Keep it quick: name, weight, score.
                 </p>
               </div>
-              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
                 {editingAssessmentId ? (
                   <Save aria-hidden="true" className="h-5 w-5" />
                 ) : (
@@ -2397,7 +2451,7 @@ export function CourseDetailClient({
                 </label>
               </div>
 
-              <div className="rounded-xl bg-ink-50 p-3 text-sm text-ink-600">
+              <div className="rounded-lg bg-ink-50 p-3 text-sm text-ink-600">
                 <div className="flex items-center gap-2 font-medium text-ink-900">
                   <Percent aria-hidden="true" className="h-4 w-4 text-teal-700" />
                   Grade contribution
@@ -2438,6 +2492,7 @@ export function CourseDetailClient({
               </div>
             </form>
           </Card>
+          ) : null}
         </section>
       ) : null}
 
@@ -2538,7 +2593,7 @@ export function CourseDetailClient({
                   </select>
                 </label>
 
-                <div className="rounded-xl border border-ink-200 bg-ink-50 p-4">
+                <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
                   <p className="text-sm font-medium text-ink-500">Needed score</p>
                   {selectedNeedAssessment && needCalculator ? (
                     <>
@@ -2566,13 +2621,13 @@ export function CourseDetailClient({
               </div>
 
               <div className="mt-4 grid gap-3 md:grid-cols-4">
-                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
                   <p className="text-ink-500">Current grade so far</p>
                   <p className="mt-1 font-semibold text-ink-900">
                     {formatPercent(gradeSummary.currentGrade)}
                   </p>
                 </div>
-                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
                   <p className="text-ink-500">Needed average remaining</p>
                   <p className="mt-1 font-semibold text-ink-900">
                     {neededRemainingAverage === null
@@ -2580,20 +2635,20 @@ export function CourseDetailClient({
                       : formatPercent(neededRemainingAverage)}
                   </p>
                 </div>
-                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
                   <p className="text-ink-500">Best possible final grade</p>
                   <p className="mt-1 font-semibold text-ink-900">
                     {formatPercent(bestPossibleGrade)}
                   </p>
                 </div>
-                <div className="rounded-xl bg-ink-100/60 p-3 text-sm">
+                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
                   <p className="text-ink-500">Projected if zeros</p>
                   <p className="mt-1 font-semibold text-ink-900">
                     {formatPercent(gradeSummary.finalProjectedGrade)}
                   </p>
                 </div>
               </div>
-              <p className="mt-4 rounded-xl bg-ink-100/60 p-3 text-sm text-ink-600">
+              <p className="mt-4 rounded-lg bg-ink-100/60 p-3 text-sm text-ink-600">
                 {neededRemainingAverage === null
                   ? "No remaining assessments are available for predictions."
                   : targetNumeric <= gradeSummary.completedContribution
@@ -2640,7 +2695,7 @@ export function CourseDetailClient({
                   ["Prerequisites", course.prerequisites]
                 ].map(([label, value]) =>
                   value ? (
-                    <div className="rounded-xl bg-ink-100/70 p-3 text-sm" key={label}>
+                    <div className="rounded-lg bg-ink-100/70 p-3 text-sm" key={label}>
                       <p className="text-ink-500">{label}</p>
                       <p className="mt-1 font-medium text-ink-900">{value}</p>
                     </div>
@@ -2648,7 +2703,7 @@ export function CourseDetailClient({
                 )}
               </div>
               {Array.isArray(course.textbooks) && course.textbooks.length > 0 ? (
-                <div className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm">
+                <div className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm">
                   <p className="text-ink-500">Textbooks</p>
                   <ul className="mt-2 list-disc space-y-1 pl-5">
                     {course.textbooks.map((textbook) => (
@@ -2658,7 +2713,7 @@ export function CourseDetailClient({
                 </div>
               ) : null}
               {course.description ? (
-                <p className="mt-3 rounded-xl bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
+                <p className="mt-3 rounded-lg bg-ink-100/70 p-3 text-sm leading-6 text-ink-700">
                   {course.description}
                 </p>
               ) : null}

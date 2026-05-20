@@ -212,7 +212,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
     <AuthContext.Provider value={contextValue}>
       {authState.status === "loading" ? (
         <div className="flex min-h-screen items-center justify-center bg-ink-50 px-4">
-          <div className="rounded-2xl border border-ink-200 bg-white p-5 text-sm font-medium text-ink-600 shadow-sm">
+          <div className="rounded-lg border border-ink-200 bg-white p-5 text-sm font-medium text-ink-600 shadow-sm">
             Loading GradeMate...
           </div>
         </div>
@@ -267,7 +267,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
                   it to your account, keep it local, or discard it.
                 </p>
                 {migrationError ? (
-                  <p className="mt-4 rounded-xl border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+                  <p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
                     {migrationError}
                   </p>
                 ) : null}

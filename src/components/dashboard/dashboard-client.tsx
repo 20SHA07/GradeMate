@@ -174,12 +174,12 @@ export function DashboardClient() {
             </Link>
           </>
         }
-        description="See what needs attention, then jump straight into the next useful step."
-        title="What should I do next?"
+        description="A calm overview of your semesters, courses, and grade progress."
+        title="Workspace overview"
       />
 
       {error ? (
-        <p className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
       ) : null}
@@ -218,7 +218,7 @@ export function DashboardClient() {
               </p>
             ) : null}
           </div>
-          <div className="rounded-2xl bg-ink-100 p-4">
+          <div className="rounded-lg bg-ink-100 p-4">
             <p className="text-sm font-medium text-ink-500">Your progress</p>
             <div className="mt-4 grid grid-cols-2 gap-3">
               {[
@@ -227,7 +227,7 @@ export function DashboardClient() {
                 ["Current GPA", "-"],
                 ["Credits", "0"]
               ].map(([label, value]) => (
-                <div className="rounded-xl bg-white/80 p-3" key={label}>
+                <div className="rounded-lg bg-white/80 p-3" key={label}>
                   <p className="text-xs text-ink-500">{label}</p>
                   <p className="mt-1 text-2xl font-semibold text-ink-900">
                     {value}
@@ -278,7 +278,7 @@ export function DashboardClient() {
                   </p>
                   <p className="mt-1 text-xs text-ink-500">{stat.hint}</p>
                 </div>
-                <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-teal-50 text-teal-700">
+                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
                   <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
               </div>
@@ -364,7 +364,7 @@ export function DashboardClient() {
 
                   return (
                     <Link
-                      className="rounded-2xl bg-ink-100 p-4 transition-colors hover:bg-ink-100"
+                      className="rounded-lg bg-ink-100 p-4 transition-colors hover:bg-ink-100"
                       href="/semesters"
                       key={semester.id}
                     >
@@ -407,14 +407,14 @@ export function DashboardClient() {
             </div>
 
             {attentionItems.length === 0 ? (
-              <div className="mt-5 rounded-2xl bg-teal-50 p-4 text-sm text-teal-800">
+              <div className="mt-5 rounded-lg bg-teal-50 p-4 text-sm text-teal-800">
                 Everything looks tidy. Add new scores when your next grade comes in.
               </div>
             ) : (
               <div className="mt-4 space-y-3">
                 {attentionItems.map(({ course, reasons, summary }) => (
                   <Link
-                    className="block rounded-2xl bg-ink-100 p-4 transition-colors hover:bg-ink-100"
+                    className="block rounded-lg bg-ink-100 p-4 transition-colors hover:bg-ink-100"
                     href={getCourseDetailHref(course.id)}
                     key={course.id}
                     prefetch={false}

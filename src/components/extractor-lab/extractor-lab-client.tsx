@@ -11,7 +11,7 @@ import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
 import { saveVerifiedExtraction } from "@/lib/syllabus/verified-extractions";
 
 const textareaStyles =
-  "w-full rounded-xl border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "w-full rounded-lg border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
 
 function formatWeight(value: number) {
   return Number.isInteger(value) ? String(value) : value.toFixed(1);
@@ -176,7 +176,7 @@ export function ExtractorLabClient() {
   return (
     <main className="min-h-screen bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
-        <header className="rounded-3xl border border-ink-200 bg-white/90 p-6 shadow-soft shadow-black/10">
+        <header className="rounded-lg border border-ink-200 bg-white/90 p-6 shadow-soft shadow-black/10">
           <Badge tone="teal">Development tool</Badge>
           <h1 className="mt-3 text-3xl font-semibold">Extractor Lab</h1>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
@@ -194,7 +194,7 @@ export function ExtractorLabClient() {
               </div>
               <input
                 accept="application/pdf,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx"
-                className="mt-4 block w-full rounded-xl border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                className="mt-4 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
                 disabled={isReadingPdf}
                 onChange={(event) => void readDocument(event.target.files?.[0] ?? null)}
                 type="file"
@@ -231,7 +231,7 @@ export function ExtractorLabClient() {
           <div className="space-y-6">
             {(message || error) && (
               <div
-                className={`rounded-2xl border px-4 py-3 text-sm ${
+                className={`rounded-lg border px-4 py-3 text-sm ${
                   error
                     ? "border-rose-200 bg-rose-50 text-rose-700"
                     : "border-lime-200 bg-lime-50 text-lime-800"
@@ -248,7 +248,7 @@ export function ExtractorLabClient() {
                     Extracted text preview
                   </summary>
                   <p className="mt-2 text-xs text-ink-500">{fileName}</p>
-                  <pre className="mt-3 max-h-80 overflow-auto whitespace-pre-wrap rounded-xl bg-ink-100 p-3 text-xs leading-5 text-ink-600">
+                  <pre className="mt-3 max-h-80 overflow-auto whitespace-pre-wrap rounded-lg bg-ink-100 p-3 text-xs leading-5 text-ink-600">
                     {pdfPreview}
                   </pre>
                 </details>
@@ -282,7 +282,7 @@ export function ExtractorLabClient() {
                       ["Office hours", result.officeHours],
                       ["Prerequisites", result.prerequisites]
                     ].map(([label, value]) => (
-                      <div className="rounded-xl bg-ink-100/70 p-3 text-sm" key={String(label)}>
+                      <div className="rounded-lg bg-ink-100/70 p-3 text-sm" key={String(label)}>
                         <p className="text-ink-500">{label}</p>
                         <p className="mt-1 font-medium text-ink-900">
                           {value === null || value === undefined || value === ""
@@ -293,7 +293,7 @@ export function ExtractorLabClient() {
                     ))}
                   </div>
                   {(result.textbooks ?? []).length > 0 ? (
-                    <div className="mt-4 rounded-xl bg-ink-100/70 p-3 text-sm">
+                    <div className="mt-4 rounded-lg bg-ink-100/70 p-3 text-sm">
                       <p className="text-ink-500">Textbooks</p>
                       <ul className="mt-2 list-disc space-y-1 pl-5">
                         {(result.textbooks ?? []).map((textbook) => (
@@ -303,7 +303,7 @@ export function ExtractorLabClient() {
                     </div>
                   ) : null}
                   {result.courseDescription ? (
-                    <div className="mt-4 rounded-xl bg-ink-100/70 p-3 text-sm">
+                    <div className="mt-4 rounded-lg bg-ink-100/70 p-3 text-sm">
                       <p className="text-ink-500">Course description</p>
                       <p className="mt-2 leading-6">{result.courseDescription}</p>
                     </div>
@@ -358,7 +358,7 @@ export function ExtractorLabClient() {
                     <h2 className="font-semibold text-ink-900">Candidate breakdowns</h2>
                     <div className="mt-3 space-y-2">
                       {result.debug.candidates.map((candidate) => (
-                        <div className="rounded-xl bg-ink-100 p-3 text-sm" key={candidate.label}>
+                        <div className="rounded-lg bg-ink-100 p-3 text-sm" key={candidate.label}>
                           <p className="font-medium">{candidate.label}</p>
                           <p className="mt-1 text-ink-500">
                             {candidate.assessmentCount} rows · {candidate.totalWeight}%
@@ -404,7 +404,7 @@ export function ExtractorLabClient() {
                       </Button>
                     </div>
                   </div>
-                  <pre className="mt-4 max-h-96 overflow-auto rounded-xl bg-ink-950 p-4 text-xs leading-5 text-ink-50">
+                  <pre className="mt-4 max-h-96 overflow-auto rounded-lg bg-ink-950 p-4 text-xs leading-5 text-ink-50">
                     {outputJson}
                   </pre>
                 </Card>

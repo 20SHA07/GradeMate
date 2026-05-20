@@ -41,7 +41,7 @@ export function ModeSwitch({
     <div
       aria-label="Switch GradeMate mode"
       className={cn(
-        "grid grid-cols-2 rounded-2xl border border-ink-200 bg-white/70 p-1 shadow-sm shadow-ink-950/5",
+        "grid grid-cols-2 rounded-lg border border-ink-200 bg-ink-100/70 p-1 shadow-sm shadow-ink-950/5",
         className
       )}
       role="navigation"
@@ -54,10 +54,10 @@ export function ModeSwitch({
           <Link
             aria-current={isActive ? "page" : undefined}
             className={cn(
-              "group flex min-w-0 items-center justify-center gap-2 rounded-xl px-2.5 py-2 text-sm font-semibold transition-all",
+              "group flex min-w-0 items-center justify-center gap-2 rounded-md px-2.5 py-2 text-sm font-semibold transition-all",
               isActive
                 ? "bg-teal-600 text-white shadow-sm shadow-teal-950/20"
-                : "text-ink-500 hover:bg-ink-100 hover:text-ink-900"
+                : "text-ink-500 hover:bg-white/70 hover:text-ink-900"
             )}
             href={mode.href}
             key={mode.href}
@@ -67,7 +67,7 @@ export function ModeSwitch({
                 "flex h-7 w-7 shrink-0 items-center justify-center rounded-lg transition-colors",
                 isActive
                   ? "bg-white/15 text-white"
-                  : "bg-white text-ink-500 group-hover:text-teal-700"
+                  : "bg-white/80 text-ink-500 group-hover:text-teal-700"
               )}
             >
               <Icon aria-hidden="true" className="h-4 w-4" />

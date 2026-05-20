@@ -165,9 +165,9 @@ type ExtractionTab = "quick" | "paste" | "pdf";
 const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
 const inputStyles =
-  "h-10 w-full rounded-xl border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
 const textareaStyles =
-  "w-full rounded-xl border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "w-full rounded-lg border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
 
 const defaultCourse: Omit<SimpleCourse, "id"> = {
   assessments: [],
@@ -1483,9 +1483,9 @@ export function SimpleGpaCalculator() {
   return (
     <main className="min-h-screen overflow-x-hidden bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl space-y-5">
-        <header className="flex flex-col gap-4 rounded-3xl border border-ink-200 bg-white/90 p-4 shadow-soft shadow-black/10 sm:flex-row sm:items-center sm:justify-between sm:p-5">
+        <header className="flex flex-col gap-4 rounded-lg border border-ink-200 bg-white/90 p-4 shadow-soft shadow-black/10 sm:flex-row sm:items-center sm:justify-between sm:p-5">
           <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-2xl bg-teal-600 text-white shadow-sm shadow-teal-950/30">
+            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal-600 text-white shadow-sm shadow-teal-950/30">
               <GraduationCap aria-hidden="true" className="h-6 w-6" />
             </span>
             <div>
@@ -1544,7 +1544,7 @@ export function SimpleGpaCalculator() {
 
         {(message || error) && (
           <div
-            className={`rounded-2xl border px-4 py-3 text-sm ${
+            className={`rounded-lg border px-4 py-3 text-sm ${
               error
                 ? "border-rose-200 bg-rose-50 text-rose-700"
                 : "border-lime-200 bg-lime-50 text-lime-800"
@@ -1724,7 +1724,7 @@ export function SimpleGpaCalculator() {
               </label>
 
               {libraryError ? (
-                <p className="mt-3 rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                <p className="mt-3 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
                   {libraryError}
                 </p>
               ) : null}
@@ -1743,7 +1743,7 @@ export function SimpleGpaCalculator() {
                       <div className="mt-2 space-y-2">
                         {courseSearchResults.localCourses.map((course) => (
                           <div
-                            className="rounded-xl border border-ink-200 bg-white p-3"
+                            className="rounded-lg border border-ink-200 bg-white p-3"
                             key={course.id}
                           >
                             <div className="flex items-start justify-between gap-3">
@@ -1798,7 +1798,7 @@ export function SimpleGpaCalculator() {
                       <div className="mt-2 space-y-2">
                         {courseSearchResults.templates.map((template) => (
                           <div
-                            className="rounded-xl border border-ink-200 bg-white p-3"
+                            className="rounded-lg border border-ink-200 bg-white p-3"
                             key={template.id}
                           >
                             <div className="flex items-start justify-between gap-3">
@@ -2011,7 +2011,7 @@ export function SimpleGpaCalculator() {
                       </Button>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 rounded-2xl border border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-500">
+                    <div className="hidden flex-wrap items-center gap-2 rounded-lg border border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-500 sm:flex">
                       <Badge tone="teal">
                         Course {formatPercent(stats.currentGrade)}
                       </Badge>
@@ -2182,7 +2182,7 @@ function CourseworkDetails({
   ) => void;
 }) {
   return (
-    <details className="rounded-2xl border border-ink-200 bg-ink-100/50 px-4 py-3 text-sm">
+    <details className="rounded-lg border border-ink-200 bg-ink-100/50 px-4 py-3 text-sm">
       <summary className="cursor-pointer font-semibold text-ink-900">
         Coursework details
       </summary>
@@ -2199,7 +2199,7 @@ function CourseworkDetails({
           course.courseDescription,
           ...(course.textbooks ?? [])
         ].some(Boolean) ? (
-          <section className="rounded-xl bg-white p-3">
+          <section className="rounded-lg bg-white p-3">
             <h3 className="font-semibold text-ink-900">Course details</h3>
             <div className="mt-3 grid gap-2 md:grid-cols-2">
               {[
@@ -2251,11 +2251,11 @@ function CourseworkDetails({
           </div>
 
           {course.assessments.length === 0 ? (
-            <div className="mt-3 rounded-xl border border-ink-200 bg-white p-4 text-ink-500">
+            <div className="mt-3 rounded-lg border border-ink-200 bg-white p-4 text-ink-500">
               No coursework yet. Add rows manually or scan a syllabus.
             </div>
           ) : (
-            <div className="mt-3 overflow-x-auto rounded-xl border border-ink-200">
+            <div className="mt-3 overflow-x-auto rounded-lg border border-ink-200">
               <table className="w-full min-w-[720px] text-left text-sm">
                 <thead className="bg-ink-100 text-xs uppercase text-ink-500">
                   <tr>
@@ -2396,7 +2396,7 @@ function SimpleModal({
   return (
     <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-ink-950/70 px-4 py-6 backdrop-blur-sm">
       <div
-        className={`w-full rounded-3xl border border-ink-200 bg-white shadow-2xl shadow-black/30 ${
+        className={`w-full rounded-lg border border-ink-200 bg-white shadow-2xl shadow-black/30 ${
           wide ? "max-w-5xl" : "max-w-2xl"
         }`}
       >
@@ -2447,7 +2447,7 @@ function CourseSearchModal({
       </label>
 
       {libraryError ? (
-        <p className="rounded-xl border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+        <p className="rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
           {libraryError}
         </p>
       ) : null}
@@ -2464,12 +2464,12 @@ function CourseSearchModal({
             </p>
             <div className="mt-2 space-y-2">
               {courseSearchResults.localCourses.length === 0 ? (
-                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                <p className="rounded-lg bg-ink-100 p-3 text-sm text-ink-500">
                   No matching local courses.
                 </p>
               ) : (
                 courseSearchResults.localCourses.map((course) => (
-                  <div className="rounded-xl border border-ink-200 bg-white p-3" key={course.id}>
+                  <div className="rounded-lg border border-ink-200 bg-white p-3" key={course.id}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <p className="text-xs font-medium text-teal-700">
@@ -2499,11 +2499,11 @@ function CourseSearchModal({
             </p>
             <div className="mt-2 space-y-2">
               {isLoadingLibrary ? (
-                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                <p className="rounded-lg bg-ink-100 p-3 text-sm text-ink-500">
                   Loading course templates...
                 </p>
               ) : courseSearchResults.templates.length === 0 ? (
-                <p className="rounded-xl bg-ink-100 p-3 text-sm text-ink-500">
+                <p className="rounded-lg bg-ink-100 p-3 text-sm text-ink-500">
                   No matching templates. You can still add a course manually or{" "}
                   <a
                     className="font-medium text-teal-700 hover:text-teal-600"
@@ -2515,7 +2515,7 @@ function CourseSearchModal({
                 </p>
               ) : (
                 courseSearchResults.templates.map((template) => (
-                  <div className="rounded-xl border border-ink-200 bg-white p-3" key={template.id}>
+                  <div className="rounded-lg border border-ink-200 bg-white p-3" key={template.id}>
                     <div className="flex items-start justify-between gap-3">
                       <div className="min-w-0">
                         <div className="flex flex-wrap items-center gap-2">
@@ -2681,10 +2681,10 @@ function ExtractionModalContent({
 
       {!review ? (
         <>
-          <div className="grid grid-cols-3 rounded-2xl bg-ink-100 p-1">
+          <div className="grid grid-cols-3 rounded-lg bg-ink-100 p-1">
             {tabs.map((tab) => (
               <button
-                className={`rounded-xl px-3 py-2 text-sm font-semibold transition-colors ${
+                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
                   activeTab === tab.id
                     ? "bg-white text-teal-700 shadow-sm"
                     : "text-ink-500 hover:bg-white/60 hover:text-ink-900"
@@ -2699,7 +2699,7 @@ function ExtractionModalContent({
           </div>
 
           {activeTab === "quick" ? (
-            <div className="rounded-2xl bg-ink-100/70 p-4">
+            <div className="rounded-lg bg-ink-100/70 p-4">
               <div className="flex items-center gap-2 font-medium text-teal-700">
                 <ClipboardPaste aria-hidden="true" className="h-4 w-4" />
                 Quick add grading breakdown
@@ -2734,7 +2734,7 @@ function ExtractionModalContent({
           ) : null}
 
           {activeTab === "paste" ? (
-            <div className="rounded-2xl bg-ink-100/70 p-4">
+            <div className="rounded-lg bg-ink-100/70 p-4">
               <div className="flex items-center gap-2 font-medium text-ink-900">
                 <FileText aria-hidden="true" className="h-4 w-4 text-teal-700" />
                 Paste syllabus text
@@ -2762,14 +2762,14 @@ function ExtractionModalContent({
           ) : null}
 
           {activeTab === "pdf" ? (
-            <div className="rounded-2xl bg-ink-100/70 p-4">
+            <div className="rounded-lg bg-ink-100/70 p-4">
               <div className="flex items-center gap-2 font-medium text-ink-900">
                 <UploadCloud aria-hidden="true" className="h-4 w-4 text-teal-700" />
                 Upload PDF
               </div>
               <input
                 accept="application/pdf"
-                className="mt-3 block w-full rounded-xl border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                className="mt-3 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
                 onChange={(event) => setPdfFile(event.target.files?.[0] ?? null)}
                 type="file"
               />
@@ -2784,7 +2784,7 @@ function ExtractionModalContent({
                 {isExtracting ? "Reading PDF..." : "Extract from PDF"}
               </Button>
               {pdfPreview ? (
-                <details className="mt-3 rounded-xl border border-ink-200 bg-ink-50 p-3">
+                <details className="mt-3 rounded-lg border border-ink-200 bg-ink-50 p-3">
                   <summary className="cursor-pointer text-sm font-medium text-teal-700">
                     Extracted text preview
                   </summary>
@@ -2807,7 +2807,7 @@ function ExtractionModalContent({
       ) : (
         <>
           {activeTab === "pdf" && pdfPreview ? (
-            <details className="rounded-xl border border-ink-200 bg-ink-50 p-3">
+            <details className="rounded-lg border border-ink-200 bg-ink-50 p-3">
               <summary className="cursor-pointer text-sm font-medium text-teal-700">
                 Extracted text preview
               </summary>
@@ -2911,11 +2911,11 @@ function PredictorModalContent({
         <Badge tone={statusTone}>{statusLabel}</Badge>
       </div>
       {course.assessments.length === 0 ? (
-        <div className="rounded-2xl border border-dashed border-ink-200 bg-ink-50 px-4 py-6 text-sm text-ink-500">
+        <div className="rounded-lg border border-dashed border-ink-200 bg-ink-50 px-4 py-6 text-sm text-ink-500">
           Add coursework or scan a syllabus to unlock predictions.
         </div>
       ) : null}
-      <div className="rounded-2xl border border-ink-200 bg-ink-50 p-3">
+      <div className="rounded-lg border border-ink-200 bg-ink-50 p-3">
         <p className="text-sm font-medium text-ink-700">Choose target</p>
         <div className="mt-2 flex flex-wrap gap-2">
           {targetGradeOptions.map((option) => {
@@ -2923,7 +2923,7 @@ function PredictorModalContent({
 
             return (
               <button
-                className={`rounded-full border px-3 py-1.5 text-sm font-semibold transition ${
+                className={`rounded-md border px-3 py-1.5 text-sm font-semibold transition ${
                   isSelected
                     ? "border-teal-600 bg-teal-600 text-white shadow-sm shadow-teal-950/20"
                     : "border-ink-200 bg-white text-ink-700 hover:border-teal-300 hover:text-teal-700"
@@ -2986,19 +2986,19 @@ function PredictorModalContent({
         </label>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="rounded-xl bg-ink-100 px-4 py-3">
+        <div className="rounded-lg bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">Current so far</p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
             {formatPercent(stats.currentGrade)}
           </p>
         </div>
-        <div className="rounded-xl bg-ink-100 px-4 py-3">
+        <div className="rounded-lg bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">Needed score</p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
             {formatPercent(neededScore)}
           </p>
         </div>
-        <div className="rounded-xl bg-ink-100 px-4 py-3">
+        <div className="rounded-lg bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">
             Needed average remaining
           </p>
@@ -3006,20 +3006,20 @@ function PredictorModalContent({
             {formatPercent(neededAverage)}
           </p>
         </div>
-        <div className="rounded-xl bg-ink-100 px-4 py-3">
+        <div className="rounded-lg bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">Best possible</p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
             {formatPercent(stats.bestPossibleGrade)}
           </p>
         </div>
-        <div className="rounded-xl bg-ink-100 px-4 py-3">
+        <div className="rounded-lg bg-ink-100 px-4 py-3">
           <p className="text-xs font-medium text-ink-500">If remaining zero</p>
           <p className="mt-1 text-lg font-semibold text-ink-900">
             {formatPercent(stats.projectedFinalGrade)}
           </p>
         </div>
       </div>
-      <p className="rounded-2xl border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
+      <p className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
         {predictorMessage}
       </p>
     </section>
@@ -3059,7 +3059,20 @@ function ExtractionReview({
   const hasExistingAssessments = course.assessments.length > 0;
 
   return (
-    <section className="space-y-4 rounded-2xl border border-ink-200 bg-ink-50 p-4">
+    <section className="space-y-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
+      <div className="flex flex-col gap-3 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h3 className="text-lg font-semibold text-ink-900">
+            Review extraction
+          </h3>
+          <p className="mt-1 text-sm text-ink-600">
+            Syllabus processed locally. Review before saving.
+          </p>
+        </div>
+        <p className="text-xs font-medium text-teal-800">
+          PDFs are read locally and not stored.
+        </p>
+      </div>
       <div className="flex flex-wrap items-center gap-2">
         <Badge tone={isWeightReady(reviewTotalWeight) ? "green" : "gold"}>
           {getWeightText(reviewTotalWeight)}
@@ -3076,7 +3089,7 @@ function ExtractionReview({
       </div>
 
       {process.env.NODE_ENV === "development" && review.extraction.debug ? (
-        <div className="rounded-xl border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
+        <div className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
           <p className="font-semibold text-ink-800">Dev extraction debug</p>
           <p className="mt-1">
             Text length: {review.extraction.debug.textLength} · Candidates:{" "}
@@ -3088,13 +3101,13 @@ function ExtractionReview({
       ) : null}
 
       {!isWeightReady(reviewTotalWeight) && review.rows.length > 0 ? (
-        <p className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           You can still save this, but the weights do not add to 100% yet.
         </p>
       ) : null}
 
       {review.extraction.warnings.length > 0 ? (
-        <div className="rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           <p className="font-medium">Review notes</p>
           <ul className="mt-2 list-disc space-y-1 pl-5">
             {review.extraction.warnings.map((warning) => (
@@ -3105,7 +3118,7 @@ function ExtractionReview({
       ) : null}
 
       {review.courseInfo.length > 0 ? (
-        <div className="rounded-xl border border-ink-200 bg-white p-4">
+        <div className="rounded-lg border border-ink-200 bg-white p-4">
           <h3 className="font-semibold text-ink-900">Course info suggestions</h3>
           <p className="mt-1 text-sm text-ink-500">
             Choose which detected fields to apply to this quick course.
@@ -3116,7 +3129,7 @@ function ExtractionReview({
 
               return (
                 <label
-                  className="rounded-xl border border-ink-200 bg-ink-50 p-3"
+                  className="rounded-lg border border-ink-200 bg-ink-50 p-3"
                   key={field.key}
                 >
                   <span className="flex items-center justify-between gap-3 text-sm font-medium text-ink-700">
@@ -3151,7 +3164,7 @@ function ExtractionReview({
       ) : null}
 
       {review.rows.length === 0 ? (
-        <div className="rounded-xl border border-ink-200 bg-white p-4 text-sm text-ink-600">
+        <div className="rounded-lg border border-ink-200 bg-white p-4 text-sm text-ink-600">
           <p className="font-medium text-ink-900">
             I couldn&apos;t find a grading breakdown.
           </p>
@@ -3161,7 +3174,7 @@ function ExtractionReview({
           </p>
         </div>
       ) : (
-        <div className="overflow-x-auto rounded-xl border border-ink-200">
+        <div className="overflow-x-auto rounded-lg border border-ink-200">
           <table className="w-full min-w-[900px] text-left text-sm">
             <thead className="bg-ink-100 text-xs uppercase text-ink-500">
               <tr>
@@ -3269,6 +3282,9 @@ function ExtractionReview({
           <PlusCircle aria-hidden="true" className="h-4 w-4" />
           Add row
         </Button>
+        <Button onClick={() => setReview(null)} variant="secondary">
+          Try again
+        </Button>
         {review.rows.length === 0 ? (
           <Button onClick={() => setReview(null)} variant="ghost">
             Cancel
@@ -3288,7 +3304,7 @@ function ExtractionReview({
         ) : (
           <>
             <Button onClick={() => saveReview("append")}>
-              Confirm and Save
+              Confirm & Save
             </Button>
             <Button onClick={() => setReview(null)} variant="ghost">
               Cancel

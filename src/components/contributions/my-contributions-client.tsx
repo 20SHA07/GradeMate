@@ -110,7 +110,7 @@ export function MyContributionsClient() {
       />
 
       {error ? (
-        <p className="rounded-xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+        <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
       ) : null}
@@ -175,7 +175,7 @@ export function MyContributionsClient() {
                         </p>
                       </div>
                       {contribution.review_notes ? (
-                        <p className="mt-3 rounded-xl bg-ink-100 p-3 text-sm text-ink-600">
+                        <p className="mt-3 rounded-lg bg-ink-100 p-3 text-sm text-ink-600">
                           {contribution.review_notes}
                         </p>
                       ) : null}
