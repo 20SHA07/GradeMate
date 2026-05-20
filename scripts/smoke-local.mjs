@@ -16,6 +16,7 @@ await checkExtractorLabProductionOutput();
 await checkAuthCallbackUx();
 await checkPasswordAuthUx();
 await checkGuestModeConsistency();
+await checkCourseLibraryImportUx();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -245,6 +246,60 @@ async function checkGuestModeConsistency() {
         : "fail",
     detail:
       "Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode."
+  });
+}
+
+async function checkCourseLibraryImportUx() {
+  const source = await readText(
+    "src/components/course-library/course-library-client.tsx"
+  );
+
+  addCheck({
+    area: "Course Library",
+    name: "Guest import uses neutral local-save copy",
+    status:
+      source.includes("Continue as guest. This course will be saved on this device.") &&
+      source.includes("Imported to guest workspace.")
+        ? "pass"
+        : "fail",
+    detail:
+      "Normal guest imports should be described as local saves, not account-sync failures."
+  });
+  addCheck({
+    area: "Course Library",
+    name: "Logged-in import uses synced workspace copy",
+    status:
+      source.includes("This course will be saved to your synced workspace.") &&
+      source.includes("Imported to your workspace.")
+        ? "pass"
+        : "fail",
+    detail:
+      "Authenticated users should see synced-workspace import copy."
+  });
+  addCheck({
+    area: "Course Library",
+    name: "No-semester import can create semester inline",
+    status:
+      source.includes("No semesters yet.") &&
+      source.includes("Create one to import this course.") &&
+      source.includes("createImportSemester")
+        ? "pass"
+        : "fail",
+    detail:
+      "Import modal should not send users away when they need a semester first."
+  });
+  addCheck({
+    area: "Course Library",
+    name: "Import failures keep exact details in console",
+    status:
+      source.includes("Course Library import failed") &&
+      source.includes("Course Library workspace load failed") &&
+      source.includes("Continue as guest") &&
+      source.includes("Please retry.")
+        ? "pass"
+        : "fail",
+    detail:
+      "User-facing import failures should stay friendly while console keeps debug context."
   });
 }
 

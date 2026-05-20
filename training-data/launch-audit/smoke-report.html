@@ -17,7 +17,7 @@
 <body>
   <main>
     <h1>GradeMate Smoke Report</h1>
-    <p>30 passed, 0 warnings, 0 failures.</p>
+    <p>34 passed, 0 warnings, 0 failures.</p>
     <table><tbody>
       <tr class="pass">
         <td>Build</td>
@@ -162,6 +162,30 @@
         <td>No stale guest fallback while session is loading</td>
         <td>pass</td>
         <td>Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode.</td>
+      </tr>
+      <tr class="pass">
+        <td>Course Library</td>
+        <td>Guest import uses neutral local-save copy</td>
+        <td>pass</td>
+        <td>Normal guest imports should be described as local saves, not account-sync failures.</td>
+      </tr>
+      <tr class="pass">
+        <td>Course Library</td>
+        <td>Logged-in import uses synced workspace copy</td>
+        <td>pass</td>
+        <td>Authenticated users should see synced-workspace import copy.</td>
+      </tr>
+      <tr class="pass">
+        <td>Course Library</td>
+        <td>No-semester import can create semester inline</td>
+        <td>pass</td>
+        <td>Import modal should not send users away when they need a semester first.</td>
+      </tr>
+      <tr class="pass">
+        <td>Course Library</td>
+        <td>Import failures keep exact details in console</td>
+        <td>pass</td>
+        <td>User-facing import failures should stay friendly while console keeps debug context.</td>
       </tr>
       <tr class="pass">
         <td>Privacy</td>

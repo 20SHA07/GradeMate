@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:16:01.999Z",
+  "generatedAt": "2026-05-20T16:34:33.956Z",
   "summary": {
-    "passed": 30,
+    "passed": 34,
     "warnings": 0,
     "failures": 0
   },
@@ -149,6 +149,30 @@
       "name": "No stale guest fallback while session is loading",
       "status": "pass",
       "detail": "Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode."
+    },
+    {
+      "area": "Course Library",
+      "name": "Guest import uses neutral local-save copy",
+      "status": "pass",
+      "detail": "Normal guest imports should be described as local saves, not account-sync failures."
+    },
+    {
+      "area": "Course Library",
+      "name": "Logged-in import uses synced workspace copy",
+      "status": "pass",
+      "detail": "Authenticated users should see synced-workspace import copy."
+    },
+    {
+      "area": "Course Library",
+      "name": "No-semester import can create semester inline",
+      "status": "pass",
+      "detail": "Import modal should not send users away when they need a semester first."
+    },
+    {
+      "area": "Course Library",
+      "name": "Import failures keep exact details in console",
+      "status": "pass",
+      "detail": "User-facing import failures should stay friendly while console keeps debug context."
     },
     {
       "area": "Privacy",

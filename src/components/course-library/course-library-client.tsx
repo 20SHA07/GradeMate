@@ -15,7 +15,7 @@ import {
   Search,
   X
 } from "lucide-react";
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { useAuth } from "@/components/auth/protected-session-provider";
 import { Badge } from "@/components/ui/badge";
 import { Button, buttonStyles } from "@/components/ui/button";
@@ -33,9 +33,11 @@ import {
 import {
   createAssessment as storeCreateAssessment,
   createCourse as storeCreateCourse,
+  createSemester as storeCreateSemester,
   deleteAssessment as storeDeleteAssessment,
   getAssessments,
   getWorkspaceSnapshot,
+  guestUserId,
   recordImportedTemplate,
   updateCourse as storeUpdateCourse
 } from "@/lib/workspace-store";
@@ -56,8 +58,14 @@ type TemplateWithDetails = CourseTemplateRecord & {
 type ConfidenceFilter = "All" | "High" | "Medium" | "Low";
 type DuplicateAction = "cancel" | "duplicate" | "update";
 type SortOption = "code" | "name" | "confidence" | "grading";
+type ImportSemesterForm = {
+  academicYear: string;
+  name: string;
+  term: string;
+};
 
 const pageSize = 20;
+const semesterTerms = ["Fall", "Spring", "Summer"];
 
 const inputStyles =
   "gm-input";
@@ -154,6 +162,29 @@ function gradingCompletenessScore(template: TemplateWithDetails) {
 
 function normalized(value: string | null | undefined) {
   return value?.trim().toLowerCase() ?? "";
+}
+
+function getDefaultImportSemesterForm(): ImportSemesterForm {
+  const year = new Date().getFullYear();
+  const term = "Fall";
+
+  return {
+    academicYear: String(year),
+    name: `${term} ${year}`,
+    term
+  };
+}
+
+function getWorkspaceLoadMessage(isGuest: boolean) {
+  return isGuest
+    ? "We couldn't load the guest workspace from this device. You can retry or create a semester below."
+    : "We couldn't reach your synced workspace. You can retry, then import again.";
+}
+
+function getImportFailureMessage(isGuest: boolean) {
+  return isGuest
+    ? "We couldn't import this course to your guest workspace. Please retry."
+    : "We couldn't import this course to your synced workspace. Please retry.";
 }
 
 function isHiddenTemplate(template: CourseTemplateRecord) {
@@ -287,6 +318,8 @@ export function CourseLibraryClient() {
   const [sortOption, setSortOption] = useState<SortOption>("code");
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setIsLoading] = useState(true);
+  const [workspaceRetryKey, setWorkspaceRetryKey] = useState(0);
+  const [workspaceError, setWorkspaceError] = useState("");
   const [importingTemplateId, setImportingTemplateId] = useState("");
   const [detailTemplate, setDetailTemplate] =
     useState<TemplateWithDetails | null>(null);
@@ -295,6 +328,10 @@ export function CourseLibraryClient() {
   const [selectedSemesterId, setSelectedSemesterId] = useState("");
   const [duplicateAction, setDuplicateAction] =
     useState<DuplicateAction>("cancel");
+  const [semesterForm, setSemesterForm] = useState<ImportSemesterForm>(
+    getDefaultImportSemesterForm
+  );
+  const [isCreatingSemester, setIsCreatingSemester] = useState(false);
   const [error, setError] = useState("");
   const [importError, setImportError] = useState("");
   const [successMessage, setSuccessMessage] = useState("");
@@ -302,6 +339,7 @@ export function CourseLibraryClient() {
   useEffect(() => {
     async function loadLibrary() {
       setError("");
+      setWorkspaceError("");
 
       if (!supabase) {
         setError(supabaseConfig.missingSupabaseMessage);
@@ -389,13 +427,12 @@ export function CourseLibraryClient() {
         semesterRows = workspace.semesters;
         courseRows = workspace.courses;
       } catch (loadError) {
-        setError(
-          loadError instanceof Error
-            ? loadError.message
-            : "Could not load your semesters."
-        );
-        setIsLoading(false);
-        return;
+        console.error("Course Library workspace load failed", {
+          error: loadError,
+          isGuest,
+          userId: user.id
+        });
+        setWorkspaceError(getWorkspaceLoadMessage(isGuest));
       }
 
       const templatesWithDetails = templateRows.map((template) => ({
@@ -425,7 +462,8 @@ export function CourseLibraryClient() {
     supabaseConfig.keyPreview,
     supabaseConfig.missingSupabaseMessage,
     supabaseConfig.publicKeySource,
-    user.id
+    user.id,
+    workspaceRetryKey
   ]);
 
   useEffect(() => {
@@ -518,6 +556,7 @@ export function CourseLibraryClient() {
   const selectedTemplateWeight = importTemplate
     ? totalAssessmentWeight(importTemplate.assessments)
     : 0;
+  const isSyncedWorkspace = !isGuest;
 
   function openImportModal(template: TemplateWithDetails) {
     setImportTemplate(template);
@@ -526,6 +565,116 @@ export function CourseLibraryClient() {
     setDuplicateAction("cancel");
     setImportError("");
     setSuccessMessage("");
+  }
+
+  async function createImportSemester(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const name = semesterForm.name.trim();
+    const academicYear = semesterForm.academicYear.trim();
+
+    if (!name) {
+      setImportError("Name the semester before importing this course.");
+      return;
+    }
+
+    setIsCreatingSemester(true);
+    setImportError("");
+
+    try {
+      const createdSemester = await storeCreateSemester(
+        { isGuest, supabase, userId: user.id },
+        {
+          academic_year: academicYear || null,
+          name,
+          term: semesterForm.term
+        }
+      );
+
+      setSemesters((current) => [createdSemester, ...current]);
+      setSelectedSemesterId(createdSemester.id);
+      setWorkspaceError("");
+    } catch (createError) {
+      console.error("Course Library semester creation failed", {
+        error: createError,
+        isGuest,
+        userId: user.id
+      });
+      setImportError(
+        isGuest
+          ? "We couldn't create a guest semester on this device. Please retry."
+          : "We couldn't create this semester in your synced workspace. Please retry."
+      );
+    } finally {
+      setIsCreatingSemester(false);
+    }
+  }
+
+  async function importSelectedTemplateAsGuest() {
+    if (!importTemplate) {
+      return;
+    }
+
+    setImportingTemplateId(importTemplate.id);
+    setImportError("");
+
+    try {
+      const guestContext = {
+        isGuest: true,
+        supabase,
+        userId: guestUserId
+      };
+      const now = new Date().toISOString();
+      const guestWorkspace = await getWorkspaceSnapshot(guestContext);
+      const fallbackSemesterName =
+        selectedSemester?.name || semesterForm.name.trim() || "Fall 2026";
+      const fallbackAcademicYear =
+        (selectedSemester?.academic_year ?? semesterForm.academicYear.trim()) ||
+        null;
+      const guestSemester =
+        guestWorkspace.semesters.find(
+          (semester) =>
+            normalized(semester.name) === normalized(fallbackSemesterName)
+        ) ??
+        (await storeCreateSemester(guestContext, {
+          academic_year: fallbackAcademicYear,
+          name: fallbackSemesterName,
+          term: selectedSemester?.term ?? semesterForm.term
+        }));
+
+      const targetCourse = await storeCreateCourse(guestContext, {
+        code: importTemplate.course_code,
+        credit_hours: Number(importTemplate.credit_hours) || 3,
+        name: importTemplate.course_name,
+        semester_id: guestSemester.id
+      });
+
+      await Promise.all(
+        importTemplate.assessments.map((assessment) => {
+          const { user_id: ignoredUserId, ...payload } =
+            templateAssessmentPayload(assessment, targetCourse.id, guestUserId);
+          void ignoredUserId;
+
+          return storeCreateAssessment(guestContext, payload);
+        })
+      );
+
+      recordImportedTemplate({
+        templateId: importTemplate.id,
+        courseId: targetCourse.id,
+        semesterId: guestSemester.id,
+        importedAt: now
+      });
+      setSuccessMessage("Imported to guest workspace.");
+      setImportTemplate(null);
+    } catch (guestImportError) {
+      console.error("Course Library guest fallback import failed", {
+        error: guestImportError,
+        templateId: importTemplate.id
+      });
+      setImportError("We couldn't import this course as a guest. Please retry.");
+    } finally {
+      setImportingTemplateId("");
+    }
   }
 
   async function copyTemplateAssessments(courseId: string, mode: "all" | "missing") {
@@ -543,6 +692,11 @@ export function CourseLibraryClient() {
         .eq("user_id", user.id);
 
       if (assessmentLoadError) {
+        console.error("Course Library assessment load failed", {
+          courseId,
+          error: assessmentLoadError,
+          userId: user.id
+        });
         throw new Error(getSupabaseErrorMessage(assessmentLoadError));
       }
 
@@ -575,6 +729,11 @@ export function CourseLibraryClient() {
     }
 
     if (assessmentResponse.error) {
+      console.error("Course Library assessment insert failed", {
+        courseId,
+        error: assessmentResponse.error,
+        userId: user.id
+      });
       throw new Error(getSupabaseErrorMessage(assessmentResponse.error));
     }
   }
@@ -585,7 +744,7 @@ export function CourseLibraryClient() {
     }
 
     if (!selectedSemesterId) {
-      setImportError("Choose a semester before importing this template.");
+      setImportError("Create or choose a semester before importing this course.");
       return;
     }
 
@@ -691,14 +850,14 @@ export function CourseLibraryClient() {
           semesterId: selectedSemesterId,
           importedAt: now
         });
-        setSuccessMessage("Course imported into your guest workspace.");
+        setSuccessMessage("Imported to guest workspace.");
         setImportTemplate(null);
         router.push(getCourseDetailHref(targetCourse.id, { imported: true }));
         return;
       }
 
       if (!supabase) {
-        setImportError("Course import is not available right now.");
+        setImportError(getWorkspaceLoadMessage(false));
         return;
       }
 
@@ -716,6 +875,11 @@ export function CourseLibraryClient() {
           .single();
 
         if (updateError || !data) {
+          console.error("Course Library course update failed", {
+            courseId: duplicateCourse.id,
+            error: updateError,
+            userId: user.id
+          });
           throw new Error(getSupabaseErrorMessage(updateError, "Could not update course."));
         }
 
@@ -727,6 +891,11 @@ export function CourseLibraryClient() {
           .eq("user_id", user.id);
 
         if (deleteAssessmentsError) {
+          console.error("Course Library assessment replacement failed", {
+            courseId: targetCourse.id,
+            error: deleteAssessmentsError,
+            userId: user.id
+          });
           throw new Error(
             getSupabaseErrorMessage(
               deleteAssessmentsError,
@@ -750,6 +919,11 @@ export function CourseLibraryClient() {
           .single();
 
         if (courseError || !data) {
+          console.error("Course Library course insert failed", {
+            error: courseError,
+            templateId: importTemplate.id,
+            userId: user.id
+          });
           throw new Error(
             getSupabaseErrorMessage(courseError, "Could not import this course.")
           );
@@ -766,13 +940,17 @@ export function CourseLibraryClient() {
 
         return targetCourse ? [targetCourse, ...withoutUpdated] : current;
       });
-      setSuccessMessage("Course imported. Opening the course page...");
+      setSuccessMessage("Imported to your workspace.");
       setImportTemplate(null);
       router.push(getCourseDetailHref(targetCourse.id, { imported: true }));
     } catch (importFailure) {
-      setImportError(
-        getSupabaseErrorMessage(importFailure, "Could not import this template.")
-      );
+      console.error("Course Library import failed", {
+        error: importFailure,
+        isGuest,
+        templateId: importTemplate.id,
+        userId: user.id
+      });
+      setImportError(getImportFailureMessage(isGuest));
     } finally {
       setImportingTemplateId("");
     }
@@ -801,6 +979,20 @@ export function CourseLibraryClient() {
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
         </p>
+      ) : null}
+
+      {workspaceError ? (
+        <div className="flex flex-col gap-3 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 sm:flex-row sm:items-center sm:justify-between">
+          <p>{workspaceError}</p>
+          <Button
+            className="w-full sm:w-auto"
+            onClick={() => setWorkspaceRetryKey((key) => key + 1)}
+            size="sm"
+            variant="secondary"
+          >
+            Retry
+          </Button>
+        </div>
       ) : null}
 
       {successMessage ? (
@@ -1216,9 +1408,66 @@ export function CourseLibraryClient() {
             </div>
 
             {importError ? (
-              <p className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
-                {importError}
+              <div className="mt-4 rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
+                <p>{importError}</p>
+                <div className="mt-3 flex flex-wrap gap-2">
+                  <Button
+                    onClick={() => void importSelectedTemplate()}
+                    size="sm"
+                    variant="secondary"
+                  >
+                    Retry
+                  </Button>
+                  <Button
+                    onClick={() => {
+                      setImportError("");
+                      setWorkspaceRetryKey((key) => key + 1);
+                    }}
+                    size="sm"
+                    variant="secondary"
+                  >
+                    Check workspace
+                  </Button>
+                  {!isGuest ? (
+                    <Button
+                      onClick={() => void importSelectedTemplateAsGuest()}
+                      size="sm"
+                      variant="secondary"
+                    >
+                      Continue as guest
+                    </Button>
+                  ) : null}
+                  <Button
+                    onClick={() => setImportTemplate(null)}
+                    size="sm"
+                    variant="ghost"
+                  >
+                    Back
+                  </Button>
+                </div>
+              </div>
+            ) : null}
+
+            {!importError ? (
+              <p className="mt-4 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
+                {isSyncedWorkspace
+                  ? "This course will be saved to your synced workspace."
+                  : "Continue as guest. This course will be saved on this device. Sign in to sync across devices."}
               </p>
+            ) : null}
+
+            {workspaceError ? (
+              <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+                <p>{workspaceError}</p>
+                <Button
+                  className="mt-3"
+                  onClick={() => setWorkspaceRetryKey((key) => key + 1)}
+                  size="sm"
+                  variant="secondary"
+                >
+                  Retry workspace
+                </Button>
+              </div>
             ) : null}
 
             {importTemplate.assessments.length === 0 ? (
@@ -1235,20 +1484,88 @@ export function CourseLibraryClient() {
             {semesters.length === 0 ? (
               <div className="mt-5 rounded-lg border border-amber-200 bg-amber-50 p-4">
                 <p className="text-sm font-medium text-amber-900">
-                  Create a semester first.
+                  No semesters yet.
                 </p>
                 <p className="mt-1 text-sm text-amber-800">
-                  GradeMate needs a semester before it can import this course.
+                  Create one to import this course.
                 </p>
-                <Link
-                  className={buttonStyles({
-                    className: "mt-3",
-                    variant: "secondary"
-                  })}
-                  href="/semesters"
+                <form
+                  className="mt-4 grid gap-3 sm:grid-cols-[minmax(0,1.2fr)_minmax(0,0.8fr)_minmax(0,0.8fr)_auto]"
+                  onSubmit={createImportSemester}
                 >
-                  Create semester
-                </Link>
+                  <label className="block min-w-0">
+                    <span className="text-xs font-semibold text-amber-900">
+                      Name
+                    </span>
+                    <input
+                      className={`${inputStyles} mt-1 bg-white/80`}
+                      onChange={(event) =>
+                        setSemesterForm((current) => ({
+                          ...current,
+                          name: event.target.value
+                        }))
+                      }
+                      placeholder="Fall 2026"
+                      value={semesterForm.name}
+                    />
+                  </label>
+                  <label className="block min-w-0">
+                    <span className="text-xs font-semibold text-amber-900">
+                      Term
+                    </span>
+                    <select
+                      className={`${inputStyles} mt-1 bg-white/80`}
+                      onChange={(event) =>
+                        setSemesterForm((current) => ({
+                          ...current,
+                          name:
+                            current.name ===
+                            `${current.term} ${current.academicYear}`
+                              ? `${event.target.value} ${current.academicYear}`
+                              : current.name,
+                          term: event.target.value
+                        }))
+                      }
+                      value={semesterForm.term}
+                    >
+                      {semesterTerms.map((term) => (
+                        <option key={term} value={term}>
+                          {term}
+                        </option>
+                      ))}
+                    </select>
+                  </label>
+                  <label className="block min-w-0">
+                    <span className="text-xs font-semibold text-amber-900">
+                      Year
+                    </span>
+                    <input
+                      className={`${inputStyles} mt-1 bg-white/80`}
+                      inputMode="numeric"
+                      onChange={(event) =>
+                        setSemesterForm((current) => ({
+                          ...current,
+                          academicYear: event.target.value,
+                          name:
+                            current.name ===
+                            `${current.term} ${current.academicYear}`
+                              ? `${current.term} ${event.target.value}`
+                              : current.name
+                        }))
+                      }
+                      placeholder="2026"
+                      value={semesterForm.academicYear}
+                    />
+                  </label>
+                  <Button
+                    className="self-end"
+                    disabled={isCreatingSemester}
+                    type="submit"
+                    variant="secondary"
+                  >
+                    {isCreatingSemester ? "Creating..." : "Create"}
+                  </Button>
+                </form>
               </div>
             ) : (
               <label className="mt-5 block">
