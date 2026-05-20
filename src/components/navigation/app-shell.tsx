@@ -103,7 +103,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           <Link className="block font-semibold text-teal-300" href="/">
             <span className="block text-[21px] font-bold leading-5">GradeMate</span>
             <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-              Khalifa University
+              Built for KU students
             </span>
           </Link>
         </div>
@@ -205,7 +205,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <p className="border-t border-ink-200 pt-3 text-[10px] leading-4 text-ink-500">
-            Student-made. Not affiliated with Khalifa University.
+            Made by a Khalifa University student for KU students.
           </p>
         </div>
       </aside>
@@ -347,7 +347,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             )}
           </div>
           <p className="mt-2 text-[10px] leading-4 text-ink-500">
-            Student-made. Not affiliated with Khalifa University.
+            Made by a Khalifa University student for KU students.
           </p>
         </div>
       </div>

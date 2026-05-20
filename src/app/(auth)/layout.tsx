@@ -9,7 +9,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
           <Link className="block font-semibold text-teal-300" href="/">
             <span className="block text-[21px] font-bold leading-5">GradeMate</span>
             <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-              Khalifa University
+              Built for KU students
             </span>
           </Link>
           <Link className="flex h-10 w-10 items-center justify-center rounded-[3px] border border-ink-200 bg-ink-100 text-teal-300" href="/workspace">

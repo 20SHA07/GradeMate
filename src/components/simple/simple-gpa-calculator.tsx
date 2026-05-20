@@ -92,6 +92,7 @@ type SimpleCourse = {
 type SimpleGpaData = {
   existingCgpa: string;
   completedHours: string;
+  currentTerm: string;
   courses: SimpleCourse[];
 };
 
@@ -161,6 +162,20 @@ const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
 const inputStyles = "gm-input";
 const textareaStyles = "gm-textarea";
+const termOptions = [
+  "Spring 2024",
+  "Summer 2024",
+  "Fall 2024",
+  "Spring 2025",
+  "Summer 2025",
+  "Fall 2025",
+  "Spring 2026",
+  "Summer 2026",
+  "Fall 2026",
+  "Spring 2027",
+  "Summer 2027",
+  "Fall 2027"
+];
 
 const defaultCourse: Omit<SimpleCourse, "id"> = {
   assessments: [],
@@ -218,6 +233,7 @@ function createCourse(course?: Partial<SimpleCourse>): SimpleCourse {
 function getDefaultData(): SimpleGpaData {
   return {
     completedHours: "",
+    currentTerm: "",
     courses: [createCourse()],
     existingCgpa: ""
   };
@@ -628,6 +644,10 @@ function sanitizeImportedData(value: unknown): SimpleGpaData {
   return {
     completedHours:
       typeof data.completedHours === "string" ? data.completedHours : "",
+    currentTerm:
+      typeof data.currentTerm === "string" && data.currentTerm.trim()
+        ? data.currentTerm
+        : "",
     courses: courses.length > 0 ? courses : [createCourse()],
     existingCgpa: typeof data.existingCgpa === "string" ? data.existingCgpa : ""
   };
@@ -1507,7 +1527,7 @@ export function SimpleGpaCalculator() {
                 GradeMate
               </span>
               <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-                Khalifa University
+                Built for KU students
               </span>
             </Link>
           </div>
@@ -1538,10 +1558,10 @@ export function SimpleGpaCalculator() {
           <div className="mt-auto border-t border-ink-200 p-4">
             <p className="text-xs font-bold text-ink-900">Student Workspace</p>
             <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-              Khalifa University
+              Built for KU students
             </p>
             <p className="mt-3 text-[10px] font-normal leading-4 tracking-normal text-ink-500">
-              GradeMate is student-made and not affiliated with Khalifa University.
+              Made by a Khalifa University student for KU students.
             </p>
           </div>
         </aside>
@@ -1587,9 +1607,26 @@ export function SimpleGpaCalculator() {
             <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
               Current term
             </p>
-            <p className="mt-2 text-base font-semibold text-ink-900">
-              Fall 2024
-            </p>
+            <label className="mt-2 block">
+              <span className="sr-only">Current term</span>
+              <select
+                className="gm-input h-8 px-2.5 text-base font-semibold"
+                onChange={(event) =>
+                  updateData({ currentTerm: event.target.value })
+                }
+                value={data.currentTerm}
+              >
+                <option value="">Choose term</option>
+                {data.currentTerm && !termOptions.includes(data.currentTerm) ? (
+                  <option value={data.currentTerm}>{data.currentTerm}</option>
+                ) : null}
+                {termOptions.map((term) => (
+                  <option key={term} value={term}>
+                    {term}
+                  </option>
+                ))}
+              </select>
+            </label>
             <p className="mt-1 text-xs text-ink-500">
               {data.courses.length} course{data.courses.length === 1 ? "" : "s"}
             </p>
@@ -1926,7 +1963,7 @@ export function SimpleGpaCalculator() {
               <textarea
                 className={`${textareaStyles} mt-4 min-h-32`}
                 onChange={(event) => setImportText(event.target.value)}
-                placeholder='{"existingCgpa":"3.5","completedHours":"60","courses":[...]}'
+                placeholder='{"currentTerm":"Spring 2026","existingCgpa":"3.5","completedHours":"60","courses":[...]}'
                 value={importText}
               />
               <Button
@@ -2160,7 +2197,7 @@ export function SimpleGpaCalculator() {
         </details>
 
         <p className="text-center text-[11px] leading-5 text-ink-500">
-          GradeMate is student-made and not affiliated with Khalifa University.
+          Made by a Khalifa University student for KU students.
         </p>
 
         {isFindCourseOpen ? (
@@ -2703,7 +2740,7 @@ function ImportModal({
         <textarea
           className={`${textareaStyles} mt-2 min-h-32`}
           onChange={(event) => setImportText(event.target.value)}
-          placeholder='{"existingCgpa":"3.5","completedHours":"60","courses":[...]}'
+          placeholder='{"currentTerm":"Spring 2026","existingCgpa":"3.5","completedHours":"60","courses":[...]}'
           value={importText}
         />
       </label>

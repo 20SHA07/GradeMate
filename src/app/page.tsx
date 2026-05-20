@@ -55,8 +55,8 @@ export default function LandingPage() {
               Your GPA, simplified.
             </h1>
             <p className="mt-4 max-w-xl text-[13px] leading-5 text-ink-700">
-              The student-first grade tracker built for Khalifa University
-              courses, syllabus review, and target planning.
+              The student-first grade tracker built for KU courses, syllabus
+              review, and target planning.
             </p>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
               <Link className={buttonStyles({ size: "lg" })} href="/workspace">
@@ -127,8 +127,8 @@ export default function LandingPage() {
         </p>
 
         <p className="mx-auto mt-4 max-w-2xl text-center text-[11px] leading-5 text-ink-500">
-          GradeMate is an independent student-made tool and is not officially
-          affiliated with, endorsed by, or operated by Khalifa University.
+          Made by a Khalifa University student for KU students. Always verify
+          course details with your official syllabus.
         </p>
 
         <div className="mt-6 flex flex-wrap justify-center gap-2 text-sm text-ink-500">

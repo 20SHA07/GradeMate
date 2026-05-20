@@ -9,7 +9,7 @@ export function MarketingNav() {
         <Link className="block font-semibold text-teal-300" href="/">
           <span className="block text-[21px] font-bold leading-5">GradeMate</span>
           <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-            Khalifa University
+            Built for KU students
           </span>
         </Link>
         <nav className="hidden min-w-0 items-center gap-5 text-[13px] font-semibold text-ink-800 md:flex">

@@ -777,8 +777,8 @@ export function CourseLibraryClient() {
             Course Library
           </h1>
           <p className="mt-1 max-w-xl text-[13px] leading-5 text-ink-700">
-            Browse and add foundational Khalifa University courses to your
-            workspace. Pre-configured with credit weights.
+            Browse and add foundational KU courses to your workspace.
+            Pre-configured with credit weights.
           </p>
           <p className="mt-2 max-w-xl text-xs leading-5 text-ink-500">
             Course templates are student-maintained. Always verify with your
