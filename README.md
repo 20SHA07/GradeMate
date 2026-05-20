@@ -134,12 +134,16 @@ settings still save locally on the current device.
 
 To let users submit syllabuses for the shared Course Library, run
 [supabase/syllabus-contributions.sql](supabase/syllabus-contributions.sql) in
-the Supabase SQL editor. It creates:
+the Supabase SQL editor, then run
+[supabase/course-template-versions.sql](supabase/course-template-versions.sql).
+They create:
 
 - `profiles`
 - `syllabus_contributions`
 - `contribution_assessments`
+- `course_template_versions`
 - private RLS policies for user submissions
+- admin-only version history for replaced Course Library templates
 - admin-only policies for approving contributions into Course Library templates
 
 After running the SQL, promote your admin account:
@@ -151,11 +155,30 @@ where email = 'your-email@example.com';
 ```
 
 Normal users can create and view only their own contributions. Admins can review
-all submissions at `/admin/contributions`, approve them into `course_templates`
-using the rebuilt `unique_key` model, request changes, or reject them. The same
-admin page also shows recent verified extraction feedback so corrected examples
-can be reviewed for the benchmark. Raw contribution and feedback data is not
-public.
+all submissions at `/admin/contributions`, compare them with matching Course
+Library templates, and choose whether to replace an existing template, create a
+new template version, mark the approved contribution as the latest canonical
+template, or approve the feedback without publishing. Replacing a template saves
+the previous template and assessment rows in `course_template_versions` before
+the shared `course_templates` / `course_template_assessments` rows are updated.
+
+Approval updates the shared Course Library for future imports only. It never
+retroactively changes private `semesters`, `courses`, or `assessments` that
+students already imported into their own workspaces. Needs-review/conflict or
+archived templates stay hidden from normal Course Library browsing unless an
+admin intentionally republishes them as `ready`.
+
+After approving contributions, verify publish integrity:
+
+```bash
+npm run contributions:verify-publish
+```
+
+This checks that approved contributions point to existing templates, published
+templates have assessment rows, replacement history exists for replaced
+templates, and ready templates are public-readable. The same admin page also
+shows recent verified extraction feedback so corrected examples can be reviewed
+for the benchmark. Raw contribution and feedback data is not public.
 
 ## Course Template Import
 
@@ -315,11 +338,11 @@ assessment rows, and totals 99.5-100.5%. It writes
 
 ### Database safety workflow
 
-Protected user tables are `semesters`, `courses`, `assessments`,
+Protected user/admin tables are `semesters`, `courses`, `assessments`,
 `verified_extractions`, `syllabus_contributions`, `contribution_assessments`,
-and `profiles`. Course Library maintenance scripts may only write shared
-template tables. See [docs/database-safety.md](docs/database-safety.md) for the
-full rules.
+`course_template_versions`, and `profiles`. Course Library maintenance scripts
+may only write shared template tables. See
+[docs/database-safety.md](docs/database-safety.md) for the full rules.
 
 Before any Course Library update:
 

@@ -17,7 +17,7 @@
 <body>
   <main>
     <h1>GradeMate Smoke Report</h1>
-    <p>44 passed, 0 warnings, 0 failures.</p>
+    <p>47 passed, 0 warnings, 0 failures.</p>
     <table><tbody>
       <tr class="pass">
         <td>Build</td>
@@ -246,6 +246,24 @@
         <td>Admin contribution review can see pending queue</td>
         <td>pass</td>
         <td>Pending contributions should remain visible in the protected admin review queue.</td>
+      </tr>
+      <tr class="pass">
+        <td>Contributions</td>
+        <td>Admin can publish approved contributions to Course Library</td>
+        <td>pass</td>
+        <td>Admin approval should explicitly choose replace/create/latest/feedback-only and save version history.</td>
+      </tr>
+      <tr class="pass">
+        <td>Contributions</td>
+        <td>Contribution publish path avoids private workspace tables</td>
+        <td>pass</td>
+        <td>Publishing approved contributions must not write to private user workspace tables.</td>
+      </tr>
+      <tr class="pass">
+        <td>Contributions</td>
+        <td>Contribution publish verification script exists</td>
+        <td>pass</td>
+        <td>npm run contributions:verify-publish should check published templates and replacement history.</td>
       </tr>
       <tr class="pass">
         <td>Privacy</td>

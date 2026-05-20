@@ -13,12 +13,14 @@ const protectedUserTables = [
   "verified_extractions",
   "syllabus_contributions",
   "contribution_assessments",
+  "course_template_versions",
   "profiles"
 ];
 const sharedTemplateTables = [
   "course_templates",
   "course_template_assessments",
-  "course_template_materials"
+  "course_template_materials",
+  "course_template_versions"
 ];
 const libraryWriteScripts = [
   "scripts/library-import-rebuilt.mjs",

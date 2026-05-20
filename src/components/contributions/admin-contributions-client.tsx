@@ -12,7 +12,10 @@ import { buildCourseTemplateUniqueKey } from "@/lib/course-template-key";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 import type {
   ContributionAssessmentRecord,
+  CourseTemplateAssessmentRecord,
+  CourseTemplateMaterialRecord,
   CourseTemplateRecord,
+  Json,
   ProfileRecord,
   SyllabusContributionRecord,
   VerifiedExtractionRecord
@@ -22,6 +25,23 @@ type StatusFilter = "pending_review" | "needs_changes" | "approved" | "rejected"
 
 type ContributionWithRows = SyllabusContributionRecord & {
   assessments: ContributionAssessmentRecord[];
+};
+
+type TemplateWithRows = CourseTemplateRecord & {
+  assessments: CourseTemplateAssessmentRecord[];
+  materials: CourseTemplateMaterialRecord[];
+};
+
+type PublishAction =
+  | "replace_existing"
+  | "create_new"
+  | "marked_latest"
+  | "feedback_only";
+
+type TemplateMatch = {
+  template: TemplateWithRows;
+  reason: string;
+  priority: number;
 };
 
 type VerifiedFeedbackSummary = Pick<
@@ -53,7 +73,9 @@ function statusLabel(status: string) {
   return status.replace(/_/g, " ");
 }
 
-function totalWeight(assessments: ContributionAssessmentRecord[]) {
+function totalWeight(
+  assessments: Array<{ weight_percentage: number | null | undefined }>
+) {
   return (
     Math.round(
       assessments.reduce(
@@ -80,16 +102,187 @@ function extractedTextPreview(contribution: SyllabusContributionRecord) {
   return description || "No extracted text preview stored for this contribution.";
 }
 
+function normalizeMatchValue(value: string | null | undefined) {
+  return String(value ?? "")
+    .toLowerCase()
+    .replace(/&/g, "and")
+    .replace(/[^a-z0-9]+/g, " ")
+    .trim()
+    .replace(/\s+/g, " ");
+}
+
+function contributionDescription(contribution: SyllabusContributionRecord) {
+  const json = contribution.extracted_json as Record<string, unknown> | null;
+
+  return json && typeof json.courseDescription === "string"
+    ? json.courseDescription
+    : null;
+}
+
+function contributionTextbooks(contribution: SyllabusContributionRecord): Json {
+  const json = contribution.extracted_json as Record<string, unknown> | null;
+
+  return json && Array.isArray(json.textbooks)
+    ? (json.textbooks.filter((item): item is string => typeof item === "string") as Json)
+    : [];
+}
+
+function contributionWarnings(contribution: SyllabusContributionRecord): Json {
+  const json = contribution.extracted_json as Record<string, unknown> | null;
+
+  return json && Array.isArray(json.warnings) ? (json.warnings as Json) : [];
+}
+
+function contributionUniqueKey(contribution: SyllabusContributionRecord) {
+  return buildCourseTemplateUniqueKey({
+    courseCode: contribution.course_code,
+    courseName: contribution.course_name,
+    fallbackId: contribution.id,
+    semester: contribution.term,
+    sourceName:
+      contribution.syllabus_file_name ??
+      contribution.syllabus_file_path ??
+      contribution.id
+  });
+}
+
+function findTemplateMatches(
+  contribution: SyllabusContributionRecord,
+  templates: TemplateWithRows[]
+): TemplateMatch[] {
+  const uniqueKey = contributionUniqueKey(contribution);
+  const code = normalizeMatchValue(contribution.course_code);
+  const name = normalizeMatchValue(contribution.course_name);
+  const semester = normalizeMatchValue(contribution.term);
+  const matches: TemplateMatch[] = [];
+
+  for (const template of templates) {
+    const templateCode = normalizeMatchValue(template.course_code);
+    const templateName = normalizeMatchValue(template.course_name);
+    const templateSemester = normalizeMatchValue(template.semester ?? template.term);
+
+    if (template.unique_key && template.unique_key === uniqueKey) {
+      matches.push({ priority: 1, reason: "Exact unique key", template });
+      continue;
+    }
+
+    if (
+      code &&
+      name &&
+      semester &&
+      templateCode === code &&
+      templateName === name &&
+      templateSemester === semester
+    ) {
+      matches.push({ priority: 2, reason: "Course, name, and semester", template });
+      continue;
+    }
+
+    if (code && name && templateCode === code && templateName === name) {
+      matches.push({ priority: 3, reason: "Course code and name", template });
+    }
+  }
+
+  const codeOnlyMatches =
+    code && matches.length === 0
+      ? templates.filter(
+          (template) => normalizeMatchValue(template.course_code) === code
+        )
+      : [];
+
+  if (codeOnlyMatches.length === 1) {
+    matches.push({
+      priority: 4,
+      reason: "Only course-code match",
+      template: codeOnlyMatches[0]
+    });
+  }
+
+  return matches.sort((left, right) => left.priority - right.priority);
+}
+
+function makeTemplatePayload({
+  contribution,
+  uniqueKey
+}: {
+  contribution: ContributionWithRows;
+  uniqueKey: string;
+}) {
+  const courseCode = contribution.course_code?.trim() ?? "";
+  const courseName = contribution.course_name?.trim() ?? "";
+  const description = contributionDescription(contribution);
+
+  return {
+    course_code: courseCode,
+    course_name: courseName,
+    course_description: description,
+    credit_hours: contribution.credit_hours ?? 3,
+    department:
+      contribution.department ?? departmentFromCode(contribution.course_code),
+    description,
+    extraction_confidence: 1,
+    extraction_warnings: contributionWarnings(contribution),
+    extractor_version: "admin_approved_contribution",
+    instructor: contribution.instructor,
+    instructor_email: contribution.instructor_email,
+    semester: contribution.term,
+    source_hash: `contribution:${contribution.id}`,
+    source_syllabus_file_name: contribution.syllabus_file_name,
+    source_syllabus_path: contribution.syllabus_file_path,
+    template_status: "ready",
+    term: contribution.term,
+    textbooks: contributionTextbooks(contribution),
+    unique_key: uniqueKey,
+    updated_at: new Date().toISOString()
+  };
+}
+
+function makeTemplateAssessmentRows(
+  contribution: ContributionWithRows,
+  templateId: string
+) {
+  return contribution.assessments.map((assessment) => ({
+    confidence: assessment.confidence ?? 1,
+    course_template_id: templateId,
+    max_score: Number(assessment.max_score) || 100,
+    name: assessment.name,
+    source: "admin_approved_contribution",
+    source_text_snippet: assessment.source_text_snippet,
+    weight_percentage: Number(assessment.weight_percentage) || 0
+  }));
+}
+
+const allowedPublishTables = [
+  "course_templates",
+  "course_template_assessments",
+  "course_template_materials",
+  "course_template_versions",
+  "syllabus_contributions"
+];
+
+function assertAllowedPublishTables(tables: string[]) {
+  const disallowed = tables.filter((table) => !allowedPublishTables.includes(table));
+
+  if (disallowed.length > 0) {
+    throw new Error(`Refusing publish with disallowed table(s): ${disallowed.join(", ")}`);
+  }
+}
+
 export function AdminContributionsClient() {
   const { isGuest, supabase, user } = useAuth();
   const [isAdmin, setIsAdmin] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [activeStatus, setActiveStatus] = useState<StatusFilter>("pending_review");
   const [contributions, setContributions] = useState<ContributionWithRows[]>([]);
+  const [templates, setTemplates] = useState<TemplateWithRows[]>([]);
   const [profiles, setProfiles] = useState<Record<string, ProfileRecord>>({});
   const [verifiedFeedback, setVerifiedFeedback] = useState<VerifiedFeedbackSummary[]>([]);
   const [verifiedFeedbackMessage, setVerifiedFeedbackMessage] = useState("");
   const [selected, setSelected] = useState<ContributionWithRows | null>(null);
+  const [selectedTemplateId, setSelectedTemplateId] = useState("");
+  const [publishAction, setPublishAction] = useState<PublishAction>("create_new");
+  const [pendingPublishAction, setPendingPublishAction] =
+    useState<PublishAction | null>(null);
   const [reviewNotes, setReviewNotes] = useState("");
   const [isSaving, setIsSaving] = useState(false);
   const [error, setError] = useState("");
@@ -132,6 +325,9 @@ export function AdminContributionsClient() {
     const [
       contributionsResponse,
       assessmentsResponse,
+      templatesResponse,
+      templateAssessmentsResponse,
+      templateMaterialsResponse,
       profilesResponse,
       verifiedFeedbackResponse
     ] = await Promise.all([
@@ -143,6 +339,18 @@ export function AdminContributionsClient() {
         .from("contribution_assessments")
         .select("*")
         .order("created_at", { ascending: true }),
+      supabase
+        .from("course_templates")
+        .select("*")
+        .order("updated_at", { ascending: false }),
+      supabase
+        .from("course_template_assessments")
+        .select("*")
+        .order("created_at", { ascending: true }),
+      supabase
+        .from("course_template_materials")
+        .select("*")
+        .order("created_at", { ascending: true }),
       supabase.from("profiles").select("*"),
       supabase
         .from("verified_extractions")
@@ -151,10 +359,20 @@ export function AdminContributionsClient() {
         .limit(20)
     ]);
 
-    if (contributionsResponse.error || assessmentsResponse.error) {
+    if (
+      contributionsResponse.error ||
+      assessmentsResponse.error ||
+      templatesResponse.error ||
+      templateAssessmentsResponse.error ||
+      templateMaterialsResponse.error
+    ) {
       setError(
         getSupabaseErrorMessage(
-          contributionsResponse.error ?? assessmentsResponse.error,
+          contributionsResponse.error ??
+            assessmentsResponse.error ??
+            templatesResponse.error ??
+            templateAssessmentsResponse.error ??
+            templateMaterialsResponse.error,
           "Could not load contribution review data."
         )
       );
@@ -164,6 +382,11 @@ export function AdminContributionsClient() {
 
     const assessmentRows =
       (assessmentsResponse.data ?? []) as ContributionAssessmentRecord[];
+    const templateRows = (templatesResponse.data ?? []) as CourseTemplateRecord[];
+    const templateAssessmentRows =
+      (templateAssessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
+    const templateMaterialRows =
+      (templateMaterialsResponse.data ?? []) as CourseTemplateMaterialRecord[];
     const profileRows = (profilesResponse.data ?? []) as ProfileRecord[];
     if (verifiedFeedbackResponse.error) {
       setVerifiedFeedback([]);
@@ -192,6 +415,17 @@ export function AdminContributionsClient() {
           )
         })
       )
+    );
+    setTemplates(
+      templateRows.map((template) => ({
+        ...template,
+        assessments: templateAssessmentRows.filter(
+          (assessment) => assessment.course_template_id === template.id
+        ),
+        materials: templateMaterialRows.filter(
+          (material) => material.course_template_id === template.id
+        )
+      }))
     );
     setIsLoading(false);
   }
@@ -222,13 +456,81 @@ export function AdminContributionsClient() {
   );
 
   function openReview(contribution: ContributionWithRows) {
+    const matches = findTemplateMatches(contribution, templates);
+    const firstMatch = matches[0]?.template ?? null;
+
     setSelected(contribution);
+    setSelectedTemplateId(firstMatch?.id ?? "");
+    setPublishAction(firstMatch ? "replace_existing" : "create_new");
+    setPendingPublishAction(null);
     setReviewNotes(contribution.review_notes ?? "");
     setError("");
     setMessage("");
   }
 
-  async function approveContribution(contribution: ContributionWithRows) {
+  async function saveTemplateVersion(template: TemplateWithRows, contributionId: string) {
+    if (!supabase) {
+      return;
+    }
+
+    assertAllowedPublishTables(["course_template_versions"]);
+
+    const { assessments, materials, ...templateRecord } = template;
+    const { error: versionError } = await supabase
+      .from("course_template_versions")
+      .insert({
+        previous_assessments_json: assessments as unknown as Json,
+        previous_materials_json: materials as unknown as Json,
+        previous_template_json: templateRecord as unknown as Json,
+        replaced_by_admin_id: user.id,
+        replaced_by_contribution_id: contributionId,
+        template_id: template.id
+      });
+
+    if (versionError) {
+      throw versionError;
+    }
+  }
+
+  async function updateContributionReview({
+    action,
+    contribution,
+    templateId
+  }: {
+    action: "created_new" | "feedback_only" | "marked_latest" | "replaced_existing";
+    contribution: ContributionWithRows;
+    templateId: string | null;
+  }) {
+    if (!supabase) {
+      return;
+    }
+
+    assertAllowedPublishTables(["syllabus_contributions"]);
+
+    const now = new Date().toISOString();
+    const { error: contributionUpdateError } = await supabase
+      .from("syllabus_contributions")
+      .update({
+        approved_course_template_id: templateId,
+        published_template_id: templateId,
+        publish_action: action,
+        review_notes: reviewNotes || null,
+        reviewed_at: now,
+        reviewer_user_id: user.id,
+        status: "approved",
+        updated_at: now
+      })
+      .eq("id", contribution.id);
+
+    if (contributionUpdateError) {
+      throw contributionUpdateError;
+    }
+  }
+
+  async function approveContribution(
+    contribution: ContributionWithRows,
+    action: PublishAction
+  ) {
     if (!supabase) {
       return;
     }
@@ -236,8 +538,16 @@ export function AdminContributionsClient() {
     const courseCode = contribution.course_code?.trim();
     const courseName = contribution.course_name?.trim();
 
-    if (!courseCode || !courseName) {
+    if (action !== "feedback_only" && (!courseCode || !courseName)) {
       setError("A contribution needs a course code and course name before approval.");
+      return;
+    }
+
+    if (
+      (action === "replace_existing" || action === "marked_latest") &&
+      !selectedTemplateId
+    ) {
+      setError("Choose the Course Library template to update before publishing.");
       return;
     }
 
@@ -246,64 +556,46 @@ export function AdminContributionsClient() {
     setMessage("");
 
     try {
-      const extractedJson =
-        (contribution.extracted_json as Record<string, unknown> | null) ?? {};
-      const description =
-        typeof extractedJson.courseDescription === "string"
-          ? extractedJson.courseDescription
-          : null;
-      const uniqueKey = buildCourseTemplateUniqueKey({
-        courseCode,
-        courseName,
-        fallbackId: contribution.id,
-        semester: contribution.term,
-        sourceName:
-          contribution.syllabus_file_name ??
-          contribution.syllabus_file_path ??
-          contribution.id
-      });
-
-      const { data: existingTemplate, error: lookupError } = await supabase
-        .from("course_templates")
-        .select("*")
-        .eq("unique_key", uniqueKey)
-        .maybeSingle();
-
-      if (lookupError) {
-        throw new Error(
-          `${lookupError.message} Run supabase/course-template-unique-key.sql first if the unique_key column is missing.`
-        );
+      if (action === "feedback_only") {
+        await updateContributionReview({
+          action,
+          contribution,
+          templateId: null
+        });
+        setSelected(null);
+        setPendingPublishAction(null);
+        setMessage("Contribution approved as feedback only.");
+        await loadAdminData();
+        return;
       }
 
-      let template: CourseTemplateRecord | null =
-        (existingTemplate as CourseTemplateRecord | null) ?? null;
+      assertAllowedPublishTables([
+        "course_templates",
+        "course_template_assessments",
+        "course_template_versions",
+        "syllabus_contributions"
+      ]);
 
-      if (template) {
+      let template: CourseTemplateRecord | null = null;
+      const selectedTemplate =
+        templates.find((item) => item.id === selectedTemplateId) ?? null;
+
+      if (action === "replace_existing" || action === "marked_latest") {
+        if (!selectedTemplate) {
+          throw new Error("Selected template could not be found.");
+        }
+
+        await saveTemplateVersion(selectedTemplate, contribution.id);
+
+        const templatePayload = makeTemplatePayload({
+          contribution,
+          uniqueKey: selectedTemplate.unique_key ?? contributionUniqueKey(contribution)
+        });
+
         const { data, error: updateError } = await supabase
           .from("course_templates")
-          .update({
-            credit_hours: contribution.credit_hours ?? template.credit_hours,
-            department:
-              contribution.department ??
-              template.department ??
-              departmentFromCode(courseCode),
-            description: description ?? template.description,
-            extraction_confidence:
-              contribution.extraction_confidence ?? template.extraction_confidence,
-            extraction_warnings: template.extraction_warnings ?? [],
-            instructor: contribution.instructor ?? template.instructor,
-            instructor_email:
-              contribution.instructor_email ?? template.instructor_email,
-            source_syllabus_file_name:
-              contribution.syllabus_file_name ?? template.source_syllabus_file_name,
-            source_syllabus_path:
-              contribution.syllabus_file_path ?? template.source_syllabus_path,
-            template_status: "ready",
-            term: contribution.term ?? template.term,
-            semester: contribution.term ?? template.semester,
-            updated_at: new Date().toISOString()
-          })
-          .eq("id", template.id)
+          .update(templatePayload)
+          .eq("id", selectedTemplate.id)
           .select()
           .single();
 
@@ -322,26 +614,14 @@ export function AdminContributionsClient() {
           throw deleteError;
         }
       } else {
+        const baseUniqueKey = contributionUniqueKey(contribution);
+        const uniqueKey = templates.some((item) => item.unique_key === baseUniqueKey)
+          ? `${baseUniqueKey}::contribution-${contribution.id.slice(0, 8)}`
+          : baseUniqueKey;
+        const templatePayload = makeTemplatePayload({ contribution, uniqueKey });
         const { data, error: insertError } = await supabase
           .from("course_templates")
-          .insert({
-            course_code: courseCode,
-            course_name: courseName,
-            credit_hours: contribution.credit_hours ?? 3,
-            department:
-              contribution.department ?? departmentFromCode(courseCode),
-            description,
-            extraction_warnings: [],
-            extraction_confidence: contribution.extraction_confidence ?? 0.7,
-            instructor: contribution.instructor,
-            instructor_email: contribution.instructor_email,
-            semester: contribution.term,
-            source_syllabus_file_name: contribution.syllabus_file_name,
-            source_syllabus_path: contribution.syllabus_file_path,
-            template_status: "ready",
-            term: contribution.term,
-            unique_key: uniqueKey
-          })
+          .insert(templatePayload)
           .select()
           .single();
 
@@ -355,46 +635,82 @@ export function AdminContributionsClient() {
       if (contribution.assessments.length > 0) {
         const { error: copyError } = await supabase
           .from("course_template_assessments")
-          .insert(
-            contribution.assessments.map((assessment) => ({
-              confidence: assessment.confidence ?? 0.7,
-              course_template_id: template.id,
-              max_score: Number(assessment.max_score) || 100,
-              name: assessment.name,
-              source_text_snippet: assessment.source_text_snippet,
-              weight_percentage: Number(assessment.weight_percentage) || 0
-            }))
-          );
+          .insert(makeTemplateAssessmentRows(contribution, template.id));
 
         if (copyError) {
           throw copyError;
         }
       }
 
-      const { error: contributionUpdateError } = await supabase
-        .from("syllabus_contributions")
-        .update({
-          approved_course_template_id: template.id,
-          review_notes: reviewNotes || null,
-          reviewer_user_id: user.id,
-          status: "approved",
-          updated_at: new Date().toISOString()
-        })
-        .eq("id", contribution.id);
+      if (action === "marked_latest") {
+        const code = normalizeMatchValue(contribution.course_code);
+        const name = normalizeMatchValue(contribution.course_name);
+        const siblingIds = templates
+          .filter(
+            (item) =>
+              item.id !== template?.id &&
+              normalizeMatchValue(item.course_code) === code &&
+              normalizeMatchValue(item.course_name) === name
+          )
+          .map((item) => item.id);
 
-      if (contributionUpdateError) {
-        throw contributionUpdateError;
+        if (siblingIds.length > 0) {
+          const { error: archiveError } = await supabase
+            .from("course_templates")
+            .update({
+              template_status: "archived",
+              updated_at: new Date().toISOString()
+            })
+            .in("id", siblingIds);
+
+          if (archiveError) {
+            throw archiveError;
+          }
+        }
       }
 
+      await updateContributionReview({
+        action:
+          action === "replace_existing"
+            ? "replaced_existing"
+            : action === "create_new"
+              ? "created_new"
+              : action,
+        contribution,
+        templateId: template.id
+      });
+
       setSelected(null);
-      setMessage("Contribution approved and added to Course Library.");
+      setPendingPublishAction(null);
+      setMessage(
+        action === "create_new"
+          ? "Contribution approved and published as a new Course Library template."
+          : action === "marked_latest"
+            ? "Contribution approved and marked as the latest Course Library template."
+            : "Contribution approved and replaced the selected Course Library template."
+      );
       await loadAdminData();
     } catch (actionError) {
+      console.error("Contribution publish failed", actionError);
+      const actionMessage =
+        actionError instanceof Error
+          ? actionError.message
+          : typeof actionError === "object" &&
+              actionError !== null &&
+              "message" in actionError &&
+              typeof actionError.message === "string"
+            ? actionError.message
+            : "";
+
       setError(
-        getSupabaseErrorMessage(
-          actionError,
-          "Could not approve this contribution. Check admin RLS policies."
+        /course_template_versions|published_template_id|publish_action|reviewed_at|schema cache/i.test(
+          actionMessage
         )
+          ? "Contribution publishing needs the latest SQL migration. Run supabase/course-template-versions.sql in Supabase SQL Editor, then retry."
+          : getSupabaseErrorMessage(
+              actionError,
+              "Could not approve this contribution. Check admin RLS policies."
+            )
       );
     } finally {
       setIsSaving(false);
@@ -416,7 +732,11 @@ export function AdminContributionsClient() {
     const { error: updateError } = await supabase
       .from("syllabus_contributions")
       .update({
+        approved_course_template_id: null,
+        published_template_id: null,
+        publish_action: status === "rejected" ? "rejected" : "needs_changes",
         review_notes: reviewNotes || null,
+        reviewed_at: new Date().toISOString(),
         reviewer_user_id: user.id,
         status,
         updated_at: new Date().toISOString()
@@ -427,6 +747,7 @@ export function AdminContributionsClient() {
       setError(getSupabaseErrorMessage(updateError, "Could not save review."));
     } else {
       setSelected(null);
+      setPendingPublishAction(null);
       setMessage(`Contribution marked ${statusLabel(status)}.`);
       await loadAdminData();
     }
@@ -460,6 +781,15 @@ export function AdminContributionsClient() {
       </div>
     );
   }
+
+  const selectedMatches = selected ? findTemplateMatches(selected, templates) : [];
+  const selectedTemplate =
+    templates.find((template) => template.id === selectedTemplateId) ??
+    selectedMatches[0]?.template ??
+    null;
+  const selectedTemplateWeight = selectedTemplate
+    ? totalWeight(selectedTemplate.assessments)
+    : 0;
 
   return (
     <div className="space-y-6">
@@ -624,7 +954,10 @@ export function AdminContributionsClient() {
               </div>
               <Button
                 aria-label="Close review"
-                onClick={() => setSelected(null)}
+                onClick={() => {
+                  setPendingPublishAction(null);
+                  setSelected(null);
+                }}
                 size="icon"
                 variant="ghost"
               >
@@ -656,6 +989,128 @@ export function AdminContributionsClient() {
                       </div>
                     ))}
                   </dl>
+                </div>
+
+                <div className="rounded-[3px] border border-ink-200 bg-white/80 p-4">
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                    <div>
+                      <h3 className="font-semibold text-ink-900">
+                        Publish to Course Library
+                      </h3>
+                      <p className="mt-1 text-sm text-ink-500">
+                        Approved contributions update future imports only. Existing
+                        user workspaces are never changed.
+                      </p>
+                    </div>
+                    <Badge tone={selectedMatches.length > 0 ? "teal" : "gold"}>
+                      {selectedMatches.length > 0
+                        ? `${selectedMatches.length} match${selectedMatches.length === 1 ? "" : "es"}`
+                        : "No match found"}
+                    </Badge>
+                  </div>
+
+                  {selectedMatches.length > 0 ? (
+                    <label className="mt-4 block">
+                      <span className="text-sm font-medium text-ink-700">
+                        Matching template
+                      </span>
+                      <select
+                        className="gm-input mt-1"
+                        onChange={(event) => setSelectedTemplateId(event.target.value)}
+                        value={selectedTemplateId}
+                      >
+                        {selectedMatches.map((match) => (
+                          <option key={match.template.id} value={match.template.id}>
+                            {match.template.course_code} - {match.template.course_name}
+                            {match.template.semester || match.template.term
+                              ? ` (${match.template.semester ?? match.template.term})`
+                              : ""}{" "}
+                            - {match.reason}
+                          </option>
+                        ))}
+                      </select>
+                    </label>
+                  ) : (
+                    <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
+                      No safe existing match was found. Create a new template unless
+                      you intentionally want to choose a template after checking the
+                      Course Library.
+                    </p>
+                  )}
+
+                  <div className="mt-4 grid gap-3 lg:grid-cols-2">
+                    <div className="rounded-[3px] border border-ink-200 bg-ink-50 p-3">
+                      <p className="text-xs font-semibold uppercase text-ink-400">
+                        Current template
+                      </p>
+                      {selectedTemplate ? (
+                        <dl className="mt-3 space-y-2 text-sm">
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-ink-500">Title</dt>
+                            <dd className="text-right font-medium text-ink-900">
+                              {selectedTemplate.course_name}
+                            </dd>
+                          </div>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-ink-500">Credits</dt>
+                            <dd className="font-medium text-ink-900">
+                              {selectedTemplate.credit_hours}
+                            </dd>
+                          </div>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-ink-500">Semester</dt>
+                            <dd className="font-medium text-ink-900">
+                              {selectedTemplate.semester ?? selectedTemplate.term ?? "n/a"}
+                            </dd>
+                          </div>
+                          <div className="flex justify-between gap-3">
+                            <dt className="text-ink-500">Assessments</dt>
+                            <dd className="font-medium text-ink-900">
+                              {selectedTemplate.assessments.length} rows /{" "}
+                              {selectedTemplateWeight}%
+                            </dd>
+                          </div>
+                        </dl>
+                      ) : (
+                        <p className="mt-3 text-sm text-ink-500">
+                          A new Course Library template will be created.
+                        </p>
+                      )}
+                    </div>
+
+                    <div className="rounded-[3px] border border-teal-200 bg-teal-50 p-3">
+                      <p className="text-xs font-semibold uppercase text-teal-700">
+                        Contributed template
+                      </p>
+                      <dl className="mt-3 space-y-2 text-sm">
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-ink-500">Title</dt>
+                          <dd className="text-right font-medium text-ink-900">
+                            {selected.course_name ?? "Untitled"}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-ink-500">Credits</dt>
+                          <dd className="font-medium text-ink-900">
+                            {selected.credit_hours ?? "n/a"}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-ink-500">Semester</dt>
+                          <dd className="font-medium text-ink-900">
+                            {selected.term ?? "n/a"}
+                          </dd>
+                        </div>
+                        <div className="flex justify-between gap-3">
+                          <dt className="text-ink-500">Assessments</dt>
+                          <dd className="font-medium text-ink-900">
+                            {selected.assessments.length} rows /{" "}
+                            {totalWeight(selected.assessments)}%
+                          </dd>
+                        </div>
+                      </dl>
+                    </div>
+                  </div>
                 </div>
 
                 <div className="overflow-x-auto rounded-[3px] border border-ink-200">
@@ -734,12 +1189,58 @@ export function AdminContributionsClient() {
                   />
                 </label>
 
+                <div className="rounded-[3px] border border-ink-200 bg-white/80 p-3">
+                  <p className="text-sm font-semibold text-ink-900">
+                    Publish action
+                  </p>
+                  <div className="mt-3 grid gap-2">
+                    {[
+                      {
+                        action: "replace_existing" as const,
+                        disabled: !selectedTemplate,
+                        label: "Replace existing template"
+                      },
+                      {
+                        action: "create_new" as const,
+                        disabled: false,
+                        label: "Create new template version"
+                      },
+                      {
+                        action: "marked_latest" as const,
+                        disabled: !selectedTemplate,
+                        label: "Mark as latest/canonical"
+                      },
+                      {
+                        action: "feedback_only" as const,
+                        disabled: false,
+                        label: "Approve feedback only"
+                      }
+                    ].map((option) => (
+                      <label
+                        className="flex items-start gap-2 rounded-[3px] border border-ink-200 bg-ink-50 p-2 text-sm"
+                        key={option.action}
+                      >
+                        <input
+                          checked={publishAction === option.action}
+                          className="mt-1"
+                          disabled={option.disabled}
+                          onChange={() => setPublishAction(option.action)}
+                          type="radio"
+                        />
+                        <span className="font-medium text-ink-800">
+                          {option.label}
+                        </span>
+                      </label>
+                    ))}
+                  </div>
+                </div>
+
                 <div className="grid gap-2">
                   <Button
                     disabled={isSaving}
-                    onClick={() => void approveContribution(selected)}
+                    onClick={() => setPendingPublishAction(publishAction)}
                   >
-                    Approve
+                    Publish / approve
                   </Button>
                   <Button
                     disabled={isSaving}
@@ -761,6 +1262,48 @@ export function AdminContributionsClient() {
                   </Button>
                 </div>
               </aside>
+            </div>
+          </Card>
+        </div>
+      ) : null}
+
+      {selected && pendingPublishAction ? (
+        <div className="fixed inset-0 z-[60] flex items-center justify-center bg-black/70 px-4 py-6">
+          <Card className="w-full max-w-lg p-5">
+            <h2 className="text-lg font-semibold text-ink-900">
+              Confirm Course Library publish
+            </h2>
+            <p className="mt-2 text-sm leading-6 text-ink-600">
+              This will update the shared Course Library template for future
+              users. It will not change any existing user workspaces or courses
+              students already imported.
+            </p>
+            <div className="mt-4 rounded-[3px] border border-ink-200 bg-ink-50 p-3 text-sm text-ink-700">
+              Action:{" "}
+              <span className="font-semibold text-ink-900">
+                {pendingPublishAction === "replace_existing"
+                  ? "Replace existing template"
+                  : pendingPublishAction === "create_new"
+                    ? "Create new template version"
+                    : pendingPublishAction === "marked_latest"
+                      ? "Mark as latest/canonical"
+                      : "Approve feedback only"}
+              </span>
+            </div>
+            <div className="mt-5 grid gap-2 sm:grid-cols-2">
+              <Button
+                disabled={isSaving}
+                onClick={() => void approveContribution(selected, pendingPublishAction)}
+              >
+                {isSaving ? "Publishing..." : "Confirm"}
+              </Button>
+              <Button
+                disabled={isSaving}
+                onClick={() => setPendingPublishAction(null)}
+                variant="secondary"
+              >
+                Back
+              </Button>
             </div>
           </Card>
         </div>

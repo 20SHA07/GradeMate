@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:54:42.199Z",
+  "generatedAt": "2026-05-20T17:10:58.855Z",
   "summary": {
-    "passed": 30,
+    "passed": 35,
     "failed": 0
   },
   "checks": [
@@ -74,6 +74,16 @@
       "name": "contribution_assessments RLS enabled",
       "status": "pass",
       "detail": "/alter\\s+table\\s+contribution_assessments\\s+enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "course_template_versions table exists",
+      "status": "pass",
+      "detail": "/create\\s+table\\s+if\\s+not\\s+exists\\s+course_template_versions\\b/i"
+    },
+    {
+      "name": "course_template_versions RLS enabled",
+      "status": "pass",
+      "detail": "/alter\\s+table\\s+course_template_versions\\s+enable\\s+row\\s+level\\s+security/i"
     },
     {
       "name": "profiles table exists",
@@ -154,6 +164,21 @@
       "name": "Admin can update shared course templates",
       "status": "pass",
       "detail": "/Admins can update course templates[\\s\\S]*public\\.is_admin\\(\\)/i"
+    },
+    {
+      "name": "Template version history is admin-only",
+      "status": "pass",
+      "detail": "/course_template_versions[\\s\\S]*enable\\s+row\\s+level\\s+security/i"
+    },
+    {
+      "name": "Admins can create template versions",
+      "status": "pass",
+      "detail": "/Admins can create course template versions[\\s\\S]*public\\.is_admin\\(\\)/i"
+    },
+    {
+      "name": "Contribution publish metadata exists",
+      "status": "pass",
+      "detail": "/published_template_id[\\s\\S]*publish_action[\\s\\S]*reviewed_at|published_template_id[\\s\\S]*reviewed_at[\\s\\S]*publish_action/i"
     }
   ]
 }

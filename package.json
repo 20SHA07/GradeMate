@@ -39,6 +39,7 @@
     "storage:cleanup-syllabi": "node scripts/storage-cleanup-syllabi.mjs",
     "storage:cleanup-syllabi:dry": "node scripts/storage-cleanup-syllabi.mjs --dry-run",
     "launch:audit": "node scripts/launch-audit.mjs",
+    "contributions:verify-publish": "node scripts/contributions-verify-publish.mjs",
     "db:safety-check": "node scripts/db-safety-check.mjs",
     "db:lint-sql": "node scripts/db-lint-sql.mjs",
     "db:check-rls": "node scripts/db-check-rls.mjs",

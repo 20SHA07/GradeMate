@@ -24,6 +24,14 @@ function statusLabel(status: string) {
   return status.replace(/_/g, " ");
 }
 
+function publishActionLabel(action: string | null | undefined) {
+  if (action === "replaced_existing") return "Replaced existing template";
+  if (action === "created_new") return "Created new template";
+  if (action === "marked_latest") return "Marked latest template";
+  if (action === "feedback_only") return "Approved as feedback only";
+  return "Review complete";
+}
+
 function readGuestDraftCount() {
   if (typeof window === "undefined") {
     return 0;
@@ -178,6 +186,25 @@ export function MyContributionsClient() {
                         <p className="mt-3 rounded-lg bg-ink-100 p-3 text-sm text-ink-600">
                           {contribution.review_notes}
                         </p>
+                      ) : null}
+                      {contribution.status === "approved" ? (
+                        <div className="mt-3 rounded-lg border border-teal-200 bg-teal-50 p-3 text-sm text-teal-900">
+                          <p className="font-semibold">
+                            {contribution.published_template_id ||
+                            contribution.approved_course_template_id
+                              ? "Published to Course Library"
+                              : "Approved"}
+                          </p>
+                          <p className="mt-1 text-teal-800">
+                            {publishActionLabel(contribution.publish_action)}
+                            {contribution.reviewed_at
+                              ? ` on ${new Date(
+                                  contribution.reviewed_at
+                                ).toLocaleDateString()}`
+                              : ""}
+                            .
+                          </p>
+                        </div>
                       ) : null}
                     </Card>
                   ))}

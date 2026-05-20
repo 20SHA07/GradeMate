@@ -118,6 +118,17 @@ export type CourseTemplateMaterialRecord = {
   created_at: string;
 };
 
+export type CourseTemplateVersionRecord = {
+  id: string;
+  template_id: string;
+  previous_template_json: Json;
+  previous_assessments_json: Json;
+  previous_materials_json?: Json | null;
+  replaced_by_contribution_id: string | null;
+  replaced_by_admin_id: string | null;
+  created_at: string;
+};
+
 export type ProfileRecord = {
   id: string;
   email: string | null;
@@ -157,6 +168,9 @@ export type SyllabusContributionRecord = {
   reviewer_user_id: string | null;
   review_notes: string | null;
   approved_course_template_id: string | null;
+  published_template_id?: string | null;
+  reviewed_at?: string | null;
+  publish_action?: string | null;
   created_at: string;
   updated_at: string;
 };
@@ -413,6 +427,38 @@ export type Database = {
           }
         ];
       };
+      course_template_versions: {
+        Row: CourseTemplateVersionRecord;
+        Insert: {
+          id?: string;
+          template_id: string;
+          previous_template_json: Json;
+          previous_assessments_json: Json;
+          previous_materials_json?: Json | null;
+          replaced_by_contribution_id?: string | null;
+          replaced_by_admin_id?: string | null;
+          created_at?: string;
+        };
+        Update: Partial<
+          Omit<CourseTemplateVersionRecord, "id" | "created_at">
+        >;
+        Relationships: [
+          {
+            foreignKeyName: "course_template_versions_template_id_fkey";
+            columns: ["template_id"];
+            isOneToOne: false;
+            referencedRelation: "course_templates";
+            referencedColumns: ["id"];
+          },
+          {
+            foreignKeyName: "course_template_versions_replaced_by_contribution_id_fkey";
+            columns: ["replaced_by_contribution_id"];
+            isOneToOne: false;
+            referencedRelation: "syllabus_contributions";
+            referencedColumns: ["id"];
+          }
+        ];
+      };
       syllabus_contributions: {
         Row: SyllabusContributionRecord;
         Insert: {
@@ -435,6 +481,9 @@ export type Database = {
           reviewer_user_id?: string | null;
           review_notes?: string | null;
           approved_course_template_id?: string | null;
+          published_template_id?: string | null;
+          reviewed_at?: string | null;
+          publish_action?: string | null;
           created_at?: string;
           updated_at?: string;
         };

@@ -21,9 +21,9 @@
 <body>
   <main>
     <h1>GradeMate Database Safety</h1>
-    <p>Generated 2026-05-20T14:26:32.400Z</p>
+    <p>Generated 2026-05-20T17:10:59.492Z</p>
     <section class="cards">
-      <div class="card"><span>Passed</span><strong>24</strong></div>
+      <div class="card"><span>Passed</span><strong>26</strong></div>
       <div class="card"><span>Warnings</span><strong>2</strong></div>
       <div class="card"><span>Failures</span><strong>0</strong></div>
     </section>
@@ -121,6 +121,18 @@
       </tr>
 <tr class="pass">
         <td>RLS</td>
+        <td>course_template_versions exists</td>
+        <td>pass</td>
+        <td>Expected CREATE TABLE IF NOT EXISTS course_template_versions.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
+        <td>course_template_versions RLS enabled</td>
+        <td>pass</td>
+        <td>Expected ALTER TABLE course_template_versions ENABLE ROW LEVEL SECURITY.</td>
+      </tr>
+<tr class="pass">
+        <td>RLS</td>
         <td>profiles exists</td>
         <td>pass</td>
         <td>Expected CREATE TABLE IF NOT EXISTS profiles.</td>
@@ -165,7 +177,7 @@
         <td>Backups</td>
         <td>Course Library backup is recent</td>
         <td>pass</td>
-        <td>Latest complete backup is 20.3 hours old.</td>
+        <td>Latest complete backup is 23.1 hours old.</td>
       </tr>
 <tr class="pass">
         <td>Verification</td>
@@ -183,7 +195,7 @@
         <td>Verification</td>
         <td>RLS report</td>
         <td>pass</td>
-        <td>30 passed, 0 failed</td>
+        <td>35 passed, 0 failed</td>
       </tr></tbody>
     </table>
   </main>

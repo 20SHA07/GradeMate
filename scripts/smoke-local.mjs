@@ -398,6 +398,9 @@ async function checkContributionSubmissionUx() {
   const adminContributionsSource = await readText(
     "src/components/contributions/admin-contributions-client.tsx"
   );
+  const verifyPublishScript = await readText(
+    "scripts/contributions-verify-publish.mjs"
+  );
 
   addCheck({
     area: "Contributions",
@@ -466,6 +469,48 @@ async function checkContributionSubmissionUx() {
         : "fail",
     detail:
       "Pending contributions should remain visible in the protected admin review queue."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Admin can publish approved contributions to Course Library",
+    status:
+      adminContributionsSource.includes("Replace existing template") &&
+      adminContributionsSource.includes("Create new template version") &&
+      adminContributionsSource.includes("Mark as latest/canonical") &&
+      adminContributionsSource.includes("Approve feedback only") &&
+      adminContributionsSource.includes("course_template_versions") &&
+      adminContributionsSource.includes("published_template_id") &&
+      adminContributionsSource.includes("This will update the shared Course Library template")
+        ? "pass"
+        : "fail",
+    detail:
+      "Admin approval should explicitly choose replace/create/latest/feedback-only and save version history."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Contribution publish path avoids private workspace tables",
+    status:
+      adminContributionsSource.includes("allowedPublishTables") &&
+      adminContributionsSource.includes("course_templates") &&
+      adminContributionsSource.includes("course_template_assessments") &&
+      adminContributionsSource.includes("syllabus_contributions") &&
+      !/\.from\("(semesters|courses|assessments)"\)/.test(adminContributionsSource)
+        ? "pass"
+        : "fail",
+    detail:
+      "Publishing approved contributions must not write to private user workspace tables."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Contribution publish verification script exists",
+    status:
+      verifyPublishScript.includes("course_template_versions") &&
+      verifyPublishScript.includes("published_template_id") &&
+      verifyPublishScript.includes("privateWorkspaceSafety")
+        ? "pass"
+        : "fail",
+    detail:
+      "npm run contributions:verify-publish should check published templates and replacement history."
   });
 }
 

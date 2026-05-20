@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-20T14:26:32.400Z",
+  "generatedAt": "2026-05-20T17:10:59.492Z",
   "protectedUserTables": [
     "semesters",
     "courses",
@@ -7,15 +7,17 @@
     "verified_extractions",
     "syllabus_contributions",
     "contribution_assessments",
+    "course_template_versions",
     "profiles"
   ],
   "sharedTemplateTables": [
     "course_templates",
     "course_template_assessments",
-    "course_template_materials"
+    "course_template_materials",
+    "course_template_versions"
   ],
   "summary": {
-    "passed": 24,
+    "passed": 26,
     "warnings": 2,
     "failures": 0
   },
@@ -112,6 +114,18 @@
     },
     {
       "area": "RLS",
+      "name": "course_template_versions exists",
+      "status": "pass",
+      "detail": "Expected CREATE TABLE IF NOT EXISTS course_template_versions."
+    },
+    {
+      "area": "RLS",
+      "name": "course_template_versions RLS enabled",
+      "status": "pass",
+      "detail": "Expected ALTER TABLE course_template_versions ENABLE ROW LEVEL SECURITY."
+    },
+    {
+      "area": "RLS",
       "name": "profiles exists",
       "status": "pass",
       "detail": "Expected CREATE TABLE IF NOT EXISTS profiles."
@@ -156,7 +170,7 @@
       "area": "Backups",
       "name": "Course Library backup is recent",
       "status": "pass",
-      "detail": "Latest complete backup is 20.3 hours old."
+      "detail": "Latest complete backup is 23.1 hours old."
     },
     {
       "area": "Verification",
@@ -174,7 +188,7 @@
       "area": "Verification",
       "name": "RLS report",
       "status": "pass",
-      "detail": "30 passed, 0 failed"
+      "detail": "35 passed, 0 failed"
     }
   ]
 }

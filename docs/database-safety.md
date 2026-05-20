@@ -13,6 +13,7 @@ Course Library rebuild/import scripts:
 - `verified_extractions`
 - `syllabus_contributions`
 - `contribution_assessments`
+- `course_template_versions` (admin-only replacement history)
 - `profiles`
 
 Course Library imports, template rebuilds, and restore operations must not write,
@@ -25,9 +26,13 @@ Course Library maintenance scripts may write only these shared template tables:
 - `course_templates`
 - `course_template_assessments`
 - `course_template_materials`
+- `course_template_versions` for admin replacement history
 
 Normal users can read ready templates. Admins/service-role scripts can import or
 review templates. Needs-review and conflict templates should not be public.
+Admin-approved syllabus contributions may replace shared Course Library
+templates for future imports, but they must never mutate private courses that
+students already imported.
 
 ## Migration Checklist
 

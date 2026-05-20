@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T16:55:48.837Z",
+  "generatedAt": "2026-05-20T17:11:44.074Z",
   "summary": {
-    "passed": 44,
+    "passed": 47,
     "warnings": 0,
     "failures": 0
   },
@@ -233,6 +233,24 @@
       "name": "Admin contribution review can see pending queue",
       "status": "pass",
       "detail": "Pending contributions should remain visible in the protected admin review queue."
+    },
+    {
+      "area": "Contributions",
+      "name": "Admin can publish approved contributions to Course Library",
+      "status": "pass",
+      "detail": "Admin approval should explicitly choose replace/create/latest/feedback-only and save version history."
+    },
+    {
+      "area": "Contributions",
+      "name": "Contribution publish path avoids private workspace tables",
+      "status": "pass",
+      "detail": "Publishing approved contributions must not write to private user workspace tables."
+    },
+    {
+      "area": "Contributions",
+      "name": "Contribution publish verification script exists",
+      "status": "pass",
+      "detail": "npm run contributions:verify-publish should check published templates and replacement history."
     },
     {
       "area": "Privacy",
