@@ -156,6 +156,13 @@ function normalized(value: string | null | undefined) {
   return value?.trim().toLowerCase() ?? "";
 }
 
+function isHiddenTemplate(template: CourseTemplateRecord) {
+  return (
+    normalized(template.course_code).replace(/\s+/g, " ") === "phys 121" &&
+    Number(template.credit_hours) === 3
+  );
+}
+
 async function withFriendlyTimeout<T>(
   promise: Promise<T>,
   message: string,
@@ -362,7 +369,10 @@ export function CourseLibraryClient() {
 
       const templateRows = (
         (templatesResponse.data ?? []) as CourseTemplateRecord[]
-      ).filter(isPublicReadyTemplate);
+      ).filter(
+        (template) =>
+          isPublicReadyTemplate(template) && !isHiddenTemplate(template)
+      );
       const assessmentRows =
         (assessmentsResponse.data ?? []) as CourseTemplateAssessmentRecord[];
       const materialRows =
