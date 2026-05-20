@@ -36,7 +36,6 @@ import {
   getAssessmentStatus,
   getAssessmentWeight,
   getCourseGradeSummary,
-  getLetterGrade,
   getWeightedContribution
 } from "@/lib/grades";
 import {
@@ -1185,7 +1184,7 @@ function SmartSyllabusExtractor({
           <button
             className={`flex flex-1 items-center justify-center gap-2 rounded-md px-3 py-2 text-sm font-medium transition ${
               activeTab === value
-                ? "bg-teal-700 text-white"
+                ? "bg-teal-600 text-[color:var(--accent-on)]"
                 : "text-ink-600 hover:bg-ink-100"
             }`}
             key={value}
@@ -1207,12 +1206,12 @@ function SmartSyllabusExtractor({
               </span>
               <input
                 accept="application/pdf"
-                className="mt-1 block w-full rounded-md border border-dashed border-border bg-input px-3 py-3 text-sm text-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground"
+                className="mt-1 block w-full rounded-[3px] border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-900 file:mr-3 file:rounded-[3px] file:border-0 file:bg-teal-500 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-ink-50"
                 disabled={isExtracting}
                 onChange={(event) => setFile(event.target.files?.[0] ?? null)}
                 type="file"
               />
-              <span className="mt-2 block text-[11px] text-muted-foreground">
+              <span className="mt-2 block text-[11px] text-ink-500">
                 PDFs are read locally and not stored. Only reviewed course data is saved.
               </span>
             </label>
@@ -1377,6 +1376,9 @@ function SmartSyllabusExtractor({
               PDFs are read locally and not stored.
             </p>
           </div>
+          <p className="rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-600">
+            Always confirm grading details with your official course syllabus.
+          </p>
           <div className="grid gap-3 md:grid-cols-4">
             <div className="rounded-lg bg-white px-3 py-2 text-sm">
               <p className="text-ink-500">Course code</p>
@@ -1837,7 +1839,6 @@ export function CourseDetailClient({
     [assessments]
   );
   const weightReadiness = getWeightReadiness(gradeSummary.totalWeight);
-  const currentLetterGrade = getLetterGrade(gradeSummary.currentGrade);
   const sortedAssessments = useMemo(
     () =>
       [...assessments].sort(
@@ -2101,12 +2102,11 @@ export function CourseDetailClient({
                 resetAssessmentForm();
                 setIsAssessmentFormOpen(true);
               }}
-              variant="secondary"
             >
               <PlusCircle aria-hidden="true" className="h-4 w-4" />
               Add assessment
             </Button>
-            <Button onClick={() => setActiveTab("extractor")}>
+            <Button onClick={() => setActiveTab("extractor")} variant="secondary">
               <Wand2 aria-hidden="true" className="h-4 w-4" />
               Scan syllabus
             </Button>
@@ -2123,7 +2123,7 @@ export function CourseDetailClient({
         </p>
       ) : null}
 
-      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-5">
+      <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {[
           ["Credits", Number(course.credit_hours), "Course workload"],
           [
@@ -2131,12 +2131,11 @@ export function CourseDetailClient({
             formatPercent(gradeSummary.currentGrade),
             `${gradeSummary.completedWeight}% completed`
           ],
-          ["Letter grade", currentLetterGrade, "Based on scored work"],
-          ["Weight completed", `${gradeSummary.completedWeight}%`, "Scored so far"],
+          ["Completed weight", `${gradeSummary.completedWeight}%`, "Scored so far"],
           ["Remaining weight", `${gradeSummary.unscoredWeight}%`, "Unscored work"]
         ].map(([label, value, helper]) => (
           <Card className="p-4" key={label}>
-            <p className="text-[11px] font-semibold text-ink-500">{label}</p>
+            <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">{label}</p>
             <p className="mt-2 text-[26px] font-bold leading-none text-ink-900">
               {value}
             </p>

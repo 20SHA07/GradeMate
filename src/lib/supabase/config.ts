@@ -1,11 +1,11 @@
 const missingSupabaseMessage =
-  "Supabase is not configured. Check NEXT_PUBLIC_SUPABASE_URL and NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY.";
-const missingSupabaseUrlMessage = "Missing Supabase URL";
-const missingSupabasePublicKeyMessage = "Missing Supabase public key";
-const invalidSupabaseUrlMessage = "Invalid Supabase URL";
-const invalidSupabasePublicKeyMessage = "Invalid Supabase public key";
+  "Account sync is not available right now. You can continue as guest.";
+const missingSupabaseUrlMessage = "Account sync is not available right now.";
+const missingSupabasePublicKeyMessage = "Account sync is not available right now.";
+const invalidSupabaseUrlMessage = "Account sync is not available right now.";
+const invalidSupabasePublicKeyMessage = "Account sync is not available right now.";
 const rejectedSupabasePublicKeyMessage =
-  "Supabase rejected the public key. Check NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY or NEXT_PUBLIC_SUPABASE_ANON_KEY.";
+  "Account sync is unavailable right now. You can continue as guest.";
 
 function getConfigError({
   hasLikelyPublicKey,
@@ -108,7 +108,7 @@ export function logSupabaseConfigDebug() {
 
 export function getSupabaseErrorMessage(
   error: unknown,
-  fallback = "Supabase request failed."
+  fallback = "This request could not be completed right now."
 ) {
   const message =
     error instanceof Error
@@ -120,7 +120,7 @@ export function getSupabaseErrorMessage(
         ? error.message
         : "";
 
-  if (/invalid api key/i.test(message)) {
+  if (/invalid api key|anon key|publishable key|supabase|schema cache|pgrst|pkce|code verifier|jwt/i.test(message)) {
     return rejectedSupabasePublicKeyMessage;
   }
 

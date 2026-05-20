@@ -41,7 +41,7 @@ type CourseInfoDraft = Record<CourseInfoKey, string>;
 const guestContributionDraftsKey = "grademate_guest_syllabus_contribution_drafts";
 
 const inputStyles =
-  "w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none transition focus:border-teal-600 focus:ring-2 focus:ring-teal-100";
+  "gm-input";
 
 const courseInfoFields: Array<{
   key: CourseInfoKey;
@@ -399,7 +399,7 @@ export function ContributeSyllabusClient() {
       setError(
         getSupabaseErrorMessage(
           submitError,
-          "Could not submit this syllabus. Run the contribution SQL setup if this is your first time."
+          "Could not submit this syllabus right now. Try again later."
         )
       );
     } finally {
@@ -468,7 +468,7 @@ export function ContributeSyllabusClient() {
               Syllabus text
             </label>
             <textarea
-              className={`${inputStyles} mt-2 min-h-44`}
+              className="gm-textarea mt-2 min-h-44"
               onChange={(event) => setSyllabusText(event.target.value)}
               placeholder="Paste the grading section or full syllabus here..."
               value={syllabusText}
@@ -479,7 +479,7 @@ export function ContributeSyllabusClient() {
             </Button>
           </div>
         ) : (
-          <div className="mt-4 rounded-lg border border-dashed border-ink-300 p-5">
+          <div className="mt-4 rounded-[3px] border border-dashed border-ink-300 bg-ink-50 p-5">
             <input
               accept="application/pdf"
               className="hidden"
@@ -565,7 +565,7 @@ export function ContributeSyllabusClient() {
               </span>
               {field.multiline ? (
                 <textarea
-                  className={`${inputStyles} mt-1 min-h-24`}
+                  className="gm-textarea mt-1 min-h-24"
                   onChange={(event) => updateInfo(field.key, event.target.value)}
                   value={info[field.key]}
                 />
@@ -611,9 +611,9 @@ export function ContributeSyllabusClient() {
           </div>
         ) : null}
 
-        <div className="mt-4 overflow-x-auto rounded-lg border border-ink-200">
-          <table className="w-full min-w-[760px] text-left text-sm">
-            <thead className="bg-ink-50 text-xs uppercase text-ink-500">
+        <div className="mt-4 overflow-x-auto rounded-[3px] border border-ink-200">
+          <table className="gm-table min-w-[760px]">
+            <thead>
               <tr>
                 <th className="px-3 py-2">Assessment</th>
                 <th className="px-3 py-2">Weight</th>

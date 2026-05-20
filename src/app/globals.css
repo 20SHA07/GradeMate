@@ -14,20 +14,20 @@
   --type-hero: 2.875rem;
   --leading-compact: 1.25;
   --leading-copy: 1.55;
-  --ink-50: oklch(14% 0.006 238);
-  --ink-100: oklch(18.5% 0.007 238);
-  --ink-200: oklch(27% 0.008 238);
-  --ink-300: oklch(35% 0.01 238);
+  --ink-50: oklch(8.5% 0.006 238);
+  --ink-100: oklch(12.5% 0.007 238);
+  --ink-200: oklch(19% 0.008 238);
+  --ink-300: oklch(27% 0.01 238);
   --ink-400: oklch(57% 0.016 238);
   --ink-500: oklch(75% 0.018 238);
   --ink-600: oklch(84% 0.014 238);
   --ink-700: oklch(91% 0.01 238);
   --ink-800: oklch(95% 0.007 238);
   --ink-900: oklch(98% 0.005 238);
-  --surface: oklch(18.5% 0.007 238);
-  --surface-muted: oklch(14% 0.006 238);
-  --accent: oklch(62% 0.12 185);
-  --accent-hover: oklch(78% 0.11 185);
+  --surface: oklch(11% 0.007 238);
+  --surface-muted: oklch(7.5% 0.006 238);
+  --accent: oklch(72% 0.125 185);
+  --accent-hover: oklch(80% 0.11 185);
   --accent-on: oklch(98% 0.005 238);
   --selection-bg: oklch(48% 0.11 190);
   --selection-text: oklch(98% 0.005 238);
@@ -35,20 +35,20 @@
 
 .dark {
   color-scheme: dark;
-  --ink-50: oklch(14% 0.006 238);
-  --ink-100: oklch(18.5% 0.007 238);
-  --ink-200: oklch(27% 0.008 238);
-  --ink-300: oklch(35% 0.01 238);
+  --ink-50: oklch(8.5% 0.006 238);
+  --ink-100: oklch(12.5% 0.007 238);
+  --ink-200: oklch(19% 0.008 238);
+  --ink-300: oklch(27% 0.01 238);
   --ink-400: oklch(57% 0.016 238);
   --ink-500: oklch(75% 0.018 238);
   --ink-600: oklch(84% 0.014 238);
   --ink-700: oklch(91% 0.01 238);
   --ink-800: oklch(95% 0.007 238);
   --ink-900: oklch(98% 0.005 238);
-  --surface: oklch(18.5% 0.007 238);
-  --surface-muted: oklch(14% 0.006 238);
-  --accent: oklch(62% 0.12 185);
-  --accent-hover: oklch(78% 0.11 185);
+  --surface: oklch(11% 0.007 238);
+  --surface-muted: oklch(7.5% 0.006 238);
+  --accent: oklch(72% 0.125 185);
+  --accent-hover: oklch(80% 0.11 185);
   --accent-on: oklch(98% 0.005 238);
   --selection-bg: oklch(48% 0.11 190);
   --selection-text: oklch(98% 0.005 238);
@@ -103,27 +103,27 @@ textarea {
 }
 
 .dark .bg-white {
-  background-color: oklch(16% 0.006 238);
+  background-color: oklch(10.5% 0.006 238);
 }
 
 .dark .bg-white\/80 {
-  background-color: oklch(16% 0.006 238 / 0.8);
+  background-color: oklch(10.5% 0.006 238 / 0.86);
 }
 
 .dark .bg-white\/90 {
-  background-color: oklch(16% 0.006 238 / 0.92);
+  background-color: oklch(10.5% 0.006 238 / 0.94);
 }
 
 .dark .bg-white\/95 {
-  background-color: oklch(16% 0.006 238 / 0.96);
+  background-color: oklch(10.5% 0.006 238 / 0.98);
 }
 
 .dark .bg-white\/70 {
-  background-color: oklch(16% 0.006 238 / 0.72);
+  background-color: oklch(10.5% 0.006 238 / 0.76);
 }
 
 .dark .bg-white\/60 {
-  background-color: oklch(16% 0.006 238 / 0.62);
+  background-color: oklch(10.5% 0.006 238 / 0.66);
 }
 
 .dark .bg-white\/15 {
@@ -221,7 +221,7 @@ textarea {
   }
 
   .gm-table tbody {
-    @apply divide-y divide-ink-200;
+    @apply divide-y divide-ink-200 bg-white/90;
   }
 
   .gm-modal-backdrop {

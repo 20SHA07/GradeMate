@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T13:06:07.200Z",
+  "generatedAt": "2026-05-20T14:45:34.301Z",
   "summary": {
-    "passed": 26,
+    "passed": 30,
     "warnings": 0,
     "failures": 0
   },
@@ -125,6 +125,30 @@
       "name": "Google login hidden",
       "status": "pass",
       "detail": "Google auth is paused and should not appear in the launch UI."
+    },
+    {
+      "area": "Auth",
+      "name": "Logged-in dashboard does not show guest badge",
+      "status": "pass",
+      "detail": "Dashboard should show Synced workspace for authenticated users and avoid hardcoded guest badges."
+    },
+    {
+      "area": "Auth",
+      "name": "Guest dashboard still shows guest badge",
+      "status": "pass",
+      "detail": "Guest users should still see guest mode and save-progress prompts."
+    },
+    {
+      "area": "Auth",
+      "name": "Sidebar email and guest state stay consistent",
+      "status": "pass",
+      "detail": "A placeholder guest user should not carry an email, and the shell should branch display on isGuest."
+    },
+    {
+      "area": "Auth",
+      "name": "No stale guest fallback while session is loading",
+      "status": "pass",
+      "detail": "Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode."
     },
     {
       "area": "Privacy",

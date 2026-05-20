@@ -15,6 +15,7 @@ await checkLandingOutput();
 await checkExtractorLabProductionOutput();
 await checkAuthCallbackUx();
 await checkPasswordAuthUx();
+await checkGuestModeConsistency();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -189,6 +190,61 @@ async function checkPasswordAuthUx() {
         ? "pass"
         : "fail",
     detail: "Google auth is paused and should not appear in the launch UI."
+  });
+}
+
+async function checkGuestModeConsistency() {
+  const dashboardSource = await readText("src/components/dashboard/dashboard-client.tsx");
+  const appShellSource = await readText("src/components/navigation/app-shell.tsx");
+  const providerSource = await readText(
+    "src/components/auth/protected-session-provider.tsx"
+  );
+  const workspaceStoreSource = await readText("src/lib/data/workspace-store.ts");
+
+  addCheck({
+    area: "Auth",
+    name: "Logged-in dashboard does not show guest badge",
+    status:
+      dashboardSource.includes('isGuest ? "Using Guest Mode" : "Synced workspace"') &&
+      !dashboardSource.includes('<Badge tone="teal">Using Guest Mode</Badge>')
+        ? "pass"
+        : "fail",
+    detail:
+      "Dashboard should show Synced workspace for authenticated users and avoid hardcoded guest badges."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Guest dashboard still shows guest badge",
+    status:
+      dashboardSource.includes('isGuest ? "Using Guest Mode"') &&
+      dashboardSource.includes("Save progress")
+        ? "pass"
+        : "fail",
+    detail: "Guest users should still see guest mode and save-progress prompts."
+  });
+  addCheck({
+    area: "Auth",
+    name: "Sidebar email and guest state stay consistent",
+    status:
+      workspaceStoreSource.includes("email: undefined") &&
+      appShellSource.includes('{isGuest ? "Guest workspace" : "Signed in as"}') &&
+      appShellSource.includes('{isGuest ? "Saved on this device" : user.email}')
+        ? "pass"
+        : "fail",
+    detail:
+      "A placeholder guest user should not carry an email, and the shell should branch display on isGuest."
+  });
+  addCheck({
+    area: "Auth",
+    name: "No stale guest fallback while session is loading",
+    status:
+      providerSource.includes('status: "loading"') &&
+      providerSource.includes('session ? { status: "authenticated", session } : { status: "guest" }') &&
+      !providerSource.includes("authSessionTimeoutMs")
+        ? "pass"
+        : "fail",
+    detail:
+      "Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode."
   });
 }
 

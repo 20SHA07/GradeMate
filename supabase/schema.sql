@@ -3,6 +3,7 @@ create extension if not exists pgcrypto;
 create table if not exists profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text,
+  full_name text,
   role text not null default 'user' check (role in ('user', 'admin')),
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
@@ -30,10 +31,16 @@ security definer
 set search_path = public
 as $$
 begin
-  insert into public.profiles (id, email, role)
-  values (new.id, new.email, 'user')
+  insert into public.profiles (id, email, full_name, role)
+  values (
+    new.id,
+    new.email,
+    nullif(coalesce(new.raw_user_meta_data ->> 'full_name', new.raw_user_meta_data ->> 'name'), ''),
+    'user'
+  )
   on conflict (id) do update
   set email = excluded.email,
+      full_name = coalesce(public.profiles.full_name, excluded.full_name),
       updated_at = now();
 
   return new;
@@ -44,6 +51,18 @@ drop trigger if exists on_auth_user_created_create_profile on auth.users;
 create trigger on_auth_user_created_create_profile
 after insert on auth.users
 for each row execute function public.handle_new_profile();
+
+alter table profiles add column if not exists full_name text;
+
+create table if not exists degree_plans (
+  id uuid primary key default gen_random_uuid(),
+  user_id uuid not null unique references auth.users(id) on delete cascade,
+  total_credits numeric not null default 120 check (total_credits > 0),
+  completed_credits numeric not null default 0 check (completed_credits >= 0),
+  categories jsonb not null default '[]'::jsonb,
+  created_at timestamp with time zone default now(),
+  updated_at timestamp with time zone default now()
+);
 
 create table if not exists semesters (
   id uuid primary key default gen_random_uuid(),
@@ -248,6 +267,7 @@ alter table assessments alter column category set default 'Planned';
 alter table assessments alter column title drop not null;
 
 create index if not exists semesters_user_id_idx on semesters(user_id);
+create index if not exists degree_plans_user_id_idx on degree_plans(user_id);
 create index if not exists courses_user_id_idx on courses(user_id);
 create index if not exists courses_semester_id_idx on courses(semester_id);
 create index if not exists assessments_user_id_idx on assessments(user_id);
@@ -261,6 +281,7 @@ create index if not exists course_template_materials_template_id_idx on course_t
 
 alter table semesters enable row level security;
 alter table profiles enable row level security;
+alter table degree_plans enable row level security;
 alter table courses enable row level security;
 alter table assessments enable row level security;
 alter table syllabus_uploads enable row level security;
@@ -348,6 +369,32 @@ on profiles for update
 to authenticated
 using (public.is_admin())
 with check (public.is_admin());
+
+drop policy if exists "Users can view their own degree plan" on degree_plans;
+drop policy if exists "Users can create their own degree plan" on degree_plans;
+drop policy if exists "Users can update their own degree plan" on degree_plans;
+drop policy if exists "Users can delete their own degree plan" on degree_plans;
+
+create policy "Users can view their own degree plan"
+on degree_plans for select
+to authenticated
+using (auth.uid() = user_id);
+
+create policy "Users can create their own degree plan"
+on degree_plans for insert
+to authenticated
+with check (auth.uid() = user_id);
+
+create policy "Users can update their own degree plan"
+on degree_plans for update
+to authenticated
+using (auth.uid() = user_id)
+with check (auth.uid() = user_id);
+
+create policy "Users can delete their own degree plan"
+on degree_plans for delete
+to authenticated
+using (auth.uid() = user_id);
 
 drop policy if exists "Users can view their own semesters" on semesters;
 drop policy if exists "Users can create their own semesters" on semesters;

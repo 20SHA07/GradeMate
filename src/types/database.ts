@@ -121,7 +121,18 @@ export type CourseTemplateMaterialRecord = {
 export type ProfileRecord = {
   id: string;
   email: string | null;
+  full_name?: string | null;
   role: string;
+  created_at: string;
+  updated_at: string;
+};
+
+export type DegreePlanRecord = {
+  id: string;
+  user_id: string;
+  total_credits: number;
+  completed_credits: number;
+  categories: Json;
   created_at: string;
   updated_at: string;
 };
@@ -192,11 +203,28 @@ export type Database = {
         Insert: {
           id: string;
           email?: string | null;
+          full_name?: string | null;
           role?: string;
           created_at?: string;
           updated_at?: string;
         };
         Update: Partial<Omit<ProfileRecord, "id" | "created_at">>;
+        Relationships: [];
+      };
+      degree_plans: {
+        Row: DegreePlanRecord;
+        Insert: {
+          id?: string;
+          user_id: string;
+          total_credits?: number;
+          completed_credits?: number;
+          categories?: Json;
+          created_at?: string;
+          updated_at?: string;
+        };
+        Update: Partial<
+          Omit<DegreePlanRecord, "id" | "user_id" | "created_at">
+        >;
         Relationships: [];
       };
       semesters: {

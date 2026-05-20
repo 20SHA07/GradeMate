@@ -16,7 +16,6 @@ import {
 } from "lucide-react";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { useAuth } from "@/components/auth/protected-session-provider";
-import { ModeSwitch } from "@/components/navigation/mode-switch";
 import { cn } from "@/lib/utils";
 
 const navItems = [
@@ -99,17 +98,17 @@ export function AppShell({ children }: { children: React.ReactNode }) {
 
   return (
     <div className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900 lg:flex">
-      <aside className="hidden w-52 shrink-0 border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
+      <aside className="hidden w-56 shrink-0 border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
         <div className="px-4 py-5">
           <Link className="block font-semibold text-teal-300" href="/">
-            <span className="block text-lg font-bold leading-5">GradeMate</span>
+            <span className="block text-[21px] font-bold leading-5">GradeMate</span>
             <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
               Khalifa University
             </span>
           </Link>
         </div>
 
-        <nav className="flex-1 space-y-1 px-3 py-3">
+        <nav className="flex-1 space-y-1 px-3 py-4">
           {navItems.map((item) => {
             const isActive = isNavItemActive(item.href, normalizedPathname);
             const Icon = item.icon;
@@ -117,7 +116,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             return (
               <Link
                 className={cn(
-                  "flex min-w-0 items-center gap-3 rounded-[3px] px-3 py-2 text-[12.5px] font-semibold leading-none transition-colors",
+                  "flex min-w-0 items-center gap-3 rounded-[3px] px-3 py-2.5 text-[13px] font-semibold leading-none transition-colors",
                   isActive
                     ? "bg-teal-700 text-ink-900"
                     : "text-ink-700 hover:bg-ink-200/55 hover:text-ink-900"
@@ -132,7 +131,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           })}
         </nav>
 
-        <div className="space-y-3 border-t border-ink-200 p-3">
+        <div className="space-y-3 border-t border-ink-200 p-3.5">
           <Link
             className={buttonStyles({
               className: "w-full uppercase tracking-[0.06em]",
@@ -205,6 +204,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </button>
             )}
           </div>
+          <p className="border-t border-ink-200 pt-3 text-[10px] leading-4 text-ink-500">
+            Student-made. Not affiliated with Khalifa University.
+          </p>
         </div>
       </aside>
 
@@ -217,8 +219,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </span>
               GradeMate
             </Link>
-
-            <ModeSwitch className="hidden w-72 md:grid lg:hidden" compact />
 
             <div className="hidden min-w-0 items-center gap-2 text-sm text-ink-500 lg:flex">
               <span className="font-medium text-ink-900">
@@ -265,7 +265,6 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
 
           <nav className="flex max-w-full gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 lg:hidden">
-            <ModeSwitch className="w-64 shrink-0 sm:hidden" compact />
             {navItems.map((item) => {
               const isActive = isNavItemActive(item.href, normalizedPathname);
               const Icon = item.icon;
@@ -318,7 +317,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </div>
         ) : null}
 
-        <main className="mx-auto w-full max-w-7xl flex-1 px-4 py-5 sm:px-6 lg:px-7 lg:py-8">
+        <main className="w-full flex-1 px-4 py-5 sm:px-6 lg:px-8 lg:py-8 xl:px-10">
           {children}
         </main>
 
@@ -347,6 +346,9 @@ export function AppShell({ children }: { children: React.ReactNode }) {
               </button>
             )}
           </div>
+          <p className="mt-2 text-[10px] leading-4 text-ink-500">
+            Student-made. Not affiliated with Khalifa University.
+          </p>
         </div>
       </div>
     </div>

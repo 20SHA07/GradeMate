@@ -168,7 +168,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         {isSignup ? (
           <label className="block">
             <span className="text-[13px] font-semibold text-ink-700">Name</span>
-            <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
+            <span className="mt-1 flex h-10 items-center gap-2 rounded-[3px] border border-ink-200 bg-ink-50 px-3 focus-within:border-teal-400 focus-within:ring-1 focus-within:ring-teal-400/40">
               <UserRound aria-hidden="true" className="h-4 w-4 text-ink-400" />
               <input
                 className="min-w-0 flex-1 border-0 bg-transparent text-sm text-ink-900 outline-none"
@@ -182,7 +182,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
         <label className="block">
           <span className="text-[13px] font-semibold text-ink-700">Email address</span>
-          <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
+          <span className="mt-1 flex h-10 items-center gap-2 rounded-[3px] border border-ink-200 bg-ink-50 px-3 focus-within:border-teal-400 focus-within:ring-1 focus-within:ring-teal-400/40">
             <Mail aria-hidden="true" className="h-4 w-4 text-ink-400" />
             <input
               className="min-w-0 flex-1 border-0 bg-transparent text-sm text-ink-900 outline-none"
@@ -197,7 +197,7 @@ export function AuthForm({ mode }: AuthFormProps) {
 
         <label className="block">
           <span className="text-[13px] font-semibold text-ink-700">Password</span>
-          <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
+          <span className="mt-1 flex h-10 items-center gap-2 rounded-[3px] border border-ink-200 bg-ink-50 px-3 focus-within:border-teal-400 focus-within:ring-1 focus-within:ring-teal-400/40">
             <LockKeyhole aria-hidden="true" className="h-4 w-4 text-ink-400" />
             <input
               className="min-w-0 flex-1 border-0 bg-transparent text-sm text-ink-900 outline-none"
@@ -279,6 +279,10 @@ export function AuthForm({ mode }: AuthFormProps) {
 
       <p className="mt-3 text-center text-xs leading-5 text-ink-500">
         Guest work stays on this device. Sign up anytime to keep it with your account.
+      </p>
+
+      <p className="mt-3 text-center text-[11px] leading-5 text-ink-400">
+        Independent student-made tool. Not affiliated with Khalifa University.
       </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">

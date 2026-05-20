@@ -9,10 +9,9 @@ import { buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { Progress } from "@/components/ui/progress";
 import {
   formatPercent,
-  getAssessmentName,
-  getAssessmentWeight,
   getCourseGradeSummary,
   getLetterGrade
 } from "@/lib/grades";
@@ -109,72 +108,69 @@ export function CoursesClient() {
           title="No courses yet"
         />
       ) : (
-        <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+        <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
           {courses.map((course) => {
             const courseAssessments = assessmentsForCourse(course.id);
             const gradeSummary = getCourseGradeSummary(courseAssessments);
+            const readiness =
+              gradeSummary.totalWeight === 100
+                ? "Ready"
+                : `${gradeSummary.totalWeight}% weight`;
 
             return (
-              <Card className="p-4" key={course.id}>
+              <Card className="flex min-h-[188px] flex-col p-4" key={course.id}>
                 <div className="flex items-start justify-between gap-4">
-                  <div>
-                    <p className="text-sm font-medium text-teal-700">
-                      {course.code || "Course"}
-                    </p>
+                  <div className="min-w-0">
+                    <div className="flex flex-wrap gap-2">
+                      <Badge tone="teal">{course.code || "Course"}</Badge>
+                      <Badge tone="ink">{Number(course.credit_hours)} credits</Badge>
+                    </div>
                     <Link
-                      className="mt-1 block text-lg font-semibold text-ink-900 transition-colors hover:text-teal-700"
+                      className="mt-3 block truncate text-base font-semibold text-ink-900 transition-colors hover:text-teal-300"
                       href={getCourseDetailHref(course.id)}
                       prefetch={false}
                     >
                       {course.name}
                     </Link>
-                    <p className="mt-2 text-sm text-ink-500">
+                    <p className="mt-1 text-xs text-ink-500">
                       {semesterNames.get(course.semester_id) || "Semester"}
                     </p>
                   </div>
-                  <Badge tone="ink">{Number(course.credit_hours)} credits</Badge>
+                  <Badge tone={gradeSummary.totalWeight === 100 ? "green" : "gold"}>
+                    {readiness}
+                  </Badge>
                 </div>
 
-                <div className="mt-5 flex items-center justify-between rounded-lg bg-ink-100 px-3 py-2 text-sm">
-                  <span className="text-ink-500">Assessment weight</span>
-                  <span className="font-medium text-ink-900">
-                    {gradeSummary.totalWeight}%
-                  </span>
-                </div>
-
-                <div className="mt-3 flex items-center justify-between rounded-lg bg-teal-50 px-3 py-2 text-sm">
-                  <span className="text-teal-800">Current grade</span>
-                  <span className="flex items-center gap-2 font-semibold text-teal-800">
-                    {formatPercent(gradeSummary.currentGrade)}
-                    <Badge tone="teal">
+                <div className="mt-4 grid grid-cols-3 gap-2 text-sm">
+                  <div>
+                    <p className="text-xs text-ink-500">Grade</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {formatPercent(gradeSummary.currentGrade)}
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-ink-500">Letter</p>
+                    <p className="mt-1 font-semibold text-ink-900">
                       {getLetterGrade(gradeSummary.currentGrade)}
-                    </Badge>
-                  </span>
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-ink-500">Rows</p>
+                    <p className="mt-1 font-semibold text-ink-900">
+                      {courseAssessments.length}
+                    </p>
+                  </div>
                 </div>
 
-                <div className="mt-4 space-y-2">
-                  {courseAssessments.length === 0 ? (
-                    <p className="text-sm text-ink-500">No assessments yet.</p>
-                  ) : (
-                    courseAssessments.map((assessment) => (
-                      <div
-                        className="flex items-center justify-between gap-3 rounded-lg bg-ink-100 px-3 py-2 text-sm"
-                        key={assessment.id}
-                      >
-                        <span className="font-medium text-ink-800">
-                          {getAssessmentName(assessment)}
-                        </span>
-                        <span className="text-ink-500">
-                          {getAssessmentWeight(assessment)}%
-                        </span>
-                      </div>
-                    ))
-                  )}
-                </div>
+                <Progress
+                  className="mt-4"
+                  value={Math.min(gradeSummary.totalWeight, 100)}
+                  tone={gradeSummary.totalWeight === 100 ? "green" : "gold"}
+                />
 
                 <Link
                   className={buttonStyles({
-                    className: "mt-5 w-full",
+                    className: "mt-auto w-full",
                     variant: "secondary"
                   })}
                   href={getCourseDetailHref(course.id)}

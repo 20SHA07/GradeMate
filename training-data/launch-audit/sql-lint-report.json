@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-19T19:56:40.492Z",
+  "generatedAt": "2026-05-20T14:26:37.318Z",
   "protectedTables": [
     "semesters",
     "courses",
@@ -82,7 +82,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 318,
+      "line": 339,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -90,7 +90,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 319,
+      "line": 340,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -98,7 +98,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 320,
+      "line": 341,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -106,7 +106,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 321,
+      "line": 342,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -114,7 +114,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 322,
+      "line": 343,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -122,7 +122,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 323,
+      "line": 344,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table profiles should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -130,7 +130,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 352,
+      "line": 399,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -138,7 +138,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 353,
+      "line": 400,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -146,7 +146,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 354,
+      "line": 401,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -154,7 +154,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 355,
+      "line": 402,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table semesters should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -162,7 +162,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 378,
+      "line": 425,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -170,7 +170,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 379,
+      "line": 426,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -178,7 +178,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 380,
+      "line": 427,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -186,7 +186,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 381,
+      "line": 428,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table courses should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -194,7 +194,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 420,
+      "line": 467,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -202,7 +202,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 421,
+      "line": 468,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -210,7 +210,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 422,
+      "line": 469,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -218,7 +218,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 423,
+      "line": 470,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table assessments should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -226,7 +226,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 616,
+      "line": 663,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -234,7 +234,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 617,
+      "line": 664,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -242,7 +242,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 618,
+      "line": 665,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",

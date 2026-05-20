@@ -688,7 +688,7 @@ export function CourseLibraryClient() {
       }
 
       if (!supabase) {
-        setImportError("Supabase is not available.");
+        setImportError("Course import is not available right now.");
         return;
       }
 
@@ -773,10 +773,16 @@ export function CourseLibraryClient() {
       <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
         <div>
           <Badge tone="teal">Ready KU templates</Badge>
-          <h1 className="sr-only">Course Library</h1>
-          <p className="mt-4 max-w-xl text-sm leading-6 text-ink-800">
+          <h1 className="mt-3 text-[28px] font-bold leading-tight text-ink-900">
+            Course Library
+          </h1>
+          <p className="mt-1 max-w-xl text-[13px] leading-5 text-ink-700">
             Browse and add foundational Khalifa University courses to your
             workspace. Pre-configured with credit weights.
+          </p>
+          <p className="mt-2 max-w-xl text-xs leading-5 text-ink-500">
+            Course templates are student-maintained. Always verify with your
+            official syllabus.
           </p>
         </div>
       </header>
@@ -870,7 +876,7 @@ export function CourseLibraryClient() {
         </label>
       </Card>
 
-      <div className="flex flex-col gap-3 rounded-lg border border-ink-200 bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+      <div className="flex flex-col gap-3 border border-ink-200 bg-white/80 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
         <p className="text-sm font-medium text-ink-700">
           {isLoading
             ? "Loading syllabus templates..."
@@ -930,62 +936,28 @@ export function CourseLibraryClient() {
 
             return (
               <Card
-                className="flex min-h-[188px] flex-col p-4 transition-colors hover:border-teal-200 hover:bg-teal-50/20"
+                className="flex min-h-[160px] flex-col p-4 transition-colors hover:border-teal-200 hover:bg-teal-50/20"
                 key={template.id}
               >
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
-                    <div className="flex flex-wrap items-center gap-2">
-                      {template.department ? (
-                        <Badge tone="teal">{template.department}</Badge>
-                      ) : null}
-                      {templateTermLabel(template) ? (
-                        <Badge tone="ink">{templateTermLabel(template)}</Badge>
-                      ) : null}
-                      {templateWarnings(template).length > 0 ? (
-                        <Badge tone="gold">
-                          {templateWarnings(template).length} warning
-                          {templateWarnings(template).length === 1 ? "" : "s"}
-                        </Badge>
-                      ) : null}
-                    </div>
-                    <h2 className="mt-3 text-base font-semibold leading-tight text-ink-900">
-                      {template.course_name}
-                    </h2>
-                    <p className="mt-1 text-xs font-semibold text-ink-700">
+                    <p className="text-xs font-bold uppercase tracking-[0.06em] text-teal-300">
                       {template.course_code}
                     </p>
+                    <h2 className="mt-2 text-base font-semibold leading-tight text-ink-900">
+                      {template.course_name}
+                    </h2>
+                    <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-500">
+                      <span>{Number(template.credit_hours).toFixed(1)} credits</span>
+                      {templateTermLabel(template) ? (
+                        <span>{templateTermLabel(template)}</span>
+                      ) : null}
+                    </div>
                   </div>
-                  <div className="shrink-0 text-right">
-                    <p className="text-3xl font-semibold leading-none text-ink-900">
-                      {Number(template.credit_hours).toFixed(1)}
-                    </p>
-                    <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
-                      credits
-                    </p>
-                  </div>
-                </div>
-
-                <p className="mt-4 line-clamp-3 min-h-[3.75rem] text-xs leading-5 text-ink-800">
-                  {template.description ??
-                    template.course_description ??
-                    "Pre-configured syllabus template with detected grading weights."}
-                </p>
-
-                <div className="mt-3 flex flex-wrap gap-2 text-xs">
-                  <Badge tone="ink">{template.assessments.length} assessments</Badge>
                   <Badge tone={weightTone(totalWeight)}>
-                    {formatWeight(totalWeight)}% total
-                  </Badge>
-                  <Badge tone={weightTone(totalWeight)}>{weightLabel(totalWeight)}</Badge>
-                  <Badge tone={confidenceTone(template.extraction_confidence)}>
-                    {formatConfidence(template.extraction_confidence)}
+                    {totalWeight === 100 ? "Complete" : `${formatWeight(totalWeight)}% total`}
                   </Badge>
                 </div>
-
-                <p className="mt-3 truncate text-[10px] text-ink-500">
-                  Source: {templateSourceName(template)}
-                </p>
 
                 <div className="mt-auto grid gap-2 pt-4 sm:grid-cols-2">
                   <Button
@@ -1003,17 +975,6 @@ export function CourseLibraryClient() {
                     <Download aria-hidden="true" className="h-4 w-4" />
                     Import
                   </Button>
-                  {semesters.length === 0 ? (
-                    <Link
-                      className={buttonStyles({
-                        className: "w-full sm:w-auto",
-                        variant: "secondary"
-                      })}
-                      href="/semesters"
-                    >
-                      Create semester
-                    </Link>
-                  ) : null}
                 </div>
               </Card>
             );

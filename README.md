@@ -2,6 +2,19 @@
 
 GradeMate is an MVP skeleton for turning course syllabus PDFs into smart GPA and grade trackers. It includes a no-account Simple Mode for fast GPA, course-grade, and syllabus text/PDF extraction, plus a full Workspace Mode for semester, course, assessment, syllabus, and Course Library workflows.
 
+Workspace Mode also includes customizable degree progress. Students can set
+their own total required credits, completed credits before GradeMate, and degree
+category targets such as Major Core, General Education, and Free Electives.
+Guest settings stay local on the device. Signed-in settings sync through
+Supabase when the `degree_plans` table is installed. Degree completion uses
+completed credits entered by the student plus tracked courses whose assessments
+are fully scored with a passing final grade. Category completion is manually
+editable for now.
+
+## Unofficial Disclaimer
+
+GradeMate is an independent student-made tool and is not officially affiliated with, endorsed by, or operated by Khalifa University. Course information and templates should always be verified against official university materials and your course syllabus.
+
 ## Stack
 
 - Next.js App Router
@@ -111,6 +124,11 @@ schema. To collect private verified extraction feedback, run
 [supabase/verified-extractions.sql](supabase/verified-extractions.sql). Verified
 examples are private to the submitting user through RLS; the service role can
 export them later for admin review.
+
+To sync customizable degree progress for signed-in users, run
+[supabase/degree-plans.sql](supabase/degree-plans.sql). It creates a private
+`degree_plans` table with owner-only RLS. Without this migration, degree
+settings still save locally on the current device.
 
 ### Syllabus contribution review
 

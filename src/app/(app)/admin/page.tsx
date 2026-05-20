@@ -15,7 +15,7 @@ export default function AdminPage() {
       <Card className="p-5">
         <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
           <div className="flex gap-3">
-            <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-teal-100 text-teal-700">
+            <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-[3px] bg-teal-50 text-teal-700">
               <FileText aria-hidden="true" className="h-5 w-5" />
             </div>
             <div>

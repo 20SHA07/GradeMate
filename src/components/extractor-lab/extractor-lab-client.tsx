@@ -176,7 +176,7 @@ export function ExtractorLabClient() {
   return (
     <main className="min-h-screen bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl space-y-6">
-        <header className="rounded-lg border border-ink-200 bg-white/90 p-6 shadow-soft shadow-black/10">
+        <header className="rounded-[3px] border border-ink-200 bg-white/90 p-6">
           <Badge tone="teal">Development tool</Badge>
           <h1 className="mt-3 text-3xl font-semibold">Extractor Lab</h1>
           <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
@@ -194,7 +194,7 @@ export function ExtractorLabClient() {
               </div>
               <input
                 accept="application/pdf,.pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,.docx"
-                className="mt-4 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm file:mr-3 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                className="mt-4 block w-full rounded-[3px] border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm file:mr-3 file:rounded-[3px] file:border-0 file:bg-teal-500 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-ink-50"
                 disabled={isReadingPdf}
                 onChange={(event) => void readDocument(event.target.files?.[0] ?? null)}
                 type="file"

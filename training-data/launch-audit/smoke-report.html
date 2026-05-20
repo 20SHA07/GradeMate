@@ -17,7 +17,7 @@
 <body>
   <main>
     <h1>GradeMate Smoke Report</h1>
-    <p>26 passed, 0 warnings, 0 failures.</p>
+    <p>30 passed, 0 warnings, 0 failures.</p>
     <table><tbody>
       <tr class="pass">
         <td>Build</td>
@@ -138,6 +138,30 @@
         <td>Google login hidden</td>
         <td>pass</td>
         <td>Google auth is paused and should not appear in the launch UI.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Logged-in dashboard does not show guest badge</td>
+        <td>pass</td>
+        <td>Dashboard should show Synced workspace for authenticated users and avoid hardcoded guest badges.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Guest dashboard still shows guest badge</td>
+        <td>pass</td>
+        <td>Guest users should still see guest mode and save-progress prompts.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>Sidebar email and guest state stay consistent</td>
+        <td>pass</td>
+        <td>A placeholder guest user should not carry an email, and the shell should branch display on isGuest.</td>
+      </tr>
+      <tr class="pass">
+        <td>Auth</td>
+        <td>No stale guest fallback while session is loading</td>
+        <td>pass</td>
+        <td>Auth provider should wait for getSession/onAuthStateChange instead of timing out into guest mode.</td>
       </tr>
       <tr class="pass">
         <td>Privacy</td>

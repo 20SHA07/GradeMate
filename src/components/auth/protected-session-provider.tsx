@@ -25,7 +25,7 @@ import {
 } from "@/lib/supabase/client";
 import { getSupabaseErrorMessage } from "@/lib/supabase/config";
 
-type AppUser = Pick<User, "id" | "email">;
+type AppUser = Pick<User, "id" | "email" | "user_metadata">;
 
 type AuthContextValue = {
   isGuest: boolean;
@@ -44,7 +44,6 @@ type AuthState =
   | { status: "authenticated"; session: Session };
 
 const migrationDismissedKey = "grademate_guest_migration_dismissed_for";
-const authSessionTimeoutMs = 5000;
 
 export function ProtectedSessionProvider({ children }: { children: ReactNode }) {
   const router = useRouter();
@@ -70,15 +69,8 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
     let isMounted = true;
 
     async function loadSession() {
-      const timeoutId = window.setTimeout(() => {
-        if (isMounted) {
-          setAuthState({ status: "guest" });
-        }
-      }, authSessionTimeoutMs);
-
       try {
         const { data } = await client.auth.getSession();
-        window.clearTimeout(timeoutId);
 
         if (!isMounted) {
           return;
@@ -90,8 +82,6 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
             : { status: "guest" }
         );
       } catch {
-        window.clearTimeout(timeoutId);
-
         if (isMounted) {
           setAuthState({ status: "guest" });
         }
@@ -212,7 +202,7 @@ export function ProtectedSessionProvider({ children }: { children: ReactNode }) 
     <AuthContext.Provider value={contextValue}>
       {authState.status === "loading" ? (
         <div className="flex min-h-screen items-center justify-center bg-ink-50 px-4">
-          <div className="rounded-lg border border-ink-200 bg-white p-5 text-sm font-medium text-ink-600 shadow-sm">
+          <div className="rounded-[3px] border border-ink-200 bg-white/90 p-5 text-sm font-medium text-ink-600">
             Loading GradeMate...
           </div>
         </div>

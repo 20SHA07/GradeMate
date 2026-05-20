@@ -36,12 +36,32 @@ export type GpaCalculatorData = {
   };
 };
 
+export type DegreePlanCategory = {
+  id: string;
+  label: string;
+  requiredCredits: number;
+  completedCredits: number;
+};
+
+export type DegreePlanSettings = {
+  totalCredits: number;
+  completedCredits: number;
+  categories: DegreePlanCategory[];
+};
+
+export type DegreePlanResult = {
+  settings: DegreePlanSettings;
+  isDefault: boolean;
+  syncStatus: "local" | "supabase" | "fallback";
+};
+
 export type GuestWorkspaceData = {
   semesters: SemesterRecord[];
   courses: CourseRecord[];
   assessments: AssessmentRecord[];
   importedTemplates: ImportedTemplateRecord[];
   gpaCalculator: GpaCalculatorData;
+  degreePlan: DegreePlanSettings | null;
   updatedAt: string | null;
 };
 
@@ -55,7 +75,8 @@ export const guestUserId = "guest-user";
 
 export const guestUser = {
   id: guestUserId,
-  email: "Guest workspace"
+  email: undefined,
+  user_metadata: {}
 };
 
 export const emptyGuestWorkspaceData: GuestWorkspaceData = {
@@ -64,7 +85,27 @@ export const emptyGuestWorkspaceData: GuestWorkspaceData = {
   assessments: [],
   importedTemplates: [],
   gpaCalculator: {},
+  degreePlan: null,
   updatedAt: null
+};
+
+export const defaultDegreePlanSettings: DegreePlanSettings = {
+  totalCredits: 120,
+  completedCredits: 0,
+  categories: [
+    {
+      completedCredits: 0,
+      id: "major-core",
+      label: "Major Core",
+      requiredCredits: 0
+    },
+    {
+      completedCredits: 0,
+      id: "electives",
+      label: "Electives",
+      requiredCredits: 0
+    }
+  ]
 };
 
 function canUseLocalStorage() {
@@ -80,7 +121,109 @@ function normalizeWorkspaceData(
     assessments: data?.assessments ?? [],
     importedTemplates: data?.importedTemplates ?? [],
     gpaCalculator: data?.gpaCalculator ?? {},
+    degreePlan: data?.degreePlan
+      ? normalizeDegreePlanSettings(data.degreePlan)
+      : null,
     updatedAt: data?.updatedAt ?? null
+  };
+}
+
+function getAuthenticatedDegreePlanKey(userId: string) {
+  return `grademate_degree_plan_${userId}`;
+}
+
+function readAuthenticatedLocalDegreePlan(userId: string) {
+  if (!canUseLocalStorage()) {
+    return null;
+  }
+
+  const rawData = window.localStorage.getItem(getAuthenticatedDegreePlanKey(userId));
+
+  if (!rawData) {
+    return null;
+  }
+
+  try {
+    return normalizeDegreePlanSettings(JSON.parse(rawData));
+  } catch {
+    return null;
+  }
+}
+
+function writeAuthenticatedLocalDegreePlan(
+  userId: string,
+  settings: DegreePlanSettings
+) {
+  if (!canUseLocalStorage()) {
+    return;
+  }
+
+  window.localStorage.setItem(
+    getAuthenticatedDegreePlanKey(userId),
+    JSON.stringify(normalizeDegreePlanSettings(settings))
+  );
+}
+
+function isMissingDegreePlanTableError(error: unknown) {
+  if (!error || typeof error !== "object") {
+    return false;
+  }
+
+  const message =
+    "message" in error && typeof error.message === "string"
+      ? error.message
+      : "";
+
+  return /degree_plans|schema cache|does not exist|not found/i.test(message);
+}
+
+function normalizeNumber(value: unknown, fallback: number) {
+  const number = Number(value);
+
+  return Number.isFinite(number) && number >= 0 ? number : fallback;
+}
+
+function normalizeCategory(
+  category: Partial<DegreePlanCategory> | null | undefined,
+  index: number
+): DegreePlanCategory {
+  const label =
+    typeof category?.label === "string" && category.label.trim()
+      ? category.label.trim()
+      : `Category ${index + 1}`;
+
+  return {
+    completedCredits: normalizeNumber(category?.completedCredits, 0),
+    id:
+      typeof category?.id === "string" && category.id.trim()
+        ? category.id
+        : createLocalId(),
+    label,
+    requiredCredits: normalizeNumber(category?.requiredCredits, 0)
+  };
+}
+
+export function normalizeDegreePlanSettings(
+  settings: Partial<DegreePlanSettings> | null | undefined
+): DegreePlanSettings {
+  const totalCredits = normalizeNumber(
+    settings?.totalCredits,
+    defaultDegreePlanSettings.totalCredits
+  );
+  const completedCredits = Math.min(
+    normalizeNumber(settings?.completedCredits, 0),
+    totalCredits
+  );
+  const categories = Array.isArray(settings?.categories)
+    ? settings.categories.map(normalizeCategory)
+    : defaultDegreePlanSettings.categories;
+
+  return {
+    categories: categories.length > 0
+      ? categories
+      : defaultDegreePlanSettings.categories,
+    completedCredits,
+    totalCredits: totalCredits > 0 ? totalCredits : 120
   };
 }
 
@@ -162,7 +305,8 @@ export function hasGuestWorkspaceData() {
     data.courses.length > 0 ||
     data.assessments.length > 0 ||
     data.importedTemplates.length > 0 ||
-    Object.keys(data.gpaCalculator).length > 0
+    Object.keys(data.gpaCalculator).length > 0 ||
+    data.degreePlan !== null
   );
 }
 
@@ -288,6 +432,145 @@ export async function getWorkspaceSnapshot(context: WorkspaceContext) {
   return { semesters, courses, assessments };
 }
 
+export async function getDegreePlanSettings(
+  context: WorkspaceContext
+): Promise<DegreePlanResult> {
+  if (context.isGuest) {
+    const data = readGuestWorkspaceData();
+
+    return {
+      isDefault: !data.degreePlan,
+      settings: data.degreePlan ?? defaultDegreePlanSettings,
+      syncStatus: "local"
+    };
+  }
+
+  const localFallback = readAuthenticatedLocalDegreePlan(context.userId);
+
+  if (!context.supabase) {
+    return {
+      isDefault: !localFallback,
+      settings: localFallback ?? defaultDegreePlanSettings,
+      syncStatus: "local"
+    };
+  }
+
+  const { data, error } = await context.supabase
+    .from("degree_plans")
+    .select("total_credits, completed_credits, categories")
+    .eq("user_id", context.userId)
+    .maybeSingle();
+
+  if (error) {
+    if (isMissingDegreePlanTableError(error)) {
+      return {
+        isDefault: !localFallback,
+        settings: localFallback ?? defaultDegreePlanSettings,
+        syncStatus: localFallback ? "fallback" : "local"
+      };
+    }
+
+    throw new Error(
+      getSupabaseErrorMessage(error, "Could not load degree settings.")
+    );
+  }
+
+  if (!data) {
+    return {
+      isDefault: !localFallback,
+      settings: localFallback ?? defaultDegreePlanSettings,
+      syncStatus: localFallback ? "fallback" : "supabase"
+    };
+  }
+
+  return {
+    isDefault: false,
+    settings: normalizeDegreePlanSettings({
+      categories: data.categories as DegreePlanCategory[],
+      completedCredits: Number(data.completed_credits),
+      totalCredits: Number(data.total_credits)
+    }),
+    syncStatus: "supabase"
+  };
+}
+
+export async function saveDegreePlanSettings(
+  context: WorkspaceContext,
+  settings: DegreePlanSettings
+): Promise<DegreePlanResult> {
+  const normalizedSettings = normalizeDegreePlanSettings(settings);
+
+  if (context.isGuest) {
+    const data = readGuestWorkspaceData();
+
+    writeGuestWorkspaceData({
+      ...data,
+      degreePlan: normalizedSettings
+    });
+
+    return {
+      isDefault: false,
+      settings: normalizedSettings,
+      syncStatus: "local"
+    };
+  }
+
+  if (!context.supabase) {
+    writeAuthenticatedLocalDegreePlan(context.userId, normalizedSettings);
+
+    return {
+      isDefault: false,
+      settings: normalizedSettings,
+      syncStatus: "local"
+    };
+  }
+
+  const { data, error } = await context.supabase
+    .from("degree_plans")
+    .upsert(
+      {
+        categories: normalizedSettings.categories,
+        completed_credits: normalizedSettings.completedCredits,
+        total_credits: normalizedSettings.totalCredits,
+        updated_at: new Date().toISOString(),
+        user_id: context.userId
+      },
+      { onConflict: "user_id" }
+    )
+    .select("total_credits, completed_credits, categories")
+    .single();
+
+  if (error) {
+    if (isMissingDegreePlanTableError(error)) {
+      writeAuthenticatedLocalDegreePlan(context.userId, normalizedSettings);
+
+      return {
+        isDefault: false,
+        settings: normalizedSettings,
+        syncStatus: "fallback"
+      };
+    }
+
+    throw new Error(
+      getSupabaseErrorMessage(error, "Could not save degree settings.")
+    );
+  }
+
+  return {
+    isDefault: false,
+    settings: normalizeDegreePlanSettings({
+      categories: data.categories as DegreePlanCategory[],
+      completedCredits: Number(data.completed_credits),
+      totalCredits: Number(data.total_credits)
+    }),
+    syncStatus: "supabase"
+  };
+}
+
+export function resetDegreePlanSettings() {
+  return normalizeDegreePlanSettings(defaultDegreePlanSettings);
+}
+
 export function updateGuestGpaCalculator(
   gpaCalculator: Partial<GpaCalculatorData>
 ) {
@@ -346,7 +629,7 @@ export async function createSemester(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { data, error } = await context.supabase
@@ -383,7 +666,7 @@ export async function updateSemester(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { data, error } = await context.supabase
@@ -422,7 +705,7 @@ export async function deleteSemester(context: WorkspaceContext, semesterId: stri
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { error } = await context.supabase
@@ -458,7 +741,7 @@ export async function createCourse(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { data, error } = await context.supabase
@@ -496,7 +779,7 @@ export async function updateCourse(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { data, error } = await context.supabase
@@ -529,7 +812,7 @@ export async function deleteCourse(context: WorkspaceContext, courseId: string) 
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { error } = await context.supabase
@@ -586,7 +869,7 @@ export async function createAssessment(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const insertPayload = {
@@ -639,7 +922,7 @@ export async function updateAssessment(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   let response = await context.supabase
@@ -684,7 +967,7 @@ export async function deleteAssessment(
   }
 
   if (!context.supabase) {
-    throw new Error("Supabase is not available.");
+    throw new Error("Account sync is not available right now.");
   }
 
   const { error } = await context.supabase
@@ -825,6 +1108,17 @@ export async function migrateGuestWorkspaceToSupabase({
     if (error && !/verified_extractions|schema cache|does not exist/i.test(error.message)) {
       throw new Error(getSupabaseErrorMessage(error));
     }
+  }
+
+  if (guestData.degreePlan) {
+    await saveDegreePlanSettings(
+      {
+        isGuest: false,
+        supabase,
+        userId
+      },
+      guestData.degreePlan
+    );
   }
 
   clearGuestWorkspaceData();

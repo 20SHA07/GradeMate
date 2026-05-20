@@ -5,9 +5,12 @@ import { buttonStyles } from "@/components/ui/button";
 export function MarketingNav() {
   return (
     <header className="overflow-x-hidden border-b border-ink-200 bg-ink-50">
-      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
-        <Link className="text-xl font-bold text-teal-300" href="/">
-          GradeMate
+      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8 xl:px-10">
+        <Link className="block font-semibold text-teal-300" href="/">
+          <span className="block text-[21px] font-bold leading-5">GradeMate</span>
+          <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
+            Khalifa University
+          </span>
         </Link>
         <nav className="hidden min-w-0 items-center gap-5 text-[13px] font-semibold text-ink-800 md:flex">
           <Link className="hover:text-teal-300" href="/workspace">

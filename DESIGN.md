@@ -1,19 +1,20 @@
 ---
 name: "GradeMate"
-description: "A dark premium student workspace for GPA, course grades, syllabus review, and KU course templates."
+description: "A deep black premium student workspace for GPA, course grades, syllabus review, and KU course templates."
 colors:
-  app-bg: "#0f1011"
-  surface: "#191a1b"
-  surface-muted: "#202122"
-  panel: "#101112"
-  border: "#313637"
-  border-strong: "#454c4d"
+  app-bg: "#060809"
+  sidebar: "#0d1214"
+  surface: "#0b0f10"
+  surface-muted: "#101617"
+  panel: "#080c0d"
+  border: "#1f282a"
+  border-strong: "#344044"
   text-primary: "#f8fafc"
   text-secondary: "#a6afbb"
   text-muted: "#7f8996"
-  teal-primary: "#12a398"
-  teal-hover: "#64d7cd"
-  teal-soft: "#134e4a"
+  teal-primary: "#14b8a6"
+  teal-hover: "#2dd4bf"
+  teal-soft: "#062f2c"
   teal-text: "#5eead4"
   warning: "#fbbf24"
   warning-soft: "#451a03"
@@ -114,25 +115,34 @@ components:
 
 # Design System: GradeMate
 
-## 1. Stitch Reference Images
+## 1. Canonical Reference
 
-The current visual spec comes from `C:\Users\shaha\Downloads\stich grademate`.
+The Student Workspace Dashboard is now the master GradeMate design system. Treat it as the source of truth for every route, including public, auth, admin, calculator, library, and review flows.
 
-| File | GradeMate page | Reference role |
-| --- | --- | --- |
-| `User attachment3.png` | `/` | Landing page with dark top nav, centered hero, two CTAs, and varied feature cards. |
-| `User attachment2.png` | `/simple` | GPA calculator with compact sidebar, dense calculator table, right metric rail, and small toolbar actions. |
-| `User attachment.png` | `/workspace` and `/dashboard` | Student workspace dashboard with compact sidebar, overview stats, extraction drop zone, and current course cards. |
-| `User attachment4.png` | `/course-library` | KU course catalog with sidebar, search/filter row, dense 3-column course cards, and footer. |
-| `User attachment5.png` | extraction review UI | Focused review page with success banner, editable table, total weight check, re-upload, and confirm action. |
+The older Stitch screenshots remain useful as page-specific structure references, but the dashboard screenshot wins when there is a conflict. A page is successful only when it feels like it belongs beside the dashboard without changing products.
 
-The screenshots show a product UI, not a brand-only site. The outer dotted canvas and rounded browser frame belong to the Stitch presentation frame; the app itself should translate that into a full-viewport dark workspace rather than a literal mockup frame.
+### Dashboard Source Of Truth
+
+- Deep black app canvas with a slightly lifted left sidebar.
+- GradeMate logo in teal at the top-left, with a small uppercase university label below it.
+- Compact sidebar navigation with teal active state, gray inactive icons, and no clipped labels.
+- Content area with roomy horizontal margins, dense vertical rhythm, and thin bordered panels.
+- Teal primary buttons, dark secondary buttons, and quiet ghost actions.
+- Dashboard cards that are almost flat: border first, shadow never decorative.
+- Small uppercase labels for metrics and stat captions.
+- Crisp page title around 28px to 32px, with a short one-line description.
+- Empty states inside real panels, never oversized marketing cards.
+- Privacy and unofficial disclaimers as small trust notes.
+
+### Density And Rhythm Rule
+
+Do not make a page feel premium by adding empty space. Improve hierarchy through tighter grouping, aligned edges, compact table-like rows, clearer section order, and deliberate contrast between primary panels and supporting details.
 
 ## 2. Overview
 
-**Creative North Star: "The Quiet Study Console"**
+**Creative North Star: "The Student Workspace Console"**
 
-GradeMate is a focused student workspace, not a decorative product demo. It should closely follow the Stitch references: black workspace canvas, compact charcoal sidebar, teal active states, square thin-bordered cards, dense readable tables, and a dedicated review surface for syllabus extraction.
+GradeMate is a focused student workspace, not a decorative product demo. It should follow the dashboard language everywhere: black workspace canvas, compact charcoal sidebar, teal active states, square thin-bordered cards, dense readable tables, and dedicated review surfaces for syllabus extraction.
 
 The system should feel calm by default and powerful on demand. Students should see the next useful action without being surrounded by every tool at once. Advanced workflows belong behind tabs, modals, accordions, or secondary buttons.
 
@@ -140,21 +150,22 @@ The visual language rejects generic SaaS dashboards, AI slop, random gradients, 
 
 **Key Characteristics:**
 
-- Near-black premium student workspace.
+- Deep black premium student workspace.
 - Teal as the only primary accent.
 - Compact sidebar and dense but readable content.
 - Mostly square panels with thin borders over heavy shadows.
+- Public and auth pages should feel like entry points into the same workspace, not separate marketing sites.
 - Clear review states for syllabus extraction.
 - Privacy-first copy and behavior.
 
 ## 3. Colors
 
-The palette is a restrained dark product system: near-black foundations, charcoal surfaces, off-white text, muted gray-blue metadata, and rare teal actions.
+The palette is a restrained dark product system: black foundations, charcoal surfaces, off-white text, muted gray-blue metadata, and rare teal actions. The dashboard sets the contrast target: the page should read black first, teal second, content third.
 
 ### Primary
 
-- **Campus Teal** (#0d9488): Primary actions, active navigation, selected tabs, progress accents, and trusted success moments.
-- **Teal Hover** (#14b8a6): Hover and active interaction states for primary controls.
+- **Campus Teal** (#14b8a6): Primary actions, active navigation, selected tabs, progress accents, and trusted success moments.
+- **Teal Hover** (#2dd4bf): Hover and active interaction states for primary controls.
 - **Local Review Teal** (#5eead4): High-contrast teal text in dark mode, especially for links, badges, and detected-from-syllabus states.
 
 ### Secondary
@@ -165,12 +176,13 @@ The palette is a restrained dark product system: near-black foundations, charcoa
 
 ### Neutral
 
-- **Study Black** (#0f1011): App background and page canvas.
-- **Panel Black** (#101112): Main working panels and table bodies.
-- **Charcoal Surface** (#191a1b): Sidebar, cards, inputs, and modals.
-- **Muted Surface** (#202122): Table headers, nested utility areas, and collapsed details.
-- **Quiet Border** (#313637): Default card, table, input, and sidebar borders.
-- **Strong Border** (#454c4d): Hover, focus-adjacent, or higher-emphasis separators.
+- **Study Black** (#060809): App background and page canvas.
+- **Sidebar Black** (#0d1214): Left sidebar, mobile footer, and persistent chrome.
+- **Panel Black** (#080c0d): Main working panels and table bodies.
+- **Charcoal Surface** (#0b0f10): Cards, inputs, and modals.
+- **Muted Surface** (#101617): Table headers, nested utility areas, and collapsed details.
+- **Quiet Border** (#1f282a): Default card, table, input, and sidebar borders.
+- **Strong Border** (#344044): Hover, focus-adjacent, or higher-emphasis separators.
 - **Primary Text** (#f8fafc): Page titles, metric values, course names, and primary labels.
 - **Secondary Text** (#a6afbb): Descriptions and helper text.
 - **Muted Text** (#7f8996): Metadata, timestamps, low-emphasis hints, and disabled copy.
@@ -191,8 +203,8 @@ The palette is a restrained dark product system: near-black foundations, charcoa
 
 ### Hierarchy
 
-- **Display** (700, 2.25rem mobile to 2.625rem desktop, 1.12 line-height): Landing headline only. Centered and confident, not oversized.
-- **Headline** (700, 1.625rem to 1.75rem, 1.2 line-height): Page headers such as Workspace overview, Course Library, and Review Extraction.
+- **Display** (700, 2.25rem mobile to 2.625rem desktop, 1.12 line-height): Landing headline only. Controlled, never generic SaaS oversized.
+- **Headline** (700, 1.75rem to 2rem, 1.15 line-height): Page headers such as Student Workspace, Course Library, and Review Extraction.
 - **Title** (600, 0.9375rem to 1rem, 1.35 line-height): Card titles, course names, modal titles, and section headings.
 - **Body** (400, 0.875rem, 1.55 line-height): Descriptions, helper text, workflow copy, table descriptions, and privacy notes. Dense support copy can use 0.8125rem.
 - **Label** (600-700, 0.6875rem to 0.75rem, 1.25 line-height): Badges, table headers, metadata, field captions, and compact stat labels.
@@ -256,13 +268,26 @@ Cards should group real units: course cards, template cards, stat cards, review 
 - **Error / Disabled:** Rose for error messages, reduced opacity for disabled controls, never raw technical messages.
 - **File Inputs:** Dashed border, muted surface, teal file button.
 
-### Navigation
+### Sidebar And Navigation
 
-- **Sidebar:** 184px to 224px desktop width, solid charcoal surface, thin right border, GradeMate or Student Workspace identity at top, nav list in the middle, account actions at bottom.
+- **Sidebar:** 224px to 240px desktop width, solid Sidebar Black, thin right border, GradeMate identity at top, uppercase university label, nav list in the middle, account actions at bottom.
 - **Active State:** Teal background with off-white text.
 - **Inactive State:** Muted text, hover on muted surface.
 - **Mode Switch:** Two-option segmented control with full labels: Quick and Workspace. Icons can assist, but text must not truncate.
 - **Mobile Treatment:** Sidebar collapses into top navigation. Primary actions remain visible, but secondary actions can move into page content.
+
+### Page Headers
+
+- Use one shared rhythm: title, one short description, optional right-aligned actions.
+- Titles should feel like the dashboard title: compact, bold, and clean.
+- Eyebrows are rare and uppercase. Use teal only when it helps orientation.
+- Avoid introductory paragraphs that repeat the title.
+
+### Empty States
+
+- Empty states live inside thin-bordered panels with the same dark card treatment.
+- Use one small teal icon tile, a short title, one sentence, and a single primary action when possible.
+- Do not create oversized friendly illustrations, huge blank cards, or marketing copy inside task screens.
 
 ### Tables
 
@@ -281,7 +306,7 @@ Cards should group real units: course cards, template cards, stat cards, review 
 
 ### Page Layouts
 
-- **Landing:** Dark nav, centered hero, two CTAs, varied feature cards. Copy and scale should track `User attachment3.png`.
+- **Landing:** Public entry version of the dashboard: dark nav, compact centered hero, two CTAs, dashboard-style feature cards, subtle trust/disclaimer notes.
 - **Workspace Dashboard:** Sidebar shell, overview stats, smart extraction panel, current courses, compact actions.
 - **Simple Mode:** Sidebar-style calculator, term summary, dense course rows, right GPA metric rail, tools behind modals.
 - **Course Library:** Sidebar shell, search and filters at top, dense 3-column card grid below, ready templates only for normal users.

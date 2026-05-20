@@ -65,7 +65,7 @@ const defaultCourseForm: CourseForm = {
 };
 
 const inputStyles =
-  "mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "mt-1 gm-input h-10";
 
 export function SemestersManager() {
   const { isGuest, supabase, user } = useAuth();

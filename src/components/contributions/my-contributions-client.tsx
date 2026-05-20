@@ -73,7 +73,7 @@ export function MyContributionsClient() {
         setError(
           getSupabaseErrorMessage(
             loadError,
-            "Could not load your contributions. Run the contribution SQL setup if needed."
+            "Contribution tracking is not available right now."
           )
         );
       } else {

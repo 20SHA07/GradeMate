@@ -1494,11 +1494,16 @@ export function SimpleGpaCalculator() {
 
   return (
     <main className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900">
-      <div className="mx-auto grid min-h-screen max-w-6xl lg:grid-cols-[15rem_minmax(0,1fr)]">
+      <div className="grid min-h-screen lg:grid-cols-[15rem_minmax(0,1fr)]">
         <aside className="hidden border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
           <div className="px-4 py-5">
-            <Link className="text-xl font-bold text-teal-300" href="/">
-              GradeMate
+            <Link className="block font-semibold text-teal-300" href="/">
+              <span className="block text-[21px] font-bold leading-5">
+                GradeMate
+              </span>
+              <span className="mt-2 block text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                Khalifa University
+              </span>
             </Link>
           </div>
           <div className="px-4">
@@ -1530,26 +1535,21 @@ export function SimpleGpaCalculator() {
             <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
               Khalifa University
             </p>
+            <p className="mt-3 text-[10px] font-normal leading-4 tracking-normal text-ink-500">
+              GradeMate is student-made and not affiliated with Khalifa University.
+            </p>
           </div>
         </aside>
 
-        <div className="min-w-0 space-y-4 px-4 py-8 sm:px-6 lg:px-7">
+        <div className="min-w-0 space-y-4 px-4 py-5 sm:px-6 lg:px-8 lg:py-8 xl:px-10">
         <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
           <div>
             <h1 className="text-[26px] font-bold leading-tight text-ink-900">GPA Calculator</h1>
             <p className="mt-2 max-w-xl text-[13px] leading-5 text-ink-800">
-              Calculate your expected GPA for the current semester. Add your courses, estimated credits, and expected grades to see where you stand.
+              Add courses and see your GPA.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Button
-              disabled={data.courses.length === 0}
-              onClick={() => setActivePredictorCourseId(data.courses[0]?.id ?? null)}
-              variant="secondary"
-            >
-              <Calculator aria-hidden="true" className="h-4 w-4" />
-              What If Scenario
-            </Button>
             <Button onClick={exportData} variant="secondary">
               <Download aria-hidden="true" className="h-4 w-4" />
               Save
@@ -1939,7 +1939,6 @@ export function SimpleGpaCalculator() {
               {data.courses.map((course, index) => {
                 const stats = getCourseGradeStats(course);
                 const effectiveLetter = getEffectiveLetterGrade(course);
-                const gradePoints = getGradePoint(effectiveLetter);
                 const qualityPoints = getCourseQualityPoints(course);
                 const calculatedInfo =
                   stats.currentGrade === null
@@ -2055,59 +2054,44 @@ export function SimpleGpaCalculator() {
                       </Button>
                     </div>
 
-                    <div className="flex flex-wrap items-center gap-2 rounded-md border border-ink-200 bg-ink-50 px-3 py-2 text-xs text-ink-500">
-                      <Badge tone="teal">
-                        Course {formatPercent(stats.currentGrade)}
-                      </Badge>
-                      <Badge tone="ink">
-                        Letter {calculatedInfo?.letter ?? effectiveLetter}
-                      </Badge>
-                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
-                        Points {gradePoints.toFixed(1)}
-                      </span>
-                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
-                        Quality {qualityPoints.toFixed(1)}
-                      </span>
-                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
-                        Weight {stats.totalWeight.toFixed(1)}%
-                      </span>
-                      <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
-                        Remaining {stats.remainingWeight.toFixed(1)}%
-                      </span>
-                      <span className="hidden h-5 w-px bg-ink-200 sm:block" />
-                      <Button
-                        onClick={() => {
+                    <div className="grid gap-2 rounded-md border border-ink-200 bg-ink-50 px-3 py-2 text-sm sm:grid-cols-3">
+                      <div>
+                        <p className="text-xs text-ink-500">Grade</p>
+                        <p className="mt-1 font-semibold text-ink-900">
+                          {formatPercent(stats.currentGrade)}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-ink-500">Letter</p>
+                        <p className="mt-1 font-semibold text-ink-900">
+                          {calculatedInfo?.letter ?? effectiveLetter}
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-xs text-ink-500">Quality points</p>
+                        <p className="mt-1 font-semibold text-ink-900">
+                          {qualityPoints.toFixed(1)}
+                        </p>
+                      </div>
+                    </div>
+
+                    <details className="rounded-lg border border-ink-200 bg-white/70 px-4 py-3 text-sm">
+                      <summary className="cursor-pointer font-semibold text-ink-900">
+                        Coursework and tools
+                      </summary>
+                      <CourseworkDetails
+                        addAssessment={addAssessment}
+                        course={course}
+                        openExtraction={() => {
                           setActiveExtractionCourseId(course.id);
                           setExtractionTab("quick");
                         }}
-                        size="sm"
-                        variant="secondary"
-                      >
-                        <Wand2 aria-hidden="true" className="h-4 w-4" />
-                        Scan Syllabus
-                      </Button>
-                      <Button
-                        onClick={() => setActivePredictorCourseId(course.id)}
-                        size="sm"
-                        variant="secondary"
-                      >
-                        <Calculator aria-hidden="true" className="h-4 w-4" />
-                        What do I need?
-                      </Button>
-                    </div>
-
-                    <CourseworkDetails
-                      addAssessment={addAssessment}
-                      course={course}
-                      openExtraction={() => {
-                        setActiveExtractionCourseId(course.id);
-                        setExtractionTab("quick");
-                      }}
-                      openPredictor={() => setActivePredictorCourseId(course.id)}
-                      removeAssessment={removeAssessment}
-                      stats={stats}
-                      updateAssessment={updateAssessment}
-                    />
+                        openPredictor={() => setActivePredictorCourseId(course.id)}
+                        removeAssessment={removeAssessment}
+                        stats={stats}
+                        updateAssessment={updateAssessment}
+                      />
+                    </details>
                   </div>
                 );
               })}
@@ -2155,6 +2139,10 @@ export function SimpleGpaCalculator() {
             </label>
           </div>
         </details>
+
+        <p className="text-center text-[11px] leading-5 text-ink-500">
+          GradeMate is student-made and not affiliated with Khalifa University.
+        </p>
 
         {isFindCourseOpen ? (
           <SimpleModal
@@ -2293,12 +2281,7 @@ function CourseworkDetails({
   ) => void;
 }) {
   return (
-    <details className="rounded-lg border border-ink-200 bg-ink-100/50 px-4 py-3 text-sm">
-      <summary className="cursor-pointer font-semibold text-ink-900">
-        Coursework details
-      </summary>
-
-      <div className="mt-4 space-y-4">
+    <div className="mt-4 space-y-4">
         {[
           course.instructor,
           course.instructorEmail,
@@ -2488,8 +2471,7 @@ function CourseworkDetails({
             </Button>
           </div>
         </section>
-      </div>
-    </details>
+    </div>
   );
 }
 
@@ -2792,13 +2774,13 @@ function ExtractionModalContent({
 
       {!review ? (
         <>
-          <div className="grid grid-cols-3 rounded-lg bg-ink-100 p-1">
+          <div className="grid grid-cols-3 rounded-[3px] bg-ink-100 p-1">
             {tabs.map((tab) => (
               <button
-                className={`rounded-md px-3 py-2 text-sm font-semibold transition-colors ${
+                className={`rounded-[3px] px-3 py-2 text-sm font-semibold transition-colors ${
                   activeTab === tab.id
-                    ? "bg-white text-teal-700 shadow-sm"
-                    : "text-ink-500 hover:bg-white/60 hover:text-ink-900"
+                    ? "bg-teal-600 text-[color:var(--accent-on)]"
+                    : "text-ink-500 hover:bg-ink-200 hover:text-ink-900"
                 }`}
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -2880,11 +2862,11 @@ function ExtractionModalContent({
               </div>
               <input
                 accept="application/pdf"
-                className="mt-3 block w-full rounded-md border border-dashed border-border bg-input px-3 py-3 text-sm text-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground"
+                className="mt-3 block w-full rounded-[3px] border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-900 file:mr-3 file:rounded-[3px] file:border-0 file:bg-teal-500 file:px-3 file:py-1.5 file:text-xs file:font-semibold file:text-ink-50"
                 onChange={(event) => setPdfFile(event.target.files?.[0] ?? null)}
                 type="file"
               />
-              <p className="mt-2 text-[11px] text-muted-foreground">
+              <p className="mt-2 text-[11px] text-ink-500">
                 PDFs are read locally and not stored. If it fails, paste the grading section instead.
               </p>
               <Button
@@ -3031,6 +3013,9 @@ function ExtractionReview({
           PDFs are read locally and not stored.
         </p>
       </div>
+      <p className="rounded-lg border border-ink-200 bg-ink-50 px-4 py-3 text-sm text-ink-600">
+        Always confirm grading details with your official course syllabus.
+      </p>
       <div className="flex flex-wrap items-center gap-2">
         <Badge tone={isWeightReady(reviewTotalWeight) ? "green" : "gold"}>
           {getWeightText(reviewTotalWeight)}

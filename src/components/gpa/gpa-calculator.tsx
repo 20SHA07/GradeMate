@@ -47,7 +47,7 @@ const defaultWhatIfForm: WhatIfForm = {
 };
 
 const inputStyles =
-  "mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "mt-1 gm-input h-10";
 
 function formatGpa(value: number) {
   return value.toFixed(2);
@@ -249,7 +249,7 @@ export function GpaCalculator() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-5">
       {error ? (
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
@@ -266,31 +266,31 @@ export function GpaCalculator() {
         />
       ) : (
         <>
-          <section className="grid gap-4 sm:grid-cols-3">
-            <Card className="p-5">
-              <Calculator aria-hidden="true" className="h-6 w-6 text-teal-700" />
-              <p className="mt-4 text-sm font-medium text-ink-500">
+          <section className="grid gap-3 sm:grid-cols-3">
+            <Card className="p-4">
+              <Calculator aria-hidden="true" className="h-5 w-5 text-teal-300" />
+              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
                 Current GPA
               </p>
-              <p className="mt-1 text-3xl font-semibold text-ink-900">
+              <p className="mt-2 text-[32px] font-bold leading-none text-ink-900">
                 {formatGpa(overallResult.gpa)}
               </p>
             </Card>
-            <Card className="p-5">
+            <Card className="p-4">
               <CheckSquare aria-hidden="true" className="h-6 w-6 text-lime-700" />
-              <p className="mt-4 text-sm font-medium text-ink-500">
+              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
                 Total credits
               </p>
-              <p className="mt-1 text-3xl font-semibold text-ink-900">
+              <p className="mt-2 text-[32px] font-bold leading-none text-ink-900">
                 {overallResult.totalCredits}
               </p>
             </Card>
-            <Card className="p-5">
+            <Card className="p-4">
               <Layers3 aria-hidden="true" className="h-6 w-6 text-amber-600" />
-              <p className="mt-4 text-sm font-medium text-ink-500">
+              <p className="mt-4 text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
                 Courses included
               </p>
-              <p className="mt-1 text-3xl font-semibold text-ink-900">
+              <p className="mt-2 text-[32px] font-bold leading-none text-ink-900">
                 {includedCourseInputs.length}
               </p>
             </Card>
@@ -423,7 +423,7 @@ export function GpaCalculator() {
                           </td>
                           <td className="px-5 py-4">
                             <select
-                              className="h-10 w-36 rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+                              className="gm-input h-10 w-36"
                               onChange={(event) =>
                                 updateManualGrade(
                                   row.course.id,
@@ -566,14 +566,14 @@ export function GpaCalculator() {
                   </label>
                 </div>
 
-                <div className="rounded-lg bg-teal-700 p-5 text-white">
-                  <p className="text-sm font-medium text-teal-50">
+                <div className="rounded-[3px] border border-teal-200 bg-teal-50 p-5 text-teal-800">
+                  <p className="text-[11px] font-bold uppercase tracking-[0.08em]">
                     Projected GPA
                   </p>
-                  <p className="mt-2 text-[38px] font-bold leading-none">
+                  <p className="mt-2 text-[38px] font-bold leading-none text-ink-900">
                     {formatGpa(projectedResult.gpa)}
                   </p>
-                  <p className="mt-2 text-sm text-teal-50">
+                  <p className="mt-2 text-sm text-teal-800">
                     With {projectedResult.totalCredits} total credits
                   </p>
                 </div>

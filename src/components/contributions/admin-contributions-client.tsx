@@ -114,7 +114,7 @@ export function AdminContributionsClient() {
       setError(
         getSupabaseErrorMessage(
           profileError,
-          "Could not check admin access. Run the contribution SQL setup first."
+          "Could not check admin access right now."
         )
       );
       setIsLoading(false);
@@ -454,7 +454,7 @@ export function AdminContributionsClient() {
             Not authorized
           </h2>
           <p className="mt-2 text-sm text-ink-500">
-            Ask an admin to set your profile role to admin in Supabase.
+            Ask an existing admin to grant review access for your account.
           </p>
         </Card>
       </div>
@@ -519,14 +519,14 @@ export function AdminContributionsClient() {
           </p>
         ) : (
           <div className="mt-4 overflow-x-auto">
-            <table className="w-full min-w-[640px] text-left text-sm">
-              <thead className="text-xs uppercase text-ink-400">
+            <table className="gm-table min-w-[640px]">
+              <thead>
                 <tr>
-                  <th className="px-2 py-2">Course</th>
-                  <th className="px-2 py-2">Feedback</th>
-                  <th className="px-2 py-2">Source</th>
-                  <th className="px-2 py-2">Total</th>
-                  <th className="px-2 py-2">Submitted</th>
+                  <th>Course</th>
+                  <th>Feedback</th>
+                  <th>Source</th>
+                  <th>Total</th>
+                  <th>Submitted</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-ink-100">
@@ -634,7 +634,7 @@ export function AdminContributionsClient() {
 
             <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_18rem]">
               <div className="space-y-4">
-                <div className="rounded-lg border border-ink-200 p-4">
+                <div className="rounded-[3px] border border-ink-200 bg-white/80 p-4">
                   <h3 className="font-semibold text-ink-900">Course info</h3>
                   <dl className="mt-3 grid gap-3 sm:grid-cols-2">
                     {[
@@ -658,9 +658,9 @@ export function AdminContributionsClient() {
                   </dl>
                 </div>
 
-                <div className="overflow-x-auto rounded-lg border border-ink-200">
-                  <table className="w-full min-w-[620px] text-left text-sm">
-                    <thead className="bg-ink-50 text-xs uppercase text-ink-500">
+                <div className="overflow-x-auto rounded-[3px] border border-ink-200">
+                  <table className="gm-table min-w-[620px]">
+                    <thead>
                       <tr>
                         <th className="px-3 py-2">Assessment</th>
                         <th className="px-3 py-2">Weight</th>
@@ -728,7 +728,7 @@ export function AdminContributionsClient() {
                     Review notes
                   </span>
                   <textarea
-                    className="mt-1 min-h-32 w-full rounded-lg border border-ink-200 bg-white px-3 py-2 text-sm text-ink-900 outline-none focus:border-teal-600 focus:ring-2 focus:ring-teal-100"
+                    className="gm-textarea mt-1 min-h-32"
                     onChange={(event) => setReviewNotes(event.target.value)}
                     value={reviewNotes}
                   />
