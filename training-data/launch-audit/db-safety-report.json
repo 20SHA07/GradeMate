@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-20T17:10:59.492Z",
+  "generatedAt": "2026-05-20T17:36:22.796Z",
   "protectedUserTables": [
     "semesters",
     "courses",
@@ -170,7 +170,7 @@
       "area": "Backups",
       "name": "Course Library backup is recent",
       "status": "pass",
-      "detail": "Latest complete backup is 23.1 hours old."
+      "detail": "Latest complete backup is 23.5 hours old."
     },
     {
       "area": "Verification",
@@ -188,7 +188,7 @@
       "area": "Verification",
       "name": "RLS report",
       "status": "pass",
-      "detail": "35 passed, 0 failed"
+      "detail": "38 passed, 0 failed"
     }
   ]
 }

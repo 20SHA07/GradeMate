@@ -102,6 +102,22 @@ function extractedTextPreview(contribution: SyllabusContributionRecord) {
   return description || "No extracted text preview stored for this contribution.";
 }
 
+function profileCreditLabel(profile: ProfileRecord | undefined, fallback: string) {
+  if (profile?.username) {
+    return `@${profile.username}`;
+  }
+
+  if (profile?.contributor_name) {
+    return profile.contributor_name;
+  }
+
+  if (profile?.full_name) {
+    return profile.full_name;
+  }
+
+  return profile?.email ?? fallback;
+}
+
 function normalizeMatchValue(value: string | null | undefined) {
   return String(value ?? "")
     .toLowerCase()
@@ -203,20 +219,32 @@ function findTemplateMatches(
 
 function makeTemplatePayload({
   contribution,
+  contributorProfile,
   uniqueKey
 }: {
   contribution: ContributionWithRows;
+  contributorProfile?: ProfileRecord | null;
   uniqueKey: string;
 }) {
   const courseCode = contribution.course_code?.trim() ?? "";
   const courseName = contribution.course_name?.trim() ?? "";
   const description = contributionDescription(contribution);
+  const contributorUsername =
+    contribution.contributor_username ?? contributorProfile?.username ?? null;
+  const contributorName =
+    contribution.contributor_name ??
+    contributorProfile?.contributor_name ??
+    contributorProfile?.full_name ??
+    null;
 
   return {
     course_code: courseCode,
     course_name: courseName,
     course_description: description,
     credit_hours: contribution.credit_hours ?? 3,
+    contributor_name: contributorName,
+    contributor_user_id: contribution.submitted_by_user_id,
+    contributor_username: contributorUsername,
     department:
       contribution.department ?? departmentFromCode(contribution.course_code),
     description,
@@ -579,6 +607,7 @@ export function AdminContributionsClient() {
       let template: CourseTemplateRecord | null = null;
       const selectedTemplate =
         templates.find((item) => item.id === selectedTemplateId) ?? null;
+      const contributorProfile = profiles[contribution.submitted_by_user_id] ?? null;
 
       if (action === "replace_existing" || action === "marked_latest") {
         if (!selectedTemplate) {
@@ -589,6 +618,7 @@ export function AdminContributionsClient() {
 
         const templatePayload = makeTemplatePayload({
           contribution,
+          contributorProfile,
           uniqueKey: selectedTemplate.unique_key ?? contributionUniqueKey(contribution)
         });
 
@@ -618,7 +648,11 @@ export function AdminContributionsClient() {
         const uniqueKey = templates.some((item) => item.unique_key === baseUniqueKey)
           ? `${baseUniqueKey}::contribution-${contribution.id.slice(0, 8)}`
           : baseUniqueKey;
-        const templatePayload = makeTemplatePayload({ contribution, uniqueKey });
+        const templatePayload = makeTemplatePayload({
+          contribution,
+          contributorProfile,
+          uniqueKey
+        });
         const { data, error: insertError } = await supabase
           .from("course_templates")
           .insert(templatePayload)
@@ -897,9 +931,12 @@ export function AdminContributionsClient() {
       ) : (
         <div className="grid gap-3">
           {visibleContributions.map((contribution) => {
+            const profile = profiles[contribution.submitted_by_user_id];
             const submitter =
-              profiles[contribution.submitted_by_user_id]?.email ??
-              contribution.submitted_by_user_id.slice(0, 8);
+              contribution.contributor_username
+                ? `@${contribution.contributor_username}`
+                : contribution.contributor_name ??
+                  profileCreditLabel(profile, contribution.submitted_by_user_id.slice(0, 8));
 
             return (
               <Card className="p-4" key={contribution.id}>
@@ -924,6 +961,11 @@ export function AdminContributionsClient() {
                       {new Date(contribution.created_at).toLocaleDateString()} -{" "}
                       {contribution.assessments.length} assessments
                     </p>
+                    {profile?.email ? (
+                      <p className="mt-1 text-xs text-ink-500">
+                        Account: {profile.email}
+                      </p>
+                    ) : null}
                   </div>
                   <Button onClick={() => openReview(contribution)}>
                     Review
@@ -976,6 +1018,16 @@ export function AdminContributionsClient() {
                       ["Credits", selected.credit_hours],
                       ["Instructor", selected.instructor],
                       ["Instructor email", selected.instructor_email],
+                      [
+                        "Contributor credit",
+                        selected.contributor_username
+                          ? `@${selected.contributor_username}`
+                          : selected.contributor_name ??
+                            profileCreditLabel(
+                              profiles[selected.submitted_by_user_id],
+                              "Not set"
+                            )
+                      ],
                       ["Term", selected.term],
                       ["Source file", selected.syllabus_file_name]
                     ].map(([label, value]) => (

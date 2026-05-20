@@ -152,6 +152,18 @@ function weightLabel(totalWeight: number) {
   return `Missing ${formatWeight(100 - totalWeight)}%`;
 }
 
+function templateContributorLabel(template: CourseTemplateRecord) {
+  if (template.contributor_username) {
+    return `@${template.contributor_username}`;
+  }
+
+  if (template.contributor_name) {
+    return template.contributor_name;
+  }
+
+  return "";
+}
+
 function gradingCompletenessScore(template: TemplateWithDetails) {
   const totalWeight = totalAssessmentWeight(template.assessments);
   const closeness = Math.max(0, 100 - Math.abs(100 - totalWeight));
@@ -1190,6 +1202,9 @@ export function CourseLibraryClient() {
                       {templateTermLabel(template) ? (
                         <span>{templateTermLabel(template)}</span>
                       ) : null}
+                      {templateContributorLabel(template) ? (
+                        <span>Credit {templateContributorLabel(template)}</span>
+                      ) : null}
                     </div>
                   </div>
                   <Badge tone={weightTone(totalWeight)}>
@@ -1360,6 +1375,11 @@ export function CourseLibraryClient() {
                       <p className="mt-2 break-words text-sm text-ink-500">
                         {templateSourceName(detailTemplate)}
                       </p>
+                      {templateContributorLabel(detailTemplate) ? (
+                        <p className="mt-3 rounded-[3px] border border-teal-200 bg-teal-50 px-3 py-2 text-sm text-teal-800">
+                          Contributor credit: {templateContributorLabel(detailTemplate)}
+                        </p>
+                      ) : null}
                     </div>
 
                     <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">

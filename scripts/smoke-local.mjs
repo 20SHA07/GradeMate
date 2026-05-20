@@ -401,6 +401,9 @@ async function checkContributionSubmissionUx() {
   const verifyPublishScript = await readText(
     "scripts/contributions-verify-publish.mjs"
   );
+  const courseLibrarySource = await readText(
+    "src/components/course-library/course-library-client.tsx"
+  );
 
   addCheck({
     area: "Contributions",
@@ -511,6 +514,21 @@ async function checkContributionSubmissionUx() {
         : "fail",
     detail:
       "npm run contributions:verify-publish should check published templates and replacement history."
+  });
+  addCheck({
+    area: "Contributions",
+    name: "Contributor usernames are supported",
+    status:
+      contributionSource.includes("Contributor credit") &&
+      contributionSource.includes("Save credit") &&
+      contributionSource.includes("contributor_username") &&
+      adminContributionsSource.includes("contributor_username") &&
+      courseLibrarySource.includes("Contributor credit") &&
+      courseLibrarySource.includes("templateContributorLabel")
+        ? "pass"
+        : "fail",
+    detail:
+      "Contributors should be able to choose a username/display name and receive public-safe Course Library credit."
   });
 }
 

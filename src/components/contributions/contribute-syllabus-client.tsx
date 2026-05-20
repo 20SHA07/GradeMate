@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import {
   AlertTriangle,
   CheckCircle,
@@ -21,7 +21,7 @@ import {
   type ExtractedSyllabus
 } from "@/lib/syllabus/extractSyllabus";
 import { extractTextFromPdfFile } from "@/lib/syllabus/pdfText";
-import type { SyllabusContributionRecord } from "@/types/database";
+import type { ProfileRecord, SyllabusContributionRecord } from "@/types/database";
 
 type SourceType = "pdf" | "pasted_text";
 
@@ -35,6 +35,11 @@ type SubmissionSuccess = {
   courseName: string | null;
   createdAt: string;
   status: string;
+};
+
+type ContributorCreditDraft = {
+  username: string;
+  contributorName: string;
 };
 
 type CourseInfoKey =
@@ -201,6 +206,32 @@ function saveGuestContributionDraft(payload: Record<string, unknown>) {
   );
 }
 
+function normalizeUsername(value: string) {
+  return value
+    .trim()
+    .toLowerCase()
+    .replace(/^@+/, "")
+    .replace(/[^a-z0-9_]/g, "");
+}
+
+function isValidUsername(value: string) {
+  return value.length === 0 || /^[a-z0-9_]{3,24}$/.test(value);
+}
+
+function fallbackContributorName({
+  email,
+  fullName
+}: {
+  email?: string | null;
+  fullName?: string | null;
+}) {
+  if (fullName?.trim()) {
+    return fullName.trim();
+  }
+
+  return email?.split("@")[0]?.trim() || "GradeMate contributor";
+}
+
 export function ContributeSyllabusClient() {
   const { isGuest, openSaveProgress, supabase, user } = useAuth();
   const fileInputRef = useRef<HTMLInputElement | null>(null);
@@ -219,6 +250,14 @@ export function ContributeSyllabusClient() {
   const [message, setMessage] = useState("");
   const [error, setError] = useState("");
   const [submission, setSubmission] = useState<SubmissionSuccess | null>(null);
+  const [credit, setCredit] = useState<ContributorCreditDraft>({
+    contributorName: "",
+    username: ""
+  });
+  const [creditMessage, setCreditMessage] = useState("");
+  const [creditError, setCreditError] = useState("");
+  const [isCreditLoading, setIsCreditLoading] = useState(false);
+  const [isCreditSaving, setIsCreditSaving] = useState(false);
 
   const totalWeight = useMemo(() => getTotalWeight(rows), [rows]);
   const weightMessage =
@@ -226,7 +265,63 @@ export function ContributeSyllabusClient() {
       ? "Weight total: 100% ready"
       : totalWeight > 101
         ? `Over by ${formatWeight(totalWeight - 100)}%`
-        : `Missing ${formatWeight(100 - totalWeight)}%`;
+      : `Missing ${formatWeight(100 - totalWeight)}%`;
+
+  useEffect(() => {
+    if (isGuest || !supabase) {
+      setCredit({
+        contributorName: "",
+        username: ""
+      });
+      setIsCreditLoading(false);
+      return;
+    }
+
+    const client = supabase;
+    let isMounted = true;
+
+    async function loadContributorCredit() {
+      setIsCreditLoading(true);
+      setCreditError("");
+
+      const { data, error: loadError } = await client
+        .from("profiles")
+        .select("email,full_name,username,contributor_name")
+        .eq("id", user.id)
+        .maybeSingle();
+
+      if (!isMounted) {
+        return;
+      }
+
+      if (loadError) {
+        setCreditError("Could not load contributor credit right now.");
+      } else {
+        const profile = data as Pick<
+          ProfileRecord,
+          "contributor_name" | "email" | "full_name" | "username"
+        > | null;
+
+        setCredit({
+          contributorName:
+            profile?.contributor_name?.trim() ||
+            fallbackContributorName({
+              email: profile?.email ?? user.email,
+              fullName: profile?.full_name
+            }),
+          username: profile?.username ?? ""
+        });
+      }
+
+      setIsCreditLoading(false);
+    }
+
+    void loadContributorCredit();
+
+    return () => {
+      isMounted = false;
+    };
+  }, [isGuest, supabase, user.email, user.id]);
 
   function loadExtraction(extraction: ExtractedSyllabus, source: string) {
     setSubmission(null);
@@ -337,6 +432,90 @@ export function ContributeSyllabusClient() {
     setRows((current) => current.filter((row) => row.id !== rowId));
   }
 
+  async function saveContributorCredit() {
+    if (isGuest || !supabase) {
+      setCreditMessage("Sign in to save contributor credit.");
+      return;
+    }
+
+    const username = normalizeUsername(credit.username);
+    const contributorName = credit.contributorName.trim();
+
+    if (!isValidUsername(username)) {
+      setCreditError("Use 3-24 lowercase letters, numbers, or underscores.");
+      return;
+    }
+
+    if (contributorName.length > 40) {
+      setCreditError("Keep your display name under 40 characters.");
+      return;
+    }
+
+    setIsCreditSaving(true);
+    setCreditError("");
+    setCreditMessage("");
+
+    try {
+      const { data: updatedProfile, error: updateError } = await supabase
+        .from("profiles")
+        .update({
+          contributor_name: contributorName || null,
+          username: username || null,
+          updated_at: new Date().toISOString()
+        })
+        .eq("id", user.id)
+        .select("id")
+        .maybeSingle();
+
+      if (updateError) {
+        throw updateError;
+      }
+
+      if (!updatedProfile) {
+        const { error: insertError } = await supabase.from("profiles").insert({
+          contributor_name: contributorName || null,
+          email: user.email ?? null,
+          full_name:
+            typeof user.user_metadata?.full_name === "string"
+              ? user.user_metadata.full_name
+              : null,
+          id: user.id,
+          role: "user",
+          username: username || null
+        });
+
+        if (insertError) {
+          throw insertError;
+        }
+      }
+
+      setCredit({
+        contributorName:
+          contributorName ||
+          fallbackContributorName({
+            email: user.email,
+            fullName:
+              typeof user.user_metadata?.full_name === "string"
+                ? user.user_metadata.full_name
+                : null
+          }),
+        username
+      });
+      setCreditMessage("Contributor credit saved.");
+    } catch (saveError) {
+      console.error("Contributor credit save failed", saveError);
+      const message =
+        saveError instanceof Error ? saveError.message : String(saveError);
+      setCreditError(
+        /duplicate|unique|profiles_username_unique/i.test(message)
+          ? "That username is already taken."
+          : "Could not save contributor credit right now."
+      );
+    } finally {
+      setIsCreditSaving(false);
+    }
+  }
+
   function resetContributionForm() {
     setSourceType("pasted_text");
     setSyllabusText("");
@@ -381,8 +560,26 @@ export function ContributeSyllabusClient() {
 
     const confirmedJson = buildConfirmedJson(info, rows);
     const sourceText = extractedText || syllabusText;
+    const contributorUsername = normalizeUsername(credit.username);
+    const contributorName =
+      credit.contributorName.trim() ||
+      fallbackContributorName({
+        email: user.email,
+        fullName:
+          typeof user.user_metadata?.full_name === "string"
+            ? user.user_metadata.full_name
+            : null
+      });
+
+    if (!isValidUsername(contributorUsername)) {
+      setError("Contributor username must use 3-24 lowercase letters, numbers, or underscores.");
+      return;
+    }
+
     const payload = {
       campus: null,
+      contributor_name: contributorName,
+      contributor_username: contributorUsername || null,
       course_code: info.courseCode || null,
       course_name: info.courseName || null,
       credit_hours: info.creditHours ? Number(info.creditHours) : null,
@@ -500,6 +697,82 @@ export function ContributeSyllabusClient() {
               Continue editing locally
             </Button>
           </div>
+        </Card>
+      ) : null}
+
+      {!isGuest ? (
+        <Card className="p-4">
+          <div className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+            <div className="max-w-xl">
+              <h2 className="font-semibold text-ink-900">Contributor credit</h2>
+              <p className="mt-1 text-sm text-ink-500">
+                Choose how your approved contributions should be credited in the
+                Course Library. Your email is never shown publicly.
+              </p>
+              {credit.username ? (
+                <p className="mt-2 text-sm text-teal-700">
+                  Public credit preview: @{normalizeUsername(credit.username)}
+                  {credit.contributorName.trim()
+                    ? ` - ${credit.contributorName.trim()}`
+                    : ""}
+                </p>
+              ) : null}
+            </div>
+            <div className="grid min-w-0 flex-1 gap-3 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] lg:max-w-2xl">
+              <label>
+                <span className="text-sm font-medium text-ink-700">
+                  Username
+                </span>
+                <input
+                  className={`${inputStyles} mt-1`}
+                  disabled={isCreditLoading}
+                  onChange={(event) =>
+                    setCredit((current) => ({
+                      ...current,
+                      username: normalizeUsername(event.target.value)
+                    }))
+                  }
+                  placeholder="shahad"
+                  value={credit.username}
+                />
+              </label>
+              <label>
+                <span className="text-sm font-medium text-ink-700">
+                  Display name
+                </span>
+                <input
+                  className={`${inputStyles} mt-1`}
+                  disabled={isCreditLoading}
+                  onChange={(event) =>
+                    setCredit((current) => ({
+                      ...current,
+                      contributorName: event.target.value
+                    }))
+                  }
+                  placeholder="Your name"
+                  value={credit.contributorName}
+                />
+              </label>
+              <Button
+                className="self-end"
+                disabled={isCreditLoading || isCreditSaving}
+                onClick={() => void saveContributorCredit()}
+                variant="secondary"
+              >
+                {isCreditSaving ? "Saving..." : "Save credit"}
+              </Button>
+            </div>
+          </div>
+          {creditError ? (
+            <p className="mt-3 rounded-lg border border-rose-200 bg-rose-50 px-3 py-2 text-sm text-rose-700">
+              {creditError}
+            </p>
+          ) : null}
+          {creditMessage ? (
+            <p className="mt-3 rounded-lg border border-teal-200 bg-teal-50 px-3 py-2 text-sm text-teal-800">
+              {creditMessage}
+            </p>
+          ) : null}
         </Card>
       ) : null}
 

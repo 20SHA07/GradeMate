@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T17:10:58.855Z",
+  "generatedAt": "2026-05-20T17:38:18.567Z",
   "summary": {
-    "passed": 35,
+    "passed": 38,
     "failed": 0
   },
   "checks": [
@@ -9,6 +9,16 @@
       "name": "Profiles table exists",
       "status": "pass",
       "detail": "/create table if not exists profiles/i"
+    },
+    {
+      "name": "Profile usernames exist",
+      "status": "pass",
+      "detail": "/profiles add column if not exists username|username text/i"
+    },
+    {
+      "name": "Profile username uniqueness exists",
+      "status": "pass",
+      "detail": "/profiles_username_unique/i"
     },
     {
       "name": "Admin role helper exists",
@@ -179,6 +189,11 @@
       "name": "Contribution publish metadata exists",
       "status": "pass",
       "detail": "/published_template_id[\\s\\S]*publish_action[\\s\\S]*reviewed_at|published_template_id[\\s\\S]*reviewed_at[\\s\\S]*publish_action/i"
+    },
+    {
+      "name": "Course templates can store contributor credit",
+      "status": "pass",
+      "detail": "/course_templates add column if not exists contributor_username[\\s\\S]*contributor_name|contributor_username[\\s\\S]*contributor_name/i"
     }
   ]
 }

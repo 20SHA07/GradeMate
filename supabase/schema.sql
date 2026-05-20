@@ -4,6 +4,8 @@ create table if not exists profiles (
   id uuid primary key references auth.users(id) on delete cascade,
   email text,
   full_name text,
+  username text,
+  contributor_name text,
   role text not null default 'user' check (role in ('user', 'admin')),
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
@@ -53,6 +55,22 @@ after insert on auth.users
 for each row execute function public.handle_new_profile();
 
 alter table profiles add column if not exists full_name text;
+alter table profiles add column if not exists username text;
+alter table profiles add column if not exists contributor_name text;
+
+alter table profiles
+drop constraint if exists profiles_username_format_check;
+
+alter table profiles
+add constraint profiles_username_format_check
+check (
+  username is null
+  or username ~ '^[a-z0-9_]{3,24}$'
+);
+
+create unique index if not exists profiles_username_unique
+on profiles (lower(username))
+where username is not null;
 
 create table if not exists degree_plans (
   id uuid primary key default gen_random_uuid(),
@@ -145,6 +163,9 @@ create table if not exists course_templates (
   source_folder_path text,
   source_syllabus_file_name text,
   source_syllabus_path text,
+  contributor_user_id uuid references auth.users(id) on delete set null,
+  contributor_username text,
+  contributor_name text,
   extraction_confidence numeric not null default 0,
   created_at timestamp with time zone default now(),
   updated_at timestamp with time zone default now()
@@ -155,6 +176,9 @@ alter table course_templates add column if not exists unique_key text;
 alter table course_templates add column if not exists term text;
 alter table course_templates add column if not exists source_syllabus_file_name text;
 alter table course_templates add column if not exists source_syllabus_path text;
+alter table course_templates add column if not exists contributor_user_id uuid references auth.users(id) on delete set null;
+alter table course_templates add column if not exists contributor_username text;
+alter table course_templates add column if not exists contributor_name text;
 alter table course_templates add column if not exists updated_at timestamp with time zone default now();
 
 alter table course_templates drop constraint if exists course_templates_course_code_key;

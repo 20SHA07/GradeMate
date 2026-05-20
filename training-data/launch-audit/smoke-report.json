@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T17:11:44.074Z",
+  "generatedAt": "2026-05-20T17:40:45.245Z",
   "summary": {
-    "passed": 47,
+    "passed": 48,
     "warnings": 0,
     "failures": 0
   },
@@ -251,6 +251,12 @@
       "name": "Contribution publish verification script exists",
       "status": "pass",
       "detail": "npm run contributions:verify-publish should check published templates and replacement history."
+    },
+    {
+      "area": "Contributions",
+      "name": "Contributor usernames are supported",
+      "status": "pass",
+      "detail": "Contributors should be able to choose a username/display name and receive public-safe Course Library credit."
     },
     {
       "area": "Privacy",

@@ -136,12 +136,15 @@ To let users submit syllabuses for the shared Course Library, run
 [supabase/syllabus-contributions.sql](supabase/syllabus-contributions.sql) in
 the Supabase SQL editor, then run
 [supabase/course-template-versions.sql](supabase/course-template-versions.sql).
-They create:
+For contributor credit, also run
+[supabase/profile-usernames.sql](supabase/profile-usernames.sql). They create:
 
 - `profiles`
 - `syllabus_contributions`
 - `contribution_assessments`
 - `course_template_versions`
+- profile `username` / `contributor_name` fields
+- public-safe contributor credit fields on published Course Library templates
 - private RLS policies for user submissions
 - admin-only version history for replaced Course Library templates
 - admin-only policies for approving contributions into Course Library templates
@@ -167,6 +170,11 @@ retroactively changes private `semesters`, `courses`, or `assessments` that
 students already imported into their own workspaces. Needs-review/conflict or
 archived templates stay hidden from normal Course Library browsing unless an
 admin intentionally republishes them as `ready`.
+
+Contributors can set a username and display name on `/contribute-syllabus`.
+When their contribution is approved and published, GradeMate copies that
+public-safe credit onto the shared template, so Course Library users can see who
+helped without exposing the contributor's email.
 
 After approving contributions, verify publish integrity:
 

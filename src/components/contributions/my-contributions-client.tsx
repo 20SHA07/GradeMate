@@ -173,6 +173,15 @@ export function MyContributionsClient() {
                             Submitted{" "}
                             {new Date(contribution.created_at).toLocaleDateString()}
                           </p>
+                          {contribution.contributor_username ||
+                          contribution.contributor_name ? (
+                            <p className="mt-1 text-xs text-ink-500">
+                              Credited as{" "}
+                              {contribution.contributor_username
+                                ? `@${contribution.contributor_username}`
+                                : contribution.contributor_name}
+                            </p>
+                          ) : null}
                         </div>
                         <p className="text-sm text-ink-500">
                           Confidence{" "}

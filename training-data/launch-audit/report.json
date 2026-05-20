@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-20T17:11:44.378Z",
+    "generatedAt": "2026-05-20T17:40:45.560Z",
     "ready": 54,
     "warnings": 2,
     "failures": 0
@@ -298,7 +298,7 @@
       "area": "Database Safety",
       "name": "db:check-rls report",
       "status": "pass",
-      "detail": "35 passed, 0 failed"
+      "detail": "38 passed, 0 failed"
     },
     {
       "area": "Database Safety",

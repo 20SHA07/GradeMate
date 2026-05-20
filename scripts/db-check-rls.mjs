@@ -12,6 +12,7 @@ const sql = await loadSql([
   "supabase/public-course-library-rls.sql",
   "supabase/syllabus-contributions.sql",
   "supabase/course-template-versions.sql",
+  "supabase/profile-usernames.sql",
   "supabase/verified-extractions.sql"
 ]);
 const protectedUserTables = [
@@ -27,6 +28,8 @@ const protectedUserTables = [
 
 const checks = [
   check("Profiles table exists", /create table if not exists profiles/i),
+  check("Profile usernames exist", /profiles add column if not exists username|username text/i),
+  check("Profile username uniqueness exists", /profiles_username_unique/i),
   check("Admin role helper exists", /function public\.is_admin/i),
   ...protectedUserTables.flatMap((table) => [
     check(
@@ -96,6 +99,10 @@ const checks = [
   check(
     "Contribution publish metadata exists",
     /published_template_id[\s\S]*publish_action[\s\S]*reviewed_at|published_template_id[\s\S]*reviewed_at[\s\S]*publish_action/i
+  ),
+  check(
+    "Course templates can store contributor credit",
+    /course_templates add column if not exists contributor_username[\s\S]*contributor_name|contributor_username[\s\S]*contributor_name/i
   )
 ];
 

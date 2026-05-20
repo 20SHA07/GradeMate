@@ -77,6 +77,9 @@ export type CourseTemplateRecord = {
   source_syllabus_file_name: string | null;
   source_syllabus_path: string | null;
   source_hash?: string | null;
+  contributor_user_id?: string | null;
+  contributor_username?: string | null;
+  contributor_name?: string | null;
   extractor_version?: string | null;
   extraction_warnings?: Json | null;
   template_status?: string | null;
@@ -133,6 +136,8 @@ export type ProfileRecord = {
   id: string;
   email: string | null;
   full_name?: string | null;
+  username?: string | null;
+  contributor_name?: string | null;
   role: string;
   created_at: string;
   updated_at: string;
@@ -164,6 +169,8 @@ export type SyllabusContributionRecord = {
   syllabus_file_path: string | null;
   extracted_json: Json | null;
   extraction_confidence: number | null;
+  contributor_username?: string | null;
+  contributor_name?: string | null;
   status: string;
   reviewer_user_id: string | null;
   review_notes: string | null;
@@ -218,6 +225,8 @@ export type Database = {
           id: string;
           email?: string | null;
           full_name?: string | null;
+          username?: string | null;
+          contributor_name?: string | null;
           role?: string;
           created_at?: string;
           updated_at?: string;
@@ -356,6 +365,9 @@ export type Database = {
           source_syllabus_file_name?: string | null;
           source_syllabus_path?: string | null;
           source_hash?: string | null;
+          contributor_user_id?: string | null;
+          contributor_username?: string | null;
+          contributor_name?: string | null;
           extractor_version?: string | null;
           extraction_warnings?: Json | null;
           template_status?: string | null;
@@ -477,6 +489,8 @@ export type Database = {
           syllabus_file_path?: string | null;
           extracted_json?: Json | null;
           extraction_confidence?: number | null;
+          contributor_username?: string | null;
+          contributor_name?: string | null;
           status?: string;
           reviewer_user_id?: string | null;
           review_notes?: string | null;
