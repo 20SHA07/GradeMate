@@ -800,9 +800,9 @@ export function CourseLibraryClient() {
       ) : null}
 
       <Card className="border-0 bg-transparent p-0">
-        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_9rem_9rem_14rem]">
-          <label className="block">
-            <span className="sr-only">Search</span>
+        <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_10rem_10rem_15rem] lg:items-end">
+          <label className="block min-w-0">
+            <span className="block text-sm font-medium text-ink-700">Search</span>
             <div className="relative mt-1">
               <Search
                 aria-hidden="true"
@@ -816,8 +816,10 @@ export function CourseLibraryClient() {
               />
             </div>
           </label>
-          <label className="block">
-            <span className="sr-only">Department</span>
+          <label className="block min-w-0">
+            <span className="block text-sm font-medium text-ink-700">
+              Department
+            </span>
             <select
               className={`${inputStyles} mt-1`}
               onChange={(event) => setDepartment(event.target.value)}
@@ -830,8 +832,8 @@ export function CourseLibraryClient() {
               ))}
             </select>
           </label>
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">
+          <label className="block min-w-0">
+            <span className="block text-sm font-medium text-ink-700">
               Confidence
             </span>
             <select
@@ -848,8 +850,8 @@ export function CourseLibraryClient() {
               ))}
             </select>
           </label>
-          <label className="block">
-            <span className="text-sm font-medium text-ink-700">Sort</span>
+          <label className="block min-w-0">
+            <span className="block text-sm font-medium text-ink-700">Sort</span>
             <select
               className={`${inputStyles} mt-1`}
               onChange={(event) =>
