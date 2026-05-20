@@ -13,7 +13,6 @@ import {
   FileText,
   FolderOpen,
   Search,
-  SlidersHorizontal,
   X
 } from "lucide-react";
 import { useEffect, useMemo, useState } from "react";
@@ -22,7 +21,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
-import { PageHeader } from "@/components/ui/page-header";
 import { getCourseDetailHref } from "@/lib/routes";
 import {
   getCoreAssessmentPayloads,
@@ -62,7 +60,7 @@ type SortOption = "code" | "name" | "confidence" | "grading";
 const pageSize = 20;
 
 const inputStyles =
-  "h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "gm-input";
 
 const confidenceFilters: ConfidenceFilter[] = ["All", "High", "Medium", "Low"];
 
@@ -771,12 +769,17 @@ export function CourseLibraryClient() {
   }
 
   return (
-    <div className="space-y-6">
-      <PageHeader
-        eyebrow="Ready KU templates"
-        description="Search verified syllabus templates, preview the grading breakdown, then import a clean copy into your semester."
-        title="Course Library"
-      />
+    <div className="space-y-5">
+      <header className="flex flex-col gap-4 lg:flex-row lg:items-end lg:justify-between">
+        <div>
+          <Badge tone="teal">Ready KU templates</Badge>
+          <h1 className="sr-only">Course Library</h1>
+          <p className="mt-4 max-w-xl text-sm leading-6 text-ink-800">
+            Browse and add foundational Khalifa University courses to your
+            workspace. Pre-configured with credit weights.
+          </p>
+        </div>
+      </header>
 
       {error ? (
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
@@ -790,14 +793,10 @@ export function CourseLibraryClient() {
         </p>
       ) : null}
 
-      <Card className="p-4">
-        <div className="mb-3 flex items-center gap-2 text-sm font-medium text-teal-700">
-          <SlidersHorizontal aria-hidden="true" className="h-4 w-4" />
-          Find a course
-        </div>
+      <Card className="border-0 bg-transparent p-0">
         <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_9rem_9rem_14rem]">
           <label className="block">
-            <span className="text-sm font-medium text-ink-700">Search</span>
+            <span className="sr-only">Search</span>
             <div className="relative mt-1">
               <Search
                 aria-hidden="true"
@@ -806,15 +805,13 @@ export function CourseLibraryClient() {
               <input
                 className={`${inputStyles} pl-9`}
                 onChange={(event) => setQuery(event.target.value)}
-                placeholder="Course code or course name"
+                placeholder="Search MATH111..."
                 value={query}
               />
             </div>
           </label>
           <label className="block">
-            <span className="text-sm font-medium text-ink-700">
-              Department
-            </span>
+            <span className="sr-only">Department</span>
             <select
               className={`${inputStyles} mt-1`}
               onChange={(event) => setDepartment(event.target.value)}
@@ -862,7 +859,7 @@ export function CourseLibraryClient() {
             </select>
           </label>
         </div>
-        <label className="mt-3 flex items-center gap-3 rounded-lg bg-ink-100 px-3 py-2 text-sm text-ink-700">
+        <label className="mt-3 flex items-center gap-3 border border-ink-200 bg-ink-100 px-3 py-2 text-xs text-ink-700">
           <input
             checked={completeOnly}
             className="h-4 w-4 rounded border-ink-300 text-teal-700 focus:ring-teal-600"
@@ -927,21 +924,23 @@ export function CourseLibraryClient() {
           title="No matching templates"
         />
       ) : (
-        <section className="grid min-w-0 gap-3 lg:grid-cols-2 2xl:grid-cols-3">
+        <section className="grid min-w-0 gap-3 lg:grid-cols-2 xl:grid-cols-3">
           {visibleTemplates.map((template) => {
             const totalWeight = totalAssessmentWeight(template.assessments);
 
             return (
               <Card
-                className="flex h-full flex-col p-4 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50/20"
+                className="flex min-h-[188px] flex-col p-4 transition-colors hover:border-teal-200 hover:bg-teal-50/20"
                 key={template.id}
               >
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
+                <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <div className="flex flex-wrap items-center gap-2">
-                      <Badge tone="teal">{template.course_code}</Badge>
                       {template.department ? (
-                        <Badge tone="ink">{template.department}</Badge>
+                        <Badge tone="teal">{template.department}</Badge>
+                      ) : null}
+                      {templateTermLabel(template) ? (
+                        <Badge tone="ink">{templateTermLabel(template)}</Badge>
                       ) : null}
                       {templateWarnings(template).length > 0 ? (
                         <Badge tone="gold">
@@ -950,75 +949,47 @@ export function CourseLibraryClient() {
                         </Badge>
                       ) : null}
                     </div>
-                    <h2 className="mt-3 text-lg font-semibold leading-tight text-ink-900">
+                    <h2 className="mt-3 text-base font-semibold leading-tight text-ink-900">
                       {template.course_name}
                     </h2>
-                    <p className="mt-2 text-xs text-ink-500">
-                      {template.instructor ?? "Instructor not detected"}
-                      {templateTermLabel(template)
-                        ? ` - ${templateTermLabel(template)}`
-                        : ""}
+                    <p className="mt-1 text-xs font-semibold text-ink-700">
+                      {template.course_code}
                     </p>
                   </div>
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-teal-50 text-teal-700">
-                    <FileText aria-hidden="true" className="h-5 w-5" />
-                  </span>
+                  <div className="shrink-0 text-right">
+                    <p className="text-3xl font-semibold leading-none text-ink-900">
+                      {Number(template.credit_hours).toFixed(1)}
+                    </p>
+                    <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                      credits
+                    </p>
+                  </div>
                 </div>
 
-                <div className="mt-4 grid gap-2 sm:grid-cols-3">
-                  <DetailStat
-                    label="Credits"
-                    value={Number(template.credit_hours)}
-                  />
-                  <DetailStat
-                    label="Assessments"
-                    value={template.assessments.length}
-                  />
-                  <DetailStat
-                    label="Total weight"
-                    value={`${formatWeight(totalWeight)}%`}
-                  />
-                </div>
+                <p className="mt-4 line-clamp-3 min-h-[3.75rem] text-xs leading-5 text-ink-800">
+                  {template.description ??
+                    template.course_description ??
+                    "Pre-configured syllabus template with detected grading weights."}
+                </p>
 
-                <div className="mt-3 flex flex-wrap gap-2">
+                <div className="mt-3 flex flex-wrap gap-2 text-xs">
+                  <Badge tone="ink">{template.assessments.length} assessments</Badge>
+                  <Badge tone={weightTone(totalWeight)}>
+                    {formatWeight(totalWeight)}% total
+                  </Badge>
                   <Badge tone={weightTone(totalWeight)}>{weightLabel(totalWeight)}</Badge>
                   <Badge tone={confidenceTone(template.extraction_confidence)}>
                     {formatConfidence(template.extraction_confidence)}
                   </Badge>
                 </div>
 
-                {template.assessments.length === 0 ? (
-                  <p className="mt-4 rounded-lg border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800">
-                    No grading breakdown was detected. You can still import and
-                    add assessments manually.
-                  </p>
-                ) : (
-                  <div className="mt-4 flex flex-wrap gap-2">
-                    {template.assessments.slice(0, 4).map((assessment) => (
-                      <Badge
-                        className="max-w-full whitespace-normal break-words text-left"
-                        key={assessment.id}
-                        tone="gold"
-                      >
-                        {assessment.name}{" "}
-                        {formatWeight(Number(assessment.weight_percentage))}%
-                      </Badge>
-                    ))}
-                    {template.assessments.length > 4 ? (
-                      <Badge tone="ink">
-                        +{template.assessments.length - 4} more
-                      </Badge>
-                    ) : null}
-                  </div>
-                )}
-
-                <p className="mt-4 truncate text-xs text-ink-400">
+                <p className="mt-3 truncate text-[10px] text-ink-500">
                   Source: {templateSourceName(template)}
                 </p>
 
-                <div className="mt-auto flex flex-col gap-2 pt-4 sm:flex-row">
+                <div className="mt-auto grid gap-2 pt-4 sm:grid-cols-2">
                   <Button
-                    className="w-full sm:w-auto"
+                    className="w-full"
                     onClick={() => setDetailTemplate(template)}
                     variant="secondary"
                   >
@@ -1026,7 +997,7 @@ export function CourseLibraryClient() {
                     View details
                   </Button>
                   <Button
-                    className="w-full sm:w-auto"
+                    className="w-full"
                     onClick={() => openImportModal(template)}
                   >
                     <Download aria-hidden="true" className="h-4 w-4" />
@@ -1082,7 +1053,7 @@ export function CourseLibraryClient() {
                     {weightLabel(totalAssessmentWeight(detailTemplate.assessments))}
                   </Badge>
                 </div>
-                <h2 className="mt-3 text-2xl font-semibold text-ink-900">
+                <h2 className="mt-3 text-[24px] font-bold leading-tight text-ink-900">
                   {detailTemplate.course_name}
                 </h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-ink-500">
@@ -1154,8 +1125,8 @@ export function CourseLibraryClient() {
                       </p>
                     ) : (
                       <div className="overflow-x-auto">
-                        <table className="w-full min-w-[560px] text-left text-sm">
-                          <thead className="border-b border-ink-200 bg-ink-50 text-xs uppercase text-ink-500">
+                        <table className="gm-table min-w-[560px]">
+                          <thead className="border-b border-ink-200 bg-ink-50 text-[11px] uppercase tracking-[0.06em] text-ink-500">
                             <tr>
                               <th className="px-4 py-3 font-semibold">Name</th>
                               <th className="px-4 py-3 font-semibold">Weight</th>

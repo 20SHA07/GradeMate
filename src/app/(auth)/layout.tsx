@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { GraduationCap } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -8,12 +7,11 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col px-4 py-8 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between gap-4">
           <Link className="flex items-center gap-3 font-semibold text-ink-900" href="/">
-            <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-700 text-white">
+            <span className="flex h-10 w-10 items-center justify-center rounded-md bg-teal-700 text-[color:var(--accent-on)]">
               <GraduationCap aria-hidden="true" className="h-5 w-5" />
             </span>
             GradeMate
           </Link>
-          <ThemeToggle />
         </div>
         <div className="flex flex-1 items-center justify-center py-10">
           {children}

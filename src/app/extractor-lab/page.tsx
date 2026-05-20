@@ -11,7 +11,7 @@ export default function ExtractorLabPage() {
     return (
       <main className="flex min-h-screen items-center justify-center bg-ink-50 px-4 py-12">
         <Card className="w-full max-w-lg p-6 text-center">
-          <h1 className="text-2xl font-semibold text-ink-900">
+          <h1 className="text-[26px] font-bold leading-tight text-ink-900">
             Extractor Lab is development-only
           </h1>
           <p className="mt-3 text-sm leading-6 text-ink-500">

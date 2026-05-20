@@ -17,19 +17,8 @@ type ThemeContextValue = {
 };
 
 const ThemeContext = createContext<ThemeContextValue | null>(null);
-const storageKey = "grademate_theme";
 
 function getPreferredTheme(): Theme {
-  if (typeof window === "undefined") {
-    return "dark";
-  }
-
-  const savedTheme = window.localStorage.getItem(storageKey);
-
-  if (savedTheme === "light" || savedTheme === "dark") {
-    return savedTheme;
-  }
-
   return "dark";
 }
 
@@ -50,12 +39,8 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     () => ({
       theme,
       toggleTheme() {
-        setTheme((currentTheme) => {
-          const nextTheme = currentTheme === "dark" ? "light" : "dark";
-          window.localStorage.setItem(storageKey, nextTheme);
-          applyTheme(nextTheme);
-          return nextTheme;
-        });
+        applyTheme("dark");
+        setTheme("dark");
       }
     }),
     [theme]

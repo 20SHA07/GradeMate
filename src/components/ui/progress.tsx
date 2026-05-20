@@ -26,7 +26,7 @@ export function Progress({
 
   return (
     <div
-      className={cn("h-2 w-full overflow-hidden rounded-full bg-ink-100", className)}
+      className={cn("h-1.5 w-full overflow-hidden rounded-full bg-ink-100", className)}
     >
       <div
         className={cn("h-full rounded-full transition-all", toneStyles[tone])}

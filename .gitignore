@@ -19,10 +19,14 @@ build
 
 # Logs
 debug.log
+codex-next*.log
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
+
+# Local agent/runtime cache
+.codex/
 
 # Local exported syllabus collections
 training-data/collected-syllabi/

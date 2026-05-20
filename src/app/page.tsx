@@ -1,12 +1,11 @@
 import Link from "next/link";
 import {
   ArrowRight,
+  BarChart3,
   BookMarked,
   Calculator,
-  GraduationCap,
-  ShieldCheck,
+  Moon,
   Sparkles,
-  Target
 } from "lucide-react";
 import { MarketingNav } from "@/components/navigation/marketing-nav";
 import { buttonStyles } from "@/components/ui/button";
@@ -16,26 +15,30 @@ const featureCards = [
   {
     title: "Smart Syllabus Auto-Fill",
     description:
-      "Upload or paste a syllabus, review the detected grading rows, and save only what you confirm.",
-    icon: Sparkles
+      "Upload your syllabus and let GradeMate extract assignments, weights, and deadlines automatically. Less data entry, more studying.",
+    icon: Sparkles,
+    className: "md:col-span-2"
   },
   {
     title: "KU Course Library",
     description:
-      "Start from rebuilt course templates with ready assessment weights for common KU courses.",
-    icon: BookMarked
+      "Access a curated database of common KU courses with pre-configured grading schemas.",
+    icon: BookMarked,
+    className: ""
   },
   {
-    title: "Grade Planner",
+    title: "Real-time Projections",
     description:
-      "Pick any target grade and see the score or remaining average you need before finals week.",
-    icon: Target
+      "See what you need on the final to secure your target grade instantly.",
+    icon: BarChart3,
+    className: ""
   },
   {
-    title: "Privacy-first PDFs",
+    title: "Architected for Focus",
     description:
-      "Normal syllabus scans happen locally in your browser. PDFs are not stored after saving.",
-    icon: ShieldCheck
+      "A minimalist, dark-themed interface designed to reduce visual fatigue during late-night study sessions.",
+    icon: Moon,
+    className: "md:col-span-2"
   }
 ];
 
@@ -43,23 +46,17 @@ export default function LandingPage() {
   return (
     <div className="min-h-screen overflow-hidden bg-ink-50">
       <MarketingNav />
-      <main className="mx-auto flex min-h-[calc(100vh-4rem)] w-full max-w-6xl flex-col justify-center px-4 py-12 sm:px-6 lg:px-8">
-        <section className="mx-auto max-w-3xl text-center">
-          <span className="mx-auto inline-flex items-center gap-2 rounded-full border border-teal-400/30 bg-teal-500/10 px-3 py-1 text-sm font-medium text-teal-700">
-            <GraduationCap aria-hidden="true" className="h-4 w-4" />
-            Built for KU students
-          </span>
-          <h1 className="mt-6 text-4xl font-semibold tracking-tight text-ink-900 sm:text-6xl">
-            Your GPA, courses, and syllabus grades in one place.
+      <main className="mx-auto flex min-h-[calc(100vh-3.5rem)] w-full max-w-5xl flex-col px-4 py-16 sm:px-6">
+        <section className="mx-auto max-w-2xl pt-10 text-center">
+          <h1 className="text-4xl font-bold leading-tight tracking-normal text-ink-900 sm:text-[42px]">
+            Your GPA, simplified.
           </h1>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-7 text-ink-500 sm:text-lg">
-            GradeMate keeps the calculator calm by default, then brings in
-            syllabus auto-fill, course templates, and target planning exactly
-            when you need them.
+          <p className="mx-auto mt-6 max-w-xl text-[13px] leading-5 text-ink-700">
+            The student-first grade tracker built specifically for Khalifa University.
           </p>
           <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
             <Link className={buttonStyles({ size: "lg" })} href="/workspace">
-              Open Workspace
+              Enter Workspace
               <ArrowRight aria-hidden="true" className="h-4 w-4" />
             </Link>
             <Link
@@ -72,30 +69,39 @@ export default function LandingPage() {
           </div>
         </section>
 
-        <div className="mt-14 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <div className="mt-28 grid gap-4 md:grid-cols-3">
           {featureCards.map((feature) => {
             const Icon = feature.icon;
 
             return (
               <Card
-                className="group flex min-h-52 flex-col p-5 transition hover:-translate-y-0.5 hover:border-teal-200 hover:bg-teal-50/40"
+                className={`group flex min-h-44 flex-col p-6 transition-colors hover:border-teal-200 hover:bg-teal-50/20 ${feature.className}`}
                 key={feature.title}
               >
-                <span className="flex h-10 w-10 items-center justify-center rounded-lg bg-teal-50 text-teal-700 transition group-hover:bg-teal-600 group-hover:text-white">
-                  <Icon aria-hidden="true" className="h-6 w-6" />
+                <span className="flex h-10 w-10 items-center justify-center text-teal-300 transition-colors">
+                  <Icon aria-hidden="true" className="h-5 w-5" />
                 </span>
-                <h2 className="mt-5 text-lg font-semibold text-ink-900">
+                <h2 className="mt-5 text-[24px] font-bold leading-tight text-ink-900">
                   {feature.title}
                 </h2>
-                <p className="mt-3 text-sm leading-6 text-ink-500">
+                <p className="mt-3 max-w-md text-[13px] leading-5 text-ink-700">
                   {feature.description}
                 </p>
+                {feature.title === "Smart Syllabus Auto-Fill" ? (
+                  <p className="mt-auto pt-8 text-right text-[10px] font-bold uppercase tracking-[0.08em] text-ink-400">
+                    Syllabi are read locally and never stored.
+                  </p>
+                ) : null}
               </Card>
             );
           })}
         </div>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-2 text-sm text-ink-500">
+        <p className="mx-auto mt-6 max-w-2xl border border-ink-200 bg-white/70 px-4 py-3 text-center text-xs text-ink-600">
+          PDFs are read locally and not stored. You decide what course data gets saved.
+        </p>
+
+        <div className="mt-6 flex flex-wrap justify-center gap-2 text-sm text-ink-500">
           <Link className="rounded-md px-3 py-2 hover:bg-ink-100 hover:text-teal-700" href="/course-library">
             Browse Course Library
           </Link>

@@ -86,7 +86,7 @@ export function AuthCallbackClient() {
             ? "Sign-in was canceled. You can try again or continue as a guest."
             : isPkceVerifierError(callbackErrorDescription)
               ? expiredSignInLinkMessage
-              : "We could not complete this sign-in link. Please try logging in again."
+              : "We could not complete verification. Please try logging in again."
         );
         return;
       }
@@ -99,7 +99,7 @@ export function AuthCallbackClient() {
           setError(
             isPkceVerifierError(exchangeError)
               ? expiredSignInLinkMessage
-              : "We could not complete this sign-in link. Please try logging in again."
+              : "We could not complete verification. Please try logging in again."
           );
           return;
         }
@@ -167,8 +167,8 @@ export function AuthCallbackClient() {
 
   return (
     <Card className="w-full max-w-md p-6 text-center">
-      <h1 className="text-2xl font-semibold text-ink-900">
-        {error ? "Sign-in link needs a reset" : "Signing you in"}
+      <h1 className="text-[26px] font-bold leading-tight text-ink-900">
+        {error ? "Verification needs a reset" : "Signing you in"}
       </h1>
       <p className="mt-2 text-sm leading-6 text-ink-500">
         {error

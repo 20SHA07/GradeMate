@@ -379,8 +379,8 @@ export function GpaCalculator() {
                 </div>
               ) : (
                 <div className="overflow-x-auto">
-                  <table className="w-full min-w-[780px] text-left text-sm">
-                    <thead className="border-b border-ink-200 bg-ink-50 text-xs uppercase text-ink-500">
+                  <table className="gm-table min-w-[780px]">
+                    <thead className="border-b border-ink-200 bg-ink-50 text-[11px] uppercase tracking-[0.06em] text-ink-500">
                       <tr>
                         <th className="px-5 py-3 font-semibold">Course</th>
                         <th className="px-5 py-3 font-semibold">Credits</th>
@@ -570,7 +570,7 @@ export function GpaCalculator() {
                   <p className="text-sm font-medium text-teal-50">
                     Projected GPA
                   </p>
-                  <p className="mt-2 text-5xl font-semibold">
+                  <p className="mt-2 text-[38px] font-bold leading-none">
                     {formatGpa(projectedResult.gpa)}
                   </p>
                   <p className="mt-2 text-sm text-teal-50">

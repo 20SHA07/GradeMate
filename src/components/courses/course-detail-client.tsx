@@ -6,6 +6,7 @@ import {
   ArrowLeft,
   BookOpen,
   CalendarDays,
+  CheckCircle,
   ClipboardPaste,
   Edit3,
   FileText,
@@ -26,6 +27,8 @@ import { Button, buttonStyles } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { PageHeader } from "@/components/ui/page-header";
+import { GradePlannerPanel } from "@/components/planner/grade-planner-panel";
+import type { PlannerAssessmentInput } from "@/lib/grade-planner";
 import {
   formatPercent,
   getAssessmentMaxScore,
@@ -34,14 +37,8 @@ import {
   getAssessmentWeight,
   getCourseGradeSummary,
   getLetterGrade,
-  getWeightedContribution,
-  isCompletedAssessment
+  getWeightedContribution
 } from "@/lib/grades";
-import {
-  getTargetDifficultyLabel,
-  getTargetDifficultyTone,
-  targetGradeOptions
-} from "@/lib/grade-targets";
 import {
   createGuestId,
   readGuestData,
@@ -150,7 +147,7 @@ const defaultAssessmentForm: AssessmentForm = {
 };
 
 const inputStyles =
-  "mt-1 h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+  "mt-1 gm-input";
 
 const extractorTabs = [
   { icon: UploadCloud, label: "Upload PDF", value: "upload" },
@@ -229,14 +226,28 @@ function getWeightReadiness(totalWeight: number) {
 
 function getWeightHelperText(totalWeight: number) {
   if (isWeightCloseToReady(totalWeight)) {
-    return "Weight total: 100% ready";
+    return "Total weight: 100% ready";
   }
 
   if (totalWeight < 100) {
-    return `Missing ${formatWeightDelta(100 - totalWeight)}%`;
+    return `Total weight: missing ${formatWeightDelta(100 - totalWeight)}%`;
   }
 
-  return `Over by ${formatWeightDelta(totalWeight - 100)}%`;
+  return `Total weight: over by ${formatWeightDelta(totalWeight - 100)}%`;
+}
+
+function getCoursePlannerAssessments(
+  assessments: AssessmentRecord[]
+): PlannerAssessmentInput[] {
+  return assessments.map((assessment) => ({
+    id: assessment.id,
+    name: getAssessmentName(assessment),
+    weightPercentage:
+      assessment.weight_percentage ?? assessment.weight ?? null,
+    score: assessment.score,
+    maxScore: assessment.max_score,
+    status: getAssessmentStatus(assessment)
+  }));
 }
 
 function getConfidenceInfo(confidence: number) {
@@ -1077,8 +1088,8 @@ function SmartSyllabusExtractor({
       setPendingFeedback(null);
       setMessage(
         feedback === "correct"
-          ? "Thanks — this helps GradeMate improve future extractions."
-          : "Thanks — we'll use your corrected version to improve future extraction."
+          ? "Thanks, this helps GradeMate improve future extractions."
+          : "Thanks, we'll use your corrected version to improve future extraction."
       );
       if (feedback === "correct") {
         setMessage("Thanks - this helps GradeMate improve future extractions.");
@@ -1132,7 +1143,7 @@ function SmartSyllabusExtractor({
           Type it like a message. GradeMate will turn it into assessments.
         </p>
         <textarea
-          className="mt-3 min-h-24 w-full rounded-lg border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+          className="gm-textarea mt-3 min-h-24"
           onChange={(event) => setQuickText(event.target.value)}
           placeholder="quizzes 15, assignments 20, midterm 25, final 40"
           value={quickText}
@@ -1196,14 +1207,13 @@ function SmartSyllabusExtractor({
               </span>
               <input
                 accept="application/pdf"
-                className="mt-1 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                className="mt-1 block w-full rounded-md border border-dashed border-border bg-input px-3 py-3 text-sm text-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground"
                 disabled={isExtracting}
                 onChange={(event) => setFile(event.target.files?.[0] ?? null)}
                 type="file"
               />
-              <span className="mt-2 block text-xs text-ink-500">
-                PDFs are read locally in your browser and are not stored. Only
-                reviewed course data is saved.
+              <span className="mt-2 block text-[11px] text-muted-foreground">
+                PDFs are read locally and not stored. Only reviewed course data is saved.
               </span>
             </label>
             <Button
@@ -1242,7 +1252,7 @@ function SmartSyllabusExtractor({
               Syllabus text
             </span>
             <textarea
-              className="mt-1 min-h-44 w-full rounded-lg border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100"
+              className="gm-textarea mt-1 min-h-44"
               onChange={(event) => setPastedText(event.target.value)}
               placeholder="Paste the grading breakdown or syllabus text here..."
               value={pastedText}
@@ -1347,17 +1357,23 @@ function SmartSyllabusExtractor({
       ) : null}
 
       {extraction ? (
-        <div className="mt-5 space-y-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
-          <div className="flex flex-col gap-3 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-5 space-y-4 border border-ink-200 bg-white/90 p-4">
+          <div>
             <div>
-              <h3 className="text-lg font-semibold text-ink-900">
-                Review extraction
+              <h3 className="text-[28px] font-bold leading-tight text-ink-900">
+                Review Extraction
               </h3>
-              <p className="mt-1 text-sm text-ink-600">
+              <p className="mt-2 text-sm text-ink-700">
                 Syllabus processed locally. Review before saving.
               </p>
             </div>
-            <p className="text-xs font-medium text-teal-800">
+          </div>
+          <div className="flex items-center gap-3 border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
+            <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
+            <p>
+              Syllabus successfully processed locally. {reviewRows.length} grading milestones identified.
+            </p>
+            <p className="ml-auto hidden text-xs font-medium sm:block">
               PDFs are read locally and not stored.
             </p>
           </div>
@@ -1402,18 +1418,6 @@ function SmartSyllabusExtractor({
             ) : null}
           </div>
 
-          {process.env.NODE_ENV === "development" && extraction.debug ? (
-            <div className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
-              <p className="font-semibold text-ink-800">Dev extraction debug</p>
-              <p className="mt-1">
-                Text length: {extraction.debug.textLength} · Candidates:{" "}
-                {extraction.debug.candidateCount} · Chosen:{" "}
-                {extraction.debug.chosenCandidateLabel} · Score:{" "}
-                {extraction.debug.chosenCandidateScore}
-              </p>
-            </div>
-          ) : null}
-
           {!isWeightCloseToReady(reviewTotalWeight) && reviewRows.length > 0 ? (
             <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
               You can still save this, but the course weights do not add to
@@ -1421,16 +1425,18 @@ function SmartSyllabusExtractor({
             </p>
           ) : null}
 
-          {extraction.warnings.length > 0 ? (
-            <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-              <p className="font-medium">Review notes</p>
+          <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+            <p className="font-medium">Warnings</p>
+            {extraction.warnings.length > 0 ? (
               <ul className="mt-2 list-disc space-y-1 pl-5">
                 {extraction.warnings.map((warning) => (
                   <li key={warning}>{warning}</li>
                 ))}
               </ul>
-            </div>
-          ) : null}
+            ) : (
+              <p className="mt-1">No warnings detected.</p>
+            )}
+          </div>
 
           {courseInfoRows.length > 0 ? (
             <div className="rounded-lg border border-ink-200 bg-white p-4">
@@ -1489,7 +1495,7 @@ function SmartSyllabusExtractor({
                       />
                       {willReplace ? (
                         <p className="mt-2 text-xs text-amber-700">
-                          This will replace: {oldValue} → {row.value}
+                          This will replace {oldValue} with {row.value}.
                         </p>
                       ) : null}
                     </label>
@@ -1518,8 +1524,8 @@ function SmartSyllabusExtractor({
             </div>
           ) : (
             <div className="overflow-x-auto rounded-lg border border-ink-200">
-              <table className="w-full min-w-[980px] text-left text-sm">
-                <thead className="bg-ink-100 text-xs uppercase text-ink-500">
+              <table className="gm-table min-w-[980px]">
+                <thead className="bg-ink-100 text-[11px] uppercase tracking-[0.06em] text-ink-500">
                   <tr>
                     <th className="px-4 py-3 font-semibold">Assessment</th>
                     <th className="px-4 py-3 font-semibold">Weight %</th>
@@ -1628,7 +1634,16 @@ function SmartSyllabusExtractor({
             </div>
           )}
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-col gap-3 border-t border-ink-200 bg-ink-100/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                Total weight check
+              </p>
+              <p className="mt-1 text-[26px] font-bold leading-none text-teal-300">
+                {formatWeightDelta(reviewTotalWeight)}%
+              </p>
+            </div>
+            <div className="flex flex-wrap gap-2">
             <Button onClick={addReviewRow} variant="secondary">
               <PlusCircle aria-hidden="true" className="h-4 w-4" />
               Add row
@@ -1642,7 +1657,7 @@ function SmartSyllabusExtractor({
               }}
               variant="secondary"
             >
-              {extractionSource === "pdf" ? "Re-upload PDF" : "Try again"}
+              Re-upload
             </Button>
             {reviewRows.length === 0 ? (
               <Button onClick={clearResults} variant="ghost">
@@ -1652,16 +1667,16 @@ function SmartSyllabusExtractor({
               <>
                 <Button
                   disabled={isSavingExtraction}
-                  onClick={() => void saveExtractedAssessments("replace")}
+                  onClick={() => void saveExtractedAssessments("append")}
                 >
-                  Replace existing assessments
+                  Confirm & Save
                 </Button>
                 <Button
                   disabled={isSavingExtraction}
-                  onClick={() => void saveExtractedAssessments("append")}
+                  onClick={() => void saveExtractedAssessments("replace")}
                   variant="secondary"
                 >
-                  Append new assessments only
+                  Replace existing
                 </Button>
                 <Button onClick={clearResults} variant="ghost">
                   Cancel
@@ -1680,6 +1695,7 @@ function SmartSyllabusExtractor({
                 </Button>
               </>
             )}
+            </div>
           </div>
         </div>
       ) : null}
@@ -1712,7 +1728,6 @@ export function CourseDetailClient({
   );
   const [targetGrade, setTargetGrade] = useState("90");
   const [activeTab, setActiveTab] = useState<CourseDetailTab>("assessments");
-  const [selectedNeedAssessmentId, setSelectedNeedAssessmentId] = useState("");
   const [isAssessmentFormOpen, setIsAssessmentFormOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
   const [isSaving, setIsSaving] = useState(false);
@@ -1832,62 +1847,10 @@ export function CourseDetailClient({
       ),
     [assessments]
   );
-  const remainingAssessments = useMemo(
-    () =>
-      sortedAssessments.filter(
-        (assessment) =>
-          getAssessmentStatus(assessment) !== "Dropped" &&
-          !isCompletedAssessment(assessment) &&
-          getAssessmentWeight(assessment) > 0
-      ),
+  const plannerAssessments = useMemo(
+    () => getCoursePlannerAssessments(sortedAssessments),
     [sortedAssessments]
   );
-  const selectedNeedAssessment =
-    remainingAssessments.find(
-      (assessment) => assessment.id === selectedNeedAssessmentId
-    ) ??
-    remainingAssessments[0] ??
-    null;
-  const needCalculator = useMemo(() => {
-    if (!selectedNeedAssessment) {
-      return null;
-    }
-
-    const target = Number(targetGrade);
-    const weight = getAssessmentWeight(selectedNeedAssessment);
-    const maxScore = getAssessmentMaxScore(selectedNeedAssessment) ?? 100;
-
-    if (!Number.isFinite(target) || weight <= 0 || maxScore <= 0) {
-      return null;
-    }
-
-    const neededContribution = target - gradeSummary.completedContribution;
-    const neededPercent = (neededContribution / weight) * 100;
-    const neededScore = (neededPercent / 100) * maxScore;
-
-    return {
-      maxScore,
-      neededPercent,
-      neededScore
-    };
-  }, [gradeSummary.completedContribution, selectedNeedAssessment, targetGrade]);
-  const targetNumeric = Number(targetGrade);
-  const bestPossibleGrade =
-    gradeSummary.completedContribution + gradeSummary.unscoredWeight;
-  const neededRemainingAverage =
-    Number.isFinite(targetNumeric) && gradeSummary.unscoredWeight > 0
-      ? ((targetNumeric - gradeSummary.completedContribution) /
-          gradeSummary.unscoredWeight) *
-        100
-      : null;
-  const predictorStatus =
-    Number.isFinite(targetNumeric) &&
-    targetNumeric <= gradeSummary.completedContribution
-      ? { label: "Already secured", tone: "green" as const }
-      : {
-          label: getTargetDifficultyLabel(neededRemainingAverage),
-          tone: getTargetDifficultyTone(neededRemainingAverage)
-        };
   const hasCourseDetails = [
     course?.instructor,
     course?.instructor_email,
@@ -2119,8 +2082,8 @@ export function CourseDetailClient({
   }[] = [
     { id: "assessments", label: "Assessments", icon: Layers3 },
     { id: "planner", label: "Planner", icon: Target },
-    { id: "extractor", label: "Syllabus Auto-Fill", icon: Wand2 },
-    { id: "details", label: "Course Details", icon: Info }
+    { id: "extractor", label: "Syllabus", icon: Wand2 },
+    { id: "details", label: "Details", icon: Info }
   ];
 
   return (
@@ -2173,8 +2136,8 @@ export function CourseDetailClient({
           ["Remaining weight", `${gradeSummary.unscoredWeight}%`, "Unscored work"]
         ].map(([label, value, helper]) => (
           <Card className="p-4" key={label}>
-            <p className="text-sm font-medium text-ink-500">{label}</p>
-            <p className="mt-2 text-2xl font-semibold text-ink-900">
+            <p className="text-[11px] font-semibold text-ink-500">{label}</p>
+            <p className="mt-2 text-[26px] font-bold leading-none text-ink-900">
               {value}
             </p>
             <p className="mt-1 text-xs text-ink-500">{helper}</p>
@@ -2182,7 +2145,7 @@ export function CourseDetailClient({
         ))}
       </section>
 
-      <Card className="p-2">
+      <Card className="p-1.5">
         <div className="flex gap-1 overflow-x-auto">
           {detailTabs.map((tab) => {
             const Icon = tab.icon;
@@ -2190,9 +2153,9 @@ export function CourseDetailClient({
 
             return (
               <button
-                className={`flex min-w-fit items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition ${
+                className={`flex min-w-fit items-center gap-2 rounded-md px-4 py-2 text-sm font-semibold transition-colors ${
                   isActive
-                    ? "bg-teal-600 text-white shadow-sm"
+                    ? "bg-teal-600 text-[color:var(--accent-on)]"
                     : "text-ink-500 hover:bg-ink-100 hover:text-ink-900"
                 }`}
                 key={tab.id}
@@ -2271,8 +2234,8 @@ export function CourseDetailClient({
               </div>
             ) : (
               <div className="overflow-x-auto">
-                <table className="w-full min-w-[820px] text-left text-sm">
-                  <thead className="border-b border-ink-200 bg-ink-50 text-xs text-ink-500">
+                <table className="gm-table min-w-[820px]">
+                  <thead className="border-b border-ink-200 bg-ink-50 text-[11px] uppercase tracking-[0.06em] text-ink-500">
                     <tr>
                       <th className="px-5 py-3 font-semibold">Assessment</th>
                       <th className="px-5 py-3 font-semibold">Status</th>
@@ -2497,173 +2460,17 @@ export function CourseDetailClient({
       ) : null}
 
       {activeTab === "planner" ? (
-        <Card className="p-5">
-          {sortedAssessments.length === 0 ? (
-            <EmptyState
-              action={
-                <div className="flex flex-wrap justify-center gap-2">
-                  <Button onClick={() => setActiveTab("assessments")} variant="secondary">
-                    Add assessments
-                  </Button>
-                  <Button onClick={() => setActiveTab("extractor")}>
-                    Scan syllabus
-                  </Button>
-                </div>
-              }
-              description="Add assessments or scan your syllabus to unlock predictions."
-              icon={<Target aria-hidden="true" className="h-5 w-5" />}
-              title="Planner is waiting for coursework"
-            />
-          ) : (
-            <>
-              <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
-                <div>
-                  <div className="flex items-center gap-2 text-sm font-medium text-teal-700">
-                    <Target aria-hidden="true" className="h-4 w-4" />
-                    Target grade planner
-                  </div>
-                  <h2 className="mt-2 text-xl font-semibold text-ink-900">
-                    What do I need?
-                  </h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-6 text-ink-500">
-                    Pick any grade target, then check one assessment or your
-                    overall remaining average.
-                  </p>
-                </div>
-                <div className="flex flex-wrap gap-2">
-                  <Badge tone={predictorStatus.tone}>{predictorStatus.label}</Badge>
-                  <Badge tone={remainingAssessments.length > 0 ? "teal" : "ink"}>
-                    {remainingAssessments.length} remaining
-                  </Badge>
-                </div>
-              </div>
-
-              <div className="mt-5 flex flex-wrap gap-2">
-                {targetGradeOptions.map((target) => {
-                  const value = String(target.value);
-
-                  return (
-                    <Button
-                      key={target.label}
-                      onClick={() => setTargetGrade(value)}
-                      size="sm"
-                      variant={targetGrade === value ? "primary" : "secondary"}
-                    >
-                      {target.label} {target.value}%
-                    </Button>
-                  );
-                })}
-              </div>
-
-              <div className="mt-5 grid gap-4 lg:grid-cols-[12rem_minmax(0,1fr)_18rem] lg:items-end">
-                <label className="block">
-                  <span className="text-sm font-medium text-ink-700">
-                    Custom target
-                  </span>
-                  <input
-                    className={inputStyles}
-                    min="0"
-                    onChange={(event) => setTargetGrade(event.target.value)}
-                    step="0.1"
-                    type="number"
-                    value={targetGrade}
-                  />
-                </label>
-                <label className="block">
-                  <span className="text-sm font-medium text-ink-700">
-                    Remaining assessment
-                  </span>
-                  <select
-                    className={inputStyles}
-                    disabled={remainingAssessments.length === 0}
-                    onChange={(event) =>
-                      setSelectedNeedAssessmentId(event.target.value)
-                    }
-                    value={selectedNeedAssessment?.id ?? ""}
-                  >
-                    {remainingAssessments.length === 0 ? (
-                      <option value="">No remaining weighted assessments</option>
-                    ) : null}
-                    {remainingAssessments.map((assessment) => (
-                      <option key={assessment.id} value={assessment.id}>
-                        {getAssessmentName(assessment)} -{" "}
-                        {getAssessmentWeight(assessment)}%
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-                  <p className="text-sm font-medium text-ink-500">Needed score</p>
-                  {selectedNeedAssessment && needCalculator ? (
-                    <>
-                      <p className="mt-2 text-3xl font-semibold text-ink-900">
-                        {needCalculator.neededPercent <= 0
-                          ? "0.0%"
-                          : `${needCalculator.neededPercent.toFixed(1)}%`}
-                      </p>
-                      <p className="mt-1 text-sm text-ink-500">
-                        {needCalculator.neededPercent <= 0
-                          ? "Already secured."
-                          : needCalculator.neededPercent > 100
-                            ? "Not possible on this assessment alone."
-                            : `${needCalculator.neededScore.toFixed(1)} / ${
-                                needCalculator.maxScore
-                              }`}
-                      </p>
-                    </>
-                  ) : (
-                    <p className="mt-2 text-sm text-ink-500">
-                      Add a weighted, unscored assessment.
-                    </p>
-                  )}
-                </div>
-              </div>
-
-              <div className="mt-4 grid gap-3 md:grid-cols-4">
-                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-                  <p className="text-ink-500">Current grade so far</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {formatPercent(gradeSummary.currentGrade)}
-                  </p>
-                </div>
-                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-                  <p className="text-ink-500">Needed average remaining</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {neededRemainingAverage === null
-                      ? "No remaining work"
-                      : formatPercent(neededRemainingAverage)}
-                  </p>
-                </div>
-                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-                  <p className="text-ink-500">Best possible final grade</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {formatPercent(bestPossibleGrade)}
-                  </p>
-                </div>
-                <div className="rounded-lg bg-ink-100/60 p-3 text-sm">
-                  <p className="text-ink-500">Projected if zeros</p>
-                  <p className="mt-1 font-semibold text-ink-900">
-                    {formatPercent(gradeSummary.finalProjectedGrade)}
-                  </p>
-                </div>
-              </div>
-              <p className="mt-4 rounded-lg bg-ink-100/60 p-3 text-sm text-ink-600">
-                {neededRemainingAverage === null
-                  ? "No remaining assessments are available for predictions."
-                  : targetNumeric <= gradeSummary.completedContribution
-                    ? "You've already secured this target based on completed work."
-                    : neededRemainingAverage > 100
-                      ? `To reach ${targetGrade}%, you would need ${neededRemainingAverage.toFixed(
-                          1
-                        )}% average on remaining work.`
-                      : `You need an average of ${neededRemainingAverage.toFixed(
-                          1
-                        )}% across the remaining work to finish with ${targetGrade}%.`}
-              </p>
-            </>
-          )}
-        </Card>
+        <GradePlannerPanel
+          assessments={plannerAssessments}
+          courseName={course.name}
+          onAddAssessments={() => {
+            setActiveTab("assessments");
+            setIsAssessmentFormOpen(true);
+          }}
+          onScanSyllabus={() => setActiveTab("extractor")}
+          onTargetGradeChange={setTargetGrade}
+          targetGrade={targetGrade}
+        />
       ) : null}
 
       {activeTab === "extractor" ? (

@@ -1,31 +1,26 @@
 import Link from "next/link";
-import { Calculator, GraduationCap, Library, LogIn } from "lucide-react";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
+import { Calculator, Library, LogIn } from "lucide-react";
 import { buttonStyles } from "@/components/ui/button";
 
 export function MarketingNav() {
   return (
-    <header className="overflow-x-hidden border-b border-ink-200 bg-white/80 backdrop-blur-xl">
-      <div className="mx-auto flex max-w-7xl items-center justify-between gap-3 px-4 py-3 sm:px-6 lg:px-8">
-        <Link className="flex items-center gap-2 font-semibold text-ink-900" href="/">
-          <span className="flex h-9 w-9 items-center justify-center rounded-lg bg-teal-600 text-white shadow-sm shadow-teal-950/20">
-            <GraduationCap aria-hidden="true" className="h-5 w-5" />
-          </span>
+    <header className="overflow-x-hidden border-b border-ink-200 bg-ink-50">
+      <div className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3 sm:px-6">
+        <Link className="text-xl font-bold text-teal-300" href="/">
           GradeMate
         </Link>
-        <nav className="hidden min-w-0 items-center gap-1 text-sm font-medium text-ink-500 md:flex">
-          <Link className="rounded-lg px-3 py-2 hover:bg-ink-100 hover:text-ink-900" href="/workspace">
-            Workspace
+        <nav className="hidden min-w-0 items-center gap-5 text-[13px] font-semibold text-ink-800 md:flex">
+          <Link className="hover:text-teal-300" href="/workspace">
+            Dashboard
           </Link>
-          <Link className="rounded-lg px-3 py-2 hover:bg-ink-100 hover:text-ink-900" href="/course-library">
+          <Link className="hover:text-teal-300" href="/course-library">
             Course Library
           </Link>
-          <Link className="rounded-lg px-3 py-2 hover:bg-ink-100 hover:text-ink-900" href="/simple">
+          <Link className="hover:text-teal-300" href="/simple">
             GPA Calc
           </Link>
         </nav>
         <nav className="flex min-w-0 shrink-0 items-center gap-2">
-          <ThemeToggle />
           <Link
             className={buttonStyles({ className: "max-[360px]:hidden", variant: "ghost", size: "sm" })}
             href="/login"
@@ -52,7 +47,7 @@ export function MarketingNav() {
             })}
             href="/workspace"
           >
-            Open workspace
+            Workspace
           </Link>
           <Link
             aria-label="Quick GPA Calculator"

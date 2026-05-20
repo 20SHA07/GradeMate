@@ -368,7 +368,7 @@ export function SemestersManager() {
               <p className="text-sm font-medium text-teal-700">
                 Open semester
               </p>
-              <h2 className="mt-1 text-2xl font-semibold text-ink-900">
+              <h2 className="mt-1 text-[26px] font-bold leading-tight text-ink-900">
                 {selectedSemester.name}
               </h2>
               <p className="mt-2 text-sm text-ink-500">

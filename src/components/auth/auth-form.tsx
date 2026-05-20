@@ -152,14 +152,14 @@ export function AuthForm({ mode }: AuthFormProps) {
   }
 
   return (
-    <Card className="w-full max-w-md p-6">
+    <Card className="w-full max-w-md p-5 sm:p-6">
       <div>
-        <h1 className="text-2xl font-semibold text-ink-900">
+        <h1 className="text-[26px] font-bold leading-tight text-ink-900">
           {isSignup ? "Create account" : "Log in"}
         </h1>
         <p className="mt-2 text-sm leading-6 text-ink-500">
           {isSignup
-            ? "Create your GradeMate workspace with email and password. When email confirmation is off, you will go straight to Workspace."
+            ? "Create your GradeMate workspace with email and password."
             : "Log in to manage your semesters, courses, and GPA plan."}
         </p>
       </div>
@@ -167,7 +167,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       <form className="mt-6 space-y-4" onSubmit={handleSubmit}>
         {isSignup ? (
           <label className="block">
-            <span className="text-sm font-medium text-ink-700">Name</span>
+            <span className="text-[13px] font-semibold text-ink-700">Name</span>
             <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
               <UserRound aria-hidden="true" className="h-4 w-4 text-ink-400" />
               <input
@@ -181,13 +181,13 @@ export function AuthForm({ mode }: AuthFormProps) {
         ) : null}
 
         <label className="block">
-          <span className="text-sm font-medium text-ink-700">Email</span>
+          <span className="text-[13px] font-semibold text-ink-700">Email address</span>
           <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
             <Mail aria-hidden="true" className="h-4 w-4 text-ink-400" />
             <input
               className="min-w-0 flex-1 border-0 bg-transparent text-sm text-ink-900 outline-none"
               onChange={(event) => setEmail(event.target.value)}
-              placeholder="you@example.com"
+              placeholder="student@ku.ac.ae"
               required
               type="email"
               value={email}
@@ -196,7 +196,7 @@ export function AuthForm({ mode }: AuthFormProps) {
         </label>
 
         <label className="block">
-          <span className="text-sm font-medium text-ink-700">Password</span>
+          <span className="text-[13px] font-semibold text-ink-700">Password</span>
           <span className="mt-1 flex h-11 items-center gap-2 rounded-lg border border-ink-200 bg-white px-3 focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-100">
             <LockKeyhole aria-hidden="true" className="h-4 w-4 text-ink-400" />
             <input
@@ -278,7 +278,7 @@ export function AuthForm({ mode }: AuthFormProps) {
       </div>
 
       <p className="mt-3 text-center text-xs leading-5 text-ink-500">
-        Guest work is saved on this device. Sign up anytime to keep your workspace in your account.
+        Guest work stays on this device. Sign up anytime to keep it with your account.
       </p>
 
       <p className="mt-5 text-center text-sm text-ink-500">

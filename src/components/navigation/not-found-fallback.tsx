@@ -39,7 +39,7 @@ export function NotFoundFallback() {
     <main className="flex min-h-screen items-center justify-center bg-ink-50 px-4">
       <Card className="max-w-md p-6 text-center">
         <p className="text-sm font-medium text-teal-700">GradeMate</p>
-        <h1 className="mt-2 text-2xl font-semibold text-ink-900">
+        <h1 className="mt-2 text-[26px] font-bold leading-tight text-ink-900">
           Page not found
         </h1>
         <p className="mt-2 text-sm leading-6 text-ink-500">

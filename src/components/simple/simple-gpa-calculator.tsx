@@ -1,13 +1,14 @@
 "use client";
 
+import Link from "next/link";
 import {
   BookOpen,
   Calculator,
+  CheckCircle,
   ClipboardPaste,
   Download,
   FileText,
   FileUp,
-  GraduationCap,
   PlusCircle,
   Search,
   Sparkles,
@@ -26,16 +27,11 @@ import {
   type RefObject,
   type SetStateAction
 } from "react";
-import { ModeSwitch } from "@/components/navigation/mode-switch";
-import { ThemeToggle } from "@/components/theme/theme-toggle";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import {
-  getTargetDifficultyLabel,
-  getTargetDifficultyTone,
-  targetGradeOptions
-} from "@/lib/grade-targets";
+import { GradePlannerPanel } from "@/components/planner/grade-planner-panel";
+import type { PlannerAssessmentInput } from "@/lib/grade-planner";
 import { createSupabaseBrowserClient } from "@/lib/supabase/client";
 import { getSupabasePublicConfig } from "@/lib/supabase/config";
 import {
@@ -164,10 +160,8 @@ type ExtractionTab = "quick" | "paste" | "pdf";
 
 const simpleStorageKey = "grademate_simple_gpa";
 const sampleBreakdown = "quizzes 15, assignments 20, midterm 25, final 40";
-const inputStyles =
-  "h-10 w-full rounded-lg border border-ink-200 bg-white px-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
-const textareaStyles =
-  "w-full rounded-lg border border-ink-200 bg-white px-3 py-3 text-sm text-ink-900 outline-none transition focus:border-teal-700 focus:ring-2 focus:ring-teal-100";
+const inputStyles = "gm-input";
+const textareaStyles = "gm-textarea";
 
 const defaultCourse: Omit<SimpleCourse, "id"> = {
   assessments: [],
@@ -380,14 +374,14 @@ function isWeightReady(totalWeight: number) {
 
 function getWeightText(totalWeight: number) {
   if (isWeightReady(totalWeight)) {
-    return "Weight total: 100% ready";
+    return "Total weight: 100% ready";
   }
 
   if (totalWeight < 100) {
-    return `Missing ${(100 - totalWeight).toFixed(1)}%`;
+    return `Total weight: missing ${(100 - totalWeight).toFixed(1)}%`;
   }
 
-  return `Over by ${(totalWeight - 100).toFixed(1)}%`;
+  return `Total weight: over by ${(totalWeight - 100).toFixed(1)}%`;
 }
 
 function getExtractionTotalWeight(extraction: ExtractedSyllabus) {
@@ -487,6 +481,27 @@ function getVerifiedSource(source: ExtractionSource): VerifiedExtractionSource {
   if (source === "pdf") return "pdf";
   if (source === "paste") return "pasted_text";
   return "quick_add";
+}
+
+function getSimplePlannerAssessments(course: SimpleCourse): PlannerAssessmentInput[] {
+  return course.assessments.map((assessment) => {
+    const score = parseOptionalNonNegativeNumber(assessment.score);
+    const maxScore = assessment.maxScore.trim()
+      ? parsePositiveNumber(assessment.maxScore)
+      : null;
+    const weight = assessment.weightPercentage.trim()
+      ? Number(assessment.weightPercentage)
+      : null;
+
+    return {
+      id: assessment.id,
+      name: assessment.name,
+      weightPercentage: Number.isFinite(weight) ? weight : null,
+      score,
+      maxScore: maxScore && maxScore > 0 ? maxScore : null,
+      status: score !== null && maxScore && maxScore > 0 ? "Completed" : "Remaining"
+    };
+  });
 }
 
 function buildConfirmedExtraction(
@@ -854,9 +869,6 @@ export function SimpleGpaCalculator() {
     data.courses.find((course) => course.id === activeExtractionCourseId) ?? null;
   const activePredictorCourse =
     data.courses.find((course) => course.id === activePredictorCourseId) ?? null;
-  const activePredictorStats = activePredictorCourse
-    ? getCourseGradeStats(activePredictorCourse)
-    : null;
 
   function resetNotices() {
     setMessage("");
@@ -1462,8 +1474,8 @@ export function SimpleGpaCalculator() {
       });
       setMessage(
         feedback === "correct"
-          ? "Thanks — this helps GradeMate improve future extractions."
-          : "Thanks — we'll use your corrected version to improve future extraction."
+          ? "Thanks, this helps GradeMate improve future extractions."
+          : "Thanks, we'll use your corrected version to improve future extraction."
       );
       if (feedback === "correct") {
         setMessage("Thanks - this helps GradeMate improve future extractions.");
@@ -1481,65 +1493,147 @@ export function SimpleGpaCalculator() {
   }
 
   return (
-    <main className="min-h-screen overflow-x-hidden bg-ink-50 px-4 py-6 text-ink-900 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-5xl space-y-5">
-        <header className="flex flex-col gap-4 rounded-lg border border-ink-200 bg-white/90 p-4 shadow-soft shadow-black/10 sm:flex-row sm:items-center sm:justify-between sm:p-5">
-          <div className="flex items-center gap-3">
-            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-teal-600 text-white shadow-sm shadow-teal-950/30">
-              <GraduationCap aria-hidden="true" className="h-6 w-6" />
-            </span>
-            <div>
-              <Badge tone="teal">Fast Mode</Badge>
-              <h1 className="mt-1 text-2xl font-semibold text-ink-900">
-                GradeMate Simple
-              </h1>
-            </div>
+    <main className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900">
+      <div className="mx-auto grid min-h-screen max-w-6xl lg:grid-cols-[15rem_minmax(0,1fr)]">
+        <aside className="hidden border-r border-ink-200 bg-ink-100 lg:flex lg:flex-col">
+          <div className="px-4 py-5">
+            <Link className="text-xl font-bold text-teal-300" href="/">
+              GradeMate
+            </Link>
+          </div>
+          <div className="px-4">
+            <Button
+              className="w-full uppercase tracking-[0.08em]"
+              onClick={() => addCourse()}
+              size="sm"
+            >
+              <PlusCircle aria-hidden="true" className="h-4 w-4" />
+              New Course
+            </Button>
+          </div>
+          <nav className="mt-5 grid gap-1 px-3 text-xs font-semibold">
+            <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/workspace">
+              Dashboard
+            </Link>
+            <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/course-library">
+              Course Library
+            </Link>
+            <Link className="rounded-[3px] bg-teal-700 px-3 py-2 text-ink-900" href="/simple">
+              GPA Calculator
+            </Link>
+            <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/courses">
+              Syllabus Review
+            </Link>
+          </nav>
+          <div className="mt-auto border-t border-ink-200 p-4">
+            <p className="text-xs font-bold text-ink-900">Student Workspace</p>
+            <p className="text-[10px] font-bold uppercase tracking-[0.08em] text-ink-700">
+              Khalifa University
+            </p>
+          </div>
+        </aside>
+
+        <div className="min-w-0 space-y-4 px-4 py-8 sm:px-6 lg:px-7">
+        <header className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+          <div>
+            <h1 className="text-[26px] font-bold leading-tight text-ink-900">GPA Calculator</h1>
+            <p className="mt-2 max-w-xl text-[13px] leading-5 text-ink-800">
+              Calculate your expected GPA for the current semester. Add your courses, estimated credits, and expected grades to see where you stand.
+            </p>
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            <Button onClick={exportData} variant="secondary">
-              <Download aria-hidden="true" className="h-4 w-4" />
-              Export
-            </Button>
             <Button
-              onClick={() => setIsImportOpen(true)}
+              disabled={data.courses.length === 0}
+              onClick={() => setActivePredictorCourseId(data.courses[0]?.id ?? null)}
               variant="secondary"
             >
+              <Calculator aria-hidden="true" className="h-4 w-4" />
+              What If Scenario
+            </Button>
+            <Button onClick={exportData} variant="secondary">
+              <Download aria-hidden="true" className="h-4 w-4" />
+              Save
+            </Button>
+            <Button onClick={() => setIsImportOpen(true)} variant="ghost">
               <FileUp aria-hidden="true" className="h-4 w-4" />
               Import
             </Button>
-            <ModeSwitch className="w-full sm:w-64" compact />
-            <ThemeToggle />
           </div>
         </header>
 
-        <section className="grid gap-4 md:grid-cols-3">
-          <Card className="p-5">
-            <p className="text-sm font-medium text-ink-500">Semester GPA</p>
-            <p className="mt-3 text-4xl font-semibold text-ink-900">
-              {formatGpa(summary.semesterGpa)}
-            </p>
-            <p className="mt-2 text-sm text-ink-500">
-              Current semester only
-            </p>
+        <section className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_13rem]">
+          <Card className="grid gap-4 p-4 sm:grid-cols-3">
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
+                Current term
+              </p>
+              <p className="mt-2 text-base font-semibold text-ink-900">
+                Fall 2024
+              </p>
+            </div>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                Total credits
+              </p>
+              <p className="mt-2 text-base font-semibold text-ink-900">
+                {Number(summary.semesterHours).toFixed(1)}
+              </p>
+            </div>
+            <div>
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                Quality points
+              </p>
+              <p className="mt-2 text-base font-semibold text-ink-900">
+                {summary.semesterQualityPoints.toFixed(1)}
+              </p>
+            </div>
           </Card>
-          <Card className="p-5">
-            <p className="text-sm font-medium text-ink-500">Cumulative GPA</p>
-            <p className="mt-3 text-4xl font-semibold text-ink-900">
-              {formatGpa(summary.cumulativeGpa)}
-            </p>
-            <p className="mt-2 text-sm text-ink-500">
-              Existing GPA plus this term
-            </p>
-          </Card>
-          <Card className="p-5">
-            <p className="text-sm font-medium text-ink-500">Credit Hours</p>
-            <p className="mt-3 text-4xl font-semibold text-ink-900">
-              {summary.semesterHours}
-            </p>
-            <p className="mt-2 text-sm text-ink-500">
-              {summary.cumulativeHours} cumulative hours
-            </p>
-          </Card>
+
+          <div className="grid gap-3">
+            <Card className="p-4 text-center">
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-teal-300">
+                Estimated term GPA
+              </p>
+              <p className="mt-3 text-[38px] font-bold leading-none text-ink-900">
+                {formatGpa(summary.semesterGpa)}
+              </p>
+              <p className="mt-2 text-xs text-ink-700">
+                Based on {summary.semesterHours} credits
+              </p>
+              <div className="mt-4 h-0.5 bg-teal-300" />
+              <div className="mt-2 flex justify-between text-[10px] font-semibold text-ink-800">
+                <span>0.0</span>
+                <span>4.0</span>
+              </div>
+            </Card>
+            <Card className="p-4">
+              <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+                Cumulative impact
+              </p>
+              <div className="mt-4 flex items-end justify-between gap-3">
+                <div>
+                  <p className="text-xs font-semibold text-ink-900">Current CGPA</p>
+                  <p className="text-[10px] text-ink-700">
+                    {summary.cumulativeHours} credits
+                  </p>
+                </div>
+                <p className="text-sm font-semibold text-ink-900">
+                  {data.existingCgpa || formatGpa(summary.cumulativeGpa)}
+                </p>
+              </div>
+              <div className="mt-4 flex items-end justify-between gap-3 text-teal-300">
+                <div>
+                  <p className="text-xs font-semibold">New projected CGPA</p>
+                  <p className="text-[10px]">
+                    {summary.cumulativeHours} credits total
+                  </p>
+                </div>
+                <p className="text-sm font-semibold">
+                  {formatGpa(summary.cumulativeGpa)}
+                </p>
+              </div>
+            </Card>
+          </div>
         </section>
 
         {(message || error) && (
@@ -1605,54 +1699,6 @@ export function SimpleGpaCalculator() {
             </div>
           </Card>
         ) : null}
-
-        <Card className="p-5">
-          <div className="flex flex-col gap-4 md:flex-row md:items-end">
-            <div className="flex-1">
-              <h2 className="text-lg font-semibold text-ink-900">
-                Student Information
-              </h2>
-              <p className="mt-1 text-sm text-ink-500">
-                Add your current GPA to calculate a cumulative result.
-              </p>
-            </div>
-            <div className="grid flex-1 gap-3 sm:grid-cols-2">
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">
-                  Existing CGPA
-                </span>
-                <input
-                  className={inputStyles}
-                  max="4"
-                  min="0"
-                  onChange={(event) =>
-                    updateData({ existingCgpa: event.target.value })
-                  }
-                  placeholder="3.45"
-                  step="0.01"
-                  type="number"
-                  value={data.existingCgpa}
-                />
-              </label>
-              <label className="block">
-                <span className="text-sm font-medium text-ink-700">
-                  Completed hours
-                </span>
-                <input
-                  className={inputStyles}
-                  min="0"
-                  onChange={(event) =>
-                    updateData({ completedHours: event.target.value })
-                  }
-                  placeholder="60"
-                  step="1"
-                  type="number"
-                  value={data.completedHours}
-                />
-              </label>
-            </div>
-          </div>
-        </Card>
 
         <section className="space-y-5">
           {false ? (
@@ -1870,11 +1916,9 @@ export function SimpleGpaCalculator() {
           ) : null}
 
           <Card className="overflow-hidden">
-            <div className="flex flex-col gap-3 border-b border-ink-200 p-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-col gap-3 border-b border-ink-200 p-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
-                <h2 className="text-lg font-semibold text-ink-900">
-                  Current Semester Courses
-                </h2>
+                <h2 className="text-base font-semibold text-ink-900">Current semester courses</h2>
                 <p className="mt-1 text-sm text-ink-500">
                   Add each course, credits, and grade. Coursework stays tucked away until you need it.
                 </p>
@@ -1903,8 +1947,8 @@ export function SimpleGpaCalculator() {
                     : getGradeInfo(stats.currentGrade);
 
                 return (
-                  <div className="space-y-3 px-4 py-3 sm:px-5" key={course.id}>
-                    <div className="grid gap-3 xl:grid-cols-[7.5rem_minmax(10rem,1fr)_5rem_8.5rem_7.5rem_auto] xl:items-end">
+                  <div className="space-y-3 px-4 py-3" key={course.id}>
+                    <div className="grid gap-3 xl:grid-cols-[7rem_minmax(10rem,1fr)_4.75rem_8rem_7rem_auto] xl:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course code
@@ -2011,7 +2055,7 @@ export function SimpleGpaCalculator() {
                       </Button>
                     </div>
 
-                    <div className="hidden flex-wrap items-center gap-2 rounded-lg border border-ink-100 bg-ink-50 px-3 py-2 text-xs text-ink-500 sm:flex">
+                    <div className="flex flex-wrap items-center gap-2 rounded-md border border-ink-200 bg-ink-50 px-3 py-2 text-xs text-ink-500">
                       <Badge tone="teal">
                         Course {formatPercent(stats.currentGrade)}
                       </Badge>
@@ -2030,6 +2074,26 @@ export function SimpleGpaCalculator() {
                       <span className="rounded-full bg-white px-2.5 py-1 font-medium text-ink-700">
                         Remaining {stats.remainingWeight.toFixed(1)}%
                       </span>
+                      <span className="hidden h-5 w-px bg-ink-200 sm:block" />
+                      <Button
+                        onClick={() => {
+                          setActiveExtractionCourseId(course.id);
+                          setExtractionTab("quick");
+                        }}
+                        size="sm"
+                        variant="secondary"
+                      >
+                        <Wand2 aria-hidden="true" className="h-4 w-4" />
+                        Scan Syllabus
+                      </Button>
+                      <Button
+                        onClick={() => setActivePredictorCourseId(course.id)}
+                        size="sm"
+                        variant="secondary"
+                      >
+                        <Calculator aria-hidden="true" className="h-4 w-4" />
+                        What do I need?
+                      </Button>
                     </div>
 
                     <CourseworkDetails
@@ -2050,6 +2114,47 @@ export function SimpleGpaCalculator() {
             </div>
           </Card>
         </section>
+
+        <details className="border border-ink-200 bg-white/80 px-4 py-3">
+          <summary className="cursor-pointer text-sm font-semibold text-ink-900">
+            Student information
+          </summary>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2">
+            <label className="block">
+              <span className="text-sm font-medium text-ink-700">
+                Existing CGPA
+              </span>
+              <input
+                className={inputStyles}
+                max="4"
+                min="0"
+                onChange={(event) =>
+                  updateData({ existingCgpa: event.target.value })
+                }
+                placeholder="3.45"
+                step="0.01"
+                type="number"
+                value={data.existingCgpa}
+              />
+            </label>
+            <label className="block">
+              <span className="text-sm font-medium text-ink-700">
+                Completed hours
+              </span>
+              <input
+                className={inputStyles}
+                min="0"
+                onChange={(event) =>
+                  updateData({ completedHours: event.target.value })
+                }
+                placeholder="60"
+                step="1"
+                type="number"
+                value={data.completedHours}
+              />
+            </label>
+          </div>
+        </details>
 
         {isFindCourseOpen ? (
           <SimpleModal
@@ -2138,19 +2243,25 @@ export function SimpleGpaCalculator() {
           </SimpleModal>
         ) : null}
 
-        {activePredictorCourse && activePredictorStats ? (
+        {activePredictorCourse ? (
           <SimpleModal
             onClose={() => setActivePredictorCourseId(null)}
-            title="Target grade planner"
+            title="Grade Planner"
+            wide
           >
             <PredictorModalContent
               course={activePredictorCourse}
+              onScanSyllabus={() => {
+                setActivePredictorCourseId(null);
+                setActiveExtractionCourseId(activePredictorCourse.id);
+                setExtractionTab("quick");
+              }}
               predictor={predictors[activePredictorCourse.id]}
-              stats={activePredictorStats}
               updatePredictor={updatePredictor}
             />
           </SimpleModal>
         ) : null}
+      </div>
       </div>
     </main>
   );
@@ -2256,8 +2367,8 @@ function CourseworkDetails({
             </div>
           ) : (
             <div className="mt-3 overflow-x-auto rounded-lg border border-ink-200">
-              <table className="w-full min-w-[720px] text-left text-sm">
-                <thead className="bg-ink-100 text-xs uppercase text-ink-500">
+              <table className="gm-table min-w-[720px]">
+                <thead className="bg-ink-100 text-[11px] uppercase tracking-[0.06em] text-ink-500">
                   <tr>
                     <th className="px-4 py-3 font-semibold">Assessment</th>
                     <th className="px-4 py-3 font-semibold">Score</th>
@@ -2394,9 +2505,9 @@ function SimpleModal({
   wide?: boolean;
 }) {
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center overflow-y-auto bg-ink-950/70 px-4 py-6 backdrop-blur-sm">
+    <div className="gm-modal-backdrop">
       <div
-        className={`w-full rounded-lg border border-ink-200 bg-white shadow-2xl shadow-black/30 ${
+        className={`max-h-[calc(100vh-2rem)] w-full overflow-hidden rounded-lg border border-ink-200 bg-white ${
           wide ? "max-w-5xl" : "max-w-2xl"
         }`}
       >
@@ -2406,7 +2517,7 @@ function SimpleModal({
             <X aria-hidden="true" className="h-4 w-4" />
           </Button>
         </div>
-        <div className="p-5">{children}</div>
+        <div className="max-h-[calc(100vh-6.5rem)] overflow-y-auto p-4 sm:p-5">{children}</div>
       </div>
     </div>
   );
@@ -2769,12 +2880,12 @@ function ExtractionModalContent({
               </div>
               <input
                 accept="application/pdf"
-                className="mt-3 block w-full rounded-lg border border-dashed border-ink-300 bg-ink-50 px-3 py-3 text-sm text-ink-700 file:mr-4 file:rounded-lg file:border-0 file:bg-teal-700 file:px-3 file:py-2 file:text-sm file:font-medium file:text-white"
+                className="mt-3 block w-full rounded-md border border-dashed border-border bg-input px-3 py-3 text-sm text-foreground file:mr-3 file:rounded-md file:border-0 file:bg-primary file:px-3 file:py-1.5 file:text-xs file:font-medium file:text-primary-foreground"
                 onChange={(event) => setPdfFile(event.target.files?.[0] ?? null)}
                 type="file"
               />
-              <p className="mt-2 text-xs text-ink-500">
-                PDFs are read locally in your browser and are not stored. If it fails, paste the grading section instead.
+              <p className="mt-2 text-[11px] text-muted-foreground">
+                PDFs are read locally and not stored. If it fails, paste the grading section instead.
               </p>
               <Button
                 className="mt-3"
@@ -2842,187 +2953,28 @@ function ExtractionModalContent({
 
 function PredictorModalContent({
   course,
+  onScanSyllabus,
   predictor,
-  stats,
   updatePredictor
 }: {
   course: SimpleCourse;
+  onScanSyllabus: () => void;
   predictor: PredictorState | undefined;
-  stats: ReturnType<typeof getCourseGradeStats>;
   updatePredictor: (
     courseId: string,
     nextState: Partial<PredictorState>
   ) => void;
 }) {
-  const remainingAssessments = stats.rows.filter((row) => !row.isCompleted);
-  const activePredictor = {
-    selectedAssessmentId:
-      predictor?.selectedAssessmentId || remainingAssessments[0]?.assessment.id || "",
-    targetGrade: predictor?.targetGrade || "90"
-  };
-  const selectedRemaining = remainingAssessments.find(
-    (row) => row.assessment.id === activePredictor.selectedAssessmentId
-  );
-  const targetGrade = Number(activePredictor.targetGrade);
-  const neededScore =
-    selectedRemaining && Number.isFinite(targetGrade) && selectedRemaining.weight > 0
-      ? ((targetGrade - stats.completedPoints) / selectedRemaining.weight) * 100
-      : null;
-  const neededAverage =
-    stats.remainingWeight > 0 && Number.isFinite(targetGrade)
-      ? ((targetGrade - stats.completedPoints) / stats.remainingWeight) * 100
-      : null;
-  const targetAlreadySecured =
-    Number.isFinite(targetGrade) && targetGrade <= stats.completedPoints;
-  const statusTone =
-    neededAverage === null
-      ? "ink"
-      : targetAlreadySecured
-        ? "green"
-        : getTargetDifficultyTone(neededAverage);
-  const statusLabel =
-    neededAverage === null
-      ? "Needs remaining work"
-      : targetAlreadySecured
-        ? "Already secured"
-        : getTargetDifficultyLabel(neededAverage);
-  const predictorMessage =
-    neededScore === null
-      ? "Add a remaining assessment to calculate what you need."
-      : targetGrade <= stats.completedPoints
-        ? "You've already secured this target based on completed work."
-        : neededScore > 100
-          ? "This target is not possible with the remaining weight."
-          : neededScore < 0
-            ? "You've already secured this target based on completed work."
-            : `You need ${neededScore.toFixed(1)}% on ${selectedRemaining?.assessment.name} to reach ${targetGrade.toFixed(1)}%.`;
-
   return (
-    <section className="space-y-4">
-      <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <p className="text-base font-semibold text-ink-900">
-            Target grade planner
-          </p>
-          <p className="mt-1 text-sm text-ink-500">
-            Pick a target and see what {course.name || "this course"} still needs.
-          </p>
-        </div>
-        <Badge tone={statusTone}>{statusLabel}</Badge>
-      </div>
-      {course.assessments.length === 0 ? (
-        <div className="rounded-lg border border-dashed border-ink-200 bg-ink-50 px-4 py-6 text-sm text-ink-500">
-          Add coursework or scan a syllabus to unlock predictions.
-        </div>
-      ) : null}
-      <div className="rounded-lg border border-ink-200 bg-ink-50 p-3">
-        <p className="text-sm font-medium text-ink-700">Choose target</p>
-        <div className="mt-2 flex flex-wrap gap-2">
-          {targetGradeOptions.map((option) => {
-            const isSelected = activePredictor.targetGrade === String(option.value);
-
-            return (
-              <button
-                className={`rounded-md border px-3 py-1.5 text-sm font-semibold transition ${
-                  isSelected
-                    ? "border-teal-600 bg-teal-600 text-white shadow-sm shadow-teal-950/20"
-                    : "border-ink-200 bg-white text-ink-700 hover:border-teal-300 hover:text-teal-700"
-                }`}
-                key={option.label}
-                onClick={() =>
-                  updatePredictor(course.id, {
-                    targetGrade: String(option.value)
-                  })
-                }
-                type="button"
-              >
-                {option.label} {option.value}%
-              </button>
-            );
-          })}
-        </div>
-      </div>
-      <div className="grid gap-3 md:grid-cols-[12rem_minmax(0,1fr)]">
-        <label className="block">
-          <span className="text-sm font-medium text-ink-700">Custom target</span>
-          <input
-            className={inputStyles}
-            max="100"
-            min="0"
-            onChange={(event) =>
-              updatePredictor(course.id, {
-                targetGrade: event.target.value
-              })
-            }
-            step="0.1"
-            type="number"
-            value={activePredictor.targetGrade}
-          />
-        </label>
-        <label className="block">
-          <span className="text-sm font-medium text-ink-700">
-            Remaining assessment
-          </span>
-          <select
-            className={inputStyles}
-            disabled={remainingAssessments.length === 0}
-            onChange={(event) =>
-              updatePredictor(course.id, {
-                selectedAssessmentId: event.target.value
-              })
-            }
-            value={activePredictor.selectedAssessmentId}
-          >
-            {remainingAssessments.length === 0 ? (
-              <option>No remaining assessments</option>
-            ) : (
-              remainingAssessments.map((row) => (
-                <option key={row.assessment.id} value={row.assessment.id}>
-                  {row.assessment.name}
-                </option>
-              ))
-            )}
-          </select>
-        </label>
-      </div>
-      <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
-        <div className="rounded-lg bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">Current so far</p>
-          <p className="mt-1 text-lg font-semibold text-ink-900">
-            {formatPercent(stats.currentGrade)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">Needed score</p>
-          <p className="mt-1 text-lg font-semibold text-ink-900">
-            {formatPercent(neededScore)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">
-            Needed average remaining
-          </p>
-          <p className="mt-1 text-lg font-semibold text-ink-900">
-            {formatPercent(neededAverage)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">Best possible</p>
-          <p className="mt-1 text-lg font-semibold text-ink-900">
-            {formatPercent(stats.bestPossibleGrade)}
-          </p>
-        </div>
-        <div className="rounded-lg bg-ink-100 px-4 py-3">
-          <p className="text-xs font-medium text-ink-500">If remaining zero</p>
-          <p className="mt-1 text-lg font-semibold text-ink-900">
-            {formatPercent(stats.projectedFinalGrade)}
-          </p>
-        </div>
-      </div>
-      <p className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-sm text-ink-600">
-        {predictorMessage}
-      </p>
-    </section>
+    <GradePlannerPanel
+      assessments={getSimplePlannerAssessments(course)}
+      courseName={course.name || course.code || "this course"}
+      onScanSyllabus={onScanSyllabus}
+      onTargetGradeChange={(value) =>
+        updatePredictor(course.id, { targetGrade: value })
+      }
+      targetGrade={predictor?.targetGrade || "90"}
+    />
   );
 }
 
@@ -3059,17 +3011,23 @@ function ExtractionReview({
   const hasExistingAssessments = course.assessments.length > 0;
 
   return (
-    <section className="space-y-4 rounded-lg border border-ink-200 bg-ink-50 p-4">
-      <div className="flex flex-col gap-3 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+    <section className="space-y-4 border border-ink-200 bg-white/90 p-4">
+      <div>
         <div>
-          <h3 className="text-lg font-semibold text-ink-900">
-            Review extraction
+          <h3 className="text-[28px] font-bold leading-tight text-ink-900">
+            Review Extraction
           </h3>
-          <p className="mt-1 text-sm text-ink-600">
+          <p className="mt-2 text-sm text-ink-700">
             Syllabus processed locally. Review before saving.
           </p>
         </div>
-        <p className="text-xs font-medium text-teal-800">
+      </div>
+      <div className="flex items-center gap-3 border border-teal-200 bg-teal-50 px-4 py-3 text-sm text-teal-800">
+        <CheckCircle aria-hidden="true" className="h-4 w-4 shrink-0" />
+        <p>
+          Syllabus successfully processed locally. {review.rows.length} grading milestones identified.
+        </p>
+        <p className="ml-auto hidden text-xs font-medium sm:block">
           PDFs are read locally and not stored.
         </p>
       </div>
@@ -3088,34 +3046,24 @@ function ExtractionReview({
         </Badge>
       </div>
 
-      {process.env.NODE_ENV === "development" && review.extraction.debug ? (
-        <div className="rounded-lg border border-ink-200 bg-white px-4 py-3 text-xs text-ink-600">
-          <p className="font-semibold text-ink-800">Dev extraction debug</p>
-          <p className="mt-1">
-            Text length: {review.extraction.debug.textLength} · Candidates:{" "}
-            {review.extraction.debug.candidateCount} · Chosen:{" "}
-            {review.extraction.debug.chosenCandidateLabel} · Score:{" "}
-            {review.extraction.debug.chosenCandidateScore}
-          </p>
-        </div>
-      ) : null}
-
       {!isWeightReady(reviewTotalWeight) && review.rows.length > 0 ? (
         <p className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
           You can still save this, but the weights do not add to 100% yet.
         </p>
       ) : null}
 
-      {review.extraction.warnings.length > 0 ? (
-        <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
-          <p className="font-medium">Review notes</p>
+      <div className="rounded-lg border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800">
+        <p className="font-medium">Warnings</p>
+        {review.extraction.warnings.length > 0 ? (
           <ul className="mt-2 list-disc space-y-1 pl-5">
             {review.extraction.warnings.map((warning) => (
               <li key={warning}>{warning}</li>
             ))}
           </ul>
-        </div>
-      ) : null}
+        ) : (
+          <p className="mt-1">No warnings detected.</p>
+        )}
+      </div>
 
       {review.courseInfo.length > 0 ? (
         <div className="rounded-lg border border-ink-200 bg-white p-4">
@@ -3175,8 +3123,8 @@ function ExtractionReview({
         </div>
       ) : (
         <div className="overflow-x-auto rounded-lg border border-ink-200">
-          <table className="w-full min-w-[900px] text-left text-sm">
-            <thead className="bg-ink-100 text-xs uppercase text-ink-500">
+          <table className="gm-table min-w-[900px]">
+            <thead className="bg-ink-100 text-[11px] uppercase tracking-[0.06em] text-ink-500">
               <tr>
                 <th className="px-4 py-3 font-semibold">Assessment</th>
                 <th className="px-4 py-3 font-semibold">Weight %</th>
@@ -3277,40 +3225,50 @@ function ExtractionReview({
         </div>
       )}
 
-      <div className="flex flex-wrap gap-2">
-        <Button onClick={addReviewRow} variant="secondary">
-          <PlusCircle aria-hidden="true" className="h-4 w-4" />
-          Add row
-        </Button>
-        <Button onClick={() => setReview(null)} variant="secondary">
-          Try again
-        </Button>
-        {review.rows.length === 0 ? (
-          <Button onClick={() => setReview(null)} variant="ghost">
-            Cancel
+      <div className="flex flex-col gap-3 border-t border-ink-200 bg-ink-100/70 px-4 py-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p className="text-[11px] font-bold uppercase tracking-[0.08em] text-ink-700">
+            Total weight check
+          </p>
+          <p className="mt-1 text-[26px] font-bold leading-none text-teal-300">
+            {reviewTotalWeight.toFixed(Number.isInteger(reviewTotalWeight) ? 0 : 1)}%
+          </p>
+        </div>
+        <div className="flex flex-wrap gap-2">
+          <Button onClick={addReviewRow} variant="secondary">
+            <PlusCircle aria-hidden="true" className="h-4 w-4" />
+            Add row
           </Button>
-        ) : hasExistingAssessments ? (
-          <>
-            <Button onClick={() => saveReview("replace")}>
-              Replace existing assessments
-            </Button>
-            <Button onClick={() => saveReview("append")} variant="secondary">
-              Append new assessments only
-            </Button>
+          <Button onClick={() => setReview(null)} variant="secondary">
+            Re-upload
+          </Button>
+          {review.rows.length === 0 ? (
             <Button onClick={() => setReview(null)} variant="ghost">
               Cancel
             </Button>
-          </>
-        ) : (
-          <>
-            <Button onClick={() => saveReview("append")}>
-              Confirm & Save
-            </Button>
-            <Button onClick={() => setReview(null)} variant="ghost">
-              Cancel
-            </Button>
-          </>
-        )}
+          ) : hasExistingAssessments ? (
+            <>
+              <Button onClick={() => saveReview("append")}>
+                Confirm & Save
+              </Button>
+              <Button onClick={() => saveReview("replace")} variant="secondary">
+                Replace existing
+              </Button>
+              <Button onClick={() => setReview(null)} variant="ghost">
+                Cancel
+              </Button>
+            </>
+          ) : (
+            <>
+              <Button onClick={() => saveReview("append")}>
+                Confirm & Save
+              </Button>
+              <Button onClick={() => setReview(null)} variant="ghost">
+                Cancel
+              </Button>
+            </>
+          )}
+        </div>
       </div>
     </section>
   );
