@@ -243,10 +243,6 @@ function formatGpa(value: number | null) {
   return value === null || Number.isNaN(value) ? "--" : value.toFixed(2);
 }
 
-function formatPercent(value: number | null) {
-  return value === null || Number.isNaN(value) ? "--" : `${value.toFixed(1)}%`;
-}
-
 function normalizeName(value: string) {
   return value.trim().toLowerCase();
 }
@@ -1983,7 +1979,7 @@ export function SimpleGpaCalculator() {
 
                 return (
                   <div className="space-y-3 px-4 py-3" key={course.id}>
-                    <div className="grid gap-3 xl:grid-cols-[7rem_minmax(10rem,1fr)_4.75rem_8rem_7rem_5.5rem_auto] xl:items-end">
+                    <div className="grid gap-3 xl:grid-cols-[7.5rem_minmax(12rem,1fr)_5rem_9.5rem_7.5rem_6.5rem_auto] xl:items-end">
                       <label className="block">
                         <span className="text-sm font-medium text-ink-700">
                           Course code
@@ -2078,17 +2074,12 @@ export function SimpleGpaCalculator() {
                             </option>
                           ))}
                         </select>
-                        <span className="mt-1 block text-[11px] text-ink-500">
-                          {course.gradeSource === "calculated"
-                            ? formatPercent(stats.currentGrade)
-                            : "Manual"}
-                        </span>
                       </label>
                       <div>
                         <p className="text-sm font-medium text-ink-700">
                           Quality pts
                         </p>
-                        <p className="mt-1 rounded-[3px] border border-ink-200 bg-ink-50 px-3 py-2 text-sm font-semibold text-ink-900">
+                        <p className="mt-1 flex h-9 items-center rounded-[3px] border border-ink-200 bg-ink-50 px-3 text-sm font-semibold text-ink-900">
                           {qualityPoints.toFixed(1)}
                         </p>
                       </div>
