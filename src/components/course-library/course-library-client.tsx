@@ -993,6 +993,22 @@ export function CourseLibraryClient() {
         </div>
       </header>
 
+      <Card className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 className="text-lg font-semibold text-ink-900">
+            Can&apos;t find your course?
+          </h2>
+          <p className="mt-1 text-sm text-ink-500">
+            Upload a syllabus from one of your courses and GradeMate can help
+            turn it into assessments.
+          </p>
+        </div>
+        <Link className={buttonStyles()} href="/contribute-syllabus">
+          <FileText aria-hidden="true" className="h-4 w-4" />
+          Contribute syllabus
+        </Link>
+      </Card>
+
       {error ? (
         <p className="rounded-lg border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-700">
           {error}
@@ -1203,22 +1219,6 @@ export function CourseLibraryClient() {
           })}
         </section>
       )}
-
-      <Card className="flex flex-col gap-3 p-5 sm:flex-row sm:items-center sm:justify-between">
-        <div>
-          <h2 className="text-lg font-semibold text-ink-900">
-            Can&apos;t find your course?
-          </h2>
-          <p className="mt-1 text-sm text-ink-500">
-            Upload a syllabus from one of your courses and GradeMate can help
-            turn it into assessments.
-          </p>
-        </div>
-        <Link className={buttonStyles()} href="/contribute-syllabus">
-          <FileText aria-hidden="true" className="h-4 w-4" />
-          Contribute syllabus
-        </Link>
-      </Card>
 
       {detailTemplate ? (
         <div
