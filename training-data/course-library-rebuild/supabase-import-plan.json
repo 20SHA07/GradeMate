@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-19T19:56:41.612Z",
+  "generatedAt": "2026-05-20T17:50:42.503Z",
   "currentSource": "backup 2026-05-19T18-06-32-923Z",
   "options": {
     "includeNeedsReview": false,
@@ -84,7 +84,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.591Z"
+          "updated_at": "2026-05-20T17:50:42.498Z"
         },
         "assessments": [
           {
@@ -215,7 +215,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.595Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -316,7 +316,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.596Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -467,7 +467,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.596Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -620,7 +620,7 @@
             "International edition, 2016, ISBN: 9781259251320"
           ],
           "course_description": "The primary objective of this course is to study analogue, digital electronic circuits and their application\nto biomedical instrumentation and physiological measurements. The course will focus strongly on\nelectronic hardware and software design issues required to produce medical instruments, which satisfy\nInternational standards for safety, performance and quality control. Students will be equipped with the\nfundamental knowledge required to design Biosignal processing system.",
-          "updated_at": "2026-05-19T19:56:41.597Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -731,7 +731,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.597Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -884,7 +884,7 @@
             "Hall, ISBN: 9781292025728, Pearson New International Edition, 2013."
           ],
           "course_description": "The primary objective of this course is to study analogue and digital signal processing techniques\nand microcomputer system, and their application to biomedical instrumentation and physiological\nmeasurements. This course is designed for students who are expected to have prior knowledge in\ncircuits and physiological system modelling. The main focus is on the technical aspects of\nbiosignal processing and its hardware implementation in medical instruments.",
-          "updated_at": "2026-05-19T19:56:41.598Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -995,7 +995,7 @@
             "Economics by Michael Parkin, Publisher: Pearson Education, 13th Edition (Global Edition), 2019. Series: MyEconLab. ISBN: 9781292255552"
           ],
           "course_description": "This course introduces microeconomic concepts and analysis and provides an overview of macroeconomic issues. Topics studied include: the nature and dimensions of competition, the concepts of demand and supply, theories of the firm and individual behavior, market structure, competition and monopoly, costs and incentives, wage determination, and employment, the determination of output, employment, unemployment, interest rates, and inflation. Monetary and fiscal policies are discussed.",
-          "updated_at": "2026-05-19T19:56:41.598Z"
+          "updated_at": "2026-05-20T17:50:42.500Z"
         },
         "assessments": [
           {
@@ -1107,7 +1107,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T19:56:41.598Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1217,7 +1217,7 @@
             "2015, International Student Edition, ISBN: 9781259875991"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.599Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1329,7 +1329,7 @@
             "978-1352012491"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.599Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1443,7 +1443,7 @@
             "McGraw-Hill, 2025, ISBN: 978-1-265-12041-2."
           ],
           "course_description": "This course covers the principles of digital logic design, including data representation in digital systems, Boolean\nalgebra, and logic function implementation. It introduces combinational and sequential logic design, computer-aided\ndesign (CAD) tools, hardware description languages, and the use of artificial intelligence (AI) methods for digital logic\ncircuit design and optimization. Sustainability is emphasized through circuit minimization. Laboratory experiments\nprovide hands-on experience with simulating, implementing, and testing digital circuits.",
-          "updated_at": "2026-05-19T19:56:41.600Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1554,7 +1554,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.600Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1774,7 +1774,7 @@
             "Abbott, 8th edition, McGraw-Hill, New York, 2018, ISBN: 978-1-259-92189-6."
           ],
           "course_description": "Fundamentals of classical thermodynamics for application to chemical engineering processes and\nsystems. Application of first and second laws to the analysis of thermodynamic cycles and processes;\nvolumetric and thermodynamic properties of liquids and gases; heat effects.",
-          "updated_at": "2026-05-19T19:56:41.601Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -1875,7 +1875,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.601Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2015,7 +2015,7 @@
             "Week 6 Examples on Bernoulli’s Equation"
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.601Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2176,7 +2176,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.602Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2336,7 +2336,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.602Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2467,7 +2467,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.602Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2648,7 +2648,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": ", report, and calculations will be given with the assignment.",
-          "updated_at": "2026-05-19T19:56:41.602Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2768,7 +2768,7 @@
             "9 Intl Edition, 2014, ISBN-13: 9781118319222"
           ],
           "course_description": "Introduction to materials science and engineering. Metals, alloys, ceramics, polymers, and\ncomposites; inter-atomic bonding, crystal structure and defects; diffusion, nucleation and\nmicrostructure; phase diagrams and phase transformations; mechanical properties; material\nfailure; corrosion and degradation.",
-          "updated_at": "2026-05-19T19:56:41.602Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -2912,7 +2912,7 @@
             "Rosen, 3rd Edition, Wiley: New York, ISBN: 978-0-470-50542-7,"
           ],
           "course_description": "This course aims to develop a thorough understanding about\npolymeric materials including a description of basic organic\nchemistry reactions supporting polymerization. Routes to\ncharacterize polymers in terms of molecular weight and molecular\nweight distribution are presented. Also, rheological and visco-\nelasto plastic properties related to microstructure and\nthermomechanical behavior are discussed to establish structure-\nproperty relationships. The prevalence of polymer processing",
-          "updated_at": "2026-05-19T19:56:41.603Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3023,7 +3023,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.603Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3145,7 +3145,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\nExcellent\nA-\n3.70\nVery Good\nB+\n3.30",
-          "updated_at": "2026-05-19T19:56:41.603Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3256,7 +3256,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T19:56:41.603Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3368,7 +3368,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\nFrom 92.5% to 100%\nExcellent\nA-\nFrom 89.5% to less than 92.5%\nVery Good\nB+\nFrom 86.5% to less than 89.5%",
-          "updated_at": "2026-05-19T19:56:41.604Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3481,7 +3481,7 @@
             "C Programming Absolute Beginner's Guide by Dean Miller and Greg Perry"
           ],
           "course_description": "Extracted from the Course Catalog Description section",
-          "updated_at": "2026-05-19T19:56:41.604Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3632,7 +3632,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "This course introduces computer systems, including computer hardware components, operating systems,\ncompiling, debugging, libraries, and linking. It focuses on programming-based problem-solving that\ncovers the program development lifecycle. It includes imperative programming such as data types,\nconditional expressions and statements, repetitive structures, arithmetic and logic operators, functions,\narrays, strings, data structures (database, tuple), and file Input/Output (I/O).",
-          "updated_at": "2026-05-19T19:56:41.604Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3745,7 +3745,7 @@
             "Perspective, Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course provides a basic understanding of the fundamental logical organization of a\ncomputer (its parts and their relationship) and how it actually works; exposure to a central\nprocessor's native language, and to basic computer components and basic architectures for high\nperformance design. Topics include: Von Neumann architecture, C programming (low-level\naspects), data representation, computer arithmetic, assembly language programming, digital\nlogic design, registers, instruction counter, processor architecture, pipelining, memory\nhierarchies, caching, virtual memory, interrupts, input and output, buses.",
-          "updated_at": "2026-05-19T19:56:41.604Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3866,7 +3866,7 @@
             "O’Hallaron. Publisher: Pearson, 3rd Edition, 2015. ISBN: 978-0134092669."
           ],
           "course_description": "This course thoroughly explains computer logical organization, including components and\ninterrelationships. It covers the central processor’s native language and basic architectures for\nhigh-performance design. Topics include Von Neumann architecture, low-level aspects of C\nprogramming, data representation, computer arithmetic, assembly language programming,\nand digital logic design.",
-          "updated_at": "2026-05-19T19:56:41.605Z"
+          "updated_at": "2026-05-20T17:50:42.501Z"
         },
         "assessments": [
           {
@@ -3990,7 +3990,7 @@
             "Géron. Publisher: O’reilly, 3 Edition, 2022. ISBN-13: 9781098125974."
           ],
           "course_description": "The course provides a comprehensive introduction to data science and Artificial Intelligence\n(AI), emphasizing practical applications and hands-on implementation. Students are introduced\nto fundamental concepts spanning the data science and AI pipeline, from data preprocessing to\nmachine learning techniques. Students gain hands-on experience with real-world datasets and\nlearn to develop, evaluate, and select machine learning models. The course includes critical\ndiscussions on ethical and privacy considerations and information security measures, including\ndata security, privacy, opacity, bias, and machine ethics.",
-          "updated_at": "2026-05-19T19:56:41.605Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4140,7 +4140,7 @@
             "Learning, 3rd Edition, 2012, ISBN: 978-1133187790."
           ],
           "course_description": "This course is about fundamental ideas in the theory of computation, including formal\nlanguages, computability and complexity. In this course, students gain proficiency in the\nconcepts of automata, formal languages, grammar, algorithms, computability, decidability, and\ncomplexity.",
-          "updated_at": "2026-05-19T19:56:41.605Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4281,7 +4281,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.605Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4444,7 +4444,7 @@
             "Algorithms in Java, Wiley, 6th Edition, 2014, ISBN: 978-1118771334."
           ],
           "course_description": "Review of object-oriented design. Analysis of algorithm complexity. Fundamental data\nstructures: Concept of Abstract Data Types (ADTs), Queues, Stacks, Lists, Trees; Java\nCollections Framework. Fundamental computing algorithms: binary search trees, hash tables,\nheaps, balanced trees, sorting algorithms, searching algorithms.",
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4554,7 +4554,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4715,7 +4715,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4866,7 +4866,7 @@
             "to Algorithms, MIT Press, 4th Edition, 2022. ISBN: 978-0262046305."
           ],
           "course_description": "This course covers the most important algorithm strategies and solution techniques,\nindependent of programming language or computer hardware. Topics include: Big-O notation;\nworst and average case analysis; recurrences and asymptotics; efficient algorithms for sorting,\nsearching, and selection; algorithm design techniques: divide-and-conquer, dynamic\nprogramming, greedy algorithms, randomization; algorithms for fundamental graph problems;\nstring algorithms; and numerical methods.",
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -4979,7 +4979,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5133,7 +5133,7 @@
             "978-1292401133"
           ],
           "course_description": "This course allows the students to explore the foundational principles and contemporary advancements in Artificial Intelligence (AI). It presents the historical evolution of AI alongside practical problem-solving methodologies like search algorithms and knowledge representation. The course covers intelligent agents, decision trees, classifiers, in addition to some advanced topics such as game theory, to gain a holistic understanding of AI's diverse applications and methodologies.",
-          "updated_at": "2026-05-19T19:56:41.606Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5284,7 +5284,7 @@
             "Edition, 2019. ISBN: 978-1259872976"
           ],
           "course_description": "The course introduces software engineering concepts and best practices. It discusses software\nprocesses and project management concepts. The course elaborates on software requirements,\nmodeling, design, testing, and maintenance. It gives examples of unified modeling language diagrams\nand emerging software development methods.",
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5408,7 +5408,7 @@
             "2. KU ECCE354 Laboratory Manual."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5522,7 +5522,7 @@
             "0136619940/dp/0136619940/ref=dp_ob_image_bk"
           ],
           "course_description": "This course provides students with the fundamentals of video game development and extended reality\n(XR) technologies, focusing on building interactive 2D and 3D games and XR applications. The\ncourse covers the game development process from concept to prototype.",
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5633,7 +5633,7 @@
             "Knaflic, Publisher: Wiley, 1st edition, 2015, ISBN: 9781119002253"
           ],
           "course_description": "This course introduces reading, writing and digital composing in scientific and professional fields.\nAssignments include writing about numbers analytically and interpretively; abstracting and\nsummarizing; and citing and referencing evidence. Extended written assignments include a review of\nevidence supporting a claim and a focused essay with a supporting digital presentation.",
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5755,7 +5755,7 @@
             "Publisher: Oxford University Press, 1st edition, 2011, ISBN: 9780199760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL 101. Major assignments include writing a data-based technical report that includes a digital presentation and a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral presentation.",
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5876,7 +5876,7 @@
             "Publisher: Oxford University Press, 1 edition, 2011, ISBN: 9780199 760244"
           ],
           "course_description": "This course extends skills in evidence-based reading, writing, and digital composition introduced in ENGL\n101. Major assignments include writing a data-based technical report that includes a digital presentation\nand a group-based funding proposal based on a realistic Request for Funding Proposal (RFP) with an oral\npresentation.",
-          "updated_at": "2026-05-19T19:56:41.607Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -5987,7 +5987,7 @@
             "Press, 2017, ISBN: 978-0-19-948017-3"
           ],
           "course_description": "Introduction to computer systems: computer hardware components, operating system, compiling,\ndebugging, libraries, linking. Programming based problem solving that includes program development\nlifecycle. Imperative programming: data types, conditional expressions and statements, repetitive\nstructures, arithmetic and logic operators, functions, arrays, strings, data structures (database, tuple),\nfile I/O.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6098,7 +6098,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6216,7 +6216,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their\nuniversity experience and beyond. The course delivers a blended learning experience designed to enhance\nstudents’ self-awareness, orient them to KU resources and learning communities, make major declaration\ndecisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a\nglobal and ever-changing marketplace.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6326,7 +6326,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This interactive student success course helps students apply positive behavioral principles through their university experience and beyond. The course delivers a blended learning experience designed to enhance students’ self-awareness, orient them to KU resources and learning communities, make major declaration decisions, and adopt academic integrity. Students develop the growth mindset necessary to succeed in a global and ever-changing marketplace.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6435,7 +6435,7 @@
           "prerequisites": "None",
           "textbooks": [],
           "course_description": "This course surveys science and engineering disciplines and highlights interdisciplinary, real-world\napplications, especially addressing Grand Challenge problems facing humanity. The course introduces\naspects of problem-solving ranging from the formulation of questions and problems to the testing of trial\nsolutions within a standard framework. Students discuss ethical, social, economic, environmental, and\ntechnical aspects of Grand Challenges, and they contribute to collaborative and project-based activities.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6561,7 +6561,7 @@
             "Studio sessions are 1 x 100 minutes per week. Sessions involve interactive activities in a blended learning"
           ],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and labor market\nspecialist. This activity-based course is focused on field exploration, CV and digital profile development, and\nprofessional communication. Course delivery is a blend of in-person and asynchronous online learning experiences.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6720,7 +6720,7 @@
           "prerequisites": "GENS 100, Sophomore Standing",
           "textbooks": [],
           "course_description": "This course equips learners with the mindset and skills for both internships and future careers. It includes\nemployability workshops, group discussions, and one-on-one guidance from a local employability and\nlabor market specialist. This activity-based course is focused on field exploration, CV and digital profile\ndevelopment, and professional communication. Course delivery is a blend of in-person and asynchronous\nonline learning experiences.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6839,7 +6839,7 @@
             "The course will be delivered through the following methodologies: lectures, class"
           ],
           "course_description": "The course acquaints students with the geographical, cultural, demographical, economic and\nsocial aspects of UAE society. It highlights the evolution of the country from a traditional to a\nmodern society. Topics such as UAE political system, family, population, migration, youth, and\nthe development of civil society are addressed.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -6971,7 +6971,7 @@
             "Edition, 2019, ISBN: 9781319133726"
           ],
           "course_description": "This course examines historical and current topics related to the mind and behavior with research methods\nand the scientific method as a foundation. Areas covered in this course include biology, development,\nmemory, learning, social psychology, personality, psychological disorders, health psychology, and\npositive psychology.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -7103,7 +7103,7 @@
             "An introduction to intercultural communication: Identities in a global community. F. Jandt, (2025). 8th edition. SAGE Publications, ISBN: 9781071887110"
           ],
           "course_description": "This course identifies and delineates the communication skills needed for effective interaction in a global society; examines the relationship between communication, language and culture; and studies the general concepts of intercultural communication.",
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -7214,7 +7214,7 @@
             "R. Paul and L. Elder, Critical Thinking: Tools for Taking Charge of Your Professional and Personal Life. Upper Saddle River, NJ: Financial Times Prentice Hall, 2002. ISBN: 0-13-064760-8."
           ],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.608Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -7346,7 +7346,7 @@
             "A Concise Introduction to Logic by P.J Hurley & Lori Watson, Publisher: Cengage Learning, 13th edition, 2018, ISBN: 9781305959767"
           ],
           "course_description": "This course provides students with a solid introduction to logical thinking and critical analysis. Emphasis will be placed on arguments as basic units of thinking. By understanding the importance of the validity and soundness of reasoning, students will be able to identify, analyze, and evaluate arguments in scientific language and everyday discourse.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.502Z"
         },
         "assessments": [
           {
@@ -7456,7 +7456,7 @@
             "Institute of Mathematics, Version 2.1, 2021"
           ],
           "course_description": "This course provides a foundation in logical and mathematical reasoning. It develops first year university\nstudents’ structured logical thinking and mathematical rigor. The course introduces methods of proof,\nbasic concepts and properties of real numbers, relations and functions. The course also presents an\nintroduction to combinatorics, set theory and number theory.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -7580,7 +7580,7 @@
             "McGraw-Hill, 5th Edition, 2018. ISBN: 9780077166472."
           ],
           "course_description": "This course will introduce students to the theory and techniques of single\nvariable differential and integral calculus. The emphasis is on problem solving in a science and engineering\ncontext, as opposed to theory. Topics include studying the exponential, logarithmic, trigonometric, and\npolynomial functions and their limits, continuity, derivatives, extrema, integration, area under a curve, and\nvolumes of revolution.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -7742,7 +7742,7 @@
             "A. T. Rafhi, McGraw-Hill, 5th Edition, 2018, ISBN: 9781526869968."
           ],
           "course_description": "This is a second semester calculus course for students who have previously been introduced to\nthe basic ideas of differential and integral calculus. The emphasis in this course is on problem\nsolving, rather than theory. Topics include integration techniques, parametric equations,\ninfinite series, an introduction to vectors and vector-valued functions, as well as an introduction\nto functions of several variables and double integrals.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -7884,7 +7884,7 @@
             "9781119268048."
           ],
           "course_description": "This course is an introduction to Linear Algebra, covering matrices, determinants, systems of\nlinear equations, vector spaces, linear transformations, eigenvalues, and orthogonality. Students\nexplore solving systems of linear equations, understanding vector spaces, and analyzing linear\ntransformations. Additionally, they explore the concepts of eigenvalues and eigenvectors, gaining\ninsight into their significance within linear algebraic structures.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -7988,7 +7988,7 @@
             "Pearson, 4 Edition, e‐book, 2017, ISBN: 978‐0134497181."
           ],
           "course_description": "This course introduces ordinary differential equations with linear algebra. The\ncourse covers basic topics of linear algebra, including linear systems, basic properties of matrices, vector\nspaces, and eigenvalues and eigenvectors. The course also covers solution techniques for first‐order\ndifferential equations, higher‐order linear equations with constant coefficients, linear and almost linear\nsystems of differential equations, and Laplace transforms.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8138,7 +8138,7 @@
             "ISBN: 9780321892539."
           ],
           "course_description": "This course gives students a thorough understanding of essential concepts in analysis such as real numbers,\nlimits, continuity, and convergence of sequences and series. The course also covers a rigorous definition\nof derivative and construction of the Riemann integral and their properties including the Fundamental\nTheorem of Calculus. Students are required to read and write proofs using a precise knowledge of\ndefinitions and theorems.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8240,7 +8240,7 @@
             "9780470458365."
           ],
           "course_description": "This course introduces students to selected topics from mathematical analysis with engineering\napplications. The first part is a calculus part which covers the definition of functions of several variables\nand their domain and range. Also, the course discusses limits, continuity, partial derivatives, gradient\nvectors, and multiple integrals for functions of several variables. The second part of the course deals\nwith Fourier analysis including complex numbers, Fourier series, Fourier integrals, and Fourier\ntransforms.",
-          "updated_at": "2026-05-19T19:56:41.609Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8341,7 +8341,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8446,7 +8446,7 @@
             "9780470458365."
           ],
           "course_description": "This course covers selected topics from mathematical analysis with engineering applications, including\ncomplex numbers, partial derivatives, gradient vectors, multiple integrals, and Fourier series.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8548,7 +8548,7 @@
             "Edition, 2012. ISBN: 9780071315012."
           ],
           "course_description": "Topics covered in this course include propositional and predicate calculus, mathematical reasoning\nincluding mathematical induction, an introduction to sets, basic number theory, functions, relations,\ngraphs, trees, cardinality, counting techniques, linear recurrence relations, and Boolean Algebra.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8648,7 +8648,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8780,7 +8780,7 @@
             "Wiley, 7 Edition (online edition), 2018, ISBN: 978EEGRP45491."
           ],
           "course_description": "This course introduces students to basic probability models and statistical methods for data analysis.\nThe course will cover introductory probability theory, discrete and continuous probability\ndistributions, elements of descriptive statistics, and different statistical inference methods such as\nestimation for the mean and the variance, hypothesis testing for the mean and the variance.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8882,7 +8882,7 @@
             "9780357753125"
           ],
           "course_description": "This course introduces the mathematical theory of probability at an undergraduate level of rigor. The course\ncovers basic concepts of axiomatic probability and conditional probability, random variables/vectors and their\ndistribution, moments, and various models of random variables. Students also study classical probability\ninequalities and limit theorems in large sample theory.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -8984,7 +8984,7 @@
             "Hill, 11 edition, 2022, ISBN: 9781307810240."
           ],
           "course_description": "This course introduces operations research and deterministic mathematical modeling with a focus\non linear programming. Topics include graphical interpretation of linear optimization problems,\nsimplex method, duality, sensitivity analysis, and general solution strategies. Emphasis is given to\nmodeling industrial problems and interpretation of the solutions obtained. Students learn to use\nmodern modeling languages and software to find optimal solutions for large-scale problems.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -9135,7 +9135,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": null,
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -9289,7 +9289,7 @@
             "10:1285070437)."
           ],
           "course_description": "This course gives a vector-based and calculus-based introduction to fundamental concepts in\nNewtonian mechanics, mechanical conservation laws, oscillations and waves. The course includes\nlaboratory activities with experiments that demonstrate key concepts discussed in the lectures.",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
@@ -9441,7 +9441,7 @@
           "prerequisites": null,
           "textbooks": [],
           "course_description": "A\n4.00\n92.5%-100%\nExcellent\nA-\n3.70\n89.5% to < 92.5%\nVery Good",
-          "updated_at": "2026-05-19T19:56:41.610Z"
+          "updated_at": "2026-05-20T17:50:42.503Z"
         },
         "assessments": [
           {
