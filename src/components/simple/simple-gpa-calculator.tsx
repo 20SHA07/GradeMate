@@ -397,6 +397,13 @@ function getExtractionTotalWeight(extraction: ExtractedSyllabus) {
   );
 }
 
+function getTemplateTotalWeight(template: SimpleTemplate) {
+  return template.assessments.reduce(
+    (sum, assessment) => sum + Number(assessment.weight_percentage || 0),
+    0
+  );
+}
+
 function shouldUseRuleExtraction(extraction: ExtractedSyllabus) {
   const totalWeight = getExtractionTotalWeight(extraction);
   const hasUnclearWarning = extraction.warnings.some((warning) =>
@@ -741,14 +748,17 @@ export function SimpleGpaCalculator() {
             (template) =>
               !["needs_review", "archived"].includes(
                 String(template.template_status ?? "ready").toLowerCase()
-              )
+              ) &&
+              Boolean(template.source_hash) &&
+              Boolean(template.extractor_version)
           )
           .map((template) => ({
             ...template,
             assessments: assessmentRows.filter(
               (assessment) => assessment.course_template_id === template.id
             )
-          }));
+          }))
+          .filter((template) => isWeightReady(getTemplateTotalWeight(template)));
 
         if (isMounted) {
           setLibraryTemplates(templates);

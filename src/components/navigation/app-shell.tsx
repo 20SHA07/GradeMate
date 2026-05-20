@@ -11,8 +11,7 @@ import {
   LayoutDashboard,
   Library,
   LogOut,
-  PlusCircle,
-  UploadCloud
+  PlusCircle
 } from "lucide-react";
 import { Button, buttonStyles } from "@/components/ui/button";
 import { useAuth } from "@/components/auth/protected-session-provider";
@@ -61,12 +60,6 @@ function getPageActions(pathname: string) {
     ] satisfies PageAction[];
   }
 
-  if (normalizedPathname === "/course-library") {
-    return [
-      { href: "/contribute-syllabus", label: "Contribute syllabus", icon: UploadCloud }
-    ] satisfies PageAction[];
-  }
-
   if (
     normalizedPathname.startsWith("/courses/") &&
     normalizedPathname !== "/courses"
@@ -105,7 +98,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   }
 
   return (
-    <div className="min-h-screen bg-ink-50 text-ink-900 lg:flex">
+    <div className="min-h-screen overflow-x-hidden bg-ink-50 text-ink-900 lg:flex">
       <aside className="hidden w-60 shrink-0 border-r border-ink-200 bg-white/90 lg:flex lg:flex-col">
         <div className="px-4 py-5">
           <Link className="flex items-center gap-3 font-semibold text-ink-900" href="/">
@@ -258,7 +251,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
             </div>
           </div>
 
-          <nav className="flex gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 lg:hidden">
+          <nav className="flex max-w-full gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 lg:hidden">
             <ModeSwitch className="w-64 shrink-0 sm:hidden" compact />
             {navItems.map((item) => {
               const isActive = isNavItemActive(item.href, normalizedPathname);
@@ -283,7 +276,7 @@ export function AppShell({ children }: { children: React.ReactNode }) {
           </nav>
 
           {pageActions.length > 0 ? (
-            <div className="flex gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 sm:hidden">
+            <div className="flex max-w-full gap-2 overflow-x-auto border-t border-ink-200 px-4 py-2 sm:hidden">
               {pageActions.map((action) => {
                 const Icon = action.icon;
 

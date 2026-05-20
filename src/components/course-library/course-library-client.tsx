@@ -87,7 +87,11 @@ function formatWeight(value: number) {
 function hasCompleteGrading(template: TemplateWithDetails) {
   const totalWeight = totalAssessmentWeight(template.assessments);
 
-  return template.assessments.length > 0 && totalWeight >= 99 && totalWeight <= 101;
+  return (
+    template.assessments.length > 0 &&
+    totalWeight >= 99.5 &&
+    totalWeight <= 100.5
+  );
 }
 
 function confidenceLabel(confidence: number): ConfidenceFilter {
@@ -173,8 +177,12 @@ function templateWarnings(template: CourseTemplateRecord) {
 }
 
 function isPublicReadyTemplate(template: CourseTemplateRecord) {
-  return !["needs_review", "archived"].includes(
-    String(template.template_status ?? "ready").toLowerCase()
+  return (
+    !["needs_review", "archived"].includes(
+      String(template.template_status ?? "ready").toLowerCase()
+    ) &&
+    Boolean(template.source_hash) &&
+    Boolean(template.extractor_version)
   );
 }
 
@@ -233,9 +241,9 @@ function DetailStat({
   value: string | number;
 }) {
   return (
-    <div className="rounded-xl bg-ink-100 px-3 py-2 text-sm">
+    <div className="min-w-0 rounded-xl bg-ink-100 px-3 py-2 text-sm">
       <p className="text-ink-500">{label}</p>
-      <p className="mt-1 font-semibold text-ink-900">{value}</p>
+      <p className="mt-1 break-words font-semibold text-ink-900">{value}</p>
     </div>
   );
 }
@@ -346,8 +354,7 @@ export function CourseLibraryClient() {
         return;
       }
 
-      setTemplates(
-        templateRows.map((template) => ({
+      const templatesWithDetails = templateRows.map((template) => ({
           ...template,
           assessments: assessmentRows.filter(
             (assessment) => assessment.course_template_id === template.id
@@ -355,8 +362,9 @@ export function CourseLibraryClient() {
           materials: materialRows.filter(
             (material) => material.course_template_id === template.id
           )
-        }))
-      );
+        }));
+
+      setTemplates(templatesWithDetails.filter(hasCompleteGrading));
       setSemesters(semesterRows);
       setCourses(courseRows);
       setSelectedSemesterId((current) => current || semesterRows[0]?.id || "");
@@ -729,15 +737,6 @@ export function CourseLibraryClient() {
   return (
     <div className="space-y-6">
       <PageHeader
-        actions={
-          <Link
-            className={buttonStyles({ variant: "secondary" })}
-            href="/contribute-syllabus"
-          >
-            <FileText aria-hidden="true" className="h-4 w-4" />
-            Contribute syllabus
-          </Link>
-        }
         description="Search syllabus-created templates, preview the grading breakdown, then import a clean copy into your semester."
         title="Course Library"
       />
@@ -887,7 +886,7 @@ export function CourseLibraryClient() {
           title="No matching templates"
         />
       ) : (
-        <section className="grid gap-3 lg:grid-cols-2 2xl:grid-cols-3">
+        <section className="grid min-w-0 gap-3 lg:grid-cols-2 2xl:grid-cols-3">
           {visibleTemplates.map((template) => {
             const totalWeight = totalAssessmentWeight(template.assessments);
 
@@ -960,7 +959,11 @@ export function CourseLibraryClient() {
                 ) : (
                   <div className="mt-4 flex flex-wrap gap-2">
                     {template.assessments.slice(0, 4).map((assessment) => (
-                      <Badge key={assessment.id} tone="gold">
+                      <Badge
+                        className="max-w-full whitespace-normal break-words text-left"
+                        key={assessment.id}
+                        tone="gold"
+                      >
                         {assessment.name}{" "}
                         {formatWeight(Number(assessment.weight_percentage))}%
                       </Badge>
