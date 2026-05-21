@@ -1108,12 +1108,6 @@ function TemplateEditor({
         />
 
         <section className="grid gap-3 lg:grid-cols-2">
-          <Field label="Source file">
-            <input className={inputStyles} value={form.sourceFileName} onChange={(event) => updateForm("sourceFileName", event.target.value)} />
-          </Field>
-          <Field label="Source folder">
-            <input className={inputStyles} value={form.sourceFolderPath} onChange={(event) => updateForm("sourceFolderPath", event.target.value)} />
-          </Field>
           <Field label="Unique key">
             <input className={inputStyles} placeholder="Auto-generated if blank" value={form.uniqueKey} onChange={(event) => updateForm("uniqueKey", event.target.value)} />
           </Field>
