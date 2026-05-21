@@ -1,6 +1,6 @@
 {
   "summary": {
-    "generatedAt": "2026-05-21T14:37:21.269Z",
+    "generatedAt": "2026-05-21T14:48:41.654Z",
     "ready": 57,
     "warnings": 2,
     "failures": 0
@@ -304,7 +304,7 @@
       "area": "Database Safety",
       "name": "db:safety-check report",
       "status": "warn",
-      "detail": "26 passed, 2 warnings, 0 failures"
+      "detail": "25 passed, 3 warnings, 0 failures"
     },
     {
       "area": "Database Safety",
@@ -316,7 +316,7 @@
       "area": "Database Safety",
       "name": "db:check-rls report",
       "status": "pass",
-      "detail": "40 passed, 0 failed"
+      "detail": "42 passed, 0 failed"
     },
     {
       "area": "Database Safety",
@@ -367,7 +367,7 @@
       "area": "Database Safety",
       "name": "db:safety-check report",
       "status": "warn",
-      "detail": "26 passed, 2 warnings, 0 failures"
+      "detail": "25 passed, 3 warnings, 0 failures"
     },
     {
       "area": "Database Safety",

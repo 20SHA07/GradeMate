@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-21T14:35:55.479Z",
+  "generatedAt": "2026-05-21T14:48:39.511Z",
   "summary": {
-    "passed": 54,
+    "passed": 55,
     "warnings": 0,
     "failures": 0
   },
@@ -287,6 +287,12 @@
       "name": "Admin editor only targets shared template tables",
       "status": "pass",
       "detail": "Manual admin library edits must not touch private workspace tables."
+    },
+    {
+      "area": "Admin",
+      "name": "Admin can permanently remove shared templates",
+      "status": "pass",
+      "detail": "Admin template removal should be explicit, confirmed, and limited to shared Course Library templates."
     },
     {
       "area": "Admin",

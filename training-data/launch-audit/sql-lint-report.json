@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T14:37:09.164Z",
+  "generatedAt": "2026-05-21T14:47:38.304Z",
   "protectedTables": [
     "semesters",
     "courses",
@@ -226,7 +226,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 725,
+      "line": 763,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -234,7 +234,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 726,
+      "line": 764,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",
@@ -242,7 +242,7 @@
     },
     {
       "file": "supabase\\schema.sql",
-      "line": 727,
+      "line": 765,
       "severity": "warn",
       "safeOverride": false,
       "message": "DROP POLICY on protected table verified_extractions should include SAFE_MIGRATION_EXPLAIN when policy replacement is intentional",

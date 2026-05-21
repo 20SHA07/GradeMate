@@ -199,6 +199,11 @@ previous shared template state to `course_template_versions` before admin edits
 and only targets Course Library tables; it does not modify private student
 `semesters`, `courses`, or `assessments`.
 
+The same manager also includes a guarded permanent remove action for shared
+templates. Use archive for normal cleanup; permanent removal deletes the shared
+template and its Course Library rows for future imports only. It never changes
+courses students already imported into their own workspaces.
+
 ## Course Template Import
 
 Create the reusable template tables in Supabase by running

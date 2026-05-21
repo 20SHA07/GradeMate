@@ -715,6 +715,50 @@ export function AdminCourseLibraryClient() {
     }
   }
 
+  async function deleteTemplatePermanently() {
+    if (!supabase || !selectedTemplate) return;
+
+    const removedLabel = `${selectedTemplate.course_code} ${selectedTemplate.course_name}`.trim();
+
+    setIsSaving(true);
+    setError("");
+    setMessage("");
+
+    try {
+      const materialDelete = await supabase
+        .from("course_template_materials")
+        .delete()
+        .eq("course_template_id", selectedTemplate.id);
+      if (materialDelete.error) throw materialDelete.error;
+
+      const assessmentDelete = await supabase
+        .from("course_template_assessments")
+        .delete()
+        .eq("course_template_id", selectedTemplate.id);
+      if (assessmentDelete.error) throw assessmentDelete.error;
+
+      const templateDelete = await supabase
+        .from("course_templates")
+        .delete()
+        .eq("id", selectedTemplate.id);
+      if (templateDelete.error) throw templateDelete.error;
+
+      setSelectedId(null);
+      setForm(null);
+      setMessage(`${removedLabel} was permanently removed from the shared Course Library.`);
+      await loadLibrary();
+    } catch (deleteError) {
+      setError(
+        getSupabaseErrorMessage(
+          deleteError,
+          "Could not permanently remove this shared template. Check admin policies and linked contribution references."
+        )
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   if (isLoading) {
     return (
       <Card className="p-5 text-sm font-medium text-ink-600">
@@ -850,6 +894,7 @@ export function AdminCourseLibraryClient() {
         {form ? (
           <TemplateEditor
             archiveTemplate={archiveTemplate}
+            deleteTemplatePermanently={deleteTemplatePermanently}
             form={form}
             isSaving={isSaving}
             removeAssessment={removeAssessment}
@@ -875,6 +920,7 @@ export function AdminCourseLibraryClient() {
 
 function TemplateEditor({
   archiveTemplate,
+  deleteTemplatePermanently,
   form,
   isSaving,
   removeAssessment,
@@ -886,6 +932,7 @@ function TemplateEditor({
   updateMaterial
 }: {
   archiveTemplate: () => Promise<void>;
+  deleteTemplatePermanently: () => Promise<void>;
   form: TemplateForm;
   isSaving: boolean;
   removeAssessment: (index: number) => void;
@@ -896,7 +943,11 @@ function TemplateEditor({
   updateForm: <K extends keyof TemplateForm>(field: K, value: TemplateForm[K]) => void;
   updateMaterial: (index: number, patch: Partial<MaterialDraft>) => void;
 }) {
+  const [isDeleteOpen, setIsDeleteOpen] = useState(false);
+  const [deleteConfirmText, setDeleteConfirmText] = useState("");
   const weight = totalWeight(form.assessments);
+  const deleteConfirmationLabel = `${form.courseCode.trim().toUpperCase()} ${form.courseName.trim()}`.trim();
+  const canDelete = deleteConfirmText.trim() === deleteConfirmationLabel;
 
   return (
     <Card className="overflow-hidden">
@@ -919,7 +970,7 @@ function TemplateEditor({
         </div>
         <div className="flex flex-wrap gap-2">
           {form.id ? (
-            <Button onClick={() => void archiveTemplate()} size="sm" variant="secondary">
+            <Button disabled={isSaving} onClick={() => void archiveTemplate()} size="sm" variant="secondary">
               <Archive aria-hidden="true" className="h-4 w-4" />
               {selectedTemplate && getTemplateStatus(selectedTemplate) === "archived"
                 ? "Restore"
@@ -1026,6 +1077,54 @@ function TemplateEditor({
             <input className={inputStyles} value={form.prerequisites} onChange={(event) => updateForm("prerequisites", event.target.value)} />
           </Field>
         </section>
+
+        {form.id ? (
+          <section className="rounded-[3px] border border-rose-200 bg-rose-50 p-4">
+            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+              <div className="max-w-2xl">
+                <div className="flex items-center gap-2 text-sm font-semibold text-rose-800">
+                  <AlertTriangle aria-hidden="true" className="h-4 w-4" />
+                  Permanent removal
+                </div>
+                <p className="mt-1 text-sm text-rose-700">
+                  This removes the shared Course Library template and its template rows for future imports. It does not change courses students already imported.
+                </p>
+              </div>
+              <Button
+                disabled={isSaving}
+                onClick={() => {
+                  setIsDeleteOpen((current) => !current);
+                  setDeleteConfirmText("");
+                }}
+                size="sm"
+                variant="secondary"
+              >
+                <Trash2 aria-hidden="true" className="h-4 w-4" />
+                Remove permanently
+              </Button>
+            </div>
+            {isDeleteOpen ? (
+              <div className="mt-4 grid gap-3 border-t border-rose-200 pt-4 lg:grid-cols-[1fr_auto] lg:items-end">
+                <Field label={`Type ${deleteConfirmationLabel || "the course name"} to confirm`}>
+                  <input
+                    className={inputStyles}
+                    value={deleteConfirmText}
+                    onChange={(event) => setDeleteConfirmText(event.target.value)}
+                  />
+                </Field>
+                <Button
+                  disabled={isSaving || !canDelete}
+                  onClick={() => void deleteTemplatePermanently()}
+                  size="sm"
+                  variant="danger"
+                >
+                  <Trash2 aria-hidden="true" className="h-4 w-4" />
+                  {isSaving ? "Removing..." : "Confirm removal"}
+                </Button>
+              </div>
+            ) : null}
+          </section>
+        ) : null}
       </div>
     </Card>
   );

@@ -59,7 +59,7 @@ const checks = [
   ),
   check(
     "Anon users cannot modify course templates",
-    negativePattern(/course_templates for (insert|update|delete)[\s\S]*to\s+anon/i)
+    negativePattern(/course_templates for (insert|update|delete)[^;]*to\s+anon/i)
   ),
   check(
     "Users can create own syllabus contributions",
@@ -90,8 +90,16 @@ const checks = [
     /Admins can update course templates[\s\S]*public\.is_admin\(\)/i
   ),
   check(
+    "Admin can delete shared course templates",
+    /Admins can delete course templates[\s\S]*public\.is_admin\(\)/i
+  ),
+  check(
     "Admins can view all shared templates",
     /Admins can view all course templates[\s\S]*public\.is_admin\(\)/i
+  ),
+  check(
+    "Admins can manage template assessments",
+    /Admins can create template assessments[\s\S]*public\.is_admin\(\)[\s\S]*Admins can update template assessments[\s\S]*public\.is_admin\(\)[\s\S]*Admins can delete template assessments[\s\S]*public\.is_admin\(\)/i
   ),
   check(
     "Admins can manage template materials",

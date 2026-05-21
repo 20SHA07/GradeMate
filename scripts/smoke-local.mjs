@@ -594,6 +594,21 @@ async function checkAdminCourseLibraryUx() {
   });
   addCheck({
     area: "Admin",
+    name: "Admin can permanently remove shared templates",
+    status:
+      adminLibrarySource.includes("Remove permanently") &&
+      adminLibrarySource.includes("deleteTemplatePermanently") &&
+      adminLibrarySource.includes("It does not change courses students already imported") &&
+      adminLibrarySource.includes('.from("course_templates")') &&
+      adminLibrarySource.includes(".delete()") &&
+      adminLibrarySql.includes("Admins can delete course templates")
+        ? "pass"
+        : "fail",
+    detail:
+      "Admin template removal should be explicit, confirmed, and limited to shared Course Library templates."
+  });
+  addCheck({
+    area: "Admin",
     name: "Admin Course Library RLS migration exists",
     status:
       adminLibrarySql.includes("Admins can view all course templates") &&

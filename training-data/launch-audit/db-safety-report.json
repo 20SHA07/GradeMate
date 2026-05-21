@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-21T14:34:13.616Z",
+  "generatedAt": "2026-05-21T14:47:21.041Z",
   "protectedUserTables": [
     "semesters",
     "courses",
@@ -17,8 +17,8 @@
     "course_template_versions"
   ],
   "summary": {
-    "passed": 26,
-    "warnings": 2,
+    "passed": 25,
+    "warnings": 3,
     "failures": 0
   },
   "checks": [
@@ -170,7 +170,7 @@
       "area": "Backups",
       "name": "Course Library backup is recent",
       "status": "pass",
-      "detail": "Latest complete backup is 44.5 hours old."
+      "detail": "Latest complete backup is 44.7 hours old."
     },
     {
       "area": "Verification",
@@ -187,8 +187,8 @@
     {
       "area": "Verification",
       "name": "RLS report",
-      "status": "pass",
-      "detail": "40 passed, 0 failed"
+      "status": "warn",
+      "detail": "41 passed, 1 failed"
     }
   ]
 }
