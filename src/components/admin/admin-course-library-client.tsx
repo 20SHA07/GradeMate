@@ -970,12 +970,26 @@ function TemplateEditor({
         </div>
         <div className="flex flex-wrap gap-2">
           {form.id ? (
-            <Button disabled={isSaving} onClick={() => void archiveTemplate()} size="sm" variant="secondary">
-              <Archive aria-hidden="true" className="h-4 w-4" />
-              {selectedTemplate && getTemplateStatus(selectedTemplate) === "archived"
-                ? "Restore"
-                : "Archive"}
-            </Button>
+            <>
+              <Button disabled={isSaving} onClick={() => void archiveTemplate()} size="sm" variant="secondary">
+                <Archive aria-hidden="true" className="h-4 w-4" />
+                {selectedTemplate && getTemplateStatus(selectedTemplate) === "archived"
+                  ? "Restore"
+                  : "Archive"}
+              </Button>
+              <Button
+                disabled={isSaving}
+                onClick={() => {
+                  setIsDeleteOpen((current) => !current);
+                  setDeleteConfirmText("");
+                }}
+                size="sm"
+                variant="danger"
+              >
+                <Trash2 aria-hidden="true" className="h-4 w-4" />
+                Remove permanently
+              </Button>
+            </>
           ) : null}
           <Button disabled={isSaving} onClick={() => void saveTemplate()} size="sm">
             <Save aria-hidden="true" className="h-4 w-4" />
@@ -983,6 +997,36 @@ function TemplateEditor({
           </Button>
         </div>
       </div>
+
+      {form.id && isDeleteOpen ? (
+        <div className="border-b border-rose-200 bg-rose-50 p-4">
+          <div className="flex items-center gap-2 text-sm font-semibold text-rose-800">
+            <AlertTriangle aria-hidden="true" className="h-4 w-4" />
+            Permanent removal
+          </div>
+          <p className="mt-1 max-w-3xl text-sm text-rose-700">
+            This removes the shared Course Library template and its template rows for future imports. It does not change courses students already imported.
+          </p>
+          <div className="mt-4 grid gap-3 lg:grid-cols-[1fr_auto] lg:items-end">
+            <Field label={`Type ${deleteConfirmationLabel || "the course name"} to confirm`}>
+              <input
+                className={inputStyles}
+                value={deleteConfirmText}
+                onChange={(event) => setDeleteConfirmText(event.target.value)}
+              />
+            </Field>
+            <Button
+              disabled={isSaving || !canDelete}
+              onClick={() => void deleteTemplatePermanently()}
+              size="sm"
+              variant="danger"
+            >
+              <Trash2 aria-hidden="true" className="h-4 w-4" />
+              {isSaving ? "Removing..." : "Confirm removal"}
+            </Button>
+          </div>
+        </div>
+      ) : null}
 
       <div className="space-y-5 p-4">
         <section className="grid gap-3 md:grid-cols-2 xl:grid-cols-4">
@@ -1078,53 +1122,6 @@ function TemplateEditor({
           </Field>
         </section>
 
-        {form.id ? (
-          <section className="rounded-[3px] border border-rose-200 bg-rose-50 p-4">
-            <div className="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
-              <div className="max-w-2xl">
-                <div className="flex items-center gap-2 text-sm font-semibold text-rose-800">
-                  <AlertTriangle aria-hidden="true" className="h-4 w-4" />
-                  Permanent removal
-                </div>
-                <p className="mt-1 text-sm text-rose-700">
-                  This removes the shared Course Library template and its template rows for future imports. It does not change courses students already imported.
-                </p>
-              </div>
-              <Button
-                disabled={isSaving}
-                onClick={() => {
-                  setIsDeleteOpen((current) => !current);
-                  setDeleteConfirmText("");
-                }}
-                size="sm"
-                variant="secondary"
-              >
-                <Trash2 aria-hidden="true" className="h-4 w-4" />
-                Remove permanently
-              </Button>
-            </div>
-            {isDeleteOpen ? (
-              <div className="mt-4 grid gap-3 border-t border-rose-200 pt-4 lg:grid-cols-[1fr_auto] lg:items-end">
-                <Field label={`Type ${deleteConfirmationLabel || "the course name"} to confirm`}>
-                  <input
-                    className={inputStyles}
-                    value={deleteConfirmText}
-                    onChange={(event) => setDeleteConfirmText(event.target.value)}
-                  />
-                </Field>
-                <Button
-                  disabled={isSaving || !canDelete}
-                  onClick={() => void deleteTemplatePermanently()}
-                  size="sm"
-                  variant="danger"
-                >
-                  <Trash2 aria-hidden="true" className="h-4 w-4" />
-                  {isSaving ? "Removing..." : "Confirm removal"}
-                </Button>
-              </div>
-            ) : null}
-          </section>
-        ) : null}
       </div>
     </Card>
   );
