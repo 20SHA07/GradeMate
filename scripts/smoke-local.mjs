@@ -343,6 +343,18 @@ async function checkCourseLibraryDetailsModalUx() {
     detail:
       "PHYS 121-style templates with many rows should render all mapped assessments, including lower rows."
   });
+  addCheck({
+    area: "Course Library",
+    name: "Details modal hides source provenance",
+    status:
+      !source.includes("templateSourceName") &&
+      !source.includes("<h3 className=\"font-semibold text-ink-900\">Source</h3>") &&
+      !source.includes("source_folder_path}")
+        ? "pass"
+        : "fail",
+    detail:
+      "Students should not see internal source file or source folder metadata in Course Library details."
+  });
 }
 
 async function checkSidebarLayoutUx() {

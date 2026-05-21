@@ -225,14 +225,6 @@ async function withFriendlyTimeout<T>(
   }
 }
 
-function templateSourceName(template: CourseTemplateRecord) {
-  return (
-    template.source_syllabus_file_name ??
-    template.source_file_name ??
-    "Unknown syllabus"
-  );
-}
-
 function templateTermLabel(template: CourseTemplateRecord) {
   return template.semester ?? template.term ?? null;
 }
@@ -1370,17 +1362,14 @@ export function CourseLibraryClient() {
                   </div>
 
                   <aside className="space-y-4 lg:sticky lg:top-4 lg:self-start">
-                    <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
-                      <h3 className="font-semibold text-ink-900">Source</h3>
-                      <p className="mt-2 break-words text-sm text-ink-500">
-                        {templateSourceName(detailTemplate)}
-                      </p>
-                      {templateContributorLabel(detailTemplate) ? (
-                        <p className="mt-3 rounded-[3px] border border-teal-200 bg-teal-50 px-3 py-2 text-sm text-teal-800">
-                          Contributor credit: {templateContributorLabel(detailTemplate)}
+                    {templateContributorLabel(detailTemplate) ? (
+                      <div className="rounded-lg border border-teal-200 bg-teal-50 p-4">
+                        <h3 className="font-semibold text-teal-900">Contributor credit</h3>
+                        <p className="mt-2 text-sm text-teal-800">
+                          {templateContributorLabel(detailTemplate)}
                         </p>
-                      ) : null}
-                    </div>
+                      </div>
+                    ) : null}
 
                     <div className="rounded-lg border border-ink-200 bg-ink-50 p-4">
                       <div className="flex items-center gap-2 font-semibold text-ink-900">
