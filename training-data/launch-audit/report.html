@@ -23,9 +23,9 @@
 <body>
   <main>
     <h1>GradeMate Launch Audit</h1>
-    <p>Generated 2026-05-21T14:17:47.269Z</p>
+    <p>Generated 2026-05-21T14:37:21.269Z</p>
     <section class="cards">
-      <div class="card"><span>Ready</span><strong>54</strong></div>
+      <div class="card"><span>Ready</span><strong>57</strong></div>
       <div class="card"><span>Warnings</span><strong>2</strong></div>
       <div class="card"><span>Failures</span><strong>0</strong></div>
     </section>
@@ -196,6 +196,12 @@
         </tr>
         <tr class="pass">
           <td>Routes</td>
+          <td>Admin Course Library</td>
+          <td>pass</td>
+          <td>src/app/(app)/admin/course-library/page.tsx</td>
+        </tr>
+        <tr class="pass">
+          <td>Routes</td>
           <td>Admin Contributions</td>
           <td>pass</td>
           <td>src/app/(app)/admin/contributions/page.tsx</td>
@@ -308,6 +314,18 @@
           <td>pass</td>
           <td>supabase/verified-extractions.sql</td>
         </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>course-template-versions.sql</td>
+          <td>pass</td>
+          <td>supabase/course-template-versions.sql</td>
+        </tr>
+        <tr class="pass">
+          <td>Database</td>
+          <td>admin-course-library.sql</td>
+          <td>pass</td>
+          <td>supabase/admin-course-library.sql</td>
+        </tr>
         <tr class="warn">
           <td>Database Safety</td>
           <td>db:safety-check report</td>
@@ -324,7 +342,7 @@
           <td>Database Safety</td>
           <td>db:check-rls report</td>
           <td>pass</td>
-          <td>38 passed, 0 failed</td>
+          <td>40 passed, 0 failed</td>
         </tr>
         <tr class="pass">
           <td>Database Safety</td>

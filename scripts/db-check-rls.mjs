@@ -12,6 +12,7 @@ const sql = await loadSql([
   "supabase/public-course-library-rls.sql",
   "supabase/syllabus-contributions.sql",
   "supabase/course-template-versions.sql",
+  "supabase/admin-course-library.sql",
   "supabase/profile-usernames.sql",
   "supabase/verified-extractions.sql"
 ]);
@@ -87,6 +88,14 @@ const checks = [
   check(
     "Admin can update shared course templates",
     /Admins can update course templates[\s\S]*public\.is_admin\(\)/i
+  ),
+  check(
+    "Admins can view all shared templates",
+    /Admins can view all course templates[\s\S]*public\.is_admin\(\)/i
+  ),
+  check(
+    "Admins can manage template materials",
+    /Admins can create template materials[\s\S]*public\.is_admin\(\)[\s\S]*Admins can update template materials[\s\S]*public\.is_admin\(\)[\s\S]*Admins can delete template materials[\s\S]*public\.is_admin\(\)/i
   ),
   check(
     "Template version history is admin-only",

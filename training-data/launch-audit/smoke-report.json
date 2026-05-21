@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-21T14:17:30.437Z",
+  "generatedAt": "2026-05-21T14:35:55.479Z",
   "summary": {
-    "passed": 50,
+    "passed": 54,
     "warnings": 0,
     "failures": 0
   },
@@ -59,6 +59,12 @@
       "name": "/admin/contributions",
       "status": "pass",
       "detail": "out/admin/contributions/index.html"
+    },
+    {
+      "area": "Routes",
+      "name": "/admin/course-library",
+      "status": "pass",
+      "detail": "out/admin/course-library/index.html"
     },
     {
       "area": "Landing",
@@ -269,6 +275,24 @@
       "name": "Contributor usernames are supported",
       "status": "pass",
       "detail": "Contributors should be able to choose a username/display name and receive public-safe Course Library credit."
+    },
+    {
+      "area": "Admin",
+      "name": "Admin Course Library manager route is linked",
+      "status": "pass",
+      "detail": "Admin landing should link to the shared Course Library template manager."
+    },
+    {
+      "area": "Admin",
+      "name": "Admin editor only targets shared template tables",
+      "status": "pass",
+      "detail": "Manual admin library edits must not touch private workspace tables."
+    },
+    {
+      "area": "Admin",
+      "name": "Admin Course Library RLS migration exists",
+      "status": "pass",
+      "detail": "The admin editor needs policies for non-ready templates and material rows."
     },
     {
       "area": "Privacy",

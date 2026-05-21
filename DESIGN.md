@@ -311,7 +311,7 @@ Cards should group real units: course cards, template cards, stat cards, review 
 - **Simple Mode:** Sidebar-style calculator, term summary, dense course rows, planner access in the header, and scan/review tools behind course modals.
 - **Course Library:** Sidebar shell, search and filters at top, dense 3-column card grid below, ready templates only for normal users.
 - **Course Detail:** Header and stats first, then tabs: Assessments, Planner, Syllabus, Details.
-- **Admin / Contribution:** Same dark product shell, clear review actions, no raw extraction JSON in normal view.
+- **Admin / Contribution:** Same dark product shell, clear review actions, no raw extraction JSON in normal view. Admin Course Library editing uses compact tables and bordered panels with explicit shared-template language, so it never feels like private student workspace editing.
 
 ## 7. Do's and Don'ts
 

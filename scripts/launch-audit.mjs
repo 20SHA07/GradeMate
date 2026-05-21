@@ -79,6 +79,7 @@ async function checkRoutes() {
     ["Course Library", "src/app/(app)/course-library/page.tsx"],
     ["Contribute Syllabus", "src/app/(app)/contribute-syllabus/page.tsx"],
     ["Admin", "src/app/(app)/admin/page.tsx"],
+    ["Admin Course Library", "src/app/(app)/admin/course-library/page.tsx"],
     ["Admin Contributions", "src/app/(app)/admin/contributions/page.tsx"],
     ["Extractor Lab", "src/app/extractor-lab/page.tsx"]
   ];
@@ -289,7 +290,9 @@ async function checkDatabaseSql() {
     "supabase/course-template-unique-key.sql",
     "supabase/public-course-library-rls.sql",
     "supabase/syllabus-contributions.sql",
-    "supabase/verified-extractions.sql"
+    "supabase/verified-extractions.sql",
+    "supabase/course-template-versions.sql",
+    "supabase/admin-course-library.sql"
   ];
 
   for (const filePath of sqlFiles) {

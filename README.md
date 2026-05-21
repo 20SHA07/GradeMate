@@ -136,6 +136,9 @@ To let users submit syllabuses for the shared Course Library, run
 [supabase/syllabus-contributions.sql](supabase/syllabus-contributions.sql) in
 the Supabase SQL editor, then run
 [supabase/course-template-versions.sql](supabase/course-template-versions.sql).
+To let admins directly create, edit, archive, restore, and maintain shared
+Course Library templates, also run
+[supabase/admin-course-library.sql](supabase/admin-course-library.sql).
 For contributor credit, also run
 [supabase/profile-usernames.sql](supabase/profile-usernames.sql). They create:
 
@@ -148,6 +151,7 @@ For contributor credit, also run
 - private RLS policies for user submissions
 - admin-only version history for replaced Course Library templates
 - admin-only policies for approving contributions into Course Library templates
+- admin-only policies for managing shared Course Library template materials
 
 After running the SQL, promote your admin account:
 
@@ -187,6 +191,13 @@ templates have assessment rows, replacement history exists for replaced
 templates, and ready templates are public-readable. The same admin page also
 shows recent verified extraction feedback so corrected examples can be reviewed
 for the benchmark. Raw contribution and feedback data is not public.
+
+Admins can also open `/admin/course-library` to manage shared templates
+directly. The manager can create templates, edit template fields, replace
+assessment/material rows, and archive or restore templates. It saves the
+previous shared template state to `course_template_versions` before admin edits
+and only targets Course Library tables; it does not modify private student
+`semesters`, `courses`, or `assessments`.
 
 ## Course Template Import
 

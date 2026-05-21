@@ -20,6 +20,7 @@ await checkCourseLibraryImportUx();
 await checkCourseLibraryDetailsModalUx();
 await checkSidebarLayoutUx();
 await checkContributionSubmissionUx();
+await checkAdminCourseLibraryUx();
 await checkSyllabusPrivacyUx();
 await writeReports();
 
@@ -51,7 +52,8 @@ async function checkBuiltRoutes() {
     ["/auth/callback", "out/auth/callback/index.html"],
     ["/dashboard", "out/dashboard/index.html"],
     ["/admin", "out/admin/index.html"],
-    ["/admin/contributions", "out/admin/contributions/index.html"]
+    ["/admin/contributions", "out/admin/contributions/index.html"],
+    ["/admin/course-library", "out/admin/course-library/index.html"]
   ];
 
   for (const [route, filePath] of routes) {
@@ -555,6 +557,52 @@ async function checkContributionSubmissionUx() {
         : "fail",
     detail:
       "Contributors should be able to choose a username/display name and receive public-safe Course Library credit."
+  });
+}
+
+async function checkAdminCourseLibraryUx() {
+  const adminPageSource = await readText("src/app/(app)/admin/page.tsx");
+  const adminLibrarySource = await readText(
+    "src/components/admin/admin-course-library-client.tsx"
+  );
+  const adminLibrarySql = await readText("supabase/admin-course-library.sql");
+
+  addCheck({
+    area: "Admin",
+    name: "Admin Course Library manager route is linked",
+    status:
+      adminPageSource.includes("/admin/course-library") &&
+      adminLibrarySource.includes("Course Library Manager")
+        ? "pass"
+        : "fail",
+    detail:
+      "Admin landing should link to the shared Course Library template manager."
+  });
+  addCheck({
+    area: "Admin",
+    name: "Admin editor only targets shared template tables",
+    status:
+      adminLibrarySource.includes('.from("course_templates")') &&
+      adminLibrarySource.includes('.from("course_template_assessments")') &&
+      adminLibrarySource.includes('.from("course_template_materials")') &&
+      adminLibrarySource.includes("course_template_versions") &&
+      !/\.from\("(semesters|courses|assessments)"\)/.test(adminLibrarySource)
+        ? "pass"
+        : "fail",
+    detail:
+      "Manual admin library edits must not touch private workspace tables."
+  });
+  addCheck({
+    area: "Admin",
+    name: "Admin Course Library RLS migration exists",
+    status:
+      adminLibrarySql.includes("Admins can view all course templates") &&
+      adminLibrarySql.includes("Admins can create template materials") &&
+      adminLibrarySql.includes("public.is_admin()")
+        ? "pass"
+        : "fail",
+    detail:
+      "The admin editor needs policies for non-ready templates and material rows."
   });
 }
 
