@@ -1,6 +1,6 @@
 ---
 name: "GradeMate"
-description: "A deep black premium student workspace for GPA, course grades, syllabus review, and KU course templates."
+description: "A deep black premium student workspace for GPA, course grades, contextual syllabus extraction, and KU course templates."
 colors:
   app-bg: "#060809"
   sidebar: "#0d1214"
@@ -270,7 +270,7 @@ Cards should group real units: course cards, template cards, stat cards, review 
 
 ### Sidebar And Navigation
 
-- **Sidebar:** 224px to 240px desktop width, solid Sidebar Black, thin right border, GradeMate identity at top, uppercase university label, nav list in the middle, account actions at bottom.
+- **Sidebar:** 224px to 240px desktop width, solid Sidebar Black, thin right border, GradeMate identity at top, uppercase university label, nav list in the middle, account actions at bottom. Primary nav is Dashboard, Course Library, GPA Calculator, and Semesters; syllabus review stays contextual inside calculator/course flows.
 - **Active State:** Teal background with off-white text.
 - **Inactive State:** Muted text, hover on muted surface.
 - **Mode Switch:** Two-option segmented control with full labels: Quick and Workspace. Icons can assist, but text must not truncate.
@@ -296,9 +296,9 @@ Cards should group real units: course cards, template cards, stat cards, review 
 - **Usage:** Assessment review, course assessment lists, admin review rows, and import preview data.
 - **Editing:** Inline fields should keep table rhythm and not inflate row height excessively.
 
-### Syllabus Review
+### Extraction Review
 
-- **Style:** Dedicated confirmation page/panel, not a background utility card. Match the Stitch extraction reference: large title, success banner, single editable table, footer total check, and right-aligned actions.
+- **Style:** Contextual confirmation modal/page launched from GPA Calculator or course detail, not a separate primary sidebar destination. Match the Stitch extraction reference: large title, success banner, single editable table, footer total check, and right-aligned actions.
 - **Header:** "Review extraction" with a calm success message: "Syllabus processed locally. Review before saving."
 - **Sections:** Course info suggestions, editable assessment table, total weight check, warnings, privacy note.
 - **Actions:** Re-upload, Cancel when relevant, Confirm & Save or Confirm & Add to Workspace.
@@ -308,7 +308,7 @@ Cards should group real units: course cards, template cards, stat cards, review 
 
 - **Landing:** Public entry version of the dashboard: dark nav, compact centered hero, two CTAs, dashboard-style feature cards, subtle trust/disclaimer notes.
 - **Workspace Dashboard:** Sidebar shell, overview stats, smart extraction panel, current courses, compact actions.
-- **Simple Mode:** Sidebar-style calculator, term summary, dense course rows, right GPA metric rail, tools behind modals.
+- **Simple Mode:** Sidebar-style calculator, term summary, dense course rows, planner access in the header, and scan/review tools behind course modals.
 - **Course Library:** Sidebar shell, search and filters at top, dense 3-column card grid below, ready templates only for normal users.
 - **Course Detail:** Header and stats first, then tabs: Assessments, Planner, Syllabus, Details.
 - **Admin / Contribution:** Same dark product shell, clear review actions, no raw extraction JSON in normal view.

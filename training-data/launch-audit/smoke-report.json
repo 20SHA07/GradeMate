@@ -1,7 +1,7 @@
 {
-  "generatedAt": "2026-05-20T18:00:23.773Z",
+  "generatedAt": "2026-05-21T14:17:30.437Z",
   "summary": {
-    "passed": 48,
+    "passed": 50,
     "warnings": 0,
     "failures": 0
   },
@@ -197,6 +197,18 @@
       "name": "Sidebar account text truncates safely",
       "status": "pass",
       "detail": "Long user emails and nav labels should not overflow the sidebar."
+    },
+    {
+      "area": "Navigation",
+      "name": "Syllabus review is contextual, not primary nav",
+      "status": "pass",
+      "detail": "Syllabus review should live inside calculator/course flows instead of the main sidebar."
+    },
+    {
+      "area": "GPA Calculator",
+      "name": "Planner is merged into GPA Calculator",
+      "status": "pass",
+      "detail": "Students should open target planning from the GPA Calculator instead of a separate review area."
     },
     {
       "area": "Navigation",

@@ -375,6 +375,30 @@ async function checkSidebarLayoutUx() {
   });
   addCheck({
     area: "Navigation",
+    name: "Syllabus review is contextual, not primary nav",
+    status:
+      !appShellSource.includes('label: "Syllabus Review"') &&
+      !simpleSource.includes("Syllabus Review") &&
+      appShellSource.includes('label: "GPA Calculator"')
+        ? "pass"
+        : "fail",
+    detail:
+      "Syllabus review should live inside calculator/course flows instead of the main sidebar."
+  });
+  addCheck({
+    area: "GPA Calculator",
+    name: "Planner is merged into GPA Calculator",
+    status:
+      simpleSource.includes("openPlannerFromHeader") &&
+      simpleSource.includes("Grade Planner") &&
+      simpleSource.includes("Planner")
+        ? "pass"
+        : "fail",
+    detail:
+      "Students should open target planning from the GPA Calculator instead of a separate review area."
+  });
+  addCheck({
+    area: "Navigation",
     name: "Simple calculator sidebar uses same viewport shell",
     status:
       simpleSource.includes("min-h-dvh lg:block") &&

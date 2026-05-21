@@ -1015,6 +1015,22 @@ export function SimpleGpaCalculator() {
     });
   }
 
+  function openPlannerFromHeader() {
+    const course =
+      data.courses.find((item) => item.assessments.length > 0) ??
+      data.courses[0];
+
+    if (!course) {
+      setMessage("");
+      setError("Add a course before opening the planner.");
+      return;
+    }
+
+    setError("");
+    setMessage("");
+    setActivePredictorCourseId(course.id);
+  }
+
   function addTemplateToCalculator(template: SimpleTemplate) {
     addCourse({
       assessments: template.assessments.map((assessment) =>
@@ -1553,8 +1569,8 @@ export function SimpleGpaCalculator() {
             <Link className="rounded-[3px] bg-teal-700 px-3 py-2 text-ink-900" href="/simple">
               GPA Calculator
             </Link>
-            <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/courses">
-              Syllabus Review
+            <Link className="rounded-[3px] px-3 py-2 text-ink-700 hover:bg-ink-200/60 hover:text-ink-900" href="/semesters">
+              Semesters
             </Link>
           </nav>
           <div className="max-h-[48dvh] shrink-0 overflow-y-auto border-t border-ink-200 p-4">
@@ -1573,7 +1589,7 @@ export function SimpleGpaCalculator() {
           <div>
             <h1 className="text-[26px] font-bold leading-tight text-ink-900">GPA Calculator</h1>
             <p className="mt-2 max-w-xl text-[13px] leading-5 text-ink-800">
-              Add courses and see your GPA.
+              Add courses, estimate GPA, and use the planner to see what you need.
             </p>
           </div>
           <div className="flex flex-wrap items-center gap-1 rounded-[3px] border border-ink-200 bg-white/80 p-1">
@@ -1585,21 +1601,9 @@ export function SimpleGpaCalculator() {
               <Download aria-hidden="true" className="h-4 w-4" />
               Save
             </Button>
-            <Button
-              onClick={() => {
-                setIsStudentInfoOpen(true);
-                window.requestAnimationFrame(() =>
-                  studentInfoRef.current?.scrollIntoView({
-                    behavior: "smooth",
-                    block: "center"
-                  })
-                );
-              }}
-              size="sm"
-              variant="secondary"
-            >
+            <Button onClick={openPlannerFromHeader} size="sm" variant="secondary">
               <Calculator aria-hidden="true" className="h-4 w-4" />
-              What-if
+              Planner
             </Button>
           </div>
         </header>

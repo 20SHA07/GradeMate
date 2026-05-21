@@ -7,7 +7,6 @@ import {
   BookMarked,
   BookOpen,
   Calculator,
-  FileText,
   GraduationCap,
   HelpCircle,
   LayoutDashboard,
@@ -23,7 +22,6 @@ const navItems = [
   { href: "/workspace", label: "Dashboard", icon: LayoutDashboard },
   { href: "/course-library", label: "Course Library", icon: BookMarked },
   { href: "/simple", label: "GPA Calculator", icon: Calculator },
-  { href: "/courses", label: "Syllabus Review", icon: FileText },
   { href: "/semesters", label: "Semesters", icon: BookOpen }
 ];
 
