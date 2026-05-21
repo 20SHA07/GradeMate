@@ -574,6 +574,9 @@ async function checkContributionSubmissionUx() {
 
 async function checkAdminCourseLibraryUx() {
   const adminPageSource = await readText("src/app/(app)/admin/page.tsx");
+  const adminDashboardSource = await readText(
+    "src/components/admin/admin-dashboard-client.tsx"
+  );
   const adminLibrarySource = await readText(
     "src/components/admin/admin-course-library-client.tsx"
   );
@@ -583,12 +586,27 @@ async function checkAdminCourseLibraryUx() {
     area: "Admin",
     name: "Admin Course Library manager route is linked",
     status:
-      adminPageSource.includes("/admin/course-library") &&
+      adminDashboardSource.includes("/admin/course-library") &&
       adminLibrarySource.includes("Course Library Manager")
         ? "pass"
         : "fail",
     detail:
       "Admin landing should link to the shared Course Library template manager."
+  });
+  addCheck({
+    area: "Admin",
+    name: "Admin dashboard is a command center",
+    status:
+      adminPageSource.includes("AdminDashboardClient") &&
+      adminDashboardSource.includes("Command center") &&
+      adminDashboardSource.includes("Library health") &&
+      adminDashboardSource.includes("Review queue") &&
+      adminDashboardSource.includes("course_template_versions") &&
+      adminDashboardSource.includes("Admin access required")
+        ? "pass"
+        : "fail",
+    detail:
+      "Admin landing should show live health, review, and action surfaces instead of only static links."
   });
   addCheck({
     area: "Admin",
